@@ -55,7 +55,11 @@
     "type-check:shadcnui": "nx run shadcnui:type-check",
     "type-check:shadcnui-signage": "nx run shadcnui-signage:type-check",
     "validate": "pnpm run format && pnpm run lint:all && pnpm run type-check:all && pnpm run test:all --exclude=common-tailwind,storybook-host && pnpm run build:all",
-    "verify": "pnpm run format:check && pnpm run lint:affected && pnpm run type-check:affected && pnpm run test:affected && pnpm run build:affected"
+    "verify": "pnpm run format:check && pnpm run lint:affected && pnpm run type-check:affected && pnpm run test:affected && pnpm run build:affected",
+    "package:player": "node scripts/package-player.mjs",
+    "deploy:local": "node scripts/deploy-local.mjs",
+    "deploy:player": "pnpm package:player && pnpm deploy:local",
+    "serve:player": "nx serve player-minimal"
   },
   "private": true,
   "type": "module",
