@@ -8,10 +8,9 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getAllByText } = render(<App />);
-    expect(
-      getAllByText(new RegExp('Welcome player-minimal', 'gi')).length > 0,
-    ).toBeTruthy();
+  it('should render the status page title', () => {
+    const { getByText } = render(<App />);
+    expect(getByText('The Sign Age')).toBeTruthy();
+    expect(getByText('Player Status Monitor')).toBeTruthy();
   });
 });
