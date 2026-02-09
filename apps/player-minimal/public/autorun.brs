@@ -12,7 +12,7 @@ Sub Main()
     ' Create HTML widget for the React app
     config = {
         port: msgPort
-        url: "file:///index.html"
+        url: "file:///sd:/index.html"
         inspector_server: {
             port: 2999
             enabled: true
