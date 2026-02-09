@@ -44,7 +44,7 @@ async function checkPlayerStatus(config) {
   console.log(`🔍 Checking player at ${config.ip}:${config.port}...`);
   try {
     const response = await fetch(
-      `http://${config.ip}:${config.port}/device_info.json`,
+      `http://${config.ip}:${config.port}/GetDeviceInfo`,
       {
         method: 'GET',
         signal: AbortSignal.timeout(5000),
