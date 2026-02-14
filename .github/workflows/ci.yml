@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch: # Allows manual triggering
 
 permissions:
   actions: read
@@ -36,7 +36,7 @@ jobs:
 
       # Cache pnpm dependencies using actions/cache@v4
       - name: Cache pnpm store
-        uses: actions/cache@v4 
+        uses: actions/cache@v4
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}

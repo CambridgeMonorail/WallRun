@@ -71,6 +71,7 @@ async function uploadPackage(config, packagePath) {
     const formData = new FormData();
     const blob = new Blob([packageData], { type: 'application/zip' });
     formData.append('file', blob, 'player.zip');
+    formData.append('path', '/sd:/');
 
     const response = await fetch(`http://${config.ip}:${config.port}/upload`, {
       method: 'POST',
@@ -98,7 +99,7 @@ async function rebootPlayer(config) {
 
   try {
     const response = await fetch(`http://${config.ip}:${config.port}/reboot`, {
-      method: 'POST',
+      method: 'GET',
       signal: AbortSignal.timeout(5000),
     });
 

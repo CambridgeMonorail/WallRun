@@ -7,6 +7,7 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/player-minimal',
+  base: './',
   server: {
     port: 4200,
     host: 'localhost',
@@ -29,13 +30,7 @@ export default defineConfig(() => ({
     },
     // Optimize for BrightSign embedded Chromium
     target: 'es2020', // BrightSign OS 9.x supports modern ES
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console logs in production
-        drop_debugger: true,
-      },
-    },
+    minify: 'esbuild',
     // Aggressive code-splitting for smaller initial bundle
     rollupOptions: {
       output: {

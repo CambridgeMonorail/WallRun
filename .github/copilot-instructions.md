@@ -9,6 +9,7 @@ Digital signage as software. Nx + pnpm monorepo using React 19, Tailwind v4, sha
 ### Branch Workflow
 
 1. **Before starting work**, create a feature branch from up-to-date main:
+
    ```bash
    git checkout main
    git pull
@@ -18,6 +19,7 @@ Digital signage as software. Nx + pnpm monorepo using React 19, Tailwind v4, sha
    ```
 
 2. **Work in your branch** - commit regularly with conventional commit messages:
+
    ```bash
    git add -A
    git commit -m "feat(scope): description"
@@ -25,6 +27,7 @@ Digital signage as software. Nx + pnpm monorepo using React 19, Tailwind v4, sha
    ```
 
 3. **Create pull request** - push to your branch and open PR to main:
+
    ```bash
    git push -u origin feat/your-feature-name
    ```

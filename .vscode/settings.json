@@ -14,5 +14,6 @@
   "github.copilot.chat.newWorkspace.useContext7": true,
   "chat.tools.terminal.autoApprove": {
     "pnpm": true
-  }
+  },
+  "vitest.disableWorkspaceWarning": true
 }

@@ -18,11 +18,11 @@ import {
   writeFileSync,
   readdirSync,
   statSync,
+  rmSync,
+  cpSync,
 } from 'fs';
 import { join, dirname } from 'path';
 import { createHash } from 'crypto';
-import { createGzip } from 'zlib';
-import { pipeline } from 'stream/promises';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -85,7 +85,7 @@ async function main() {
   // Step 1: Build the app
   console.log('1️⃣  Building player-minimal app...');
   try {
-    execSync('pnpm exec nx build player-minimal', {
+    execSync('pnpm exec nx build player-minimal --configuration=production', {
       cwd: ROOT_DIR,
       stdio: 'inherit',
     });
@@ -98,7 +98,7 @@ async function main() {
   // Step 2: Create package directory
   console.log('2️⃣  Creating package directory...');
   if (existsSync(PACKAGE_DIR)) {
-    execSync(`rm -rf "${PACKAGE_DIR}"`, { cwd: ROOT_DIR });
+    rmSync(PACKAGE_DIR, { recursive: true, force: true });
   }
   mkdirSync(PACKAGE_DIR, { recursive: true });
   console.log(`✅ Created ${PACKAGE_DIR}\n`);
@@ -109,14 +109,18 @@ async function main() {
     console.error(`❌ autorun.brs not found at ${AUTORUN_SRC}`);
     process.exit(1);
   }
-  execSync(`cp "${AUTORUN_SRC}" "${join(PACKAGE_DIR, 'autorun.brs')}"`, {
-    cwd: ROOT_DIR,
-  });
+  cpSync(AUTORUN_SRC, join(PACKAGE_DIR, 'autorun.brs'));
   console.log('✅ Copied autorun.brs\n');
 
   // Step 4: Copy dist files
   console.log('4️⃣  Copying application files...');
-  execSync(`cp -r "${DIST_DIR}"/* "${PACKAGE_DIR}/"`, { cwd: ROOT_DIR });
+  // Copy contents of DIST_DIR into PACKAGE_DIR
+  const distItems = readdirSync(DIST_DIR);
+  for (const item of distItems) {
+    const srcPath = join(DIST_DIR, item);
+    const destPath = join(PACKAGE_DIR, item);
+    cpSync(srcPath, destPath, { recursive: true });
+  }
   console.log('✅ Copied application files\n');
 
   // Step 5: Generate manifest
