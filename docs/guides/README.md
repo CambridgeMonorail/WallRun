@@ -4,11 +4,19 @@ Practical how-to guides for common tasks in The Sign Age. These tutorials walk t
 
 ## Documents in this Section
 
-### [Creating Digital Signage Content](./creating-signage-content.md) ⭐ NEW
+### [Creating Digital Signage Content](./creating-signage-content.md) ⭐
 
 **Comprehensive guide to designing and building premium digital signage screens.** Learn to use the signage-architect agent, apply premium design standards, and create compelling signage for menus, dashboards, wayfinding, and more.
 
 **Key Topics**: Signage architect agent, premium design patterns, gradient backgrounds, glass morphism, typographic hierarchy, signage types (menu/dashboard/wayfinding), adding to gallery, shadcnui-signage library
+
+---
+
+### [BrightSign Deployment](./brightsign-deployment.md) ⭐ NEW
+
+**Complete guide to deploying React apps to BrightSign OS 9.x digital signage players.** Learn how to package player apps, deploy to local players via HTTP API, and troubleshoot deployment issues.
+
+**Key Topics**: BrightSign packaging, local deployment, autorun.brs bootstrap, network discovery, HTTP API, debugging, production builds
 
 ---
 

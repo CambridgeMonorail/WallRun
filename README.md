@@ -21,6 +21,7 @@
 ## ✨ Key Features
 
 - **`@tsa/shadcnui-signage`** - Purpose-built React component library for digital signage (distance-readable typography, fixed-aspect layouts, deterministic rendering)
+- **BrightSign Deployment Workflow** - Production-ready scripts for packaging and deploying to BrightSign OS 9.x players ([guide](./docs/guides/brightsign-deployment.md))
 - **Signage Architect Agent** - AI accelerator for building premium signage screens with GitHub Copilot ([.github/agents/signage-architect.agent.md](./.github/agents/signage-architect.agent.md))
 - **Production-Ready Examples** - Restaurant menus, office directories, KPI dashboards, event schedules, and more
 - **BrightSign Platform Integration** - MCP server support for device documentation and platform research
@@ -83,7 +84,14 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 ### Applications
 
 - **`apps/client`**: Demo site showcasing signage examples and components (**[View Live Demo](https://cambridgemonorail.github.io/TheSignAge/)**)
+- **`apps/player-minimal`**: BrightSign deployment target with status monitoring (**[Deployment Guide](./docs/guides/brightsign-deployment.md)**)
 - **Storybook**: Interactive component documentation (**[Browse Components](https://cambridgemonorail.github.io/TheSignAge/storybook/)**)
+
+### Deployment Tools
+
+- **`scripts/package-player.mjs`** - Package React apps for BrightSign OS 9.x with autorun.brs bootstrap
+- **`scripts/deploy-local.mjs`** - Deploy to local BrightSign players via HTTP API (port 8008)
+- **`.github/skills/brightsign-*`** - AI context for BrightSign packaging, deployment, and debugging
 
 ### AI Accelerators
 
@@ -208,11 +216,13 @@ These targets are either [inferred automatically](https://nx.dev/concepts/inferr
 - Storybook: `pnpm run serve:storybook`
 - Verify (fast, affected only): `pnpm run verify`
 - Full validation (slower): `pnpm run validate`
+- **Deploy to BrightSign**: `pnpm run deploy:player` (see [deployment guide](./docs/guides/brightsign-deployment.md))
 
 ## Documentation
 
 ### Quick Links
-
+BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md)** ⭐ - Deploy React apps to BrightSign OS 9.x players
+- **[Creating Digital Signage Content](./docs/guides/creating-signage-content.md)**
 - **[Creating Digital Signage Content](./docs/guides/creating-signage-content.md)** ⭐ - Comprehensive guide to building premium signage screens
 - **[Getting Started](./docs/getting-started/README.md)** - Project structure and setup
 - **[Guides](./docs/guides/README.md)** - Practical how-to tutorials
