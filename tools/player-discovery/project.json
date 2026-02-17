@@ -1,0 +1,27 @@
+{
+  "name": "player-discovery",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/player-discovery/src",
+  "projectType": "application",
+  "targets": {
+    "discover": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/player-discovery/src/main.mjs"
+      }
+    },
+    "scan": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/player-discovery/src/main.mjs scan"
+      }
+    },
+    "probe": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/player-discovery/src/main.mjs probe"
+      }
+    }
+  },
+  "tags": ["type:tool", "scope:brightsign"]
+}

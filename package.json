@@ -64,7 +64,10 @@
     "player": "node scripts/player-config.mjs",
     "player:list": "node scripts/player-config.mjs list",
     "player:add": "node scripts/player-config.mjs add",
-    "player:remove": "node scripts/player-config.mjs remove"
+    "player:remove": "node scripts/player-config.mjs remove",
+    "discover": "node tools/player-discovery/src/main.mjs",
+    "discover:scan": "node tools/player-discovery/src/main.mjs scan",
+    "discover:probe": "node tools/player-discovery/src/main.mjs probe"
   },
   "private": true,
   "type": "module",
