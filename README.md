@@ -28,7 +28,13 @@
 
 ## 🚀 Quick Start: BrightSign Development
 
-Get started with BrightSign player development in 3 commands:
+If you're a web developer new to BrightSign, this repo is designed to get you to:
+
+- A working React “player app” you can run locally
+- A repeatable packaging + deploy workflow for BrightSign OS 9.x
+- A dev-friendly way to manage players (and discover them) without committing IPs
+
+Get started with BrightSign player development in 3 commands (after `pnpm install`):
 
 ```bash
 # 1. Initialize configuration files
@@ -41,14 +47,21 @@ pnpm player add dev-player 192.168.0.51 --default
 pnpm deploy:player
 ```
 
+Optional (recommended for first-time setup): discover players on your LAN
+
+```bash
+pnpm discover
+```
+
 The setup script creates:
 - `.env` for environment variables (optional)
 - `.brightsign/players.json` for player registry (git-ignored)
 
-See [BrightSign Player Configuration](./docs/guides/brightsign-player-config.md) for full details.
+See [BrightSign Player Configuration](./docs/guides/brightsign-player-config.md) and the [BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md) for full details.
 
 ## Table of Contents
 
+- [Quick Start: BrightSign Development](#-quick-start-brightsign-development)
 - [Overview](#overview)
 - [Statement of Intent](#statement-of-intent)
 - [What This Repo Contains](#what-this-repo-contains)
@@ -209,16 +222,22 @@ To install the project, follow these steps:
 
 ## Usage
 
-To run the dev server for your app, use:
+To run the demo site locally:
 
 ```sh
-npx nx serve client
+pnpm run serve:client
+```
+
+To run the BrightSign player app locally:
+
+```sh
+pnpm run serve:player
 ```
 
 To create a production bundle:
 
 ```sh
-npx nx build client
+pnpm run build:affected
 ```
 
 To see all available targets to run for a project, run:
@@ -238,16 +257,21 @@ These targets are either [inferred automatically](https://nx.dev/concepts/inferr
 - Verify (fast, affected only): `pnpm run verify`
 - Full validation (slower): `pnpm run validate`
 - **Deploy to BrightSign**: `pnpm run deploy:player` (see [deployment guide](./docs/guides/brightsign-deployment.md))
+- **Discover BrightSign players on your LAN**: `pnpm run discover`
+- **Manage player configs (git-safe)**: `pnpm run player list|add|remove|default|get`
 
 ## Documentation
 
 ### Quick Links
-BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md)** ⭐ - Deploy React apps to BrightSign OS 9.x players
-- **[Creating Digital Signage Content](./docs/guides/creating-signage-content.md)**
-- **[Creating Digital Signage Content](./docs/guides/creating-signage-content.md)** ⭐ - Comprehensive guide to building premium signage screens
-- **[Getting Started](./docs/getting-started/README.md)** - Project structure and setup
+
+- **[BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md)** ⭐ - Package + deploy to BrightSign OS 9.x
+- **[BrightSign Player Configuration](./docs/guides/brightsign-player-config.md)** ⭐ - Player registry + git-safe config
+- **[Player Discovery Tool](./tools/player-discovery/README.md)** ⭐ - Discover players on your LAN
+- **[Creating Digital Signage Content](./docs/guides/creating-signage-content.md)** - Guide to building premium signage screens
 - **[Guides](./docs/guides/README.md)** - Practical how-to tutorials
+- **[Getting Started](./docs/getting-started/README.md)** - Project structure and setup
 - **[Documentation Index](./docs/README.md)** - Full documentation overview
+- **[BrightSign Testing Checklist](./TESTING_BRIGHTSIGN.md)** - End-to-end validation steps
 
 ### Key Resources
 
