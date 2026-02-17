@@ -1,0 +1,24 @@
+{
+  "$schema": "./players.schema.json",
+  "players": [
+    {
+      "name": "dev-player",
+      "ip": "192.168.0.51",
+      "port": 8008,
+      "model": "CL435",
+      "serial": "C5D51K000056",
+      "description": "Development player in office",
+      "tags": ["dev", "office"]
+    },
+    {
+      "name": "test-player",
+      "ip": "192.168.0.52",
+      "port": 8008,
+      "model": "XD1034",
+      "serial": "ABC123456789",
+      "description": "Testing player in lab",
+      "tags": ["test", "lab"]
+    }
+  ],
+  "default": "dev-player"
+}

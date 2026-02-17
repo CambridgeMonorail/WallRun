@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BrightSign Players Configuration",
+  "description": "Configuration file for BrightSign player deployment targets",
+  "type": "object",
+  "properties": {
+    "players": {
+      "type": "array",
+      "description": "List of available BrightSign players",
+      "items": {
+        "type": "object",
+        "required": ["name", "ip"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Friendly name for the player",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address or hostname of the player",
+            "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$|^[a-zA-Z0-9.-]+$"
+          },
+          "port": {
+            "type": "integer",
+            "description": "Diagnostic web server port",
+            "default": 8008,
+            "minimum": 1,
+            "maximum": 65535
+          },
+          "model": {
+            "type": "string",
+            "description": "BrightSign model (e.g., XD1034, CL435)"
+          },
+          "serial": {
+            "type": "string",
+            "description": "Player serial number"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the player"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags for organizing players (e.g., dev, test, prod)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "username": {
+            "type": "string",
+            "description": "Optional authentication username"
+          },
+          "password": {
+            "type": "string",
+            "description": "Optional authentication password"
+          }
+        }
+      }
+    },
+    "default": {
+      "type": "string",
+      "description": "Name of the default player to use"
+    }
+  },
+  "required": ["players"]
+}

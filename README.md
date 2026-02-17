@@ -26,6 +26,27 @@
 - **Production-Ready Examples** - Restaurant menus, office directories, KPI dashboards, event schedules, and more
 - **BrightSign Platform Integration** - MCP server support for device documentation and platform research
 
+## 🚀 Quick Start: BrightSign Development
+
+Get started with BrightSign player development in 3 commands:
+
+```bash
+# 1. Initialize configuration files
+pnpm setup:dev
+
+# 2. Add your BrightSign player
+pnpm player add dev-player 192.168.0.51 --default
+
+# 3. Build and deploy
+pnpm deploy:player
+```
+
+The setup script creates:
+- `.env` for environment variables (optional)
+- `.brightsign/players.json` for player registry (git-ignored)
+
+See [BrightSign Player Configuration](./docs/guides/brightsign-player-config.md) for full details.
+
 ## Table of Contents
 
 - [Overview](#overview)

@@ -41,6 +41,9 @@ testem.log
 *.key
 *.pem
 
+# BrightSign player configurations (keep .example files only)
+.brightsign/players.json
+
 # System Files
 .DS_Store
 Thumbs.db

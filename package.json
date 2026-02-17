@@ -43,6 +43,7 @@
     "serve:client": "nx serve client",
     "serve:storybook": "cross-env STORYBOOK_DISABLE_TELEMETRY=true nx storybook storybook-host",
     "setup": "node ./scripts/setup.js",
+    "setup:dev": "node ./scripts/setup-dev.mjs",
     "storybook": "pnpm run serve:storybook",
     "test:affected": "nx affected --target=test",
     "test:all": "nx run-many --target=test --all",
@@ -59,7 +60,11 @@
     "package:player": "node scripts/package-player.mjs",
     "deploy:local": "node scripts/deploy-local.mjs",
     "deploy:player": "pnpm package:player && pnpm deploy:local",
-    "serve:player": "nx serve player-minimal"
+    "serve:player": "nx serve player-minimal",
+    "player": "node scripts/player-config.mjs",
+    "player:list": "node scripts/player-config.mjs list",
+    "player:add": "node scripts/player-config.mjs add",
+    "player:remove": "node scripts/player-config.mjs remove"
   },
   "private": true,
   "type": "module",

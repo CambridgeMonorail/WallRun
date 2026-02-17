@@ -12,6 +12,7 @@ import { join, dirname } from 'path';
 import { createInterface } from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
 import { fileURLToPath } from 'url';
+import { getPlayer } from './player-config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,12 +33,57 @@ async function promptForIP() {
   return ip.trim();
 }
 
-async function discoverPlayers() {
-  console.log('🔍 Scanning network for BrightSign players...');
-  // In a real implementation, use SSDP or mDNS to discover players
-  // For now, just return empty array
-  console.log('   (Discovery not yet implemented - please enter IP manually)');
-  return [];
+/**
+ * Get player configuration from CLI flag, players.json, or prompt
+ */
+async function getPlayerConfig() {
+  // Check for --player flag
+  const playerNameIndex = process.argv.indexOf('--player');
+  if (playerNameIndex !== -1 && process.argv[playerNameIndex + 1]) {
+    const playerName = process.argv[playerNameIndex + 1];
+    try {
+      const player = await getPlayer(playerName);
+      console.log(`📺 Using player: ${player.name}`);
+      return {
+        ip: player.ip,
+        port: player.port || 8008,
+        username: player.username,
+        password: player.password,
+      };
+    } catch (error) {
+      console.error(`❌ ${error.message}`);
+      process.exit(1);
+    }
+  }
+
+  // Try to load default player from players.json
+  try {
+    const player = await getPlayer(); // Gets default player
+    if (player) {
+      console.log(`📺 Using default player: ${player.name} (${player.ip})`);
+      return {
+        ip: player.ip,
+        port: player.port || 8008,
+        username: player.username,
+        password: player.password,
+      };
+    }
+  } catch (error) {
+    // No players.json or no default player - fall through to prompt
+  }
+
+  // Fall back to interactive prompt
+  console.log('💡 Tip: Configure players with "pnpm player add <name> <ip>"');
+  const playerIP = await promptForIP();
+  
+  if (!playerIP) {
+    throw new Error('No player IP provided');
+  }
+
+  return {
+    ip: playerIP,
+    port: 8008,
+  };
 }
 
 async function checkPlayerStatus(config) {
@@ -138,28 +184,8 @@ async function main() {
 
   console.log(`📦 Package: brightsign-player-v${version}.zip\n`);
 
-  // Get player IP
-  const players = await discoverPlayers();
-  let playerIP;
-
-  if (players.length > 0) {
-    console.log('\nDiscovered players:');
-    players.forEach((ip, i) => console.log(`  ${i + 1}. ${ip}`));
-    playerIP = players[0];
-  } else {
-    playerIP = await promptForIP();
-  }
-
-  if (!playerIP) {
-    console.error('❌ No player IP provided');
-    process.exit(1);
-  }
-
-  /** @type {PlayerConfig} */
-  const config = {
-    ip: playerIP,
-    port: 8008,
-  };
+  // Get player configuration
+  const config = await getPlayerConfig();
 
   // Check player status
   const playerReachable = await checkPlayerStatus(config);
