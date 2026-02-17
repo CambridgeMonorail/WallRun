@@ -114,7 +114,7 @@ async function scanMode(args) {
  */
 async function probeMode(args) {
   const ip = args.ip || args._[1];
-  const port = args.port || 8008;
+  const port = parseInt(args.port || 8008, 10);
   
   if (!ip) {
     console.error('❌ Usage: pnpm discover:probe <ip> [--port 8008]');
@@ -174,7 +174,18 @@ function parseArgs(argv) {
     const arg = argv[i];
     if (arg.startsWith('--')) {
       const [key, value] = arg.slice(2).split('=');
-      args[key] = value || true;
+      if (value !== undefined) {
+        args[key] = value;
+      } else {
+        // Check if next arg is a value (not a flag)
+        const nextArg = argv[i + 1];
+        if (nextArg && !nextArg.startsWith('-')) {
+          args[key] = nextArg;
+          i++; // Skip next arg
+        } else {
+          args[key] = true;
+        }
+      }
     } else {
       args._.push(arg);
     }
