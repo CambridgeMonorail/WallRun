@@ -50,51 +50,80 @@ export function parseCIDR(cidr) {
  * @returns {Promise<{success: boolean, evidence?: string, headers?: object, body?: string}>}
  */
 export async function probeHost(ip, port, timeout = 2000) {
-  return new Promise((resolve) => {
-    const protocol = port === 443 ? https : http;
-    
-    const req = protocol.get(
-      {
-        hostname: ip,
-        port,
-        path: '/',
-        timeout,
-        headers: { 'User-Agent': 'TheSignAge-Discovery/1.0' },
-        rejectUnauthorized: false, // Allow self-signed certs
-      },
-      (res) => {
-        let body = '';
-        
-        res.on('data', (chunk) => {
-          body += chunk.toString();
-          // Stop early if we have enough to fingerprint
-          if (body.length > 5000) {
-            res.destroy();
-          }
-        });
-        
-        res.on('end', () => {
-          const evidence = detectBrightSign(res.headers, body);
-          if (evidence) {
-            resolve({
-              success: true,
-              evidence,
-              headers: res.headers,
-              body: body.substring(0, 500), // Truncate for storage
-            });
-          } else {
-            resolve({ success: false });
-          }
-        });
-      }
-    );
-    
-    req.on('error', () => resolve({ success: false }));
-    req.on('timeout', () => {
-      req.destroy();
-      resolve({ success: false });
+  const protocol = port === 443 ? https : http;
+  const pathsToTry = port === 443 ? ['/'] : ['/api/v1/info', '/'];
+
+  for (const requestPath of pathsToTry) {
+    const result = await new Promise((resolve) => {
+      let resolved = false;
+      const finish = (payload) => {
+        if (resolved) return;
+        resolved = true;
+        resolve(payload);
+      };
+
+      const req = protocol.get(
+        {
+          hostname: ip,
+          port,
+          path: requestPath,
+          timeout,
+          headers: { 'User-Agent': 'TheSignAge-Discovery/1.0' },
+          rejectUnauthorized: false,
+        },
+        (res) => {
+          let body = '';
+
+          res.on('data', (chunk) => {
+            body += chunk.toString();
+            if (body.length > 8000) {
+              const evidence = detectBrightSign(res.headers, body);
+              if (evidence) {
+                finish({
+                  success: true,
+                  evidence,
+                  headers: res.headers,
+                  body: body.substring(0, 500),
+                });
+              } else {
+                finish({ success: false });
+              }
+              res.destroy();
+            }
+          });
+
+          res.on('end', () => {
+            const evidence = detectBrightSign(res.headers, body);
+            if (evidence) {
+              finish({
+                success: true,
+                evidence,
+                headers: res.headers,
+                body: body.substring(0, 500),
+              });
+            } else {
+              finish({ success: false });
+            }
+          });
+
+          res.on('aborted', () => finish({ success: false }));
+          res.on('close', () => finish({ success: false }));
+        }
+      );
+
+      req.on('error', () => finish({ success: false }));
+      req.on('timeout', () => {
+        req.destroy();
+        finish({ success: false });
+      });
     });
-  });
+
+    if (result?.success) {
+      return result;
+    }
+  }
+
+  return { success: false };
 }
 
 /**
@@ -124,6 +153,11 @@ function detectBrightSign(headers, body) {
   // Check for common DWS paths
   if (bodyLower.includes('/api/v1/') || bodyLower.includes('/getdeviceinfo')) {
     return 'body:api endpoints';
+  }
+
+  // DWS JSON markers (common in /api/v1/info)
+  if (bodyLower.includes('"isplayer":true') || (bodyLower.includes('"fwversion"') && bodyLower.includes('"serial"'))) {
+    return 'body:dws api info';
   }
   
   return null;

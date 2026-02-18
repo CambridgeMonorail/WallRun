@@ -67,7 +67,8 @@
     "player:remove": "node scripts/player-config.mjs remove",
     "discover": "node tools/player-discovery/src/main.mjs",
     "discover:scan": "node tools/player-discovery/src/main.mjs scan",
-    "discover:probe": "node tools/player-discovery/src/main.mjs probe"
+    "discover:probe": "node tools/player-discovery/src/main.mjs probe",
+    "discover:export": "node tools/player-discovery/src/main.mjs export"
   },
   "private": true,
   "type": "module",

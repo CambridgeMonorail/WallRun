@@ -21,6 +21,12 @@
       "options": {
         "command": "node tools/player-discovery/src/main.mjs probe"
       }
+    },
+    "export": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/player-discovery/src/main.mjs export"
+      }
     }
   },
   "tags": ["type:tool", "scope:brightsign"]

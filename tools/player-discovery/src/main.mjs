@@ -7,6 +7,7 @@
  *   pnpm discover              # Interactive mode
  *   pnpm discover:scan         # Quick scan with defaults
  *   pnpm discover:probe <ip>   # Probe specific player
+ *   pnpm discover:export       # Export dist/players.json to JSON/CSV
  */
 
 import fs from 'fs';
@@ -19,6 +20,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../..');
 const outputDir = path.join(rootDir, 'dist');
 const outputFile = path.join(outputDir, 'players.json');
+const outputCsvFile = path.join(outputDir, 'players.csv');
 
 /**
  * Interactive discovery mode
@@ -136,6 +138,90 @@ async function probeMode(args) {
 }
 
 /**
+ * Export discovery results to JSON and/or CSV with a short summary.
+ */
+async function exportMode(args) {
+  const inputPath = path.resolve(rootDir, args.in || args.input || outputFile);
+  const jsonOutPath = path.resolve(rootDir, args.json || outputFile);
+  const csvOutPath = path.resolve(rootDir, args.csv || outputCsvFile);
+
+  if (!fs.existsSync(inputPath)) {
+    console.error(`❌ Input file not found: ${inputPath}`);
+    console.error('   Run discovery first: pnpm discover:scan --cidr <CIDR>');
+    process.exit(1);
+  }
+
+  const raw = fs.readFileSync(inputPath, 'utf-8');
+  /** @type {unknown} */
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    console.error(`❌ Input is not valid JSON: ${inputPath}`);
+    process.exit(1);
+  }
+
+  if (!Array.isArray(parsed)) {
+    console.error(`❌ Expected an array of results in: ${inputPath}`);
+    process.exit(1);
+  }
+
+  const results = /** @type {Array<any>} */ (parsed);
+
+  ensureDir(path.dirname(jsonOutPath));
+  fs.writeFileSync(jsonOutPath, JSON.stringify(results, null, 2));
+
+  if (args.csv !== false && args.csv !== 'false') {
+    ensureDir(path.dirname(csvOutPath));
+    fs.writeFileSync(csvOutPath, toCSV(results));
+  }
+
+  console.log(`\n✔ Export complete\n`);
+  console.log(`Total results: ${results.length}`);
+  console.log(`JSON: ${path.relative(rootDir, jsonOutPath)}`);
+  if (args.csv !== false && args.csv !== 'false') {
+    console.log(`CSV:  ${path.relative(rootDir, csvOutPath)}`);
+  }
+
+  const limit = parseInt(args.limit || '20', 10);
+  const preview = results.slice(0, Number.isFinite(limit) ? limit : 20);
+  console.log('\nPreview:');
+  console.log(formatPlayersTable(preview));
+
+  console.log('\n⚠️  Reminder: discovery outputs may contain internal IPs and device identifiers.');
+  console.log('   These files are gitignored and must not be committed.\n');
+}
+
+function csvEscape(value) {
+  const str = value === undefined || value === null ? '' : String(value);
+  if (str.includes('"') || str.includes(',') || str.includes('\n') || str.includes('\r')) {
+    return '"' + str.replaceAll('"', '""') + '"';
+  }
+  return str;
+}
+
+function toCSV(results) {
+  const header = ['ip', 'port', 'evidence', 'discoveredAt', 'model', 'serial', 'firmware'];
+  const lines = [header.join(',')];
+
+  for (const r of results) {
+    const deviceInfo = r.deviceInfo || r.info || {};
+    const row = [
+      csvEscape(r.ip),
+      csvEscape(r.port),
+      csvEscape(r.evidence),
+      csvEscape(r.discoveredAt),
+      csvEscape(deviceInfo.model || deviceInfo.Model || deviceInfo.result?.model),
+      csvEscape(deviceInfo.serial || deviceInfo.Serial || deviceInfo.result?.serial),
+      csvEscape(deviceInfo.firmware || deviceInfo.FWVersion || deviceInfo.result?.FWVersion),
+    ];
+    lines.push(row.join(','));
+  }
+
+  return lines.join('\n') + '\n';
+}
+
+/**
  * Enrich discovered players with device info
  */
 async function enrichPlayers(players) {
@@ -205,6 +291,8 @@ async function main() {
       await scanMode(args);
     } else if (command === 'probe') {
       await probeMode(args);
+    } else if (command === 'export') {
+      await exportMode(args);
     } else if (command === 'help' || args.help) {
       showHelp();
     } else {
@@ -229,15 +317,22 @@ Usage:
   pnpm discover:scan [--cidr 192.168.0.0/24] [--thorough]
                                           Non-interactive scan
   pnpm discover:probe <ip> [--port 8008] Probe specific player
+  pnpm discover:export [--in dist/players.json] [--json dist/players.json] [--csv dist/players.csv]
+                                          Export results to JSON/CSV
 
 Options:
   --cidr       Subnet to scan (default: 192.168.0.0/24)
   --thorough   Scan more ports (80, 443, 8008, 8080)
   --port       Port to probe (default: 8008)
+  --in         Input JSON path for export (default: dist/players.json)
+  --json       Output JSON path for export (default: dist/players.json)
+  --csv        Output CSV path for export (default: dist/players.csv)
+  --limit      Preview rows to print during export (default: 20)
   --help       Show this help
 
 Output:
   dist/players.json    Discovered players (gitignored)
+  dist/players.csv     Optional CSV export (gitignored)
 
 Limitations:
   - Players must be on same network/VLAN
@@ -249,6 +344,7 @@ Examples:
   pnpm discover
   pnpm discover:scan --cidr 10.0.1.0/24 --thorough
   pnpm discover:probe 192.168.0.51 --port 8080
+  pnpm discover:export --in dist/players.json --csv dist/players.csv
 `);
 }
 

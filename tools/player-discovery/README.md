@@ -37,6 +37,9 @@ pnpm discover:probe 192.168.0.51
 
 # Probe on different port
 pnpm discover:probe 192.168.0.51 --port 8080
+
+# Export existing results to JSON + CSV
+pnpm discover:export
 ```
 
 ---
