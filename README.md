@@ -66,7 +66,7 @@ Get started with BrightSign player development in 3 commands (after `pnpm instal
 pnpm setup:dev
 
 # 2. Add your BrightSign player
-pnpm player add dev-player 192.168.0.51 --default
+pnpm player add dev-player 192.168.1.50 --default
 
 # 3. Build and deploy
 pnpm deploy:player
@@ -151,7 +151,7 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 
 - **`scripts/package-player.mjs`** - Package React apps for BrightSign OS 9.x with autorun.brs bootstrap
 - **`scripts/deploy-local.mjs`** - Deploy to local BrightSign players via HTTP API (port 8008)
-- **`.github/skills/brightsign-*`** - AI context for BrightSign packaging, deployment, and debugging
+- **`.github/skills/brightsign-*` / `.github/skills/player-discovery-*`** - Copilot Agent Skills for BrightSign workflows and LAN discovery ([docs](./docs/tooling/github-copilot-tooling.md#skills))
 
 ### AI Accelerators
 

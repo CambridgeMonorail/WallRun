@@ -80,6 +80,7 @@ Planned features and future work.
 - **Get started** → [Getting Started](./getting-started/)
 - **Build a feature** → [Guides](./guides/)
 - **Use Copilot agents** → [GitHub Copilot Tooling](./tooling/github-copilot-tooling.md)
+- **Use Copilot skills** → [GitHub Copilot Tooling](./tooling/github-copilot-tooling.md#skills)
 - **Theme my app** → [Theming Your App](./guides/theming-a-new-app.md)
 - **Add a page** → [Adding a New Component Page](./guides/addding-new-component-page.md)
 - **Integrate a service** → [Integration](./integration/)

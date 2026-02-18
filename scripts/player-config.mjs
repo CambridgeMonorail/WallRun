@@ -259,8 +259,8 @@ Options for 'add':
   --default                           Set as default player
 
 Examples:
-  pnpm player add dev-player 192.168.0.51 --model CL435 --default
-  pnpm player add test-player 192.168.0.52 --tags "test,lab"
+  pnpm player add dev-player 192.168.1.50 --model CL435 --default
+  pnpm player add test-player 192.168.1.51 --tags "test,lab"
   pnpm player list
   pnpm player default dev-player
         `);

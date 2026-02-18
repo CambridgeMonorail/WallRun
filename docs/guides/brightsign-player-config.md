@@ -17,7 +17,7 @@ Choose **ONE** of these methods:
 
 2. **Add your player:**
    ```bash
-   pnpm player add dev-player 192.168.0.51 --model CL435 --default
+  pnpm player add dev-player 192.168.1.50 --model CL435 --default
    ```
 
 3. **List configured players:**
@@ -34,7 +34,7 @@ Choose **ONE** of these methods:
 
 2. **Edit `.env` and uncomment/set:**
    ```env
-   BRIGHTSIGN_PLAYER_IP=192.168.0.51
+  BRIGHTSIGN_PLAYER_IP=192.168.1.50
    BRIGHTSIGN_DWS_PORT=8008
    ```
 
@@ -44,7 +44,7 @@ Just run deploy commands directly - you'll be prompted for the IP address:
 
 ```bash
 pnpm deploy:local
-# Enter player IP when prompted: 192.168.0.51
+# Enter player IP when prompted: 192.168.1.50
 ```
 
 ---
@@ -64,15 +64,15 @@ Output:
 📺 Configured BrightSign Players:
 
   • dev-player (default)
-    IP: 192.168.0.51:8008
+    IP: 192.168.1.50:8008
     Model: CL435
-    Serial: C5D51K000056
+    Serial: SERIAL_EXAMPLE
     Development player in office
     Tags: dev, office
 
   • test-player
-    IP: 192.168.0.52:8008
-    Model: XD1034
+    IP: 192.168.1.51:8008
+    Model: MODEL_EXAMPLE
     Test player in lab
     Tags: test, lab
 ```
@@ -81,14 +81,14 @@ Output:
 
 **Basic:**
 ```bash
-pnpm player add my-player 192.168.0.100
+pnpm player add my-player 192.168.1.100
 ```
 
 **With full details:**
 ```bash
-pnpm player add dev-player 192.168.0.51 \
+pnpm player add dev-player 192.168.1.50 \
   --model CL435 \
-  --serial C5D51K000056 \
+  --serial SERIAL_EXAMPLE \
   --description "Development player in office" \
   --tags "dev,office" \
   --port 8008 \
@@ -119,10 +119,10 @@ Returns:
 ```json
 {
   "name": "dev-player",
-  "ip": "192.168.0.51",
+  "ip": "192.168.1.50",
   "port": 8008,
   "model": "CL435",
-  "serial": "C5D51K000056",
+  "serial": "SERIAL_EXAMPLE",
   "description": "Development player in office",
   "tags": ["dev", "office"]
 }
@@ -170,10 +170,10 @@ pnpm deploy:local --player test-player
   "players": [
     {
       "name": "dev-player",
-      "ip": "192.168.0.51",
+      "ip": "192.168.1.50",
       "port": 8008,
       "model": "CL435",
-      "serial": "C5D51K000056",
+      "serial": "SERIAL_EXAMPLE",
       "description": "Development player in office",
       "tags": ["dev", "office"]
     }
@@ -202,7 +202,7 @@ pnpm deploy:local --player test-player
 **Available Variables:**
 ```env
 # Player connection
-BRIGHTSIGN_PLAYER_IP=192.168.0.51
+BRIGHTSIGN_PLAYER_IP=192.168.1.50
 BRIGHTSIGN_PLAYER_HOST=brightsign-player.local
 BRIGHTSIGN_DWS_PORT=8008
 
@@ -224,7 +224,7 @@ SKIP_REBOOT_AFTER_DEPLOY=false
 ❌ **Don't:**
 ```bash
 # In team chat or documentation
-Deploy to 192.168.0.51
+Deploy to 192.168.1.50
 ```
 
 ✅ **Do:**
@@ -240,7 +240,7 @@ Organize players with tags:
 ```bash
 pnpm player add lobby-1 192.168.1.100 --tags "prod,lobby,floor1"
 pnpm player add lobby-2 192.168.1.101 --tags "prod,lobby,floor2"
-pnpm player add dev-desk 192.168.0.51 --tags "dev,desk"
+pnpm player add dev-desk 192.168.1.50 --tags "dev,desk"
 ```
 
 ### 3. **Set Meaningful Names**
@@ -290,7 +290,7 @@ Only `.brightsign/players.example.json` and `.env.example` are committed.
 cp .brightsign/players.example.json .brightsign/players.json
 
 # Or add a player directly
-pnpm player add dev-player 192.168.0.51 --default
+pnpm player add dev-player 192.168.1.50 --default
 ```
 
 ### "Player not found: dev-player"
@@ -303,7 +303,7 @@ pnpm player add dev-player 192.168.0.51 --default
 pnpm player list
 
 # Add the missing player
-pnpm player add dev-player 192.168.0.51
+pnpm player add dev-player 192.168.1.50
 ```
 
 ### "No default player configured"

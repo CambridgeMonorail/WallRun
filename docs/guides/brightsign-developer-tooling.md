@@ -20,7 +20,7 @@ Choose the approach that works best for your workflow:
 
 1. **Player Registry** (Recommended for teams)
    ```bash
-   pnpm player add dev-player 192.168.0.51 --model CL435 --default
+   pnpm player add dev-player 192.168.1.50 --model CL435 --default
    pnpm deploy:local --player dev-player
    ```
 
@@ -45,7 +45,7 @@ Convenient commands for managing BrightSign players:
 pnpm player list
 
 # Add a new player
-pnpm player add my-player 192.168.0.100
+pnpm player add my-player 192.168.1.100
 
 # Add with details
 pnpm player add lobby-display 192.168.1.50 \
@@ -93,7 +93,7 @@ Benefits:
 
 ```bash
 # Initialize your player configuration
-pnpm player add dev-player 192.168.0.51 --model CL435 --default
+pnpm player add dev-player 192.168.1.50 --model CL435 --default
 
 # Deploy
 pnpm deploy:player
@@ -103,8 +103,8 @@ pnpm deploy:player
 
 ```bash
 # Add all your players once
-pnpm player add dev-desk 192.168.0.51 --tags "dev" --default
-pnpm player add test-lab 192.168.0.52 --tags "test"
+pnpm player add dev-desk 192.168.1.50 --tags "dev" --default
+pnpm player add test-lab 192.168.1.52 --tags "test"
 pnpm player add prod-lobby1 192.168.1.100 --tags "prod,lobby"
 pnpm player add prod-lobby2 192.168.1.101 --tags "prod,lobby"
 
@@ -152,7 +152,10 @@ pnpm discover:scan --cidr 10.0.1.0/24
 pnpm discover:scan --thorough
 
 # Probe a specific player
-pnpm discover:probe 192.168.0.51 --port 8008
+pnpm discover:probe 192.168.1.50 --port 8008
+
+# Export results to CSV for sharing/debugging
+pnpm discover:export
 ```
 
 **How it works:**
@@ -305,7 +308,7 @@ If your players require authentication:
 
 **Option 1:** Store in players.json (git-ignored)
 ```bash
-pnpm player add secure-player 192.168.0.51 \
+ pnpm player add secure-player 192.168.1.50 \
   --username admin \
   --password mypassword
 ```
@@ -337,3 +340,5 @@ Have ideas for improving the developer experience?
 
 - Open an issue: [GitHub Issues](https://github.com/CambridgeMonorail/TheSignAge/issues)
 - Tag with: `brightsign`, `tooling`, `developer-experience`
+
+**Copilot Agent Skills:** See [GitHub Copilot Tooling](../tooling/github-copilot-tooling.md#skills) for the `player-discovery-*` skills.

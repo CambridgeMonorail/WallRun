@@ -57,6 +57,13 @@ These tools work together to ensure code quality, consistency, and adherence to 
 │   ├── code-review-ready/
 │   ├── verification/
 │   ├── chrome-devtools-webapp-debug/
+│   ├── brightsign-deploy-local/
+│   ├── brightsign-package/
+│   ├── brightsign-debug/
+│   ├── brightsign-fleet-deploy/
+│   ├── player-discovery-scan/
+│   ├── player-discovery-probe/
+│   ├── player-discovery-export/
 │   └── instructions-detox/
 ├── chatmodes/                        # Custom chat modes
 │   └── enhanced-gpt4.1.chatmode.md
@@ -279,6 +286,12 @@ Build a 3-zone layout for 1080p with a ticker and a hero.
 
 Skills are reusable workflows and procedures that can be referenced by agents or used directly in Copilot chat.
 
+**How to discover what's available**:
+
+- Browse `.github/skills/` and open any `SKILL.md`
+- In Copilot Chat, describe the outcome you want (Copilot can select a matching skill based on the `argument-hint`)
+- Prefer explicit inputs for anything network-related (CIDR ranges, IPs, output paths)
+
 ### shadcnui Component Review Skill
 
 **Location**: `.github/skills/shadcnui-component-review/`
@@ -413,6 +426,54 @@ See `docs/plans/` for plan templates and storage.
 - Before committing
 - Before creating a PR
 - Validating a fix
+
+---
+
+### BrightSign Skills
+
+These skills provide reusable workflows for packaging/deploying to BrightSign players and debugging common issues.
+
+- **Local deploy:** `.github/skills/brightsign-deploy-local/`
+- **Packaging:** `.github/skills/brightsign-package/`
+- **Debugging:** `.github/skills/brightsign-debug/`
+- **Fleet deploy:** `.github/skills/brightsign-fleet-deploy/`
+
+Practical entry points (non-skill commands that the skills may ask you to run):
+
+```bash
+pnpm package:player
+pnpm deploy:player
+```
+
+---
+
+### Player Discovery Skills
+
+These skills are designed for on-site development and diagnostics.
+
+- **Scan:** `.github/skills/player-discovery-scan/` (requires an explicit CIDR)
+- **Probe:** `.github/skills/player-discovery-probe/` (requires an explicit IP)
+- **Export:** `.github/skills/player-discovery-export/` (reads `dist/players.json`, writes `dist/players.csv`)
+
+Related pnpm commands:
+
+```bash
+# Interactive discovery
+pnpm discover
+
+# Scriptable scan (explicit CIDR)
+pnpm discover:scan --cidr 192.168.1.0/24
+
+# Probe a single host
+pnpm discover:probe 192.168.1.50 --port 80
+
+# Export results to CSV (gitignored)
+pnpm discover:export
+```
+
+Security boundary:
+
+- Discovery outputs contain internal IPs and device identifiers and are intentionally gitignored (`dist/players.json`, `dist/players.csv`).
 
 ---
 

@@ -67,7 +67,7 @@ if (setupCount > 0) {
   console.log('\n📝 Next steps:');
   console.log('   1. Configure your BrightSign player:');
   console.log('      pnpm player add <name> <ip-address> --default');
-  console.log('      Example: pnpm player add dev-player 192.168.0.51 --default');
+  console.log('      Example: pnpm player add dev-player 192.168.1.50 --default');
   console.log('\n   2. Build the player app:');
   console.log('      pnpm build:player');
   console.log('\n   3. Deploy to your player:');

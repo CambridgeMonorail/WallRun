@@ -3,19 +3,19 @@
   "players": [
     {
       "name": "dev-player",
-      "ip": "192.168.0.51",
+      "ip": "192.168.1.50",
       "port": 8008,
       "model": "CL435",
-      "serial": "C5D51K000056",
+      "serial": "SERIAL_EXAMPLE",
       "description": "Development player in office",
       "tags": ["dev", "office"]
     },
     {
       "name": "test-player",
-      "ip": "192.168.0.52",
+      "ip": "192.168.1.51",
       "port": 8008,
       "model": "XD1034",
-      "serial": "ABC123456789",
+      "serial": "SERIAL_EXAMPLE_2",
       "description": "Testing player in lab",
       "tags": ["test", "lab"]
     }

@@ -33,10 +33,10 @@ pnpm discover:scan --cidr 10.0.1.0/24
 pnpm discover:scan --thorough
 
 # Probe a specific player
-pnpm discover:probe 192.168.0.51
+pnpm discover:probe 192.168.1.50
 
 # Probe on different port
-pnpm discover:probe 192.168.0.51 --port 8080
+pnpm discover:probe 192.168.1.50 --port 8080
 
 # Export existing results to JSON + CSV
 pnpm discover:export
@@ -74,14 +74,14 @@ Example `dist/players.json`:
 ```json
 [
   {
-    "ip": "192.168.0.51",
+    "ip": "192.168.1.50",
     "port": 80,
     "evidence": "body:diagnostic web server",
     "discoveredAt": "2026-02-17T18:30:00.000Z",
     "deviceInfo": {
-      "model": "CL435",
-      "serial": "C5D51K000056",
-      "firmware": "9.1.92"
+      "model": "MODEL_EXAMPLE",
+      "serial": "SERIAL_EXAMPLE",
+      "firmware": "FW_EXAMPLE"
     }
   }
 ]
@@ -98,7 +98,7 @@ Discovery output can be imported into the player registry:
 pnpm discover:scan
 
 # Add discovered player to registry
-pnpm player add dev-player 192.168.0.51 --model CL435 --default
+pnpm player add dev-player 192.168.1.50 --model CL435 --default
 ```
 
 Future enhancement: `pnpm player import dist/players.json`
@@ -137,12 +137,14 @@ The discovery tool is registered as an Nx project with three targets:
 - `nx run player-discovery:discover` - Interactive mode
 - `nx run player-discovery:scan` - Non-interactive scan
 - `nx run player-discovery:probe` - Single player probe
+- `nx run player-discovery:export` - Export results to JSON/CSV
 
 These are also exposed as pnpm scripts for convenience:
 
 - `pnpm discover`
 - `pnpm discover:scan`
 - `pnpm discover:probe`
+- `pnpm discover:export`
 
 ---
 
@@ -169,9 +171,9 @@ pnpm discover:scan --cidr 10.0.1.0/24
 Try different ports:
 
 ```bash
-pnpm discover:probe 192.168.0.51 --port 80
-pnpm discover:probe 192.168.0.51 --port 8080
-pnpm discover:probe 192.168.0.51 --port 8008
+pnpm discover:probe 192.168.1.50 --port 80
+pnpm discover:probe 192.168.1.50 --port 8080
+pnpm discover:probe 192.168.1.50 --port 8008
 ```
 
 ---

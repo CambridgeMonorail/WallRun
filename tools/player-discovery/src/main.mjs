@@ -343,7 +343,7 @@ Limitations:
 Examples:
   pnpm discover
   pnpm discover:scan --cidr 10.0.1.0/24 --thorough
-  pnpm discover:probe 192.168.0.51 --port 8080
+  pnpm discover:probe 192.168.1.50 --port 8080
   pnpm discover:export --in dist/players.json --csv dist/players.csv
 `);
 }
