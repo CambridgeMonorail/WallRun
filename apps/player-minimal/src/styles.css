@@ -1,2 +1,9 @@
 /* Global styles for player-minimal */
+@import '../../../libs/common-tailwind/src/shadcn-theme.css';
 @import 'tailwindcss';
+
+@layer base {
+	body {
+		@apply bg-background text-foreground;
+	}
+}

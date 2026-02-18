@@ -17,6 +17,39 @@ export const StatusPage: FC<StatusPageProps> = ({
   version,
   buildTimestamp,
 }) => {
+  const cardClassName =
+    'bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-card/70 hover:border-accent/40 hover:shadow-lg';
+
+  const normalizeDeviceInfo = (data: unknown): DeviceInfo => {
+    if (!data || typeof data !== 'object') {
+      return {};
+    }
+
+    const record = data as Record<string, unknown>;
+
+    const asString = (value: unknown): string | undefined =>
+      typeof value === 'string' ? value : undefined;
+
+    const asNumber = (value: unknown): number | undefined => {
+      if (typeof value === 'number') {
+        return Number.isFinite(value) ? value : undefined;
+      }
+      if (typeof value === 'string') {
+        const parsed = Number(value);
+        return Number.isFinite(parsed) ? parsed : undefined;
+      }
+      return undefined;
+    };
+
+    return {
+      model: asString(record.model) ?? asString(record.Model),
+      serial: asString(record.serial) ?? asString(record.Serial),
+      firmware: asString(record.firmware) ?? asString(record.Firmware),
+      ip: asString(record.ip) ?? asString(record.ipAddress) ?? asString(record.ip_address),
+      uptime: asNumber(record.uptime),
+    };
+  };
+
   const [uptime, setUptime] = useState<number>(0);
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>({});
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
@@ -61,14 +94,13 @@ export const StatusPage: FC<StatusPageProps> = ({
     // For now, simulate device info or fetch from diagnostic endpoint
     const fetchDeviceInfo = async () => {
       try {
-        // In a real BrightSign environment, you'd access roDeviceInfo here
-        // For development, we can fetch from diagnostic endpoint or use placeholders
-        const response = await fetch(
-          'http://localhost:8008/device_info.json',
-        ).catch(() => null);
+        // BrightSign Diagnostic Web Server endpoint
+        const response = await fetch('http://localhost:8008/GetDeviceInfo').catch(
+          () => null,
+        );
         if (response?.ok) {
-          const data = await response.json();
-          setDeviceInfo(data);
+          const data: unknown = await response.json();
+          setDeviceInfo(normalizeDeviceInfo(data));
         } else {
           // Placeholder for development
           setDeviceInfo({
@@ -106,10 +138,10 @@ export const StatusPage: FC<StatusPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1a2e] to-[#16213e] text-white p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-card text-foreground p-8">
       <div className="max-w-7xl w-full">
         <header className="text-center mb-12">
-          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-[#4facfe] to-[#00f2fe] bg-clip-text text-transparent">
+          <h1 className="text-6xl font-bold mb-2 text-foreground">
             The Sign Age
           </h1>
           <p className="text-2xl text-muted-foreground">
@@ -118,14 +150,14 @@ export const StatusPage: FC<StatusPageProps> = ({
         </header>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 mb-12">
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+          <div className={cardClassName}>
             <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
               Version
             </div>
             <div className="text-3xl font-semibold break-all">{version}</div>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+          <div className={cardClassName}>
             <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
               Build Time
             </div>
@@ -134,7 +166,7 @@ export const StatusPage: FC<StatusPageProps> = ({
             </div>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+          <div className={cardClassName}>
             <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
               Uptime
             </div>
@@ -143,7 +175,7 @@ export const StatusPage: FC<StatusPageProps> = ({
             </div>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+          <div className={cardClassName}>
             <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
               Current Time
             </div>
@@ -152,7 +184,7 @@ export const StatusPage: FC<StatusPageProps> = ({
             </div>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+          <div className={cardClassName}>
             <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
               Network Status
             </div>
@@ -165,7 +197,7 @@ export const StatusPage: FC<StatusPageProps> = ({
 
           {deviceInfo.model && (
             <>
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+              <div className={cardClassName}>
                 <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
                   Device Model
                 </div>
@@ -174,7 +206,7 @@ export const StatusPage: FC<StatusPageProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+              <div className={cardClassName}>
                 <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
                   Serial Number
                 </div>
@@ -183,7 +215,7 @@ export const StatusPage: FC<StatusPageProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+              <div className={cardClassName}>
                 <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
                   Firmware
                 </div>
@@ -192,7 +224,7 @@ export const StatusPage: FC<StatusPageProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-white/8 hover:border-[#4facfe]/30 hover:shadow-[0_8px_32px_rgba(79,172,254,0.2)]">
+              <div className={cardClassName}>
                 <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
                   IP Address
                 </div>
@@ -204,7 +236,7 @@ export const StatusPage: FC<StatusPageProps> = ({
           )}
         </div>
 
-        <footer className="text-center pt-8 border-t border-white/10">
+        <footer className="text-center pt-8 border-t border-border/50">
           <p className="text-lg text-muted-foreground">
             Ready for deployment • {networkStatus === 'online' ? '🟢' : '🔴'}{' '}
             Network {networkStatus}
