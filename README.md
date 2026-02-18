@@ -13,6 +13,31 @@
 
 **NOTE: This project is currently in alpha. In fact, it's very alpha. This means it is still under active development and may undergo significant changes. Features may be incomplete or unstable. Got suggestions on what you would like to see or how to make it better? Add an issue and let us know!**
 
+## What This Is (and Why It Exists)
+
+**The Sign Age** is a developer-first workspace for building **real digital signage** with modern web tooling — especially targeting **BrightSign OS 9.x players**.
+
+If you've ever thought “this should just be a React app,” this repo is the missing glue:
+
+- A **signage-oriented component library** (`@tsa/shadcnui-signage`) built for distance readability and fixed-aspect layouts
+- A **packaging + deploy workflow** for BrightSign players (no manual ZIP rituals)
+- **Git-safe player management** (no IPs or credentials committed)
+- **Player discovery tooling** to find devices on your local network
+
+### Designed for VS Code + GitHub Copilot
+
+This repo is intentionally set up to work well in **VS Code** with **GitHub Copilot**:
+
+- Opinionated Copilot instructions to keep AI output consistent
+- Built-in agent(s) for signage screen construction and platform-aware guidance
+- MCP support for BrightSign platform docs research
+
+### What this is not
+
+- Not a CMS
+- Not official BrightSign documentation
+- Not a replacement for BSN.cloud
+
 ## 🚀 Live Demo
 
 - **Client App:** [https://cambridgemonorail.github.io/TheSignAge/](https://cambridgemonorail.github.io/TheSignAge/)
@@ -61,6 +86,7 @@ See [BrightSign Player Configuration](./docs/guides/brightsign-player-config.md)
 
 ## Table of Contents
 
+- [What This Is (and Why It Exists)](#what-this-is-and-why-it-exists)
 - [Quick Start: BrightSign Development](#-quick-start-brightsign-development)
 - [Overview](#overview)
 - [Statement of Intent](#statement-of-intent)
