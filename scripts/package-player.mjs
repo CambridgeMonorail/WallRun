@@ -38,6 +38,8 @@ const AUTORUN_SRC = join(
   'autorun.brs',
 );
 
+const MANIFEST_FILE_NAME = 'manifest.json';
+
 /**
  * @typedef {Object} PackageManifest
  * @property {string} name
@@ -45,6 +47,7 @@ const AUTORUN_SRC = join(
  * @property {string} buildTimestamp
  * @property {Array<{path: string, size: number, checksum: string}>} files
  * @property {number} totalSize
+ * @property {string[]} [excludedFiles]
  */
 
 async function calculateChecksum(filePath) {
@@ -128,7 +131,11 @@ async function main() {
   const version = process.env.npm_package_version || '0.1.0';
   const buildTimestamp = new Date().toISOString();
 
-  const allFiles = await getAllFiles(PACKAGE_DIR);
+  const allFiles = (await getAllFiles(PACKAGE_DIR)).filter(
+    // manifest.json cannot safely include itself when it contains checksums
+    // (including it would be self-referential and unstable).
+    (file) => file !== MANIFEST_FILE_NAME,
+  );
   const filesWithMeta = await Promise.all(
     allFiles.map(async (file) => {
       const fullPath = join(PACKAGE_DIR, file);
@@ -151,10 +158,11 @@ async function main() {
     buildTimestamp,
     files: filesWithMeta,
     totalSize,
+    excludedFiles: [MANIFEST_FILE_NAME],
   };
 
   writeFileSync(
-    join(PACKAGE_DIR, 'manifest.json'),
+    join(PACKAGE_DIR, MANIFEST_FILE_NAME),
     JSON.stringify(manifest, null, 2),
   );
   console.log('✅ Generated manifest.json\n');
