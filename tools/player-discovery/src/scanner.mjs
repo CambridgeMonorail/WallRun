@@ -169,8 +169,8 @@ function detectBrightSign(headers, body) {
  * @param {string} options.cidr - CIDR notation subnet
  * @param {number[]} options.ports - Ports to probe
  * @param {number} options.timeout - Probe timeout in ms
- * @param {boolean} options.parallel - Number of parallel scans
- * @param {Function} options.onProgress - Progress callback
+ * @param {number} options.parallel - Number of parallel scans
+ * @param {((progress: { total: number, completed: number, found: number }) => void) | undefined} options.onProgress - Progress callback
  * @returns {Promise<Array>} Discovered players
  */
 export async function scanSubnet({
@@ -178,7 +178,7 @@ export async function scanSubnet({
   ports = [80, 8080],
   timeout = 2000,
   parallel = 10,
-  onProgress = () => {},
+  onProgress,
 }) {
   const ips = parseCIDR(cidr);
   const discovered = [];
@@ -210,11 +210,13 @@ export async function scanSubnet({
       }
     });
     
-    onProgress({
-      total: tasks.length,
-      completed: Math.min(i + parallel, tasks.length),
-      found: discovered.length,
-    });
+    if (onProgress) {
+      onProgress({
+        total: tasks.length,
+        completed: Math.min(i + parallel, tasks.length),
+        found: discovered.length,
+      });
+    }
   }
   
   return discovered;
