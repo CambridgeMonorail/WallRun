@@ -10,3 +10,54 @@
   }
 }
 
+/**
+ * Display Rotation Styles
+ * 
+ * These styles handle CSS-based rotation for portrait displays on BrightSign.
+ * This is the recommended approach since roHtmlWidget has no rotation API.
+ * 
+ * Configure display orientation in src/config.ts
+ */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Portrait Left - Display rotated 90° counterclockwise (most common) */
+.display-rotation-wrapper[data-orientation='portrait-left'] {
+  position: absolute;
+  width: 100vh;
+  height: 100vw;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  top: 100vh;
+  left: 0;
+}
+
+/* Portrait Right - Display rotated 90° clockwise */
+.display-rotation-wrapper[data-orientation='portrait-right'] {
+  position: absolute;
+  width: 100vh;
+  height: 100vw;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  top: 0;
+  left: 100vw;
+}
+
+/* Inverted - Display rotated 180° (upside down) */
+.display-rotation-wrapper[data-orientation='inverted'] {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  transform: rotate(180deg);
+  transform-origin: center center;
+  top: 0;
+  left: 0;
+}
+
