@@ -1,68 +1,46 @@
-' BrightSign OS 9.x Bootstrap Script for The Sign Age
-' This script launches the React application in a Chromium widget
+' BrightSign OS 9.1.92 - React App Bootstrap
+' Enables Chromium 120 runtime for modern CSS support (Tailwind v4)
 
-Sub Main()
-    ' Create message port for events
+sub Main()
+    ' Enable Web Inspector and set Chromium runtime
+    reg = CreateObject("roRegistrySection", "html")
+    reg.Write("enable_web_inspector", "1")
+    
+    ' Read current widget type to check if we need to reboot
+    currentWidgetType = reg.Read("widget type")
+    ? "Current widget type: "; currentWidgetType
+    
+    ' Set to Chromium 120 (default for Series 5 on 9.1.92)
+    ' Use "chromium110" if you need to pin to 110 instead
+    if currentWidgetType <> "chromium120" then
+        ? "Setting widget type to chromium120..."
+        reg.Write("widget type", "chromium120")
+        reg.Flush()
+        ? "Widget type set. Player will use Chromium 120 after reboot."
+    else
+        ? "Already using chromium120"
+    end if
+    
+    reg.Flush()
+    
     msgPort = CreateObject("roMessagePort")
-    
-    ' Log file for debugging
-    logPath = "SD:/autorun-react-log.txt"
-    
-    ' Get display dimensions (using CORRECT BrightSign OS 9.x API)
-    videoMode = CreateObject("roVideoMode")
-    displayWidth = videoMode.GetResX()
-    displayHeight = videoMode.GetResY()
-    
-    ' Create HTML widget for the React app
+    vm = CreateObject("roVideoMode")
+    rect = CreateObject("roRectangle", 0, 0, vm.GetResX(), vm.GetResY())
+
     config = {
         port: msgPort
-        url: "file:/SD:/index.html"
-        inspector_server: {
-            port: 2999
-            enabled: true
-        }
-        ' Enable JavaScript and local storage
+        url: "file:///sd:/index.html"
         javascript_enabled: true
-        local_storage_enabled: true
-        storage_path: "SD:"
-        storage_quota: 52428800  ' 50MB quota
+        inspector_server: { port: 2999 }
     }
-    
-    htmlWidget = CreateObject("roHtmlWidget", config)
-    htmlWidget.Show()
-    
-    ' Log startup
-    AppendLine(logPath, "The Sign Age player started successfully")
-    AppendLine(logPath, "URL: " + htmlWidget.GetUrl())
-    AppendLine(logPath, "Display resolution: " + displayWidth.ToStr() + "x" + displayHeight.ToStr())
-    
-    diagnostics = CreateObject("roSystemLog")
-    diagnostics.SendLine("The Sign Age player started successfully")
-    diagnostics.SendLine("Display resolution: " + displayWidth.ToStr() + "x" + displayHeight.ToStr())
-    
-    ' Main event loop
+
+    html = CreateObject("roHtmlWidget", rect, config)
+    html.Show()
+
     while true
         msg = wait(0, msgPort)
         if type(msg) = "roHtmlWidgetEvent" then
-            eventData = msg.GetData()
-            if eventData.reason = "load-error" or eventData.reason = "load-aborted" then
-                errMsg = "ERROR: Failed to load application - " + eventData.message
-                diagnostics.SendLine(errMsg)
-                AppendLine(logPath, errMsg)
-            else if eventData.reason = "load-finished" then
-                successMsg = "Application loaded successfully"
-                diagnostics.SendLine(successMsg)
-                AppendLine(logPath, successMsg)
-            end if
-            AppendLine(logPath, "HtmlWidgetEvent: " + eventData.reason)
+            ? msg.GetData()
         end if
     end while
-End Sub
-
-Sub AppendLine(path As String, line As String)
-    f = CreateObject("roAppendFile", path)
-    if f <> invalid then
-        f.SendLine(line)
-        f.Close()
-    end if
-End Sub
+end sub

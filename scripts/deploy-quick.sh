@@ -9,7 +9,7 @@
 set -e
 
 # Configuration (can be overridden by environment variables)
-PLAYER=${PLAYER:-192.168.0.51}
+PLAYER=${PLAYER:-192.168.0.62}
 AUTH=${AUTH:-admin:BrightSign23!}
 DIST_DIR=${DIST_DIR:-dist/packages/brightsign}
 

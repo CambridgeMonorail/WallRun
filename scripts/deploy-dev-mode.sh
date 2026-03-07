@@ -4,12 +4,12 @@
 #
 # Usage:
 #   ./scripts/deploy-dev-mode.sh
-#   PLAYER=192.168.0.51 ./scripts/deploy-dev-mode.sh
+#   PLAYER=192.168.0.62 ./scripts/deploy-dev-mode.sh
 
 set -e
 
 # Configuration
-PLAYER=${PLAYER:-192.168.0.51}
+PLAYER=${PLAYER:-192.168.0.62}
 AUTH=${AUTH:-admin:BrightSign23!}
 AUTORUN_FILE="tools/brightsign-test-files/autorun-dev.brs"
 
