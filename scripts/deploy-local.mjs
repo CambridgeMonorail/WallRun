@@ -3,8 +3,13 @@
 /**
  * Deploy to Local BrightSign Player
  *
- * Deploys the packaged app to a BrightSign player via HTTP POST
- * to the diagnostic web server (port 8008)
+ * Deploys the packaged app to a BrightSign player via LDWS REST API
+ * 
+ * BrightSign OS 9.x Local Diagnostic Web Server (LDWS):
+ * - Base URL: https://<player-ip>:443/api/v1/
+ * - Authentication: HTTP Digest (username: admin)
+ * - Self-signed certificate (requires -k flag with curl)
+ * - Endpoints: /info/, /files/sd/, /control/reboot, etc.
  */
 
 import { readFileSync, existsSync, createReadStream, readdirSync, statSync } from 'fs';
@@ -34,7 +39,7 @@ const ROOT_DIR = join(__dirname, '..');
 /**
  * Make API call to BrightSign player using curl with digest auth
  * @param {PlayerConfig} config
- * @param {string} endpoint - API endpoint (e.g., '/api/v1/files/sd/')
+ * @param {string} endpoint - API endpoint (e.g., '/api/v1/info/', '/api/v1/files/sd/')
  * @param {string} method - HTTP method (GET, POST, PUT, DELETE)
  * @param {Buffer|string} [data] - Data to send (for PUT/POST)
  * @param {string} [filename] - Filename for file uploads
@@ -149,17 +154,30 @@ async function getPlayerConfig() {
 
 async function checkPlayerStatus(config) {
   console.log(`🔍 Checking player at ${config.ip}:${config.port}...`);
+  
   try {
-    // Use curl with digest auth - BrightSign requires digest, not basic auth
-    // Note: /api/v1/info endpoint may not exist, using /api/v1/files/sd/ instead
-    const response = await callPlayerAPI(config, '/api/v1/files/sd/', 'GET');
+    // Primary check: file system access (tests what we actually need for deployment)
+    const filesResponse = await callPlayerAPI(config, '/api/v1/files/sd/', 'GET');
     
-    if (response && response.data) {
-      console.log(`✅ Player is online and responding`);
-      return true;
+    if (!filesResponse || !filesResponse.data) {
+      return false;
     }
     
-    return false;
+    // Optional: Try to get player info for better diagnostics
+    try {
+      const infoResponse = await callPlayerAPI(config, '/api/v1/info/', 'GET');
+      if (infoResponse && infoResponse.data && infoResponse.data.result) {
+        const player = infoResponse.data.result;
+        console.log(`✅ Player found: ${player.model || 'BrightSign'} (Serial: ${player.serial || 'N/A'})`);
+        console.log(`   Firmware: ${player.FWVersion || 'unknown'}, Uptime: ${player.upTime || 'unknown'}`);
+        return true;
+      }
+    } catch (infoError) {
+      // Info endpoint failed, but file access works - that's okay
+      console.log(`✅ Player is online (file system accessible)`);
+    }
+    
+    return true;
   } catch (error) {
     console.error(`❌ Cannot reach player: ${error.message}`);
     return false;
