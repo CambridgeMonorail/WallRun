@@ -45,7 +45,10 @@ export const StatusPage: FC<StatusPageProps> = ({
       model: asString(record.model) ?? asString(record.Model),
       serial: asString(record.serial) ?? asString(record.Serial),
       firmware: asString(record.firmware) ?? asString(record.Firmware),
-      ip: asString(record.ip) ?? asString(record.ipAddress) ?? asString(record.ip_address),
+      ip:
+        asString(record.ip) ??
+        asString(record.ipAddress) ??
+        asString(record.ip_address),
       uptime: asNumber(record.uptime),
     };
   };
@@ -95,9 +98,9 @@ export const StatusPage: FC<StatusPageProps> = ({
     const fetchDeviceInfo = async () => {
       try {
         // BrightSign Diagnostic Web Server endpoint
-        const response = await fetch('http://localhost:8008/GetDeviceInfo').catch(
-          () => null,
-        );
+        const response = await fetch(
+          'http://localhost:8008/GetDeviceInfo',
+        ).catch(() => null);
         if (response?.ok) {
           const data: unknown = await response.json();
           setDeviceInfo(normalizeDeviceInfo(data));

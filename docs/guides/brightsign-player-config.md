@@ -11,13 +11,15 @@ Choose **ONE** of these methods:
 #### Option A: Player Configuration File (Recommended for Multiple Players)
 
 1. **Copy the example file:**
+
    ```bash
    cp .brightsign/players.example.json .brightsign/players.json
    ```
 
 2. **Add your player:**
+
    ```bash
-  pnpm player add dev-player 192.168.1.50 --model CL435 --default
+   pnpm player add dev-player 192.168.1.50 --model CL435 --default
    ```
 
 3. **List configured players:**
@@ -28,13 +30,14 @@ Choose **ONE** of these methods:
 #### Option B: Environment Variable (Simple Single Player)
 
 1. **Copy the example file:**
+
    ```bash
    cp .env.example .env
    ```
 
 2. **Edit `.env` and uncomment/set:**
    ```env
-  BRIGHTSIGN_PLAYER_IP=192.168.1.50
+   BRIGHTSIGN_PLAYER_IP=192.168.1.50
    BRIGHTSIGN_DWS_PORT=8008
    ```
 
@@ -60,6 +63,7 @@ pnpm player list
 ```
 
 Output:
+
 ```
 📺 Configured BrightSign Players:
 
@@ -80,11 +84,13 @@ Output:
 ### Add a New Player
 
 **Basic:**
+
 ```bash
 pnpm player add my-player 192.168.1.100
 ```
 
 **With full details:**
+
 ```bash
 pnpm player add dev-player 192.168.1.50 \
   --model CL435 \
@@ -116,6 +122,7 @@ pnpm player get dev-player
 ```
 
 Returns:
+
 ```json
 {
   "name": "dev-player",
@@ -141,6 +148,7 @@ pnpm deploy:player
 ```
 
 This will:
+
 1. Build the player-minimal app
 2. Package it for BrightSign
 3. Deploy to your default player
@@ -165,6 +173,7 @@ pnpm deploy:local --player test-player
 **Schema:** `.brightsign/players.schema.json`
 
 **Structure:**
+
 ```json
 {
   "players": [
@@ -183,6 +192,7 @@ pnpm deploy:local --player test-player
 ```
 
 **Fields:**
+
 - `name` (required): Unique identifier (lowercase, hyphens allowed)
 - `ip` (required): IP address or hostname
 - `port` (optional): DWS port (default: 8008)
@@ -200,6 +210,7 @@ pnpm deploy:local --player test-player
 **Template:** `.env.example`
 
 **Available Variables:**
+
 ```env
 # Player connection
 BRIGHTSIGN_PLAYER_IP=192.168.1.50
@@ -222,12 +233,14 @@ SKIP_REBOOT_AFTER_DEPLOY=false
 ### 1. **Use Player Names, Not IPs in Documentation**
 
 ❌ **Don't:**
+
 ```bash
 # In team chat or documentation
 Deploy to 192.168.1.50
 ```
 
 ✅ **Do:**
+
 ```bash
 # In team chat or documentation
 Deploy to dev-player
@@ -237,6 +250,7 @@ pnpm deploy:local --player dev-player
 ### 2. **Tag Players by Purpose**
 
 Organize players with tags:
+
 ```bash
 pnpm player add lobby-1 192.168.1.100 --tags "prod,lobby,floor1"
 pnpm player add lobby-2 192.168.1.101 --tags "prod,lobby,floor2"
@@ -246,12 +260,14 @@ pnpm player add dev-desk 192.168.1.50 --tags "dev,desk"
 ### 3. **Set Meaningful Names**
 
 Use location or purpose-based names:
+
 - ✅ `lobby-player`, `conference-room-a`, `dev-player`
 - ❌ `player1`, `bs1`, `test`
 
 ### 4. **Document Player Details**
 
 Add helpful descriptions:
+
 ```bash
 pnpm player add lobby-west 192.168.1.100 \
   --description "West lobby - 55\" Samsung display - 1080p" \
@@ -265,12 +281,14 @@ When adding a new type of player configuration, update `.brightsign/players.exam
 ### 6. **Never Commit Real IPs**
 
 Always verify before committing:
+
 ```bash
 git status
 # Ensure .brightsign/players.json and .env are NOT staged
 ```
 
 The `.gitignore` file is configured to exclude:
+
 - `.env` and `.env.local`
 - `.brightsign/players.json`
 
@@ -285,6 +303,7 @@ Only `.brightsign/players.example.json` and `.env.example` are committed.
 **Problem:** Running `pnpm player list` shows no players.
 
 **Solution:**
+
 ```bash
 # Create players.json from example
 cp .brightsign/players.example.json .brightsign/players.json
@@ -298,6 +317,7 @@ pnpm player add dev-player 192.168.1.50 --default
 **Problem:** Referenced player doesn't exist in configuration.
 
 **Solution:**
+
 ```bash
 # List available players
 pnpm player list
@@ -311,6 +331,7 @@ pnpm player add dev-player 192.168.1.50
 **Problem:** No default player is set.
 
 **Solution:**
+
 ```bash
 pnpm player default dev-player
 ```
@@ -320,6 +341,7 @@ pnpm player default dev-player
 **Problem:** Both `.env` and `.brightsign/players.json` are configured - which wins?
 
 **Priority Order:**
+
 1. Command-line flags (e.g., `--player`)
 2. Environment variables (`.env`)
 3. Players configuration (`.brightsign/players.json` default player)
@@ -334,6 +356,7 @@ Potential improvements to the player management system:
 ### Network Discovery
 
 Automatically discover BrightSign players on the network:
+
 ```bash
 pnpm player discover
 ```
@@ -341,6 +364,7 @@ pnpm player discover
 ### Player Health Monitoring
 
 Check player status:
+
 ```bash
 pnpm player status dev-player
 ```
@@ -348,6 +372,7 @@ pnpm player status dev-player
 ### Deployment Profiles
 
 Deploy to multiple players:
+
 ```bash
 pnpm deploy:fleet --tag prod
 ```
@@ -355,6 +380,7 @@ pnpm deploy:fleet --tag prod
 ### Configuration Sync
 
 Sync player configurations with a team:
+
 ```bash
 pnpm player import team-players.json
 pnpm player export --tag prod > prod-players.json
@@ -367,6 +393,7 @@ pnpm player export --tag prod > prod-players.json
 ### Authentication
 
 If your players require authentication, store credentials in `.env`:
+
 ```env
 BRIGHTSIGN_USERNAME=admin
 BRIGHTSIGN_PASSWORD=my-secure-password
@@ -386,6 +413,7 @@ BrightSign Diagnostic Web Server (DWS) is **not encrypted**. Recommendations:
 ### Git Hygiene
 
 Before committing:
+
 ```bash
 # Check what's being committed
 git diff --staged
@@ -395,6 +423,7 @@ git status | grep -E "(\.env$|players\.json$)"
 ```
 
 If you accidentally commit sensitive data:
+
 ```bash
 # Remove from git history (use with caution)
 git filter-branch --force --index-filter \

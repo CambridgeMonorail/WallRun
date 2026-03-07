@@ -2,7 +2,7 @@
 
 /**
  * BrightSign Player Discovery Tool
- * 
+ *
  * Usage:
  *   pnpm discover              # Interactive mode
  *   pnpm discover:scan         # Quick scan with defaults
@@ -14,7 +14,12 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { scanSubnet, probePlayer, parseCIDR } from './scanner.mjs';
-import { prompt, ProgressSpinner, formatPlayersTable, formatPlayerInfo } from './cli.mjs';
+import {
+  prompt,
+  ProgressSpinner,
+  formatPlayersTable,
+  formatPlayerInfo,
+} from './cli.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../..');
@@ -27,10 +32,10 @@ const outputCsvFile = path.join(outputDir, 'players.csv');
  */
 async function interactiveDiscover() {
   console.log('\n🔍 BrightSign Player Discovery\n');
-  
+
   // Get subnet from user
   const cidr = await prompt('Which subnet should I scan?', '192.168.0.0/24');
-  
+
   // Validate CIDR
   try {
     parseCIDR(cidr);
@@ -38,15 +43,15 @@ async function interactiveDiscover() {
     console.error(`\n❌ Invalid CIDR notation: ${err.message}`);
     process.exit(1);
   }
-  
+
   // Get scan mode
   const mode = await prompt('Scan mode? [fast/thorough]', 'fast');
   const ports = mode === 'thorough' ? [80, 443, 8008, 8080] : [80, 8080];
-  
+
   console.log('');
   const spinner = new ProgressSpinner(`Scanning ${cidr}...`);
   spinner.start();
-  
+
   const discovered = await scanSubnet({
     cidr,
     ports,
@@ -54,20 +59,20 @@ async function interactiveDiscover() {
     parallel: 20,
     onProgress: ({ total, completed, found }) => {
       spinner.update(
-        `Scanning ${cidr}... ${completed}/${total} (found: ${found})`
+        `Scanning ${cidr}... ${completed}/${total} (found: ${found})`,
       );
     },
   });
-  
+
   if (discovered.length > 0) {
     spinner.succeed(`Found ${discovered.length} BrightSign player(s)`);
     console.log('\n' + formatPlayersTable(discovered) + '\n');
-    
+
     // Save results
     ensureDir(outputDir);
     fs.writeFileSync(outputFile, JSON.stringify(discovered, null, 2));
     console.log(`💾 Wrote ${outputFile}\n`);
-    
+
     // Optionally enrich with device info
     const enrich = await prompt('Fetch device info from players? [y/N]', 'n');
     if (enrich.toLowerCase() === 'y') {
@@ -88,20 +93,20 @@ async function interactiveDiscover() {
 async function scanMode(args) {
   const cidr = args.cidr || args._[1] || '192.168.0.0/24';
   const ports = args.thorough ? [80, 443, 8008, 8080] : [80, 8080];
-  
+
   console.log(`Scanning ${cidr}...`);
-  
+
   const discovered = await scanSubnet({
     cidr,
     ports,
     timeout: 2000,
     parallel: 20,
   });
-  
+
   if (discovered.length > 0) {
     console.log(`\n✔ Found ${discovered.length} player(s)\n`);
     console.log(formatPlayersTable(discovered));
-    
+
     ensureDir(outputDir);
     fs.writeFileSync(outputFile, JSON.stringify(discovered, null, 2));
     console.log(`\n💾 ${outputFile}`);
@@ -117,16 +122,16 @@ async function scanMode(args) {
 async function probeMode(args) {
   const ip = args.ip || args._[1];
   const port = parseInt(args.port || 8008, 10);
-  
+
   if (!ip) {
     console.error('❌ Usage: pnpm discover:probe <ip> [--port 8008]');
     process.exit(1);
   }
-  
+
   console.log(`Probing ${ip}:${port}...`);
-  
+
   const info = await probePlayer(ip, port);
-  
+
   if (info) {
     console.log('\n✔ Player found\n');
     console.log(formatPlayerInfo(info));
@@ -188,20 +193,35 @@ async function exportMode(args) {
   console.log('\nPreview:');
   console.log(formatPlayersTable(preview));
 
-  console.log('\n⚠️  Reminder: discovery outputs may contain internal IPs and device identifiers.');
+  console.log(
+    '\n⚠️  Reminder: discovery outputs may contain internal IPs and device identifiers.',
+  );
   console.log('   These files are gitignored and must not be committed.\n');
 }
 
 function csvEscape(value) {
   const str = value === undefined || value === null ? '' : String(value);
-  if (str.includes('"') || str.includes(',') || str.includes('\n') || str.includes('\r')) {
+  if (
+    str.includes('"') ||
+    str.includes(',') ||
+    str.includes('\n') ||
+    str.includes('\r')
+  ) {
     return '"' + str.replaceAll('"', '""') + '"';
   }
   return str;
 }
 
 function toCSV(results) {
-  const header = ['ip', 'port', 'evidence', 'discoveredAt', 'model', 'serial', 'firmware'];
+  const header = [
+    'ip',
+    'port',
+    'evidence',
+    'discoveredAt',
+    'model',
+    'serial',
+    'firmware',
+  ];
   const lines = [header.join(',')];
 
   for (const r of results) {
@@ -211,9 +231,17 @@ function toCSV(results) {
       csvEscape(r.port),
       csvEscape(r.evidence),
       csvEscape(r.discoveredAt),
-      csvEscape(deviceInfo.model || deviceInfo.Model || deviceInfo.result?.model),
-      csvEscape(deviceInfo.serial || deviceInfo.Serial || deviceInfo.result?.serial),
-      csvEscape(deviceInfo.firmware || deviceInfo.FWVersion || deviceInfo.result?.FWVersion),
+      csvEscape(
+        deviceInfo.model || deviceInfo.Model || deviceInfo.result?.model,
+      ),
+      csvEscape(
+        deviceInfo.serial || deviceInfo.Serial || deviceInfo.result?.serial,
+      ),
+      csvEscape(
+        deviceInfo.firmware ||
+          deviceInfo.FWVersion ||
+          deviceInfo.result?.FWVersion,
+      ),
     ];
     lines.push(row.join(','));
   }
@@ -226,7 +254,7 @@ function toCSV(results) {
  */
 async function enrichPlayers(players) {
   console.log('\nFetching device info...');
-  
+
   for (const player of players) {
     const info = await probePlayer(player.ip, player.port);
     if (info) {
@@ -236,7 +264,7 @@ async function enrichPlayers(players) {
       console.log(`✖ ${player.ip} - no device info`);
     }
   }
-  
+
   // Save enriched results
   fs.writeFileSync(outputFile, JSON.stringify(players, null, 2));
   console.log(`\n💾 Updated ${outputFile}\n`);
@@ -285,7 +313,7 @@ function parseArgs(argv) {
 async function main() {
   const args = parseArgs(process.argv);
   const command = args._[0];
-  
+
   try {
     if (command === 'scan') {
       await scanMode(args);

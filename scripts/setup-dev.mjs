@@ -2,7 +2,7 @@
 
 /**
  * Setup script for The Sign Age development environment
- * 
+ *
  * Initializes configuration files needed for BrightSign development:
  * - .env (from .env.example)
  * - .brightsign/players.json (from .brightsign/players.example.json)
@@ -37,7 +37,9 @@ let skipCount = 0;
 
 for (const config of configs) {
   if (!fs.existsSync(config.example)) {
-    console.log(`⚠️  Warning: Example file not found: ${path.relative(rootDir, config.example)}`);
+    console.log(
+      `⚠️  Warning: Example file not found: ${path.relative(rootDir, config.example)}`,
+    );
     continue;
   }
 
@@ -63,11 +65,15 @@ for (const config of configs) {
 console.log('\n' + '='.repeat(60));
 
 if (setupCount > 0) {
-  console.log(`✅ Setup complete! Created ${setupCount} configuration file(s).`);
+  console.log(
+    `✅ Setup complete! Created ${setupCount} configuration file(s).`,
+  );
   console.log('\n📝 Next steps:');
   console.log('   1. Configure your BrightSign player:');
   console.log('      pnpm player add <name> <ip-address> --default');
-  console.log('      Example: pnpm player add dev-player 192.168.1.50 --default');
+  console.log(
+    '      Example: pnpm player add dev-player 192.168.1.50 --default',
+  );
   console.log('\n   2. Build the player app:');
   console.log('      pnpm build:player');
   console.log('\n   3. Deploy to your player:');
@@ -77,10 +83,14 @@ if (setupCount > 0) {
   console.log('   - docs/guides/brightsign-developer-tooling.md');
 } else if (skipCount > 0) {
   console.log('✓ All configuration files already exist. No changes needed.');
-  console.log('\n💡 Tip: To reconfigure, delete the existing files and run setup again.');
+  console.log(
+    '\n💡 Tip: To reconfigure, delete the existing files and run setup again.',
+  );
 } else {
   console.log('⚠️  No configuration files were created.');
-  console.log('   Check that .env.example and .brightsign/players.example.json exist.');
+  console.log(
+    '   Check that .env.example and .brightsign/players.example.json exist.',
+  );
 }
 
 console.log('='.repeat(60) + '\n');

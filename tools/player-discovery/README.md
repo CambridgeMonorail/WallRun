@@ -54,6 +54,7 @@ The discovery tool:
 4. Outputs discovered players to `dist/players.json` (gitignored)
 
 Optional enhancements:
+
 - Enrich results using Local DWS APIs if enabled
 - Fetch device info (model, serial, firmware)
 - Export to CSV for sharing
@@ -183,11 +184,13 @@ pnpm discover:probe 192.168.1.50 --port 8008
 **Never commit discovery output to git.**
 
 The `.gitignore` file excludes:
+
 - `dist/players.json`
 - `dist/players.csv`
 - `dist/player-discovery/`
 
 If you need to share results:
+
 - Share manually via secure channel
 - Redact IP addresses and serials
 - Use temporary sharing (Slack, email, etc.)
@@ -205,6 +208,7 @@ Potential improvements (not yet implemented):
 - **Fleet comparison**: Compare discovery vs. expected inventory
 
 For production inventory, consider:
+
 - Deploy self-reporting app to players
 - Players POST identity to central service
 - Use discovery only for debugging/edge cases
@@ -219,7 +223,7 @@ This tool helps you find BrightSign players on your local network quickly and sa
 ✅ Machine-readable output  
 ✅ Git-safe (sensitive data excluded)  
 ✅ Nx-integrated  
-✅ Clear limitations and expectations  
+✅ Clear limitations and expectations
 
 If discovery finds nothing but you expected players, always ask:
 **"Am I on the same network, and is Local DWS enabled?"**

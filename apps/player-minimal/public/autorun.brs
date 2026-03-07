@@ -5,6 +5,9 @@ Sub Main()
     ' Create message port for events
     msgPort = CreateObject("roMessagePort")
     
+    ' Log file for debugging
+    logPath = "SD:/autorun-react-log.txt"
+    
     ' Get display dimensions
     videoMode = CreateObject("roVideoMode")
     displayInfo = videoMode.GetResolution()
@@ -12,7 +15,7 @@ Sub Main()
     ' Create HTML widget for the React app
     config = {
         port: msgPort
-        url: "file:///sd:/index.html"
+        url: "file:/SD:/index.html"
         inspector_server: {
             port: 2999
             enabled: true
@@ -22,19 +25,16 @@ Sub Main()
         local_storage_enabled: true
         storage_path: "SD:"
         storage_quota: 52428800  ' 50MB quota
-        ' Enable debugging
-        nodejs_enabled: true
-        brightsign_js_objects_enabled: true
-        ' Security settings
-        security_params: {
-            websecurity: false  ' Allow loading local resources
-        }
     }
     
     htmlWidget = CreateObject("roHtmlWidget", config)
     htmlWidget.Show()
     
     ' Log startup
+    AppendLine(logPath, "The Sign Age player started successfully")
+    AppendLine(logPath, "URL: " + htmlWidget.GetUrl())
+    AppendLine(logPath, "Display resolution: " + displayInfo.width.ToStr() + "x" + displayInfo.height.ToStr())
+    
     diagnostics = CreateObject("roSystemLog")
     diagnostics.SendLine("The Sign Age player started successfully")
     diagnostics.SendLine("Display resolution: " + displayInfo.width.ToStr() + "x" + displayInfo.height.ToStr())
@@ -45,10 +45,23 @@ Sub Main()
         if type(msg) = "roHtmlWidgetEvent" then
             eventData = msg.GetData()
             if eventData.reason = "load-error" or eventData.reason = "load-aborted" then
-                diagnostics.SendLine("ERROR: Failed to load application - " + eventData.message)
+                errMsg = "ERROR: Failed to load application - " + eventData.message
+                diagnostics.SendLine(errMsg)
+                AppendLine(logPath, errMsg)
             else if eventData.reason = "load-finished" then
-                diagnostics.SendLine("Application loaded successfully")
+                successMsg = "Application loaded successfully"
+                diagnostics.SendLine(successMsg)
+                AppendLine(logPath, successMsg)
             end if
+            AppendLine(logPath, "HtmlWidgetEvent: " + eventData.reason)
         end if
     end while
+End Sub
+
+Sub AppendLine(path As String, line As String)
+    f = CreateObject("roAppendFile", path)
+    if f <> invalid then
+        f.SendLine(line)
+        f.Close()
+    end if
 End Sub
