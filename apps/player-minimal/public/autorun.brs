@@ -8,9 +8,11 @@ Sub Main()
     ' Log file for debugging
     logPath = "SD:/autorun-react-log.txt"
     
-    ' Get display dimensions
-    videoMode = CreateObject("roVideoMode")
-    displayInfo = videoMode.GetResolution()
+    ' Get display dimensions (using correct BrightSign OS 9.x API)
+    deviceInfo = CreateObject("roDeviceInfo")
+    displaySize = deviceInfo.GetDisplaySize()
+    displayWidth = displaySize.w
+    displayHeight = displaySize.h
     
     ' Create HTML widget for the React app
     config = {
@@ -33,11 +35,11 @@ Sub Main()
     ' Log startup
     AppendLine(logPath, "The Sign Age player started successfully")
     AppendLine(logPath, "URL: " + htmlWidget.GetUrl())
-    AppendLine(logPath, "Display resolution: " + displayInfo.width.ToStr() + "x" + displayInfo.height.ToStr())
+    AppendLine(logPath, "Display resolution: " + displayWidth.ToStr() + "x" + displayHeight.ToStr())
     
     diagnostics = CreateObject("roSystemLog")
     diagnostics.SendLine("The Sign Age player started successfully")
-    diagnostics.SendLine("Display resolution: " + displayInfo.width.ToStr() + "x" + displayInfo.height.ToStr())
+    diagnostics.SendLine("Display resolution: " + displayWidth.ToStr() + "x" + displayHeight.ToStr())
     
     ' Main event loop
     while true
