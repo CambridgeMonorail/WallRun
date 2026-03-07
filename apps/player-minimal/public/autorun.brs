@@ -8,11 +8,10 @@ Sub Main()
     ' Log file for debugging
     logPath = "SD:/autorun-react-log.txt"
     
-    ' Get display dimensions (using correct BrightSign OS 9.x API)
-    deviceInfo = CreateObject("roDeviceInfo")
-    displaySize = deviceInfo.GetDisplaySize()
-    displayWidth = displaySize.w
-    displayHeight = displaySize.h
+    ' Get display dimensions (using CORRECT BrightSign OS 9.x API)
+    videoMode = CreateObject("roVideoMode")
+    displayWidth = videoMode.GetResX()
+    displayHeight = videoMode.GetResY()
     
     ' Create HTML widget for the React app
     config = {
