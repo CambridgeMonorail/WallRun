@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 const VERSION = import.meta.env.VITE_APP_VERSION || '0.1.0';
-const BUILD_TIMESTAMP = import.meta.env.VITE_BUILD_TIMESTAMP || new Date().toISOString();
+const BUILD_TIMESTAMP =
+  import.meta.env.VITE_BUILD_TIMESTAMP || new Date().toISOString();
 
 export function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -36,13 +37,14 @@ export function App() {
 
   return (
     <div className="fixed inset-0 bg-black text-white overflow-hidden">
-      
       {/* Dynamic gradient orbs */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/30 rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600/30 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
-      
+      <div
+        className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600/30 rounded-full blur-[120px] animate-pulse"
+        style={{ animationDelay: '1s' }}
+      ></div>
+
       <div className="relative h-full flex flex-col justify-between p-8">
-        
         {/* Top: Minimal Brand */}
         <div className="text-center">
           <div className="text-2xl font-light tracking-[0.3em] text-white/60">
@@ -54,21 +56,23 @@ export function App() {
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center space-y-8">
             <div className="flex items-start justify-center gap-3">
-              <div 
-                className="text-[7rem] font-black leading-none tracking-tight tabular-nums" 
-                style={{ 
-                  background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%)',
+              <div
+                className="text-[7rem] font-black leading-none tracking-tight tabular-nums"
+                style={{
+                  background:
+                    'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  textShadow: '0 0 40px rgba(168, 85, 247, 0.5)'
+                  textShadow: '0 0 40px rgba(168, 85, 247, 0.5)',
                 }}
               >
                 {displayTime}
               </div>
-              <div 
+              <div
                 className="text-4xl font-bold mt-3 tracking-wide"
-                style={{ 
-                  background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%)',
+                style={{
+                  background:
+                    'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -97,7 +101,6 @@ export function App() {
             Digital Signage as Software
           </div>
         </div>
-
       </div>
     </div>
   );

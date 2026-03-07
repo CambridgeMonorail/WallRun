@@ -5,6 +5,7 @@
 BrightSign players have **no API for rotating HTML widget content** at the BrightScript level. The `roHtmlWidget` object does not support a `transform` parameter.
 
 **What doesn't work:**
+
 ```brightscript
 ' ❌ This parameter does not exist and will cause crashes
 config = {
@@ -23,7 +24,7 @@ Use **CSS transforms inside your React app** to rotate the content. This is the 
 
 ```typescript
 export const playerConfig: PlayerConfig = {
-  displayOrientation: 'portrait-left',  // ← Change this
+  displayOrientation: 'portrait-left', // ← Change this
   debug: false,
 };
 ```
@@ -40,12 +41,12 @@ That's it! The `DisplayRotation` component automatically applies the correct CSS
 
 ## Available Orientations
 
-| Value | Description | Use When |
-|-------|-------------|----------|
-| `'landscape'` | No rotation (default) | Horizontal displays |
-| `'portrait-left'` | 90° CCW rotation | Display rotated left (**most common**) |
-| `'portrait-right'` | 90° CW rotation | Display rotated right |
-| `'inverted'` | 180° rotation | Upside-down displays |
+| Value              | Description           | Use When                               |
+| ------------------ | --------------------- | -------------------------------------- |
+| `'landscape'`      | No rotation (default) | Horizontal displays                    |
+| `'portrait-left'`  | 90° CCW rotation      | Display rotated left (**most common**) |
+| `'portrait-right'` | 90° CW rotation       | Display rotated right                  |
+| `'inverted'`       | 180° rotation         | Upside-down displays                   |
 
 ---
 
@@ -69,10 +70,7 @@ export const playerConfig: PlayerConfig = {
 `src/components/DisplayRotation.tsx` wraps your app:
 
 ```tsx
-export const DisplayRotation: FC<DisplayRotationProps> = ({ 
-  children, 
-  orientation = playerConfig.displayOrientation 
-}) => {
+export const DisplayRotation: FC<DisplayRotationProps> = ({ children, orientation = playerConfig.displayOrientation }) => {
   if (orientation === 'landscape') {
     return <>{children}</>;
   }
@@ -103,6 +101,7 @@ export const DisplayRotation: FC<DisplayRotationProps> = ({
 ```
 
 **Why this works:**
+
 - The wrapper swaps width/height (`100vh` × `100vw`)
 - CSS `transform: rotate(-90deg)` rotates the content
 - `transform-origin: top left` sets the rotation pivot point
@@ -118,7 +117,7 @@ root.render(
     <DisplayRotation>
       <App />
     </DisplayRotation>
-  </StrictMode>
+  </StrictMode>,
 );
 ```
 
@@ -134,16 +133,19 @@ vm.SetMode("1920x1080x60p:90")  ' or :270
 ```
 
 **Pros:**
+
 - Rotates everything (not just HTML)
 - No CSS needed
 
 **Cons:**
+
 - Requires player reboot when changed
 - Less flexible than CSS
 - Not all display modes support rotation
 - Rotates **all** zones (video, graphics, etc.)
 
 **When to use:**
+
 - Multi-zone layouts with video players
 - Content from multiple sources
 - Hardware rotation is required

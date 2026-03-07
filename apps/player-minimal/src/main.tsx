@@ -17,5 +17,5 @@ root.render(
     <DisplayRotation>
       <App />
     </DisplayRotation>
-  </StrictMode>
+  </StrictMode>,
 );

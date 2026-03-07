@@ -45,22 +45,22 @@ Create the bootstrap file that BrightSign OS 9.x uses to launch your app:
 sub Main()
     ' Create message port for event handling
     msgPort = CreateObject("roMessagePort")
-    
+
     ' Get display resolution dynamically
     vm = CreateObject("roVideoMode")
     rect = CreateObject("roRectangle", 0, 0, vm.GetResX(), vm.GetResY())
-    
+
     ' Configure HTML widget
     config = {
         port: msgPort
         url: "file:///sd:/index.html"
         javascript_enabled: true
     }
-    
+
     ' Create HTML widget (OS 9.x constructor requires rect + config)
     html = CreateObject("roHtmlWidget", rect, config)
     html.Show()
-    
+
     ' Event loop to keep app running
     while true
         msg = wait(0, msgPort)
@@ -72,6 +72,7 @@ end sub
 ```
 
 **Key differences from OS 8.x:**
+
 - **Constructor**: OS 9.x uses `CreateObject("roHtmlWidget", rect, config)` (rect and config required)
 - **No setter methods**: Don't use `SetRectangle()`, `SetUrl()`, `EnableJavaScript()` - use config object
 - **Dynamic resolution**: Use `roVideoMode.GetResX()/GetResY()` instead of hardcoded values
@@ -103,14 +104,12 @@ export default defineConfig({
     react(),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
-    
+
     // CRITICAL: Strip type="module" for BrightSign
     {
       name: 'remove-module-type',
       transformIndexHtml(html) {
-        return html
-          .replace(/<script type="module"/g, '<script defer')
-          .replace(/<script crossorigin/g, '<script defer crossorigin');
+        return html.replace(/<script type="module"/g, '<script defer').replace(/<script crossorigin/g, '<script defer crossorigin');
       },
     },
   ],
@@ -121,7 +120,7 @@ export default defineConfig({
   build: {
     // Target Chromium 98 (BrightSign OS 9.x embedded browser)
     target: 'es2020',
-    
+
     // Output location
     outDir: '../../dist/apps/player-minimal',
     emptyOutDir: true,
@@ -139,7 +138,7 @@ export default defineConfig({
     // CRITICAL: Use IIFE format, not ES modules
     rollupOptions: {
       output: {
-        format: 'iife',  // file:// protocol doesn't provide MIME types
+        format: 'iife', // file:// protocol doesn't provide MIME types
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
@@ -157,17 +156,15 @@ export default defineConfig({
 1. **IIFE format required**: `format: 'iife'`
    - ❌ ES modules (`type="module"`) fail: file:// doesn't provide MIME types
    - ✅ IIFE format works: single-file bundles compatible with file:// protocol
-   
 2. **Strip type="module" attribute**: Custom plugin required
    - Vite adds `type="module"` by default
    - BrightSign Chromium rejects modules without proper MIME types
    - Plugin replaces with `defer` attribute for proper DOM timing
-   
 3. **Target es2020**: BrightSign OS 9.x uses Chromium 98
    - Supports modern ES features (optional chaining, nullish coalescing)
    - Avoid ES2022+ features (top-level await, private fields)
 
-4. **CSS handling**: 
+4. **CSS handling**:
    - ⚠️ Tailwind CSS may not load from file:// (MIME type issues)
    - Consider inlining critical CSS or using inline styles
    - Test thoroughly on real hardware

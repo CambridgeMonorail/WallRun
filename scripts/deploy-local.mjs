@@ -4,7 +4,7 @@
  * Deploy to Local BrightSign Player
  *
  * Deploys the packaged app to a BrightSign player via LDWS REST API
- * 
+ *
  * BrightSign OS 9.x Local Diagnostic Web Server (LDWS):
  * - Base URL: https://<player-ip>:443/api/v1/
  * - Authentication: HTTP Digest (username: admin)
@@ -12,7 +12,13 @@
  * - Endpoints: /info/, /files/sd/, /control/reboot, etc.
  */
 
-import { readFileSync, existsSync, createReadStream, readdirSync, statSync } from 'fs';
+import {
+  readFileSync,
+  existsSync,
+  createReadStream,
+  readdirSync,
+  statSync,
+} from 'fs';
 import { join, dirname, basename } from 'path';
 import { createInterface } from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
@@ -45,18 +51,24 @@ const ROOT_DIR = join(__dirname, '..');
  * @param {string} [filename] - Filename for file uploads
  * @returns {Promise<any>} JSON response
  */
-async function callPlayerAPI(config, endpoint, method = 'GET', data = null, filename = null) {
+async function callPlayerAPI(
+  config,
+  endpoint,
+  method = 'GET',
+  data = null,
+  filename = null,
+) {
   const protocol = config.port === 443 ? 'https' : 'http';
   const url = `${protocol}://${config.ip}:${config.port}${endpoint}`;
-  
+
   let curlCmd = `curl -k --digest -s -X ${method}`;
-  
+
   if (config.username && config.password) {
     // Escape password for shell
     const escapedPassword = config.password.replace(/"/g, '\\"');
     curlCmd += ` -u "${config.username}:${escapedPassword}"`;
   }
-  
+
   // Handle file upload
   if (data && filename) {
     // Write data to temp file and upload with -F
@@ -65,7 +77,7 @@ async function callPlayerAPI(config, endpoint, method = 'GET', data = null, file
     const tempPath = join(tmpdir(), filename);
     writeFileSync(tempPath, data);
     curlCmd += ` -F "file=@${tempPath}" "${url}"`;
-    
+
     try {
       const { stdout } = await execAsync(curlCmd);
       unlinkSync(tempPath);
@@ -75,9 +87,9 @@ async function callPlayerAPI(config, endpoint, method = 'GET', data = null, file
       throw error;
     }
   }
-  
+
   curlCmd += ` "${url}"`;
-  
+
   try {
     const { stdout, stderr } = await execAsync(curlCmd);
     if (stderr) {
@@ -154,29 +166,37 @@ async function getPlayerConfig() {
 
 async function checkPlayerStatus(config) {
   console.log(`🔍 Checking player at ${config.ip}:${config.port}...`);
-  
+
   try {
     // Primary check: file system access (tests what we actually need for deployment)
-    const filesResponse = await callPlayerAPI(config, '/api/v1/files/sd/', 'GET');
-    
+    const filesResponse = await callPlayerAPI(
+      config,
+      '/api/v1/files/sd/',
+      'GET',
+    );
+
     if (!filesResponse || !filesResponse.data) {
       return false;
     }
-    
+
     // Optional: Try to get player info for better diagnostics
     try {
       const infoResponse = await callPlayerAPI(config, '/api/v1/info/', 'GET');
       if (infoResponse && infoResponse.data && infoResponse.data.result) {
         const player = infoResponse.data.result;
-        console.log(`✅ Player found: ${player.model || 'BrightSign'} (Serial: ${player.serial || 'N/A'})`);
-        console.log(`   Firmware: ${player.FWVersion || 'unknown'}, Uptime: ${player.upTime || 'unknown'}`);
+        console.log(
+          `✅ Player found: ${player.model || 'BrightSign'} (Serial: ${player.serial || 'N/A'})`,
+        );
+        console.log(
+          `   Firmware: ${player.FWVersion || 'unknown'}, Uptime: ${player.upTime || 'unknown'}`,
+        );
         return true;
       }
     } catch (infoError) {
       // Info endpoint failed, but file access works - that's okay
       console.log(`✅ Player is online (file system accessible)`);
     }
-    
+
     return true;
   } catch (error) {
     console.error(`❌ Cannot reach player: ${error.message}`);
@@ -191,12 +211,12 @@ async function checkPlayerStatus(config) {
  */
 async function checkBSNRegistration(config) {
   console.log(`🔍 Checking BSN registration status...`);
-  
+
   try {
     const protocol = config.port === 443 ? 'https' : 'http';
     const https = await import('https');
     const agent = new https.Agent({ rejectUnauthorized: false });
-    
+
     // Check for BSN-specific registry keys
     const registryKeys = [
       'networking/setupType',
@@ -204,44 +224,50 @@ async function checkBSNRegistration(config) {
       'endpoints/bsnserver',
       'endpoints/certsserver',
     ];
-    
+
     let bsnDetected = false;
     const bsnIndicators = [];
-    
+
     for (const key of registryKeys) {
       const url = `${protocol}://${config.ip}:${config.port}/api/v1/registry/${key}/`;
-      
+
       const fetchOptions = {
         method: 'GET',
         signal: AbortSignal.timeout(5000),
       };
-      
+
       if (config.username && config.password) {
-        const auth = Buffer.from(`${config.username}:${config.password}`).toString('base64');
-        fetchOptions.headers = { 'Authorization': `Basic ${auth}` };
+        const auth = Buffer.from(
+          `${config.username}:${config.password}`,
+        ).toString('base64');
+        fetchOptions.headers = { Authorization: `Basic ${auth}` };
       }
-      
+
       if (protocol === 'https') {
         fetchOptions.agent = agent;
       }
-      
+
       try {
         const response = await fetch(url, fetchOptions);
         if (response.ok) {
           const data = await response.json();
-          
+
           // Check for BSN setup type
           if (key === 'networking/setupType' && data.value === 'BSN') {
             bsnDetected = true;
             bsnIndicators.push(`setupType: ${data.value}`);
           }
-          
+
           // Check for BSN endpoints
-          if ((key === 'endpoints/bsnserver' || key === 'endpoints/certsserver') && data.value) {
+          if (
+            (key === 'endpoints/bsnserver' ||
+              key === 'endpoints/certsserver') &&
+            data.value
+          ) {
             bsnDetected = true;
             bsnIndicators.push(`${key.split('/')[1]}: ${data.value}`);
           }
-          
+
           // Check for networking/bsn section
           if (key === 'networking/bsn' && data.value) {
             bsnDetected = true;
@@ -252,26 +278,38 @@ async function checkBSNRegistration(config) {
         // Key may not exist - that's OK
       }
     }
-    
+
     if (bsnDetected) {
-      console.log('\n⚠️  ═══════════════════════════════════════════════════════════════');
+      console.log(
+        '\n⚠️  ═══════════════════════════════════════════════════════════════',
+      );
       console.log('⚠️  WARNING: Player is provisioned to BSN.cloud');
-      console.log('⚠️  ═══════════════════════════════════════════════════════════════');
+      console.log(
+        '⚠️  ═══════════════════════════════════════════════════════════════',
+      );
       console.log('⚠️  Detected BSN configuration:');
-      bsnIndicators.forEach(indicator => console.log(`⚠️    - ${indicator}`));
+      bsnIndicators.forEach((indicator) => console.log(`⚠️    - ${indicator}`));
       console.log('⚠️  ');
-      console.log('⚠️  Local LDWS deployment will be OVERRIDDEN by BSN supervisor.');
-      console.log('⚠️  Your custom autorun.brs will be loaded but BSN content will run instead.');
+      console.log(
+        '⚠️  Local LDWS deployment will be OVERRIDDEN by BSN supervisor.',
+      );
+      console.log(
+        '⚠️  Your custom autorun.brs will be loaded but BSN content will run instead.',
+      );
       console.log('⚠️  ');
       console.log('⚠️  To use local deployment:');
       console.log('⚠️    1. Un-register player from BSN.cloud web portal, OR');
       console.log('⚠️    2. Use an unregistered development player, OR');
-      console.log('⚠️    3. Publish content via BSN.cloud instead of local LDWS');
-      console.log('⚠️  ═══════════════════════════════════════════════════════════════\n');
+      console.log(
+        '⚠️    3. Publish content via BSN.cloud instead of local LDWS',
+      );
+      console.log(
+        '⚠️  ═══════════════════════════════════════════════════════════════\n',
+      );
     } else {
       console.log('✅ Player is not BSN-registered (local deployment mode)');
     }
-    
+
     return bsnDetected;
   } catch (error) {
     console.warn(`⚠️  Could not check BSN registration: ${error.message}`);
@@ -285,37 +323,41 @@ async function checkBSNRegistration(config) {
  */
 async function verifyDeployment(config) {
   console.log(`🔍 Downloading system logs to verify deployment...`);
-  
+
   try {
     const protocol = config.port === 443 ? 'https' : 'http';
     const url = `${protocol}://${config.ip}:${config.port}/api/v1/download-log-package/`;
-    
+
     const fetchOptions = {
       method: 'GET',
       signal: AbortSignal.timeout(10000),
     };
-    
+
     if (config.username && config.password) {
-      const auth = Buffer.from(`${config.username}:${config.password}`).toString('base64');
-      fetchOptions.headers = { 'Authorization': `Basic ${auth}` };
+      const auth = Buffer.from(
+        `${config.username}:${config.password}`,
+      ).toString('base64');
+      fetchOptions.headers = { Authorization: `Basic ${auth}` };
     }
-    
+
     const https = await import('https');
     const agent = new https.Agent({ rejectUnauthorized: false });
     if (protocol === 'https') {
       fetchOptions.agent = agent;
     }
-    
+
     const response = await fetch(url, fetchOptions);
-    
+
     if (!response.ok) {
-      console.warn(`⚠️  Could not download logs: ${response.status} ${response.statusText}`);
+      console.warn(
+        `⚠️  Could not download logs: ${response.status} ${response.statusText}`,
+      );
       return;
     }
-    
+
     // Get log content as text
     const logText = await response.text();
-    
+
     // Check for BSN supervisor activation
     const bsnIndicators = [
       'Enabling BSN cloud',
@@ -323,36 +365,51 @@ async function verifyDeployment(config) {
       'BSN.cloud is enabled',
       'Configuring network to {"base":"https://handlers.bsn.cloud',
     ];
-    
+
     const foundIndicators = [];
     for (const indicator of bsnIndicators) {
       if (logText.includes(indicator)) {
         foundIndicators.push(indicator);
       }
     }
-    
+
     if (foundIndicators.length > 0) {
-      console.log('\n⚠️  ═══════════════════════════════════════════════════════════════');
+      console.log(
+        '\n⚠️  ═══════════════════════════════════════════════════════════════',
+      );
       console.log('⚠️  BSN SUPERVISOR DETECTED IN LOGS');
-      console.log('⚠️  ═══════════════════════════════════════════════════════════════');
+      console.log(
+        '⚠️  ═══════════════════════════════════════════════════════════════',
+      );
       console.log('⚠️  Found in system logs:');
-      foundIndicators.forEach(indicator => console.log(`⚠️    - "${indicator}"`));
+      foundIndicators.forEach((indicator) =>
+        console.log(`⚠️    - "${indicator}"`),
+      );
       console.log('⚠️  ');
-      console.log('⚠️  This confirms the player is running BSN-managed content,');
+      console.log(
+        '⚠️  This confirms the player is running BSN-managed content,',
+      );
       console.log('⚠️  not your local deployment.');
-      console.log('⚠️  ═══════════════════════════════════════════════════════════════\n');
+      console.log(
+        '⚠️  ═══════════════════════════════════════════════════════════════\n',
+      );
     } else {
       // Check for local autorun execution
-      if (logText.includes('SD:/autorun.brs') || logText.includes('Loading \'SD:/autorun.brs\'')) {
+      if (
+        logText.includes('SD:/autorun.brs') ||
+        logText.includes("Loading 'SD:/autorun.brs'")
+      ) {
         console.log('✅ Local autorun.brs detected in logs');
-        
+
         // Check for HTML widget success
-        if (logText.includes('roHtmlWidget') || logText.includes('index.html')) {
+        if (
+          logText.includes('roHtmlWidget') ||
+          logText.includes('index.html')
+        ) {
           console.log('✅ HTML widget appears to be running');
         }
       }
     }
-    
   } catch (error) {
     console.warn(`⚠️  Could not verify deployment: ${error.message}`);
   }
@@ -365,33 +422,40 @@ async function uploadPackage(config, packagePath) {
     // Extract ZIP file
     const zip = new AdmZip(packagePath);
     const zipEntries = zip.getEntries();
-    
+
     console.log(`📦 Extracting ${zipEntries.length} files from package...`);
-    
+
     let uploadedCount = 0;
-    
+
     // Upload each file from the ZIP
     for (const entry of zipEntries) {
       if (entry.isDirectory) continue;
-      
+
       const fileName = entry.entryName.replace(/\\/g, '/');
       const fileData = entry.getData();
-      
+
       // Determine upload path - preserve directory structure
-      const uploadPath = dirname(fileName) === '.' || dirname(fileName) === '' 
-        ? '/api/v1/files/sd/' 
-        : `/api/v1/files/sd/${dirname(fileName)}/`;
-      
+      const uploadPath =
+        dirname(fileName) === '.' || dirname(fileName) === ''
+          ? '/api/v1/files/sd/'
+          : `/api/v1/files/sd/${dirname(fileName)}/`;
+
       try {
-        await callPlayerAPI(config, uploadPath, 'PUT', fileData, basename(fileName));
+        await callPlayerAPI(
+          config,
+          uploadPath,
+          'PUT',
+          fileData,
+          basename(fileName),
+        );
         console.log(`  ✅ ${fileName}`);
         uploadedCount++;
       } catch (error) {
         console.error(`  ❌ ${fileName} - ${error.message}`);
       }
     }
-    
-    const totalFiles = zipEntries.filter(e => !e.isDirectory).length;
+
+    const totalFiles = zipEntries.filter((e) => !e.isDirectory).length;
     if (uploadedCount === totalFiles) {
       console.log(`✅ All ${uploadedCount} files uploaded successfully`);
       return true;
@@ -427,24 +491,24 @@ function checkPackageStaleness(packagePath) {
   try {
     const packageStat = statSync(packagePath);
     const packageTime = packageStat.mtimeMs;
-    
+
     const sourceDirs = [
       join(ROOT_DIR, 'apps', 'player-minimal', 'src'),
       join(ROOT_DIR, 'apps', 'player-minimal', 'public'),
     ];
-    
+
     let newestSourceTime = 0;
     let newestSourceFile = null;
-    
+
     for (const dir of sourceDirs) {
       if (!existsSync(dir)) continue;
-      
+
       const checkDir = (dirPath) => {
         const entries = readdirSync(dirPath);
         for (const entry of entries) {
           const fullPath = join(dirPath, entry);
           const stat = statSync(fullPath);
-          
+
           if (stat.isDirectory()) {
             checkDir(fullPath);
           } else {
@@ -455,26 +519,28 @@ function checkPackageStaleness(packagePath) {
           }
         }
       };
-      
+
       checkDir(dir);
     }
-    
+
     // If any source file is newer than package, it's stale
     if (newestSourceTime > packageTime) {
       const packageDate = new Date(packageTime).toLocaleString();
       const sourceDate = new Date(newestSourceTime).toLocaleString();
-      const relativeSourceFile = newestSourceFile.replace(ROOT_DIR, '').replace(/\\/g, '/');
-      
+      const relativeSourceFile = newestSourceFile
+        .replace(ROOT_DIR, '')
+        .replace(/\\/g, '/');
+
       console.warn('⚠️  WARNING: Package may be stale!');
       console.warn(`   Package built: ${packageDate}`);
       console.warn(`   Newest source: ${sourceDate}`);
       console.warn(`   File: ${relativeSourceFile}\n`);
       console.warn('   Your source code changes are NOT in this package.');
       console.warn('   Use "pnpm deploy:player" to rebuild + deploy\n');
-      
+
       return true;
     }
-    
+
     return false;
   } catch (error) {
     // If we can't check, don't fail - just warn
@@ -524,7 +590,9 @@ async function main() {
   // Check if player is BSN-registered
   const isBSNRegistered = await checkBSNRegistration(config);
   if (isBSNRegistered) {
-    console.log('⚠️  Continuing deployment (files will upload but may not run)...\n');
+    console.log(
+      '⚠️  Continuing deployment (files will upload but may not run)...\n',
+    );
   }
 
   // Upload package
@@ -542,8 +610,8 @@ async function main() {
   } else {
     // Wait for player to boot before checking logs
     console.log('⏳ Waiting 30 seconds for player to boot...');
-    await new Promise(resolve => setTimeout(resolve, 30000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 30000));
+
     // Verify deployment by checking logs
     await verifyDeployment(config);
   }
