@@ -1,7 +1,7 @@
 ---
 name: signage-architect
 description: Senior React architect for premium, high-visibility digital signage content and multi-zone displays
-tools: ['read', 'edit', 'search', 'accessibility-scanner/*', 'brightdeveloper/*']
+tools: ['read', 'edit', 'search', 'accessibility-scanner/*', 'brightdeveloper/*', 'mcp_io_github_chr*']
 model: claude-sonnet-4.5
 target: vscode
 ---

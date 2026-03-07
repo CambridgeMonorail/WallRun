@@ -37,6 +37,6 @@ export interface PlayerConfig {
  * - 'inverted' for upside-down displays
  */
 export const playerConfig: PlayerConfig = {
-  displayOrientation: 'portrait-right',
+  displayOrientation: 'portrait-right', // For display rotated 90° CCW (office monitor)
   debug: false,
 };

@@ -7,7 +7,7 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-export default defineConfig(() => ({
+export default defineConfig(({ mode }) => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/player-minimal',
   base: './',
@@ -26,7 +26,8 @@ export default defineConfig(() => ({
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     // Custom plugin to remove type="module" for BrightSign compatibility
-    {
+    // Only apply during production build, not dev server
+    ...(mode === 'production' ? [{
       name: 'remove-module-type',
       transformIndexHtml(html) {
         // Remove type="module" and add defer for proper script loading
@@ -34,7 +35,7 @@ export default defineConfig(() => ({
           .replace(/<script type="module"/g, '<script defer')
           .replace(/<script crossorigin/g, '<script defer crossorigin');
       },
-    },
+    }] : []),
   ],
   // Uncomment this if you are using workers.
   // worker: {
