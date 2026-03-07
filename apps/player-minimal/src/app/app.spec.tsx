@@ -23,9 +23,7 @@ describe('App', () => {
   it('should render time components', () => {
     const { baseElement } = render(<App />);
     // Time display exists with tabular-nums class for consistent digit width
-    expect(
-      baseElement.querySelector('.tabular-nums'),
-    ).toBeTruthy();
+    expect(baseElement.querySelector('.tabular-nums')).toBeTruthy();
   });
 
   it('should render tagline', () => {
