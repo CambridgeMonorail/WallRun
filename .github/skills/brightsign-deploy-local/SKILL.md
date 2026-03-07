@@ -41,12 +41,18 @@ BrightSign OS 9.x players expose a REST API on **port 443 (HTTPS)** for:
 
 ### Available Endpoints
 
+- `GET /api/v1/info/` - Player information (model, serial, firmware, uptime, network)
 - `GET /api/v1/files/sd/` - List SD card contents
 - `PUT /api/v1/files/sd/` with form data - Upload files to SD card
 - `GET /api/v1/files/download/sd/<path>` - Download file from SD card
 - `DELETE /api/v1/files/sd/<path>` - Delete file from SD card
 - `PUT /api/v1/control/reboot` - Reboot the player
 - Chrome DevTools Inspector: `http://<player-ip>:2999` (if enabled in autorun.brs)
+
+**Pragmatic recommendation for connectivity checks:**
+- Primary: Use `/api/v1/files/sd/` - tests what you actually need (authenticated file access)
+- Optional: Use `/api/v1/info/` for richer diagnostics (model, serial, firmware)
+- Don't fail deployment if info endpoint is unavailable during transient states (reboot)
 
 ## Step 1: Find Player IP Address
 
@@ -82,7 +88,7 @@ wait
 Test the LDWS REST API:
 
 ```bash
-# List SD card contents (requires digest auth)
+# Primary check: List SD card contents (tests authenticated file access)
 curl -k --digest -u admin:YOUR_PASSWORD https://<player-ip>:443/api/v1/files/sd/
 
 # Expected response (JSON):
@@ -96,14 +102,30 @@ curl -k --digest -u admin:YOUR_PASSWORD https://<player-ip>:443/api/v1/files/sd/
 #     }
 #   }
 # }
+
+# Optional: Get player info for diagnostics
+curl -k --digest -u admin:YOUR_PASSWORD https://<player-ip>:443/api/v1/info/
+
+# Expected response:
+# {
+#   "data": {
+#     "result": {
+#       "serial": "C5D51K000056",
+#       "model": "CL435",
+#       "FWVersion": "9.1.92",
+#       "upTime": "5 minutes"
+#     }
+#   }
+# }
 ```
 
 If this fails:
 
 - Check credentials (password is case-sensitive)
 - Ensure you're using `--digest` flag (not basic auth)
-- Try port 80 if port 443 fails: `http://<player-ip>:80/api/v1/files/sd/`
+- Ensure `-k` flag is present (ignores self-signed certificate)
 - Verify LDWS is enabled in BrightAuthor:connected setup
+- Player may be rebooting (wait 30-60 seconds and retry)
 
 ## Step 3: Upload Package to Player
 
@@ -288,6 +310,16 @@ pnpm deploy:local:watch --ip=192.168.1.100
 ```
 
 ## Troubleshooting
+
+### Connection refused or endpoint not responding
+
+**Cause:** Player is rebooting or LDWS temporarily unavailable
+**Solution:**
+
+- Wait 30-60 seconds after reboot for LDWS to start
+- `/api/v1/info/` may be unavailable during transient states
+- Use `/api/v1/files/sd/` as primary connectivity check (more reliable)
+- Player responds to ping before LDWS is fully ready
 
 ### Upload fails with "Connection refused"
 

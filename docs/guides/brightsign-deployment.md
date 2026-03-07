@@ -38,8 +38,11 @@ If this is your first time setting up a BrightSign player, complete these steps 
 ### Quick Connectivity Test
 
 ```bash
-# Test player API access (replace with your IP and password)
+# Primary check: Test file system access (what deployment needs)
 curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/files/sd/
+
+# Optional: Get player information for diagnostics
+curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/info/
 ```
 
 **Note**: BrightSign uses **HTTP Digest authentication** (not Basic auth). Always use `--digest` flag.
