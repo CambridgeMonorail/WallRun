@@ -36,72 +36,93 @@ brightsign-package/
 
 Create the bootstrap file that BrightSign OS 9.x uses to launch your app:
 
-**autorun.brs template for HTML widget:**
+**autorun.brs template for HTML widget (OS 9.x modern API):**
 
 ```brightscript
 ' BrightSign OS 9.x HTML Widget Bootstrap
 ' Launches React app in fullscreen Chromium
 
-Sub Main()
-    ' Create HTML widget for displaying web content
-    htmlWidget = CreateObject("roHtmlWidget")
-
-    ' Set widget rectangle (fullscreen 1920x1080)
-    rect = CreateObject("roRectangle", 0, 0, 1920, 1080)
-    htmlWidget.SetRectangle(rect)
-
-    ' Enable JavaScript and local storage
-    htmlWidget.EnableJavaScript(true)
-    htmlWidget.SetLocalStorageEnabled(true)
-
-    ' Set URL to local index.html
-    htmlWidget.SetUrl("file:///sd:/index.html")
-
-    ' Show the widget
-    htmlWidget.Show()
-
-    ' Event loop to keep app running
+sub Main()
+    ' Create message port for event handling
     msgPort = CreateObject("roMessagePort")
-    htmlWidget.SetPort(msgPort)
-
+    
+    ' Get display resolution dynamically
+    vm = CreateObject("roVideoMode")
+    rect = CreateObject("roRectangle", 0, 0, vm.GetResX(), vm.GetResY())
+    
+    ' Configure HTML widget
+    config = {
+        port: msgPort
+        url: "file:///sd:/index.html"
+        javascript_enabled: true
+    }
+    
+    ' Create HTML widget (OS 9.x constructor requires rect + config)
+    html = CreateObject("roHtmlWidget", rect, config)
+    html.Show()
+    
+    ' Event loop to keep app running
     while true
         msg = wait(0, msgPort)
         if type(msg) = "roHtmlWidgetEvent" then
-            eventData = msg.GetData()
-            print "HTML Widget Event: "; eventData
+            ? msg.GetData()  ' Print HTML widget events to console
         end if
     end while
-End Sub
+end sub
 ```
+
+**Key differences from OS 8.x:**
+- **Constructor**: OS 9.x uses `CreateObject("roHtmlWidget", rect, config)` (rect and config required)
+- **No setter methods**: Don't use `SetRectangle()`, `SetUrl()`, `EnableJavaScript()` - use config object
+- **Dynamic resolution**: Use `roVideoMode.GetResX()/GetResY()` instead of hardcoded values
+- **Config object**: All settings (URL, JavaScript, message port) in config
 
 **Key configuration options:**
 
-- Resolution: Adjust rect coordinates for player resolution (1920x1080, 3840x2160, etc.)
-- Storage: `SetLocalStorageEnabled(true)` for persistent data
-- URL: Always use `file:///sd:/index.html` for local files
+- **URL Format**: **MUST use `file:///sd:/index.html`** (lowercase `sd:`, triple slash)
+  - ❌ Wrong: `SD:/index.html`, `file:/sd/`, `file:///storage/sd/`
+  - ✅ Correct: `file:///sd:/index.html`
+- **Resolution**: Dynamic via `roVideoMode.GetResX()/GetResY()` (works for all player models)
+- **JavaScript**: `javascript_enabled: true` required for React apps
+- **Message Port**: config.port enables HTML widget event logging
 
 ## Step 2: Optimize Vite Configuration
 
 Configure Vite for aggressive optimization and BrightSign compatibility:
 
-**apps/player-minimal/vite.config.ts:**
+**apps/player-minimal/vite.config.mts:**
 
 ```typescript
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    nxViteTsPaths(),
+    nxCopyAssetsPlugin(['*.md']),
+    
+    // CRITICAL: Strip type="module" for BrightSign
+    {
+      name: 'remove-module-type',
+      transformIndexHtml(html) {
+        return html
+          .replace(/<script type="module"/g, '<script defer')
+          .replace(/<script crossorigin/g, '<script defer crossorigin');
+      },
+    },
+  ],
 
   // Use relative paths (no base URL)
   base: './',
 
   build: {
-    // Target older Chromium (BrightSign uses Chromium 98)
-    target: ['chrome98'],
-
-    // Output to dist for Nx
+    // Target Chromium 98 (BrightSign OS 9.x embedded browser)
+    target: 'es2020',
+    
+    // Output location
     outDir: '../../dist/apps/player-minimal',
     emptyOutDir: true,
 
@@ -109,39 +130,47 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // Remove console.log in production
+        drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.info', 'console.debug'],
       },
     },
 
-    // Rollup options for code splitting
+    // CRITICAL: Use IIFE format, not ES modules
     rollupOptions: {
       output: {
-        // Manual chunk splitting
-        manualChunks: {
-          // Separate vendor bundle
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-        },
-        // Smaller chunk size warnings
+        format: 'iife',  // file:// protocol doesn't provide MIME types
+        assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
 
     // Chunk size warnings
     chunkSizeWarningLimit: 100, // 100KB limit
   },
-
-  // Resolve aliases (match tsconfig.base.json)
-  resolve: {
-    alias: {
-      '@tsa/shadcnui-signage': path.resolve(__dirname, '../../libs/shadcnui-signage/src/index.ts'),
-    },
-  },
 });
 ```
+
+**Critical BrightSign requirements:**
+
+1. **IIFE format required**: `format: 'iife'`
+   - ❌ ES modules (`type="module"`) fail: file:// doesn't provide MIME types
+   - ✅ IIFE format works: single-file bundles compatible with file:// protocol
+   
+2. **Strip type="module" attribute**: Custom plugin required
+   - Vite adds `type="module"` by default
+   - BrightSign Chromium rejects modules without proper MIME types
+   - Plugin replaces with `defer` attribute for proper DOM timing
+   
+3. **Target es2020**: BrightSign OS 9.x uses Chromium 98
+   - Supports modern ES features (optional chaining, nullish coalescing)
+   - Avoid ES2022+ features (top-level await, private fields)
+
+4. **CSS handling**: 
+   - ⚠️ Tailwind CSS may not load from file:// (MIME type issues)
+   - Consider inlining critical CSS or using inline styles
+   - Test thoroughly on real hardware
 
 ## Step 3: Build the App
 

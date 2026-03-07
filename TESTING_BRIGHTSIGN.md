@@ -1,13 +1,29 @@
 # BrightSign Deployment Testing Guide
 
-Step-by-step testing checklist for the BrightSign deployment workflow.
+**Status:** ✅ React 19 deployment working on BrightSign OS 9.1.92 + Chrome 120  
+**Known Issue:** ❌ Tailwind v4 CSS classes don't render (use inline styles instead)  
+**Last Tested:** March 7, 2026  
+
+For detailed findings, see [docs/troubleshooting/brightsign-react-deployment-findings.md](docs/troubleshooting/brightsign-react-deployment-findings.md)
+
+## Quick Start (Known Working Configuration)
+
+```bash
+# 1. Build and deploy to configured player
+pnpm deploy:player
+
+# 2. Check physical display - should see React app with inline styles
+# 3. Debug via Web Inspector: http://192.168.0.62:2999
+```
 
 ## Prerequisites
 
-- [ ] Node.js 22+ installed
-- [ ] pnpm 9.15+ installed
-- [ ] All dependencies installed (`pnpm install`)
-- [ ] Clean working directory (`git status` shows no uncommitted changes)
+- [x] Node.js 22+ installed
+- [x] pnpm 9.15+ installed
+- [x] All dependencies installed (`pnpm install`)
+- [x] BrightSign player on OS 9.1.92+ (Chrome 120)
+- [x] Player configured in `.brightsign/players.json`
+- [x] Player has Chrome 120 runtime enabled (set via autorun.brs)
 
 ## Phase 1: Build Testing
 
@@ -501,6 +517,73 @@ pnpm deploy:local
 4. **Explore BrightSign APIs:**
    - Add BrightSign-specific features (GPIO, video, etc.)
    - Test advanced capabilities
+
+---
+
+## Known Issues & Workarounds
+
+### ❌ Tailwind v4 CSS Classes Don't Render
+
+**Problem:** Tailwind utility classes exist in DOM but styles don't apply.
+
+**Evidence:**
+- React renders successfully (confirmed via Web Inspector)
+- CSS is inlined in HTML (21KB in `<style>` tag)
+- Classes exist in DOM: `class="bg-gradient-to-br from-background"`
+- Computed styles show: `background: rgba(0, 0, 0, 0)` (transparent)
+
+**Root Cause:** Suspected issues with:
+- `@layer` directives (Tailwind v4 uses `@layer theme,base,components,utilities`)
+- `oklch()` color syntax (Tailwind v4 default)
+- CSS custom property format: `--background: 220 13% 12%` (bare HSL values)
+
+**Workaround:** ✅ Use inline styles everywhere
+
+```tsx
+// Instead of Tailwind classes
+<div className="bg-gradient-to-br from-background to-card p-8">
+
+// Use inline styles
+<div style={{
+  background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+  padding: '40px'
+}}>
+```
+
+**Status:** Investigating alternatives (Tailwind v3, vanilla CSS, CSS Modules)
+
+**Reference:** [docs/troubleshooting/brightsign-react-deployment-findings.md](docs/troubleshooting/brightsign-react-deployment-findings.md)
+
+### ✅ Chrome 120 Runtime Required
+
+**Problem:** Modern CSS features need Chrome 120, not the default runtime.
+
+**Solution:** Enabled via autorun.brs:
+
+```brightscript
+reg = CreateObject("roRegistrySection", "html")
+reg.Write("widget type", "chromium120")
+reg.Flush()
+```
+
+**Status:** ✅ Working - confirmed via Web Inspector
+
+### ✅ REST API Requires HTTPS
+
+**Problem:** Deployment fails with `"Found. Red"... is not valid JSON` error.
+
+**Solution:** Use port 443 (HTTPS) instead of port 80 (HTTP)
+
+```json
+{
+  "ip": "192.168.0.62",
+  "port": 443,  // Not 80
+  "username": "admin",
+  "password": "BrightSign23!"
+}
+```
+
+**Status:** ✅ Fixed in `.brightsign/players.json`
 
 ---
 

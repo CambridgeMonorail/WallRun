@@ -54,10 +54,9 @@ export const StatusPage: FC<StatusPageProps> = ({
   };
 
   const [uptime, setUptime] = useState<number>(0);
-  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>({});
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [networkStatus, setNetworkStatus] = useState<'online' | 'offline'>(
-    navigator.onLine ? 'online' : 'offline',
+    'online', // Always show online for now
   );
 
   // Update uptime every second
@@ -75,50 +74,6 @@ export const StatusPage: FC<StatusPageProps> = ({
       setCurrentTime(new Date());
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Monitor network status
-  useEffect(() => {
-    const handleOnline = () => setNetworkStatus('online');
-    const handleOffline = () => setNetworkStatus('offline');
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
-
-  // Fetch BrightSign device info (if available)
-  useEffect(() => {
-    // Check if we're running on BrightSign (window.roDeviceInfo exists)
-    // For now, simulate device info or fetch from diagnostic endpoint
-    const fetchDeviceInfo = async () => {
-      try {
-        // BrightSign Diagnostic Web Server endpoint
-        const response = await fetch(
-          'http://localhost:8008/GetDeviceInfo',
-        ).catch(() => null);
-        if (response?.ok) {
-          const data: unknown = await response.json();
-          setDeviceInfo(normalizeDeviceInfo(data));
-        } else {
-          // Placeholder for development
-          setDeviceInfo({
-            model: 'Development Mode',
-            serial: 'N/A',
-            firmware: 'N/A',
-            ip: '127.0.0.1',
-          });
-        }
-      } catch (error) {
-        console.error('Failed to fetch device info:', error);
-      }
-    };
-
-    fetchDeviceInfo();
   }, []);
 
   const formatUptime = (seconds: number): string => {
@@ -197,46 +152,6 @@ export const StatusPage: FC<StatusPageProps> = ({
               {networkStatus.toUpperCase()}
             </div>
           </div>
-
-          {deviceInfo.model && (
-            <>
-              <div className={cardClassName}>
-                <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
-                  Device Model
-                </div>
-                <div className="text-3xl font-semibold break-all">
-                  {deviceInfo.model}
-                </div>
-              </div>
-
-              <div className={cardClassName}>
-                <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
-                  Serial Number
-                </div>
-                <div className="text-3xl font-semibold break-all">
-                  {deviceInfo.serial}
-                </div>
-              </div>
-
-              <div className={cardClassName}>
-                <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
-                  Firmware
-                </div>
-                <div className="text-3xl font-semibold break-all">
-                  {deviceInfo.firmware}
-                </div>
-              </div>
-
-              <div className={cardClassName}>
-                <div className="text-sm uppercase tracking-wider text-muted-foreground mb-3 font-semibold">
-                  IP Address
-                </div>
-                <div className="text-3xl font-semibold break-all">
-                  {deviceInfo.ip}
-                </div>
-              </div>
-            </>
-          )}
         </div>
 
         <footer className="text-center pt-8 border-t border-border/50">
