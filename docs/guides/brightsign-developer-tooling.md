@@ -24,20 +24,20 @@ Choose the approach that works best for your workflow:
 
    ```bash
    pnpm player add dev-player 192.168.1.50 --model CL435 --default
-   pnpm deploy:local --player dev-player
+   pnpm deploy:player --player dev-player
    ```
 
 2. **Interactive Prompt** (Simplest for ad-hoc testing)
 
    ```bash
-   pnpm deploy:local
+   pnpm deploy:player
    # Enter IP when prompted
    ```
 
 3. **Default Player** (Fastest for daily development)
    ```bash
    pnpm player default dev-player
-   pnpm deploy:local  # Uses default automatically
+   pnpm deploy:player  # Uses default automatically
    ```
 
 ### ✅ Player Management CLI
@@ -113,11 +113,11 @@ pnpm player add test-lab 192.168.1.52 --tags "test"
 pnpm player add prod-lobby1 192.168.1.100 --tags "prod,lobby"
 pnpm player add prod-lobby2 192.168.1.101 --tags "prod,lobby"
 
-# Deploy to specific player
-pnpm deploy:local --player test-lab
+# Deploy to specific player (rebuilds + uploads)
+pnpm deploy:player --player test-lab
 
-# Deploy to default
-pnpm deploy:local
+# Deploy to default player (rebuilds + uploads)
+pnpm deploy:player
 ```
 
 ### Scenario 3: Shared Player Configuration

@@ -109,9 +109,9 @@ pnpm dev:brightsign
 **Speed**: Build → Package → Upload → Reboot (~2-3 minutes)  
 **Requirements**: None (works offline once deployed)
 
-### Full Deployment Workflow
+### Full Deployment Workflow (Normal Development)
 
-This builds, packages, and deploys everything to the player's SD card:
+**Always use this when you've changed source code:**
 
 ```bash
 # Build, package, and deploy in one command
@@ -124,14 +124,17 @@ This runs:
 3. Upload all files via LDWS API
 4. Reboot player to load new content
 
-### Quick Deployment (Skip Rebuild)
+### Quick Re-upload (Advanced - Rarely Needed)
 
-If you already have a package built:
+**Only use this if package is already current and you just want to re-upload:**
 
 ```bash
 # Deploy existing package without rebuilding
+# ⚠️ If you changed source code, this will NOT include your changes!
 pnpm deploy:local
 ```
+
+The script will warn you if source files are newer than the package.
 
 ### Ultra-Fast Deployment (Direct Upload)
 
