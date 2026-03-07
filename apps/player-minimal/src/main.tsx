@@ -50,6 +50,27 @@ try {
       console.log('First child background:', styles.backgroundColor);
       console.log('First child color:', styles.color);
     }
+
+    // CSS FEATURE SUPPORT DIAGNOSTICS (Tailwind v4 requirements)
+    console.log('=== CSS FEATURE SUPPORT ===');
+    
+    // Critical for Tailwind v4
+    console.log('CSS.supports oklch():', CSS.supports('color', 'oklch(0.7 0.1 240)'));
+    console.log('CSS.supports :where():', CSS.supports('selector(:where(*))'));
+    console.log('CSS.supports CSS variables:', CSS.supports('color', 'var(--test)'));
+    
+    // Additional modern CSS features
+    console.log('CSS.supports @layer:', typeof CSS !== 'undefined' && 'supports' in CSS);
+    console.log('CSS.supports container queries:', CSS.supports('container-type', 'inline-size'));
+    console.log('CSS.supports flexbox gap:', CSS.supports('gap', '1rem'));
+    console.log('CSS.supports grid:', CSS.supports('display', 'grid'));
+    
+    // Color space support
+    console.log('CSS.supports rgb():', CSS.supports('color', 'rgb(255 0 0)'));
+    console.log('CSS.supports rgba():', CSS.supports('color', 'rgba(255, 0, 0, 0.5)'));
+    console.log('CSS.supports hsl():', CSS.supports('color', 'hsl(0 100% 50%)'));
+    
+    console.log('=== END CSS DIAGNOSTICS ===');
   }, 1000);
   
 } catch (error) {

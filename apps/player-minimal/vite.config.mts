@@ -1,6 +1,7 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import * as fs from 'node:fs';
@@ -21,6 +22,7 @@ export default defineConfig(() => ({
   },
   plugins: [
     react(),
+    tailwindcss(), // Tailwind v4 Vite plugin
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     // Custom plugin to remove type="module" for BrightSign compatibility
@@ -33,53 +35,6 @@ export default defineConfig(() => ({
           .replace(/<script crossorigin/g, '<script defer crossorigin');
       },
     },
-    // CRITICAL: Inline CSS into HTML for BrightSign file:// protocol
-    // file:// doesn't provide MIME types, so external CSS files won't load
-    {
-      name: 'inline-css',
-      enforce: 'post',
-      transformIndexHtml: {
-        order: 'post',
-        handler(html, ctx) {
-          // Only run during build, not dev server
-          if (!ctx.bundle) return html;
-
-          // Find all CSS files in the bundle
-          const cssFiles = Object.keys(ctx.bundle).filter(
-            (file) => file.endsWith('.css')
-          );
-
-          if (cssFiles.length === 0) return html;
-
-          // Read CSS content from the output bundle
-          let inlinedHtml = html;
-          for (const cssFile of cssFiles) {
-            const cssAsset = ctx.bundle[cssFile];
-            if (cssAsset.type === 'asset' && typeof cssAsset.source === 'string') {
-              const cssContent = cssAsset.source;
-
-              // Remove the <link> tag for this CSS file
-              const linkRegex = new RegExp(
-                `<link[^>]*href="[^"]*${cssFile.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`,
-                'g'
-              );
-              inlinedHtml = inlinedHtml.replace(linkRegex, '');
-
-              // Insert <style> tag in <head>
-              inlinedHtml = inlinedHtml.replace(
-                '</head>',
-                `  <style type="text/css">\n${cssContent}\n  </style>\n  </head>`
-              );
-
-              // Delete the CSS file from the bundle (no longer needed)
-              delete ctx.bundle[cssFile];
-            }
-          }
-
-          return inlinedHtml;
-        },
-      },
-    },
   ],
   // Uncomment this if you are using workers.
   // worker: {
@@ -88,34 +43,34 @@ export default defineConfig(() => ({
   build: {
     outDir: '../../dist/apps/player-minimal',
     emptyOutDir: true,
-    reportCompressedSize: true,
+    reportCompressedSize: false,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
-    // BrightSign OS 9.1.92 defaults to Chrome 120 runtime on Series 5
-    // ES2022 features natively supported
+    // BrightSign-safe configuration for Chrome 120 (OS 9.1.92+)
     target: ['chrome120', 'es2022'],
     minify: 'esbuild',
-    // CRITICAL: Extract CSS to separate file for proper loading
+    sourcemap: false,
     cssCodeSplit: false, // Single CSS file
-    // Aggressive code-splitting for smaller initial bundle
+    modulePreload: false, // Avoid module preload behavior
     rollupOptions: {
       output: {
-        format: 'iife', // Use IIFE format instead of ES modules for file:// compatibility
-        // Ensure proper transpilation of modern syntax
+        format: 'iife', // IIFE format for file:// compatibility
+        inlineDynamicImports: true, // Single bundle for predictable deployment
         generatedCode: {
           constBindings: true,
         },
-        // Keep CSS separate for proper loading
-        // Note: inlineDynamicImports removes CSS extraction, so we avoid it
-        // Ensure assets use relative paths (no base URL)
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
+        // Consistent file names for easier debugging
+        entryFileNames: 'assets/app.js',
+        chunkFileNames: 'assets/app.js',
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name ?? '';
+          if (name.endsWith('.css')) return 'assets/app.css';
+          return 'assets/[name][extname]';
+        },
       },
     },
-    // Target bundle size < 100KB gzipped
-    chunkSizeWarningLimit: 100,
+    chunkSizeWarningLimit: 200, // Adjusted for single bundle approach
   },
   // Define build-time environment variables
   define: {
