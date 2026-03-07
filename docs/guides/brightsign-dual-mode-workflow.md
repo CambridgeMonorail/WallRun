@@ -20,9 +20,9 @@ This guide covers **two deployment modes** for BrightSign players: fast developm
 **Quick verification**:
 ```bash
 # Test player connectivity
-curl --digest -u admin:YOUR_PASSWORD -k https://PLAYER_IP/api/v1/info
+curl --digest -u admin:YOUR_PASSWORD -k https://PLAYER_IP/api/v1/files/sd/
 
-# Should return JSON with player model and serial number
+# Should return JSON with SD card contents
 ```
 
 ---

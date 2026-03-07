@@ -156,7 +156,7 @@ You should see replies confirming network connectivity.
 **From terminal** (bash/PowerShell):
 
 ```bash
-curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/info
+curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/files/sd/
 ```
 
 **Expected response** (JSON):
@@ -164,11 +164,10 @@ curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/info
 {
   "data": {
     "result": {
-      "model": "CL435",
-      "serial": "C5D51K000056",
-      "FWVersion": "9.1.92",
-      "upTime": "5 minutes",
-      ...
+      "files": [
+        {"name": "autorun.brs", "type": "file", ...},
+        {"name": "index.html", "type": "file", ...}
+      ]
     }
   }
 }
@@ -278,7 +277,7 @@ After reboot (~30 seconds), your React app should appear on the connected displa
 
 **Solution**: Always use `--digest` flag with curl:
 ```bash
-curl --digest -u admin:password -k https://PLAYER_IP/api/v1/info
+curl --digest -u admin:password -k https://PLAYER_IP/api/v1/files/sd/
 ```
 
 ### Issue: "Local DWS not enabled" error
@@ -334,8 +333,8 @@ This is safe on a local network.
 ### Example API Calls
 
 ```bash
-# Get player info
-curl --digest -u admin:password -k https://PLAYER_IP/api/v1/info
+# List SD card contents
+curl --digest -u admin:password -k https://PLAYER_IP/api/v1/files/sd/
 
 # Upload file
 curl --digest -u admin:password -k -X PUT \

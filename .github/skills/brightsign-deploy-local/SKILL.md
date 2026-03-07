@@ -21,28 +21,32 @@ Use this skill when you need to:
 
 - BrightSign player on same network as development machine
 - Player IP address (find via network scan or player menu)
-- BrightSign diagnostic web server enabled (default: port 8008)
+- BrightSign Local Diagnostic Web Server (LDWS) enabled
+  - **Port 443 (HTTPS)** with self-signed certificate
+  - **HTTP Digest Authentication** required (username: `admin`)
 - Packaged app (see #brightsign-package skill)
 
-## BrightSign OS 9.x Diagnostic API
+## BrightSign OS 9.x LDWS REST API
 
-BrightSign players expose a web-based API on port 8008 for:
+BrightSign OS 9.x players expose a REST API on **port 443 (HTTPS)** for:
 
-- File uploads
-- Device information queries
-- Remote diagnostics
+- File uploads/downloads
+- SD card file management
 - Player reboot commands
+- Remote debugging (Chrome DevTools on port 2999)
 
-**Base URL:** `http://<player-ip>:8008`
+**Base URL:** `https://<player-ip>:443` (self-signed cert, use `-k` with curl)
+
+**Authentication:** HTTP Digest (username: `admin`, password set during setup)
 
 ### Available Endpoints
 
-- `GET /` - Diagnostic web interface (browser access)
-- `GET /GetDeviceInfo` - Device details (model, serial, firmware)
-- `POST /upload` - Upload files to player storage
-- `GET /reboot` - Reboot the player
-- `GET /logs` - Retrieve system logs
-- `GET /inspector` - Chrome DevTools remote debugging
+- `GET /api/v1/files/sd/` - List SD card contents
+- `PUT /api/v1/files/sd/` with form data - Upload files to SD card
+- `GET /api/v1/files/download/sd/<path>` - Download file from SD card
+- `DELETE /api/v1/files/sd/<path>` - Delete file from SD card
+- `PUT /api/v1/control/reboot` - Reboot the player
+- Chrome DevTools Inspector: `http://<player-ip>:2999` (if enabled in autorun.brs)
 
 ## Step 1: Find Player IP Address
 
@@ -55,12 +59,14 @@ BrightSign players expose a web-based API on port 8008 for:
 ### Method 2: Network Scan (Automated)
 
 ```bash
-# Scan local network for BrightSign players (port 8008)
-nmap -p 8008 192.168.1.0/24 | grep -B 4 "8008/tcp open"
+# Scan local network for BrightSign LDWS (port 443)
+nmap -p 443 192.168.1.0/24
 
-# Or using curl (faster for known subnet)
+# Or try known IPs with curl
 for i in {1..254}; do
-    (curl -s --connect-timeout 1 http://192.168.1.$i:8008/GetDeviceInfo > /dev/null && echo "192.168.1.$i") &
+    (curl -k --digest -u admin:password -s --connect-timeout 1 \
+      https://192.168.1.$i:443/api/v1/files/sd/ > /dev/null 2>&1 && \
+      echo "Found player at 192.168.1.$i") &
 done
 wait
 ```
@@ -73,87 +79,94 @@ wait
 
 ## Step 2: Verify Player Accessibility
 
-Test the diagnostic API:
+Test the LDWS REST API:
 
 ```bash
-# Get device info
-curl http://<player-ip>:8008/GetDeviceInfo
+# List SD card contents (requires digest auth)
+curl -k --digest -u admin:YOUR_PASSWORD https://<player-ip>:443/api/v1/files/sd/
 
 # Expected response (JSON):
 # {
-#   "model": "XD1035",
-#   "serial": "ABC123456789",
-#   "firmware": "9.1.35",
-#   "uptime": 3600
+#   "data": {
+#     "result": {
+#       "files": [
+#         {"name": "autorun.brs", "type": "file", "size": 2398},
+#         {"name": "index.html", "type": "file", "size": 540}
+#       ]
+#     }
+#   }
 # }
 ```
 
 If this fails:
 
-- Check firewall rules (allow port 8008)
-- Verify player is on same subnet
-- Ensure diagnostic web server is enabled in player settings
+- Check credentials (password is case-sensitive)
+- Ensure you're using `--digest` flag (not basic auth)
+- Try port 80 if port 443 fails: `http://<player-ip>:80/api/v1/files/sd/`
+- Verify LDWS is enabled in BrightAuthor:connected setup
 
 ## Step 3: Upload Package to Player
 
-Upload your packaged app to the player's SD card:
+Upload your packaged app to the player's SD card using the LDWS REST API:
 
 ```bash
 # Package location (from brightsign-package skill)
 PACKAGE_ZIP="dist/player-minimal-deploy.zip"
 PLAYER_IP="192.168.1.100"
+PASSWORD="your-password"
 
-# Upload via multipart form POST
-curl -X POST \
-  -F "file=@${PACKAGE_ZIP}" \
-  -F "path=/sd:/" \
-  http://${PLAYER_IP}:8008/upload
+# Extract ZIP locally
+unzip $PACKAGE_ZIP -d extracted/
 
-# Expected response:
-# {"status": "success", "message": "File uploaded to /sd:/"}
+# Upload each file via REST API
+for file in extracted/**/*; do
+  if [ -f "$file" ]; then
+    # Get relative path
+    rel_path=${file#extracted/}
+    dir_path=$(dirname "$rel_path")
+    
+    # Upload with digest auth
+    if [ "$dir_path" = "." ]; then
+      curl -k --digest -u "admin:$PASSWORD" -X PUT \
+        -F "file=@$file" \
+        "https://$PLAYER_IP:443/api/v1/files/sd/"
+    else
+      curl -k --digest -u "admin:$PASSWORD" -X PUT \
+        -F "file=@$file" \
+        "https://$PLAYER_IP:443/api/v1/files/sd/$dir_path/"
+    fi
+    echo "Uploaded: $rel_path"
+  fi
+done
+
+# Clean up
+rm -rf extracted/
 ```
 
-**Upload options:**
+**Important notes:**
 
-- Path: `/sd:/` for root directory
-- Overwrite: Existing files are replaced automatically
-- Max size: Typically 100MB per upload
+- Each file is uploaded individually (no bulk upload endpoint)
+- Directory structure is preserved via endpoint path  
+- `-k` flag ignores self-signed certificate errors
+- `--digest` flag required for HTTP Digest authentication
+- Use PUT method with `-F "file=@filename"`
 
-## Step 4: Extract Package (if needed)
+## Step 4: Reboot Player
 
-If you uploaded a zip file, extract it on the player:
-
-```bash
-# Trigger extraction via SSH (if enabled)
-ssh brightsign@${PLAYER_IP} "cd /sd:/ && unzip -o player-minimal-deploy.zip"
-
-# Or use the diagnostic API extraction endpoint (if available)
-curl -X POST \
-  http://${PLAYER_IP}:8008/extract \
-  -d '{"file": "/sd:/player-minimal-deploy.zip", "dest": "/sd:/"}'
-```
-
-**Alternative:** Upload files individually (slower but more reliable):
+After uploading all files, reboot the player to run the new autorun.brs:
 
 ```bash
 # Upload each file separately
-for file in dist/brightsign-package/*; do
-    curl -X POST \
-      -F "file=@${file}" \
-      -F "path=/sd:/" \
-      http://${PLAYER_IP}:8008/upload
-done
-```
+## Step 4: Reboot Player
 
-## Step 5: Reboot Player
-
-Trigger a reboot to start the new app:
+After uploading all files, reboot the player to run the new autorun.brs:
 
 ```bash
-# Reboot via diagnostic API
-curl http://${PLAYER_IP}:8008/reboot
+# Reboot via REST API (requires digest auth)
+curl -k --digest -u "admin:$PASSWORD" -X PUT \
+  "https://$PLAYER_IP:443/api/v1/control/reboot"
 
-# Player will restart in ~10-15 seconds
+# Player will restart in ~30-60 seconds
 # App should auto-launch via autorun.brs
 ```
 
