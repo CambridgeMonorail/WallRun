@@ -46,7 +46,7 @@ Choose **ONE** of these methods:
 Just run deploy commands directly - you'll be prompted for the IP address:
 
 ```bash
-pnpm deploy:local
+pnpm deploy:player
 # Enter player IP when prompted: 192.168.1.50
 ```
 
@@ -159,7 +159,7 @@ This will:
 Modify `scripts/deploy-local.mjs` to accept a `--player` flag (future enhancement):
 
 ```bash
-pnpm deploy:local --player test-player
+pnpm deploy:player --player test-player
 ```
 
 ---

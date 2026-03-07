@@ -127,7 +127,36 @@ If this fails:
 - Verify LDWS is enabled in BrightAuthor:connected setup
 - Player may be rebooting (wait 30-60 seconds and retry)
 
-## Step 3: Upload Package to Player
+## Step 3: Choose Your Deployment Method
+
+### Automated Deployment (Recommended)
+
+**CRITICAL:** Choose the right command based on what changed:
+
+| Command | When to Use | What It Does |
+|---------|-------------|--------------|
+| `pnpm deploy:player` | **After changing source code** (most common) | Rebuilds → Packages → Uploads → Reboots |
+| `pnpm deploy:local` | Package already built, just re-upload (rare) | Uploads existing package → Reboots |
+
+**For normal development workflow:** Always use `pnpm deploy:player`
+
+```bash
+# This is what you want 99% of the time
+pnpm deploy:player
+```
+
+The script will:
+1. Detect if package is stale and warn you
+2. Build the app (if using deploy:player)
+3. Package with autorun.brs
+4. Upload to configured player
+5. Reboot player
+
+**Why this matters:** `deploy:local` does NOT rebuild your app. If you changed source code and use `deploy:local`, your changes won't be deployed. The script now detects this and warns you.
+
+### Manual Upload (Advanced/Debugging)
+
+For troubleshooting or when automation fails, use curl directly:
 
 Upload your packaged app to the player's SD card using the LDWS REST API:
 

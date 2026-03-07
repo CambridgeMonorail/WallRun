@@ -89,7 +89,27 @@ This command:
 
 ### 2. Deploy to Local Player
 
-Upload package to a BrightSign player on your network:
+**IMPORTANT:** Choose the right command based on what you changed:
+
+| Command | When to Use | What It Does |
+|---------|-------------|--------------|
+| `pnpm deploy:player` | **After changing source code** | Rebuilds app → Packages → Uploads → Reboots |
+| `pnpm deploy:local` | Package already built (rare) | Uploads existing package → Reboots |
+
+**For normal development:** Always use `pnpm deploy:player`
+
+```bash
+pnpm deploy:player
+```
+
+This command:
+
+1. Builds the player-minimal app (`nx build player-minimal`)
+2. Packages with autorun.brs (`package:player`)  
+3. Uploads to player via LDWS REST API (`deploy:local`)
+4. Reboots player to launch new version
+
+**Advanced:** If you know the package is current and just want to re-upload:
 
 ```bash
 pnpm deploy:local
@@ -98,18 +118,10 @@ pnpm deploy:local
 The script will:
 
 1. Use configured player from `.brightsign/players.json`
-2. Check player status via LDWS REST API (digest auth)
+2. **Warn if source files are newer than package**
 3. Upload all files to player's SD card
 4. Trigger player reboot
 5. Verify deployment
-
-**Alternative:** Deploy in one step:
-
-```bash
-pnpm deploy:player
-```
-
-This runs both `package:player` and `deploy:local` sequentially.
 
 ## Detailed Workflow
 

@@ -418,6 +418,71 @@ async function rebootPlayer(config) {
   }
 }
 
+/**
+ * Check if source files are newer than package (staleness check)
+ * @param {string} packagePath - Path to the packaged ZIP file
+ * @returns {boolean} true if package might be stale, false if up to date
+ */
+function checkPackageStaleness(packagePath) {
+  try {
+    const packageStat = statSync(packagePath);
+    const packageTime = packageStat.mtimeMs;
+    
+    const sourceDirs = [
+      join(ROOT_DIR, 'apps', 'player-minimal', 'src'),
+      join(ROOT_DIR, 'apps', 'player-minimal', 'public'),
+    ];
+    
+    let newestSourceTime = 0;
+    let newestSourceFile = null;
+    
+    for (const dir of sourceDirs) {
+      if (!existsSync(dir)) continue;
+      
+      const checkDir = (dirPath) => {
+        const entries = readdirSync(dirPath);
+        for (const entry of entries) {
+          const fullPath = join(dirPath, entry);
+          const stat = statSync(fullPath);
+          
+          if (stat.isDirectory()) {
+            checkDir(fullPath);
+          } else {
+            if (stat.mtimeMs > newestSourceTime) {
+              newestSourceTime = stat.mtimeMs;
+              newestSourceFile = fullPath;
+            }
+          }
+        }
+      };
+      
+      checkDir(dir);
+    }
+    
+    // If any source file is newer than package, it's stale
+    if (newestSourceTime > packageTime) {
+      const packageDate = new Date(packageTime).toLocaleString();
+      const sourceDate = new Date(newestSourceTime).toLocaleString();
+      const relativeSourceFile = newestSourceFile.replace(ROOT_DIR, '').replace(/\\/g, '/');
+      
+      console.warn('⚠️  WARNING: Package may be stale!');
+      console.warn(`   Package built: ${packageDate}`);
+      console.warn(`   Newest source: ${sourceDate}`);
+      console.warn(`   File: ${relativeSourceFile}\n`);
+      console.warn('   Your source code changes are NOT in this package.');
+      console.warn('   Use "pnpm deploy:player" to rebuild + deploy\n');
+      
+      return true;
+    }
+    
+    return false;
+  } catch (error) {
+    // If we can't check, don't fail - just warn
+    console.warn(`⚠️  Could not check package staleness: ${error.message}\n`);
+    return false;
+  }
+}
+
 async function main() {
   console.log('🚀 BrightSign Local Deploy\n');
 
@@ -435,6 +500,9 @@ async function main() {
     console.error('   Run "pnpm package:player" first');
     process.exit(1);
   }
+
+  // Check if package might be stale (source files newer than package)
+  checkPackageStaleness(packagePath);
 
   console.log(`📦 Package: brightsign-player-v${version}.zip\n`);
 
