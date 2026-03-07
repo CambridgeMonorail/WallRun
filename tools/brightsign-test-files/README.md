@@ -51,13 +51,13 @@ SD:\
 ✅ Player respects local `autorun.brs` on SD card  
 ✅ BrightScript HTML widget is working  
 ✅ BSN cloud management is NOT overriding local content  
-✅ Player is ready for React app deployment  
+✅ Player is ready for React app deployment
 
 ## What This Does NOT Prove
 
 ❌ React app will work (build may have issues)  
 ❌ LDWS deployment will work (network/API may have issues)  
-❌ Inspector/debugging tools work (not enabled in minimal autorun)  
+❌ Inspector/debugging tools work (not enabled in minimal autorun)
 
 ---
 
@@ -66,6 +66,7 @@ SD:\
 Once you confirm the "HELLO" screen displays:
 
 1. **Option A: Deploy via LDWS**
+
    ```bash
    pnpm deploy:player --player dev-player
    ```
@@ -124,7 +125,6 @@ The debug version writes a log file: `SD:/boot-debug.txt`
   - Check SD card is inserted fully
   - Verify FAT32 format
   - Try re-copying files
-  
 - **Log exists but says "roHtmlWidget creation FAILED":** Widget can't be created
   - Check OS version (`/api/v1/info/` → `version`)
   - May need firmware update
@@ -139,6 +139,7 @@ The debug version writes a log file: `SD:/boot-debug.txt`
 Via LDWS: `http://192.168.0.51/api/v1/files/sd/`
 
 Should show:
+
 ```json
 {"name": "autorun.brs", "size": ...}
 {"name": "index.html", "size": ...}

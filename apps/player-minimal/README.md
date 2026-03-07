@@ -8,11 +8,12 @@ A minimal, production-ready React 19 + Tailwind v4 application demonstrating mod
 ✅ **Tailwind v4** - Modern utility-first CSS with oklch colors and @layer directives  
 ✅ **BrightSign Compatibility** - File-based deployment with Chrome 120 runtime  
 ✅ **Modern CSS** - Gradients, backdrop blur, animations, and responsive design  
-✅ **Developer Experience** - Fast builds with Vite, hot reload during development  
+✅ **Developer Experience** - Fast builds with Vite, hot reload during development
 
 ## Quick Start
 
 ### Development
+
 ```bash
 # Run locally in your browser
 pnpm nx serve player-minimal
@@ -21,6 +22,7 @@ pnpm nx serve player-minimal
 ```
 
 ### Deploy to BrightSign Player
+
 ```bash
 # Build, package, and deploy in one command
 pnpm deploy:player
@@ -66,13 +68,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),  // Critical for Tailwind v4!
+    tailwindcss(), // Critical for Tailwind v4!
   ],
   build: {
     target: ['chrome120', 'es2022'],
     rollupOptions: {
       output: {
-        format: 'iife',  // Required for file:// URLs
+        format: 'iife', // Required for file:// URLs
         inlineDynamicImports: true,
       },
     },
@@ -91,13 +93,13 @@ sub Main()
     reg.Write("widget type", "chromium120")
     reg.Write("enable_web_inspector", "1")
     reg.Flush()
-    
+
     config = {
         url: "file:///sd:/index.html"
         javascript_enabled: true
         inspector_server: { port: 2999 }
     }
-    
+
     html = CreateObject("roHtmlWidget", rect, config)
     html.Show()
 end sub
@@ -113,15 +115,16 @@ This app uses CSS-based rotation, the standard BrightSign technique for portrait
 
 ```typescript
 export const playerConfig: PlayerConfig = {
-  displayOrientation: 'portrait-left',  // Change this value
+  displayOrientation: 'portrait-left', // Change this value
   debug: false,
 };
 ```
 
 **Available orientations:**
+
 - `'landscape'` - Horizontal display (no rotation) - default
 - `'portrait-left'` - Display rotated 90° counterclockwise (most common)
-- `'portrait-right'` - Display rotated 90° clockwise  
+- `'portrait-right'` - Display rotated 90° clockwise
 - `'inverted'` - Display rotated 180° (upside down)
 
 **2. The `DisplayRotation` component applies CSS transforms:**
@@ -156,7 +159,7 @@ The demo page showcases:
 
 - **Live Clock** - Updates every second using React hooks
 - **Gradient Typography** - Modern text effects with Tailwind
-- **Glass Morphism** - Backdrop blur and transparency effects  
+- **Glass Morphism** - Backdrop blur and transparency effects
 - **Card Grid** - Responsive layout with feature cards
 - **Status Indicators** - Animated pulse effects
 - **System Info** - Build version and deployment metadata
@@ -190,16 +193,19 @@ The player will load from your dev server with hot reload!
 ### Common Issues
 
 **Black Screen**
+
 - Check Chrome 120 is enabled in autorun.brs
 - Verify `@tailwindcss/vite` plugin is loaded
 - Check Web Inspector console for errors
 
 **Tailwind Classes Not Rendering**
+
 - Ensure `@tailwindcss/vite` plugin is in vite.config.mts
 - Verify `@import 'tailwindcss';` is in styles.css
 - Check build output for app.css file
 
 **File Upload Fails**
+
 - Use HTTPS port 443, not HTTP port 80
 - Verify player credentials in `.brightsign/players.json`
 - Check player is not BSN-registered
@@ -213,14 +219,14 @@ The player will load from your dev server with hot reload!
 
 ## Tech Stack
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | 19.0.0 | UI framework |
-| Tailwind CSS | 4.1.18 | Utility-first styling |
-| Vite | 7.1.3 | Build tool |
-| TypeScript | 5.9.3 | Type safety |
-| BrightSign OS | 9.1.92 | Target platform |
-| Chrome | 120.0.6099.225 | Browser engine |
+| Technology    | Version        | Purpose               |
+| ------------- | -------------- | --------------------- |
+| React         | 19.0.0         | UI framework          |
+| Tailwind CSS  | 4.1.18         | Utility-first styling |
+| Vite          | 7.1.3          | Build tool            |
+| TypeScript    | 5.9.3          | Type safety           |
+| BrightSign OS | 9.1.92         | Target platform       |
+| Chrome        | 120.0.6099.225 | Browser engine        |
 
 ## License
 

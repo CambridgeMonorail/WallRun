@@ -50,6 +50,7 @@ BrightSign OS 9.x players expose a REST API on **port 443 (HTTPS)** for:
 - Chrome DevTools Inspector: `http://<player-ip>:2999` (if enabled in autorun.brs)
 
 **Pragmatic recommendation for connectivity checks:**
+
 - Primary: Use `/api/v1/files/sd/` - tests what you actually need (authenticated file access)
 - Optional: Use `/api/v1/info/` for richer diagnostics (model, serial, firmware)
 - Don't fail deployment if info endpoint is unavailable during transient states (reboot)
@@ -133,10 +134,10 @@ If this fails:
 
 **CRITICAL:** Choose the right command based on what changed:
 
-| Command | When to Use | What It Does |
-|---------|-------------|--------------|
+| Command              | When to Use                                  | What It Does                            |
+| -------------------- | -------------------------------------------- | --------------------------------------- |
 | `pnpm deploy:player` | **After changing source code** (most common) | Rebuilds → Packages → Uploads → Reboots |
-| `pnpm deploy:local` | Package already built, just re-upload (rare) | Uploads existing package → Reboots |
+| `pnpm deploy:local`  | Package already built, just re-upload (rare) | Uploads existing package → Reboots      |
 
 **For normal development workflow:** Always use `pnpm deploy:player`
 
@@ -146,6 +147,7 @@ pnpm deploy:player
 ```
 
 The script will:
+
 1. Detect if package is stale and warn you
 2. Build the app (if using deploy:player)
 3. Package with autorun.brs
@@ -175,7 +177,7 @@ for file in extracted/**/*; do
     # Get relative path
     rel_path=${file#extracted/}
     dir_path=$(dirname "$rel_path")
-    
+
     # Upload with digest auth
     if [ "$dir_path" = "." ]; then
       curl -k --digest -u "admin:$PASSWORD" -X PUT \
@@ -197,7 +199,7 @@ rm -rf extracted/
 **Important notes:**
 
 - Each file is uploaded individually (no bulk upload endpoint)
-- Directory structure is preserved via endpoint path  
+- Directory structure is preserved via endpoint path
 - `-k` flag ignores self-signed certificate errors
 - `--digest` flag required for HTTP Digest authentication
 - Use PUT method with `-F "file=@filename"`
@@ -206,7 +208,7 @@ rm -rf extracted/
 
 After uploading all files, reboot the player to run the new autorun.brs:
 
-```bash
+````bash
 # Upload each file separately
 ## Step 4: Reboot Player
 
@@ -219,7 +221,7 @@ curl -k --digest -u "admin:$PASSWORD" -X PUT \
 
 # Player will restart in ~30-60 seconds
 # App should auto-launch via autorun.brs
-```
+````
 
 **Reboot wait:**
 

@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/player-minimal',
   base: './',
-  
+
   server: {
     port: 4200,
     host: 'localhost',
@@ -27,15 +27,19 @@ export default defineConfig(({ mode }) => ({
     nxCopyAssetsPlugin(['*.md']),
     // Custom plugin to remove type="module" for BrightSign compatibility
     // Only apply during production build, not dev server
-    ...(mode === 'production' ? [{
-      name: 'remove-module-type',
-      transformIndexHtml(html) {
-        // Remove type="module" and add defer for proper script loading
-        return html
-          .replace(/<script type="module"/g, '<script defer')
-          .replace(/<script crossorigin/g, '<script defer crossorigin');
-      },
-    }] : []),
+    ...(mode === 'production'
+      ? [
+          {
+            name: 'remove-module-type',
+            transformIndexHtml(html) {
+              // Remove type="module" and add defer for proper script loading
+              return html
+                .replace(/<script type="module"/g, '<script defer')
+                .replace(/<script crossorigin/g, '<script defer crossorigin');
+            },
+          },
+        ]
+      : []),
   ],
   // Uncomment this if you are using workers.
   // worker: {

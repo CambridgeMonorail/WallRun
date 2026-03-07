@@ -23,6 +23,7 @@ If this is your first time setting up a BrightSign player, complete these steps 
 📖 **[BrightSign Initial Setup Guide](./brightsign-initial-setup.md)** - Complete walkthrough
 
 **Summary checklist**:
+
 - ✅ Player configured via BrightAuthor:connected
 - ✅ Local Network mode enabled
 - ✅ Local Diagnostic Web Server (LDWS) enabled with credentials
@@ -52,12 +53,14 @@ curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/info/
 This project supports **two deployment workflows**:
 
 ### Development Mode (Fast Iteration)
+
 - Player loads from your dev server over network
 - Edit → Save → Refresh (~2 seconds)
 - No build/upload needed
 - **Best for**: Active development
 
-### Production Mode (Full Deployment)  
+### Production Mode (Full Deployment)
+
 - Build → Package → Upload to SD card
 - Production-optimized bundles
 - Works offline
@@ -91,10 +94,10 @@ This command:
 
 **IMPORTANT:** Choose the right command based on what you changed:
 
-| Command | When to Use | What It Does |
-|---------|-------------|--------------|
+| Command              | When to Use                    | What It Does                                |
+| -------------------- | ------------------------------ | ------------------------------------------- |
 | `pnpm deploy:player` | **After changing source code** | Rebuilds app → Packages → Uploads → Reboots |
-| `pnpm deploy:local` | Package already built (rare) | Uploads existing package → Reboots |
+| `pnpm deploy:local`  | Package already built (rare)   | Uploads existing package → Reboots          |
 
 **For normal development:** Always use `pnpm deploy:player`
 
@@ -105,7 +108,7 @@ pnpm deploy:player
 This command:
 
 1. Builds the player-minimal app (`nx build player-minimal`)
-2. Packages with autorun.brs (`package:player`)  
+2. Packages with autorun.brs (`package:player`)
 3. Uploads to player via LDWS REST API (`deploy:local`)
 4. Reboots player to launch new version
 
@@ -229,7 +232,7 @@ dist/packages/brightsign/
 ' BrightSign OS 9.x HTML Widget Bootstrap
 Sub Main()
     msgPort = CreateObject("roMessagePort")
-    
+
     htmlWidget = CreateObject("roHtmlWidget", {
         port: msgPort,
         url: "file:///sd:/index.html",
@@ -253,7 +256,7 @@ The React app includes a `DisplayRotation` component that handles this automatic
 
 ```typescript
 export const playerConfig: PlayerConfig = {
-  displayOrientation: 'portrait-left',  // or 'landscape', 'portrait-right', 'inverted'
+  displayOrientation: 'portrait-left', // or 'landscape', 'portrait-right', 'inverted'
   debug: false,
 };
 ```
@@ -269,6 +272,7 @@ export const playerConfig: PlayerConfig = {
 This is the **standard BrightSign technique** for portrait displays - it's more reliable than video mode rotation and doesn't require player reboots.
 
 Available orientations:
+
 - `landscape` - No rotation (default)
 - `portrait-left` - 90° CCW rotation (most common)
 - `portrait-right` - 90° CW rotation
@@ -400,13 +404,15 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 **Solutions:**
 
 1. **Configure orientation in the React app** (`apps/player-minimal/src/config.ts`):
+
    ```typescript
    export const playerConfig: PlayerConfig = {
-     displayOrientation: 'portrait-left',  // or 'portrait-right'
+     displayOrientation: 'portrait-left', // or 'portrait-right'
    };
    ```
 
 2. **Redeploy to apply the changes:**
+
    ```bash
    pnpm deploy:player
    ```

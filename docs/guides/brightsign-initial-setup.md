@@ -59,7 +59,7 @@ Launch BrightAuthor:connected on your computer (download from brightsign.biz if 
 2. **Set Authentication**:
    - Username: `admin` (always, cannot be changed)
    - Password: Choose a **strong password** (BrightSign enforces complexity rules)
-   
+
    **Password Requirements**:
    - Minimum 8 characters
    - Must include: uppercase, lowercase, number, special character
@@ -71,12 +71,14 @@ Launch BrightAuthor:connected on your computer (download from brightsign.biz if 
 ### 1.5 Optional: Additional Settings
 
 **Security Settings**:
+
 - **Enable JavaScript Console** (for development only)
 - **Enable Web Inspector** on port 2999 (for remote debugging)
 
 ⚠️ **Warning**: Only enable inspector for development. It increases memory usage and creates a security risk in production.
 
 **Display Settings**:
+
 - Configure rotation if using portrait orientation
 - Set video mode (usually Auto is fine)
 
@@ -89,6 +91,7 @@ Launch BrightAuthor:connected on your computer (download from brightsign.biz if 
 5. Click **Publish** to write the setup to the card
 
 **What gets written**:
+
 - `setup.bsfw` - Setup configuration file
 - Required system files
 
@@ -113,6 +116,7 @@ The player will:
 3. **Display the IP address** on screen
 
 **Expected screen output**:
+
 ```
 BrightSign Setup Complete
 IP Address: 192.168.0.51
@@ -160,6 +164,7 @@ curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/files/sd/
 ```
 
 **Expected response** (JSON):
+
 ```json
 {
   "data": {
@@ -174,11 +179,13 @@ curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/files/sd/
 ```
 
 **If you get `401 Unauthorized`**:
+
 - Double-check password (case-sensitive)
 - Verify you're using `--digest` flag (not basic auth)
 - Ensure LDWS is enabled in player setup
 
 **If you get connection errors**:
+
 - Check player IP is correct
 - Verify LDWS is enabled
 - Check firewall isn't blocking connections
@@ -229,6 +236,7 @@ pnpm deploy:player
 ```
 
 **Expected output**:
+
 ```
 🚀 BrightSign Local Deploy
 
@@ -258,6 +266,7 @@ After reboot (~30 seconds), your React app should appear on the connected displa
 ### Issue: Player doesn't get IP address
 
 **Solutions**:
+
 - Verify Ethernet cable is connected
 - Check router has DHCP enabled
 - Try static IP configuration instead
@@ -266,6 +275,7 @@ After reboot (~30 seconds), your React app should appear on the connected displa
 ### Issue: IP address not showing on screen
 
 **Solutions**:
+
 - Wait 30-60 seconds for full boot
 - Check HDMI cable is connected properly
 - Try different display output settings
@@ -276,6 +286,7 @@ After reboot (~30 seconds), your React app should appear on the connected displa
 **Cause**: BrightSign uses **HTTP Digest authentication**, not Basic auth.
 
 **Solution**: Always use `--digest` flag with curl:
+
 ```bash
 curl --digest -u admin:password -k https://PLAYER_IP/api/v1/files/sd/
 ```
@@ -283,6 +294,7 @@ curl --digest -u admin:password -k https://PLAYER_IP/api/v1/files/sd/
 ### Issue: "Local DWS not enabled" error
 
 **Solutions**:
+
 - Re-create setup in BrightAuthor:connected
 - Ensure "Enable Diagnostic Web Server" is checked
 - Ensure "Enable REST API" is checked
@@ -294,6 +306,7 @@ curl --digest -u admin:password -k https://PLAYER_IP/api/v1/files/sd/
 **Expected behavior**: BrightSign uses self-signed HTTPS certificates.
 
 **Solutions**:
+
 - Browser: Click "Advanced" → "Proceed anyway"
 - curl: Use `-k` or `--insecure` flag
 - Scripts: Use `rejectUnauthorized: false` in Node.js
@@ -304,13 +317,13 @@ This is safe on a local network.
 
 ## Network Port Reference
 
-| Port | Service                        | Protocol | Usage                          |
-|------|--------------------------------|----------|--------------------------------|
-| 80   | Local Web Server (LWS)         | HTTP     | BrightAuthor publishing        |
-| 443  | Diagnostic Web Server (DWS)    | HTTPS    | Web UI, REST API               |
-| 8008 | Local DWS (alternate)          | HTTP     | Older firmware                 |
-| 8080 | Local DWS (alternate)          | HTTP     | Some setups                    |
-| 2999 | JavaScript Inspector           | HTTP     | Remote debugging               |
+| Port | Service                     | Protocol | Usage                   |
+| ---- | --------------------------- | -------- | ----------------------- |
+| 80   | Local Web Server (LWS)      | HTTP     | BrightAuthor publishing |
+| 443  | Diagnostic Web Server (DWS) | HTTPS    | Web UI, REST API        |
+| 8008 | Local DWS (alternate)       | HTTP     | Older firmware          |
+| 8080 | Local DWS (alternate)       | HTTP     | Some setups             |
+| 2999 | JavaScript Inspector        | HTTP     | Remote debugging        |
 
 **For deployment scripts**, use **port 443** (HTTPS with digest auth).
 
@@ -319,12 +332,14 @@ This is safe on a local network.
 ## Authentication Summary
 
 ### Web Interface (Browser)
+
 - URL: `https://PLAYER_IP/`
 - Username: `admin`
 - Password: Set in BrightAuthor:connected setup
 - Protocol: HTTP Digest Authentication (handled by browser)
 
 ### REST API (curl/scripts)
+
 - Endpoint: `https://PLAYER_IP/api/v1/*`
 - Authentication: `--digest -u admin:password`
 - Certificate: Use `-k` flag for self-signed cert

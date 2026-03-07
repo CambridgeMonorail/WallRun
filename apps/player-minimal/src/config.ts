@@ -1,18 +1,22 @@
 /**
  * Player Configuration
- * 
+ *
  * These settings control display orientation and other player-specific behaviors.
  */
 
 /**
  * Display orientation configuration
- * 
+ *
  * - 'landscape': Standard horizontal display (default)
  * - 'portrait-left': Display rotated 90° counterclockwise (most common)
  * - 'portrait-right': Display rotated 90° clockwise
  * - 'inverted': Display rotated 180° (upside down)
  */
-export type DisplayOrientation = 'landscape' | 'portrait-left' | 'portrait-right' | 'inverted';
+export type DisplayOrientation =
+  | 'landscape'
+  | 'portrait-left'
+  | 'portrait-right'
+  | 'inverted';
 
 export interface PlayerConfig {
   /**
@@ -20,7 +24,7 @@ export interface PlayerConfig {
    * Change this value to match your physical display rotation.
    */
   displayOrientation: DisplayOrientation;
-  
+
   /**
    * Enable debug logging to console
    */
@@ -29,7 +33,7 @@ export interface PlayerConfig {
 
 /**
  * Default player configuration
- * 
+ *
  * CHANGE displayOrientation TO MATCH YOUR DISPLAY:
  * - 'landscape' for horizontal displays
  * - 'portrait-left' for displays rotated 90° CCW (most common portrait)

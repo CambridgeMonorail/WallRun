@@ -11,6 +11,7 @@ This guide covers **two deployment modes** for BrightSign players: fast developm
 📖 **[BrightSign Initial Setup Guide](./brightsign-initial-setup.md)** - Complete player setup from scratch
 
 **Required**:
+
 - ✅ Player configured with BrightAuthor:connected setup
 - ✅ Player on network with known IP address
 - ✅ Local Diagnostic Web Server (LDWS) enabled
@@ -18,6 +19,7 @@ This guide covers **two deployment modes** for BrightSign players: fast developm
 - ✅ Player added to `.brightsign/players.json` configuration
 
 **Quick verification**:
+
 ```bash
 # Test player connectivity
 curl --digest -u admin:YOUR_PASSWORD -k https://PLAYER_IP/api/v1/files/sd/
@@ -56,17 +58,20 @@ No build, package, or upload needed. Just save your code and refresh the page on
 ### One-Time Setup
 
 1. **Edit the dev-mode autorun.brs**:
+
    ```bash
    # Open tools/brightsign-test-files/autorun-dev.brs
    # Change DEV_SERVER_IP to your machine's LAN IP
    ```
 
 2. **Deploy dev-mode bootstrap to player**:
+
    ```bash
    pnpm deploy:dev-mode
    ```
 
 3. **Start your dev server** (binds to network):
+
    ```bash
    pnpm dev:brightsign
    ```
@@ -93,13 +98,13 @@ pnpm dev:brightsign
 ✅ **Instant feedback** - See changes in ~2 seconds  
 ✅ **Hot Module Replacement** - May work depending on Chromium version  
 ✅ **Remote debugging** - Full Chrome DevTools access  
-✅ **Real hardware testing** - Test on actual BrightSign, not just browser  
+✅ **Real hardware testing** - Test on actual BrightSign, not just browser
 
 ### Limitations
 
 ⚠️ **Requires network** - Player and dev machine must be on same LAN  
 ⚠️ **Not for production** - Dev server must stay running  
-⚠️ **Inspector overhead** - Uses more memory, only enable during dev  
+⚠️ **Inspector overhead** - Uses more memory, only enable during dev
 
 ---
 
@@ -119,6 +124,7 @@ pnpm deploy:player
 ```
 
 This runs:
+
 1. `nx build player-minimal` - Build React app
 2. Package into BrightSign-compatible structure
 3. Upload all files via LDWS API
@@ -172,7 +178,7 @@ pnpm deploy:local
 ✅ **Production-ready** - Minified, optimized bundles  
 ✅ **Offline operation** - Works without network  
 ✅ **Fleet deployment** - Can deploy to multiple players  
-✅ **Versioned releases** - Packages stored in `dist/packages/`  
+✅ **Versioned releases** - Packages stored in `dist/packages/`
 
 ---
 
@@ -253,7 +259,7 @@ inspector_server: { port: 2999 }
 
 ⚠️ **Development only** - Inspector increases memory usage  
 ⚠️ **Security risk** - Exposes player internals over network  
-⚠️ **Disable for production** - Remove `inspector_server` from production autorun.brs  
+⚠️ **Disable for production** - Remove `inspector_server` from production autorun.brs
 
 ---
 
@@ -264,6 +270,7 @@ inspector_server: { port: 2999 }
 **Symptoms**: `Cannot reach player at 192.168.0.51`
 
 **Solutions**:
+
 1. Verify player is on and connected to network
 2. Check IP address hasn't changed (DHCP)
 3. Try different ports: `443`, `80`, `8008`, `8080`
@@ -275,6 +282,7 @@ inspector_server: { port: 2999 }
 **Symptoms**: `HTTP 401: Unauthorized`
 
 **Solutions**:
+
 1. Verify credentials in `.brightsign/players.json`
 2. Check you're using correct case (e.g., `admin` not `Admin`)
 3. Verify password doesn't have trailing spaces
@@ -287,6 +295,7 @@ inspector_server: { port: 2999 }
 **Expected behavior**: BrightSign uses self-signed HTTPS certificates for local communication. This is normal and safe on a local network.
 
 **Solutions**:
+
 - Scripts already use `-k` / `rejectUnauthorized: false`
 - If manually testing: use `curl -k` or browser "proceed anyway"
 
@@ -295,6 +304,7 @@ inspector_server: { port: 2999 }
 **Symptoms**: Player shows blank screen or "cannot connect"
 
 **Solutions**:
+
 1. Verify dev server binds to network: `pnpm dev:brightsign`
 2. Check firewall allows connections on port 5173
 3. Verify dev machine IP in autorun-dev.brs is correct
@@ -305,6 +315,7 @@ inspector_server: { port: 2999 }
 **Symptoms**: Upload succeeds but screen is black
 
 **Solutions**:
+
 1. Check player rebooted successfully
 2. Verify autorun.brs exists on SD card
 3. Check LDWS logs for errors
