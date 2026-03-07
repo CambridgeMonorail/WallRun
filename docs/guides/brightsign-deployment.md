@@ -229,6 +229,7 @@ dist/packages/brightsign/
 ' BrightSign OS 9.x HTML Widget Bootstrap
 Sub Main()
     msgPort = CreateObject("roMessagePort")
+    
     htmlWidget = CreateObject("roHtmlWidget", {
         port: msgPort,
         url: "file:///sd:/index.html",
@@ -241,6 +242,39 @@ Sub Main()
     end while
 End Sub
 ```
+
+#### Display Rotation for Portrait Signage
+
+**Important:** `roHtmlWidget` has no rotation API. Rotation must be done inside the HTML/CSS using transforms.
+
+The React app includes a `DisplayRotation` component that handles this automatically:
+
+**1. Configure in `apps/player-minimal/src/config.ts`:**
+
+```typescript
+export const playerConfig: PlayerConfig = {
+  displayOrientation: 'portrait-left',  // or 'landscape', 'portrait-right', 'inverted'
+  debug: false,
+};
+```
+
+**2. The component wraps your app and applies CSS rotation:**
+
+```tsx
+<DisplayRotation orientation="portrait-left">
+  <App />
+</DisplayRotation>
+```
+
+This is the **standard BrightSign technique** for portrait displays - it's more reliable than video mode rotation and doesn't require player reboots.
+
+Available orientations:
+- `landscape` - No rotation (default)
+- `portrait-left` - 90° CCW rotation (most common)
+- `portrait-right` - 90° CW rotation
+- `inverted` - 180° rotation
+
+After changing orientation, redeploy: `pnpm deploy:player`
 
 ### Step 5: Deploy to Player
 
@@ -358,6 +392,29 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 - Verify `inspector_server: { port: 2999 }` in autorun.brs
 - Check player firewall settings (may block non-8008 ports)
 - Try default inspector port: `http://<player-ip>:8008/inspector`
+
+### Display Appears Rotated or Sideways
+
+**Symptom:** Content displays sideways on portrait displays
+
+**Solutions:**
+
+1. **Configure orientation in the React app** (`apps/player-minimal/src/config.ts`):
+   ```typescript
+   export const playerConfig: PlayerConfig = {
+     displayOrientation: 'portrait-left',  // or 'portrait-right'
+   };
+   ```
+
+2. **Redeploy to apply the changes:**
+   ```bash
+   pnpm deploy:player
+   ```
+
+3. **If still incorrect, try the opposite orientation:**
+   - `portrait-left` ↔ `portrait-right`
+
+**Note:** Rotation is handled via CSS transforms in the React app. The `roHtmlWidget` has no rotation API - this is the standard BrightSign approach for portrait displays.
 
 ## Advanced Topics
 
