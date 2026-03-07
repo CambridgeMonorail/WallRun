@@ -34,7 +34,7 @@ const ROOT_DIR = join(__dirname, '..');
 /**
  * Make API call to BrightSign player using curl with digest auth
  * @param {PlayerConfig} config
- * @param {string} endpoint - API endpoint (e.g., '/api/v1/info')
+ * @param {string} endpoint - API endpoint (e.g., '/api/v1/files/sd/')
  * @param {string} method - HTTP method (GET, POST, PUT, DELETE)
  * @param {Buffer|string} [data] - Data to send (for PUT/POST)
  * @param {string} [filename] - Filename for file uploads
@@ -151,13 +151,11 @@ async function checkPlayerStatus(config) {
   console.log(`🔍 Checking player at ${config.ip}:${config.port}...`);
   try {
     // Use curl with digest auth - BrightSign requires digest, not basic auth
-    const info = await callPlayerAPI(config, '/api/v1/info', 'GET');
+    // Note: /api/v1/info endpoint may not exist, using /api/v1/files/sd/ instead
+    const response = await callPlayerAPI(config, '/api/v1/files/sd/', 'GET');
     
-    if (info && info.data && info.data.result) {
-      const player = info.data.result;
-      console.log(
-        `✅ Player found: ${player.model || 'BrightSign'} (${player.serial || 'N/A'})`,
-      );
+    if (response && response.data) {
+      console.log(`✅ Player is online and responding`);
       return true;
     }
     

@@ -39,7 +39,7 @@ If this is your first time setting up a BrightSign player, complete these steps 
 
 ```bash
 # Test player API access (replace with your IP and password)
-curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/info
+curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/files/sd/
 ```
 
 **Note**: BrightSign uses **HTTP Digest authentication** (not Basic auth). Always use `--digest` flag.

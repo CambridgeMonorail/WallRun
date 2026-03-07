@@ -23,9 +23,9 @@ if [ ! -f "$AUTORUN_FILE" ]; then
   exit 1
 fi
 
-# Test connectivity
+# Test connectivity using working endpoint
 echo "🔍 Testing connection..."
-if curl --digest -u "$AUTH" -k -s https://$PLAYER/api/v1/info > /dev/null 2>&1; then
+if curl --digest -u "$AUTH" -k -s https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
   echo "✅ Player is reachable"
 else
   echo "❌ Cannot reach player at $PLAYER"
