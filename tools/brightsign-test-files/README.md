@@ -1,13 +1,18 @@
 # BrightSign Test Files
 
-**Purpose:** Minimal files to verify local autorun control on a BrightSign player.
+**Purpose:** Minimal test files for BrightSign player development workflows.
 
 ## Files
 
-- **autorun.brs** - Minimal BrightScript to load HTML widget
-- **index.html** - Simple black screen with white text
+- **autorun-minimal.brs** - Minimal "hello world" test (loads local HTML)
+- **autorun-dev.brs** - Development mode (loads from network dev server)
+- **index.html** - Simple test page for verification
 
-## Usage
+## Use Case 1: Simple Verification Test
+
+Verify that your BrightSign player can run local autorun scripts.
+
+### Usage
 
 ### Step 1: Format SD Card
 
@@ -17,15 +22,17 @@
 
 ### Step 2: Copy Test Files
 
-Copy both files to the **root** of the SD card:
+Copy these files to the **root** of the SD card:
 
 ```
 SD:\
-├── autorun.brs
+├── autorun.brs (copy from autorun-minimal.brs)
 └── index.html
 ```
 
-**Do NOT** put them in a subfolder.
+**Important:** 
+- Rename `autorun-minimal.brs` to `autorun.brs` on the SD card
+- Do NOT put them in a subfolder
 
 ### Step 3: First Boot (No Network)
 
@@ -59,69 +66,49 @@ SD:\
 ❌ LDWS deployment will work (network/API may have issues)  
 ❌ Inspector/debugging tools work (not enabled in minimal autorun)
 
----
+---Use Case 2: Development Mode Workflow
 
-## Next Steps After Success
+Load your React app directly from your dev machine's Vite server over the network (no build/deploy cycle).
 
-Once you confirm the "HELLO" screen displays:
+### Setup
 
-1. **Option A: Deploy via LDWS**
-
-   ```bash
-   pnpm deploy:player --player dev-player
+1. **Edit `autorun-dev.brs`**:
+   ```brightscript
+   DEV_SERVER_IP = "192.168.0.100"  ' <<< Change to your dev machine's LAN IP
    ```
 
-2. **Option B: Deploy via SD Card**
-   - Copy files from `dist/apps/player-minimal/` to SD root
-   - Replace `index.html` with React build
-   - Update `autorun.brs` if needed (add inspector, logging)
+2. **Deploy dev mode bootstrap**:
+   ```bash
+   pnpm deploy:dev-mode
+   ```
+
+3. **Start dev server** (binds to network):
+   ```bash
+   pnpm dev:brightsign
+   ```
+
+4. **Player loads from your dev server** - changes reflect immediately
+
+See [BrightSign Dual Mode Workflow Guide](../../docs/guides/brightsign-dual-mode-workflow.md) for details.
 
 ---
+1. **Check LDWS access** - Verify player is booting:
+   - Browse to `http://<player-ip>/api/v1/info/`
+   - Should see JSON with player model, serial, firmware version
 
-## Troubleshooting
+2. **Verify SD card files via LDWS**:
+   - Browse to `http://<player-ip>/api/v1/files/sd/`
+   - Should show `autorun.brs` and `index.html`
+   - If missing, re-copy to SD card root
 
-### Still See BSN Content
+3. **Check file encoding**:
+   - `autorun.brs` must be UTF-8 or ASCII
+   - `index.html` must be UTF-8
+   - No BOM (byte order mark)
 
-- Player may still be registered to BSN.cloud
-- Follow [Un-register BSN Player Guide](../docs/guides/unregister-bsn-player-for-dev.md)
-
-### Black Screen with Backlight On (No Text Displayed)
-
-This is the most common first-time issue. Here's how to diagnose:
-
-**Step 1: Check LDWS Access (Even Offline)**
-
-Even with Ethernet disconnected, the LDWS REST API should respond if you reconnect briefly:
-
-1. **Reconnect Ethernet temporarily** (just to check LDWS)
-2. Open browser: `http://192.168.0.51/api/v1/info/`
-3. Should see JSON with player info
-4. **Disconnect Ethernet again** after checking
-
-If LDWS works, player is booting - the issue is with autorun execution.
-
-**Step 2: Use Debug Autorun**
-
-Replace `autorun.brs` with `autorun-debug.brs` (from this folder):
-
-```bash
-# On SD card, rename files:
-autorun.brs → autorun-backup.brs
-autorun-debug.brs → autorun.brs
-```
-
-The debug version writes a log file: `SD:/boot-debug.txt`
-
-**Step 3: Reboot and Check Log**
-
-1. Reboot player (power cycle)
-2. Wait 60 seconds
-3. Reconnect Ethernet temporarily
-4. Check log: `http://192.168.0.51/api/v1/files/sd/boot-debug.txt?contents`
-
-**What the log tells you:**
-
-- **No log file (404):** autorun.brs is not executing at all
+4. **Try production autorun**:
+   - Use `apps/player-minimal/public/autorun.brs` instead
+   - Has better error handling and logging
   - Check SD card is inserted fully
   - Verify FAT32 format
   - Try re-copying files
@@ -182,5 +169,11 @@ If files are missing or in wrong location, re-copy to SD root.
 ## Related Documentation
 
 - [Un-register BSN Player for Dev](../docs/guides/unregister-bsn-player-for-dev.md)
-- [BrightSign Deployment Guide](../docs/guides/brightsign-deployment.md)
-- [Black Screen Troubleshooting](../docs/troubleshooting/brightsign-black-screen-issue.md)
+---
+
+## Related Documentation
+
+- [BrightSign Deployment Guide](../../docs/guides/brightsign-deployment.md) - Full production workflow
+- [BrightSign Dual Mode Workflow](../../docs/guides/brightsign-dual-mode-workflow.md) - Dev mode details
+- [BrightSign Initial Setup](../../docs/guides/brightsign-initial-setup.md) - First-time player setup
+- [Un-register BSN Player](../../docs/guides/unregister-bsn-player-for-dev.md) - Remove BSN cloud management
