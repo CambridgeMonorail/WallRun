@@ -12,11 +12,61 @@ Practical how-to guides for common tasks in The Sign Age. These tutorials walk t
 
 ---
 
-### [BrightSign Deployment](./brightsign-deployment.md) ⭐ NEW
+## BrightSign Digital Signage Player Guides
 
-**Complete guide to deploying React apps to BrightSign OS 9.x digital signage players.** Learn how to package player apps, deploy to local players via HTTP API, and troubleshoot deployment issues.
+Complete documentation for deploying React applications to BrightSign hardware players.
 
-**Key Topics**: BrightSign packaging, local deployment, autorun.brs bootstrap, network discovery, HTTP API, debugging, production builds
+### [BrightSign Initial Setup Guide](./brightsign-initial-setup.md) ⭐ START HERE
+
+**First-time setup guide for BrightSign players.** Walk through creating setup in BrightAuthor:connected, enabling Local Diagnostic Web Server (LDWS), getting player on network, and verifying API access.
+
+**Start here if**: You've never set up a BrightSign player before.
+
+**Key Topics**: BrightAuthor:connected setup, LDWS configuration, network setup, HTTP Digest authentication, API verification
+
+---
+
+### [BrightSign Dual-Mode Workflow](./brightsign-dual-mode-workflow.md) ⭐ RECOMMENDED
+
+**Development vs. Production deployment modes.** Learn the fast development workflow (player loads from dev server) and production deployment (full SD card deployment).
+
+**Use when**: You're ready to start developing for BrightSign.
+
+**Key Topics**: Development mode (network loading), production mode (SD deployment), remote debugging, workflow comparison, npm scripts
+
+---
+
+### [BrightSign Deployment Reference](./brightsign-deployment.md)
+
+**Detailed deployment commands and troubleshooting.** Comprehensive reference for packaging, deploying, player configuration, and advanced scenarios.
+
+**Use when**: You need detailed reference or troubleshooting help.
+
+**Key Topics**: Packaging, deployment scripts, player configuration, fleet deployment, troubleshooting, HTTP API
+
+---
+
+### Quick Reference for BrightSign
+
+```bash
+# First-time setup
+pnpm deploy:dev-mode          # Set up development mode (one-time)
+
+# Development workflow (fast iteration)
+pnpm dev:brightsign           # Start dev server
+# Edit code, save, refresh player (~2 seconds)
+
+# Production deployment
+pnpm deploy:player            # Build + package + deploy
+pnpm deploy:quick             # Quick deploy (existing build)
+
+# Player management
+pnpm player list              # List configured players
+pnpm player add <name> <ip>   # Add new player
+pnpm discover:scan            # Scan network for players
+```
+
+**Important**: BrightSign uses **HTTP Digest authentication** (not Basic auth). Always use `--digest` flag with curl.
 
 ---
 

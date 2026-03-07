@@ -3,7 +3,7 @@
 @import 'tailwindcss';
 
 @layer base {
-	body {
-		@apply bg-background text-foreground;
-	}
+  body {
+    @apply bg-background text-foreground;
+  }
 }

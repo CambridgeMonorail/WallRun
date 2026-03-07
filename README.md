@@ -79,6 +79,7 @@ pnpm discover
 ```
 
 The setup script creates:
+
 - `.env` for environment variables (optional)
 - `.brightsign/players.json` for player registry (git-ignored)
 

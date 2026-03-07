@@ -6,12 +6,63 @@ Complete guide for deploying React applications to BrightSign OS 9.x digital sig
 
 This repository includes a complete workflow for packaging and deploying the `player-minimal` React app to BrightSign players. The workflow supports both local development iteration and production fleet deployments.
 
+## Documentation Index
+
+📖 **New to BrightSign?** Start here:
+
+1. **[BrightSign Initial Setup Guide](./brightsign-initial-setup.md)** - Set up player from scratch
+2. **[BrightSign Dual-Mode Workflow Guide](./brightsign-dual-mode-workflow.md)** - Development vs. Production modes
+3. **This guide** - Detailed deployment reference
+
 ## Prerequisites
 
-- **BrightSign Player**: OS 9.x or later with HTML widget support
-- **Network Access**: Player must be on same network as development machine
-- **Player IP Address**: Use player menu or network scanning to find IP
+### First-Time Setup
+
+If this is your first time setting up a BrightSign player, complete these steps first:
+
+📖 **[BrightSign Initial Setup Guide](./brightsign-initial-setup.md)** - Complete walkthrough
+
+**Summary checklist**:
+- ✅ Player configured via BrightAuthor:connected
+- ✅ Local Network mode enabled
+- ✅ Local Diagnostic Web Server (LDWS) enabled with credentials
+- ✅ Player connected to network with known IP address
+- ✅ Player added to `.brightsign/players.json` configuration
+
+### Development Environment
+
 - **Node.js 22+** and **pnpm 9.15+** installed
+- **Network Access**: Player and dev machine on same LAN
+- **Authentication**: Admin credentials for player LDWS
+
+### Quick Connectivity Test
+
+```bash
+# Test player API access (replace with your IP and password)
+curl --digest -u admin:YOUR_PASSWORD -k https://192.168.0.51/api/v1/info
+```
+
+**Note**: BrightSign uses **HTTP Digest authentication** (not Basic auth). Always use `--digest` flag.
+
+## Deployment Modes
+
+This project supports **two deployment workflows**:
+
+### Development Mode (Fast Iteration)
+- Player loads from your dev server over network
+- Edit → Save → Refresh (~2 seconds)
+- No build/upload needed
+- **Best for**: Active development
+
+### Production Mode (Full Deployment)  
+- Build → Package → Upload to SD card
+- Production-optimized bundles
+- Works offline
+- **Best for**: Final testing, production, fleet deployment
+
+📖 **[See Dual-Mode Workflow Guide](./brightsign-dual-mode-workflow.md)** for detailed comparison and setup.
+
+---
 
 ## Quick Start
 
@@ -24,6 +75,7 @@ pnpm package:player
 ```
 
 This command:
+
 - Builds `player-minimal` in production mode
 - Creates deployment package structure
 - Generates `autorun.brs` bootstrap script
@@ -41,9 +93,10 @@ pnpm deploy:local
 ```
 
 The script will:
-1. Prompt for player IP address (or discover automatically)
-2. Check player status via HTTP API
-3. Upload package to `/sd:/` directory
+
+1. Use configured player from `.brightsign/players.json`
+2. Check player status via LDWS REST API (digest auth)
+3. Upload all files to player's SD card
 4. Trigger player reboot
 5. Verify deployment
 
@@ -108,6 +161,7 @@ Expected response:
 ```
 
 If this fails:
+
 - Verify player is powered on and network-connected
 - Check firewall rules (allow port 8008)
 - Ensure player is on same subnet as your machine
@@ -127,6 +181,7 @@ pnpm package:player
 **Build output:** `dist/apps/player-minimal/`
 
 The production build is optimized for BrightSign:
+
 - Relative asset paths (`base: './'` in vite.config.mts)
 - Aggressive code-splitting (vendor chunk separation)
 - esbuild minification (faster than terser)
@@ -165,7 +220,7 @@ Sub Main()
         nodejs_enabled: false,
         inspector_server: { port: 2999 }
     })
-    
+
     while true
         msg = wait(0, msgPort)
     end while
@@ -233,6 +288,7 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 **Symptom:** `curl http://<player-ip>:8008/GetDeviceInfo` times out
 
 **Solutions:**
+
 - Verify player is powered on and booted
 - Check network connectivity (ping player IP)
 - Ensure player and development machine are on same subnet
@@ -243,6 +299,7 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 **Symptom:** HTTP POST to `/upload` returns error or times out
 
 **Solutions:**
+
 - Verify package size < 100MB (BrightSign limit)
 - Check SD card has free space (min 500MB recommended)
 - Ensure package is valid zip file
@@ -253,12 +310,14 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 **Symptom:** Player reboots but display remains black
 
 **Solutions:**
+
 1. **Check autorun.brs** - Verify file exists at root of SD card
 2. **Check URL in autorun.brs** - Must be `file:///sd:/index.html`
 3. **Check console logs** - Open inspector at `http://<player-ip>:2999`
 4. **Verify HTML paths** - All asset paths must be relative (no absolute URLs)
 
 **Common issues:**
+
 - Incorrect base URL in Vite config (must be `'./'`)
 - Missing styles.css import in main.tsx
 - JavaScript errors (check console)
@@ -269,6 +328,7 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 **Symptom:** Browser console shows import errors
 
 **Solutions:**
+
 - Ensure `main.tsx` imports `'./styles.css'` (not workspace package)
 - Verify `styles.css` contains `@import 'tailwindcss';`
 - Check that `tailwind.config.js` exists in `apps/player-minimal/`
@@ -279,6 +339,7 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 **Symptom:** `http://<player-ip>:2999` not reachable
 
 **Solutions:**
+
 - Verify `inspector_server: { port: 2999 }` in autorun.brs
 - Check player firewall settings (may block non-8008 ports)
 - Try default inspector port: `http://<player-ip>:8008/inspector`

@@ -34,7 +34,11 @@ async function loadPlayers() {
  */
 async function savePlayers(config) {
   await mkdir(BRIGHTSIGN_DIR, { recursive: true });
-  await writeFile(PLAYERS_FILE, JSON.stringify(config, null, 2) + '\n', 'utf-8');
+  await writeFile(
+    PLAYERS_FILE,
+    JSON.stringify(config, null, 2) + '\n',
+    'utf-8',
+  );
 }
 
 /**
@@ -55,9 +59,9 @@ async function ensurePlayersFile() {
  */
 async function listPlayers() {
   const config = await loadPlayers();
-  
+
   console.log('\n📺 Configured BrightSign Players:\n');
-  
+
   if (!config.players || config.players.length === 0) {
     console.log('  No players configured yet.');
     console.log('  Run: pnpm player add [name] [ip]\n');
@@ -81,10 +85,10 @@ async function listPlayers() {
  */
 async function addPlayer(name, ip, options = {}) {
   const config = await loadPlayers();
-  
+
   // Check if player already exists
-  const existingIndex = config.players.findIndex(p => p.name === name);
-  
+  const existingIndex = config.players.findIndex((p) => p.name === name);
+
   const player = {
     name,
     ip,
@@ -92,7 +96,7 @@ async function addPlayer(name, ip, options = {}) {
     ...(options.model && { model: options.model }),
     ...(options.serial && { serial: options.serial }),
     ...(options.description && { description: options.description }),
-    ...(options.tags && { tags: options.tags.split(',').map(t => t.trim()) }),
+    ...(options.tags && { tags: options.tags.split(',').map((t) => t.trim()) }),
   };
 
   if (existingIndex >= 0) {
@@ -118,9 +122,9 @@ async function addPlayer(name, ip, options = {}) {
 async function removePlayer(name) {
   const config = await loadPlayers();
   const initialLength = config.players.length;
-  
-  config.players = config.players.filter(p => p.name !== name);
-  
+
+  config.players = config.players.filter((p) => p.name !== name);
+
   if (config.players.length === initialLength) {
     console.log(`❌ Player not found: ${name}`);
     return;
@@ -143,8 +147,8 @@ async function removePlayer(name) {
  */
 async function setDefault(name) {
   const config = await loadPlayers();
-  
-  const player = config.players.find(p => p.name === name);
+
+  const player = config.players.find((p) => p.name === name);
   if (!player) {
     console.log(`❌ Player not found: ${name}`);
     return;
@@ -160,15 +164,17 @@ async function setDefault(name) {
  */
 async function getPlayer(name) {
   const config = await loadPlayers();
-  
+
   if (!name) {
     name = config.default;
     if (!name) {
-      throw new Error('No default player configured. Use --player or set a default.');
+      throw new Error(
+        'No default player configured. Use --player or set a default.',
+      );
     }
   }
 
-  const player = config.players.find(p => p.name === name);
+  const player = config.players.find((p) => p.name === name);
   if (!player) {
     throw new Error(`Player not found: ${name}`);
   }
@@ -195,10 +201,12 @@ async function main() {
       case 'add': {
         const [_, name, ip] = args;
         if (!name || !ip) {
-          console.log('Usage: pnpm player add <name> <ip> [--port 8008] [--model X] [--serial X] [--description "X"] [--tags "dev,test"] [--default]');
+          console.log(
+            'Usage: pnpm player add <name> <ip> [--port 8008] [--model X] [--serial X] [--description "X"] [--tags "dev,test"] [--default]',
+          );
           process.exit(1);
         }
-        
+
         const options = {};
         for (let i = 3; i < args.length; i += 2) {
           const key = args[i].replace('--', '');
@@ -206,7 +214,7 @@ async function main() {
           options[key] = value;
         }
         options.default = args.includes('--default');
-        
+
         await addPlayer(name, ip, options);
         break;
       }

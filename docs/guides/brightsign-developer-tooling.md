@@ -7,10 +7,12 @@ This document outlines the developer tooling available for BrightSign deployment
 ### ✅ No IP Addresses in Git
 
 All player configuration is stored in files that are git-ignored:
+
 - `.brightsign/players.json` - Local player configurations
 - `.env` - Environment variables (optional)
 
 Only example files are committed:
+
 - `.brightsign/players.example.json`
 - `.env.example`
 
@@ -19,12 +21,14 @@ Only example files are committed:
 Choose the approach that works best for your workflow:
 
 1. **Player Registry** (Recommended for teams)
+
    ```bash
    pnpm player add dev-player 192.168.1.50 --model CL435 --default
    pnpm deploy:local --player dev-player
    ```
 
 2. **Interactive Prompt** (Simplest for ad-hoc testing)
+
    ```bash
    pnpm deploy:local
    # Enter IP when prompted
@@ -82,6 +86,7 @@ Store helpful information with each player:
 ```
 
 Benefits:
+
 - Know which player is which without memorizing IPs
 - Track model and serial for inventory management
 - Organize by tags (dev, test, prod, location)
@@ -128,6 +133,7 @@ pnpm player list > team-players.txt
 ```
 
 **Future enhancement:** Import/export commands
+
 ```bash
 # Not yet implemented
 pnpm player export > players-export.json
@@ -159,12 +165,14 @@ pnpm discover:export
 ```
 
 **How it works:**
+
 - Scans specified subnet for BrightSign players
 - Probes common ports (80, 8080, 8008, 443)
 - Fingerprints responses from Diagnostic Web Server (DWS)
 - Outputs results to `dist/players.json` (gitignored)
 
 **Limitations:**
+
 - Players must be on same network/VLAN
 - Local Diagnostic Web Server must be enabled
 - Firewalls may block discovery
@@ -185,6 +193,7 @@ When deploying, player configuration is determined in this order:
 ### ✅ Network Discovery (Implemented)
 
 See "Player Discovery" section above. Auto-discovery of BrightSign players is now available via:
+
 - `pnpm discover` - Interactive mode
 - `pnpm discover:scan` - Scriptable mode
 - `pnpm discover:probe` - Single player diagnostics
@@ -200,6 +209,7 @@ pnpm player status dev-player
 ```
 
 Would show:
+
 - Online/offline status
 - Firmware version
 - Uptime
@@ -246,6 +256,7 @@ pnpm serve:player --auto-deploy
 ```
 
 Would:
+
 - Watch for file changes
 - Auto-rebuild on change
 - Auto-deploy to configured player
@@ -256,6 +267,7 @@ Would:
 BrightSign doesn't currently provide a standalone CDK (Cloud Development Kit) like AWS or Terraform. However, we could create our own abstractions:
 
 **Potential "BrightSign DevKit" features:**
+
 - **Declarative configuration:** Define player setups in JSON/YAML
 - **Deployment orchestration:** Coordinated multi-player deployments
 - **Content management:** Upload and manage assets separate from app code
@@ -263,6 +275,7 @@ BrightSign doesn't currently provide a standalone CDK (Cloud Development Kit) li
 - **OTA updates:** Over-the-air update management
 
 Example declarative config:
+
 ```yaml
 # .brightsign/fleet.yml
 players:
@@ -285,6 +298,7 @@ players:
 ### ✅ Git Hygiene
 
 Always verify before committing:
+
 ```bash
 git status
 # Ensure .brightsign/players.json is NOT listed
@@ -292,6 +306,7 @@ git status
 ```
 
 The `.gitignore` excludes:
+
 ```gitignore
 # Environment variables
 .env
@@ -307,6 +322,7 @@ The `.gitignore` excludes:
 If your players require authentication:
 
 **Option 1:** Store in players.json (git-ignored)
+
 ```bash
  pnpm player add secure-player 192.168.1.50 \
   --username admin \
@@ -314,6 +330,7 @@ If your players require authentication:
 ```
 
 **Option 2:** Prompt at runtime (more secure)
+
 ```bash
 # Modify deploy script to prompt for credentials
 # Not yet implemented

@@ -18,6 +18,7 @@ pnpm nx build player-minimal
 ```
 
 **Expected Output:**
+
 - ✅ Vite build completes without errors
 - ✅ Output directory: `dist/apps/player-minimal/`
 - ✅ Build time: ~5-15 seconds (depending on hardware)
@@ -29,13 +30,14 @@ ls -la dist/apps/player-minimal/
 ```
 
 **Expected files:**
+
 ```
 dist/apps/player-minimal/
 ├── index.html               # Entry point
 ├── favicon.ico              # Icon
 ├── assets/                  # JS/CSS bundles
 │   ├── index-[hash].js      # Main application bundle
-│   ├── vendor-[hash].js     # React + dependencies  
+│   ├── vendor-[hash].js     # React + dependencies
 │   └── index-[hash].css     # Styles (if extracted)
 ```
 
@@ -46,6 +48,7 @@ du -sh dist/apps/player-minimal/assets/*.js
 ```
 
 **Expected:**
+
 - Main bundle: < 50KB (gzipped target: < 25KB)
 - Vendor bundle: < 150KB (React + react-dom, gzipped: < 50KB)
 
@@ -115,6 +118,7 @@ pnpm package:player
 ```
 
 **If step fails:** Check error message and verify:
+
 - `apps/player-minimal/public/autorun.brs` exists
 - `dist/apps/player-minimal/` has build output
 - Write permissions on `dist/packages/` directory
@@ -159,6 +163,7 @@ cat dist/packages/brightsign/manifest.json | jq .
 ```
 
 **Expected fields:**
+
 ```json
 {
   "name": "the-sign-age-player",
@@ -205,11 +210,13 @@ pnpm serve:player
 ```
 
 **Expected:**
+
 - Vite dev server starts on http://localhost:4200
 - No TypeScript errors
 - No build errors
 
 **Manual verification:**
+
 1. Open http://localhost:4200 in browser
 2. Should see "The Sign Age" title
 3. Should see "Player Status Monitor" subtitle
@@ -220,6 +227,7 @@ pnpm serve:player
 ### 3.2 Verify Styling
 
 **Check visual elements:**
+
 - [ ] Dark gradient background (purple/blue tones)
 - [ ] Glass morphism cards with blur effect
 - [ ] Cards have hover effects (translate up slightly)
@@ -227,6 +235,7 @@ pnpm serve:player
 - [ ] Gradient text on title (blue gradient)
 
 **Check responsiveness:**
+
 - [ ] Resize browser window
 - [ ] Cards should reflow (grid layout)
 - [ ] Text remains readable
@@ -240,6 +249,7 @@ pnpm serve:player
 ### 4.1 Find BrightSign Player IP
 
 **Option A: Player Menu**
+
 1. Access player menu (button sequence varies by model)
 2. Navigate to Setup → Network → Status
 3. Note IPv4 address
@@ -252,6 +262,7 @@ nmap -p 8008 --open 192.168.1.0/24
 ```
 
 **Option C: Router DHCP leases**
+
 - Check router admin for "BrightSign" hostname
 
 ### 4.2 Verify Player Accessibility
@@ -262,6 +273,7 @@ curl http://<player-ip>:8008/GetDeviceInfo
 ```
 
 **Expected Response:**
+
 ```json
 {
   "model": "XD1035",
@@ -272,6 +284,7 @@ curl http://<player-ip>:8008/GetDeviceInfo
 ```
 
 **If fails:**
+
 - Verify player is on same network
 - Check firewall rules (allow port 8008)
 - Ping player IP first
@@ -283,18 +296,20 @@ pnpm deploy:local
 ```
 
 **Script will prompt:**
+
 ```
 🚀 BrightSign Local Deploy
 
 📦 Package: brightsign-player-v0.0.0.zip
 
    (Discovery not yet implemented - please enter IP manually)
-Enter BrightSign player IP address: 
+Enter BrightSign player IP address:
 ```
 
 **Enter player IP and press Enter**
 
 **Expected output:**
+
 ```
 🔍 Checking player at <ip>:8008...
 ✅ Player reachable (Model: XD1035, Firmware: 9.1.35)
@@ -314,6 +329,7 @@ Enter BrightSign player IP address:
 ### 4.4 Verify Deployment on Player
 
 **Physical verification:**
+
 1. Wait 15-30 seconds for player to reboot
 2. Check display - should show StatusPage
 3. Verify title: "The Sign Age"
@@ -329,6 +345,7 @@ Enter BrightSign player IP address:
 ```
 
 In Chrome DevTools:
+
 - [ ] Console shows no errors
 - [ ] Network tab shows all assets loaded
 - [ ] Elements tab shows React app rendered
@@ -344,6 +361,7 @@ In Chrome DevTools:
 6. Click "inspect" to open DevTools
 
 **Verify:**
+
 - [ ] Can see React component tree
 - [ ] Can inspect DOM elements
 - [ ] Can view console output
@@ -399,12 +417,14 @@ pnpm deploy:local
 ## Success Criteria
 
 ### Build Phase ✅
+
 - [x] Build completes without errors
 - [x] Output directory contains index.html and assets
 - [x] Bundle sizes are reasonable (< 200KB total uncompressed)
 - [x] Assets use relative paths
 
 ### Package Phase ✅
+
 - [x] Package script completes without errors
 - [x] autorun.brs is included in package
 - [x] manifest.json is valid JSON with correct version
@@ -412,6 +432,7 @@ pnpm deploy:local
 - [x] Package size is reasonable (< 500KB)
 
 ### Deployment Phase (If tested) ✅
+
 - [x] Player is discoverable on network
 - [x] Upload succeeds via HTTP API
 - [x] Player reboots successfully
@@ -426,6 +447,7 @@ pnpm deploy:local
 ### Issue: Build fails with "Cannot find module './styles.css'"
 
 **Solution:**
+
 - Verify `apps/player-minimal/src/main.tsx` imports `'./styles.css'`
 - Verify `apps/player-minimal/src/styles.css` exists
 - Verify `styles.css` contains `@import 'tailwindcss';`
@@ -433,12 +455,14 @@ pnpm deploy:local
 ### Issue: Package script fails with "autorun.brs not found"
 
 **Solution:**
+
 - Verify file exists at `apps/player-minimal/public/autorun.brs`
 - Check file permissions
 
 ### Issue: Player shows black screen after deployment
 
 **Solutions:**
+
 1. Check remote inspector console for errors
 2. Verify autorun.brs URL is `file:///sd:/index.html`
 3. Verify index.html paths are relative
@@ -447,6 +471,7 @@ pnpm deploy:local
 ### Issue: Deployment script can't find player
 
 **Solutions:**
+
 1. Verify player is powered on and booted
 2. Check network connectivity (ping IP)
 3. Ensure player is on same subnet
@@ -455,6 +480,7 @@ pnpm deploy:local
 ### Issue: "CORS error" in remote inspector
 
 **Solution:**
+
 - This is expected for `file://` URLs
 - Not a blocker for local file access
 - Check that assets are loaded despite CORS warning
@@ -495,6 +521,7 @@ git status
 ```
 
 **Do NOT delete:**
+
 - Source code in `apps/player-minimal/src/`
 - Configuration files (`vite.config.mts`, `tailwind.config.js`)
 - Documentation (`docs/guides/brightsign-deployment.md`)
