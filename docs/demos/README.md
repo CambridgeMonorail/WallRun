@@ -48,6 +48,7 @@
 ### Phase 1: Pre-Recording (1-3 hours)
 
 1. **Run infrastructure validation**
+
    ```bash
    # Ensure all files exist
    ls -1 .github/copilot-instructions.md AGENTS.md .github/skills/*/workflows/detailed-guide.md
@@ -60,10 +61,11 @@
    - Aim for 8/10 tests passing
 
 3. **Test verification command**
+
    ```bash
    # Test clean state
    pnpm verify
-   
+
    # Test with intentional error (add unused variable, then revert)
    # Ensure it catches the error
    ```
@@ -114,12 +116,14 @@
 Before you start recording:
 
 ### Infrastructure
+
 - [ ] All critical files exist (run validation command)
 - [ ] `pnpm verify` command works
 - [ ] Documentation links are correct
 - [ ] Git branch is clean or on demo branch
 
 ### Copilot Testing
+
 - [ ] At least 8/10 pre-flight tests pass
 - [ ] Actual responses documented
 - [ ] Known issues have workarounds
@@ -127,6 +131,7 @@ Before you start recording:
 - [ ] VS Code restarted if needed
 
 ### Recording Setup
+
 - [ ] Audio quality tested
 - [ ] Video quality tested
 - [ ] Screen resolution appropriate (1920x1080 recommended)
@@ -136,6 +141,7 @@ Before you start recording:
 - [ ] Notifications disabled
 
 ### Scripts
+
 - [ ] Read through both demo scripts
 - [ ] Timed practice run completed
 - [ ] Script adjustments made based on testing
@@ -147,18 +153,21 @@ Before you start recording:
 ## 📊 Current Status
 
 ### Phase 0-3 Implementation
+
 - ✅ Phase 0: Setup complete
 - ✅ Phase 1: AGENTS.md and skills complete
 - ✅ Phase 2: Verification command complete
 - ✅ Phase 3: Documentation updates complete
 
 ### Demo Preparation
+
 - ✅ Demo scripts created
 - ✅ Pre-flight testing guide created
 - ⏸️ Manual Copilot testing (pending)
 - ⏸️ Verify command scenarios (pending)
 
 ### Phase 4-5 (Optional)
+
 - 🟢 Phase 4: Recommended to skip (no nested AGENTS.md needed)
 - 🟡 Phase 5: Partial completion recommended (Copilot testing + verify testing)
 
@@ -167,12 +176,14 @@ Before you start recording:
 ## 🎯 Success Criteria
 
 ### Minimum for Recording
+
 - ✅ Infrastructure files all present
 - ✅ At least 5/10 Copilot tests pass
 - ✅ `pnpm verify` works in at least 2 scenarios
 - ✅ One practice run completed
 
 ### Recommended for Recording
+
 - ✅ Infrastructure files validated
 - ✅ At least 8/10 Copilot tests pass
 - ✅ `pnpm verify` tested in all scenarios
@@ -180,6 +191,7 @@ Before you start recording:
 - ✅ Script adjustments made
 
 ### Ideal for Recording
+
 - ✅ All infrastructure validated
 - ✅ 10/10 Copilot tests pass
 - ✅ Complete verification testing
@@ -193,6 +205,7 @@ Before you start recording:
 **"I want to record demos today, what's the minimum?"**
 
 1. **Run validation** (5 min):
+
    ```bash
    ls -1 .github/copilot-instructions.md AGENTS.md .github/skills/*/workflows/detailed-guide.md
    pnpm verify

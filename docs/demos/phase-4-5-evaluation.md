@@ -42,17 +42,20 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 
 ### Current Assessment
 
-**Testing:** 
+**Testing:**
+
 - ✅ Has Playwright E2E tests (`apps/client-e2e/`)
 - ✅ Different from library unit tests
 - 🟡 **Verdict:** E2E testing workflow could warrant nested AGENTS.md
 
 **Deployment:**
+
 - ✅ GitHub Pages deployment
 - ✅ BrightSign packaging workflow
 - 🟡 **Verdict:** Deployment workflow is in skills already (brightsign-package, brightsign-deploy-local)
 
 **Validation:**
+
 - ⚪ No specific visual regression testing yet
 - ⚪ Accessibility follows global baseline
 - 🟢 **Verdict:** No unique validation needs
@@ -62,11 +65,13 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 **Decision:** 🟡 **OPTIONAL**
 
 **Rationale:**
+
 - E2E testing with Playwright could benefit from workflow guidance
 - However, testing-and-quality.instructions.md already covers test patterns
 - BrightSign deployment is in skills, not workflow
 
 **If creating apps/client/AGENTS.md, include:**
+
 - When to write E2E tests vs unit tests
 - How to run E2E tests locally
 - E2E test evidence requirements for PRs
@@ -98,16 +103,19 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 ### Current Assessment
 
 **Component Validation:**
+
 - ✅ Has specific component structure (Component.tsx, .test.tsx, .stories.tsx)
 - ✅ Accessibility requirements
 - ✅ Storybook story requirements
 - 🔴 **Verdict:** Strong candidate for workflow guidance
 
 **Release Workflow:**
+
 - ⚪ Not currently publishing to npm (development library)
 - 🟢 **Verdict:** No unique release workflow
 
 **Quality Gates:**
+
 - ✅ We have shadcnui-component-review skill!
 - ✅ Component review checklist exists
 - 🟢 **Verdict:** Already covered by skill
@@ -117,11 +125,13 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 **Decision:** 🟢 **NOT NEEDED**
 
 **Rationale:**
+
 - Component validation is covered by shadcnui-component-review skill
 - Accessibility is in ui-and-accessibility.instructions.md
 - No unique workflow beyond what's in skills
 
 **Current coverage:**
+
 - `.github/skills/shadcnui-component-review/` - Component validation workflow
 - `.github/instructions/ui-and-accessibility.instructions.md` - Component conventions
 - Root AGENTS.md - General workflow
@@ -145,11 +155,13 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 ### Current Assessment
 
 **Testing:**
+
 - ✅ Same unit test approach as shadcnui
 - ⚪ No unique testing workflow currently
 - 🟢 **Verdict:** No workflow difference
 
 **Design Validation:**
+
 - ⚪ Signage design rules in instructions
 - ⚪ 10-foot rule is a design pattern, not workflow
 - 🟢 **Verdict:** Pattern, not process
@@ -159,6 +171,7 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 **Decision:** 🟢 **NOT NEEDED**
 
 **Rationale:**
+
 - Follows same component workflow as shadcnui
 - Signage-specific patterns are in instructions, not workflow
 - No unique validation process
@@ -168,14 +181,17 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 ## Evaluation: Other Libraries
 
 ### libs/shell
+
 - **Workflow differences?** No - follows standard React component workflow
 - **Recommendation:** 🟢 **NOT NEEDED**
 
 ### libs/landing
+
 - **Workflow differences?** No - follows standard React component workflow
 - **Recommendation:** 🟢 **NOT NEEDED**
 
 ### libs/common-tailwind
+
 - **Workflow differences?** No - configuration library, no unique workflow
 - **Recommendation:** 🟢 **NOT NEEDED**
 
@@ -185,24 +201,26 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 
 ### Summary
 
-| Location | Need Nested AGENTS.md? | Rationale |
-|----------|----------------------|-----------|
-| apps/client | 🟡 Optional | E2E testing workflow could benefit, but could also go in root AGENTS.md |
-| libs/shadcnui | 🟢 Not needed | Already covered by shadcnui-component-review skill |
-| libs/shadcnui-signage | 🟢 Not needed | Follows shadcnui workflow |
-| Other libs | 🟢 Not needed | Standard workflows |
+| Location              | Need Nested AGENTS.md? | Rationale                                                               |
+| --------------------- | ---------------------- | ----------------------------------------------------------------------- |
+| apps/client           | 🟡 Optional            | E2E testing workflow could benefit, but could also go in root AGENTS.md |
+| libs/shadcnui         | 🟢 Not needed          | Already covered by shadcnui-component-review skill                      |
+| libs/shadcnui-signage | 🟢 Not needed          | Follows shadcnui workflow                                               |
+| Other libs            | 🟢 Not needed          | Standard workflows                                                      |
 
 ### Final Decision: Skip Phase 4
 
 **Recommendation:** ✋ **SKIP PHASE 4**
 
 **Rationale:**
+
 1. Most domain-specific workflows are already in skills
 2. No clear workflow differences that warrant separate AGENTS.md files
 3. Adding nested AGENTS.md without strong justification adds maintenance burden
 4. Can always add later if specific needs emerge
 
 **Alternative approach:**
+
 - Add E2E testing section to root AGENTS.md
 - Reference existing skills more explicitly
 - Document any app-specific workflows in root AGENTS.md sections
@@ -220,12 +238,14 @@ Comprehensive validation that the entire workflow system functions correctly.
 ### 5.1 Validate Root AGENTS.md
 
 **Tasks:**
+
 - [ ] Read through root AGENTS.md for clarity
 - [ ] Verify all links work (especially relative paths to skills)
 - [ ] Check examples are practical and accurate
 - [ ] Ensure no contradictions with copilot-instructions.md
 
 **Validation commands:**
+
 ```bash
 # Check for broken links in AGENTS.md
 grep -o '\[.*\](.*\.md)' AGENTS.md | sed 's/.*(\(.*\))/\1/' | while read link; do
@@ -240,12 +260,14 @@ done
 ### 5.2 Validate Workflow Skills
 
 **Tasks:**
+
 - [ ] Review planning.md for clarity and examples
 - [ ] Review systematic-debugging.md for process steps
 - [ ] Review code-review-ready.md for checklist completeness
 - [ ] Review verification.md for evidence template accuracy
 
 **Validation questions:**
+
 - Are examples up-to-date?
 - Are commands accurate (e.g., `pnpm verify`)?
 - Are file paths correct?
@@ -258,6 +280,7 @@ done
 ### 5.3 Validate Verification Command
 
 **Tasks:**
+
 - [ ] Run `pnpm verify` on clean main branch
 - [ ] Introduce intentional lint error, verify command catches it
 - [ ] Fix error, verify command passes
@@ -267,6 +290,7 @@ done
 **Test scenarios:**
 
 **Scenario 1: Clean repository**
+
 ```bash
 git checkout main
 git pull
@@ -275,6 +299,7 @@ pnpm verify
 ```
 
 **Scenario 2: Lint error**
+
 ```bash
 # Add intentional error (e.g., unused variable)
 pnpm verify
@@ -282,6 +307,7 @@ pnpm verify
 ```
 
 **Scenario 3: Type error**
+
 ```bash
 # Add intentional type error
 pnpm verify
@@ -289,6 +315,7 @@ pnpm verify
 ```
 
 **Scenario 4: Failed test**
+
 ```bash
 # Break a test
 pnpm verify
@@ -302,6 +329,7 @@ pnpm verify
 ### 5.4 Test with Copilot Agent
 
 **Manual testing tasks:**
+
 - [ ] Complete all 10 tests from pre-flight-test-results.md
 - [ ] Document actual Copilot responses
 - [ ] Test with different types of questions
@@ -319,6 +347,7 @@ pnpm verify
 **Task:** "Add a new Badge component to libs/shadcnui"
 
 **Expected agent behavior:**
+
 1. Recognizes this as non-trivial (multiple files)
 2. Suggests creating implementation plan
 3. References plan template in docs/plans/
@@ -354,6 +383,7 @@ grep -o '\[.*\](.*\.md)' README.md | grep -i "agent\|workflow\|skill"
 ```
 
 **Manual checks:**
+
 - [ ] README.md references AGENTS.md correctly
 - [ ] CONTRIBUTING.md references workflow skills
 - [ ] copilot-instructions.md links to AGENTS.md
@@ -374,6 +404,7 @@ time pnpm verify
 ```
 
 **Benchmarks:**
+
 - On clean repository: Should complete in < 30 seconds
 - With code changes: Should complete in < 2 minutes
 - On CI: Should be acceptable for PR checks
@@ -398,17 +429,20 @@ time pnpm verify
 ### Phase 5 Exit Criteria
 
 **Must have:**
+
 - ✅ All critical files exist and are linked correctly
 - ✅ `pnpm verify` works reliably
 - ✅ At least 8/10 Copilot tests pass
 - ✅ No broken documentation links
 
 **Nice to have:**
+
 - 🟡 All 10/10 Copilot tests pass
 - 🟡 Performance < 30 seconds on clean repo
 - 🟡 Complete end-to-end workflow test
 
 **Blockers:**
+
 - ❌ Broken critical links (AGENTS.md → skills)
 - ❌ `pnpm verify` doesn't work
 - ❌ < 5/10 Copilot tests pass
@@ -456,6 +490,7 @@ time pnpm verify
 5. ⚪ **Skip Phase 5.6-5.7** unless issues found - Can defer
 
 **Priority for recording:**
+
 - Pre-flight Copilot testing is **mandatory** - you need to know what responses to expect
 - Verify command testing is **highly recommended** - you'll demo this command
 - Other validations can happen after demos are recorded
@@ -465,6 +500,7 @@ time pnpm verify
 ## Status: Ready to Proceed?
 
 **Current state:**
+
 - ✅ All infrastructure files present
 - ✅ Demo scripts created
 - ✅ Pre-flight test template ready
@@ -472,6 +508,7 @@ time pnpm verify
 - ⏸️ Verify command scenarios needed
 
 **To proceed with demo recording:**
+
 1. Run through manual Copilot tests (1-2 hours)
 2. Test `pnpm verify` in 2-3 scenarios (15 minutes)
 3. Document results in pre-flight-test-results.md
@@ -479,6 +516,7 @@ time pnpm verify
 5. ✅ Ready to record!
 
 **Decision: Skip Phase 4, Partial Phase 5 for now**
+
 - Phase 4 not needed (no nested AGENTS.md required)
 - Phase 5 critical items: Copilot testing + verify command testing
 - Phase 5 optional items: Can defer until after demos recorded
