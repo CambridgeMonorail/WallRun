@@ -10,11 +10,11 @@
 
 **Before recording:**
 
-- [ ] Clean VS Code workspace (close unnecessary files)
-- [ ] Terminal ready at project root
-- [ ] Browser ready (for showing live demo if desired)
-- [ ] Check audio/video quality
-- [ ] Have README.md ready to reference
+- Clean VS Code workspace (close unnecessary files)
+- Terminal ready at project root
+- Browser ready (for showing live demo if desired)
+- Check audio/video quality
+- Have README.md ready to reference
 
 ---
 
@@ -22,27 +22,31 @@
 
 ### Introduction (30 seconds)
 
-> "Hi, I'm [name] and today I'm introducing **The Sign Age** - a modern approach to building digital signage applications using web technologies."
+> "Hi, I'm [name] and today I'm introducing **The Sign Age** - a development framework for building custom digital signage applications with React."
 
 **Show:** GitHub repository homepage
 
-> "The Sign Age is an open-source project that treats digital signage as software. Instead of proprietary tools, we use React, TypeScript, and modern web development practices to create professional signage content."
+> "The Sign Age is an open-source project for web developers who want to build digital signage using the tools they already know - React, TypeScript, Tailwind, and modern component libraries."
 
-### The Problem We're Solving (45 seconds)
+### Who This Is For (45 seconds)
 
 **Show:** Switch to VS Code - open README.md
 
-> "Traditional digital signage solutions often lock you into closed ecosystems with limited flexibility. The Sign Age takes a different approach - it's a composable system built with:"
+> "This project is for web developers who already have React and TypeScript skills and want to build digital signage. If you're looking for a content management system - stop here. There are excellent CMS platforms like Embed Signage, Korbyt, Navori, and Signagelive that are perfect for managing content."
 
-**Scroll through README highlighting:**
+**Scroll to 'What this is not' section briefly**
+
+> "But if you're a developer who needs complete control over your UI, wants to integrate custom data sources, or is building bespoke signage experiences - this is for you. The Sign Age provides:"
+
+**Scroll through tech stack:**
 
 - React 19 for component architecture
 - Tailwind CSS v4 for styling
-- shadcn/ui for beautiful, accessible components
-- Nx monorepo for scalable project structure
-- Vite for lightning-fast builds
+- shadcn/ui components adapted for signage
+- Nx monorepo for scalable structure
+- BrightSign deployment tooling
 
-> "Everything is version-controlled, testable, and deployable using standard web development workflows."
+> "Everything is version-controlled, testable, and uses standard web development workflows you already know."
 
 ### Project Structure (1 minute)
 
@@ -52,24 +56,25 @@
 
 **Navigate through folders:**
 
-1. **`libs/shadcnui`**
+1.  **`libs/shadcnui`**
 
-   > "Core UI components - buttons, cards, forms - organized by category. These are the building blocks."
+    > "Core UI components - buttons, cards, forms - organized by category. These are the building blocks."
 
-2. **`libs/shadcnui-signage`**
+2.  **`libs/shadcnui-signage`**
 
-   > "Signage-specific components optimized for 10-foot viewing. Think high-contrast, large text, animations designed for distance viewing."
+    > "Signage-specific components optimized for 10-foot viewing. Think high-contrast, large text, animations designed for distance viewing."
 
-3. **`libs/shadcnui-blocks`**
+3.  **`libs/shadcnui-blocks`**
 
-   > "Higher-level composed components - hero sections, feature grids, pricing tables."
+    > "Higher-level composed components - hero sections, feature grids, pricing tables."
 
-4. **`apps/client`**
+4.  **`apps/client`**
 
-   > "The main demo application - a single-page React app showcasing all the components."
+    > "The main demo application - a single-page React app showcasing all the components."
 
-5. **`apps/player-minimal`**
-   > "A minimal signage player app - this is what you'd actually deploy to digital signage hardware."
+5.  **`apps/player-minimal`**
+
+    > "A minimal signage player app - this is what you'd actually deploy to digital signage hardware."
 
 ### Target Platform: BrightSign (45 seconds)
 
@@ -154,7 +159,7 @@ pnpm verify           # Pre-PR validation
 pnpm serve:client
 ```
 
-**Open:** http://localhost:4200/TheSignAge/
+**Open:** [http://localhost:4200/TheSignAge/](http://localhost:4200/TheSignAge/)
 
 > "Here's the demo site running locally. You can browse the component library, see code examples, and test everything interactively."
 
@@ -181,24 +186,24 @@ pnpm serve:client
 
 ## Post-Recording Checklist
 
-- [ ] Add title card with project name
-- [ ] Add chapter markers:
-  - 0:00 Introduction
-  - 0:30 Problem Statement
-  - 1:15 Project Structure
-  - 2:00 BrightSign Platform
-  - 3:00 Development Experience
-  - 3:45 Design Philosophy
-  - 4:15 Workflow Innovation
-  - 4:45 Live Demo (if included)
-  - 5:15 Closing
-- [ ] Add description with links:
-  - GitHub repository: https://github.com/CambridgeMonorail/TheSignAge
-  - Documentation: [link]
-  - BrightSign platform: [link]
-- [ ] Add relevant tags: #digitalSignage #React #TypeScript #OpenSource #BrightSign
-- [ ] Add thumbnail with project logo
-- [ ] Pin comment encouraging questions/feedback
+- Add title card with project name
+- Add chapter markers:
+- 0:00 Introduction
+- 0:30 Who This Is For
+- 1:15 Project Structure
+- 2:00 BrightSign Platform
+- 3:00 Development Experience
+- 3:45 Design Philosophy
+- 4:15 Workflow Innovation
+- 4:45 Live Demo (if included)
+- 5:15 Closing
+- Add description with links:
+- GitHub repository: [https://github.com/CambridgeMonorail/TheSignAge](https://github.com/CambridgeMonorail/TheSignAge)
+- Documentation: [link]
+- BrightSign platform: [link]
+- Add relevant tags: #digitalSignage #React #TypeScript #OpenSource #BrightSign
+- Add thumbnail with project logo
+- Pin comment encouraging questions/feedback
 
 ---
 
