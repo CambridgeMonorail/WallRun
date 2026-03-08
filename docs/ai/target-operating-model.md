@@ -47,6 +47,7 @@ The Sign Age uses a **three-layer instruction model** to provide comprehensive g
 ### Purpose
 
 Defines global conventions that apply across the entire repository:
+
 - Programming language conventions (TypeScript, React)
 - Technology stack and tooling
 - Monorepo structure (Nx workspace layout)
@@ -62,6 +63,7 @@ Defines global conventions that apply across the entire repository:
 ### What Goes Here
 
 ✅ **DO include:**
+
 - Language and framework conventions
 - Project structure and architecture
 - Technology stack versions and decisions
@@ -70,6 +72,7 @@ Defines global conventions that apply across the entire repository:
 - Accessibility and testing requirements
 
 ❌ **DON'T include:**
+
 - Workflow guidance (belongs in AGENTS.md)
 - Path-specific patterns (belongs in .instructions.md files)
 - Detailed implementation processes (belongs in skills)
@@ -92,6 +95,7 @@ Defines global conventions that apply across the entire repository:
 ### Purpose
 
 Provides domain-specific guidance that only applies to certain files based on their path:
+
 - React SPA routing patterns (`react-spa-router.instructions.md`)
 - UI component conventions (`ui-and-accessibility.instructions.md`)
 - Testing patterns (`testing-and-quality.instructions.md`)
@@ -114,6 +118,7 @@ When you're editing a file that matches the pattern, that instruction file becom
 ### What Goes Here
 
 ✅ **DO include:**
+
 - Domain-specific coding patterns
 - Component architecture for specific areas
 - Path-specific conventions (e.g., routing in apps/client)
@@ -121,6 +126,7 @@ When you're editing a file that matches the pattern, that instruction file becom
 - UI/UX patterns for specific projects
 
 ❌ **DON'T include:**
+
 - Global conventions (use copilot-instructions.md)
 - Workflow processes (use AGENTS.md)
 - Multi-step implementation guides (use skills)
@@ -139,13 +145,15 @@ When you're editing a file that matches the pattern, that instruction file becom
 
 ## Layer 3: Agent Workflow Guidance
 
-**Files:** 
+**Files:**
+
 - [AGENTS.md](../../AGENTS.md) (root level)
 - Optional nested AGENTS.md in apps/libs (if needed)
 
 ### Purpose
 
 Defines **how agents should work**, not what code to write:
+
 - How to approach tasks (planning, incremental work)
 - When to create implementation plans
 - Commit discipline and PR requirements
@@ -162,6 +170,7 @@ Defines **how agents should work**, not what code to write:
 ### What Goes Here
 
 ✅ **DO include:**
+
 - Task approach methodology
 - Planning requirements (when to create docs/plans)
 - Commit message conventions and size expectations
@@ -171,6 +180,7 @@ Defines **how agents should work**, not what code to write:
 - Definition of done checklist
 
 ❌ **DON'T include:**
+
 - Code patterns or conventions (use instructions)
 - Detailed implementation steps (use skills)
 - Technology-specific guidance (use copilot-instructions.md)
@@ -189,6 +199,7 @@ Defines **how agents should work**, not what code to write:
 ### 2. Assess Complexity
 
 **Trivial changes** (no plan needed):
+
 - Fixing typos or formatting
 - Single-line bug fixes
 ```
@@ -200,6 +211,7 @@ Defines **how agents should work**, not what code to write:
 ### Purpose
 
 Structured, repeatable process guides for common workflows:
+
 - **Planning** - How to create implementation plans
 - **Systematic Debugging** - Root cause analysis process
 - **Code Review Ready** - Making changes reviewable
@@ -210,6 +222,7 @@ Structured, repeatable process guides for common workflows:
 ### Structure
 
 Each skill has:
+
 ```
 .github/skills/skill-name/
 ├── SKILL.md                      # Short description for skill discovery
@@ -231,6 +244,7 @@ From [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md)
 ## When Planning is Required
 
 **REQUIRED** - Must create a plan:
+
 - New features spanning multiple files
 - Refactoring that affects multiple projects
 - Architectural changes or pattern introductions
@@ -243,6 +257,7 @@ From [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md)
 ### Purpose
 
 Specialized agent modes with specific expertise and tool restrictions:
+
 - **BrightSign Deploy** - Player deployment and packaging
 - **Custom Agent Foundry** - Creating new agent customizations
 - **Instructions Detox** - Optimizing instruction files
@@ -251,6 +266,7 @@ Specialized agent modes with specific expertise and tool restrictions:
 ### When to Use
 
 Invoke custom agents via `@agent-name` or through the subagent tool when:
+
 - Task requires specialized domain knowledge
 - Need restricted tool access for safety
 - Want consistent, repeatable specialist behavior
@@ -262,6 +278,7 @@ Invoke custom agents via `@agent-name` or through the subagent tool when:
 ### Purpose
 
 Structured task plans created for non-trivial work:
+
 - Feature implementation plans
 - Multi-file refactoring plans
 - Bug fix investigation plans
@@ -288,6 +305,7 @@ Background and motivation for the task.
 ## Task Breakdown
 
 ### Task 1: [Description]
+
 - **Files to change:** [list]
 - **Command(s) to run:** [commands]
 - **Expected result:** [observable outcome]
@@ -297,6 +315,7 @@ Background and motivation for the task.
 ### Integration with AGENTS.md
 
 Plans are referenced in AGENTS.md as part of the workflow. Agents are expected to:
+
 1. Assess task complexity
 2. Create plan for non-trivial work
 3. Reference plan throughout implementation
@@ -338,7 +357,7 @@ Plans are referenced in AGENTS.md as part of the workflow. Agents are expected t
 
 1. **Layer 1**: TypeScript and testing conventions
 2. **Layer 2**: Domain-specific patterns (routing, state management)
-3. **Layer 3**: 
+3. **Layer 3**:
    - Reference **Systematic Debugging** skill
    - Follow 6-step debugging process
    - Create plan if root cause analysis is complex
@@ -414,6 +433,7 @@ Plans are referenced in AGENTS.md as part of the workflow. Agents are expected t
 ### Getting Help
 
 For questions or issues with the instruction architecture:
+
 - Review [docs/workflow-improvements/](../workflow-improvements/) for context
 - Reference [AGENTS.md](../../AGENTS.md) for current workflow
 - Check [.github/skills/](.github/skills/) for process guides

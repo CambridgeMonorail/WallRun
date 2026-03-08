@@ -10,6 +10,7 @@
 ## Setup
 
 **Before recording:**
+
 - [ ] Clean VS Code workspace
 - [ ] Close all files except README.md
 - [ ] Clear terminal history
@@ -20,6 +21,7 @@
 - [ ] Enable "Show Instructions Used" in Copilot settings (if available)
 
 **Key files to have ready:**
+
 - `AGENTS.md`
 - `.github/copilot-instructions.md`
 - `.github/skills/planning/workflows/detailed-guide.md`
@@ -56,8 +58,9 @@
 > "Layer one: repository-wide instructions. This file defines our tech stack, TypeScript conventions, React patterns, monorepo structure - everything that's globally true."
 
 **Scroll through sections:**
+
 - Global TypeScript Conventions
-- Global React Conventions  
+- Global React Conventions
 - Nx and Monorepo Guidance
 - Library Structure
 
@@ -72,6 +75,7 @@
 **Open:** `react-spa-router.instructions.md`
 
 **Show YAML frontmatter:**
+
 ```yaml
 ---
 applyTo:
@@ -83,6 +87,7 @@ applyTo:
 > "This one only applies when working in the client app or shell library. It provides React Router conventions specific to our SPA architecture."
 
 **Show list:** Other instruction files
+
 - `ui-and-accessibility.instructions.md` - UI patterns, Tailwind, a11y
 - `testing-and-quality.instructions.md` - Test patterns
 - `style-guide-compliance.instructions.md` - Design system rules
@@ -97,7 +102,7 @@ applyTo:
 
 **Scroll slowly through sections:**
 
-> "Unlike the other layers which define *what to code*, this defines *how to work*. Things like:"
+> "Unlike the other layers which define _what to code_, this defines _how to work_. Things like:"
 
 - How to Approach Tasks
 - When to create implementation plans
@@ -137,6 +142,7 @@ applyTo:
 > "The debugging skill provides a six-step root cause analysis process."
 
 **Show the 6 steps:**
+
 1. Understand the problem
 2. Reproduce reliably
 3. Find root cause
@@ -193,6 +199,7 @@ applyTo:
 > "We added a unified verification command that agents run before declaring work complete."
 
 **Find and highlight:**
+
 ```json
 "verify": "pnpm run format:check && pnpm run lint:affected && pnpm run type-check:affected && pnpm run test:affected && pnpm run build:affected"
 ```
@@ -222,6 +229,7 @@ pnpm verify
 **Open GitHub Copilot Chat:**
 
 **Type and send:**
+
 ```
 How should I approach adding a new feature to this repository?
 ```
@@ -229,8 +237,9 @@ How should I approach adding a new feature to this repository?
 **Wait for response, then show:**
 
 > "Notice - it's referencing AGENTS.md. It's telling me to:"
+
 - Read the request carefully
-- Assess complexity  
+- Assess complexity
 - Create a plan if non-trivial
 - Work incrementally
 
@@ -241,6 +250,7 @@ How should I approach adding a new feature to this repository?
 #### Test 2: Ask About Planning
 
 **In Copilot Chat, type:**
+
 ```
 When do I need to create an implementation plan?
 ```
@@ -256,6 +266,7 @@ When do I need to create an implementation plan?
 #### Test 3: Ask About Verification
 
 **In Copilot Chat, type:**
+
 ```
 What do I need to include in a PR?
 ```
@@ -263,6 +274,7 @@ What do I need to include in a PR?
 **Wait for response:**
 
 > "Perfect - it's mentioning:"
+
 - `pnpm verify` output
 - Verification evidence
 - Screenshots for UI changes
@@ -275,6 +287,7 @@ What do I need to include in a PR?
 #### Test 4: Simulate a Real Task (The Big One)
 
 **In Copilot Chat, type:**
+
 ```
 I need to add a new "Timeline" component to libs/shadcnui. It should display a vertical timeline with events. Walk me through what I should do.
 ```
@@ -282,6 +295,7 @@ I need to add a new "Timeline" component to libs/shadcnui. It should display a v
 **Wait for Copilot's response:**
 
 **Expected behavior - look for:**
+
 - [ ] Mentions this is non-trivial (multiple files)
 - [ ] Suggests creating an implementation plan
 - [ ] References `docs/plans/` location
@@ -297,6 +311,7 @@ I need to add a new "Timeline" component to libs/shadcnui. It should display a v
 > "Look at this structured approach. It's not just telling me to create the files - it's following our workflow:"
 
 **Read through Copilot's response, highlighting:**
+
 - Plan creation suggestion
 - Task breakdown
 - Verification expectations
@@ -308,6 +323,7 @@ I need to add a new "Timeline" component to libs/shadcnui. It should display a v
 #### Test 5: Ask for Evidence Requirements
 
 **In Copilot Chat, type:**
+
 ```
 What evidence do I need to provide when I'm done with the Timeline component?
 ```
@@ -315,6 +331,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 **Wait for response:**
 
 **Expected to mention:**
+
 - `pnpm verify` output
 - Test results
 - Storybook screenshot (since it's a UI component)
@@ -333,8 +350,9 @@ What evidence do I need to provide when I'm done with the Timeline component?
 > "Phase 0 was the setup and assessment. Phase 1 created AGENTS.md and the workflow skills. Phase 2 added the verification command. Those are complete."
 
 **Show checkmarks:**
+
 - ✅ Phase 0: Setup
-- ✅ Phase 1: AGENTS.md and Skills  
+- ✅ Phase 1: AGENTS.md and Skills
 - ✅ Phase 2: Verification Command
 - 🟡 Phase 3: Documentation Updates (mostly done)
 
@@ -349,15 +367,19 @@ What evidence do I need to provide when I'm done with the Timeline component?
 > "Here's why this three-layer approach is powerful:"
 
 **Point to copilot-instructions.md:**
-> "Layer 1 handles *what* - TypeScript rules, React patterns, tech stack."
+
+> "Layer 1 handles _what_ - TypeScript rules, React patterns, tech stack."
 
 **Point to .instructions.md files:**
-> "Layer 2 handles *where* - domain-specific rules for specific files."
+
+> "Layer 2 handles _where_ - domain-specific rules for specific files."
 
 **Point to AGENTS.md:**
-> "Layer 3 handles *how* - process, workflow, behavior."
+
+> "Layer 3 handles _how_ - process, workflow, behavior."
 
 > "By separating these concerns, we get:"
+
 1. Clear, maintainable instructions
 2. Agents that follow consistent workflows
 3. Quality gates built into the process
@@ -374,6 +396,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 **Show:** GitHub repository
 
 > "What's next after Phase 0?"
+
 - Phase 3: Complete documentation integration
 - Phase 4: Evaluate domain-specific AGENTS.md files
 - Phase 5: Validation and testing
@@ -389,6 +412,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 **Show:** Links in description
 
 > "All the files I showed are in the repository. Check out:"
+
 - AGENTS.md
 - The skills directory
 - docs/ai/target-operating-model.md - which documents this entire approach
@@ -428,24 +452,28 @@ What evidence do I need to provide when I'm done with the Timeline component?
 ## Troubleshooting
 
 **If Copilot doesn't reference the right files:**
+
 - Verify Copilot instruction files are enabled in settings
 - Check `github.copilot.chat.codeGeneration.useInstructionFiles` setting
 - Restart VS Code if needed
 - Try asking "What instructions are you using?" explicitly
 
 **If Copilot gives generic responses:**
+
 - Be more specific in questions: "According to this repo's workflow..."
 - Reference specific files: "Based on AGENTS.md, what should I do?"
 - Show the file first, then ask about it in chat
 
 **If verify command fails:**
+
 - This is actually good for demo! Shows the command working
 - Can introduce an intentional error to show failure detection
 - Then fix and show it pass
 
 **Backup plan if live demo fails:**
+
 - Show pre-recorded Copilot responses via screenshots
-- Explain what *should* happen based on the files
+- Explain what _should_ happen based on the files
 - Focus more on file structure and less on live interaction
 
 ---
@@ -457,6 +485,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 **Open:** A file in `apps/client/src/app/`
 
 **In Copilot Chat:**
+
 ```
 I'm adding a new route. What do I need to know?
 ```
@@ -468,6 +497,7 @@ I'm adding a new route. What do I need to know?
 ### Show Custom Agent
 
 **In Copilot Chat:**
+
 ```
 @BrightSign Deploy help me package this app for a player
 ```

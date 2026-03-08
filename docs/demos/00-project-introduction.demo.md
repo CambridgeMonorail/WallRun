@@ -9,6 +9,7 @@
 ## Setup
 
 **Before recording:**
+
 - [ ] Clean VS Code workspace (close unnecessary files)
 - [ ] Terminal ready at project root
 - [ ] Browser ready (for showing live demo if desired)
@@ -34,6 +35,7 @@
 > "Traditional digital signage solutions often lock you into closed ecosystems with limited flexibility. The Sign Age takes a different approach - it's a composable system built with:"
 
 **Scroll through README highlighting:**
+
 - React 19 for component architecture
 - Tailwind CSS v4 for styling
 - shadcn/ui for beautiful, accessible components
@@ -51,15 +53,19 @@
 **Navigate through folders:**
 
 1. **`libs/shadcnui`**
+
    > "Core UI components - buttons, cards, forms - organized by category. These are the building blocks."
 
 2. **`libs/shadcnui-signage`**
+
    > "Signage-specific components optimized for 10-foot viewing. Think high-contrast, large text, animations designed for distance viewing."
 
 3. **`libs/shadcnui-blocks`**
+
    > "Higher-level composed components - hero sections, feature grids, pricing tables."
 
 4. **`apps/client`**
+
    > "The main demo application - a single-page React app showcasing all the components."
 
 5. **`apps/player-minimal`**
@@ -74,12 +80,14 @@
 **Scroll through deployment guide**
 
 > "We've built complete tooling for BrightSign OS 9.x deployment, including:"
+
 - Packaging React apps for BrightSign
 - Local deployment via HTTP API
 - Fleet deployment via GitHub Releases
 - Remote debugging tools
 
 **Show:** `scripts/` folder briefly
+
 > "These scripts handle the entire deployment workflow."
 
 ### Development Experience (1 minute)
@@ -89,6 +97,7 @@
 > "The development experience is streamlined. Let's look at the key commands:"
 
 **Type (but don't run unless fast):**
+
 ```bash
 pnpm install          # Install dependencies
 ```
@@ -160,6 +169,7 @@ pnpm serve:client
 **Show:** Link to repository, issues, discussions
 
 > "In upcoming videos, I'll dive deeper into:"
+
 - The Copilot workflow system (Phase 0 demo)
 - Building signage-specific components
 - BrightSign deployment workflows

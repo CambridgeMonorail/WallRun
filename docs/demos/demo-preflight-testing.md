@@ -26,11 +26,13 @@
 **Open:** Any `.ts` or `.tsx` file in the project
 
 **In Copilot Chat, ask:**
+
 ```
 What TypeScript conventions should I follow in this repository?
 ```
 
 **Expected response should mention:**
+
 - ✅ Strict TypeScript, no `any`
 - ✅ Use `type` for object shapes
 - ✅ Named exports only (no default exports)
@@ -47,11 +49,13 @@ What TypeScript conventions should I follow in this repository?
 **Open:** `apps/client/src/app/App.tsx`
 
 **In Copilot Chat, ask:**
+
 ```
 What routing patterns should I use in this file?
 ```
 
 **Expected response should mention:**
+
 - ✅ React Router v7
 - ✅ Route configuration location (App.tsx)
 - ✅ Lazy loading for code splitting
@@ -59,7 +63,8 @@ What routing patterns should I use in this file?
 
 **Pass criteria:** At least 2 of 4 items mentioned
 
-**If fails:** 
+**If fails:**
+
 - Verify `applyTo` pattern in `.github/instructions/react-spa-router.instructions.md`
 - Ensure file path matches the `applyTo` glob pattern
 
@@ -68,11 +73,13 @@ What routing patterns should I use in this file?
 ### Test 3: Verify AGENTS.md Recognition
 
 **In Copilot Chat, ask:**
+
 ```
 How should I approach adding a new feature to this repository?
 ```
 
 **Expected response should mention:**
+
 - ✅ Assess complexity (trivial vs non-trivial)
 - ✅ Create implementation plan for non-trivial work
 - ✅ Work incrementally with small commits
@@ -88,11 +95,13 @@ How should I approach adding a new feature to this repository?
 ### Test 4: Verify Planning Skill
 
 **In Copilot Chat, ask:**
+
 ```
 When do I need to create an implementation plan?
 ```
 
 **Expected response should mention:**
+
 - ✅ Distinction between trivial and non-trivial changes
 - ✅ Examples of when planning is required (multi-file, refactoring, new features)
 - ✅ Location of plans (`docs/plans/`)
@@ -101,7 +110,8 @@ When do I need to create an implementation plan?
 
 **Pass criteria:** At least 3 of 5 items mentioned
 
-**If fails:** 
+**If fails:**
+
 - Verify `.github/skills/planning/workflows/detailed-guide.md` exists
 - Check that AGENTS.md references the skill
 
@@ -110,11 +120,13 @@ When do I need to create an implementation plan?
 ### Test 5: Verify Verification Skill
 
 **In Copilot Chat, ask:**
+
 ```
 What do I need to include in a pull request?
 ```
 
 **Expected response should mention:**
+
 - ✅ `pnpm verify` command output
 - ✅ Verification evidence (lint, type-check, tests)
 - ✅ Screenshots for UI changes
@@ -124,6 +136,7 @@ What do I need to include in a pull request?
 **Pass criteria:** At least 3 of 5 items mentioned
 
 **If fails:**
+
 - Verify `.github/skills/verification/workflows/detailed-guide.md` exists
 - Check that AGENTS.md references verification workflow
 
@@ -132,11 +145,13 @@ What do I need to include in a pull request?
 ### Test 6: Verify Systematic Debugging Skill
 
 **In Copilot Chat, ask:**
+
 ```
 How should I debug an issue in this repository?
 ```
 
 **Expected response should mention:**
+
 - ✅ Understand the problem first
 - ✅ Reproduce reliably
 - ✅ Find root cause (not just symptoms)
@@ -152,11 +167,13 @@ How should I debug an issue in this repository?
 ### Test 7: Verify Code Review Skill
 
 **In Copilot Chat, ask:**
+
 ```
 How can I make my changes easy to review?
 ```
 
 **Expected response should mention:**
+
 - ✅ Keep PRs small (< 500 lines)
 - ✅ One logical change per PR
 - ✅ No drive-by refactors
@@ -172,11 +189,13 @@ How can I make my changes easy to review?
 ### Test 8: Verify pnpm verify Command Knowledge
 
 **In Copilot Chat, ask:**
+
 ```
 What verification command should I run before creating a PR?
 ```
 
 **Expected response should mention:**
+
 - ✅ `pnpm verify` command
 - ✅ What it does (format, lint, type-check, test, build)
 - ✅ Uses affected commands (Nx)
@@ -184,7 +203,8 @@ What verification command should I run before creating a PR?
 
 **Pass criteria:** At least 3 of 4 items mentioned
 
-**If fails:** 
+**If fails:**
+
 - Check that `package.json` has `verify` script
 - Verify AGENTS.md or verification skill mentions the command
 
@@ -193,11 +213,13 @@ What verification command should I run before creating a PR?
 ### Test 9: Context Integration (Advanced)
 
 **In Copilot Chat, ask:**
+
 ```
 I need to add a new "Tooltip" component to libs/shadcnui. Walk me through the process.
 ```
 
 **Expected response should integrate multiple sources:**
+
 - ✅ Mentions creating implementation plan (from AGENTS.md)
 - ✅ Files to create: Component.tsx, Component.test.tsx, Component.stories.tsx
 - ✅ Testing requirements (80% coverage, Vitest)
@@ -215,11 +237,13 @@ I need to add a new "Tooltip" component to libs/shadcnui. Walk me through the pr
 ### Test 10: Real Task Simulation (Full Workflow)
 
 **In Copilot Chat, ask:**
+
 ```
 I need to add a new route "/components/timeline" to the client app that shows a Timeline component. What's the complete workflow?
 ```
 
 **Expected comprehensive response including:**
+
 - ✅ Assess as non-trivial (multiple files, new feature)
 - ✅ Create implementation plan in docs/plans/
 - ✅ Plan should include:
@@ -243,12 +267,14 @@ I need to add a new route "/components/timeline" to the client app that shows a 
 ### Copilot gives generic, non-project-specific answers
 
 **Possible causes:**
+
 1. Instruction files not enabled in settings
 2. Need to restart VS Code
 3. Files not in expected locations
 4. YAML frontmatter errors in instruction files
 
 **Solutions:**
+
 1. Check settings: `github.copilot.chat.codeGeneration.useInstructionFiles`
 2. Restart VS Code
 3. Verify file paths match documentation
@@ -257,11 +283,13 @@ I need to add a new route "/components/timeline" to the client app that shows a 
 ### Copilot doesn't reference specific files (AGENTS.md, skills)
 
 **Possible causes:**
+
 1. Files too large (unlikely, but possible)
 2. Copilot context window limitations
 3. Files not in standard locations
 
 **Solutions:**
+
 1. Check file sizes (should be reasonable)
 2. Try more specific questions: "According to AGENTS.md, what should I do?"
 3. Verify file locations match conventions
@@ -269,11 +297,13 @@ I need to add a new route "/components/timeline" to the client app that shows a 
 ### Copilot references old/outdated guidance
 
 **Possible causes:**
+
 1. Cached context from previous workspace state
 2. Old instruction files still present
 3. Conflicting instructions
 
 **Solutions:**
+
 1. Close and reopen workspace
 2. Check for duplicate or old instruction files
 3. Review for conflicting guidance
@@ -282,7 +312,8 @@ I need to add a new route "/components/timeline" to the client app that shows a 
 
 **Expected behavior:** Some variation is normal - AI responses aren't deterministic
 
-**Action:** 
+**Action:**
+
 - If core facts are correct (even if phrasing varies), that's a pass
 - Focus on whether key concepts appear, not exact wording
 - Run tests 2-3 times if concerned
@@ -337,18 +368,18 @@ Use this to document your test results:
 
 ### Test Results
 
-| Test | Status | Notes |
-|------|--------|-------|
-| 1. Global Instructions | ✅/❌ | |
-| 2. Path-Scoped Instructions | ✅/❌ | |
-| 3. AGENTS.md Recognition | ✅/❌ | |
-| 4. Planning Skill | ✅/❌ | |
-| 5. Verification Skill | ✅/❌ | |
-| 6. Debugging Skill | ✅/❌ | |
-| 7. Code Review Skill | ✅/❌ | |
-| 8. pnpm verify Knowledge | ✅/❌ | |
-| 9. Context Integration | ✅/❌ | |
-| 10. Full Workflow | ✅/❌ | |
+| Test                        | Status | Notes |
+| --------------------------- | ------ | ----- |
+| 1. Global Instructions      | ✅/❌  |       |
+| 2. Path-Scoped Instructions | ✅/❌  |       |
+| 3. AGENTS.md Recognition    | ✅/❌  |       |
+| 4. Planning Skill           | ✅/❌  |       |
+| 5. Verification Skill       | ✅/❌  |       |
+| 6. Debugging Skill          | ✅/❌  |       |
+| 7. Code Review Skill        | ✅/❌  |       |
+| 8. pnpm verify Knowledge    | ✅/❌  |       |
+| 9. Context Integration      | ✅/❌  |       |
+| 10. Full Workflow           | ✅/❌  |       |
 
 **Overall:** ✅ Ready to record / ❌ Needs fixes
 
