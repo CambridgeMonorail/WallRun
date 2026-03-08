@@ -1,6 +1,6 @@
 # Demo Script: Phase 0 - Copilot-First Workflow System
 
-**Duration:** 8-12 minutes  
+**Duration:** 13-15 minutes  
 **Audience:** Developers using GitHub Copilot, AI-assisted development practitioners  
 **Goal:** Demonstrate the comprehensive Copilot workflow system and show it working in action  
 **Prerequisites:** Viewers should have watched the project introduction video
