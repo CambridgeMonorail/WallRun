@@ -54,6 +54,26 @@ async function ensurePlayersFile() {
   }
 }
 
+function parsePort(port) {
+  if (port === undefined || port === null || port === '') {
+    return 8008;
+  }
+
+  const parsedPort = Number.parseInt(String(port), 10);
+  if (
+    Number.isNaN(parsedPort) ||
+    !Number.isInteger(parsedPort) ||
+    parsedPort < 1 ||
+    parsedPort > 65535
+  ) {
+    throw new Error(
+      `Invalid port: ${port}. Port must be an integer between 1 and 65535.`,
+    );
+  }
+
+  return parsedPort;
+}
+
 /**
  * List all configured players
  */
@@ -85,6 +105,7 @@ async function listPlayers() {
  */
 async function addPlayer(name, ip, options = {}) {
   const config = await loadPlayers();
+  const port = parsePort(options.port);
 
   // Check if player already exists
   const existingIndex = config.players.findIndex((p) => p.name === name);
@@ -92,7 +113,7 @@ async function addPlayer(name, ip, options = {}) {
   const player = {
     name,
     ip,
-    port: options.port || 8008,
+    port,
     ...(options.model && { model: options.model }),
     ...(options.serial && { serial: options.serial }),
     ...(options.description && { description: options.description }),

@@ -17,6 +17,7 @@ Plans serve several critical purposes:
 See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) for detailed guidance.
 
 **Required:**
+
 - New features with multiple components
 - Non-trivial refactorings that touch multiple files
 - Architectural changes
@@ -24,11 +25,13 @@ See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) 
 - Complex bug fixes with multiple root causes
 
 **Optional but Recommended:**
+
 - Medium-complexity features
 - Moderate refactorings
 - API changes
 
 **Not Needed:**
+
 - Trivial changes (typos, formatting, simple prop additions)
 - Single-line bug fixes with obvious cause
 - Documentation updates
@@ -42,17 +45,20 @@ YYYY-MM-DD-<descriptive-slug>.md
 ```
 
 **Examples:**
+
 - `2026-01-28-add-user-authentication.md`
 - `2026-01-29-refactor-form-validation.md`
 - `2026-02-01-fix-memory-leak-in-chart.md`
 - `2026-02-03-migrate-to-react-19.md`
 
 **Why date prefix?**
+
 - Chronological ordering
 - Easy to find recent plans
 - Context about when work was done
 
 **Slug guidelines:**
+
 - Use lowercase with hyphens
 - Be descriptive but concise (3-6 words)
 - Describe the outcome, not the process
@@ -98,7 +104,6 @@ Every plan should follow this structure:
 - [ ] Task 1: [Description]
   - Acceptance criteria
   - Files affected: `path/to/file.ts`
-  
 - [ ] Task 2: [Description]
   - Acceptance criteria
   - Files affected: `path/to/file.ts`, `path/to/other.ts`
@@ -142,6 +147,7 @@ Every plan should follow this structure:
 - Get feedback if needed
 
 **Commit message:**
+
 ```
 docs(planning): add plan for [feature/fix/refactoring]
 ```
@@ -156,6 +162,7 @@ docs(planning): add plan for [feature/fix/refactoring]
 - Add notes about what worked or didn't
 
 **Commit as you go:**
+
 ```
 feat: implement [task] (plan: 2026-01-28-feature-name)
 ```
@@ -172,6 +179,7 @@ Reference the plan in commit messages so it's easy to trace.
 - Note lessons learned
 
 **Final commit:**
+
 ```
 docs(planning): mark [feature] plan as complete
 ```
@@ -196,26 +204,31 @@ docs(planning): mark [feature] plan as complete
 ## Finding Plans
 
 ### By Date
+
 ```bash
 ls docs/plans/2026-01-*
 ```
 
 ### By Keyword
+
 ```bash
 grep -l "authentication" docs/plans/*.md
 ```
 
 ### Archived Plans
+
 ```bash
 ls docs/plans/archive/
 ```
 
 ### By Status
+
 ```bash
 grep -l "Status.*In Progress" docs/plans/*.md
 ```
 
 ### Most Recent
+
 ```bash
 ls -t docs/plans/*.md | head -5
 ```
@@ -240,6 +253,7 @@ Plans are referenced in [AGENTS.md](../../AGENTS.md) as part of the workflow:
 ## Examples
 
 See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) for detailed examples of:
+
 - Feature addition plan
 - Refactoring plan
 - Bug fix plan (complex)
@@ -248,18 +262,21 @@ See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) 
 ## Tips
 
 ### Good Plans
+
 - Are specific and actionable
 - Break work into reviewable chunks
 - Identify risks early
 - Make it easy to pick up where you left off
 
 ### Bad Plans
+
 - Are too vague ("do the thing")
 - Lack acceptance criteria
 - Don't consider edge cases
 - Ignore testing and verification
 
 ### When in Doubt
+
 - Over-plan rather than under-plan
 - It's easier to simplify a detailed plan than to rescue an abandoned task
 - Plans take 10-20 minutes but save hours of confusion
@@ -267,29 +284,34 @@ See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) 
 ## Quick Reference
 
 **Create new plan:**
+
 ```bash
 # Copy template from planning.md or create from scratch
 touch docs/plans/$(date +%Y-%m-%d)-your-feature-name.md
 ```
 
 **Update status:**
+
 ```markdown
 **Status:** In Progress
 ```
 
 **Check off task:**
+
 ```markdown
 - [x] Task 1: Implement authentication service
 ```
 
 **Link to plan in PR:**
+
 ```markdown
 ## Implementation
 
-This PR follows the plan outlined in 
+This PR follows the plan outlined in
 [docs/plans/2026-01-28-add-authentication.md](../plans/2026-01-28-add-authentication.md).
 
 Completed tasks:
+
 - [x] Task 1
 - [x] Task 2
 - [x] Task 3

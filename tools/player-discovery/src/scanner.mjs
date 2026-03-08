@@ -17,11 +17,32 @@ export function parseCIDR(cidr) {
   const [baseIP, bits] = cidr.split('/');
   const maskBits = parseInt(bits, 10);
 
+  if (!baseIP || !bits || Number.isNaN(maskBits)) {
+    throw new Error('CIDR must be in the format x.x.x.x/24');
+  }
+
   if (maskBits < 24 || maskBits > 32) {
     throw new Error('Only /24 to /32 subnets supported for safety');
   }
 
-  const octets = baseIP.split('.').map(Number);
+  const octetStrings = baseIP.split('.');
+  if (octetStrings.length !== 4) {
+    throw new Error(`Invalid IPv4 address in CIDR: ${baseIP}`);
+  }
+
+  const octets = octetStrings.map((octet) => {
+    if (!/^\d+$/.test(octet)) {
+      throw new Error(`Invalid IPv4 address in CIDR: ${baseIP}`);
+    }
+
+    const value = Number.parseInt(octet, 10);
+    if (value < 0 || value > 255) {
+      throw new Error(`Invalid IPv4 address in CIDR: ${baseIP}`);
+    }
+
+    return value;
+  });
+
   const hostBits = 32 - maskBits;
   const numHosts = Math.pow(2, hostBits);
 

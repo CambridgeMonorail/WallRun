@@ -3,19 +3,44 @@
 # This uploads ONLY the autorun.brs that loads from your dev server
 #
 # Usage:
-#   ./scripts/deploy-dev-mode.sh
-#   PLAYER=192.168.0.62 ./scripts/deploy-dev-mode.sh
+#   AUTH=admin:CHANGEME ./scripts/deploy-dev-mode.sh
+#   PLAYER=192.168.0.62 AUTH=admin:CHANGEME ./scripts/deploy-dev-mode.sh
+#   BRIGHTSIGN_CA_CERT=/path/to/player-ca.pem ./scripts/deploy-dev-mode.sh
+#   BRIGHTSIGN_TLS_INSECURE=1 ./scripts/deploy-dev-mode.sh   # Explicit opt-out
 
 set -e
 
 # Configuration
 PLAYER=${PLAYER:-192.168.0.62}
-AUTH=${AUTH:-admin:BrightSign23!}
+AUTH=${AUTH:-}
 AUTORUN_FILE="tools/brightsign-test-files/autorun-dev.brs"
+
+if [ -z "$AUTH" ]; then
+  echo "❌ Error: AUTH environment variable is required"
+  echo "   Use the format AUTH=username:password"
+  echo "   Example: AUTH=admin:CHANGEME ./scripts/deploy-dev-mode.sh"
+  exit 1
+fi
 
 echo "🔧 BrightSign Development Mode Setup"
 echo "📺 Player: $PLAYER"
 echo ""
+
+CURL_BASE_ARGS=(--digest -u "$AUTH" -s)
+
+if [ -n "${BRIGHTSIGN_CA_CERT:-}" ]; then
+  CURL_TLS_ARGS=(--cacert "$BRIGHTSIGN_CA_CERT")
+  echo "🔒 TLS certificate verification enabled with BRIGHTSIGN_CA_CERT"
+elif [ "${BRIGHTSIGN_TLS_INSECURE:-0}" = "1" ]; then
+  CURL_TLS_ARGS=(-k)
+  echo "⚠️  TLS certificate verification disabled via BRIGHTSIGN_TLS_INSECURE=1"
+else
+  CURL_TLS_ARGS=()
+  echo "🔒 TLS certificate verification enabled"
+  echo "   If the player uses a self-signed certificate, trust it locally"
+  echo "   or rerun with BRIGHTSIGN_CA_CERT=/path/to/player-ca.pem"
+  echo "   or BRIGHTSIGN_TLS_INSECURE=1 for a one-off local development exception"
+fi
 
 # Check if autorun file exists
 if [ ! -f "$AUTORUN_FILE" ]; then
@@ -25,10 +50,15 @@ fi
 
 # Test connectivity using working endpoint
 echo "🔍 Testing connection..."
-if curl --digest -u "$AUTH" -k -s https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
+if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
   echo "✅ Player is reachable"
 else
   echo "❌ Cannot reach player at $PLAYER"
+  if [ "${BRIGHTSIGN_TLS_INSECURE:-0}" != "1" ] && [ -z "${BRIGHTSIGN_CA_CERT:-}" ]; then
+    echo "   TLS verification failed or the player is unreachable."
+    echo "   For self-signed certs, trust the certificate locally or use BRIGHTSIGN_CA_CERT."
+    echo "   As a last resort for local development only, use BRIGHTSIGN_TLS_INSECURE=1."
+  fi
   exit 1
 fi
 
@@ -50,11 +80,11 @@ read -p "   Press Enter when ready..."
 # Delete old autorun.brs
 echo ""
 echo "🗑️  Removing old autorun.brs..."
-curl --digest -u "$AUTH" -k -s -X DELETE https://$PLAYER/api/v1/files/sd/autorun.brs > /dev/null 2>&1 || true
+curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X DELETE https://$PLAYER/api/v1/files/sd/autorun.brs > /dev/null 2>&1 || true
 
 # Upload new autorun.brs
 echo "📤 Uploading dev-mode autorun.brs..."
-if curl --digest -u "$AUTH" -k -s -X PUT -F "file=@$AUTORUN_FILE" https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
+if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X PUT -F "file=@$AUTORUN_FILE" https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
   echo "✅ Uploaded autorun.brs"
 else
   echo "❌ Upload failed"
@@ -64,7 +94,7 @@ fi
 # Reboot player
 echo ""
 echo "🔄 Rebooting player..."
-if curl --digest -u "$AUTH" -k -s -X POST https://$PLAYER/api/v1/control/reboot > /dev/null 2>&1; then
+if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X POST https://$PLAYER/api/v1/control/reboot > /dev/null 2>&1; then
   echo "✅ Reboot command sent"
 else
   echo "⚠️  Could not send reboot command"

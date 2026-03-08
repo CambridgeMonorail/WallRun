@@ -12,13 +12,6 @@ export function App() {
     return () => clearInterval(timer);
   }, []);
 
-  const timeString = currentTime.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false,
-  });
-
   const period = currentTime.getHours() >= 12 ? 'PM' : 'AM';
   const displayTime = (() => {
     const hours = currentTime.getHours();

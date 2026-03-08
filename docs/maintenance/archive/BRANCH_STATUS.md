@@ -8,20 +8,24 @@
 ## Active Modernization Branches
 
 ### 🚀 **tailwind-v4-upgrade** (CURRENT)
+
 **Status:** ✅ In Progress  
 **Based on:** modernization-2026  
-**Contains:** 
+**Contains:**
+
 - All platform updates from modernization-2026
 - Tailwind CSS v4.1.18 upgrade (✅ Complete)
 - shadcn/ui dependency updates (✅ Complete)
 - Components inventory (48 components)
 
 **Commits:**
+
 1. `c4eeb97` - docs: update modernization guide with detailed shadcn steps
 2. `d254a2c` - feat: upgrade to Tailwind CSS v4.1.18
 3. `b2c2df2` - chore: update shadcn dependencies to latest versions
 
 **What Changed:**
+
 - ✅ Tailwind CSS: 3.4.3 → 4.1.18
 - ✅ @tailwindcss/vite plugin integrated
 - ✅ PostCSS removed (3 config files deleted)
@@ -32,6 +36,7 @@
 - ✅ recharts: 2.15.0 → 3.7.0
 
 **Next Steps:**
+
 - Visual testing in browser
 - Storybook build verification
 - Dark mode testing
@@ -40,17 +45,20 @@
 ---
 
 ### 🔧 **modernization-2026** (PARENT)
+
 **Status:** ✅ Complete  
 **Based on:** main  
 **Contains:** Platform updates only
 
 **Commits:** 10 commits (all Nx migrations + platform updates)
+
 1. Platform version updates (Node, pnpm, Nx)
 2. Nx migrations from 20.5.0 → 22.4.1
 3. ESLint config converted to ESM
 4. Type errors fixed across libraries
 
 **What Changed:**
+
 - ✅ Node.js: Updated to 22.19.0 LTS
 - ✅ pnpm: 8.x → 9.15.4
 - ✅ Nx: 20.5.0 → 22.4.1
@@ -65,9 +73,11 @@
 ---
 
 ### 📦 **main** (PRODUCTION)
+
 **Last Updated:** January 27, 2025 (older lighthouse badge update)  
 **Contains:** Stable codebase before modernization  
 **Technology Stack:**
+
 - Tailwind CSS 3.4.3
 - React 18.3.x
 - Nx 20.5.0
@@ -114,17 +124,20 @@ git branch | grep -v "main\|modernization-2026\|tailwind-v4-upgrade" | xargs git
 ## Recommended Next Steps
 
 ### Option 1: Continue Modernization on Current Branch
+
 1. ✅ Test Tailwind v4 visually
 2. ✅ Update UPGRADE_NOTES.md
 3. ✅ Merge tailwind-v4-upgrade → main
 
 ### Option 2: Merge modernization-2026 First
+
 1. Create PR: modernization-2026 → main
 2. Review & merge platform updates
 3. Rebase tailwind-v4-upgrade onto main
 4. Continue Tailwind v4 work
 
 ### Option 3: Clean Slate
+
 1. Merge everything: tailwind-v4-upgrade → main (squash commits)
 2. Delete all feature branches
 3. Start fresh from main

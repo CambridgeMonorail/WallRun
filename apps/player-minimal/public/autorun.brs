@@ -2,9 +2,9 @@
 ' Enables Chromium 120 runtime for modern CSS support (Tailwind v4)
 
 sub Main()
-    ' Enable Web Inspector and set Chromium runtime
+    ' Disable Web Inspector by default and set Chromium runtime
     reg = CreateObject("roRegistrySection", "html")
-    reg.Write("enable_web_inspector", "1")
+    reg.Write("enable_web_inspector", "0")
     
     ' Read current widget type to check if we need to reboot
     currentWidgetType = reg.Read("widget type")
@@ -31,7 +31,6 @@ sub Main()
         port: msgPort
         url: "file:///sd:/index.html"
         javascript_enabled: true
-        inspector_server: { port: 2999 }
     }
 
     html = CreateObject("roHtmlWidget", rect, config)

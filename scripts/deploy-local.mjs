@@ -19,16 +19,18 @@ import {
   readdirSync,
   statSync,
 } from 'fs';
+import { mkdtemp, unlink, writeFile, rm } from 'fs/promises';
 import { join, dirname, basename } from 'path';
 import { createInterface } from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
 import { fileURLToPath } from 'url';
 import { getPlayer } from './player-config.mjs';
 import AdmZip from 'adm-zip';
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
+import { tmpdir } from 'os';
 import { promisify } from 'util';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -60,46 +62,133 @@ async function callPlayerAPI(
 ) {
   const protocol = config.port === 443 ? 'https' : 'http';
   const url = `${protocol}://${config.ip}:${config.port}${endpoint}`;
-
-  let curlCmd = `curl -k --digest -s -X ${method}`;
-
-  if (config.username && config.password) {
-    // Escape password for shell
-    const escapedPassword = config.password.replace(/"/g, '\\"');
-    curlCmd += ` -u "${config.username}:${escapedPassword}"`;
-  }
+  const statusMarker = '__COPILOT_CURL_STATUS__:';
+  const curlArgs = buildPlayerCurlArgs(config, method, statusMarker);
 
   // Handle file upload
   if (data && filename) {
-    // Write data to temp file and upload with -F
-    const { writeFileSync, unlinkSync } = await import('fs');
-    const { tmpdir } = await import('os');
-    const tempPath = join(tmpdir(), filename);
-    writeFileSync(tempPath, data);
-    curlCmd += ` -F "file=@${tempPath}" "${url}"`;
+    // Write data to a unique temp location before uploading with -F.
+    const tempDir = await mkdtemp(join(tmpdir(), 'brightsign-upload-'));
+    const tempPath = join(tempDir, basename(filename));
+    await writeFile(tempPath, data);
+    curlArgs.push('-F', `file=@${tempPath}`, url);
 
     try {
-      const { stdout } = await execAsync(curlCmd);
-      unlinkSync(tempPath);
-      return stdout ? JSON.parse(stdout) : {};
+      const { stdout } = await execFileAsync('curl', curlArgs);
+      return parsePlayerAPIResponse(stdout, endpoint);
     } catch (error) {
-      unlinkSync(tempPath);
       throw error;
+    } finally {
+      await unlink(tempPath).catch(() => {});
+      await rm(tempDir, { recursive: true, force: true }).catch(() => {});
     }
   }
 
-  curlCmd += ` "${url}"`;
+  curlArgs.push(url);
 
   try {
-    const { stdout, stderr } = await execAsync(curlCmd);
+    const { stdout, stderr } = await execFileAsync('curl', curlArgs);
     if (stderr) {
       throw new Error(stderr);
     }
-    return stdout ? JSON.parse(stdout) : {};
+    return parsePlayerAPIResponse(stdout, endpoint);
   } catch (error) {
-    if (error.stdout && error.stdout.includes('401')) {
-      throw new Error('401 Unauthorized - check credentials');
+    if (error.message?.includes(statusMarker)) {
+      throw error;
     }
+    throw error;
+  }
+}
+
+async function callPlayerTextAPI(config, endpoint, method = 'GET') {
+  const protocol = config.port === 443 ? 'https' : 'http';
+  const url = `${protocol}://${config.ip}:${config.port}${endpoint}`;
+  const statusMarker = '__COPILOT_CURL_STATUS__:';
+  const curlArgs = buildPlayerCurlArgs(config, method, statusMarker);
+
+  curlArgs.push(url);
+
+  const { stdout, stderr } = await execFileAsync('curl', curlArgs);
+  if (stderr) {
+    throw new Error(stderr);
+  }
+
+  const { responseBody, statusCode } = extractPlayerAPIResponse(
+    stdout,
+    endpoint,
+  );
+  assertPlayerAPIStatus(statusCode, endpoint);
+  return responseBody;
+}
+
+function buildPlayerCurlArgs(config, method, statusMarker) {
+  const curlArgs = [
+    '-k',
+    '--digest',
+    '-s',
+    '-X',
+    method,
+    '-w',
+    `\n${statusMarker}%{http_code}`,
+  ];
+
+  if (config.username && config.password) {
+    curlArgs.push('-u', `${config.username}:${config.password}`);
+  }
+
+  return curlArgs;
+}
+
+function parsePlayerAPIResponse(stdout, endpoint) {
+  const { responseBody, statusCode } = extractPlayerAPIResponse(
+    stdout,
+    endpoint,
+  );
+  assertPlayerAPIStatus(statusCode, endpoint);
+
+  return responseBody ? JSON.parse(responseBody) : {};
+}
+
+function extractPlayerAPIResponse(stdout, endpoint) {
+  const statusMarker = '__COPILOT_CURL_STATUS__:';
+  const markerIndex = stdout.lastIndexOf(statusMarker);
+
+  if (markerIndex === -1) {
+    return {
+      responseBody: stdout,
+      statusCode: 200,
+    };
+  }
+
+  const responseBody = stdout.slice(0, markerIndex).trim();
+  const statusText = stdout.slice(markerIndex + statusMarker.length).trim();
+  const statusCode = Number.parseInt(statusText, 10);
+
+  if (Number.isNaN(statusCode)) {
+    throw new Error(`Invalid response status for ${endpoint}`);
+  }
+
+  return { responseBody, statusCode };
+}
+
+function assertPlayerAPIStatus(statusCode, endpoint) {
+  if (statusCode === 401 || statusCode === 403) {
+    const error = new Error(`${statusCode} Unauthorized - check credentials`);
+    error.statusCode = statusCode;
+    throw error;
+  }
+
+  if (statusCode === 404) {
+    const error = new Error(`404 Not Found - ${endpoint}`);
+    error.statusCode = statusCode;
+    throw error;
+  }
+
+  if (statusCode < 200 || statusCode >= 300) {
+    const error = new Error(
+      `Request to ${endpoint} failed with status ${statusCode}`,
+    );
+    error.statusCode = statusCode;
     throw error;
   }
 }
@@ -213,10 +302,6 @@ async function checkBSNRegistration(config) {
   console.log(`🔍 Checking BSN registration status...`);
 
   try {
-    const protocol = config.port === 443 ? 'https' : 'http';
-    const https = await import('https');
-    const agent = new https.Agent({ rejectUnauthorized: false });
-
     // Check for BSN-specific registry keys
     const registryKeys = [
       'networking/setupType',
@@ -229,53 +314,47 @@ async function checkBSNRegistration(config) {
     const bsnIndicators = [];
 
     for (const key of registryKeys) {
-      const url = `${protocol}://${config.ip}:${config.port}/api/v1/registry/${key}/`;
-
-      const fetchOptions = {
-        method: 'GET',
-        signal: AbortSignal.timeout(5000),
-      };
-
-      if (config.username && config.password) {
-        const auth = Buffer.from(
-          `${config.username}:${config.password}`,
-        ).toString('base64');
-        fetchOptions.headers = { Authorization: `Basic ${auth}` };
-      }
-
-      if (protocol === 'https') {
-        fetchOptions.agent = agent;
-      }
-
       try {
-        const response = await fetch(url, fetchOptions);
-        if (response.ok) {
-          const data = await response.json();
+        const data = await callPlayerAPI(
+          config,
+          `/api/v1/registry/${key}/`,
+          'GET',
+        );
 
-          // Check for BSN setup type
-          if (key === 'networking/setupType' && data.value === 'BSN') {
-            bsnDetected = true;
-            bsnIndicators.push(`setupType: ${data.value}`);
-          }
+        // Check for BSN setup type
+        if (key === 'networking/setupType' && data.value === 'BSN') {
+          bsnDetected = true;
+          bsnIndicators.push(`setupType: ${data.value}`);
+        }
 
-          // Check for BSN endpoints
-          if (
-            (key === 'endpoints/bsnserver' ||
-              key === 'endpoints/certsserver') &&
-            data.value
-          ) {
-            bsnDetected = true;
-            bsnIndicators.push(`${key.split('/')[1]}: ${data.value}`);
-          }
+        // Check for BSN endpoints
+        if (
+          (key === 'endpoints/bsnserver' || key === 'endpoints/certsserver') &&
+          data.value
+        ) {
+          bsnDetected = true;
+          bsnIndicators.push(`${key.split('/')[1]}: ${data.value}`);
+        }
 
-          // Check for networking/bsn section
-          if (key === 'networking/bsn' && data.value) {
-            bsnDetected = true;
-            bsnIndicators.push('BSN networking config present');
-          }
+        // Check for networking/bsn section
+        if (key === 'networking/bsn' && data.value) {
+          bsnDetected = true;
+          bsnIndicators.push('BSN networking config present');
         }
       } catch (error) {
-        // Key may not exist - that's OK
+        if (error.statusCode === 404) {
+          continue;
+        }
+
+        if (error.statusCode === 401 || error.statusCode === 403) {
+          const authError = new Error(
+            'Authentication failed while checking BSN registry keys',
+          );
+          authError.statusCode = error.statusCode;
+          throw authError;
+        }
+
+        throw error;
       }
     }
 
@@ -312,6 +391,13 @@ async function checkBSNRegistration(config) {
 
     return bsnDetected;
   } catch (error) {
+    if (error.statusCode === 401 || error.statusCode === 403) {
+      console.warn(
+        `⚠️  Could not check BSN registration because registry authentication failed: ${error.message}`,
+      );
+      return false;
+    }
+
     console.warn(`⚠️  Could not check BSN registration: ${error.message}`);
     return false;
   }
@@ -325,38 +411,11 @@ async function verifyDeployment(config) {
   console.log(`🔍 Downloading system logs to verify deployment...`);
 
   try {
-    const protocol = config.port === 443 ? 'https' : 'http';
-    const url = `${protocol}://${config.ip}:${config.port}/api/v1/download-log-package/`;
-
-    const fetchOptions = {
-      method: 'GET',
-      signal: AbortSignal.timeout(10000),
-    };
-
-    if (config.username && config.password) {
-      const auth = Buffer.from(
-        `${config.username}:${config.password}`,
-      ).toString('base64');
-      fetchOptions.headers = { Authorization: `Basic ${auth}` };
-    }
-
-    const https = await import('https');
-    const agent = new https.Agent({ rejectUnauthorized: false });
-    if (protocol === 'https') {
-      fetchOptions.agent = agent;
-    }
-
-    const response = await fetch(url, fetchOptions);
-
-    if (!response.ok) {
-      console.warn(
-        `⚠️  Could not download logs: ${response.status} ${response.statusText}`,
-      );
-      return;
-    }
-
-    // Get log content as text
-    const logText = await response.text();
+    const logText = await callPlayerTextAPI(
+      config,
+      '/api/v1/download-log-package/',
+      'GET',
+    );
 
     // Check for BSN supervisor activation
     const bsnIndicators = [
@@ -618,7 +677,10 @@ async function main() {
 
   console.log('\n✅ Deployment complete!');
   console.log(`\n📺 Check the player display to verify the app is running`);
-  console.log(`🔍 Debug inspector: http://${config.ip}:2999\n`);
+  console.log(
+    '🔍 Remote inspector is disabled in the production bootstrap by default.\n' +
+      '   Use dev mode if you need Chrome DevTools access on port 2999.\n',
+  );
 }
 
 main().catch(console.error);

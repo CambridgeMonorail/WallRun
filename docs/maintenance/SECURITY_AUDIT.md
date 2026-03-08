@@ -49,6 +49,7 @@
 ### High Severity (5) - All Dev Dependencies
 
 #### 1. tar-fs (3 separate issues)
+
 - **Package:** tar-fs@3.0.6
 - **Source:** lighthouse → puppeteer-core → @puppeteer/browsers
 - **Issues:**
@@ -60,6 +61,7 @@
 - **Risk:** LOW - Only used in CI for Lighthouse audits, not in production
 
 #### 2. glob
+
 - **Package:** glob@10.4.5
 - **Source:** @nx/jest → jest → multiple paths (67 total)
 - **Issue:** Command injection via CLI -c/--cmd flag (GHSA-5j98-mcp5-4vw2)
@@ -68,6 +70,7 @@
 - **Risk:** LOW - Jest is dev-only, glob CLI not used in our build process
 
 #### 3. qs
+
 - **Package:** qs@6.13.0
 - **Source:** @nx/react → express → body-parser
 - **Issue:** DoS via memory exhaustion (GHSA-6rw7-vpxm-498p)
@@ -76,12 +79,14 @@
 - **Risk:** LOW - Express only used in dev server, not production
 
 ### Moderate Severity (12)
+
 - Mostly transitive dependencies in test/build tools
 - @octokit packages (unused in production)
 - @babel/runtime in jest (dev only)
 - Various other dev dependencies
 
 ### Low Severity (8)
+
 - Minor issues in dev dependencies
 - No production impact
 
@@ -90,11 +95,13 @@
 ## 🔒 Security Posture
 
 ### Production Risk: ✅ LOW
+
 - **0 vulnerabilities in production runtime code**
 - All React, Vite, Tailwind, and shadcn dependencies are clean
 - No vulnerabilities in any packages shipped to end users
 
 ### Development Risk: ⚠️ MODERATE
+
 - 5 high-severity issues in dev tools only
 - tar-fs: Only affects Lighthouse CI runs
 - glob: Only affects test suite
@@ -115,22 +122,26 @@ These packages are waiting for upstream maintainers to update their dependencies
 ## 📋 Recommendations
 
 ### Immediate (Done ✅)
+
 - [x] Update Playwright to 1.55.1+
 - [x] Update pnpm to 10.27.0+
 - [x] Update jsonwebtoken to 9.0.3+
 
 ### Short-term (Next 1-2 weeks)
+
 - [ ] Monitor lighthouse for updates to puppeteer-core
 - [ ] Check if Nx updates Jest to use glob 10.5.0+
 - [ ] Review @nx/react for express/qs updates
 
 ### Long-term (As needed)
+
 - [ ] Consider alternatives to lighthouse-badges if tar-fs issues persist
 - [ ] Set up automated Dependabot PR reviews
 - [ ] Add `pnpm audit` to CI pipeline with appropriate thresholds
 - [ ] Monitor security advisories for @nx packages
 
 ### Optional (Nice to have)
+
 - [ ] Add `pnpm-audit-base.json` to track accepted risks
 - [ ] Set up Snyk or similar for better vulnerability tracking
 - [ ] Document security update process in CONTRIBUTING.md
@@ -142,12 +153,14 @@ These packages are waiting for upstream maintainers to update their dependencies
 **Can we deploy to production?** ✅ **YES**
 
 Rationale:
+
 - Zero vulnerabilities in production dependencies
 - All high-severity issues are in CI/dev tools only
 - Application code is not affected
 - User-facing code is secure
 
 **Monitoring:**
+
 - Check for lighthouse/jest updates monthly
 - Run `pnpm audit` before each deployment
 - Review Dependabot alerts weekly
@@ -156,10 +169,10 @@ Rationale:
 
 ## 📊 Audit History
 
-| Date | Total Vulns | Critical | High | Moderate | Low | Notes |
-|------|-------------|----------|------|----------|-----|-------|
-| 2026-01-27 (before) | 34 | 0 | 9 | 17 | 8 | Initial audit post-modernization |
-| 2026-01-27 (after) | 25 | 0 | 5 | 12 | 8 | Fixed Playwright, pnpm, jsonwebtoken |
+| Date                | Total Vulns | Critical | High | Moderate | Low | Notes                                |
+| ------------------- | ----------- | -------- | ---- | -------- | --- | ------------------------------------ |
+| 2026-01-27 (before) | 34          | 0        | 9    | 17       | 8   | Initial audit post-modernization     |
+| 2026-01-27 (after)  | 25          | 0        | 5    | 12       | 8   | Fixed Playwright, pnpm, jsonwebtoken |
 
 ---
 

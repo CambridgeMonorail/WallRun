@@ -4,8 +4,6 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 
 export default defineConfig(({ mode }) => ({
   root: import.meta.dirname,
