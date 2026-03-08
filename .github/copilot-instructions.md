@@ -135,3 +135,35 @@ Currently available:
 The demo website **chrome/shell** (navigation, layouts, UI in `apps/client`) follows `docs/design/STYLE_GUIDE.md`: Premium B2B SaaS aesthetic - calm, confident internal tooling, not marketing-led. If it feels eager or looks like a landing page, it's wrong.
 
 **Signage content** being demonstrated follows signage design rules (10-foot rule, high visibility), not the website style guide.
+
+## Definition of Done
+
+Work is complete when:
+
+- ✅ **Code follows conventions** - Lint and type-check pass
+- ✅ **Tests written and passing** - For new features and bug fixes
+- ✅ **Documentation updated** - README, comments, or guides as needed
+- ✅ **Verification passes** - `pnpm verify` runs successfully
+- ✅ **Changes are reviewable** - Small diffs, clear commit messages
+- ✅ **Evidence provided** - PR includes verification output
+
+See [AGENTS.md](../AGENTS.md) for detailed workflow guidance and [Verification Skill](skills/verification/workflows/detailed-guide.md) for PR evidence requirements.
+
+## Agent Expectations
+
+When working as an agent in this repository:
+
+1. **Plan before acting** - For non-trivial changes, create a plan in `docs/plans/` (see [Planning Skill](skills/planning/workflows/detailed-guide.md))
+2. **Work incrementally** - Make small, reviewable commits with conventional commit messages
+3. **Verify your work** - Run `pnpm verify` before declaring completion
+4. **Document decisions** - Explain trade-offs and reasoning in commit messages and PRs
+5. **Respect existing patterns** - Follow established conventions in instructions and code
+
+**Workflow Skills:** See [.github/skills/](.github/skills/) for structured workflow guides:
+
+- [Planning](skills/planning/workflows/detailed-guide.md) - When and how to create implementation plans
+- [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) - Root cause analysis process
+- [Code Review Ready](skills/code-review-ready/workflows/detailed-guide.md) - Making changes reviewable
+- [Verification](skills/verification/workflows/detailed-guide.md) - PR evidence expectations
+
+For complete behavioral guidance, see [AGENTS.md](../AGENTS.md) at the repository root.

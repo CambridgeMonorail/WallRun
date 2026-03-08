@@ -32,72 +32,110 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 
 ### What this is not
 
-- Not a CMS
-- Not official BrightSign documentation
-- Not a replacement for BSN.cloud
+**The Sign Age is not a content management system (CMS).** It's a development framework for building custom signage applications with React.
 
-## 🚀 Live Demo
+#### When to use established CMS platforms instead
 
-- **Client App:** [https://cambridgemonorail.github.io/TheSignAge/](https://cambridgemonorail.github.io/TheSignAge/)
-- **Storybook:** [https://cambridgemonorail.github.io/TheSignAge/storybook/](https://cambridgemonorail.github.io/TheSignAge/storybook/) - Browse signage components
+**If you don't need to write custom React code**, we recommend using proven BrightSign-compatible CMS platforms. In our opinion, these are excellent choices:
 
-## ✨ Key Features
+- **[Embed Signage](https://www.embedsignage.com/)** - Known for 4K support, touch interactivity, and comprehensive analytics
+- **[Korbyt](https://www.gokorbyt.com/partners/hardware-partners/brightsign/)** - Best for enterprise-level, dynamic, and scalable content management
+- **[Navori](https://navori.com/app/brightsign/)** - Ideal for large, high-performance digital signage networks
+- **[Signagelive](https://support.signagelive.com/en/articles/137967-signagelive-for-brightsign-overview)** - Highly compatible cloud-based CMS for diverse applications
 
-- **`@tsa/shadcnui-signage`** - Purpose-built React component library for digital signage (distance-readable typography, fixed-aspect layouts, deterministic rendering)
-- **BrightSign Deployment Workflow** - Production-ready scripts for packaging and deploying to BrightSign OS 9.x players ([guide](./docs/guides/brightsign-deployment.md))
-- **Signage Architect Agent** - AI accelerator for building premium signage screens with GitHub Copilot ([.github/agents/signage-architect.agent.md](./.github/agents/signage-architect.agent.md))
-- **Production-Ready Examples** - Restaurant menus, office directories, KPI dashboards, event schedules, and more
-- **BrightSign Platform Integration** - MCP server support for device documentation and platform research
+**Use The Sign Age when:**
 
-## 🚀 Quick Start: BrightSign Development
+- You need complete control over UI/UX with custom React components
+- You're building bespoke signage experiences that don't fit CMS templates
+- You want to integrate signage with custom data sources and business logic
+- You're a web developer comfortable with React, TypeScript, and version control
 
-If you're a web developer new to BrightSign, this repo is designed to get you to:
+#### Additional disclaimers
 
-- A working React “player app” you can run locally
-- A repeatable packaging + deploy workflow for BrightSign OS 9.x
-- A dev-friendly way to manage players (and discover them) without committing IPs
+- Not official BrightSign documentation (refer to [BrightSign docs](https://docs.brightsign.biz/) for platform details)
+- Not a replacement for [BSN.cloud](https://www.brightsign.biz/resources/bsn-cloud/) (BrightSign's official cloud platform)
 
-Get started with BrightSign player development in 3 commands (after `pnpm install`):
+## 🚀 Quick Start
+
+### Option 1: See It Running Locally (30 seconds)
+
+No BrightSign player needed. Just clone, install, and run:
 
 ```bash
-# 1. Initialize configuration files
+git clone https://github.com/CambridgeMonorail/TheSignAge.git
+cd TheSignAge
+pnpm install
+pnpm serve:client
+```
+
+Open http://localhost:4200/TheSignAge/ to explore signage examples, component library, and documentation.
+
+**Or browse online:**
+
+- **Live Demo:** [https://cambridgemonorail.github.io/TheSignAge/](https://cambridgemonorail.github.io/TheSignAge/)
+- **Storybook:** [https://cambridgemonorail.github.io/TheSignAge/storybook/](https://cambridgemonorail.github.io/TheSignAge/storybook/)
+
+---
+
+### Option 2: Deploy to BrightSign Player (5 minutes)
+
+Have a BrightSign OS 9.x player on your network? Deploy in 3 commands:
+
+```bash
+# 1. Initialize player configuration
 pnpm setup:dev
 
-# 2. Add your BrightSign player
-pnpm player add dev-player 192.168.1.50 --default
+# 2. Auto-discover players on your LAN (optional but recommended)
+pnpm discover
+# → Shows all BrightSign players with IP, model, and serial number
 
-# 3. Build and deploy
+# 3. Add your player and deploy
+pnpm player add my-player 192.168.1.50 --default
 pnpm deploy:player
 ```
 
-Optional (recommended for first-time setup): discover players on your LAN
+Your React app is now running on the BrightSign player. Changes? Just run `pnpm deploy:player` again.
+
+**Full guides:**
+
+- [BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md) - Packaging, deployment, troubleshooting
+- [Player Configuration](./docs/guides/brightsign-player-config.md) - Registry management, git-safe config
+- [Player Discovery Tool](./tools/player-discovery/README.md) - Find devices on your LAN
+
+---
+
+### Option 3: Build Your Own Signage
+
+Use the signage component library to create custom screens:
 
 ```bash
-pnpm discover
+# Start Storybook to browse components
+pnpm serve:storybook
 ```
 
-The setup script creates:
+Components are in `libs/shadcnui-signage/` with:
 
-- `.env` for environment variables (optional)
-- `.brightsign/players.json` for player registry (git-ignored)
+- Distance-readable typography (10-foot rule)
+- Fixed-aspect layouts for 1080p/4K screens
+- Primitives, layouts, and blocks for signage
 
-See [BrightSign Player Configuration](./docs/guides/brightsign-player-config.md) and the [BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md) for full details.
+**Guides:**
 
-## Table of Contents
+- [Creating Signage Content](./docs/guides/creating-signage-content.md) - Design principles + examples
+- [Component Library README](./libs/shadcnui-signage/README.md) - API reference
 
-- [What This Is (and Why It Exists)](#what-this-is-and-why-it-exists)
-- [Quick Start: BrightSign Development](#-quick-start-brightsign-development)
-- [Overview](#overview)
-- [Statement of Intent](#statement-of-intent)
-- [What This Repo Contains](#what-this-repo-contains)
-- [Developer Tooling](#developer-tooling)
-- [Installation](#installation)
-- [Common Commands](#common-commands)
-- [Documentation](#documentation)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+---
+
+## ✨ Key Features
+
+- **`@tsa/shadcnui-signage`** - Signage-specific React components (distance-readable, deterministic rendering)
+- **One-command deployment** - `pnpm deploy:player` packages and deploys to BrightSign OS 9.x
+- **Player discovery** - Find all BrightSign devices on your LAN automatically
+- **Git-safe configuration** - No IPs or credentials committed (uses `.brightsign/players.json`, git-ignored)
+- **AI-accelerated development** - GitHub Copilot agents for signage workflows ([Signage Architect](./.github/agents/signage-architect.agent.md))
+- **Production examples** - Restaurant menus, office directories, KPI dashboards, event schedules
+
+---
 
 ## Overview
 
@@ -277,13 +315,39 @@ These targets are either [inferred automatically](https://nx.dev/concepts/inferr
 
 ## Common Commands
 
-- Dev app: `pnpm run serve:client`
-- Storybook: `pnpm run serve:storybook`
-- Verify (fast, affected only): `pnpm run verify`
-- Full validation (slower): `pnpm run validate`
-- **Deploy to BrightSign**: `pnpm run deploy:player` (see [deployment guide](./docs/guides/brightsign-deployment.md))
-- **Discover BrightSign players on your LAN**: `pnpm run discover`
-- **Manage player configs (git-safe)**: `pnpm run player list|add|remove|default|get`
+### Local Development
+
+```bash
+pnpm serve:client          # Run demo site (http://localhost:4200/TheSignAge/)
+pnpm serve:player          # Run BrightSign player app locally
+pnpm serve:storybook       # Browse component library
+```
+
+### BrightSign Deployment
+
+```bash
+pnpm setup:dev             # Initialize player configuration
+pnpm discover              # Find all BrightSign players on your LAN
+pnpm player list           # Show registered players
+pnpm player add <name> <ip> --default  # Add a player
+pnpm deploy:player         # Build and deploy to default player
+```
+
+**See [BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md) for troubleshooting and advanced workflows.**
+
+### Validation
+
+```bash
+pnpm verify                # Fast: format, lint, type-check, test (affected only)
+pnpm validate              # Comprehensive: all projects, slower
+```
+
+### Building
+
+```bash
+pnpm build:affected        # Build changed projects only
+pnpm build:all             # Build everything
+```
 
 ## Documentation
 
