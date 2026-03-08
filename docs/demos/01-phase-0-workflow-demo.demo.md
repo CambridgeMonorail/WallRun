@@ -1,6 +1,6 @@
 # Demo Script: Phase 0 - Copilot-First Workflow System
 
-**Duration:** 13-15 minutes  
+**Duration:** 11-13 minutes  
 **Audience:** Developers using GitHub Copilot, AI-assisted development practitioners  
 **Goal:** Demonstrate the comprehensive Copilot workflow system and show it working in action  
 **Prerequisites:** Viewers should have watched the project introduction video
@@ -360,7 +360,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 
 ---
 
-### Why This Matters (1 minute)
+### Why This Matters (20 seconds)
 
 **Show:** AGENTS.md side-by-side with copilot-instructions.md
 
@@ -391,7 +391,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 
 ---
 
-### Next Steps (30 seconds)
+### Next Steps (20 seconds)
 
 **Show:** GitHub repository
 
@@ -405,7 +405,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 
 ---
 
-### Closing (30 seconds)
+### Closing (20 seconds)
 
 > "The Sign Age is more than a digital signage framework - it's a case study in how to structure projects for effective AI-assisted development."
 
@@ -433,9 +433,9 @@ What evidence do I need to provide when I'm done with the Timeline component?
   - 5:45 Verification Command
   - 6:45 Testing In Action
   - 11:00 What We've Accomplished
-  - 12:00 Why This Matters
-  - 13:00 Next Steps
-  - 13:30 Closing
+  - 11:20 Why This Matters
+  - 11:40 Next Steps
+  - 12:00 Closing
 - [ ] Add description with links:
   - AGENTS.md: [direct link]
   - Skills directory: [direct link]
