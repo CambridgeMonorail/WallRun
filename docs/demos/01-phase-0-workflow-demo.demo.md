@@ -39,7 +39,7 @@
 
 **Show:** VS Code with project root visible
 
-> "We've completed Phase 0 of a comprehensive GitHub Copilot integration. What does that mean? It means we've taught Copilot how to work in this repository - not just what code to write, but how to approach work, when to plan, and how to verify quality."
+> "We've completed Phases 0-3 of a comprehensive GitHub Copilot integration. What does that mean? It means we've taught Copilot how to work in this repository - not just what code to write, but how to approach work, when to plan, and how to verify quality."
 
 > "By the end of this video, you'll see Copilot reference our workflow guides, create structured plans, and follow our verification process. Let's dive in."
 
