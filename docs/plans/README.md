@@ -188,7 +188,8 @@ docs(planning): mark [feature] plan as complete
 ## Plan Storage
 
 - **All plans:** `docs/plans/YYYY-MM-DD-<slug>.md`
-- **No subdirectories:** Keep flat for simplicity
+- **Active plans stay flat:** Keep current plans directly under `docs/plans/`
+- **Archived plans:** Move historical or point-in-time review docs to `docs/plans/archive/`
 - **Keep completed plans:** They're valuable documentation
 - **Don't delete:** Plans provide historical context
 
@@ -202,6 +203,11 @@ ls docs/plans/2026-01-*
 ### By Keyword
 ```bash
 grep -l "authentication" docs/plans/*.md
+```
+
+### Archived Plans
+```bash
+ls docs/plans/archive/
 ```
 
 ### By Status
@@ -233,7 +239,7 @@ Plans are referenced in [AGENTS.md](../../AGENTS.md) as part of the workflow:
 
 ## Examples
 
-See [Planning Skill](../ai/skills/planning.md) for detailed examples of:
+See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) for detailed examples of:
 - Feature addition plan
 - Refactoring plan
 - Bug fix plan (complex)

@@ -1,5 +1,7 @@
 # Modernization Upgrade Notes
 
+> Historical upgrade record for the 2026 modernization work. Keep this as implementation history, not as a statement of the current active branch.
+
 **Branch:** `tailwind-v4-upgrade` (merged from `modernization-2026`)  
 **Completed:** January 27, 2026  
 **Developer:** Automated by GitHub Copilot

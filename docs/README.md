@@ -53,7 +53,7 @@ Keep the codebase healthy and up-to-date.
 - **[Modernization](./maintenance/modernization.md)** - Keeping the project current
 - **[Upgrade Notes](./maintenance/UPGRADE_NOTES.md)** - Version migrations and breaking changes
 - **[Security Audit](./maintenance/SECURITY_AUDIT.md)** - Security findings and remediation
-- **[Branch Status](./maintenance/BRANCH_STATUS.md)** - Active development tracking
+- **[Maintenance Index](./maintenance/README.md)** - Active maintenance guidance and archived records
 
 ---
 

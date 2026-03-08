@@ -1,5 +1,7 @@
 # Security Audit Report
 
+> Historical audit snapshot from 2026-01-27. Treat this as background context only until a new audit refreshes the findings and review date.
+
 **Date:** January 27, 2026  
 **Audited by:** GitHub Copilot  
 **Initial Vulnerabilities:** 34 (GitHub Dependabot: 67)  
@@ -171,4 +173,4 @@ Rationale:
 ---
 
 **Last Updated:** January 27, 2026  
-**Next Review:** February 27, 2026 (monthly)
+**Next Review:** Overdue - refresh before relying on this report for current release decisions

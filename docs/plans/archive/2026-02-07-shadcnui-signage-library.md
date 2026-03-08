@@ -1,8 +1,10 @@
 # Implementation Plan: shadcnui-signage Library
 
+> Archived on 2026-03-08 as a historical implementation record. Task lists and phase markers reflect the planning state at the time, not the current repository state.
+
 **Created:** 2026-02-07  
 **Status:** ✅ Complete  
-**Requirements:** [Signage Components Library Requirements](./2026-02-07-shadcnui-signage-requirements.md)
+**Requirements:** [Signage Components Library Requirements](../2026-02-07-shadcnui-signage-requirements.md)
 
 ## Goal
 

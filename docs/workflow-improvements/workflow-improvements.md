@@ -395,7 +395,7 @@ Use these sources as the baseline for what Copilot supports today:
    - ✅ CONTRIBUTING.md in docs/contributing/
    - ✅ Well-documented scripts in package.json
    - ✅ Nx targets configured in project.json files
-   - ✅ CI workflows (ci.yml, deploy.yml, lighthouse-audit.yml)
+  - ✅ CI workflows (ci.yml, deploy.yml)
 
 2. **AI guidance audit:**
    - ✅ `.github/copilot-instructions.md` - Yes, comprehensive and well-structured

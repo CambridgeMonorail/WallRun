@@ -2,6 +2,8 @@
 
 Date: 2026-02-08
 
+Status: Complete
+
 ## Goal
 
 Add a small, opinionated set of signage-first **behaviour primitives** to `libs/shadcnui-signage` that reduce boilerplate for real, always-on signage screens.
@@ -139,3 +141,10 @@ PR description must include a short checklist summary of what was validated.
 - Drag/drop editors
 - CMS authoring UI
 - Media player wrappers beyond simple offline signaling
+
+## Completion Notes
+
+- Implemented all 8 planned behaviour components in `libs/shadcnui-signage/src/lib/behaviour/`.
+- Added behaviour component docs pages under `apps/client/src/app/pages/components/behaviour/`.
+- Added the two planned example screens: `OfficeLobbyLoop` and `DaypartMenu`.
+- Kept the file as reference because it documents the behaviour scope and cross-cutting constraints that still apply.

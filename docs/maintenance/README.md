@@ -2,6 +2,8 @@
 
 Documentation for maintaining, upgrading, and securing The Sign Age codebase over time.
 
+This section should contain active maintenance guidance and durable records. Time-bound status snapshots belong in `docs/maintenance/archive/`.
+
 ## Documents in this Section
 
 ### [Modernization](./modernization.md)
@@ -26,13 +28,15 @@ Security audit findings, vulnerability tracking, and remediation plans. Document
 
 **Key Topics**: Vulnerability assessment, security best practices, dependency security, remediation
 
+Note: refresh this document before using it for current release decisions.
+
 ---
 
-### [Branch Status](./BRANCH_STATUS.md)
+### [Maintenance Archive](./archive/README.md)
 
-Current status of major development branches, feature work in progress, and coordination information for active development.
+Historical maintenance records that no longer reflect the current branch state or operational status.
 
-**Key Topics**: Branch tracking, feature status, development coordination
+**Key Topics**: Historical branch tracking, past maintenance audits, archived coordination notes
 
 ---
 
