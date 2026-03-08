@@ -1,5 +1,7 @@
 # Enhancement Plan: shadcnui-signage Developer Documentation
 
+> Archived on 2026-03-08 as a historical implementation record. Inventories and route counts in this file describe the documentation scope at that time and do not represent the full current component surface.
+
 **Date:** 2026-02-08  
 **Status:** ✅ Completed  
 **Type:** Enhancement (Non-Breaking)

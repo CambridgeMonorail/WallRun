@@ -42,9 +42,9 @@ Sub Main()
     ' Disable scrollbars (fullscreen signage)
     htmlWidget.SetScrollbarsEnabled(false)
     
-    ' Enable remote debugging (port 8008)
-    ' This allows Chrome DevTools connection for development
-    htmlWidget.EnableRemoteDebugger(true)
+    ' Remote debugging is disabled by default for production security.
+    ' For development, change the argument to true to allow Chrome DevTools connection on port 8008.
+    htmlWidget.EnableRemoteDebugger(false)
     
     ' Set user agent (optional, for analytics)
     userAgent = "BrightSign/" + modelName + " Chrome/98"

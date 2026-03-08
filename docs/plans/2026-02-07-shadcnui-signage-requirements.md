@@ -1,5 +1,9 @@
 # Signage Components Library Requirements
 
+**Status:** Active baseline reference
+
+**Scope note:** This document captures the original baseline requirements for the first phase of `@tsa/shadcnui-signage`. The current library has expanded beyond this initial scope, including additional components and behaviour primitives. Keep using this file for foundational constraints and design intent, not as the complete current inventory.
+
 ## Purpose
 
 Create a React component library for building digital signage screens using shadcn/ui and Tailwind CSS v4, optimized for fixed-aspect displays, distance readability, and predictable layouts.

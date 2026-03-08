@@ -1,5 +1,7 @@
 # Implementation Plan: Signage Showcase Demo Site
 
+> Archived on 2026-03-08 as a historical implementation record. References to current site structure, page inventory, and task status are a snapshot from the planning period.
+
 **Created:** 2026-02-07  
 **Status:** ✅ Complete  
 **Related:** [shadcnui-signage Library](./2026-02-07-shadcnui-signage-library.md)
@@ -483,7 +485,7 @@ The demo should:
 
 - [Project Goals](../getting-started/project-goals.md)
 - [Statement of Intent](../getting-started/statement-of-intent.md)
-- [shadcnui-signage Requirements](./2026-02-07-shadcnui-signage-requirements.md)
+- [shadcnui-signage Requirements](../2026-02-07-shadcnui-signage-requirements.md)
 - [shadcnui-signage Implementation Plan](./2026-02-07-shadcnui-signage-library.md)
 
 ## Approval

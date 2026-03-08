@@ -76,8 +76,7 @@ These tools work together to ensure code quality, consistency, and adherence to 
 │   └── validate-client.prompt.md
 └── workflows/                        # GitHub Actions workflows
     ├── ci.yml
-    ├── deploy.yml
-    └── lighthouse-audit.yml
+    └── deploy.yml
 ```
 
 ---

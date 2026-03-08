@@ -1,5 +1,7 @@
 # Branch Review: feat/brightsign-priority-0-deployment
 
+> Archived on 2026-03-08 as a point-in-time branch review. Findings in this document were accurate when written but may have been resolved later in the branch.
+
 **Date:** March 7, 2026  
 **Reviewer:** GitHub Copilot  
 **Branch:** `feat/brightsign-priority-0-deployment`  

@@ -30,7 +30,8 @@ SD:\
 └── index.html
 ```
 
-**Important:** 
+**Important:**
+
 - Rename `autorun-minimal.brs` to `autorun.brs` on the SD card
 - Do NOT put them in a subfolder
 
@@ -73,16 +74,19 @@ Load your React app directly from your dev machine's Vite server over the networ
 ### Setup
 
 1. **Edit `autorun-dev.brs`**:
+
    ```brightscript
    DEV_SERVER_IP = "192.168.0.100"  ' <<< Change to your dev machine's LAN IP
    ```
 
 2. **Deploy dev mode bootstrap**:
+
    ```bash
    pnpm deploy:dev-mode
    ```
 
 3. **Start dev server** (binds to network):
+
    ```bash
    pnpm dev:brightsign
    ```
@@ -92,6 +96,7 @@ Load your React app directly from your dev machine's Vite server over the networ
 See [BrightSign Dual Mode Workflow Guide](../../docs/guides/brightsign-dual-mode-workflow.md) for details.
 
 ---
+
 1. **Check LDWS access** - Verify player is booting:
    - Browse to `http://<player-ip>/api/v1/info/`
    - Should see JSON with player model, serial, firmware version
@@ -109,9 +114,10 @@ See [BrightSign Dual Mode Workflow Guide](../../docs/guides/brightsign-dual-mode
 4. **Try production autorun**:
    - Use `apps/player-minimal/public/autorun.brs` instead
    - Has better error handling and logging
-  - Check SD card is inserted fully
-  - Verify FAT32 format
-  - Try re-copying files
+
+- Check SD card is inserted fully
+- Verify FAT32 format
+- Try re-copying files
 - **Log exists but says "roHtmlWidget creation FAILED":** Widget can't be created
   - Check OS version (`/api/v1/info/` → `version`)
   - May need firmware update
@@ -169,6 +175,7 @@ If files are missing or in wrong location, re-copy to SD root.
 ## Related Documentation
 
 - [Un-register BSN Player for Dev](../docs/guides/unregister-bsn-player-for-dev.md)
+
 ---
 
 ## Related Documentation

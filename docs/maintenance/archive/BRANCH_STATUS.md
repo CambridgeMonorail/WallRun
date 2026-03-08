@@ -1,5 +1,7 @@
 # Branch Status & Modernization Progress
 
+> Archived on 2026-03-08. This file captures branch coordination state from the Tailwind v4 modernization period and is no longer current.
+
 **Last Updated:** January 27, 2026  
 **Current Branch:** tailwind-v4-upgrade
 
