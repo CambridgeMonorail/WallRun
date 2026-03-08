@@ -436,7 +436,7 @@ For questions or issues with the instruction architecture:
 
 - Review [docs/workflow-improvements/](../workflow-improvements/) for context
 - Reference [AGENTS.md](../../AGENTS.md) for current workflow
-- Check [.github/skills/](.github/skills/) for process guides
+- Check [.github/skills/](../../.github/skills/) for process guides
 - See **Custom Agent Foundry** agent for instruction optimization
 
 ## Version History
