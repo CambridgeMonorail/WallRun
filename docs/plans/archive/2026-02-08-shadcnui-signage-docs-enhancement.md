@@ -13,6 +13,7 @@ Enhance the existing demo site with developer-focused documentation for `libs/sh
 ## Context
 
 ### What We Currently Have (To Preserve)
+
 - **Gallery page** (`/gallery`) - Full-screen signage examples (6 examples)
 - **Library page** (`/library`) - High-level overview of both libraries
 - **Getting Started** page - Installation and basic usage
@@ -21,7 +22,9 @@ Enhance the existing demo site with developer-focused documentation for `libs/sh
 - **Functional navigation** - Sidebar with Documentation and Signage Examples sections
 
 ### What's Missing (To Add)
+
 Per the architect's requirements document:
+
 1. **Component-centric documentation pages** - One page per `shadcnui-signage` component
 2. **"Built On" sections** - Explicit dependencies on shadcn primitives
 3. **Copyable code snippets** - Installation and usage examples
@@ -34,17 +37,20 @@ Per the architect's requirements document:
 From `libs/shadcnui-signage/src/index.ts`:
 
 ### Primitives (4 components)
+
 1. `ScreenFrame` - Base frame for signage content
 2. `MetricCard` - KPI/metric display cards
 3. `EventCard` - Event information cards
 4. `AnnouncementCard` - Announcement cards
 
 ### Layouts (3 components)
+
 5. `SplitScreen` - Two-panel layouts
 6. `SignageContainer` - Full-screen container with ambient effects
 7. `SignageHeader` - Standard signage header
 
 ### Blocks (2 components)
+
 8. `FullscreenHero` - Hero sections for signage
 9. `InfoCardGrid` - Grid layouts for info cards
 
@@ -76,6 +82,7 @@ From `libs/shadcnui-signage/src/index.ts`:
 **Decision:** Add new component documentation pages to the existing `apps/client` structure.
 
 **Rationale:**
+
 - Minimal disruption to working site
 - Reuse existing routing and navigation infrastructure
 - Leverage existing Layout and shell components
@@ -83,6 +90,7 @@ From `libs/shadcnui-signage/src/index.ts`:
 - No GitHub Pages reconfiguration needed
 
 **Alternative Considered:** Separate docs app in Nx
+
 - **Rejected:** Adds complexity, requires separate deployment, duplicates navigation/shell
 - **Future consideration:** If docs grow significantly beyond components
 
@@ -114,8 +122,8 @@ Update sidebar configuration to add new "Components" section:
   icon: Blocks, // or appropriate icon
   items: [
     { title: 'Overview', url: '/components' },
-    { 
-      title: 'Primitives', 
+    {
+      title: 'Primitives',
       items: [
         { title: 'ScreenFrame', url: '/components/primitives/screen-frame' },
         { title: 'MetricCard', url: '/components/primitives/metric-card' },
@@ -134,6 +142,7 @@ Keep existing "Documentation" and "Signage Examples" sections unchanged.
 ### Phase 1: Infrastructure (Foundation)
 
 #### Task 1.1: Create CodeSnippet Component
+
 - **File:** `apps/client/src/app/components/CodeSnippet.tsx`
 - **Features:**
   - Syntax highlighting (use Prism or highlight.js - client-side only)
@@ -144,6 +153,7 @@ Keep existing "Documentation" and "Signage Examples" sections unchanged.
 - **Acceptance:** Can display and copy TSX code with proper formatting
 
 #### Task 1.2: Create Component Page Template
+
 - **File:** `apps/client/src/app/components/ComponentDocPage.tsx`
 - **Purpose:** Reusable template/layout for component docs
 - **Sections:**
@@ -157,6 +167,7 @@ Keep existing "Documentation" and "Signage Examples" sections unchanged.
 - **Acceptance:** Template renders all sections with proper styling
 
 #### Task 1.3: Create Component Index Page
+
 - **File:** `apps/client/src/app/pages/components/ComponentIndex.tsx`
 - **Content:**
   - Brief introduction to shadcnui-signage
@@ -170,6 +181,7 @@ Keep existing "Documentation" and "Signage Examples" sections unchanged.
 ### Phase 2: Component Documentation Pages (9 pages)
 
 For each component, create:
+
 - **Location:** `apps/client/src/app/pages/components/{category}/{component-name}.tsx`
 - **Required Content:**
   - Overview section
@@ -181,21 +193,25 @@ For each component, create:
   - Links to Storybook and GitHub source
 
 #### Task 2.1: Primitive Components (4 pages)
+
 1. ScreenFrame → `/components/primitives/screen-frame`
 2. MetricCard → `/components/primitives/metric-card`
 3. EventCard → `/components/primitives/event-card`
 4. AnnouncementCard → `/components/primitives/announcement-card`
 
 #### Task 2.2: Layout Components (3 pages)
+
 5. SplitScreen → `/components/layouts/split-screen`
 6. SignageContainer → `/components/layouts/signage-container`
 7. SignageHeader → `/components/layouts/signage-header`
 
 #### Task 2.3: Block Components (2 pages)
+
 8. FullscreenHero → `/components/blocks/fullscreen-hero`
 9. InfoCardGrid → `/components/blocks/info-card-grid`
 
 **Acceptance Criteria (Per Page):**
+
 - ✅ Built On section lists shadcn dependencies
 - ✅ Live example renders correctly
 - ✅ Code snippet is copyable and valid
@@ -207,6 +223,7 @@ For each component, create:
 ### Phase 3: Navigation Integration
 
 #### Task 3.1: Update Navigation Config
+
 - **File:** `apps/client/src/app/constants/navigationConfig.ts`
 - **Changes:**
   - Add new "Components" section
@@ -215,10 +232,12 @@ For each component, create:
   - Keep existing sections unchanged
 
 #### Task 3.2: Update Routing
+
 - **File:** `apps/client/src/app/app.tsx` (if needed)
 - **Changes:** Add routes for new component pages
 
 **Acceptance:**
+
 - ✅ New "Components" section appears in sidebar
 - ✅ All component pages are accessible via navigation
 - ✅ Existing "Documentation" and "Signage Examples" unchanged
@@ -227,12 +246,15 @@ For each component, create:
 ### Phase 4: Content Enhancement
 
 #### Task 4.1: Research Built On Dependencies
+
 For each component, document:
+
 - Which shadcn/ui primitives are used
 - Why they were chosen
 - What behavior is extended/constrained for signage
 
 **Example for MetricCard:**
+
 ```markdown
 ## Built On
 
@@ -242,7 +264,9 @@ For each component, document:
 ```
 
 #### Task 4.2: Write Signage-Specific Notes
+
 For each component, document:
+
 - Long-running behavior considerations
 - Distance readability features
 - Fixed-aspect layout constraints
@@ -250,6 +274,7 @@ For each component, document:
 - Typical usage patterns on signage displays
 
 **Acceptance:**
+
 - ✅ Every component page has "Built On" section
 - ✅ Every component has signage-specific guidance
 - ✅ Content is developer-focused, not marketing
@@ -257,28 +282,33 @@ For each component, document:
 ### Phase 5: Polish and Quality
 
 #### Task 5.1: Verify All Links
+
 - Storybook deep links work
 - GitHub source links point to correct files
 - Internal navigation works
 - External links open in new tabs
 
 #### Task 5.2: Responsive Testing
+
 - Component doc pages work on mobile/tablet
 - Code snippets don't overflow
 - Examples render appropriately
 
 #### Task 5.3: Documentation Quality Check
+
 - Spelling and grammar
 - Code examples are valid
 - Consistent terminology
 - No broken internal references
 
 #### Task 5.4: Run Verification
+
 ```bash
 pnpm verify
 ```
 
 **Acceptance:**
+
 - ✅ All links functional
 - ✅ Pages responsive
 - ✅ No lint/type errors
@@ -287,6 +317,7 @@ pnpm verify
 ## File Changes Summary
 
 ### New Files
+
 ```
 apps/client/src/app/components/
   - CodeSnippet.tsx
@@ -310,6 +341,7 @@ apps/client/src/app/pages/components/
 ```
 
 ### Modified Files
+
 ```
 apps/client/src/app/constants/navigationConfig.ts
   - Add Components section
@@ -317,6 +349,7 @@ apps/client/src/app/constants/navigationConfig.ts
 ```
 
 ### Unchanged Files (Explicitly Preserved)
+
 ```
 apps/client/src/app/pages/
   - gallery/Gallery.tsx ✅ Keep
@@ -346,13 +379,8 @@ export const MetricCardDoc = () => {
       {/* Header */}
       <div className="mb-10 space-y-4">
         <p className="text-sm text-muted-foreground">Primitives</p>
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
-          MetricCard
-        </h1>
-        <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
-          Display KPIs and metrics with value, change indicators, and icons.
-          Optimized for distance readability on signage displays.
-        </p>
+        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">MetricCard</h1>
+        <p className="max-w-2xl text-base md:text-lg text-muted-foreground">Display KPIs and metrics with value, change indicators, and icons. Optimized for distance readability on signage displays.</p>
       </div>
 
       {/* Built On */}
@@ -375,23 +403,14 @@ export const MetricCardDoc = () => {
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Example</h2>
         <div className="bg-slate-950 p-8 rounded-lg">
-          <MetricCard
-            title="Total Revenue"
-            value="$1.2M"
-            change="+12.5%"
-            isPositive={true}
-            icon={<DollarSign className="w-14 h-14" />}
-          />
+          <MetricCard title="Total Revenue" value="$1.2M" change="+12.5%" isPositive={true} icon={<DollarSign className="w-14 h-14" />} />
         </div>
       </section>
 
       {/* Installation */}
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Installation</h2>
-        <CodeSnippet
-          language="bash"
-          code="pnpm add @tsa/shadcnui-signage"
-        />
+        <CodeSnippet language="bash" code="pnpm add @tsa/shadcnui-signage" />
       </section>
 
       {/* Usage */}
@@ -422,20 +441,16 @@ export function Dashboard() {
         <h2 className="text-2xl font-medium mb-4">Signage Considerations</h2>
         <div className="space-y-4 text-muted-foreground">
           <p>
-            <strong>Distance Readability:</strong> Uses 7xl font for values and 3xl for labels,
-            optimized for viewing from 10+ feet away.
+            <strong>Distance Readability:</strong> Uses 7xl font for values and 3xl for labels, optimized for viewing from 10+ feet away.
           </p>
           <p>
-            <strong>High Contrast:</strong> Dark background with bright text ensures readability
-            under various ambient lighting conditions.
+            <strong>High Contrast:</strong> Dark background with bright text ensures readability under various ambient lighting conditions.
           </p>
           <p>
-            <strong>Long-Running Display:</strong> Static content with no animations that could
-            cause screen burn-in on long-term displays.
+            <strong>Long-Running Display:</strong> Static content with no animations that could cause screen burn-in on long-term displays.
           </p>
           <p>
-            <strong>Data Updates:</strong> Values should be updated via props. Consider wrapping
-            with a data-fetching component for real-time metrics.
+            <strong>Data Updates:</strong> Values should be updated via props. Consider wrapping with a data-fetching component for real-time metrics.
           </p>
         </div>
       </section>
@@ -473,13 +488,13 @@ export function Dashboard() {
 
 ## Risks and Mitigations
 
-| Risk | Mitigation |
-|------|------------|
-| Breaking existing routes | Keep all existing routes unchanged, only add new ones |
-| Sidebar too crowded | Use collapsible sections, keep top-level items clear |
-| Code snippets don't work in static build | Use client-side syntax highlighting (Prism.js) |
-| Component examples break | Import directly from library, test rendering |
-| Storybook links outdated | Generate links programmatically from component names |
+| Risk                                     | Mitigation                                            |
+| ---------------------------------------- | ----------------------------------------------------- |
+| Breaking existing routes                 | Keep all existing routes unchanged, only add new ones |
+| Sidebar too crowded                      | Use collapsible sections, keep top-level items clear  |
+| Code snippets don't work in static build | Use client-side syntax highlighting (Prism.js)        |
+| Component examples break                 | Import directly from library, test rendering          |
+| Storybook links outdated                 | Generate links programmatically from component names  |
 
 ## Future Enhancements (Out of Scope)
 
@@ -511,35 +526,40 @@ export function Dashboard() {
 ### What Was Built
 
 #### Phase 1: Infrastructure ✅
+
 1. **CodeSnippet Component** - Reusable component with syntax highlighting and copy-to-clipboard
    - Full test coverage (9 tests passing)
    - Supports multiple languages (tsx, typescript, bash, json, etc.)
    - Optional filename display and line numbers
-   
 2. **Component Index Page** - Central hub listing all 9 components
    - Organized by category (Primitives, Layouts, Blocks)
    - Visual badges and icons for each category
    - Links to detailed documentation pages
 
 #### Phase 2: Component Documentation Pages ✅
+
 Created 9 comprehensive documentation pages:
 
 **Primitives (4):**
+
 - MetricCard - KPI display cards
 - ScreenFrame - Preview container with aspect ratio enforcement
 - EventCard - Event information cards
 - AnnouncementCard - Announcement cards with icons
 
 **Layouts (3):**
+
 - SplitScreen - Two-panel layouts with configurable ratios
 - SignageContainer - Full-screen container with ambient effects
 - SignageHeader - Standard signage header
 
 **Blocks (2):**
+
 - FullscreenHero - Hero sections for signage
 - InfoCardGrid - Grid layouts for info cards
 
 Each page includes:
+
 - Category and component name
 - Description optimized for signage use
 - **Built On** section (mandatory, explains shadcn dependencies)
@@ -551,12 +571,14 @@ Each page includes:
 - Links to Storybook and GitHub source
 
 #### Phase 3: Navigation Integration ✅
+
 - Added new "Components" section to sidebar navigation
 - 10 new routes (1 index + 9 component pages)
 - Preserved existing "Documentation" and "Signage Examples" sections
 - All routes working with proper breadcrumbs
 
 #### Phase 4: Content Quality ✅
+
 - Every component has detailed "Built On" section
 - Clear explanation of shadcn primitive usage (or lack thereof)
 - Signage-specific guidance for each component
@@ -565,6 +587,7 @@ Each page includes:
 - Performance implications
 
 #### Phase 5: Verification ✅
+
 - ✅ TypeScript: No type errors
 - ✅ Tests: 13/13 passing (including new CodeSnippet tests)
 - ✅ Local testing: Site verified at http://localhost:4200/TheSignAge/
@@ -577,6 +600,7 @@ Each page includes:
 ### Files Created
 
 **New Files (14 total):**
+
 ```
 apps/client/src/app/components/
   - CodeSnippet.tsx (156 lines)
@@ -584,24 +608,25 @@ apps/client/src/app/components/
 
 apps/client/src/app/pages/components/
   - ComponentIndex.tsx (208 lines)
-  
+
   primitives/
     - MetricCardDoc.tsx (185 lines)
     - ScreenFrameDoc.tsx (178 lines)
     - EventCardDoc.tsx (97 lines)
     - AnnouncementCardDoc.tsx (100 lines)
-  
+
   layouts/
     - SplitScreenDoc.tsx (118 lines)
     - SignageContainerDoc.tsx (111 lines)
     - SignageHeaderDoc.tsx (98 lines)
-  
+
   blocks/
     - FullscreenHeroDoc.tsx (103 lines)
     - InfoCardGridDoc.tsx (114 lines)
 ```
 
 **Modified Files (1):**
+
 ```
 apps/client/src/app/constants/navigationConfig.ts
   - Added Components section to navigation
@@ -620,6 +645,7 @@ apps/client/src/app/constants/navigationConfig.ts
 ### What Was Preserved
 
 All existing functionality remains intact:
+
 - ✅ Gallery page with 6 signage examples
 - ✅ Library overview page
 - ✅ Getting Started page
@@ -630,12 +656,14 @@ All existing functionality remains intact:
 ### Developer Experience Improvements
 
 Before this enhancement:
+
 - Developers had to navigate to Storybook for component details
 - No clear documentation of shadcn dependencies
 - Installation instructions scattered or missing
 - No signage-specific guidance
 
 After this enhancement:
+
 - Component documentation is primary, Storybook is secondary
 - Clear "Built On" sections explain dependencies
 - Copy-paste installation and usage examples
@@ -645,12 +673,14 @@ After this enhancement:
 ### Testing Evidence
 
 **TypeScript:**
+
 ```bash
 pnpm type-check:client
 ✅ No errors
 ```
 
 **Unit Tests:**
+
 ```bash
 pnpm test:client --run
 ✅ 13/13 tests passing
@@ -658,6 +688,7 @@ pnpm test:client --run
 ```
 
 **Manual Testing:**
+
 - ✅ Component Index loads correctly
 - ✅ All 9 component pages render
 - ✅ Navigation expands/collapses properly
@@ -670,6 +701,7 @@ pnpm test:client --run
 ### Architecture Notes
 
 The enhancement follows the existing demo site architecture:
+
 - React 19 + React Router for routing
 - Tailwind v4 for styling
 - Same Layout component from @tsa/shell
@@ -677,5 +709,3 @@ The enhancement follows the existing demo site architecture:
 - No new dependencies added (except @testing-library/jest-dom for tests)
 
 All component documentation pages follow a consistent structure, making it easy to add new components in the future by following the established pattern.
-
-

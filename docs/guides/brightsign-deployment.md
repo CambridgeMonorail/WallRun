@@ -226,7 +226,7 @@ dist/packages/brightsign/
 └── manifest.json        # Version metadata
 ```
 
-**autorun.brs** is the bootstrap script that BrightSign OS 9.x uses to launch your HTML widget:
+**autorun.brs** is the bootstrap script that BrightSign OS 9.x uses to launch your HTML widget. The production bootstrap keeps remote inspection disabled by default:
 
 ```brightscript
 ' BrightSign OS 9.x HTML Widget Bootstrap
@@ -236,8 +236,7 @@ Sub Main()
     htmlWidget = CreateObject("roHtmlWidget", {
         port: msgPort,
         url: "file:///sd:/index.html",
-        nodejs_enabled: false,
-        inspector_server: { port: 2999 }
+      nodejs_enabled: false
     })
 
     while true
@@ -295,7 +294,7 @@ The deployment script:
 3. **Checks player status** - Verifies reachability via `/GetDeviceInfo`
 4. **Uploads package** - HTTP POST to `/upload` endpoint with `multipart/form-data`
 5. **Reboots player** - GET request to `/reboot` endpoint
-6. **Confirms deployment** - Provides inspector URL for debugging
+6. **Confirms deployment** - Tells you to verify the display and use dev mode if you need remote debugging
 
 **Manual upload** (if script fails):
 
@@ -315,8 +314,8 @@ curl http://<player-ip>:8008/reboot
 After reboot (typically 15-30 seconds):
 
 1. **Check display** - Player should show StatusPage component
-2. **Access inspector** - Open `http://<player-ip>:2999` in Chrome
-3. **Check logs** - Use Chrome DevTools console for errors
+2. **Check logs via LDWS** - Use the player web UI and deployment logs for first-pass diagnostics
+3. **Use dev mode for remote debugging** - Switch to the dev bootstrap if you need Chrome DevTools on port 2999
 
 ## Development Iteration
 
@@ -366,7 +365,7 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 
 1. **Check autorun.brs** - Verify file exists at root of SD card
 2. **Check URL in autorun.brs** - Must be `file:///sd:/index.html`
-3. **Check console logs** - Open inspector at `http://<player-ip>:2999`
+3. **Check console logs** - Use LDWS logs, or switch to the dev bootstrap if you need remote inspection
 4. **Verify HTML paths** - All asset paths must be relative (no absolute URLs)
 
 **Common issues:**
@@ -393,7 +392,8 @@ alias deploy-brightsign="pnpm deploy:player && echo 'Deployed to 192.168.1.100'"
 
 **Solutions:**
 
-- Verify `inspector_server: { port: 2999 }` in autorun.brs
+- Production `autorun.brs` intentionally disables the inspector
+- Use `tools/brightsign-test-files/autorun-dev.brs` or `pnpm deploy:dev-mode` when you need remote debugging
 - Check player firewall settings (may block non-8008 ports)
 - Try default inspector port: `http://<player-ip>:8008/inspector`
 

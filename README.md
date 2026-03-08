@@ -1,8 +1,6 @@
-<p align="center">
-    <img src="docs/images/logos/app-logo.svg" alt="The Sign Age Logo" width="25%" height="25%">
-</p>
-
 # The Sign Age
+
+![The Sign Age Logo](docs/images/logos/app-logo.svg)
 
 ![Project Status](https://img.shields.io/badge/status-alpha-orange?style=for-the-badge)
 ![Version](https://img.shields.io/github/package-json/v/CambridgeMonorail/TheSignAge?style=for-the-badge)
@@ -151,7 +149,7 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 ### Deployment Tools
 
 - **`scripts/package-player.mjs`** - Package React apps for BrightSign OS 9.x with autorun.brs bootstrap
-- **`scripts/deploy-local.mjs`** - Deploy to local BrightSign players via HTTP API (port 8008)
+- **`scripts/deploy-local.mjs`** - Deploy to local BrightSign players primarily via LDWS over HTTPS (port 443, digest auth), with HTTP used only when a non-443 port is explicitly configured
 - **`.github/skills/brightsign-*` / `.github/skills/player-discovery-*`** - Copilot Agent Skills for BrightSign workflows and LAN discovery ([docs](./docs/tooling/github-copilot-tooling.md#skills))
 
 ### AI Accelerators
@@ -344,6 +342,6 @@ This project is licensed under the MIT License.
 
 ## Useful Links
 
-- Nx docs: https://nx.dev/
-- shadcn/ui: https://ui.shadcn.dev/
-- Tailwind CSS: https://tailwindcss.com/
+- [Nx docs](https://nx.dev/)
+- [shadcn/ui](https://ui.shadcn.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)

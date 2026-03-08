@@ -313,19 +313,16 @@ pnpm run build:all
 ### Minor Issues (Non-Blocking)
 
 1. **Storybook story type configs** - 36 type errors in `.stories.tsx` argTypes/control objects
-
    - **Impact:** None (not production code)
    - **Fix:** Update Storybook stories to use latest type-safe syntax
    - **Priority:** Low
 
 2. **Accessibility lint warnings** - Some missing aria-labels and alt text
-
    - **Impact:** Low (warnings, not errors)
    - **Fix:** Address incrementally during component work
    - **Priority:** Medium
 
 3. **Unused variable warnings** - Some unused imports and variables
-
    - **Impact:** None (warnings only)
    - **Fix:** Clean up during code review
    - **Priority:** Low
@@ -342,13 +339,11 @@ pnpm run build:all
 ### Future Work
 
 1. **Tailwind v4 upgrade** - When out of beta and production-ready
-
    - Use official `@tailwindcss/upgrade` tool
    - Test extensively with monorepo scanning
    - Separate PR with visual regression testing
 
 2. **shadcn/ui component updates** - Incremental, per-component family
-
    - **Step 1:** Update CLI and verify `components.json` config
    - **Step 2:** Update dependencies (Radix, lucide-react, class-variance-authority, tailwind-merge)
    - **Step 3:** Inventory current customizations (vanilla vs heavily customized)
@@ -359,13 +354,11 @@ pnpm run build:all
    - See [modernization.md](./modernization.md) Section 3 for detailed workflow
 
 3. **React Router v7** - Consider upgrading from current v6.30.3
-
    - Review breaking changes
    - Test routing architecture
    - Separate PR
 
 4. **React Day Picker v9** - Update calendar component
-
    - New icon API (IconLeft/IconRight deprecated)
    - Review customization compatibility
 
@@ -473,25 +466,21 @@ git push -u origin modernization-2026
 ## Lessons Learned
 
 1. **TypeScript project references don't propagate jsx**
-
    - Must add `"jsx": "react-jsx"` to every tsconfig file
    - Can't rely on `extends` inheritance for this setting
    - Affects base config and all app/lib configs
 
 2. **ESM conversion is all-or-nothing**
-
    - Adding `"type": "module"` forces all .js files to use ESM
    - Config files must be converted together
    - Can't mix CommonJS and ESM in same workspace
 
 3. **Nx migrations are safer with commits**
-
    - `--create-commits` flag creates reviewable history
    - Each migration gets its own commit
    - Easier to understand what changed and why
 
 4. **Platform first, features second**
-
    - Stabilize infrastructure before touching UI
    - Tailwind and shadcn upgrades are easier on stable foundation
    - Reduces risk of chasing phantom issues

@@ -73,7 +73,7 @@ Launch BrightAuthor:connected on your computer (download from brightsign.biz if 
 **Security Settings**:
 
 - **Enable JavaScript Console** (for development only)
-- **Enable Web Inspector** on port 2999 (for remote debugging)
+- **Enable Web Inspector** on port 2999 only if you are actively using the development bootstrap
 
 ⚠️ **Warning**: Only enable inspector for development. It increases memory usage and creates a security risk in production.
 
@@ -375,7 +375,7 @@ Once your player is set up and you've verified connectivity:
    - See: [BrightSign Deployment Guide](./brightsign-deployment.md)
    - Quick start: `pnpm deploy:player`
 
-3. **Enable Remote Debugging** (optional)
+3. **Enable Remote Debugging** (optional, development only)
    - Chrome DevTools: `chrome://inspect/devices`
    - Add: `PLAYER_IP:2999`
 

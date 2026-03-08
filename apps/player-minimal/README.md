@@ -84,20 +84,19 @@ export default defineConfig({
 
 ### BrightSign Bootstrap
 
-The `autorun.brs` script configures the BrightSign player and launches your app:
+The `autorun.brs` script configures the BrightSign player and launches your app with production-safe defaults:
 
 ```brightscript
-' autorun.brs - Enables Chrome 120 and Web Inspector
+' autorun.brs - Enables Chrome 120 with inspector disabled by default
 sub Main()
     reg = CreateObject("roRegistrySection", "html")
     reg.Write("widget type", "chromium120")
-    reg.Write("enable_web_inspector", "1")
+  reg.Write("enable_web_inspector", "0")
     reg.Flush()
 
     config = {
         url: "file:///sd:/index.html"
         javascript_enabled: true
-        inspector_server: { port: 2999 }
     }
 
     html = CreateObject("roHtmlWidget", rect, config)
@@ -186,8 +185,8 @@ The player will load from your dev server with hot reload!
 
 ### Debugging
 
-- **Web Inspector**: http://192.168.0.62:2999 (or player IP)
-- **Console Logs**: Visible in Web Inspector console
+- **Production bootstrap**: Inspector is disabled by default
+- **Development bootstrap**: Use `tools/brightsign-test-files/autorun-dev.brs` or `pnpm deploy:dev-mode` for DevTools access on port 2999
 - **Player Web UI**: https://192.168.0.62/ (Local DWS)
 
 ### Common Issues
@@ -196,7 +195,7 @@ The player will load from your dev server with hot reload!
 
 - Check Chrome 120 is enabled in autorun.brs
 - Verify `@tailwindcss/vite` plugin is loaded
-- Check Web Inspector console for errors
+- If using dev-mode bootstrap, check the Web Inspector console for errors
 
 **Tailwind Classes Not Rendering**
 

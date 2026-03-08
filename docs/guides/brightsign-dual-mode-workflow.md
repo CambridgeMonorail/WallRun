@@ -70,6 +70,12 @@ No build, package, or upload needed. Just save your code and refresh the page on
    pnpm deploy:dev-mode
    ```
 
+Notes:
+
+- `deploy:dev-mode` verifies HTTPS certificates by default.
+- For a trusted local certificate, set `BRIGHTSIGN_CA_CERT=/path/to/player-ca.pem`.
+- For a one-off local development exception with a self-signed cert, set `BRIGHTSIGN_TLS_INSECURE=1`.
+
 3. **Start your dev server** (binds to network):
 
    ```bash
@@ -150,6 +156,12 @@ Uses curl directly without ZIP packaging:
 # Upload files directly from dist/
 pnpm deploy:quick
 ```
+
+Notes:
+
+- `deploy:quick` verifies HTTPS certificates by default.
+- For a trusted local certificate, set `BRIGHTSIGN_CA_CERT=/path/to/player-ca.pem`.
+- For a one-off local development exception with a self-signed cert, set `BRIGHTSIGN_TLS_INSECURE=1`.
 
 ### Manual Deployment Steps
 
@@ -234,7 +246,7 @@ Players are stored in `.brightsign/players.json` (gitignored):
 
 ### Enable Inspector
 
-Already enabled in dev-mode autorun.brs:
+Already enabled in dev-mode autorun.brs. The production bootstrap does not expose the inspector:
 
 ```brightscript
 inspector_server: { port: 2999 }
@@ -259,7 +271,7 @@ inspector_server: { port: 2999 }
 
 ⚠️ **Development only** - Inspector increases memory usage  
 ⚠️ **Security risk** - Exposes player internals over network  
-⚠️ **Disable for production** - Remove `inspector_server` from production autorun.brs
+⚠️ **Production default** - `apps/player-minimal/public/autorun.brs` keeps inspector access disabled
 
 ---
 
@@ -292,12 +304,13 @@ inspector_server: { port: 2999 }
 
 **Symptoms**: `self-signed certificate` errors
 
-**Expected behavior**: BrightSign uses self-signed HTTPS certificates for local communication. This is normal and safe on a local network.
+**Expected behavior**: BrightSign often uses self-signed HTTPS certificates for local communication.
 
 **Solutions**:
 
-- Scripts already use `-k` / `rejectUnauthorized: false`
-- If manually testing: use `curl -k` or browser "proceed anyway"
+- Prefer trusting the player certificate locally and using `BRIGHTSIGN_CA_CERT=/path/to/player-ca.pem pnpm deploy:dev-mode`
+- For a one-off local development exception, use `BRIGHTSIGN_TLS_INSECURE=1 pnpm deploy:dev-mode`
+- If manually testing in a terminal, use `curl --cacert /path/to/player-ca.pem ...` when possible
 
 ### Dev Server Not Accessible From Player
 
@@ -346,6 +359,8 @@ pnpm deploy:player            # Full build + package + deploy
 pnpm deploy:local             # Deploy existing package
 pnpm deploy:quick             # Fast deploy (no package)
 ```
+
+For `deploy:quick`, TLS verification is on by default. Use `BRIGHTSIGN_CA_CERT` for trusted local certs or `BRIGHTSIGN_TLS_INSECURE=1` only as a one-off development exception.
 
 ### Player Management Commands
 
