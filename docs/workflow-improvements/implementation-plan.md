@@ -1083,7 +1083,3 @@ pnpm verify
 **Last Updated:** 2026-03-08
 **Next Review:** After demo recording completion
 **Current Branch:** `docs/phase-0-demo-prep`
-
-```
-
-```
