@@ -32,9 +32,28 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 
 ### What this is not
 
-- Not a CMS
-- Not official BrightSign documentation
-- Not a replacement for BSN.cloud
+**The Sign Age is not a content management system (CMS).** It's a development framework for building custom signage applications with React.
+
+#### When to use established CMS platforms instead
+
+**If you don't need to write custom React code**, we recommend using proven BrightSign-compatible CMS platforms. In our opinion, these are excellent choices:
+
+- **[Embed Signage](https://www.embedsignage.com/)** - Known for 4K support, touch interactivity, and comprehensive analytics
+- **[Korbyt](https://www.gokorbyt.com/partners/hardware-partners/brightsign/)** - Best for enterprise-level, dynamic, and scalable content management
+- **[Navori](https://navori.com/app/brightsign/)** - Ideal for large, high-performance digital signage networks
+- **[Signagelive](https://support.signagelive.com/en/articles/137967-signagelive-for-brightsign-overview)** - Highly compatible cloud-based CMS for diverse applications
+
+**Use The Sign Age when:**
+
+- You need complete control over UI/UX with custom React components
+- You're building bespoke signage experiences that don't fit CMS templates
+- You want to integrate signage with custom data sources and business logic
+- You're a web developer comfortable with React, TypeScript, and version control
+
+#### Additional disclaimers
+
+- Not official BrightSign documentation (refer to [BrightSign docs](https://docs.brightsign.biz/) for platform details)
+- Not a replacement for [BSN.cloud](https://www.brightsign.biz/resources/bsn-cloud/) (BrightSign's official cloud platform)
 
 ## 🚀 Live Demo
 
