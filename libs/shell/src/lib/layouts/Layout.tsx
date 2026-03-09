@@ -56,18 +56,17 @@ export function Layout({ children, sidebarData }: LayoutProps) {
         <AppSidebar />
         <SidebarInset className="flex min-h-svh w-full flex-col bg-transparent">
           <header
-            className="sticky top-0 z-20 mx-3 mt-3 flex h-16 shrink-0 items-center justify-between gap-2 overflow-hidden rounded-2xl border border-white/10 bg-background/70 px-4 shadow-[0_20px_50px_hsl(220_45%_3%_/_0.35)] backdrop-blur-xl transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 w-auto max-w-none"
+            className="chrome-shell sticky top-0 z-20 mx-3 mt-3 flex h-16 shrink-0 items-center justify-between gap-2 px-4 transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 w-auto max-w-none"
             data-testid="header"
             role="banner"
           >
-            <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-cyan)/0.7)] to-transparent" />
             <div
               className="flex min-w-0 items-center gap-2"
               data-testid="breadcrumb-container"
               aria-label="Breadcrumb navigation"
             >
               <SidebarTrigger
-                className="-ml-1 rounded-full border border-white/10 bg-background/35 backdrop-blur-md"
+                className="chrome-pill -ml-1 rounded-full"
                 data-testid="sidebar-trigger"
                 aria-label="Toggle sidebar"
               />
@@ -102,7 +101,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
               </Breadcrumb>
             </div>
             <div
-              className="flex items-center gap-2 rounded-full border border-white/10 bg-background/20 p-1"
+              className="chrome-pill flex items-center gap-2 rounded-full p-1"
               data-testid="theme-toggle-container"
             >
               <Button
