@@ -5,61 +5,29 @@
 ' running on BrightSign players with OS 9.x
 
 Sub Main()
-    ' Get device info for dynamic configuration
+    ' Create message port before widget construction
+    msgPort = CreateObject("roMessagePort")
+
+    ' Get dynamic device information for sizing and diagnostics
     deviceInfo = CreateObject("roDeviceInfo")
-    videoMode = deviceInfo.GetVideoMode()
     modelName = deviceInfo.GetModel()
-    
+    videoMode = CreateObject("roVideoMode")
+    rect = CreateObject("roRectangle", 0, 0, videoMode.GetResX(), videoMode.GetResY())
+
     print "BrightSign Model: "; modelName
-    print "Video Mode: "; videoMode
-    
-    ' Create HTML widget for displaying web content
-    htmlWidget = CreateObject("roHtmlWidget")
-    
-    ' Set widget rectangle based on video mode
-    ' Common resolutions: 1920x1080 (1080p), 3840x2160 (4K)
-    rect = CreateObject("roRectangle", 0, 0, 1920, 1080)
-    
-    ' Adjust for 4K if needed
-    if videoMode = "3840x2160x60p" or videoMode = "3840x2160x30p" then
-        rect = CreateObject("roRectangle", 0, 0, 3840, 2160)
-    end if
-    
-    htmlWidget.SetRectangle(rect)
-    
-    ' Enable JavaScript (required for React apps)
-    htmlWidget.EnableJavaScript(true)
-    
-    ' Enable local storage for persistent data
-    htmlWidget.SetLocalStorageEnabled(true)
-    
-    ' Set large storage quota (100MB)
-    htmlWidget.SetLocalStorageQuota(100 * 1024 * 1024)
-    
-    ' Enable IndexedDB for offline capabilities
-    htmlWidget.SetIndexedDBEnabled(true)
-    
-    ' Disable scrollbars (fullscreen signage)
-    htmlWidget.SetScrollbarsEnabled(false)
-    
-    ' Remote debugging is disabled by default for production security.
-    ' For development, change the argument to true to allow Chrome DevTools connection on port 8008.
-    htmlWidget.EnableRemoteDebugger(false)
-    
-    ' Set user agent (optional, for analytics)
-    userAgent = "BrightSign/" + modelName + " Chrome/98"
-    htmlWidget.SetUserAgent(userAgent)
-    
-    ' Set URL to local index.html on SD card
-    ' The /sd: prefix is the mounted SD card root
-    htmlWidget.SetUrl("file:///sd:/index.html")
-    
+    print "Video Mode: "; deviceInfo.GetVideoMode()
+
+    ' Configure the HTML widget using the OS 9.x constructor pattern
+    config = {
+        port: msgPort
+        url: "file:///sd:/index.html"
+        javascript_enabled: true
+    }
+
+    htmlWidget = CreateObject("roHtmlWidget", rect, config)
+
     ' Show the widget (makes it visible on screen)
     htmlWidget.Show()
-    
-    ' Create message port for event handling
-    msgPort = CreateObject("roMessagePort")
-    htmlWidget.SetPort(msgPort)
     
     ' Event loop - keeps the app running
     print "HTML Widget started, entering event loop..."

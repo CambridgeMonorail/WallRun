@@ -47,6 +47,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', theme === 'light');
+    document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   return (

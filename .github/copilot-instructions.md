@@ -147,13 +147,13 @@ Work is complete when:
 - ✅ **Changes are reviewable** - Small diffs, clear commit messages
 - ✅ **Evidence provided** - PR includes verification output
 
-See [AGENTS.md](../AGENTS.md) for detailed workflow guidance and [Verification Skill](skills/verification/workflows/detailed-guide.md) for PR evidence requirements.
+See [AGENTS.md](../AGENTS.md) for detailed workflow guidance and [Verification Skill](../skills/verification/workflows/detailed-guide.md) for PR evidence requirements.
 
 ## Agent Expectations
 
 When working as an agent in this repository:
 
-1. **Plan before acting** - For non-trivial changes, create a plan in `docs/plans/` (see [Planning Skill](skills/planning/workflows/detailed-guide.md))
+1. **Plan before acting** - For non-trivial changes, create a plan in `docs/plans/` (see [Planning Skill](../skills/planning/workflows/detailed-guide.md))
 2. **Work incrementally** - Make small, reviewable commits with conventional commit messages
 3. **Verify your work** - Run `pnpm verify` before declaring completion
 4. **Document decisions** - Explain trade-offs and reasoning in commit messages and PRs
@@ -161,9 +161,9 @@ When working as an agent in this repository:
 
 **Workflow Skills:** See [skills/](../skills/) for structured workflow guides. `.github/skills/` is the generated Copilot mirror.
 
-- [Planning](skills/planning/workflows/detailed-guide.md) - When and how to create implementation plans
-- [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) - Root cause analysis process
-- [Code Review Ready](skills/code-review-ready/workflows/detailed-guide.md) - Making changes reviewable
-- [Verification](skills/verification/workflows/detailed-guide.md) - PR evidence expectations
+- [Planning](../skills/planning/workflows/detailed-guide.md) - When and how to create implementation plans
+- [Systematic Debugging](../skills/systematic-debugging/workflows/detailed-guide.md) - Root cause analysis process
+- [Code Review Ready](../skills/code-review-ready/workflows/detailed-guide.md) - Making changes reviewable
+- [Verification](../skills/verification/workflows/detailed-guide.md) - PR evidence expectations
 
 For complete behavioral guidance, see [AGENTS.md](../AGENTS.md) at the repository root.
