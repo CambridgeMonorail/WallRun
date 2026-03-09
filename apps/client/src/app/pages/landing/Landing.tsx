@@ -28,7 +28,7 @@ export const LandingPage: FC = () => {
 
   return (
     <div
-      className="min-h-screen min-w-screen flex flex-col items-center justify-center bg-primary text-foreground"
+      className="min-h-screen w-full flex flex-col items-center justify-center bg-primary text-foreground"
       data-testid="landing-page"
     >
       <div className="bg-primary" data-testid="hero-section-container">
