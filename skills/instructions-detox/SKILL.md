@@ -1,40 +1,72 @@
-# Instructions Detox Skill
+---
+name: instructions-detox
+description: Audit Copilot instruction files for bloat, overlap, stale rules, and weak applyTo scope. Use when reviewing or refactoring .instructions.md, AGENTS.md, copilot-instructions.md, or SKILL.md files, and produce a prioritized markdown report with findings, line references, and recommended deletions or rewrites.
+---
 
-Systematic review process for Copilot instruction files to eliminate bloat, identify rot, and maintain predictable AI behavior.
+# Instructions Detox Skill
 
 ## Purpose
 
-This skill provides repeatable workflows for:
+Use this skill to review instruction files as behavioral guard rails rather than passive documentation. The goal is to remove context waste, detect drift, and keep instruction loading predictable.
 
-- Auditing instruction file health
-- Identifying context waste
-- Maintaining lean, behavioral-focused instructions
-- Preventing instruction drift over time
+## When to Use
 
-## When to use
+Use this skill when:
 
-- Quarterly maintenance reviews
-- After major framework updates
-- When Copilot suggestions feel "off"
-- Before adding new instruction files
-- After multiple instruction additions without deletions
+- instruction files have accumulated over time without cleanup
+- Copilot suggestions feel inconsistent, noisy, or off-pattern
+- you are adding new instruction files and want to avoid overlap
+- you are reviewing `applyTo` scope quality
+- you need a maintenance audit before merging instruction changes
 
-## Core principle
+## Do Not Use When
+
+Do not use this skill when:
+
+- debugging application runtime issues
+- implementing product features
+- fixing lint, test, or build failures unrelated to instruction quality
+
+## Core Principle
 
 **Context is scarce. Every instruction must earn its place.**
 
-Instructions are guard rails, not a knowledge base. If it doesn't change Copilot's behavior measurably, delete it.
+If an instruction does not measurably change agent behavior, tighten it or delete it.
 
-## Success metrics
+## Review Procedure
+
+1. Inventory the instruction surface and identify canonical versus generated files.
+2. Check whether each file has a narrow purpose and a clear trigger or scope.
+3. Remove or flag duplicated guidance, philosophical prose, and stale rules.
+4. Audit `applyTo` patterns for over-broad matching and gaps.
+5. Compare the instructions with the current codebase and workflow reality.
+6. Produce a prioritized remediation report with the highest-risk problems first.
+
+## Success Metrics
 
 A healthy instruction ecosystem has:
 
-- All files under 150 lines
-- Clear, narrow `applyTo` scopes
-- Constraint-based rules (not philosophical)
-- No repeated patterns with different wording
-- Negative constraints to prevent unwanted behavior
-- Alignment with actual codebase patterns
+- small, focused files with one job each
+- clear and narrow `applyTo` scopes
+- constraints that prevent bad behavior
+- minimal duplication across files
+- wording that matches actual repository workflows
+
+## Output Contract
+
+Produce a markdown report containing:
+
+1. severity-ordered findings
+2. exact file references and line references
+3. quoted examples of bloated, stale, or duplicated guidance
+4. recommended rewrites, deletions, or scope changes
+5. a short action plan for remediation
+
+## Constraints
+
+- Prefer deletion or consolidation over adding more instruction text.
+- Do not rewrite generated mirrors before updating the canonical source.
+- Do not propose vague style advice without evidence from the files.
 
 ## Workflows
 
@@ -43,16 +75,6 @@ A healthy instruction ecosystem has:
 3. [Rot Detection](workflows/03-rot-detection.md) - Verify instructions match reality
 4. [Scope Audit](workflows/04-scope-audit.md) - Review applyTo patterns
 5. [Maintenance Review](workflows/05-maintenance-review.md) - Quarterly check-in
-
-## Output
-
-All workflows produce a structured markdown report with:
-
-- Evidence-based findings
-- Specific line numbers and quotes
-- Before/after recommendations
-- Prioritized action items
-- Success metrics
 
 ## Agent
 

@@ -1,6 +1,6 @@
 ---
 name: chrome-devtools-webapp-debug
-description: Repeatable workflows for debugging web application issues using Chrome DevTools MCP.
+description: Investigate broken pages, failing user journeys, console errors, network failures, and frontend performance regressions using Chrome DevTools MCP. Use when a web app problem must be diagnosed with browser evidence, and produce a findings report with screenshots, console or network evidence, root-cause hypothesis, fix proposal, and verification steps.
 ---
 
 # Chrome DevTools WebApp Debugging Skill
