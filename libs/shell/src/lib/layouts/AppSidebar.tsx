@@ -37,7 +37,7 @@ export const AppSidebar = (
       {...props}
     >
       <SidebarHeader>
-        <div className="demo-panel-soft m-2 flex items-center gap-3 px-3 py-4">
+        <div className="demo-panel-soft m-2 flex items-start gap-3 px-3 py-4">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] text-primary-foreground shadow-[0_0_24px_hsl(var(--glow-cyan)/0.16)]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,12 +53,12 @@ export const AppSidebar = (
               <path d="M7 15h10" />
             </svg>
           </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="display-type truncate text-xs text-foreground">
+          <div className="grid min-w-0 flex-1 text-left leading-snug">
+            <span className="block text-sm font-medium uppercase tracking-[0.08em] text-foreground">
               The Sign Age
             </span>
-            <span className="truncate text-xs uppercase tracking-[0.22em] text-muted-foreground">
-              Digital Signage Toolkit
+            <span className="block text-[0.7rem] text-muted-foreground">
+              Digital signage toolkit
             </span>
           </div>
         </div>
