@@ -445,10 +445,18 @@ See `docs/plans/` for plan templates and storage.
 
 These skills provide reusable workflows for packaging/deploying to BrightSign players and debugging common issues.
 
+- **Runtime guidance:** `skills/brightsign-runtime/`
 - **Local deploy:** `skills/brightsign-deploy-local/`
 - **Packaging:** `skills/brightsign-package/`
 - **Debugging:** `skills/brightsign-debug/`
 - **Fleet deploy:** `skills/brightsign-fleet-deploy/`
+
+### Signage Design Skills
+
+These skills capture the wall-screen rules that typical web development tools do not encode well by default.
+
+- **Layout system:** `skills/signage-layout-system/`
+- **Animation system:** `skills/signage-animation-system/`
 
 Practical entry points (non-skill commands that the skills may ask you to run):
 

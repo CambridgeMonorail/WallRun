@@ -107,6 +107,16 @@ The root `skills/` directory is the source of truth for portable skills. Run `pn
 - `verification`: Validation requirements.
 - `chrome-devtools-webapp-debug`: Browser debugging via MCP.
 - `shadcnui-component-review`: UI component auditing.
+- `signage-layout-system`: Wall-screen layout rules for large displays.
+- `signage-animation-system`: Public-display motion rules and loop-safe pacing.
+- `brightsign-runtime`: BrightSign-specific runtime and implementation constraints.
+- `brightsign-deploy-local`: Local BrightSign deployment workflow.
+- `brightsign-package`: BrightSign packaging workflow.
+- `brightsign-debug`: Player diagnostics and debugging workflow.
+- `brightsign-fleet-deploy`: Fleet release workflow.
+- `player-discovery-scan`: LAN discovery workflow for BrightSign players.
+- `player-discovery-probe`: Single-host BrightSign diagnostics.
+- `player-discovery-export`: Export discovery results for sharing and support.
 
 **How to use**: Just ask Copilot! "Create a plan for...", "Debug this...", "Review this component...".
 
@@ -124,5 +134,7 @@ The open skills CLI supports GitHub shorthand, full GitHub URLs, repo paths, loc
 - `instructions-detox`: Extract/organize instruction context.
 - `shadcnui-component-reviewer`: shadcn/ui component quality review.
 - `custom-agent-foundry`: Agent authoring assistant.
+
+The `signage-architect` agent is a good orchestration layer for the signage-specific skills above when a task needs layout, motion, and BrightSign runtime guidance together.
 
 **How to use**: Mention `@agent-name` in Chat.

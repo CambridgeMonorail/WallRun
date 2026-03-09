@@ -215,12 +215,19 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 
 - **`scripts/package-player.mjs`** - Package React apps for BrightSign OS 9.x with autorun.brs bootstrap
 - **`scripts/deploy-local.mjs`** - Deploy to local BrightSign players primarily via LDWS over HTTPS (port 443, digest auth), with HTTP used only when a non-443 port is explicitly configured
-- **`skills/brightsign-*` / `skills/player-discovery-*`** - Portable `SKILL.md` workflows for BrightSign and LAN discovery, mirrored to `.github/skills/` for Copilot ([docs](./docs/tooling/github-copilot-tooling.md#skills))
+- **`skills/brightsign-*` / `skills/player-discovery-*`** - Portable `SKILL.md` workflows for BrightSign packaging, deployment, runtime guidance, and LAN discovery, mirrored to `.github/skills/` for Copilot ([docs](./docs/tooling/github-copilot-tooling.md#skills))
+
+### Signage Skills
+
+- **`skills/signage-layout-system/`** - Full-screen wall-display layout rules for distance readability and glanceable hierarchy
+- **`skills/signage-animation-system/`** - Public-display motion guidance for calm, loop-safe, always-on animation
+- **`skills/brightsign-runtime/`** - BrightSign runtime constraints for static deployment, media behavior, and embedded stability
 
 ### AI Accelerators
 
 - **`.github/agents/signage-architect.agent.md`** - GitHub Copilot agent for building premium signage screens
   - Emphasizes distance readability, deterministic layouts, and 24/7 operation
+   - Can pair with the signage and BrightSign runtime skills for wall-screen layout, motion, and playback constraints
   - Enforces signage design principles (not website patterns)
   - Integrates with BrightSign platform documentation via MCP
   - [View agent definition](./.github/agents/signage-architect.agent.md)
