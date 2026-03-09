@@ -33,12 +33,12 @@ export const AppSidebar = (
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r border-white/10 bg-[linear-gradient(180deg,hsl(var(--background)/0.98),hsl(var(--primary)/0.92))]"
+      className="chrome-sidebar"
       {...props}
     >
       <SidebarHeader>
         <div className="demo-panel-soft m-2 flex items-start gap-3 px-3 py-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] text-primary-foreground shadow-[0_0_24px_hsl(var(--glow-cyan)/0.16)]">
+          <div className="chrome-badge flex h-11 w-11 items-center justify-center rounded-2xl text-primary-foreground">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

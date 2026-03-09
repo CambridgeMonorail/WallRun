@@ -176,6 +176,25 @@
     backdrop-filter: blur(12px);
   }
 
+  .chrome-sidebar {
+    border-right: 1px solid hsl(var(--border) / 0.65);
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background) / 0.98),
+      hsl(var(--primary) / 0.92)
+    );
+  }
+
+  .chrome-badge {
+    border: 1px solid hsl(var(--border) / 0.6);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(var(--secondary))
+    );
+    box-shadow: 0 0 24px hsl(var(--foreground) / 0.08);
+  }
+
   .code-panel {
     border: 1px solid hsl(var(--border) / 0.7);
     border-radius: 1rem;
