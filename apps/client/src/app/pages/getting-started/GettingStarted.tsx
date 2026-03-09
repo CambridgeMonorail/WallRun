@@ -26,12 +26,11 @@ export const GettingStartedPage: FC = () => {
   };
 
   return (
-    <div className="font-sans bg-background p-8 min-h-screen max-w-4xl mx-auto">
-      {/* DOCS HEADER */}
-      <div className="mb-10 space-y-4">
+    <div className="doc-shell max-w-5xl font-sans">
+      <div className="demo-panel demo-grid mb-10 space-y-4 px-8 py-8 sm:px-10">
         <p className="text-sm text-muted-foreground">Documentation</p>
 
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
+        <h1 className="display-type text-3xl text-foreground md:text-4xl">
           Getting Started
         </h1>
 
@@ -41,8 +40,7 @@ export const GettingStartedPage: FC = () => {
         </p>
       </div>
 
-      {/* WHAT YOU'LL NEED */}
-      <section className="mb-12 bg-card p-6 rounded border border-border">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
           <Terminal className="w-6 h-6" />
           What You'll Need
@@ -55,7 +53,6 @@ export const GettingStartedPage: FC = () => {
         </ul>
       </section>
 
-      {/* INSTALLATION */}
       <section className="mb-12">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
           <Code className="w-6 h-6" />
@@ -79,7 +76,7 @@ export const GettingStartedPage: FC = () => {
             <h3 className="text-lg font-medium text-foreground mb-2">
               Option 1: Using shadcn CLI (Recommended)
             </h3>
-            <div className="bg-muted text-foreground p-4 rounded font-mono text-sm overflow-x-auto">
+            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
                 {`# Add a single component from The Sign Age registry
 npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list
@@ -99,7 +96,7 @@ npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/re
             <h3 className="text-lg font-medium text-foreground mb-2">
               Option 2: Clone and Reference Locally
             </h3>
-            <div className="bg-muted text-foreground p-4 rounded font-mono text-sm overflow-x-auto">
+            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
                 {`# Clone the repository
 git clone https://github.com/CambridgeMonorail/TheSignAge.git
@@ -134,8 +131,7 @@ pnpm build:shadcnui-signage`}
         </div>
       </section>
 
-      {/* AI-ASSISTED DEVELOPMENT */}
-      <section className="mb-12 bg-card p-6 rounded border border-border">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
           <Code className="w-6 h-6" />
           AI-Assisted Development
@@ -179,7 +175,7 @@ pnpm build:shadcnui-signage`}
             <p className="text-sm text-muted-foreground mb-2">
               In VS Code with GitHub Copilot Chat, invoke the agent:
             </p>
-            <div className="bg-muted text-foreground p-3 rounded font-mono text-xs">
+            <div className="code-panel p-3 font-mono text-xs text-foreground">
               <pre>
                 {`@signage-architect build a restaurant menu board
 showing 3 categories with 4 items each, 1080p landscape`}
@@ -202,8 +198,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
         </div>
       </section>
 
-      {/* QUICK START */}
-      <section className="mb-12">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
           <Layers className="w-6 h-6" />
           Quick Start: Build Your First Signage Screen
@@ -214,7 +209,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
             <h3 className="text-lg font-medium text-foreground mb-2">
               Step 1: Import Signage Components
             </h3>
-            <div className="bg-muted text-foreground p-4 rounded font-mono text-sm overflow-x-auto">
+            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
                 {`import {
   SignageContainer,
@@ -229,7 +224,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
             <h3 className="text-lg font-medium text-foreground mb-2">
               Step 2: Create a Dashboard Screen
             </h3>
-            <div className="bg-muted text-foreground p-4 rounded font-mono text-sm overflow-x-auto">
+            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
                 {`export const MyDashboard = () => {
   return (
@@ -275,15 +270,12 @@ showing 3 categories with 4 items each, 1080p landscape`}
         </div>
       </section>
 
-
-
-      {/* KEY CONCEPTS */}
       <section className="mb-12">
         <h2 className="text-2xl font-medium text-foreground mb-4">
           Key Signage Concepts
         </h2>
         <div className="space-y-4">
-          <div className="bg-card p-4 rounded border border-border">
+          <div className="section-shell p-4">
             <h3 className="font-medium text-foreground mb-2">
               Fixed-Aspect Layouts
             </h3>
@@ -292,7 +284,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
               No responsive breakpoints—design for the exact screen size.
             </p>
           </div>
-          <div className="bg-card p-4 rounded border border-border">
+          <div className="section-shell p-4">
             <h3 className="font-medium text-foreground mb-2">
               Distance-Readable Typography
             </h3>
@@ -301,7 +293,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
               (24px minimum), high contrast, clear hierarchy.
             </p>
           </div>
-          <div className="bg-card p-4 rounded border border-border">
+          <div className="section-shell p-4">
             <h3 className="font-medium text-foreground mb-2">
               Deterministic Rendering
             </h3>
@@ -314,8 +306,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
         </div>
       </section>
 
-      {/* NEXT STEPS */}
-      <section className="mb-12 bg-card p-6 rounded border border-border">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
           <BookOpen className="w-6 h-6" />
           Next Steps
@@ -363,8 +354,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="text-center">
+      <section className="demo-panel-soft text-center px-6 py-8">
         <div className="space-x-4">
           <Button onClick={() => navigate('/library')} variant="secondary">
             Browse Components

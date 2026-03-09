@@ -40,33 +40,33 @@ interface LayoutProps {
  * - **Vertical Scanning**: Aligns with natural vertical scanning patterns, allowing users to view multiple navigation links simultaneously, enhancing speed and efficiency.
  */
 export function Layout({ children, sidebarData }: LayoutProps) {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const isLargeScreen = window.innerWidth > 1024;
 
   useEffect(() => {
-    // Placeholder for theme switching logic
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle('light', theme === 'light');
   }, [theme]);
 
   return (
     <SidebarProvider defaultOpen={isLargeScreen}>
       <SidebarDataProvider data={sidebarData}>
         <AppSidebar />
-        <SidebarInset className="flex flex-col h-full w-full">
+        <SidebarInset className="flex min-h-svh w-full flex-col bg-transparent">
           <header
-            className="flex h-16 shrink-0 items-center justify-between gap-2 border-b px-4 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 w-full max-w-full"
+            className="sticky top-0 z-20 mx-3 mt-3 flex h-16 shrink-0 items-center justify-between gap-2 overflow-hidden rounded-2xl border border-white/10 bg-background/70 px-4 shadow-[0_20px_50px_hsl(220_45%_3%_/_0.35)] backdrop-blur-xl transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 w-auto max-w-none"
             data-testid="header"
             role="banner"
           >
+            <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-cyan)/0.7)] to-transparent" />
             <div
-              className="flex items-center gap-2"
+              className="flex min-w-0 items-center gap-2"
               data-testid="breadcrumb-container"
               aria-label="Breadcrumb navigation"
             >
               <SidebarTrigger
-                className="-ml-1"
+                className="-ml-1 rounded-full border border-white/10 bg-background/35 backdrop-blur-md"
                 data-testid="sidebar-trigger"
                 aria-label="Toggle sidebar"
               />
@@ -101,13 +101,14 @@ export function Layout({ children, sidebarData }: LayoutProps) {
               </Breadcrumb>
             </div>
             <div
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 rounded-full border border-white/10 bg-background/20 p-1"
               data-testid="theme-toggle-container"
             >
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                className="rounded-full"
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                 data-testid="theme-toggle-button"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -120,6 +121,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 asChild
+                className="rounded-full"
                 title="View GitHub repository"
                 data-testid="github-link"
                 aria-label="View GitHub repository"
@@ -137,6 +139,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 asChild
+                className="rounded-full"
                 title="Open Storybook"
                 aria-label="Open Storybook"
                 data-testid="storybook-link"
@@ -152,7 +155,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
               </Button>
             </div>
           </header>
-          <div className="flex-1 overflow-y-auto w-full" role="main">
+          <div className="relative flex-1 overflow-y-auto w-full" role="main">
             {children}
           </div>
         </SidebarInset>

@@ -33,21 +33,27 @@ const StepsSection: FC<StepsSectionProps> = ({
 }) => {
   return (
     <section
-      className="text-center py-20 bg-background text-foreground w-full"
+      className="w-full px-4 py-8 text-foreground sm:px-6 lg:px-8"
       data-testid={dataTestId}
     >
-      <h2 className="text-4xl font-bold mb-6">{title}</h2>
-      <div className="text-left max-w-4xl mx-auto px-4 sm:px-0 pb-12">
-        <Steps className="" steps={steps} />
+      <div className="demo-panel mx-auto max-w-6xl px-6 py-10 text-center sm:px-8 sm:py-12">
+        <div className="mx-auto max-w-3xl">
+          <p className="display-kicker mb-4 text-xs sm:text-sm">Activation Sequence</p>
+          <h2 className="display-type mb-6 text-3xl text-foreground sm:text-4xl">{title}</h2>
+        </div>
+        <div className="section-shell mx-auto mb-8 max-w-5xl px-4 py-6 text-left sm:px-6">
+          <Steps steps={steps} />
+        </div>
+        <Button
+          size="lg"
+          onClick={buttonAction}
+          variant="default"
+          className="rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]"
+          aria-label={buttonText}
+        >
+          {buttonText}
+        </Button>
       </div>
-      <Button
-        size="lg"
-        onClick={buttonAction}
-        variant="default"
-        aria-label={buttonText}
-      >
-        {buttonText}
-      </Button>
     </section>
   );
 };

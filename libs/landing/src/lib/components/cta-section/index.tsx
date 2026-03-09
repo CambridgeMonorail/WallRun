@@ -36,37 +36,43 @@ export const CTASection: FC<CTASectionProps> = ({
   buttonAction,
   variant = 'light',
 }) => {
-  // Shared base classes
-  const baseSectionClasses = 'text-center py-20 w-full';
-  const baseHeadingClasses = 'text-4xl font-bold mb-6';
-  const baseParagraphClasses = 'text-xl mb-8 max-w-2xl mx-auto';
+  const baseSectionClasses = 'w-full px-4 py-8 sm:px-6 lg:px-8';
+  const baseHeadingClasses = 'display-type text-3xl text-foreground sm:text-4xl';
+  const baseParagraphClasses = 'mx-auto max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg';
 
-  // Default styles for the 'light' variant
-  let sectionClasses = 'bg-background text-foreground';
-  let headingClasses = `${baseHeadingClasses} text-foreground`;
-  let paragraphClasses = `${baseParagraphClasses} text-muted-foreground`;
+  let sectionClasses = 'bg-transparent text-foreground';
+  let headingClasses = baseHeadingClasses;
+  let paragraphClasses = baseParagraphClasses;
   let buttonVariant: 'default' | 'secondary' = 'default';
+  let buttonClassName =
+    'rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]';
 
-  // Override styles if using the 'dark' variant
   if (variant === 'dark') {
-    sectionClasses = 'bg-primary text-primary-foreground';
-    headingClasses = `${baseHeadingClasses} text-primary-foreground`;
-    paragraphClasses = `${baseParagraphClasses} text-primary-foreground opacity-90`;
+    sectionClasses = 'bg-transparent text-foreground';
+    headingClasses = `${baseHeadingClasses} text-foreground`;
+    paragraphClasses = `${baseParagraphClasses} text-muted-foreground`;
     buttonVariant = 'secondary';
+    buttonClassName =
+      'rounded-full border border-white/12 bg-background/10 px-6 py-6 text-sm uppercase tracking-[0.18em] text-foreground backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[hsl(var(--glow-violet)/0.32)] hover:bg-white/6';
   }
 
   return (
     <section className={`${baseSectionClasses} ${sectionClasses}`}>
-      <h2 className={headingClasses}>{title}</h2>
-      <p className={paragraphClasses}>{description}</p>
-      <Button
-        size="lg"
-        onClick={buttonAction}
-        variant={buttonVariant}
-        aria-label={buttonText}
-      >
-        {buttonText}
-      </Button>
+      <div className="demo-panel demo-grid mx-auto max-w-6xl px-6 py-10 text-center sm:px-10 sm:py-14">
+        <div className="mx-auto max-w-3xl">
+          <h2 className={`${headingClasses} mb-6`}>{title}</h2>
+          <p className={`${paragraphClasses} mb-8`}>{description}</p>
+        </div>
+        <Button
+          size="lg"
+          onClick={buttonAction}
+          variant={buttonVariant}
+          className={buttonClassName}
+          aria-label={buttonText}
+        >
+          {buttonText}
+        </Button>
+      </div>
     </section>
   );
 };

@@ -31,10 +31,14 @@ export const AppSidebar = (
   const sidebarData = useSidebarData();
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar
+      collapsible="icon"
+      className="border-r border-white/10 bg-[linear-gradient(180deg,hsl(var(--background)/0.98),hsl(var(--primary)/0.92))]"
+      {...props}
+    >
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+        <div className="demo-panel-soft m-2 flex items-center gap-3 px-3 py-4">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] text-primary-foreground shadow-[0_0_24px_hsl(var(--glow-cyan)/0.16)]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -50,8 +54,10 @@ export const AppSidebar = (
             </svg>
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">The Sign Age</span>
-            <span className="truncate text-xs text-muted-foreground">
+            <span className="display-type truncate text-xs text-foreground">
+              The Sign Age
+            </span>
+            <span className="truncate text-xs uppercase tracking-[0.22em] text-muted-foreground">
               Digital Signage Toolkit
             </span>
           </div>

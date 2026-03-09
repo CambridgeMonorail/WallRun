@@ -42,12 +42,11 @@ export function LibraryPage() {
   };
 
   return (
-    <div className="font-sans bg-background p-8 min-h-screen">
-      {/* DOCS HEADER */}
-      <div className="mb-10 space-y-4">
+    <div className="doc-shell font-sans">
+      <div className="demo-panel demo-grid mb-10 space-y-4 px-8 py-8 sm:px-10">
         <p className="text-sm text-muted-foreground">Documentation</p>
 
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
+        <h1 className="display-type text-3xl text-foreground md:text-4xl">
           Component Libraries
         </h1>
 
@@ -70,10 +69,9 @@ export function LibraryPage() {
         </p>
       </div>
 
-      {/* LIBRARY OVERVIEW */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div className="flex flex-col justify-center">
-          <h2 className="text-2xl font-medium text-foreground mb-4">
+          <h2 className="display-type mb-4 text-2xl text-foreground">
             Component Inventory
           </h2>
           <div className="mb-6">
@@ -111,18 +109,17 @@ export function LibraryPage() {
 
         {/* SCREENSHOT / IMAGE SECTION */}
         <div className="flex justify-center items-center">
-          <div className="relative w-[350px] h-[200px] bg-muted flex items-center justify-center rounded border border-border overflow-hidden">
+          <div className="demo-panel relative flex h-[200px] w-[350px] items-center justify-center overflow-hidden p-4">
             <img src={imageSrc} alt="Component library preview" />
-            <span className="absolute inset-0 bg-background/80 text-foreground flex items-center justify-center text-sm">
+            <span className="absolute inset-0 flex items-center justify-center bg-background/78 text-sm uppercase tracking-[0.2em] text-foreground backdrop-blur-sm">
               Component Preview
             </span>
           </div>
         </div>
       </section>
 
-      {/* REGISTRY SUPPORT */}
-      <section className="bg-card p-6 rounded border border-border mb-12">
-        <h2 className="text-2xl font-medium text-foreground mb-4">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
+        <h2 className="display-type mb-4 text-2xl text-foreground">
           shadcn Registry Support: What It Means
         </h2>
         <div className="space-y-4 text-muted-foreground">
@@ -142,7 +139,7 @@ export function LibraryPage() {
             a versioned dependency. You own the code. You can modify it. No
             lock-in.
           </p>
-          <div className="bg-muted text-foreground p-4 rounded font-mono text-sm">
+          <div className="code-panel p-4 font-mono text-sm text-foreground">
             <pre>
               {`# Install a single signage component
 npx shadcn@latest add \\
@@ -194,9 +191,8 @@ npx shadcn@latest add \\
         </div>
       </section>
 
-      {/* STORYBOOK LINK */}
-      <section className="bg-card p-6 rounded border border-border mb-12">
-        <h2 className="text-2xl font-medium text-foreground mb-4">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
+        <h2 className="display-type mb-4 text-2xl text-foreground">
           Interactive Documentation
         </h2>
         <p className="mb-4 text-muted-foreground">
@@ -209,9 +205,8 @@ npx shadcn@latest add \\
         </Button>
       </section>
 
-      {/* ADDITIONAL RESOURCES */}
-      <section className="bg-card p-6 rounded border border-border mb-12">
-        <h2 className="text-2xl font-medium text-foreground mb-4">
+      <section className="demo-panel mb-12 p-6 sm:p-8">
+        <h2 className="display-type mb-4 text-2xl text-foreground">
           Additional Resources
         </h2>
         <p className="mb-4 text-muted-foreground">
@@ -242,9 +237,8 @@ npx shadcn@latest add \\
         </ul>
       </section>
 
-      {/* CTA / FOOTER */}
-      <section className="text-center">
-        <h3 className="text-xl font-medium text-foreground mb-2">
+      <section className="demo-panel-soft text-center px-6 py-8">
+        <h3 className="display-type mb-2 text-xl text-foreground">
           Explore Components in Detail
         </h3>
         <p className="mb-4 text-muted-foreground">

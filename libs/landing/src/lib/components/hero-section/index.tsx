@@ -67,75 +67,76 @@ export const HeroSection: FC<HeroSectionProps> = ({
   }, [image]);
 
   // Default styles for the 'light' variant
-  let sectionClasses = 'bg-background text-primary';
-  let titleClasses = 'text-primary';
-  let subtitleClasses = 'text-foreground opacity-90';
-  let descriptionClasses = 'text-foreground opacity-90';
-  let highlightIconClasses = 'text-accent';
+  let sectionClasses = 'bg-transparent text-foreground';
+  let titleClasses = 'text-foreground';
+  let subtitleClasses = 'display-kicker text-[hsl(var(--glow-amber))]';
+  let descriptionClasses = 'text-base leading-7 text-muted-foreground sm:text-lg';
+  let highlightIconClasses = 'text-[hsl(var(--glow-cyan))]';
   let buttonPrimaryVariant: 'default' | 'secondary' = 'default';
   let buttonSecondaryVariant: 'default' | 'secondary' | 'outline' = 'outline';
 
-  // Override styles if using the 'dark' variant
   if (variant === 'dark') {
-    sectionClasses = 'bg-primary text-primary-foreground';
-    titleClasses = 'text-primary-foreground';
-    subtitleClasses = 'text-primary-foreground opacity-90';
-    descriptionClasses = 'text-primary-foreground opacity-90';
-    highlightIconClasses = 'text-primary-foreground';
+    sectionClasses = 'bg-transparent text-foreground';
+    titleClasses = 'text-foreground';
+    subtitleClasses = 'display-kicker text-[hsl(var(--glow-cyan))]';
+    descriptionClasses = 'text-base leading-7 text-muted-foreground sm:text-lg';
+    highlightIconClasses = 'text-[hsl(var(--glow-cyan))]';
     buttonPrimaryVariant = 'default';
     buttonSecondaryVariant = 'secondary';
   }
 
   return (
     <section
-      className={`${sectionClasses} w-full ${className}`}
+      className={`${sectionClasses} relative isolate w-full overflow-hidden ${className}`}
       data-testid="hero-section"
     >
-      <div className="w-full container mx-auto flex flex-col-reverse md:flex-col lg:flex-row items-center gap-8 py-12 lg:py-24 px-4 sm:px-6 md:px-12">
-        {/* Content Section */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-cyan)/0.75)] to-transparent" />
+      <div className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-[radial-gradient(circle,hsl(var(--glow-violet)/0.18),transparent_72%)] blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-12 h-80 w-80 rounded-full bg-[radial-gradient(circle,hsl(var(--glow-cyan)/0.15),transparent_68%)] blur-3xl" />
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-10 px-4 py-20 sm:px-6 md:px-10 lg:flex-row lg:gap-16 lg:py-28">
         <div
-          className={`flex-1 space-y-6 text-center lg:text-left ${
+          className={`relative z-10 flex-1 space-y-6 text-center lg:text-left ${
             isReversed ? 'order-last lg:order-first' : ''
           }`}
           data-testid="hero-content"
         >
+          {subtitle && (
+            <p className={`${subtitleClasses} text-xs sm:text-sm`} data-testid="hero-subtitle">
+              {subtitle}
+            </p>
+          )}
           <h1
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight ${titleClasses}`}
+            className={`display-type text-4xl leading-[1.08] sm:text-5xl lg:text-6xl ${titleClasses}`}
             data-testid="hero-title"
           >
             {title}
           </h1>
-          {subtitle && (
-            <h2
-              className={`text-xl sm:text-2xl font-medium leading-snug ${subtitleClasses}`}
-              data-testid="hero-subtitle"
-            >
-              {subtitle}
-            </h2>
-          )}
           {description && (
             <p
-              className={`text-base sm:text-lg leading-relaxed ${descriptionClasses}`}
+              className={`mx-auto max-w-2xl lg:mx-0 ${descriptionClasses}`}
               data-testid="hero-description"
             >
               {description}
             </p>
           )}
           {highlights && (
-            <ul className="space-y-2" data-testid="hero-highlights">
+            <ul
+              className="grid gap-3 text-left text-sm text-muted-foreground sm:grid-cols-3"
+              data-testid="hero-highlights"
+            >
               {highlights.map((highlight, index) => (
                 <li
                   key={index}
-                  className="flex items-center gap-2 justify-center lg:justify-start"
+                  className="demo-panel-soft flex items-center gap-3 rounded-2xl px-4 py-3"
                   data-testid={`hero-highlight-${index}`}
                 >
-                  <CheckIcon className={`h-5 w-5 ${highlightIconClasses}`} />
-                  {highlight}
+                  <CheckIcon className={`h-5 w-5 shrink-0 ${highlightIconClasses}`} />
+                  <span>{highlight}</span>
                 </li>
               ))}
             </ul>
           )}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
             {ctaPrimary && (
               <Button
                 onClick={
@@ -143,6 +144,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                   (() => (window.location.href = ctaPrimary.link || '#'))
                 }
                 variant={buttonPrimaryVariant}
+                className="min-w-40 rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]"
                 data-testid="cta-primary"
               >
                 {ctaPrimary.text}
@@ -155,6 +157,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                   (() => (window.location.href = ctaSecondary.link || '#'))
                 }
                 variant={buttonSecondaryVariant}
+                className="min-w-40 rounded-full border border-white/12 bg-background/10 px-6 py-6 text-sm uppercase tracking-[0.18em] text-foreground backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[hsl(var(--glow-violet)/0.32)] hover:bg-white/6"
                 data-testid="cta-secondary"
               >
                 {ctaSecondary.text}
@@ -163,19 +166,22 @@ export const HeroSection: FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Media Section */}
         <div
-          className="flex-1 flex justify-center items-center"
+          className="relative z-10 flex flex-1 items-center justify-center"
           data-testid="hero-media"
         >
-          <img
-            src={image}
-            alt={imageAlt}
-            className="w-3/4 sm:w-2/3 lg:w-full max-w-md rounded-lg object-cover"
-            width="448"
-            height="448"
-            data-testid="hero-image"
-          />
+          <div className="demo-panel demo-grid w-full max-w-xl p-6 sm:p-8">
+            <div className="rounded-[1.35rem] border border-white/10 bg-[linear-gradient(145deg,hsl(var(--background)/0.92),hsl(var(--card)/0.74))] p-6 shadow-[inset_0_1px_0_hsl(var(--foreground)/0.08),0_0_48px_hsl(var(--glow-violet)/0.12)]">
+              <img
+                src={image}
+                alt={imageAlt}
+                className="mx-auto w-3/4 max-w-md object-contain drop-shadow-[0_0_40px_hsl(var(--glow-cyan)/0.18)]"
+                width="448"
+                height="448"
+                data-testid="hero-image"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
