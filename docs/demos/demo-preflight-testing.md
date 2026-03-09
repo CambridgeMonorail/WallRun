@@ -112,7 +112,7 @@ When do I need to create an implementation plan?
 
 **If fails:**
 
-- Verify `.github/skills/planning/workflows/detailed-guide.md` exists
+- Verify `skills/planning/workflows/detailed-guide.md` exists
 - Check that AGENTS.md references the skill
 
 ---
@@ -137,7 +137,7 @@ What do I need to include in a pull request?
 
 **If fails:**
 
-- Verify `.github/skills/verification/workflows/detailed-guide.md` exists
+- Verify `skills/verification/workflows/detailed-guide.md` exists
 - Check that AGENTS.md references verification workflow
 
 ---
@@ -160,7 +160,7 @@ How should I debug an issue in this repository?
 
 **Pass criteria:** At least 3 of 5 items mentioned
 
-**If fails:** Verify `.github/skills/systematic-debugging/workflows/detailed-guide.md` exists
+**If fails:** Verify `skills/systematic-debugging/workflows/detailed-guide.md` exists
 
 ---
 
@@ -182,7 +182,7 @@ How can I make my changes easy to review?
 
 **Pass criteria:** At least 3 of 5 items mentioned
 
-**If fails:** Verify `.github/skills/code-review-ready/workflows/detailed-guide.md` exists
+**If fails:** Verify `skills/code-review-ready/workflows/detailed-guide.md` exists
 
 ---
 
@@ -328,10 +328,11 @@ Run this to check all critical files exist:
 # Check critical files
 test -f .github/copilot-instructions.md && echo "✅ Global instructions" || echo "❌ Missing global instructions"
 test -f AGENTS.md && echo "✅ AGENTS.md" || echo "❌ Missing AGENTS.md"
-test -f .github/skills/planning/workflows/detailed-guide.md && echo "✅ Planning skill" || echo "❌ Missing planning skill"
-test -f .github/skills/verification/workflows/detailed-guide.md && echo "✅ Verification skill" || echo "❌ Missing verification skill"
-test -f .github/skills/systematic-debugging/workflows/detailed-guide.md && echo "✅ Debugging skill" || echo "❌ Missing debugging skill"
-test -f .github/skills/code-review-ready/workflows/detailed-guide.md && echo "✅ Review skill" || echo "❌ Missing review skill"
+test -f skills/planning/workflows/detailed-guide.md && echo "✅ Planning skill" || echo "❌ Missing planning skill"
+test -f skills/verification/workflows/detailed-guide.md && echo "✅ Verification skill" || echo "❌ Missing verification skill"
+test -f skills/systematic-debugging/workflows/detailed-guide.md && echo "✅ Debugging skill" || echo "❌ Missing debugging skill"
+test -f skills/code-review-ready/workflows/detailed-guide.md && echo "✅ Review skill" || echo "❌ Missing review skill"
+pnpm run check:skills && echo "✅ Skills mirror in sync" || echo "❌ Skills mirror out of sync"
 test -f docs/plans/README.md && echo "✅ Plans directory" || echo "❌ Missing plans README"
 grep -q '"verify":' package.json && echo "✅ Verify script" || echo "❌ Missing verify script"
 ```

@@ -51,7 +51,7 @@
 
    ```bash
    # Ensure all files exist
-   ls -1 .github/copilot-instructions.md AGENTS.md .github/skills/*/workflows/detailed-guide.md
+   ls -1 .github/copilot-instructions.md AGENTS.md skills/*/workflows/detailed-guide.md
    ```
 
 2. **Complete manual Copilot testing**
@@ -207,7 +207,7 @@ Before you start recording:
 1. **Run validation** (5 min):
 
    ```bash
-   ls -1 .github/copilot-instructions.md AGENTS.md .github/skills/*/workflows/detailed-guide.md
+   ls -1 .github/copilot-instructions.md AGENTS.md skills/*/workflows/detailed-guide.md
    pnpm verify
    ```
 
@@ -238,7 +238,7 @@ Before you start recording:
 
 - [AGENTS.md](../../AGENTS.md) - Root workflow guidance
 - [.github/copilot-instructions.md](../../.github/copilot-instructions.md) - Global conventions
-- [.github/skills/](../../.github/skills/) - Workflow skills directory
+- [skills/](../../skills/) - Canonical workflow skills directory
 - [docs/plans/](../plans/) - Implementation plans directory
 - [docs/ai/target-operating-model.md](../ai/target-operating-model.md) - Three-layer architecture
 

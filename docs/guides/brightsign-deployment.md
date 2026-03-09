@@ -520,10 +520,10 @@ pnpm nx serve player-minimal
 
 The repository includes specialized skills for AI-assisted development:
 
-- **`.github/skills/brightsign-package/`** - Packaging React apps for BrightSign
-- **`.github/skills/brightsign-deploy-local/`** - Local player deployment
-- **`.github/skills/brightsign-fleet-deploy/`** - Fleet-wide releases (planned)
-- **`.github/skills/brightsign-debug/`** - Debugging player issues
+- **`skills/brightsign-package/`** - Packaging React apps for BrightSign
+- **`skills/brightsign-deploy-local/`** - Local player deployment
+- **`skills/brightsign-fleet-deploy/`** - Fleet-wide releases (planned)
+- **`skills/brightsign-debug/`** - Debugging player issues
 
 ### Guides
 

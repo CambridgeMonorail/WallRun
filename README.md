@@ -188,7 +188,7 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 
 - **`scripts/package-player.mjs`** - Package React apps for BrightSign OS 9.x with autorun.brs bootstrap
 - **`scripts/deploy-local.mjs`** - Deploy to local BrightSign players primarily via LDWS over HTTPS (port 443, digest auth), with HTTP used only when a non-443 port is explicitly configured
-- **`.github/skills/brightsign-*` / `.github/skills/player-discovery-*`** - Copilot Agent Skills for BrightSign workflows and LAN discovery ([docs](./docs/tooling/github-copilot-tooling.md#skills))
+- **`skills/brightsign-*` / `skills/player-discovery-*`** - Portable `SKILL.md` workflows for BrightSign and LAN discovery, mirrored to `.github/skills/` for Copilot ([docs](./docs/tooling/github-copilot-tooling.md#skills))
 
 ### AI Accelerators
 

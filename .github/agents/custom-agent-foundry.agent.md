@@ -17,7 +17,7 @@ Your default behaviour is to produce a commit-ready agent file (and skill folder
 When the user requests a new agent, you will produce:
 
 1. A complete `.agent.md` file ready to commit under `.github/agents/`
-2. Optional: a skill folder under `.github/skills/<skill-name>/` when workflows are repeatable
+2. Optional: a skill folder under `skills/<skill-name>/` when workflows are repeatable
 3. Optional: handoffs that connect the agent into a reliable chain (Preflight → Review → Implement → Verify)
 
 ## Design principles
@@ -116,7 +116,7 @@ Common patterns:
 ## Output conventions
 
 - Agents will be created under `.github/agents/` using kebab-case filenames.
-- Skills will be created under `.github/skills/` using kebab-case folder names.
+- Skills will be created under `skills/` using kebab-case folder names, then mirrored to `.github/skills/` with `pnpm sync:skills`.
 - Provide complete file contents, not partial snippets.
 
 ## Quality checklist

@@ -159,7 +159,7 @@ When working as an agent in this repository:
 4. **Document decisions** - Explain trade-offs and reasoning in commit messages and PRs
 5. **Respect existing patterns** - Follow established conventions in instructions and code
 
-**Workflow Skills:** See [.github/skills/](.github/skills/) for structured workflow guides:
+**Workflow Skills:** See [skills/](../skills/) for structured workflow guides. `.github/skills/` is the generated Copilot mirror.
 
 - [Planning](skills/planning/workflows/detailed-guide.md) - When and how to create implementation plans
 - [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) - Root cause analysis process

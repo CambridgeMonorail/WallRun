@@ -63,6 +63,9 @@ jobs:
       # - name: Install Playwright Browsers
       #   run: pnpm exec playwright install
 
+      - name: Verify skills mirror
+        run: pnpm run check:skills
+
       # Run Nx Affected Tasks
       - name: Run Nx Affected Tasks
         run: |

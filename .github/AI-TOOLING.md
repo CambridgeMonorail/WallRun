@@ -71,9 +71,14 @@ See [AI-Assisted Feature Workflow](../docs/getting-started/ai-assisted-feature-w
 ├── copilot-instructions.md       # Root instructions (Constitution)
 ├── agents/                       # Specialized Persona Agents
 ├── prompts/                      # Task Automation Prompts
-├── skills/                       # Auto-loading Workflow Skills
+├── skills/                       # Generated mirror for GitHub Copilot
 └── instructions/                 # Path-scoped coding rules
+
+skills/                           # Canonical portable SKILL.md source
+└── <skill-name>/
 ```
+
+The root `skills/` directory is the source of truth for portable skills. Run `pnpm sync:skills` to regenerate `.github/skills/` for GitHub Copilot-native discovery, and `pnpm check:skills` to verify the mirror is up to date.
 
 ## Tooling Inventory
 
@@ -104,6 +109,10 @@ See [AI-Assisted Feature Workflow](../docs/getting-started/ai-assisted-feature-w
 - `shadcnui-component-review`: UI component auditing.
 
 **How to use**: Just ask Copilot! "Create a plan for...", "Debug this...", "Review this component...".
+
+**Portable install**: `npx skills add CambridgeMonorail/TheSignAge`
+
+The open skills CLI supports GitHub shorthand, full GitHub URLs, repo paths, local paths, project installs, and global installs. In this repo, `skills/` is canonical and `.github/skills/` is a generated mirror.
 
 ### Agents (`/agents`)
 

@@ -50,21 +50,6 @@ These tools work together to ensure code quality, consistency, and adherence to 
 │   ├── requirements-planner.agent.md
 │   ├── signage-architect.agent.md
 │   └── ui-designer.agent.md
-├── skills/                           # Reusable skill workflows
-│   ├── shadcnui-component-review/
-│   ├── planning/
-│   ├── systematic-debugging/
-│   ├── code-review-ready/
-│   ├── verification/
-│   ├── chrome-devtools-webapp-debug/
-│   ├── brightsign-deploy-local/
-│   ├── brightsign-package/
-│   ├── brightsign-debug/
-│   ├── brightsign-fleet-deploy/
-│   ├── player-discovery-scan/
-│   ├── player-discovery-probe/
-│   ├── player-discovery-export/
-│   └── instructions-detox/
 ├── chatmodes/                        # Custom chat modes
 │   └── enhanced-gpt4.1.chatmode.md
 ├── prompts/                          # Reusable prompts
@@ -78,6 +63,26 @@ These tools work together to ensure code quality, consistency, and adherence to 
     ├── ci.yml
     └── deploy.yml
 ```
+
+```text
+skills/                               # Canonical portable SKILL.md source
+├── shadcnui-component-review/
+├── planning/
+├── systematic-debugging/
+├── code-review-ready/
+├── verification/
+├── chrome-devtools-webapp-debug/
+├── brightsign-deploy-local/
+├── brightsign-package/
+├── brightsign-debug/
+├── brightsign-fleet-deploy/
+├── player-discovery-scan/
+├── player-discovery-probe/
+├── player-discovery-export/
+└── instructions-detox/
+```
+
+`skills/` is the source of truth. Run `pnpm sync:skills` to regenerate `.github/skills/` for GitHub Copilot-native discovery, and `pnpm check:skills` to verify the mirror before pushing.
 
 ---
 
@@ -287,13 +292,21 @@ Skills are reusable workflows and procedures that can be referenced by agents or
 
 **How to discover what's available**:
 
-- Browse `.github/skills/` and open any `SKILL.md`
+- Browse `skills/` for the canonical source or `.github/skills/` for the Copilot mirror
 - In Copilot Chat, describe the outcome you want (Copilot can select a matching skill based on the `argument-hint`)
 - Prefer explicit inputs for anything network-related (CIDR ranges, IPs, output paths)
 
+**Portable install**:
+
+```bash
+npx skills add CambridgeMonorail/TheSignAge
+```
+
+The open skills CLI supports GitHub shorthand, full repo URLs, direct repo paths, and local paths. It is not an Nx feature and it is not limited to Claude-specific install locations.
+
 ### shadcnui Component Review Skill
 
-**Location**: `.github/skills/shadcnui-component-review/`
+**Location**: `skills/shadcnui-component-review/` (mirrored to `.github/skills/shadcnui-component-review/`)
 
 **Purpose**: End-to-end component review workflow for shadcn/ui components
 
@@ -357,7 +370,7 @@ Skills are reusable workflows and procedures that can be referenced by agents or
 
 ### Chrome DevTools WebApp Debug Skill
 
-**Location**: `.github/skills/chrome-devtools-webapp-debug/`
+**Location**: `skills/chrome-devtools-webapp-debug/` (mirrored to `.github/skills/chrome-devtools-webapp-debug/`)
 
 **Purpose**: Structured debugging workflow using Chrome DevTools MCP
 
@@ -372,7 +385,7 @@ Skills are reusable workflows and procedures that can be referenced by agents or
 
 ### Planning Skill
 
-**Location**: `.github/skills/planning/`
+**Location**: `skills/planning/` (mirrored to `.github/skills/planning/`)
 
 **Purpose**: Standardized workflow for planning non-trivial changes
 
@@ -388,7 +401,7 @@ See `docs/plans/` for plan templates and storage.
 
 ### Systematic Debugging Skill
 
-**Location**: `.github/skills/systematic-debugging/`
+**Location**: `skills/systematic-debugging/` (mirrored to `.github/skills/systematic-debugging/`)
 
 **Purpose**: Rigorous 6-step process for root cause analysis
 
@@ -402,7 +415,7 @@ See `docs/plans/` for plan templates and storage.
 
 ### Code Review Ready Skill
 
-**Location**: `.github/skills/code-review-ready/`
+**Location**: `skills/code-review-ready/` (mirrored to `.github/skills/code-review-ready/`)
 
 **Purpose**: Ensures changes are packaged effectively for review
 
@@ -416,7 +429,7 @@ See `docs/plans/` for plan templates and storage.
 
 ### Verification Skill
 
-**Location**: `.github/skills/verification/`
+**Location**: `skills/verification/` (mirrored to `.github/skills/verification/`)
 
 **Purpose**: Standardized verification steps ("Definition of Done")
 
@@ -432,10 +445,10 @@ See `docs/plans/` for plan templates and storage.
 
 These skills provide reusable workflows for packaging/deploying to BrightSign players and debugging common issues.
 
-- **Local deploy:** `.github/skills/brightsign-deploy-local/`
-- **Packaging:** `.github/skills/brightsign-package/`
-- **Debugging:** `.github/skills/brightsign-debug/`
-- **Fleet deploy:** `.github/skills/brightsign-fleet-deploy/`
+- **Local deploy:** `skills/brightsign-deploy-local/`
+- **Packaging:** `skills/brightsign-package/`
+- **Debugging:** `skills/brightsign-debug/`
+- **Fleet deploy:** `skills/brightsign-fleet-deploy/`
 
 Practical entry points (non-skill commands that the skills may ask you to run):
 
@@ -450,9 +463,9 @@ pnpm deploy:player
 
 These skills are designed for on-site development and diagnostics.
 
-- **Scan:** `.github/skills/player-discovery-scan/` (requires an explicit CIDR)
-- **Probe:** `.github/skills/player-discovery-probe/` (requires an explicit IP)
-- **Export:** `.github/skills/player-discovery-export/` (reads `dist/players.json`, writes `dist/players.csv`)
+- **Scan:** `skills/player-discovery-scan/` (requires an explicit CIDR)
+- **Probe:** `skills/player-discovery-probe/` (requires an explicit IP)
+- **Export:** `skills/player-discovery-export/` (reads `dist/players.json`, writes `dist/players.csv`)
 
 Related pnpm commands:
 
@@ -717,7 +730,7 @@ Notes:
 ## Need Help?
 
 - Review agent-specific documentation in `.github/agents/`
-- Check skill workflows in `.github/skills/`
+- Check skill workflows in `skills/` or the mirrored `.github/skills/`
 - Ask in GitHub Discussions
 - Open an issue with the `copilot-tooling` label
 

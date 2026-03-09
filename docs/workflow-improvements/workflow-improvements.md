@@ -144,7 +144,7 @@ The agent knows **how to write the code correctly** (from instructions), but doe
 
 ✅ **Skills Framework (Partially Implemented)**
 
-- `.github/skills/` - Reusable skill categories including:
+- `skills/` - Canonical reusable skill categories, mirrored to `.github/skills/`, including:
   - `planning/` - Structured implementation planning
   - `systematic-debugging/` - Root cause analysis workflow
   - `code-review-ready/` - PR readiness workflow
@@ -155,7 +155,7 @@ The agent knows **how to write the code correctly** (from instructions), but doe
 
 ✅ **Validation Scripts (Partially Implemented)**
 
-- `pnpm precommit` - Runs lint, type-check, build, and test on all projects
+- `pnpm precommit` - Verifies the generated skills mirror, then runs lint, type-check, build, and test on all projects
 - Nx affected commands for scoped validation
 - Individual project-level scripts (lint, test, type-check, build)
 
@@ -403,7 +403,7 @@ Use these sources as the baseline for what Copilot supports today:
    - ✅ `.github/instructions/*.instructions.md` - Yes, 4 files with proper `applyTo` scoping
    - ❌ `AGENTS.md` files - No root or nested AGENTS.md files yet
    - ✅ `.github/agents/` - 8 custom agent definitions already exist
-   - ✅ `.github/skills/` - 2 skill categories already defined
+  - ✅ `skills/` - canonical skill categories already defined
 
 3. **Current scripts inventory:**
    - **Build:** `build:affected`, `build:all`, `build:client`, `build:shadcnui`, `build:storybook`
@@ -574,7 +574,7 @@ Also ensure the repo documents how to enable instruction files in VS Code:
 
 ### ⚠️ Partially Met
 
-- ⚠️ We have skill docs (2 categories in `.github/skills/`) but need the 4 specific workflow skills.
+- ⚠️ We have canonical skill docs in `skills/` mirrored to `.github/skills/`, but still needed the 4 specific workflow skills at that point in the rollout.
 - ⚠️ We have validation scripts (`precommit`) but need dedicated `pnpm verify`.
 
 ### ❌ Not Yet Met

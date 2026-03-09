@@ -14,7 +14,7 @@ Plans serve several critical purposes:
 
 ## When to Create a Plan
 
-See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) for detailed guidance.
+See [Planning Skill](../../skills/planning/workflows/detailed-guide.md) for detailed guidance.
 
 **Required:**
 
@@ -252,7 +252,7 @@ Plans are referenced in [AGENTS.md](../../AGENTS.md) as part of the workflow:
 
 ## Examples
 
-See [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md) for detailed examples of:
+See [Planning Skill](../../skills/planning/workflows/detailed-guide.md) for detailed examples of:
 
 - Feature addition plan
 - Refactoring plan
