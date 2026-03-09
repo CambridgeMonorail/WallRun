@@ -68,7 +68,7 @@ pnpm install
 pnpm serve:client
 ```
 
-Open http://localhost:4200/TheSignAge/ to explore signage examples, component library, and documentation.
+Open [http://localhost:4200/TheSignAge/](http://localhost:4200/TheSignAge/) to explore signage examples, component library, and documentation.
 
 **Or browse online:**
 
@@ -123,6 +123,33 @@ Components are in `libs/shadcnui-signage/` with:
 
 - [Creating Signage Content](./docs/guides/creating-signage-content.md) - Design principles + examples
 - [Component Library README](./libs/shadcnui-signage/README.md) - API reference
+- [Registry README](./apps/client/public/registry/README.md) - shadcn registry setup + install commands
+
+#### Install Signage Components
+
+The signage components are distributed through a shadcn-compatible registry. Install them into your own project with:
+
+```bash
+npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list
+```
+
+You can also browse the available components and installation options in:
+
+- [apps/client/public/registry/README.md](./apps/client/public/registry/README.md)
+- [apps/client/src/app/pages/getting-started/GettingStarted.tsx](./apps/client/src/app/pages/getting-started/GettingStarted.tsx)
+
+#### Install Portable Skills
+
+The repository also exposes portable `SKILL.md` workflows that can be installed with the open skills CLI:
+
+```bash
+npx skills add CambridgeMonorail/TheSignAge
+```
+
+For the available skills and the Copilot mirror model, see:
+
+- [skills/README.md](./skills/README.md)
+- [docs/tooling/github-copilot-tooling.md](./docs/tooling/github-copilot-tooling.md#skills)
 
 ---
 
@@ -203,6 +230,8 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 The demo site (`apps/client`) showcases digital signage concepts in action:
 
 - **Landing Page**: Explains the project purpose and approach
+- **Getting Started**: Shows component installation paths and first-use guidance
+- **Component Library**: Explains what each library is, what registry support means, and where to browse reference docs
 - **Gallery**: Directory of full-screen signage examples
 - **Signage Examples**: Welcome screens, restaurant menus, office directories, KPI dashboards, announcements boards, and event schedules
 

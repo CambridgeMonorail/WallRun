@@ -31,7 +31,13 @@ export function NavMain({
     }[];
   }[];
 }) {
-  const { state, toggleSidebar } = useSidebar();
+  const { isMobile, setOpenMobile, state, toggleSidebar } = useSidebar();
+
+  const handleNavigation = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <SidebarGroup>
@@ -64,7 +70,7 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <Link to={`${subItem.url}`}>
+                        <Link to={subItem.url} onClick={handleNavigation}>
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>
