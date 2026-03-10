@@ -21,6 +21,13 @@ Recommended pace:
 - Spend 15-25 seconds on each major stop
 - Pause briefly on each page title before speaking
 - Do not scroll deeply unless needed to reveal a specific section
+- Treat the GitHub section as a quick proof point, not a reading segment
+
+Before starting the walkthrough:
+
+- Set the browser window size manually for the recording format you want
+- Make sure the entire browser window is fully visible in the recording frame
+- Confirm the framing is correct before any automated navigation begins
 
 ---
 
@@ -48,7 +55,7 @@ Recommended pace:
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/>
 
-> "This is The Sign Age: digital signage treated as software rather than a slide deck or CMS. The core idea is deterministic screen composition, registry-native components, and delivery workflows that are designed for always-on displays."
+> "This is The Sign Age: digital signage treated as software rather than a slide deck or CMS. The focus is deterministic screen composition, installable components, and delivery workflows for always-on displays."
 
 **On-screen focus:**
 
@@ -62,7 +69,7 @@ Recommended pace:
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
 
-> "From here, the getting started guide makes the adoption path concrete. You can install individual components from the registry, clone the repo directly, or copy the source into an existing React project."
+> "The getting started guide makes the adoption path concrete. You can install components from the registry, clone the repo, or copy the source into an existing React project."
 
 **On-screen focus:**
 
@@ -70,7 +77,7 @@ Recommended pace:
 - "Option 1: Using shadcn CLI"
 - "Quick Start: Build Your First Signage Screen"
 
-> "This is meant for developers who want real components, real code, and predictable deployment, not a closed authoring environment."
+> "This is for developers who want real components, real code, and predictable deployment, not a closed authoring environment."
 
 ### 3. Component Library Overview
 
@@ -82,12 +89,13 @@ Recommended pace:
 
 - Briefly pause on the component index
 - Move promptly to representative pages
+- Do not linger here; use this as a transition into the two detail pages
 
 ### 4. Metric Card Primitive
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
 
-> "This metric card is a good primitive example. It is built for large-format readability, strong contrast, and fast scanning from a distance, which is very different from a typical dashboard card built for a laptop screen."
+> "This metric card is a good primitive example. It is built for large-format readability, strong contrast, and fast scanning from distance, which is very different from a typical laptop dashboard card."
 
 **On-screen focus:**
 
@@ -95,7 +103,7 @@ Recommended pace:
 - Example values like "$1.2M" and "8,432"
 - "Signage Considerations"
 
-> "You can also see the install path, usage snippet, and source link on the same page, so the docs stay close to the code."
+> "The page also keeps installation, usage, and source close to the example, so the docs stay close to the code."
 
 ### 5. Split Screen Layout
 
@@ -115,7 +123,7 @@ Recommended pace:
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
 
-> "The gallery turns those building blocks into complete screen examples. This is where you can quickly understand the range of use cases the project is targeting."
+> "The gallery turns those building blocks into complete screen examples. This is the fastest way to understand the range of use cases the project is targeting."
 
 **On-screen focus:**
 
@@ -130,7 +138,7 @@ Recommended pace:
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
 
-> "First, the welcome screen. This is the simplest expression of the design system: large type, clean hierarchy, and a clear focal message that reads instantly on a wall-mounted display."
+> "First, the welcome screen. This is the simplest expression of the design system: large type, clean hierarchy, and a focal message that reads instantly on a wall-mounted display."
 
 **On-screen focus:**
 
@@ -156,7 +164,7 @@ Recommended pace:
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/announcements>
 
-> "And this announcements screen shows the communication side of signage: multiple content cards, clear categorization, and enough structure that people can parse updates at a glance."
+> "This announcements screen shows the communication side of signage: multiple content cards, clear categorization, and enough structure for people to parse updates at a glance."
 
 **On-screen focus:**
 
@@ -171,13 +179,14 @@ Recommended pace:
 
 **Show:** <https://github.com/CambridgeMonorail/TheSignAge?tab=readme-ov-file#the-sign-age>
 
-> "To close the loop, here is the repository behind the public demo. The project is open, the documentation is in the repo, and the same structure you saw in the site is backed by actual libraries and tooling."
+> "To close the loop, here is the repository behind the public demo. The project is open, the documentation is in the repo, and the same structure you saw on the site is backed by actual libraries and tooling."
 
 **On-screen focus:**
 
 - Repository name
 - README tab
 - Top-level folders including apps, libs, docs, and skills
+- Keep this stop brief
 
 ### 11. Skills Directory
 
@@ -232,6 +241,14 @@ Use this if you want a tighter read:
 - Prefer direct URL navigation over long scrolling during the recording
 - If GitHub loads slowly, pause on the repository root first, then the `skills` directory, then `libs/shadcnui-signage`
 - If you need to shorten the demo, cut the component index stop and move directly from getting started to the two component detail pages
+- If you need to shorten the demo further, compress the GitHub portion to three quick proof points: repo root, `skills`, and `libs/shadcnui-signage`
+
+## Dry Run Notes
+
+- The public site pages are the strongest part of the sequence and hold up well on camera
+- The GitHub stops work best as quick proof points rather than reading segments
+- The component index page should be a short transition, not a long stop
+- The closing return to the welcome screen is strong and should stay
 
 ---
 
@@ -250,3 +267,4 @@ Use this if you want a tighter read:
 - 3:55 Skills Directory
 - 4:20 Signage Components Source
 - 4:45 Closing
+
