@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@tsa/shadcnui';
 import {
   BookOpen,
@@ -12,8 +12,6 @@ import {
 } from 'lucide-react';
 
 export const Home: FC = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="doc-shell font-sans">
       <div className="demo-panel demo-grid mb-12 px-8 py-10 text-center md:px-12 md:py-12">
@@ -28,28 +26,28 @@ export const Home: FC = () => {
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Button
-            onClick={() => navigate('/getting-started')}
+            asChild
             variant="default"
             size="lg"
             className="rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)]"
           >
-            Get Started
+            <Link to="/getting-started">Get Started</Link>
           </Button>
           <Button
-            onClick={() => navigate('/gallery')}
+            asChild
             variant="secondary"
             size="lg"
             className="rounded-full border border-white/12 bg-background/10 px-6 text-sm uppercase tracking-[0.18em] backdrop-blur-md"
           >
-            View Examples
+            <Link to="/gallery">View Examples</Link>
           </Button>
         </div>
       </div>
 
       <section className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <button
+        <Link
+          to="/getting-started"
           className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
-          onClick={() => navigate('/getting-started')}
           aria-label="Navigate to Getting Started guide"
         >
           <div className="flex items-start gap-4">
@@ -68,11 +66,11 @@ export const Home: FC = () => {
               </span>
             </div>
           </div>
-        </button>
+        </Link>
 
-        <button
+        <Link
+          to="/library"
           className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-violet)/0.3)]"
-          onClick={() => navigate('/library')}
           aria-label="Navigate to Component Library"
         >
           <div className="flex items-start gap-4">
@@ -91,11 +89,11 @@ export const Home: FC = () => {
               </span>
             </div>
           </div>
-        </button>
+        </Link>
 
-        <button
+        <Link
+          to="/gallery"
           className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-amber)/0.3)]"
-          onClick={() => navigate('/gallery')}
           aria-label="Navigate to Signage Gallery"
         >
           <div className="flex items-start gap-4">
@@ -114,11 +112,11 @@ export const Home: FC = () => {
               </span>
             </div>
           </div>
-        </button>
+        </Link>
 
-        <button
+        <Link
+          to="/color-palette"
           className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
-          onClick={() => navigate('/color-palette')}
           aria-label="Navigate to Theme and Colors page"
         >
           <div className="flex items-start gap-4">
@@ -137,7 +135,7 @@ export const Home: FC = () => {
               </span>
             </div>
           </div>
-        </button>
+        </Link>
       </section>
 
       <section className="demo-panel mb-12 p-8">
@@ -167,11 +165,8 @@ export const Home: FC = () => {
             <div className="code-panel mb-3 overflow-x-auto p-3 font-mono text-xs text-foreground">
               <pre>{`npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list`}</pre>
             </div>
-            <Button
-              onClick={() => navigate('/getting-started')}
-              variant="secondary"
-            >
-              See install options
+            <Button asChild variant="secondary">
+              <Link to="/getting-started">See install options</Link>
             </Button>
           </div>
 
@@ -189,11 +184,8 @@ export const Home: FC = () => {
               </div>
             </div>
             <div className="flex gap-3 flex-wrap">
-              <Button
-                onClick={() => navigate('/library')}
-                variant="secondary"
-              >
-                Open library guide
+              <Button asChild variant="secondary">
+                <Link to="/library">Open library guide</Link>
               </Button>
               <Button variant="ghost" asChild>
                 <a

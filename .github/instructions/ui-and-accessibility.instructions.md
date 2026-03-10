@@ -44,13 +44,16 @@ For the **demo website chrome** (navigation, shell, layouts), follow the design 
 
 ### Typography
 
-- **Font**: Inter (400, 500 weights only)
-- **Avoid bold** unless layout genuinely lacks presence
+- **Font system**: Inter is the default UI/body face; Michroma is allowed as a sparing display accent for branded labels, shell markers, and select high-signal headings
+- **Weights**: 400 and 500 are the default rhythm; 600 is allowed as the emphasis ceiling when medium is too soft
+- **Avoid weights above 600** unless layout genuinely lacks presence
 - **Scale**: Restrained and modern SaaS
   - Page title: `text-3xl md:text-4xl font-medium tracking-tight`
   - Section heading: `text-xl md:text-2xl font-medium`
   - Body: `text-base leading-relaxed`
   - Small text: `text-sm text-muted-foreground`
+
+Michroma should stay out of long-form copy, settings forms, dense tables, and routine navigation text.
 
 ### Component Style
 
