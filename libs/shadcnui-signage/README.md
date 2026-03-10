@@ -1,27 +1,56 @@
 # shadcnui-signage
 
-React component library for building digital signage screens, optimized for fixed-aspect displays, distance readability, and predictable layouts.
+`@tsa/shadcnui-signage` is The Sign Age's React component library for building full-screen digital signage.
 
-## Purpose
+It is designed for screens that live on walls, run for long periods, and need to communicate clearly from a distance. Instead of treating signage like a responsive web page, this library treats it like a fixed-format software surface with explicit layout, readable typography, predictable timing, and operational safeguards.
 
-This library provides components specifically designed for digital signage use cases where:
+## What It Is
 
-- Screens have fixed aspect ratios and known resolutions
-- Typography needs to be optimized for distance viewing
-- Layouts must render predictably without responsive breakpoints
-- Content is simple and deterministic
+This library provides signage-specific primitives, layouts, blocks, and behaviours for building screens such as:
 
-Think PowerPoint slides with occasional interactivity, not complex web applications.
+- welcome screens
+- menu boards
+- announcements boards
+- schedules and event listings
+- KPI dashboards
+- lobby and status displays
 
-## Relationship to Other Libraries
+The goal is not to reproduce a generic app component library. The goal is to give you the building blocks for software that is meant to be seen across a room on known hardware.
 
-This library builds on top of The Sign Age's existing component foundations:
+## What It Gives You
 
-- **`@tsa/shadcnui`** - Base shadcn/ui components (Button, Card, etc.)
-- **`@tsa/shadcnui-blocks`** - Generic UI compositions
-- **`common-tailwind`** - Shared Tailwind v4 configuration and theme tokens
+Out of the box, this library gives you:
 
-`shadcnui-signage` extends these libraries with signage-specific primitives, layouts, blocks, and behaviors.
+- fixed-aspect layout primitives for known screen sizes
+- distance-readable content patterns for headings, metrics, and structured information
+- full-screen composition blocks for common signage use cases
+- timing and rotation behaviours for always-on displays
+- scheduling, offline, and stale-data utilities for operational screens
+- a shared model for building predictable, deterministic signage UIs
+
+## Why It Is Valuable
+
+Most web UI libraries assume fluid layouts, close viewing distance, and user-driven interaction. Signage has different constraints.
+
+This library is useful because it is built around those constraints from the start:
+
+- screens have known resolutions and fixed aspect ratios
+- content must be readable quickly and from distance
+- layouts must remain stable over long runtimes
+- motion must be controlled and loop-safe
+- data-driven screens need clear handling for freshness, paging, scheduling, and connectivity
+
+In short, this library helps you build signage as software rather than approximating signage with generic web components.
+
+## Relationship to the Rest of The Sign Age
+
+This library builds on The Sign Age's broader component foundations:
+
+- **`@tsa/shadcnui`** for base shadcn/ui components
+- **`@tsa/shadcnui-blocks`** for more general UI compositions
+- **`common-tailwind`** for shared Tailwind v4 configuration and theme tokens
+
+`@tsa/shadcnui-signage` adds the signage-specific layer: full-screen composition, fixed-format layout, timing logic, and operational UI patterns.
 
 ## Component Categories
 
@@ -49,9 +78,9 @@ Higher-level composed components for complete content sections:
 - **FullscreenHero** - Hero section for welcome screens and main messages (light/dark variants)
 - **InfoCardGrid** - Grid layout for displaying informational cards with icons and descriptions
 
-### Behaviors
+### Behaviours
 
-Components that add time-based logic, transitions, and interactivity:
+Components that add timing logic, transitions, gating, and operational behaviour:
 
 - **Clock** - Displays current time with configurable format and timezone (minute-aligned updates)
 - **Countdown** - Counts down to a target date/time with configurable format
@@ -62,7 +91,7 @@ Components that add time-based logic, transitions, and interactivity:
 - **SignageTransition** - Declarative transitions (none, crossfade, slide-left, slide-up) for content changes
 - **OfflineFallback** - Gracefully handles offline state with configurable UI
 
-## Key Features
+## Key Capabilities
 
 ### Time-Based Logic
 
@@ -89,7 +118,7 @@ Components that add time-based logic, transitions, and interactivity:
 - Built-in connectivity detection managed internally by OfflineFallback
 - Configurable fallback UI with message and retry actions
 
-## Concepts
+## Core Concepts
 
 ### Resolution
 
@@ -109,7 +138,7 @@ Ensures text never overflows by limiting to a maximum number of lines, maintaini
 
 ### Deterministic Layouts
 
-All layout components use fixed sizing and explicit aspect ratios. No responsive breakpoints—signage knows its screen size at build time.
+All layout components use fixed sizing and explicit aspect ratios. There are no responsive breakpoints here because signage knows its screen size at build time.
 
 ## Installation
 
@@ -118,6 +147,8 @@ This library is part of The Sign Age monorepo. Import components using the works
 ```typescript
 import { ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid } from '@tsa/shadcnui-signage';
 ```
+
+If you are exploring the public demo, this is the library behind the signage examples and the component documentation pages.
 
 ## Usage Examples
 
@@ -200,6 +231,17 @@ export function EventSchedule({ events }) {
   );
 }
 ```
+
+## Typical Build Pattern
+
+A common way to use this library is:
+
+1. Start with `SignageContainer` or `ScreenFrame` to establish the display surface.
+2. Use layout components like `SplitScreen` and `SignageHeader` to define structure.
+3. Fill the screen with primitives and blocks such as `MetricCard`, `EventCard`, `FullscreenHero`, or `InfoCardGrid`.
+4. Add operational behaviours like `ContentRotator`, `AutoPagingList`, `ScheduleGate`, `OfflineFallback`, or `StaleDataIndicator` where needed.
+
+That gives you a screen that is visually legible, structurally stable, and better suited to unattended operation.
 
 ## Testing
 

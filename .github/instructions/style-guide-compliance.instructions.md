@@ -121,14 +121,18 @@ Or for more complex code displays:
 
 ### Typeface
 
-**Inter** (chosen for screen clarity, neutrality, modern SaaS familiarity, long-term durability)
+- **Inter** is the default UI and body face
+- **Michroma** is allowed as a sparing display accent for branded labels, shell markers, and select high-signal headings
+
+Use Michroma as an accent only, never as the default face for long-form copy, settings forms, dense tables, or routine navigation text.
 
 ### Weights
 
 - Regular (400)
 - Medium (500)
+- Semibold (600) is allowed as the emphasis ceiling when medium is too soft
 
-**Never use Bold (700)** unless the layout genuinely lacks presence.
+**Never use weights above 600** unless the layout genuinely lacks presence.
 
 Use weight to indicate importance, not personality.
 

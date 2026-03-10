@@ -86,22 +86,29 @@ If a component relies on colour to feel premium, redesign it.
 
 ### Typeface
 
-**Inter**
+The demo website uses a two-tier typography system.
+
+- **Inter** for body copy, controls, navigation, tables, and documentation UI
+- **Michroma** as a restrained display accent for branded labels, shell markers, and high-signal headings where a little technical character is useful
+
+Inter remains the default. Michroma is an accent, not a replacement body font.
 
 Chosen for:
 - screen clarity
-- neutrality
+- neutrality in core UI
 - modern SaaS familiarity
+- a slightly technical display voice when emphasis is needed
 - long-term durability
 
 ### Weights
 
 - Regular (400)
 - Medium (500)
+- Semibold (600) used sparingly for compact emphasis, dense data labels, or places where medium is too soft
 
 Use weight to indicate importance, not personality.
 
-Avoid Bold unless the layout genuinely lacks presence.
+Avoid weights above 600 unless the layout genuinely lacks presence.
 
 ---
 

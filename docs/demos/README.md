@@ -22,6 +22,15 @@
   - What we've accomplished
   - Target audience: Copilot users, AI-assisted development
 
+- **[02-demo-site-walkthrough.demo.md](./02-demo-site-walkthrough.demo.md)** (4-6 min)
+   Public demo site walkthrough covering representative component pages, signage examples, and the GitHub source closeout.
+
+- **[02-demo-site-walkthrough.operator.md](./02-demo-site-walkthrough.operator.md)**
+   Short operator version with only URL, pause, and spoken line for each stop.
+
+- **[02-demo-site-walkthrough.script.md](./02-demo-site-walkthrough.script.md)**
+   Spoken narration only, aligned to the same sequence as the operator version.
+
 ### Testing and Validation
 
 - **[demo-preflight-testing.md](./demo-preflight-testing.md)**
