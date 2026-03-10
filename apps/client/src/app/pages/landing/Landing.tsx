@@ -28,14 +28,21 @@ export const LandingPage: FC = () => {
 
   return (
     <div
-      className="min-h-screen min-w-screen flex flex-col items-center justify-center bg-primary text-foreground"
+      className="relative isolate flex min-h-screen w-full flex-col items-center overflow-hidden bg-transparent text-foreground"
       data-testid="landing-page"
     >
-      <div className="bg-primary" data-testid="hero-section-container">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_20%_18%,hsl(var(--glow-violet)/0.16),transparent_34%),radial-gradient(circle_at_78%_12%,hsl(var(--glow-cyan)/0.14),transparent_28%)]" />
+      <div className="pointer-events-none absolute inset-0 demo-grid opacity-60" />
+      <div className="w-full" data-testid="hero-section-container">
         <HeroSection
           title="Digital Signage as Software"
           subtitle="Build deterministic, data-driven content for always-on displays using modern web technologies."
           description="Treat signage players as programmable systems. Create fixed-aspect layouts, distance-readable typography, and predictable rendering for BrightSign devices and beyond."
+          highlights={[
+            'Deterministic screen composition',
+            'Registry-native component installs',
+            'BrightSign-ready delivery workflows',
+          ]}
           image={logoSrc}
           imageAlt="The Sign Age logo"
           ctaPrimary={{
@@ -109,49 +116,43 @@ export const LandingPage: FC = () => {
             title: 'Fixed-Aspect Layouts',
             description:
               'Deterministic rendering for known resolutions. No responsive breakpoints—just predictable, fixed layouts designed for specific screen sizes.',
-            icon: <BarChart className="text-blue-500" />,
-            className:
-              'hover:shadow-lg hover:scale-105 transition-transform duration-300',
+            icon: <BarChart className="text-[hsl(var(--glow-cyan))]" />,
+            className: 'hover:border-[hsl(var(--glow-cyan)/0.28)]',
           },
           {
             title: 'Distance-Readable Typography',
             description:
               'Typography optimized for viewing from across the room. Large text, high contrast, clear hierarchy for quick scanning.',
-            icon: <Paintbrush className="text-green-500" />,
-            className:
-              'hover:shadow-lg hover:scale-105 transition-transform duration-300',
+            icon: <Paintbrush className="text-[hsl(var(--glow-amber))]" />,
+            className: 'hover:border-[hsl(var(--glow-amber)/0.28)]',
           },
           {
             title: 'Signage Components',
             description:
               'Purpose-built React components: ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid—primitives, layouts, and blocks for signage screens.',
-            icon: <Palette className="text-purple-500" />,
-            className:
-              'hover:shadow-lg hover:scale-105 transition-transform duration-300',
+            icon: <Palette className="text-[hsl(var(--glow-violet))]" />,
+            className: 'hover:border-[hsl(var(--glow-violet)/0.28)]',
           },
           {
             title: 'BrightSign-Focused',
             description:
               'Designed with BrightSign devices in mind. Real-world constraints, hardware quirks, and platform-specific considerations baked in.',
-            icon: <Video className="text-orange-500" />,
-            className:
-              'hover:shadow-lg hover:scale-105 transition-transform duration-300',
+            icon: <Video className="text-[hsl(var(--glow-amber))]" />,
+            className: 'hover:border-[hsl(var(--glow-amber)/0.28)]',
           },
           {
             title: 'Offline-First',
             description:
               'Built for always-on, unattended operation. Signage screens run 24/7 without supervision, often offline or with limited connectivity.',
-            icon: <Rocket className="text-red-500" />,
-            className:
-              'hover:shadow-lg hover:scale-105 transition-transform duration-300',
+            icon: <Rocket className="text-[hsl(var(--glow-violet))]" />,
+            className: 'hover:border-[hsl(var(--glow-violet)/0.28)]',
           },
           {
             title: 'Developer Experience',
             description:
               'React 19, Vite, TypeScript, Tailwind CSS v4. Modern frontend tooling applied to signage constraints with strict typing and fast iteration.',
-            icon: <ChartLine className="text-yellow-500" />,
-            className:
-              'hover:shadow-lg hover:scale-105 transition-transform duration-300',
+            icon: <ChartLine className="text-[hsl(var(--glow-cyan))]" />,
+            className: 'hover:border-[hsl(var(--glow-cyan)/0.28)]',
           },
         ]}
         data-testid="features-section"
@@ -200,10 +201,15 @@ export const LandingPage: FC = () => {
         buttonAction={() => navigate('/getting-started')}
         data-testid="steps-section"
       />
-      <Tagline
-        text="Signage is software. It deserves to be treated as such."
-        dataTestId="tagline"
-      />
+      <div className="w-full px-4 py-4 sm:px-6 lg:px-8">
+        <div className="demo-panel-soft mx-auto max-w-6xl px-6 py-5 text-center">
+          <Tagline
+            text="Signage is software. It deserves to be treated as such."
+            className="display-type bg-transparent py-4 text-lg text-foreground sm:text-xl"
+            dataTestId="tagline"
+          />
+        </div>
+      </div>
       <Footer
         className="w-full px-4 sm:px-6 lg:px-8"
         navigationLinks={[

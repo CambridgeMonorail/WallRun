@@ -10,10 +10,10 @@ All critical files present:
 
 - ✅ `.github/copilot-instructions.md` - Global conventions
 - ✅ `AGENTS.md` - Workflow guidance
-- ✅ `.github/skills/planning/workflows/detailed-guide.md` - Planning skill
-- ✅ `.github/skills/verification/workflows/detailed-guide.md` - Verification skill
-- ✅ `.github/skills/systematic-debugging/workflows/detailed-guide.md` - Debugging skill
-- ✅ `.github/skills/code-review-ready/workflows/detailed-guide.md` - Review skill
+- ✅ `skills/planning/workflows/detailed-guide.md` - Planning skill
+- ✅ `skills/verification/workflows/detailed-guide.md` - Verification skill
+- ✅ `skills/systematic-debugging/workflows/detailed-guide.md` - Debugging skill
+- ✅ `skills/code-review-ready/workflows/detailed-guide.md` - Review skill
 - ✅ `docs/plans/README.md` - Plans directory
 - ✅ `pnpm verify` script in package.json
 

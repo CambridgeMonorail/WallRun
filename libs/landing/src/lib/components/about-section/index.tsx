@@ -51,35 +51,47 @@ export const AboutSection = ({
   return (
     <section
       data-testid="about-section"
-      className="text-center pt-20 pb-12 px-5 bg-background text-foreground w-full"
+      className="w-full px-4 py-8 sm:px-6 lg:px-8"
     >
-      <h2 data-testid="about-title" className="text-4xl font-bold mb-6">
-        {title}
-      </h2>
-      <p
-        data-testid="about-description"
-        className="text-xl mb-8 max-w-2xl mx-auto text-center"
-      >
-        {description}
-      </p>
-      {logos.length > 0 ? (
-        <LogoCarousel logos={logos} header={header} subheader={subheader} />
-      ) : (
-        <div
-          data-testid="about-logos"
-          className="flex flex-wrap justify-center space-x-4 sm:space-x-2"
-        >
-          {logos.map((logo, index) => (
-            <div
-              key={index}
-              data-testid={`about-logo-${index}`}
-              className="mb-4 sm:mb-2"
-            >
-              {logo}
-            </div>
-          ))}
+      <div className="demo-panel mx-auto max-w-6xl px-6 py-10 sm:px-10 sm:py-12">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="display-kicker mb-4 text-xs sm:text-sm">
+            Systems, Tooling, Delivery
+          </p>
+          <h2
+            data-testid="about-title"
+            className="display-type mb-6 text-3xl text-foreground sm:text-4xl"
+          >
+            {title}
+          </h2>
+          <p
+            data-testid="about-description"
+            className="mx-auto mb-10 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg"
+          >
+            {description}
+          </p>
         </div>
-      )}
+        <div className="section-shell px-4 py-6 sm:px-6">
+          {logos.length > 0 ? (
+            <LogoCarousel logos={logos} header={header} subheader={subheader} />
+          ) : (
+            <div
+              data-testid="about-logos"
+              className="flex flex-wrap justify-center gap-4"
+            >
+              {logos.map((logo, index) => (
+                <div
+                  key={index}
+                  data-testid={`about-logo-${index}`}
+                  className="mb-2"
+                >
+                  {logo}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 };

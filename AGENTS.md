@@ -39,7 +39,7 @@ When working as an agent in this repository:
 
 ### 3. Create a Plan (for non-trivial work)
 
-See [Planning Skill](.github/skills/planning/workflows/detailed-guide.md) for:
+See [Planning Skill](skills/planning/workflows/detailed-guide.md) for:
 
 - When a plan is required vs. optional vs. not needed
 - Plan template with full structure
@@ -83,7 +83,7 @@ This runs:
 - Type check (affected projects)
 - Tests (affected projects)
 
-See [Verification Skill](.github/skills/verification/workflows/detailed-guide.md) for:
+See [Verification Skill](skills/verification/workflows/detailed-guide.md) for:
 
 - Required verification checks (format, lint, type-check, tests, build)
 - The unified `pnpm verify` command
@@ -111,22 +111,22 @@ These skills provide detailed process guidance for common development tasks. Ref
 
 ### Core Skills
 
-- **[Planning](.github/skills/planning/workflows/detailed-guide.md)** - How to create structured implementation plans
+- **[Planning](skills/planning/workflows/detailed-guide.md)** - How to create structured implementation plans
   - When to create plans (required/optional/not needed)
   - Plan template and structure
   - Good vs. bad plan examples
   - Planning process and integration with AGENTS.md
-- **[Systematic Debugging](.github/skills/systematic-debugging/workflows/detailed-guide.md)** - Root cause analysis workflow
+- **[Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md)** - Root cause analysis workflow
   - 6-step debugging process (understand, reproduce, find root cause, fix, verify, document)
   - Real-world debugging examples
   - Common pitfalls and how to avoid them
   - When to invest in debugging vs. workaround
-- **[Code Review Ready](.github/skills/code-review-ready/workflows/detailed-guide.md)** - Making changes easy to review
+- **[Code Review Ready](skills/code-review-ready/workflows/detailed-guide.md)** - Making changes easy to review
   - Reviewable PR checklist (< 500 lines, one logical change, clear description)
   - PR description template
   - Visual evidence requirements for UI changes
   - Anti-patterns to avoid ("Everything PR", "Mystery PR", "Trust Me PR")
-- **[Verification](.github/skills/verification/workflows/detailed-guide.md)** - PR evidence expectations
+- **[Verification](skills/verification/workflows/detailed-guide.md)** - PR evidence expectations
   - Required verification checks (format, lint, type-check, tests)
   - The unified `pnpm verify` command
   - PR verification evidence template
@@ -195,7 +195,7 @@ Fixes #456
 
 ### For Bug Fixes
 
-Follow the [Systematic Debugging](.github/skills/systematic-debugging/workflows/detailed-guide.md) skill:
+Follow the [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) skill:
 
 1. **Understand the problem** - Reproduce reliably, gather evidence
 2. **Find the root cause** - Use debugging techniques, not guesswork
@@ -297,7 +297,7 @@ Output:
 - Any edge cases considered
 - Any known limitations
 
-See [Code Review Ready](.github/skills/code-review-ready/workflows/detailed-guide.md) for:
+See [Code Review Ready](skills/code-review-ready/workflows/detailed-guide.md) for:
 
 - Detailed reviewable PR checklist
 - PR description template
@@ -317,7 +317,7 @@ When debugging issues, follow a systematic process:
 5. **Verify thoroughly** - Ensure fix works and doesn't break other things
 6. **Document** - Explain what was wrong and how you fixed it
 
-See [Systematic Debugging](.github/skills/systematic-debugging/workflows/detailed-guide.md) for:
+See [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) for:
 
 - Detailed 6-step debugging process
 - Debugging techniques and tools

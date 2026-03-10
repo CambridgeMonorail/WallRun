@@ -13,7 +13,7 @@ const App: FC = () => {
 
   return (
     <div
-      className="bg-background text-foreground min-h-screen min-w-screen"
+      className="bg-background text-foreground min-h-screen w-full"
       data-testid="app-container"
     >
       <Routes>

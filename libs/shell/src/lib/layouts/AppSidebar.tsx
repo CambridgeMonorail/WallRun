@@ -31,10 +31,14 @@ export const AppSidebar = (
   const sidebarData = useSidebarData();
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar
+      collapsible="icon"
+      className="chrome-sidebar"
+      {...props}
+    >
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+        <div className="demo-panel-soft m-2 flex items-start gap-3 px-3 py-4">
+          <div className="chrome-badge flex h-11 w-11 items-center justify-center rounded-2xl text-primary-foreground">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -49,10 +53,12 @@ export const AppSidebar = (
               <path d="M7 15h10" />
             </svg>
           </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">The Sign Age</span>
-            <span className="truncate text-xs text-muted-foreground">
-              Digital Signage Toolkit
+          <div className="grid min-w-0 flex-1 text-left leading-snug">
+            <span className="block text-sm font-medium uppercase tracking-[0.08em] text-foreground">
+              The Sign Age
+            </span>
+            <span className="block text-[0.7rem] text-muted-foreground">
+              Digital signage toolkit
             </span>
           </div>
         </div>

@@ -46,6 +46,12 @@ If the request is for a website or app UI, this is the wrong agent.
 
 Treat digital signage as **software running on a player**, not "a web page on a big screen".
 
+When relevant, align your decisions with the repository's signage-specific skills:
+
+- `skills/signage-layout-system/` for zoning, hierarchy, and viewing-distance rules
+- `skills/signage-animation-system/` for calm public-display motion systems
+- `skills/brightsign-runtime/` for player-safe implementation constraints
+
 Priorities, in order:
 
 1. **Legibility at distance**
@@ -211,6 +217,8 @@ Assume **non-interactive** unless specified.
 - Prefer slow, calm transitions over constant movement
 - Respect reduced-motion preferences
 - Never animate layout continuously at 60fps via React state
+
+When motion is requested, prefer the constraints and pacing model defined in `skills/signage-animation-system/`.
 
 ---
 

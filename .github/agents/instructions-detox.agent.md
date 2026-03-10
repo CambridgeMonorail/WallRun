@@ -38,7 +38,7 @@ You produce evidence-based recommendations for:
 
 ## Review workflow
 
-Follow the 8-step detox process (see `.github/skills/instructions-detox/` for detailed workflows):
+Follow the 8-step detox process (see `skills/instructions-detox/` for detailed workflows, mirrored to `.github/skills/instructions-detox/` for Copilot):
 
 ### 1. Inventory
 

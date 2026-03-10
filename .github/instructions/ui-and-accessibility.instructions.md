@@ -40,6 +40,7 @@ For the **demo website chrome** (navigation, shell, layouts), follow the design 
 - **Token-first**: Use shadcn tokens only (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`)
 - **No hard-coded colors** in components (hex values belong in theme layer only)
 - **Locked palette**: `#1C1E21` (background), `#E6E6E6` (primary text), `#A0A4A8` (secondary text), `#6E7681` (accent)
+- **Reusable shell surfaces allowed**: richer chrome is acceptable when built from token-derived utilities or shared semantic classes rather than ad hoc decorative strings
 
 ### Typography
 
@@ -57,6 +58,8 @@ For the **demo website chrome** (navigation, shell, layouts), follow the design 
 - **Cards**: Flat surfaces, subtle borders, minimal or no shadow
 - **No decoration**: No gradients, glow effects, or animated flair
 - **Links**: Understated, underline on hover, avoid bright colors
+
+When a shell surface needs extra depth, prefer a shared token-based utility class over inline arbitrary shadows, raw white overlays, or bespoke glow values.
 
 ### Motion and Interaction
 

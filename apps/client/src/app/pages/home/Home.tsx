@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@tsa/shadcnui';
 import {
   BookOpen,
+  Bot,
   Github,
   Layers,
   Palette,
@@ -14,22 +15,23 @@ export const Home: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="font-sans bg-background p-8 min-h-screen max-w-6xl mx-auto">
-      {/* HERO */}
-      <div className="mb-16 text-center">
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
+    <div className="doc-shell font-sans">
+      <div className="demo-panel demo-grid mb-12 px-8 py-10 text-center md:px-12 md:py-12">
+        <p className="display-kicker mb-4 text-xs sm:text-sm">Operational Demo Environment</p>
+        <h1 className="display-type mb-4 text-4xl text-foreground md:text-5xl">
           The Sign Age
         </h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+        <p className="mx-auto mb-8 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
           Digital signage as software. Build deterministic, data-driven content
           for always-on displays using React, TypeScript, and modern web
           technologies.
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Button
             onClick={() => navigate('/getting-started')}
-            variant="secondary"
+            variant="default"
             size="lg"
+            className="rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)]"
           >
             Get Started
           </Button>
@@ -37,16 +39,16 @@ export const Home: FC = () => {
             onClick={() => navigate('/gallery')}
             variant="secondary"
             size="lg"
+            className="rounded-full border border-white/12 bg-background/10 px-6 text-sm uppercase tracking-[0.18em] backdrop-blur-md"
           >
             View Examples
           </Button>
         </div>
       </div>
 
-      {/* QUICK LINKS */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <section className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2">
         <button
-          className="bg-card p-6 rounded border border-border hover:border-foreground transition-colors cursor-pointer text-left w-full"
+          className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
           onClick={() => navigate('/getting-started')}
           aria-label="Navigate to Getting Started guide"
         >
@@ -69,7 +71,7 @@ export const Home: FC = () => {
         </button>
 
         <button
-          className="bg-card p-6 rounded border border-border hover:border-foreground transition-colors cursor-pointer text-left w-full"
+          className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-violet)/0.3)]"
           onClick={() => navigate('/library')}
           aria-label="Navigate to Component Library"
         >
@@ -92,7 +94,7 @@ export const Home: FC = () => {
         </button>
 
         <button
-          className="bg-card p-6 rounded border border-border hover:border-foreground transition-colors cursor-pointer text-left w-full"
+          className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-amber)/0.3)]"
           onClick={() => navigate('/gallery')}
           aria-label="Navigate to Signage Gallery"
         >
@@ -115,7 +117,7 @@ export const Home: FC = () => {
         </button>
 
         <button
-          className="bg-card p-6 rounded border border-border hover:border-foreground transition-colors cursor-pointer text-left w-full"
+          className="demo-panel w-full cursor-pointer p-6 text-left transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
           onClick={() => navigate('/color-palette')}
           aria-label="Navigate to Theme and Colors page"
         >
@@ -138,9 +140,130 @@ export const Home: FC = () => {
         </button>
       </section>
 
+      <section className="demo-panel mb-12 p-8">
+        <h2 className="display-type mb-3 text-2xl text-foreground">
+          What You Can Use From This Repo
+        </h2>
+        <p className="max-w-3xl text-base text-muted-foreground mb-6 leading-relaxed">
+          The demo app is not just a showcase. It points to four distinct
+          things you can consume: signage components, registry-based install
+          paths, portable Copilot skills, and BrightSign deployment workflows.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="section-shell p-5">
+            <div className="flex items-start gap-3 mb-3">
+              <Layers className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <div>
+                <h3 className="text-lg font-medium text-foreground">
+                  Signage Components
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Purpose-built React components for distance readability,
+                  fixed-aspect layouts, and always-on screens.
+                </p>
+              </div>
+            </div>
+            <div className="code-panel mb-3 overflow-x-auto p-3 font-mono text-xs text-foreground">
+              <pre>{`npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list`}</pre>
+            </div>
+            <Button
+              onClick={() => navigate('/getting-started')}
+              variant="secondary"
+            >
+              See install options
+            </Button>
+          </div>
+
+          <div className="section-shell p-5">
+            <div className="flex items-start gap-3 mb-3">
+              <BookOpen className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <div>
+                <h3 className="text-lg font-medium text-foreground">
+                  Component Reference
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Browse the inventory, see what each library contains, and use
+                  Storybook for live props and usage examples.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3 flex-wrap">
+              <Button
+                onClick={() => navigate('/library')}
+                variant="secondary"
+              >
+                Open library guide
+              </Button>
+              <Button variant="ghost" asChild>
+                <a
+                  href="https://cambridgemonorail.github.io/TheSignAge/storybook/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open Storybook
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          <div className="section-shell p-5">
+            <div className="flex items-start gap-3 mb-3">
+              <Bot className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <div>
+                <h3 className="text-lg font-medium text-foreground">
+                  Portable Skills
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Reusable <code className="text-xs">SKILL.md</code>{' '}
+                  workflows for BrightSign deployment, discovery, debugging,
+                  verification, and planning.
+                </p>
+              </div>
+            </div>
+            <div className="code-panel mb-3 overflow-x-auto p-3 font-mono text-xs text-foreground">
+              <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
+            </div>
+            <Button variant="secondary" asChild>
+              <a
+                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/skills/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read skills guide
+              </a>
+            </Button>
+          </div>
+
+          <div className="section-shell p-5">
+            <div className="flex items-start gap-3 mb-3">
+              <Layout className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <div>
+                <h3 className="text-lg font-medium text-foreground">
+                  Player Workflows
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Packaging, local deployment, player configuration, and LAN
+                  discovery for BrightSign OS 9.x players.
+                </p>
+              </div>
+            </div>
+            <Button variant="secondary" asChild>
+              <a
+                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/guides/brightsign-deployment.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open deployment guide
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* EXTERNAL RESOURCES */}
-      <section className="bg-card p-8 rounded border border-border">
-        <h2 className="text-2xl font-medium text-foreground mb-6">
+      <section className="demo-panel p-8">
+        <h2 className="display-type mb-6 text-2xl text-foreground">
           Resources
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -148,7 +271,7 @@ export const Home: FC = () => {
             href="https://cambridgemonorail.github.io/TheSignAge/storybook/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-4 bg-background rounded border border-border hover:border-foreground transition-colors"
+            className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
           >
             <ExternalLink className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
             <div>
@@ -162,7 +285,7 @@ export const Home: FC = () => {
             href="https://github.com/CambridgeMonorail/TheSignAge"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-4 bg-background rounded border border-border hover:border-foreground transition-colors"
+            className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-violet)/0.3)]"
           >
             <Github className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
             <div>
@@ -172,11 +295,39 @@ export const Home: FC = () => {
               </div>
             </div>
           </a>
+          <a
+            href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/apps/client/public/registry/README.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-amber)/0.3)]"
+          >
+            <ExternalLink className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+            <div>
+              <div className="font-medium text-foreground">Registry README</div>
+              <div className="text-sm text-muted-foreground">
+                shadcn registry setup and component install commands
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/tooling/github-copilot-tooling.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
+          >
+            <ExternalLink className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+            <div>
+              <div className="font-medium text-foreground">Copilot Tooling</div>
+              <div className="text-sm text-muted-foreground">
+                Skills, agents, and workflow documentation
+              </div>
+            </div>
+          </a>
         </div>
       </section>
 
       {/* PROJECT STATUS */}
-      <footer className="mt-12 pt-8 border-t border-border text-center">
+      <footer className="mt-12 border-t border-white/10 pt-8 text-center">
         <p className="text-sm text-muted-foreground">
           <strong className="text-foreground">Alpha Status:</strong> This
           project is under active development. Features may be incomplete or

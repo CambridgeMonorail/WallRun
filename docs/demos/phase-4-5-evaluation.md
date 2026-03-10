@@ -132,7 +132,7 @@ Determine if any apps or libraries need domain-specific workflow guidance that d
 
 **Current coverage:**
 
-- `.github/skills/shadcnui-component-review/` - Component validation workflow
+- `skills/shadcnui-component-review/` - Component validation workflow
 - `.github/instructions/ui-and-accessibility.instructions.md` - Component conventions
 - Root AGENTS.md - General workflow
 

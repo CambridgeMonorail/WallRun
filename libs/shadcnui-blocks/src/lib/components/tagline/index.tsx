@@ -34,7 +34,7 @@ const Tagline: FC<TaglineProps> = ({ text, className, style, id, dataTestId }) =
   return (
     <div
       id={id}
-      className={`text-center text-2xl font-bold text-primary py-6 bg-background w-full ${className}`}
+      className={`w-full bg-transparent py-6 text-center text-2xl font-medium text-foreground ${className}`}
       style={style}
       data-testid={dataTestId}
     >

@@ -36,7 +36,7 @@ The Sign Age uses a **three-layer instruction model** to provide comprehensive g
 
 ### Supporting Elements
 
-- **Workflow Skills** (`.github/skills/*/workflows/detailed-guide.md`) - Structured process guides
+- **Workflow Skills** (`skills/*/workflows/detailed-guide.md`) - Structured process guides, mirrored to `.github/skills/` for Copilot compatibility
 - **Custom Agents** (`.github/agents/*.agent.md`) - Specialized agent modes
 - **Implementation Plans** (`docs/plans/`) - Structured task plans for non-trivial work
 
@@ -206,7 +206,7 @@ Defines **how agents should work**, not what code to write:
 
 ## Workflow Skills
 
-**Directory:** [.github/skills/](../../.github/skills/)
+**Directory:** [skills/](../../skills/)
 
 ### Purpose
 
@@ -224,11 +224,13 @@ Structured, repeatable process guides for common workflows:
 Each skill has:
 
 ```
-.github/skills/skill-name/
+skills/skill-name/
 ├── SKILL.md                      # Short description for skill discovery
 └── workflows/
     └── detailed-guide.md         # Comprehensive workflow guide
 ```
+
+`.github/skills/` is generated from this tree for GitHub Copilot-native repository support.
 
 ### When to Reference
 
@@ -238,7 +240,7 @@ Each skill has:
 
 ### Example
 
-From [Planning Skill](../../.github/skills/planning/workflows/detailed-guide.md):
+From [Planning Skill](../../skills/planning/workflows/detailed-guide.md):
 
 ```markdown
 ## When Planning is Required
@@ -436,7 +438,7 @@ For questions or issues with the instruction architecture:
 
 - Review [docs/workflow-improvements/](../workflow-improvements/) for context
 - Reference [AGENTS.md](../../AGENTS.md) for current workflow
-- Check [.github/skills/](../../.github/skills/) for process guides
+- Check [skills/](../../skills/) for process guides or [.github/skills/](../../.github/skills/) for the generated Copilot mirror
 - See **Custom Agent Foundry** agent for instruction optimization
 
 ## Version History

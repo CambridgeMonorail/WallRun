@@ -31,7 +31,7 @@ This document tracks the incremental implementation of Copilot-first agent workf
 **Core Infrastructure (Phases 0-3):**
 
 - ✅ Root `AGENTS.md` with comprehensive workflow guidance
-- ✅ Four workflow skills in `.github/skills/`:
+- ✅ Four workflow skills in `skills/` (mirrored to `.github/skills/`):
   - Planning skill - When and how to create implementation plans
   - Systematic debugging skill - Root cause analysis process
   - Code review ready skill - Reviewable PR guidelines
@@ -111,7 +111,7 @@ This document tracks the incremental implementation of Copilot-first agent workf
 - `AGENTS.md` - Root workflow guidance
 - `.github/copilot-instructions.md` - Global conventions + Definition of Done
 - `docs/ai/target-operating-model.md` - Three-layer architecture explanation
-- `.github/skills/*/workflows/detailed-guide.md` - Individual workflow skills
+- `skills/*/workflows/detailed-guide.md` - Individual workflow skills
 
 **For Planning:**
 
@@ -152,10 +152,10 @@ This document tracks the incremental implementation of Copilot-first agent workf
 **Completed Deliverables:**
 
 - ✅ Root `AGENTS.md` with workflow guidance
-- ✅ `.github/skills/planning/workflows/detailed-guide.md`
-- ✅ `.github/skills/systematic-debugging/workflows/detailed-guide.md`
-- ✅ `.github/skills/code-review-ready/workflows/detailed-guide.md`
-- ✅ `.github/skills/verification/workflows/detailed-guide.md`
+- ✅ `skills/planning/workflows/detailed-guide.md`
+- ✅ `skills/systematic-debugging/workflows/detailed-guide.md`
+- ✅ `skills/code-review-ready/workflows/detailed-guide.md`
+- ✅ `skills/verification/workflows/detailed-guide.md`
 - ✅ `docs/plans/` directory with README and template
 - ✅ All skills referenced from AGENTS.md
 

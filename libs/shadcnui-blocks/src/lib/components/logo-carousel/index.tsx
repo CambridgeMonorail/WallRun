@@ -43,15 +43,19 @@ const LogoCarousel: FC<LogoCarouselProps> = ({ logos, header, subheader }) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center text-center">
       {/* Header Section */}
-      {header && <h2 className="text-2xl font-bold text-primary">{header}</h2>}
-      {subheader && <p className="text-lg">{subheader}</p>}
+      {header && (
+        <h2 className="text-2xl font-medium tracking-tight text-foreground">
+          {header}
+        </h2>
+      )}
+      {subheader && <p className="mt-2 text-sm text-muted-foreground sm:text-base">{subheader}</p>}
 
       {/* Logo Carousel */}
       <div
         ref={containerRef}
-        className="relative w-full overflow-hidden mt-4"
+        className="relative mt-6 w-full overflow-hidden"
         style={{ height: '100px', whiteSpace: 'nowrap' }}
       >
         <div className="flex">

@@ -80,7 +80,14 @@ Use these values ONLY in theme configuration:
 - Ad hoc opacity hacks (e.g., `bg-black/20`)
 - Custom color classes outside theme
 
+✅ **Allowed when token-derived and reusable**:
+- `border-border/60`, `bg-card/80`, `bg-background/70`
+- Shared semantic surface classes defined in the theme layer
+- Subtle blur or depth effects built from tokens rather than raw color hacks
+
 **Rule**: Hex values belong only in the theme layer. Premium SaaS feels consistent because everything comes from the same token system.
+
+**Clarification**: Premium shell chrome can still have depth and atmosphere, but it should come from reusable token-based surface patterns, not one-off decorative class strings in component files.
 
 ### Code Blocks and Code Samples
 
@@ -244,6 +251,7 @@ Cards should feel structural.
 **Suggested**:
 - Reduce default shadcn shadow if it feels decorative
 - Use `border-border/60` for separation
+- Prefer shared semantic surface utilities when the chrome needs more depth than a flat card
 
 Cards should feel like containers, not highlights.
 

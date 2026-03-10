@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&display=swap');
 @import '../../../libs/common-tailwind/src/main.css';
+
+:root {
+  --glow-cyan: 192 88% 65%;
+  --glow-violet: 274 74% 72%;
+  --glow-amber: 42 88% 69%;
+  --font-display: 'Michroma', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
 
 @source "../../../libs/**/*.{ts,tsx}";
 @source "./src/**/*.{ts,tsx}";
@@ -7,10 +16,208 @@
   * {
     border-color: var(--color-border);
   }
+
   body {
     background-color: var(--color-background);
+    background-image:
+      radial-gradient(circle at top, hsl(var(--glow-cyan) / 0.14), transparent 28%),
+      radial-gradient(circle at 85% 15%, hsl(var(--glow-violet) / 0.12), transparent 24%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(224 22% 8%));
+    background-attachment: fixed;
     color: var(--color-foreground);
+    font-family: var(--font-body);
     font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: hsl(var(--glow-cyan) / 0.28);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .display-type {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .display-kicker {
+    font-family: var(--font-display);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: hsl(var(--glow-cyan));
+  }
+
+  .demo-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border) / 0.75);
+    border-radius: 1.5rem;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.96),
+      hsl(var(--primary) / 0.92)
+    );
+    box-shadow:
+      inset 0 1px 0 hsl(var(--foreground) / 0.08),
+      0 24px 80px hsl(220 45% 3% / 0.45),
+      0 0 0 1px hsl(var(--accent) / 0.08);
+    backdrop-filter: blur(18px);
+  }
+
+  .demo-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(130deg, hsl(var(--foreground) / 0.08), transparent 18%, transparent 58%, hsl(var(--glow-cyan) / 0.08)),
+      radial-gradient(circle at top right, hsl(var(--glow-violet) / 0.14), transparent 28%);
+  }
+
+  .demo-panel-soft {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border) / 0.6);
+    border-radius: 1.25rem;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.72),
+      hsl(var(--background) / 0.58)
+    );
+    box-shadow:
+      inset 0 1px 0 hsl(var(--foreground) / 0.06),
+      0 16px 48px hsl(220 45% 3% / 0.32);
+    backdrop-filter: blur(16px);
+  }
+
+  .demo-grid {
+    position: relative;
+  }
+
+  .demo-grid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(180deg, hsl(0 0% 0%) 26%, transparent 100%);
+  }
+
+  .doc-shell {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 76rem;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .section-shell {
+    position: relative;
+    border: 1px solid hsl(var(--border) / 0.65);
+    border-radius: 1.25rem;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.85),
+      hsl(var(--background) / 0.62)
+    );
+    box-shadow:
+      inset 0 1px 0 hsl(var(--foreground) / 0.05),
+      0 16px 40px hsl(220 45% 3% / 0.28);
+    backdrop-filter: blur(12px);
+  }
+
+  .chrome-shell {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border) / 0.65);
+    border-radius: 1.25rem;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--card) / 0.82),
+      hsl(var(--background) / 0.64)
+    );
+    box-shadow:
+      inset 0 1px 0 hsl(var(--foreground) / 0.05),
+      0 18px 42px hsl(220 45% 3% / 0.26);
+    backdrop-filter: blur(18px);
+  }
+
+  .chrome-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--foreground) / 0.05),
+      transparent 28%
+    );
+  }
+
+  .chrome-pill {
+    border: 1px solid hsl(var(--border) / 0.6);
+    background: hsl(var(--background) / 0.58);
+    backdrop-filter: blur(12px);
+  }
+
+  .chrome-sidebar {
+    border-right: 1px solid hsl(var(--border) / 0.65);
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background) / 0.98),
+      hsl(var(--primary) / 0.92)
+    );
+  }
+
+  .chrome-badge {
+    border: 1px solid hsl(var(--border) / 0.6);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(var(--secondary))
+    );
+    box-shadow: 0 0 24px hsl(var(--foreground) / 0.08);
+  }
+
+  .code-panel {
+    border: 1px solid hsl(var(--border) / 0.7);
+    border-radius: 1rem;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--muted) / 0.95),
+      hsl(var(--primary) / 0.88)
+    );
+    box-shadow:
+      inset 0 1px 0 hsl(var(--foreground) / 0.05),
+      0 12px 36px hsl(220 45% 3% / 0.25);
+  }
+
+  @media (min-width: 640px) {
+    .doc-shell {
+      padding: 2rem 1.5rem 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .doc-shell {
+      padding: 2.5rem 2rem 5rem;
+    }
   }
 }
 

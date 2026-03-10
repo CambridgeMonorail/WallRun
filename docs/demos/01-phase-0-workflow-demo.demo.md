@@ -24,8 +24,8 @@
 
 - `AGENTS.md`
 - `.github/copilot-instructions.md`
-- `.github/skills/planning/workflows/detailed-guide.md`
-- `.github/skills/verification/workflows/detailed-guide.md`
+- `skills/planning/workflows/detailed-guide.md`
+- `skills/verification/workflows/detailed-guide.md`
 - `docs/plans/README.md`
 - `package.json` (for pnpm verify)
 
@@ -117,13 +117,13 @@ applyTo:
 
 ### Workflow Skills (2 minutes)
 
-**Show:** `.github/skills/` folder
+**Show:** `skills/` folder
 
 > "AGENTS.md references four workflow skills - structured process guides for common tasks."
 
 #### Planning Skill
 
-**Open:** `.github/skills/planning/workflows/detailed-guide.md`
+**Open:** `skills/planning/workflows/detailed-guide.md`
 
 > "The planning skill teaches Copilot when and how to create structured implementation plans."
 
@@ -137,7 +137,7 @@ applyTo:
 
 #### Systematic Debugging Skill
 
-**Open:** `.github/skills/systematic-debugging/workflows/detailed-guide.md`
+**Open:** `skills/systematic-debugging/workflows/detailed-guide.md`
 
 > "The debugging skill provides a six-step root cause analysis process."
 
@@ -154,7 +154,7 @@ applyTo:
 
 #### Code Review Ready Skill
 
-**Open:** `.github/skills/code-review-ready/workflows/detailed-guide.md`
+**Open:** `skills/code-review-ready/workflows/detailed-guide.md`
 
 > "This skill defines what makes a PR easy to review: small diffs, one logical change, clear descriptions."
 
@@ -164,7 +164,7 @@ applyTo:
 
 #### Verification Skill
 
-**Open:** `.github/skills/verification/workflows/detailed-guide.md`
+**Open:** `skills/verification/workflows/detailed-guide.md`
 
 > "The verification skill defines our PR evidence requirements."
 

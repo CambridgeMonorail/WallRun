@@ -49,21 +49,21 @@ export const Footer: FC<FooterProps> = ({
   backgroundColor = 'bg-primary',
   textColor = 'text-primary-foreground'
 }) => {
-  // Helper to determine if URL is external
   const isExternalUrl = (url: string) => {
     return url.startsWith('http://') || url.startsWith('https://');
   };
 
   return (
-    <footer className={`${backgroundColor} ${textColor} text-center py-8 w-full px-4 sm:px-6 lg:px-8 ${className}`}>
-      <nav className="flex flex-wrap justify-center space-x-4 mb-4" aria-label="Footer navigation">
+    <footer className={`w-full px-4 pb-10 sm:px-6 lg:px-8 ${className}`}>
+      <div className={`demo-panel mx-auto max-w-6xl px-6 py-8 text-center ${backgroundColor} ${textColor}`}>
+        <nav className="mb-6 flex flex-wrap justify-center gap-3" aria-label="Footer navigation">
         {navigationLinks.map((link, index) => {
           const isExternal = isExternalUrl(link.url);
           return (
             <a
               key={index}
               href={link.url}
-              className="hover:underline"
+              className="rounded-full border border-white/10 bg-background/20 px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground transition duration-300 hover:border-[hsl(var(--glow-cyan)/0.32)] hover:text-foreground"
               {...(isExternal && {
                 target: '_blank',
                 rel: 'noopener noreferrer'
@@ -73,13 +73,13 @@ export const Footer: FC<FooterProps> = ({
             </a>
           );
         })}
-      </nav>
-      <div className="flex flex-wrap justify-center space-x-4">
+        </nav>
+        <div className="mb-4 flex flex-wrap justify-center gap-4">
         {socialMediaIcons.map((iconData, index) => (
           <a
             key={index}
             href={iconData.url}
-            className="hover:underline"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-background/20 text-muted-foreground transition duration-300 hover:border-[hsl(var(--glow-violet)/0.32)] hover:text-foreground"
             aria-label={`Link to ${iconData.url}`}
             target={iconData.target}
             rel={iconData.rel}
@@ -87,8 +87,9 @@ export const Footer: FC<FooterProps> = ({
             <iconData.icon className="w-8 h-8" />
           </a>
         ))}
+        </div>
+        <p className="text-sm text-muted-foreground sm:text-base">{copyrightText}</p>
       </div>
-      <p className="mt-4 text-sm sm:text-base">{copyrightText}</p>
     </footer>
   );
 };

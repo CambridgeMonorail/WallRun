@@ -126,6 +126,15 @@ Avoid:
 - hard-coded colours in components
 - ad hoc opacity hacks
 
+Token-first does **not** mean every surface must be flat or visually plain.
+
+Richer shell chrome is allowed when it is expressed through:
+- token-derived utilities such as `border-border/60`, `bg-card/80`, or `text-foreground`
+- shared semantic surface classes defined in the theme layer
+- reusable component patterns rather than one-off decorative class strings
+
+If a surface needs blur, layered backgrounds, or stronger depth, build that from tokens and shared utilities. Do not reach for raw `white/10`, arbitrary hex colors, or bespoke per-component glow effects.
+
 Premium SaaS feels consistent because everything comes from the same token system.
 
 ---
@@ -231,6 +240,7 @@ Rules:
 Suggested:
 - reduce default shadcn shadow if it feels decorative
 - use `border-border/60` for separation
+- prefer shared semantic surface utilities for premium chrome rather than repeating long arbitrary-value class strings
 
 Cards should feel like containers, not highlights.
 

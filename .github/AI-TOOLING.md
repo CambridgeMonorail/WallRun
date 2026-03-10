@@ -71,9 +71,14 @@ See [AI-Assisted Feature Workflow](../docs/getting-started/ai-assisted-feature-w
 ├── copilot-instructions.md       # Root instructions (Constitution)
 ├── agents/                       # Specialized Persona Agents
 ├── prompts/                      # Task Automation Prompts
-├── skills/                       # Auto-loading Workflow Skills
+├── skills/                       # Generated mirror for GitHub Copilot
 └── instructions/                 # Path-scoped coding rules
+
+skills/                           # Canonical portable SKILL.md source
+└── <skill-name>/
 ```
+
+The root `skills/` directory is the source of truth for portable skills. Run `pnpm sync:skills` to regenerate `.github/skills/` for GitHub Copilot-native discovery, and `pnpm check:skills` to verify the mirror is up to date.
 
 ## Tooling Inventory
 
@@ -102,8 +107,22 @@ See [AI-Assisted Feature Workflow](../docs/getting-started/ai-assisted-feature-w
 - `verification`: Validation requirements.
 - `chrome-devtools-webapp-debug`: Browser debugging via MCP.
 - `shadcnui-component-review`: UI component auditing.
+- `signage-layout-system`: Wall-screen layout rules for large displays.
+- `signage-animation-system`: Public-display motion rules and loop-safe pacing.
+- `brightsign-runtime`: BrightSign-specific runtime and implementation constraints.
+- `brightsign-deploy-local`: Local BrightSign deployment workflow.
+- `brightsign-package`: BrightSign packaging workflow.
+- `brightsign-debug`: Player diagnostics and debugging workflow.
+- `brightsign-fleet-deploy`: Fleet release workflow.
+- `player-discovery-scan`: LAN discovery workflow for BrightSign players.
+- `player-discovery-probe`: Single-host BrightSign diagnostics.
+- `player-discovery-export`: Export discovery results for sharing and support.
 
 **How to use**: Just ask Copilot! "Create a plan for...", "Debug this...", "Review this component...".
+
+**Portable install**: `npx skills add CambridgeMonorail/TheSignAge`
+
+The open skills CLI supports GitHub shorthand, full GitHub URLs, repo paths, local paths, project installs, and global installs. In this repo, `skills/` is canonical and `.github/skills/` is a generated mirror.
 
 ### Agents (`/agents`)
 
@@ -115,5 +134,7 @@ See [AI-Assisted Feature Workflow](../docs/getting-started/ai-assisted-feature-w
 - `instructions-detox`: Extract/organize instruction context.
 - `shadcnui-component-reviewer`: shadcn/ui component quality review.
 - `custom-agent-foundry`: Agent authoring assistant.
+
+The `signage-architect` agent is a good orchestration layer for the signage-specific skills above when a task needs layout, motion, and BrightSign runtime guidance together.
 
 **How to use**: Mention `@agent-name` in Chat.
