@@ -29,7 +29,7 @@ export const Home: FC = () => {
             asChild
             variant="default"
             size="lg"
-            className="rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)]"
+            className="demo-cta-primary"
           >
             <Link to="/getting-started">Get Started</Link>
           </Button>
@@ -37,7 +37,7 @@ export const Home: FC = () => {
             asChild
             variant="secondary"
             size="lg"
-            className="rounded-full border border-white/12 bg-background/10 px-6 text-sm uppercase tracking-[0.18em] backdrop-blur-md"
+            className="demo-cta-secondary"
           >
             <Link to="/gallery">View Examples</Link>
           </Button>

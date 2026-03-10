@@ -1,4 +1,5 @@
 import { FC, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@tsa/shadcnui'; // Import shadcn Button component
 
 /**
@@ -95,6 +96,10 @@ export const HeroSection: FC<HeroSectionProps> = ({
     return url.startsWith('http://') || url.startsWith('https://');
   };
 
+  const isInternalRoute = (url: string) => {
+    return url.startsWith('/');
+  };
+
   const renderCta = (
     cta: HeroSectionCta,
     variant: 'default' | 'secondary' | 'outline',
@@ -103,6 +108,16 @@ export const HeroSection: FC<HeroSectionProps> = ({
   ) => {
     if (cta.link) {
       const isExternal = isExternalUrl(cta.link);
+
+      if (isInternalRoute(cta.link)) {
+        return (
+          <Button asChild variant={variant} className={className} data-testid={testId}>
+            <Link to={cta.link} onClick={cta.onClick}>
+              {cta.text}
+            </Link>
+          </Button>
+        );
+      }
 
       return (
         <Button asChild variant={variant} className={className} data-testid={testId}>
