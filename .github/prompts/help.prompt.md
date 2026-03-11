@@ -15,6 +15,7 @@ Display the following guide to help the user navigate the AI tooling in this rep
 
 - `/help` - Show this guide
 - `/commit` - Stage, commit, and push changes with conventional commit format
+- `/create-signage-placeholders` - Plan placeholder image references for signage layouts before final artwork exists
 - `/pr-desc` - Generate a structured PR description from your changes
 - `/implement-next` - Read the active plan and implement the next unchecked task
 - `/mcp-check` - Verify Model Context Protocol (MCP) server setup
@@ -35,6 +36,7 @@ Display the following guide to help the user navigate the AI tooling in this rep
 **For complex workflows:**
 
 - "Create a plan for..." → Uses `planning` skill
+- "Plan placeholder images for this signage screen..." → Uses `signage-placeholder-images` skill
 - "Debug this issue..." → Uses `systematic-debugging` skill
 - "Review this component..." → Uses `shadcnui-component-review` skill
 - "Is this PR ready?" → Uses `code-review-ready` skill

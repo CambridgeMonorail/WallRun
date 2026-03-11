@@ -54,6 +54,7 @@ These tools work together to ensure code quality, consistency, and adherence to 
 │   └── enhanced-gpt4.1.chatmode.md
 ├── prompts/                          # Reusable prompts
 │   ├── commit.prompt.md
+│   ├── create-signage-placeholders.prompt.md
 │   ├── help.prompt.md
 │   ├── implement-next.prompt.md
 │   ├── mcp-check.prompt.md
@@ -76,6 +77,7 @@ skills/                               # Canonical portable SKILL.md source
 ├── brightsign-package/
 ├── brightsign-debug/
 ├── brightsign-fleet-deploy/
+├── signage-placeholder-images/
 ├── player-discovery-scan/
 ├── player-discovery-probe/
 ├── player-discovery-export/
@@ -456,7 +458,10 @@ These skills provide reusable workflows for packaging/deploying to BrightSign pl
 These skills capture the wall-screen rules that typical web development tools do not encode well by default.
 
 - **Layout system:** `skills/signage-layout-system/`
+- **Placeholder images:** `skills/signage-placeholder-images/`
 - **Animation system:** `skills/signage-animation-system/`
+
+See [Signage Placeholder Images](./signage-placeholder-images.md) for example prompts and expected outputs.
 
 Practical entry points (non-skill commands that the skills may ask you to run):
 
@@ -510,6 +515,18 @@ Security boundary:
 ---
 
 ## Prompts
+
+### Create Signage Placeholders
+
+**File**: `.github/prompts/create-signage-placeholders.prompt.md`
+
+**Purpose**: Generates a small, structured placeholder asset plan for signage image zones before final artwork exists
+
+**When to use**:
+
+- Scaffolding a new signage screen with image zones
+- Adding temporary image paths into a React component
+- Standardizing placeholder naming, dimensions, and alt text across a demo
 
 ### Help
 
