@@ -31,6 +31,12 @@
 - **[02-demo-site-walkthrough.script.md](./02-demo-site-walkthrough.script.md)**
    Spoken narration only, aligned to the same sequence as the operator version.
 
+- **[03-youtube-demo-site-walkthrough.operator.md](./03-youtube-demo-site-walkthrough.operator.md)**
+   Chrome DevTools MCP operator runbook for the YouTube-optimized walkthrough, including pre-roll cues and hold timing.
+
+- **[03-youtube-demo-site-walkthrough.script.md](./03-youtube-demo-site-walkthrough.script.md)**
+   Spoken narration only for the YouTube-optimized walkthrough.
+
 ### Testing and Validation
 
 - **[demo-preflight-testing.md](./demo-preflight-testing.md)**

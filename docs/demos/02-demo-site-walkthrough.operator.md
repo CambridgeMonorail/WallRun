@@ -10,33 +10,33 @@ Confirm before starting:
 
 ## Sequence
 
-1. URL: <https://cambridgemonorail.github.io/TheSignAge/>
+1. URL: <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+   Pause: 8-10s
+   Line: "Start with the output. This is the kind of screen The Sign Age is built to support: clear, purposeful signage with large type, clean hierarchy, and instant readability."
+
+2. URL: <https://cambridgemonorail.github.io/TheSignAge/>
    Pause: 15-20s
    Line: "This is The Sign Age: digital signage treated as software rather than a slide deck or CMS. The focus is deterministic screen composition, installable components, and delivery workflows for always-on displays."
 
-2. URL: <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
+3. URL: <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
    Pause: 15-20s
    Line: "The getting started guide makes the adoption path concrete. You can install components from the registry, clone the repo, or copy the source into an existing React project."
 
-3. URL: <https://cambridgemonorail.github.io/TheSignAge/#/components>
+4. URL: <https://cambridgemonorail.github.io/TheSignAge/#/components>
    Pause: 5-8s
    Line: "The component library is organized the way a developer expects: primitives, layouts, and higher-level patterns."
 
-4. URL: <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
+5. URL: <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
    Pause: 12-15s
    Line: "This metric card is a good primitive example. It is built for large-format readability, strong contrast, and fast scanning from distance."
 
-5. URL: <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
+6. URL: <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
    Pause: 12-15s
    Line: "This split-screen layout shows the other half of the system: deterministic zoning with predictable structure for signage screens."
 
-6. URL: <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
+7. URL: <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
    Pause: 10-12s
    Line: "The gallery turns those building blocks into complete screen examples and quickly shows the range of use cases the project is targeting."
-
-7. URL: <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
-   Pause: 10-12s
-   Line: "This welcome screen is the simplest expression of the design system: large type, clean hierarchy, and a focal message that reads instantly."
 
 8. URL: <https://cambridgemonorail.github.io/TheSignAge/#/signage/menu>
    Pause: 10-12s
@@ -64,6 +64,7 @@ Confirm before starting:
 
 ## Operator Notes
 
+- Start on the welcome screen, then zoom out into the site
 - Keep the GitHub section quick
 - Use direct URL navigation rather than scrolling
 - If the pacing feels slow, shorten the component index and GitHub stops first

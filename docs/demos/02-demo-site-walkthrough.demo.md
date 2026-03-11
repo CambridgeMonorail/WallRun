@@ -11,7 +11,7 @@
 Before recording:
 
 - Use a 1440x900 or 1920x1080 browser window
-- Start on the public site home page
+- Start on the welcome signage page
 - Keep zoom at 100%
 - Hide bookmarks and unrelated tabs if possible
 - Use smooth but direct mouse movement; avoid over-scrolling
@@ -33,13 +33,13 @@ Before starting the walkthrough:
 
 ## Route Order
 
-1. <https://cambridgemonorail.github.io/TheSignAge/>
-2. <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
-3. <https://cambridgemonorail.github.io/TheSignAge/#/components>
-4. <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
-5. <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
-6. <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
-7. <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+1. <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+2. <https://cambridgemonorail.github.io/TheSignAge/>
+3. <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
+4. <https://cambridgemonorail.github.io/TheSignAge/#/components>
+5. <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
+6. <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
+7. <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
 8. <https://cambridgemonorail.github.io/TheSignAge/#/signage/menu>
 9. <https://cambridgemonorail.github.io/TheSignAge/#/signage/announcements>
 10. <https://github.com/CambridgeMonorail/TheSignAge?tab=readme-ov-file#the-sign-age>
@@ -51,7 +51,21 @@ Before starting the walkthrough:
 
 ## Script
 
-### 1. Landing Page
+### 1. Welcome Screen Opening
+
+**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+
+> "Start with the output. This is the kind of screen The Sign Age is built to support: clear, purposeful signage with large type, clean hierarchy, and instant readability."
+
+**On-screen focus:**
+
+- "Welcome"
+- "to The Sign Age"
+- "Digital Signage as Software"
+
+> "From here, I’ll zoom out into the public site, the component model, and the source behind it."
+
+### 2. Landing Page
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/>
 
@@ -65,7 +79,7 @@ Before starting the walkthrough:
 
 > "The project combines modern frontend tooling with signage constraints like fixed-aspect layouts, distance-readable typography, offline-first behavior, and BrightSign-oriented delivery."
 
-### 2. Getting Started
+### 3. Getting Started
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
 
@@ -79,7 +93,7 @@ Before starting the walkthrough:
 
 > "This is for developers who want real components, real code, and predictable deployment, not a closed authoring environment."
 
-### 3. Component Library Overview
+### 4. Component Library Overview
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components>
 
@@ -91,7 +105,7 @@ Before starting the walkthrough:
 - Move promptly to representative pages
 - Do not linger here; use this as a transition into the two detail pages
 
-### 4. Metric Card Primitive
+### 5. Metric Card Primitive
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
 
@@ -105,7 +119,7 @@ Before starting the walkthrough:
 
 > "The page also keeps installation, usage, and source close to the example, so the docs stay close to the code."
 
-### 5. Split Screen Layout
+### 6. Split Screen Layout
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
 
@@ -119,7 +133,7 @@ Before starting the walkthrough:
 
 > "Together, primitives and layouts give you reusable building blocks for menus, dashboards, directories, and announcement boards."
 
-### 6. Gallery Overview
+### 7. Gallery Overview
 
 **Show:** <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
 
@@ -132,19 +146,7 @@ Before starting the walkthrough:
 - Restaurant Menu
 - Announcements Board
 
-> "I’m going to step through three representative screens: a welcome screen, a menu, and an announcements board."
-
-### 7. Welcome Screen
-
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
-
-> "First, the welcome screen. This is the simplest expression of the design system: large type, clean hierarchy, and a focal message that reads instantly on a wall-mounted display."
-
-**On-screen focus:**
-
-- "Welcome"
-- "to The Sign Age"
-- "Digital Signage as Software"
+> "I’m going to step through two more representative screens: a menu and an announcements board."
 
 ### 8. Menu Screen
 
@@ -254,17 +256,17 @@ Use this if you want a tighter read:
 
 ## Chapter Markers
 
-- 0:00 Landing Page
-- 0:25 Getting Started
-- 0:50 Component Library
-- 1:10 Metric Card
-- 1:35 Split Screen
-- 2:00 Gallery
-- 2:20 Welcome Screen
-- 2:40 Menu Screen
-- 3:05 Announcements Screen
-- 3:30 Repository
-- 3:55 Skills Directory
-- 4:20 Signage Components Source
-- 4:45 Closing
+- 0:00 Welcome Screen
+- 0:10 Landing Page
+- 0:35 Getting Started
+- 1:00 Component Library
+- 1:20 Metric Card
+- 1:45 Split Screen
+- 2:10 Gallery
+- 2:30 Menu Screen
+- 2:55 Announcements Screen
+- 3:20 Repository
+- 3:45 Skills Directory
+- 4:10 Signage Components Source
+- 4:35 Closing
 
