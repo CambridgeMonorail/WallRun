@@ -6,11 +6,11 @@ model: Claude Sonnet 4.5
 target: vscode
 handoffs:
   - label: Deploy To BrightSign Player
-    agent: BrightSign Deploy
+    agent: 'BrightSign Deploy'
     prompt: Package and deploy the BrightSign signage app that was just implemented. Use the relevant BrightSign packaging and local deployment workflow for the changed app.
     send: false
   - label: Debug BrightSign Runtime Issues
-    agent: BrightSign Deploy
+    agent: 'BrightSign Deploy'
     prompt: Investigate the BrightSign runtime or deployment issue affecting the signage app and gather concrete diagnostics.
     send: false
 ---

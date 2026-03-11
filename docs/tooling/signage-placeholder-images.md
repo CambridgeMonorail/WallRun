@@ -54,7 +54,7 @@ For each image zone:
 Expected output:
 
 - a short list of placeholder assets with purpose, dimensions, file names, labels, alt text, and replacement notes
-- names such as `menu-item-image-800x800.png` and `featured-hero-food-image-1920x1080.png`
+- names such as `menu-item-image-800x800.png` and `menu-featured-hero-food-image-1920x1080.png`
 - language that stays honest about placeholders rather than pretending the final image exists
 
 ### 2. Insert placeholders directly into a component
