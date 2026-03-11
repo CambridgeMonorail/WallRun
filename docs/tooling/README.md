@@ -23,6 +23,16 @@ For commit + PR descriptions, use the prompts: `/commit` and `/pr-desc`.
 
 For browser debugging, use the `chrome-devtools-webapp-debug` skill.
 
+For placeholder image scaffolding, see [Signage Placeholder Images](./signage-placeholder-images.md).
+
+---
+
+### [Signage Placeholder Images](./signage-placeholder-images.md)
+
+Short team guide for using the `signage-placeholder-images` skill and `/create-signage-placeholders` prompt when scaffolding image zones before final artwork exists.
+
+**Key Topics**: Placeholder naming, dimensions, asset paths, example prompts, expected outputs
+
 ---
 
 ### [Productivity Tooling](./productivity-tooling.md)

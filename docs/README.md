@@ -32,6 +32,7 @@ Practical how-to guides for common development tasks.
 Developer tools and productivity enhancements.
 
 - **[GitHub Copilot Tooling](./tooling/github-copilot-tooling.md)** - Custom agents, skills, and instructions ⭐
+- **[Signage Placeholder Images](./tooling/signage-placeholder-images.md)** - How to scaffold placeholder image references for signage screens
 - **[Productivity Tooling](./tooling/productivity-tooling.md)** - Nx, VS Code, Copilot, and automation
 - **[Workflows](./tooling/workflows.md)** - Development lifecycle and best practices
 
@@ -81,6 +82,7 @@ Planned features and future work.
 - **Build a feature** → [Guides](./guides/)
 - **Use Copilot agents** → [GitHub Copilot Tooling](./tooling/github-copilot-tooling.md)
 - **Use Copilot skills** → [GitHub Copilot Tooling](./tooling/github-copilot-tooling.md#skills)
+- **Plan placeholder images** → [Signage Placeholder Images](./tooling/signage-placeholder-images.md)
 - **Theme my app** → [Theming Your App](./guides/theming-a-new-app.md)
 - **Add a page** → [Adding a New Component Page](./guides/addding-new-component-page.md)
 - **Integrate a service** → [Integration](./integration/)

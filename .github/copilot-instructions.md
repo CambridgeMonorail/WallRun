@@ -158,6 +158,8 @@ When working as an agent in this repository:
 3. **Verify your work** - Run `pnpm verify` before declaring completion
 4. **Document decisions** - Explain trade-offs and reasoning in commit messages and PRs
 5. **Respect existing patterns** - Follow established conventions in instructions and code
+6. **Clarify ambiguous scope before coding** - If a request could reasonably mean creating something new or modifying an existing app, stop and ask which one the user wants.
+7. **Never modify an existing app without confirmation** - Unless the user explicitly names the existing app or clearly asks for a change to it, clarify first instead of reusing or altering an existing app.
 
 **Workflow Skills:** See [skills/](../skills/) for structured workflow guides. `.github/skills/` is the generated Copilot mirror.
 
