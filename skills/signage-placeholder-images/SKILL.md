@@ -244,7 +244,9 @@ kiosk-product-card-image-900x1200.png
 - include the screen or section where useful
 - include the zone purpose
 - include dimensions
+- add a stable slot or content key for repeated zones when each placeholder should be distinct
 - use `placeholder` in the name only when the context is ambiguous
+- if repeated zones intentionally share one placeholder asset, say so explicitly in the output
 - prefer names that can later be replaced with real assets predictably
 
 ---
@@ -429,9 +431,9 @@ A landscape menu board with two smaller food cards on the left and a large promo
 
 Output:
 
-- `menu-item-image-800x800.png`
-- `menu-item-image-800x800.png`
-- `featured-hero-food-image-1920x1080.png`
+- `menu-left-item-1-image-800x800.png`
+- `menu-left-item-2-image-800x800.png`
+- `menu-featured-dish-image-1920x1080.png`
 
 Labels:
 
