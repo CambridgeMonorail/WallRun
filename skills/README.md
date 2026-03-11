@@ -24,7 +24,9 @@ In practice, that means a consumer can install these skills and get signage-spec
 
 ### Signage Design and Runtime
 
+- `brightsign-signage-build`: bundles layout, runtime, packaging, and verification for BrightSign signage builds
 - `signage-layout-system`: builds full-screen layouts for large displays, distance readability, and continuous operation
+- `signage-menu-board`: builds food and service menu boards with signage-first hierarchy rules
 - `signage-animation-system`: designs motion that works on always-on public displays
 - `brightsign-runtime`: explains how to adapt web apps to BrightSign hardware constraints
 
