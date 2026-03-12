@@ -204,6 +204,17 @@ pnpm nx run player-minimal:deploy-local
 pnpm nx run player-minimal:deploy
 ```
 
+### Scaffolding New Player Apps
+
+Use either scaffold entry point to create a new BrightSign player app from this template contract:
+
+```bash
+pnpm scaffold:player --name player-menu-board
+pnpm nx g sign-age:player-app --name player-menu-board
+```
+
+Use `pnpm scaffold:player` when you want the existing script entry point. Use `pnpm nx g sign-age:player-app` when you want native Nx generator workflows.
+
 ### Debugging
 
 - **Production bootstrap**: Inspector is disabled by default

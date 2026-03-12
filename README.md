@@ -112,6 +112,11 @@ Your React app is now running on the BrightSign player. Changes? Run `pnpm deplo
 Use the signage component library to create custom screens:
 
 ```bash
+# Create a new BrightSign player app scaffold
+pnpm scaffold:player --name player-arrivals
+# Or use the Nx-native generator directly
+pnpm nx g sign-age:player-app --name player-arrivals
+
 # Start Storybook to browse components
 pnpm serve:storybook
 ```

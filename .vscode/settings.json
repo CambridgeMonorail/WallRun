@@ -15,5 +15,6 @@
   "chat.tools.terminal.autoApprove": {
     "pnpm": true
   },
-  "vitest.disableWorkspaceWarning": true
+  "vitest.disableWorkspaceWarning": true,
+  "eslint.validate": ["json"]
 }
