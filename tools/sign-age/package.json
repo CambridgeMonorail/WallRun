@@ -1,0 +1,14 @@
+{
+  "name": "sign-age",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@swc/core": "~1.10.9",
+    "@nx/devkit": "22.4.1",
+    "tslib": "^2.3.0"
+  },
+  "generators": "./generators.json"
+}

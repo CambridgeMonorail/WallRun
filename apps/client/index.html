@@ -2,8 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Demo - TheSignAge</title>
-    <base href="/" />
+    <script>
+      (function () {
+        var redirect = window.location.search.slice(1);
+
+        if (!redirect || redirect[0] !== '/') {
+          return;
+        }
+
+        var decoded = redirect
+          .replace(/~and~/g, '&')
+          .replace(/\+/g, ' ');
+        var basePath = window.location.pathname.endsWith('/')
+          ? window.location.pathname.slice(0, -1)
+          : window.location.pathname;
+        var restoredUrl = basePath + decoded + window.location.hash;
+
+        window.history.replaceState(null, '', restoredUrl);
+      })();
+    </script>
+    <title>The Sign Age | Digital Signage Framework For BrightSign And React</title>
     <meta
       name="google-site-verification"
       content="vcXVoRYtK7tLGjvik4u-4h1xuwyYS77_uI4tjW8Xk1A"
@@ -11,30 +29,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Demo application for TheSignAge, a boilerplate for building modern SPAs using Nx, Tailwind CSS, and Shadcn UI."
+      content="The Sign Age is a developer-first framework for building BrightSign-ready digital signage with React, TypeScript, signage components, player app generators, and deployment workflows."
     />
+    <meta name="robots" content="index, follow" />
     <meta
       name="keywords"
-      content="React, SPA, Nx, Tailwind CSS, Shadcn UI, TypeScript, Vite, Monorepo"
+      content="digital signage framework, BrightSign React, signage component library, BrightSign deployment workflow, player app generator, TypeScript signage"
     />
     <meta name="author" content="CambridgeMonorail" />
-    <meta property="og:title" content="Demo - TheSignAge" />
+    <meta property="og:site_name" content="The Sign Age" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="The Sign Age | Digital Signage Framework For BrightSign And React"
+    />
     <meta
       property="og:description"
-      content="Demo application for TheSignAge, a boilerplate for building modern SPAs using Nx, Tailwind CSS, and Shadcn UI."
+      content="The Sign Age is a developer-first framework for building BrightSign-ready digital signage with React, TypeScript, signage components, player app generators, and deployment workflows."
     />
-    <meta property="og:image" content="/assets/images/social.png" />
+    <meta
+      property="og:image"
+      content="https://cambridgemonorail.github.io/TheSignAge/assets/images/social.png"
+    />
     <meta
       property="og:url"
       content="https://cambridgemonorail.github.io/TheSignAge/"
     />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Demo - TheSignAge" />
+    <meta
+      name="twitter:title"
+      content="The Sign Age | Digital Signage Framework For BrightSign And React"
+    />
     <meta
       name="twitter:description"
-      content="Demo application for TheSignAge, a boilerplate for building modern SPAs using Nx, Tailwind CSS, and Shadcn UI."
+      content="The Sign Age is a developer-first framework for building BrightSign-ready digital signage with React, TypeScript, signage components, player app generators, and deployment workflows."
     />
-    <meta name="twitter:image" content="/assets/images/social.png" />
+    <meta
+      name="twitter:image"
+      content="https://cambridgemonorail.github.io/TheSignAge/assets/images/social.png"
+    />
+    <link
+      rel="canonical"
+      href="https://cambridgemonorail.github.io/TheSignAge/"
+    />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -47,6 +84,27 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "The Sign Age",
+            "url": "https://cambridgemonorail.github.io/TheSignAge/",
+            "description": "The Sign Age is a developer-first framework for building BrightSign-ready digital signage with React, TypeScript, signage components, player app generators, and deployment workflows."
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "The Sign Age",
+            "codeRepository": "https://github.com/CambridgeMonorail/TheSignAge",
+            "programmingLanguage": ["TypeScript", "React"],
+            "runtimePlatform": "BrightSign OS 9.x",
+            "url": "https://cambridgemonorail.github.io/TheSignAge/"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "player-app": {
+      "factory": "./src/generators/player-app/player-app",
+      "schema": "./src/generators/player-app/schema.json",
+      "description": "player-app generator"
+    }
+  }
+}

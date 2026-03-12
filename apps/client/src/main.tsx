@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@tsa/shadcnui';
 
 import { App } from './app/app';
@@ -11,10 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <HashRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   </StrictMode>,
 );

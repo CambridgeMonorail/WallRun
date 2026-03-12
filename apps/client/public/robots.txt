@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cambridgemonorail.github.io/TheSignAge/sitemap.xml

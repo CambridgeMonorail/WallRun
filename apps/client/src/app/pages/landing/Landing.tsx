@@ -36,10 +36,11 @@ export const LandingPage: FC = () => {
       <div className="w-full" data-testid="hero-section-container">
         <HeroSection
           title="Digital Signage as Software"
-          subtitle="Build deterministic, data-driven content for always-on displays using modern web technologies."
-          description="Treat signage players as programmable systems. Create fixed-aspect layouts, distance-readable typography, and predictable rendering for BrightSign devices and beyond."
+          subtitle="An open source, developer-first workspace for building deterministic signage systems with modern web technologies."
+          description="Treat signage players as programmable systems. Clone the repo, inspect the code, adapt the components, and deploy real fixed-aspect layouts to BrightSign devices and beyond."
           highlights={[
             'Deterministic screen composition',
+            'Nx-native player app scaffolding',
             'Registry-native component installs',
             'BrightSign-ready delivery workflows',
           ]}
@@ -60,7 +61,7 @@ export const LandingPage: FC = () => {
       </div>
       <AboutSection
         title="Why The Sign Age?"
-        description="The Sign Age is a working notebook for building signage software, not a CMS or marketing tool. It's a component library, tooling reference, and living documentation for treating digital signage as programmable systems."
+        description="The Sign Age is an open source working notebook for building signage software, not a CMS or a product funnel. It's a component library, tooling reference, and living documentation for developers treating digital signage as programmable systems."
         logos={[
           <Logo
             name="nx"
@@ -150,7 +151,7 @@ export const LandingPage: FC = () => {
           {
             title: 'Developer Experience',
             description:
-              'React 19, Vite, TypeScript, Tailwind CSS v4. Modern frontend tooling applied to signage constraints with strict typing and fast iteration.',
+              'React 19, Vite, TypeScript, Tailwind CSS v4, portable skills, and Nx-native generators applied to signage constraints with strict typing and fast iteration.',
             icon: <ChartLine className="text-[hsl(var(--glow-cyan))]" />,
             className: 'hover:border-[hsl(var(--glow-cyan)/0.28)]',
           },
@@ -159,17 +160,17 @@ export const LandingPage: FC = () => {
       />
       <CTASection
         variant="light"
-        title="See Signage in Action"
-        description="Explore full-screen signage examples demonstrating distance-readable layouts, fixed-aspect designs, and deterministic rendering."
-        buttonText="View Gallery"
-        buttonAction={() => navigate('/gallery')}
+        title="From Demo To Device"
+        description="Explore full-screen examples, then move into the tooling surface for player app scaffolding, discovery, and BrightSign deployment workflows."
+        buttonText="Open Tooling"
+        buttonAction={() => navigate('/tooling')}
         data-testid="demo-section"
       />
       <CTASection
         variant="dark"
-        title="Join the Community"
-        description="TheSignAge is built by developers, for developers. Contribute, discuss, and shape the future of the project."
-        buttonText="Contribute on GitHub"
+        title="Built In Public On GitHub"
+        description="The Sign Age is built by developers for developers. Read the code, open issues, send patches, and shape the project in the open."
+        buttonText="View The Open Source Repo"
         buttonAction={() =>
           window.open(
             'https://github.com/CambridgeMonorail/TheSignAge',
@@ -184,17 +185,17 @@ export const LandingPage: FC = () => {
           {
             title: 'Get Started',
             description:
-              'Follow the installation guide to add signage components to your React project.',
+              'Start with the install guide, then scaffold a player app when you are ready to move beyond component sampling.',
           },
           {
-            title: 'Explore Examples',
+            title: 'Explore Tooling',
             description:
-              'Browse signage screens in the gallery—welcome screens, menus, dashboards, wayfinding, and more.',
+              'Review player generation, deployment, discovery, and portable skills so the repo reads like an engineering workflow instead of a static demo.',
           },
           {
             title: 'Build Your Own',
             description:
-              'Use the components and patterns to create deterministic signage screens for your use case.',
+              'Use the components, generators, and deployment flow as source material for your own signage system, not as a locked platform.',
           },
         ]}
         buttonText="Getting Started Guide"

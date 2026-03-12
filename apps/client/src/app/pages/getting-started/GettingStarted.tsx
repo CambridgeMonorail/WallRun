@@ -36,7 +36,9 @@ export const GettingStartedPage: FC = () => {
 
         <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
           Build signage screens as real software. Deterministic,
-          offline-capable, and designed for displays that live on walls.
+          offline-capable, and designed for displays that live on walls. Start
+          with components, then graduate to full player apps and device
+          workflows.
         </p>
       </div>
 
@@ -128,6 +130,29 @@ pnpm build:shadcnui-signage`}
               components are self-contained with minimal dependencies.
             </p>
           </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-foreground mb-2">
+              Option 4: Scaffold A Full Player App
+            </h3>
+            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
+              <pre>
+                {`# Compatibility entry point
+pnpm scaffold:player --name player-arrivals
+
+# Nx-native generator
+pnpm nx g sign-age:player-app --name player-arrivals
+
+# Generate a landscape menu board app
+pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation landscape --noStatusPage`}
+              </pre>
+            </div>
+            <p className="text-muted-foreground mt-2 text-sm">
+              Use this when you want a BrightSign-ready application shell rather
+              than individual components. The generated app keeps the same
+              packaging and deployment shape used by the built-in player app.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -195,6 +220,41 @@ showing 3 categories with 4 items each, 1080p landscape`}
               for full documentation.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="demo-panel mb-12 p-6 sm:p-8">
+        <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
+          <Terminal className="w-6 h-6" />
+          From Browser Demo To BrightSign Player
+        </h2>
+        <p className="text-muted-foreground mb-4 max-w-3xl">
+          The demo site is only one layer of the repo. When you want to run a
+          real player app on hardware, move into the deployment workflow:
+          discover a player, register it locally, then deploy a specific app.
+        </p>
+        <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
+          <pre>
+            {`# Optional: find BrightSign players on your LAN
+pnpm discover
+
+# Configure a local player registry
+pnpm setup:dev
+
+# Deploy the default player app
+pnpm deploy:player
+
+# Deploy a named app to a named player
+pnpm deploy:player -- --app player-arrivals --player lobby-display`}
+          </pre>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Button onClick={() => navigate('/tooling')} variant="secondary">
+            Open Tooling & Deployment
+          </Button>
+          <Button onClick={handleGitHubClick} variant="ghost">
+            Open GitHub Repository
+          </Button>
         </div>
       </section>
 
@@ -328,6 +388,19 @@ showing 3 categories with 4 items each, 1080p landscape`}
           <div className="flex items-start gap-3">
             <span className="text-foreground font-medium">2.</span>
             <p className="text-muted-foreground">
+              Open{' '}
+              <button
+                onClick={() => navigate('/tooling')}
+                className="text-foreground hover:underline"
+              >
+                Tooling &amp; Deployment
+              </button>{' '}
+              to scaffold player apps and review BrightSign workflows
+            </p>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-foreground font-medium">3.</span>
+            <p className="text-muted-foreground">
               View the{' '}
               <button
                 onClick={() => navigate('/gallery')}
@@ -339,7 +412,7 @@ showing 3 categories with 4 items each, 1080p landscape`}
             </p>
           </div>
           <div className="flex items-start gap-3">
-            <span className="text-foreground font-medium">3.</span>
+            <span className="text-foreground font-medium">4.</span>
             <p className="text-muted-foreground">
               Review{' '}
               <button
@@ -358,6 +431,9 @@ showing 3 categories with 4 items each, 1080p landscape`}
         <div className="space-x-4">
           <Button onClick={() => navigate('/library')} variant="secondary">
             Browse Components
+          </Button>
+          <Button onClick={() => navigate('/tooling')} variant="secondary">
+            Tooling &amp; Deployment
           </Button>
           <Button onClick={() => navigate('/gallery')} variant="secondary">
             View Gallery

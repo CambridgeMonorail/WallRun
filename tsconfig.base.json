@@ -26,7 +26,8 @@
       "@tsa/shell": ["libs/shell/src/index.ts"],
       "common-tailwind": ["libs/common-tailwind/src/index.ts"],
       "common-tailwind/styles": ["libs/common-tailwind/src/styles.ts"],
-      "storybook-host": ["libs/storybook-host/src/index.ts"]
+      "storybook-host": ["libs/storybook-host/src/index.ts"],
+      "sign-age": ["tools/sign-age/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

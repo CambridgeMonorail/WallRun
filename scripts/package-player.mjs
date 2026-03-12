@@ -33,6 +33,7 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT_DIR = join(__dirname, '..');
+const PNPM_CLI = join(ROOT_DIR, 'node_modules', 'pnpm', 'bin', 'pnpm.cjs');
 
 const MANIFEST_FILE_NAME = 'manifest.json';
 
@@ -112,10 +113,14 @@ async function main() {
   // Step 1: Build the app
   console.log(`1️⃣  Building ${appName} app...`);
   try {
-    execFileSync('pnpm', ['exec', 'nx', 'build', appName, '--configuration=production'], {
-      cwd: ROOT_DIR,
-      stdio: 'inherit',
-    });
+    execFileSync(
+      process.execPath,
+      [PNPM_CLI, 'exec', 'nx', 'build', appName, '--configuration=production'],
+      {
+        cwd: ROOT_DIR,
+        stdio: 'inherit',
+      },
+    );
     console.log('✅ Build complete\n');
   } catch (error) {
     console.error('❌ Build failed:', error);

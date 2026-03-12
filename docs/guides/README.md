@@ -52,6 +52,10 @@ Complete documentation for deploying React applications to BrightSign hardware p
 # First-time setup
 pnpm deploy:dev-mode          # Set up development mode (one-time)
 
+# Scaffold a new BrightSign player app
+pnpm scaffold:player --name player-arrivals
+pnpm nx g sign-age:player-app --name player-arrivals
+
 # Development workflow (fast iteration)
 pnpm dev:brightsign           # Start dev server
 # Edit code, save, refresh player (~2 seconds)
