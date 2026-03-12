@@ -40,4 +40,16 @@ describe('LandingPage', () => {
     expect(getByText(/Offline-First/gi)).toBeTruthy();
     expect(getByText(/Developer Experience/gi)).toBeTruthy();
   });
+
+  it('should make the open source developer-first positioning explicit', () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <LandingPage />
+      </BrowserRouter>,
+    );
+
+    expect(getByText(/open source, developer-first workspace/gi)).toBeTruthy();
+    expect(getByText(/built by developers for developers/gi)).toBeTruthy();
+    expect(getByText(/View The Open Source Repo/gi)).toBeTruthy();
+  });
 });

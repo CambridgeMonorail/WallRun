@@ -1,12 +1,20 @@
 import { createElement } from 'react';
 import { SidebarConfiguration } from '../types/sidebarTypes';
-import { Swords, AudioWaveform, Bot, Monitor, Blocks } from 'lucide-react';
+import {
+  Swords,
+  AudioWaveform,
+  Bot,
+  Monitor,
+  Blocks,
+  Wrench,
+} from 'lucide-react';
 
 import { LandingPage } from '../pages/landing/Landing';
 import { ColorPalettePage } from '../pages/color-palette/ColorPalette';
 import { GalleryPage } from '../pages/gallery/Gallery';
 import { LibraryPage } from '../pages/library/Library';
 import { GettingStartedPage } from '../pages/getting-started/GettingStarted';
+import { ToolingPage } from '../pages/tooling/Tooling';
 import { NotFound } from '../pages/not-found/NotFound';
 import { WelcomeScreen } from '../pages/signage/WelcomeScreen';
 import { RestaurantMenu } from '../pages/signage/RestaurantMenu';
@@ -43,6 +51,7 @@ const paths = {
   landing: '/',
   gallery: '/gallery',
   gettingStarted: '/getting-started',
+  tooling: '/tooling',
   home: '/',
   signage: {
     welcome: '/signage/welcome',
@@ -116,8 +125,21 @@ const sidebarData: SidebarConfiguration = {
       isActive: true,
       items: [
         { title: 'Getting Started', url: paths.gettingStarted },
+        { title: 'Tooling & Deployment', url: paths.tooling },
         { title: 'Component Library', url: paths.components.library },
         { title: 'Color Palette', url: paths.components.colorPalette },
+      ],
+    },
+    {
+      title: 'Player Workflows',
+      url: paths.tooling,
+      icon: Wrench,
+      items: [
+        { title: 'Tooling & Deployment', url: paths.tooling },
+        { title: 'Gallery', url: paths.gallery },
+        { title: 'Welcome Screen', url: paths.signage.welcome },
+        { title: 'Restaurant Menu', url: paths.signage.menu },
+        { title: 'Office Directory', url: paths.signage.wayfinding },
       ],
     },
     {
@@ -218,6 +240,7 @@ const routes = [
   createRoute(paths.landing, LandingPage, false),
   createRoute(paths.gallery, GalleryPage),
   createRoute(paths.gettingStarted, GettingStartedPage),
+  createRoute(paths.tooling, ToolingPage),
   createRoute(paths.signage.welcome, WelcomeScreen, false),
   createRoute(paths.signage.menu, RestaurantMenu, false),
   createRoute(paths.signage.wayfinding, OfficeDirectory, false),

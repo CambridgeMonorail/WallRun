@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { Toaster } from '@tsa/shadcnui';
 import { navigationConfig } from './constants/navigationConfig';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { SeoManager } from './components/SeoManager';
 
 const App: FC = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const App: FC = () => {
       className="bg-background text-foreground min-h-screen w-full"
       data-testid="app-container"
     >
+      <SeoManager />
       <Routes>
         {navigationConfig.routes.map((route) => (
           <Route
