@@ -20,7 +20,8 @@ const defaultKeywords =
   'digital signage, BrightSign, React signage, signage component library, signage docs, TypeScript signage';
 
 export const getCanonicalUrl = (path: string) => {
-  const normalizedPath = path === '/' ? siteBasePath : `${siteBasePath}${path}`;
+  const normalizedPath =
+    path === '/' ? `${siteBasePath}/` : `${siteBasePath}${path}`;
 
   return `${siteHost}${normalizedPath}`;
 };

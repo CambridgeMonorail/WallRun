@@ -9,6 +9,7 @@
   "include": [
     "jest.config.ts",
     "jest.config.cts",
+    "jest.transformer.cjs",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"

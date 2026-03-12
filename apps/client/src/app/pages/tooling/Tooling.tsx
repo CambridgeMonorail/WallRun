@@ -1,15 +1,9 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@tsa/shadcnui';
 import { Bot, Radar, Rocket, Wrench } from 'lucide-react';
 
 export const ToolingPage: FC = () => {
-  const navigate = useNavigate();
-
-  const openUrl = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <div className="doc-shell max-w-5xl font-sans">
       <div className="demo-panel demo-grid mb-10 space-y-4 px-8 py-8 sm:px-10">
@@ -78,25 +72,23 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
           </pre>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Button
-            variant="secondary"
-            onClick={() =>
-              openUrl(
-                'https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/guides/brightsign-deployment.md',
-              )
-            }
-          >
-            Open Deployment Guide
+          <Button variant="secondary" asChild>
+            <a
+              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/guides/brightsign-deployment.md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Deployment Guide
+            </a>
           </Button>
-          <Button
-            variant="ghost"
-            onClick={() =>
-              openUrl(
-                'https://github.com/CambridgeMonorail/TheSignAge/blob/main/apps/player-minimal/README.md',
-              )
-            }
-          >
-            Read Player App README
+          <Button variant="ghost" asChild>
+            <a
+              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/apps/player-minimal/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read Player App README
+            </a>
           </Button>
         </div>
       </section>
@@ -120,16 +112,14 @@ pnpm discover
 pnpm player add lobby-display 192.168.1.50 --default`}
             </pre>
           </div>
-          <Button
-            className="mt-4"
-            variant="secondary"
-            onClick={() =>
-              openUrl(
-                'https://github.com/CambridgeMonorail/TheSignAge/blob/main/tools/player-discovery/README.md',
-              )
-            }
-          >
-            Open Discovery Guide
+          <Button className="mt-4" variant="secondary" asChild>
+            <a
+              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/tools/player-discovery/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Discovery Guide
+            </a>
           </Button>
         </div>
 
@@ -147,25 +137,23 @@ pnpm player add lobby-display 192.168.1.50 --default`}
             <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Button
-              variant="secondary"
-              onClick={() =>
-                openUrl(
-                  'https://github.com/CambridgeMonorail/TheSignAge/blob/main/skills/README.md',
-                )
-              }
-            >
-              Read Skills Guide
+            <Button variant="secondary" asChild>
+              <a
+                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/skills/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read Skills Guide
+              </a>
             </Button>
-            <Button
-              variant="ghost"
-              onClick={() =>
-                openUrl(
-                  'https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/tooling/github-copilot-tooling.md',
-                )
-              }
-            >
-              Open Copilot Tooling Docs
+            <Button variant="ghost" asChild>
+              <a
+                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/tooling/github-copilot-tooling.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Copilot Tooling Docs
+              </a>
             </Button>
           </div>
         </div>
@@ -180,11 +168,11 @@ pnpm player add lobby-display 192.168.1.50 --default`}
           device when you are ready to move beyond the browser demo.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          <Button onClick={() => navigate('/getting-started')} variant="secondary">
-            Open Getting Started
+          <Button asChild variant="secondary">
+            <Link to="/getting-started">Open Getting Started</Link>
           </Button>
-          <Button onClick={() => navigate('/gallery')} variant="secondary">
-            View Signage Examples
+          <Button asChild variant="secondary">
+            <Link to="/gallery">View Signage Examples</Link>
           </Button>
         </div>
       </section>

@@ -4,7 +4,7 @@ import { getCanonicalUrl, getRouteSeo } from './routeSeo';
 describe('routeSeo', () => {
   it('should build canonical URLs for the deployed site base path', () => {
     expect(getCanonicalUrl('/')).toBe(
-      'https://cambridgemonorail.github.io/TheSignAge',
+      'https://cambridgemonorail.github.io/TheSignAge/',
     );
     expect(getCanonicalUrl('/tooling')).toBe(
       'https://cambridgemonorail.github.io/TheSignAge/tooling',

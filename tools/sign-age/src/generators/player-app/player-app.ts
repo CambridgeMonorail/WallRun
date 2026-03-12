@@ -34,11 +34,16 @@ type NormalizedOptions = {
   tags: string[];
 };
 
+type GeneratorDependencies = {
+  getUsedPorts?: (ignoreAppName?: string) => Set<number>;
+};
+
 export async function playerAppGenerator(
   tree: Tree,
   options: PlayerAppGeneratorSchema,
+  dependencies: GeneratorDependencies = {},
 ) {
-  const normalized = normalizeOptions(options);
+  const normalized = normalizeOptions(options, dependencies);
   const targetRoot = joinPathFragments('apps', normalized.name);
 
   if (!existsSync(TEMPLATE_DIR)) {
@@ -71,9 +76,11 @@ export default playerAppGenerator;
 
 function normalizeOptions(
   options: PlayerAppGeneratorSchema,
+  dependencies: GeneratorDependencies,
 ): NormalizedOptions {
   const name = validatePlayerAppName(options.name);
-  const usedPorts = getUsedPorts(options.force ? name : undefined);
+  const getUsedPortsImpl = dependencies.getUsedPorts ?? getUsedPorts;
+  const usedPorts = getUsedPortsImpl(options.force ? name : undefined);
   const port = options.port ?? getNextAvailablePort(usedPorts);
 
   if (options.port !== undefined) {
