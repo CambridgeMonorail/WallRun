@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { isAbsolute, relative, resolve } from 'node:path';
 
 export const DEFAULT_PLAYER_APP = 'player-minimal';
-const PLAYER_APP_NAME_PATTERN = /^player-[a-z0-9-]+$/;
+const PLAYER_APP_NAME_PATTERN = /^player-[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function getVersion() {
   return process.env.npm_package_version || '0.1.0';
@@ -21,7 +21,7 @@ export function validatePlayerAppName(appName, options = {}) {
 
   if (!PLAYER_APP_NAME_PATTERN.test(appName)) {
     throw new Error(
-      'App name must use kebab-case, start with "player-", and contain only lowercase letters, numbers, and hyphens.',
+      'App name must use kebab-case segments, start with "player-", and contain only lowercase letters, numbers, and hyphens.',
     );
   }
 

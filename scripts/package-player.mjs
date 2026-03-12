@@ -10,7 +10,7 @@
  * - Generates manifest.json with version and checksums
  */
 
-import { execSync } from 'child_process';
+import { execFileSync } from 'node:child_process';
 import {
   createReadStream,
   existsSync,
@@ -112,7 +112,7 @@ async function main() {
   // Step 1: Build the app
   console.log(`1️⃣  Building ${appName} app...`);
   try {
-    execSync(`pnpm exec nx build ${appName} --configuration=production`, {
+    execFileSync('pnpm', ['exec', 'nx', 'build', appName, '--configuration=production'], {
       cwd: ROOT_DIR,
       stdio: 'inherit',
     });
@@ -195,13 +195,18 @@ async function main() {
   // Use platform-specific zip command
   if (process.platform === 'win32') {
     // Windows: Use PowerShell Compress-Archive
-    execSync(
-      `powershell -Command "Compress-Archive -Path '${packageDir}\\*' -DestinationPath '${packagePath}' -Force"`,
+    execFileSync(
+      'powershell',
+      [
+        '-Command',
+        `Compress-Archive -Path '${packageDir}\\*' -DestinationPath '${packagePath}' -Force`,
+      ],
       { stdio: 'inherit' },
     );
   } else {
     // Unix: Use zip command
-    execSync(`cd "${packageDir}" && zip -r "${packagePath}" .`, {
+    execFileSync('zip', ['-r', packagePath, '.'], {
+      cwd: packageDir,
       stdio: 'inherit',
     });
   }

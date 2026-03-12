@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getAppNameFromArgs } from './player-app-utils.mjs';
@@ -45,7 +45,7 @@ function main() {
   const appName = getAppNameFromArgs(args);
   const playerArgs = getPlayerArgs(args);
 
-  execSync(`node scripts/package-player.mjs --app ${appName}`, {
+  execFileSync('node', ['scripts/package-player.mjs', '--app', appName], {
     cwd: ROOT_DIR,
     stdio: 'inherit',
   });
@@ -55,11 +55,9 @@ function main() {
     '--app',
     appName,
     ...playerArgs,
-  ]
-    .map((arg) => (arg.includes(' ') ? `"${arg}"` : arg))
-    .join(' ');
+  ];
 
-  execSync(`node ${deployArgs}`, {
+  execFileSync('node', deployArgs, {
     cwd: ROOT_DIR,
     stdio: 'inherit',
   });
