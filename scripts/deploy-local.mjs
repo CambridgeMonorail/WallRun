@@ -25,6 +25,11 @@ import { createInterface } from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
 import { fileURLToPath } from 'url';
 import { getPlayer } from './player-config.mjs';
+import {
+  assertPlayerAppExists,
+  getAppNameFromArgs,
+  getPlayerAppPaths,
+} from './player-app-utils.mjs';
 import AdmZip from 'adm-zip';
 import { execFile } from 'child_process';
 import { tmpdir } from 'os';
@@ -35,6 +40,18 @@ const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT_DIR = join(__dirname, '..');
+
+function printUsage() {
+  console.log(`
+Usage:
+  pnpm deploy:local -- --app <player-app-name> [--player <configured-player-name>]
+
+Options:
+  --app     Optional. Packaged player app to upload. Defaults to player-minimal.
+  --player  Optional. Named player from .brightsign/players.json.
+  --help    Show this help message.
+`);
+}
 
 /**
  * @typedef {Object} PlayerConfig
@@ -544,16 +561,17 @@ async function rebootPlayer(config) {
 /**
  * Check if source files are newer than package (staleness check)
  * @param {string} packagePath - Path to the packaged ZIP file
+ * @param {string} appName - App name used to determine relevant source paths
  * @returns {boolean} true if package might be stale, false if up to date
  */
-function checkPackageStaleness(packagePath) {
+function checkPackageStaleness(packagePath, appName) {
   try {
     const packageStat = statSync(packagePath);
     const packageTime = packageStat.mtimeMs;
 
     const sourceDirs = [
-      join(ROOT_DIR, 'apps', 'player-minimal', 'src'),
-      join(ROOT_DIR, 'apps', 'player-minimal', 'public'),
+      join(ROOT_DIR, 'apps', appName, 'src'),
+      join(ROOT_DIR, 'apps', appName, 'public'),
     ];
 
     let newestSourceTime = 0;
@@ -595,7 +613,9 @@ function checkPackageStaleness(packagePath) {
       console.warn(`   Newest source: ${sourceDate}`);
       console.warn(`   File: ${relativeSourceFile}\n`);
       console.warn('   Your source code changes are NOT in this package.');
-      console.warn('   Use "pnpm deploy:player" to rebuild + deploy\n');
+      console.warn(
+        `   Use "pnpm deploy:player -- --app ${appName}" to rebuild + deploy\n`,
+      );
 
       return true;
     }
@@ -609,27 +629,29 @@ function checkPackageStaleness(packagePath) {
 }
 
 async function main() {
-  console.log('🚀 BrightSign Local Deploy\n');
+  const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    printUsage();
+    return;
+  }
 
-  // Find latest package
-  const version = process.env.npm_package_version || '0.1.0';
-  const packagePath = join(
-    ROOT_DIR,
-    'dist',
-    'packages',
-    `brightsign-player-v${version}.zip`,
-  );
+  const appName = getAppNameFromArgs(args);
+  assertPlayerAppExists(ROOT_DIR, appName);
+  const { packageFileName, packagePath } = getPlayerAppPaths(ROOT_DIR, appName);
+
+  console.log('🚀 BrightSign Local Deploy\n');
 
   if (!existsSync(packagePath)) {
     console.error(`❌ Package not found: ${packagePath}`);
-    console.error('   Run "pnpm package:player" first');
+    console.error(`   Run "pnpm package:player -- --app ${appName}" first`);
     process.exit(1);
   }
 
   // Check if package might be stale (source files newer than package)
-  checkPackageStaleness(packagePath);
+  checkPackageStaleness(packagePath, appName);
 
-  console.log(`📦 Package: brightsign-player-v${version}.zip\n`);
+  console.log(`📦 App: ${appName}`);
+  console.log(`📦 Package: ${packageFileName}\n`);
 
   // Get player configuration
   const config = await getPlayerConfig();

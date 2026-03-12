@@ -78,31 +78,35 @@ Build and package the app for BrightSign:
 
 ```bash
 pnpm package:player
+pnpm package:player -- --app player-minimal
+pnpm nx run player-minimal:package
 ```
 
 This command:
 
-- Builds `player-minimal` in production mode
+- Builds the selected player app in production mode
 - Creates deployment package structure
 - Generates `autorun.brs` bootstrap script
 - Creates manifest.json with version and checksums
-- Outputs to `dist/packages/brightsign-player-v<version>.zip`
+- Outputs to `dist/packages/<app-name>-v<version>.zip`
 
-**Output location:** `dist/packages/brightsign-player-v0.0.0.zip`
+**Output location:** `dist/packages/player-minimal-v0.0.0.zip`
 
 ### 2. Deploy to Local Player
 
 **IMPORTANT:** Choose the right command based on what you changed:
 
-| Command              | When to Use                    | What It Does                                |
-| -------------------- | ------------------------------ | ------------------------------------------- |
-| `pnpm deploy:player` | **After changing source code** | Rebuilds app → Packages → Uploads → Reboots |
-| `pnpm deploy:local`  | Package already built (rare)   | Uploads existing package → Reboots          |
+| Command                    | When to Use                    | What It Does                                |
+| -------------------------- | ------------------------------ | ------------------------------------------- |
+| `pnpm deploy:player`       | **After changing source code** | Rebuilds app → Packages → Uploads → Reboots |
+| `pnpm deploy:local`        | Package already built (rare)   | Uploads existing package → Reboots          |
+| `pnpm nx run <app>:deploy` | App-local workflow             | Packages + uploads the selected app         |
 
 **For normal development:** Always use `pnpm deploy:player`
 
 ```bash
 pnpm deploy:player
+pnpm deploy:player -- --app player-minimal --player dev-player
 ```
 
 This command:
@@ -112,10 +116,19 @@ This command:
 3. Uploads to player via LDWS REST API (`deploy:local`)
 4. Reboots player to launch new version
 
+For app-local execution, each scaffolded player app also exposes Nx targets:
+
+```bash
+pnpm nx run player-minimal:package
+pnpm nx run player-minimal:deploy-local
+pnpm nx run player-minimal:deploy
+```
+
 **Advanced:** If you know the package is current and just want to re-upload:
 
 ```bash
 pnpm deploy:local
+pnpm deploy:local -- --app player-minimal --player dev-player
 ```
 
 The script will:
@@ -194,9 +207,10 @@ pnpm nx build player-minimal --configuration=production
 
 # Via package script (recommended)
 pnpm package:player
+pnpm package:player -- --app player-minimal
 ```
 
-**Build output:** `dist/apps/player-minimal/`
+**Build output:** `dist/apps/<app-name>/`
 
 The production build is optimized for BrightSign:
 
@@ -211,12 +225,14 @@ The `package:player` script creates a BrightSign-ready deployment package:
 
 ```bash
 pnpm package:player
+pnpm package:player -- --app player-minimal
+pnpm nx run player-minimal:package
 ```
 
 **Package structure:**
 
-```
-dist/packages/brightsign/
+```text
+dist/packages/player-minimal/
 ├── autorun.brs          # Bootstrap script (REQUIRED)
 ├── index.html           # Entry point HTML
 ├── assets/              # JS, CSS, images
@@ -301,7 +317,7 @@ The deployment script:
 ```bash
 # Upload zip via curl
 curl -X POST \
-  -F "file=@dist/packages/brightsign-player-v0.0.0.zip" \
+  -F "file=@dist/packages/player-minimal-v0.0.0.zip" \
   -F "path=/sd:/" \
   http://<player-ip>:8008/upload
 
@@ -322,8 +338,8 @@ After reboot (typically 15-30 seconds):
 For rapid iteration during development:
 
 1. **Make code changes** in `apps/player-minimal/src/`
-2. **Package:** `pnpm package:player`
-3. **Deploy:** `pnpm deploy:local --ip=<player-ip>`
+2. **Package:** `pnpm package:player -- --app player-minimal`
+3. **Deploy:** `pnpm deploy:local -- --app player-minimal --player <configured-player-name>`
 4. **Verify on screen** - Changes visible in ~30 seconds
 
 **Pro tip:** Create a shell alias for your player:

@@ -5,5 +5,30 @@
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project player-minimal --web",
-  "targets": {}
+  "targets": {
+    "package": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node scripts/package-player.mjs --app player-minimal"
+      }
+    },
+    "deploy-local": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node scripts/deploy-local.mjs --app player-minimal"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node scripts/deploy-player.mjs --app player-minimal"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --project apps/player-minimal/tsconfig.app.json --noEmit"
+      }
+    }
+  }
 }

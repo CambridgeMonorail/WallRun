@@ -20,25 +20,42 @@ Only example files are committed:
 
 Choose the approach that works best for your workflow:
 
-1. **Player Registry** (Recommended for teams)
+#### Player Registry
 
-   ```bash
-   pnpm player add dev-player 192.168.1.50 --model CL435 --default
-   pnpm deploy:player --player dev-player
-   ```
+Recommended for teams.
 
-2. **Interactive Prompt** (Simplest for ad-hoc testing)
+```bash
+pnpm player add dev-player 192.168.1.50 --model CL435 --default
+pnpm deploy:player -- --player dev-player
+```
 
-   ```bash
-   pnpm deploy:player
-   # Enter IP when prompted
-   ```
+#### Interactive Prompt
 
-3. **Default Player** (Fastest for daily development)
-   ```bash
-   pnpm player default dev-player
-   pnpm deploy:player  # Uses default automatically
-   ```
+Simplest for ad-hoc testing.
+
+```bash
+pnpm deploy:player
+# Enter IP when prompted
+```
+
+#### Default Player
+
+Fastest for daily development.
+
+```bash
+pnpm player default dev-player
+pnpm deploy:player  # Uses default automatically
+```
+
+#### App-Specific Deployment
+
+Useful when you have multiple player apps in the monorepo.
+
+```bash
+pnpm deploy:player -- --app player-minimal --player dev-player
+pnpm deploy:local -- --app player-minimal --player dev-player
+pnpm package:player -- --app player-minimal
+```
 
 ### ✅ Player Management CLI
 
@@ -114,10 +131,13 @@ pnpm player add prod-lobby1 192.168.1.100 --tags "prod,lobby"
 pnpm player add prod-lobby2 192.168.1.101 --tags "prod,lobby"
 
 # Deploy to specific player (rebuilds + uploads)
-pnpm deploy:player --player test-lab
+pnpm deploy:player -- --player test-lab
 
 # Deploy to default player (rebuilds + uploads)
 pnpm deploy:player
+
+# Deploy a specific player app to a specific player
+pnpm deploy:player -- --app player-minimal --player test-lab
 ```
 
 ### Scenario 3: Shared Player Configuration

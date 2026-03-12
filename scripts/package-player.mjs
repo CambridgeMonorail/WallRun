@@ -10,7 +10,7 @@
  * - Generates manifest.json with version and checksums
  */
 
-import { execSync } from 'child_process';
+import { execFileSync } from 'node:child_process';
 import {
   createReadStream,
   existsSync,
@@ -24,21 +24,28 @@ import {
 import { join, dirname } from 'path';
 import { createHash } from 'crypto';
 import { fileURLToPath } from 'url';
+import {
+  assertPlayerAppExists,
+  getAppNameFromArgs,
+  getPlayerAppPaths,
+} from './player-app-utils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT_DIR = join(__dirname, '..');
-const DIST_DIR = join(ROOT_DIR, 'dist', 'apps', 'player-minimal');
-const PACKAGE_DIR = join(ROOT_DIR, 'dist', 'packages', 'brightsign');
-const AUTORUN_SRC = join(
-  ROOT_DIR,
-  'apps',
-  'player-minimal',
-  'public',
-  'autorun.brs',
-);
 
 const MANIFEST_FILE_NAME = 'manifest.json';
+
+function printUsage() {
+  console.log(`
+Usage:
+  pnpm package:player -- --app <player-app-name>
+
+Options:
+  --app   Optional. Player app to build and package. Defaults to player-minimal.
+  --help  Show this help message.
+`);
+}
 
 /**
  * @typedef {Object} PackageManifest
@@ -83,12 +90,29 @@ async function getAllFiles(dir, baseDir = dir) {
 }
 
 async function main() {
+  const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    printUsage();
+    return;
+  }
+
+  const appName = getAppNameFromArgs(args);
+  assertPlayerAppExists(ROOT_DIR, appName);
+  const {
+    autorunSrc,
+    distDir,
+    packageDir,
+    packageFileName,
+    packagePath,
+    version,
+  } = getPlayerAppPaths(ROOT_DIR, appName);
+
   console.log('📦 Packaging BrightSign Player App\n');
 
   // Step 1: Build the app
-  console.log('1️⃣  Building player-minimal app...');
+  console.log(`1️⃣  Building ${appName} app...`);
   try {
-    execSync('pnpm exec nx build player-minimal --configuration=production', {
+    execFileSync('pnpm', ['exec', 'nx', 'build', appName, '--configuration=production'], {
       cwd: ROOT_DIR,
       stdio: 'inherit',
     });
@@ -100,45 +124,44 @@ async function main() {
 
   // Step 2: Create package directory
   console.log('2️⃣  Creating package directory...');
-  if (existsSync(PACKAGE_DIR)) {
-    rmSync(PACKAGE_DIR, { recursive: true, force: true });
+  if (existsSync(packageDir)) {
+    rmSync(packageDir, { recursive: true, force: true });
   }
-  mkdirSync(PACKAGE_DIR, { recursive: true });
-  console.log(`✅ Created ${PACKAGE_DIR}\n`);
+  mkdirSync(packageDir, { recursive: true });
+  console.log(`✅ Created ${packageDir}\n`);
 
   // Step 3: Copy autorun.brs
   console.log('3️⃣  Copying autorun.brs...');
-  if (!existsSync(AUTORUN_SRC)) {
-    console.error(`❌ autorun.brs not found at ${AUTORUN_SRC}`);
+  if (!existsSync(autorunSrc)) {
+    console.error(`❌ autorun.brs not found at ${autorunSrc}`);
     process.exit(1);
   }
-  cpSync(AUTORUN_SRC, join(PACKAGE_DIR, 'autorun.brs'));
+  cpSync(autorunSrc, join(packageDir, 'autorun.brs'));
   console.log('✅ Copied autorun.brs\n');
 
   // Step 4: Copy dist files
   console.log('4️⃣  Copying application files...');
-  // Copy contents of DIST_DIR into PACKAGE_DIR
-  const distItems = readdirSync(DIST_DIR);
+  // Copy contents of the app dist directory into the package directory.
+  const distItems = readdirSync(distDir);
   for (const item of distItems) {
-    const srcPath = join(DIST_DIR, item);
-    const destPath = join(PACKAGE_DIR, item);
+    const srcPath = join(distDir, item);
+    const destPath = join(packageDir, item);
     cpSync(srcPath, destPath, { recursive: true });
   }
   console.log('✅ Copied application files\n');
 
   // Step 5: Generate manifest
   console.log('5️⃣  Generating manifest...');
-  const version = process.env.npm_package_version || '0.1.0';
   const buildTimestamp = new Date().toISOString();
 
-  const allFiles = (await getAllFiles(PACKAGE_DIR)).filter(
+  const allFiles = (await getAllFiles(packageDir)).filter(
     // manifest.json cannot safely include itself when it contains checksums
     // (including it would be self-referential and unstable).
     (file) => file !== MANIFEST_FILE_NAME,
   );
   const filesWithMeta = await Promise.all(
     allFiles.map(async (file) => {
-      const fullPath = join(PACKAGE_DIR, file);
+      const fullPath = join(packageDir, file);
       const stat = statSync(fullPath);
       const checksum = await calculateChecksum(fullPath);
       return {
@@ -153,7 +176,7 @@ async function main() {
 
   /** @type {PackageManifest} */
   const manifest = {
-    name: 'the-sign-age-player',
+    name: appName,
     version,
     buildTimestamp,
     files: filesWithMeta,
@@ -162,41 +185,40 @@ async function main() {
   };
 
   writeFileSync(
-    join(PACKAGE_DIR, MANIFEST_FILE_NAME),
+    join(packageDir, MANIFEST_FILE_NAME),
     JSON.stringify(manifest, null, 2),
   );
   console.log('✅ Generated manifest.json\n');
 
   // Step 6: Create zip archive
   console.log('6️⃣  Creating deployment package...');
-  const zipFile = join(
-    ROOT_DIR,
-    'dist',
-    'packages',
-    `brightsign-player-v${version}.zip`,
-  );
-
   // Use platform-specific zip command
   if (process.platform === 'win32') {
     // Windows: Use PowerShell Compress-Archive
-    execSync(
-      `powershell -Command "Compress-Archive -Path '${PACKAGE_DIR}\\*' -DestinationPath '${zipFile}' -Force"`,
+    execFileSync(
+      'powershell',
+      [
+        '-Command',
+        `Compress-Archive -Path '${packageDir}\\*' -DestinationPath '${packagePath}' -Force`,
+      ],
       { stdio: 'inherit' },
     );
   } else {
     // Unix: Use zip command
-    execSync(`cd "${PACKAGE_DIR}" && zip -r "${zipFile}" .`, {
+    execFileSync('zip', ['-r', packagePath, '.'], {
+      cwd: packageDir,
       stdio: 'inherit',
     });
   }
-  console.log(`✅ Created ${zipFile}\n`);
+  console.log(`✅ Created ${packagePath}\n`);
 
   // Summary
   console.log('✨ Package Summary:');
+  console.log(`   App: ${appName}`);
   console.log(`   Version: ${version}`);
   console.log(`   Files: ${filesWithMeta.length}`);
   console.log(`   Total Size: ${(totalSize / 1024 / 1024).toFixed(2)} MB`);
-  console.log(`   Package: ${zipFile}`);
+  console.log(`   Package: ${packageFileName}`);
   console.log('\n✅ Packaging complete!\n');
 }
 
