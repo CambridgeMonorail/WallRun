@@ -11,6 +11,7 @@ import {
 } from 'node:fs';
 import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { validatePlayerAppName } from './player-app-utils.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = resolve(__dirname, '..');
@@ -106,21 +107,11 @@ function parsePort(value) {
 }
 
 function validateAppName(appName) {
-  if (!appName) {
-    throw new Error('Missing required --name argument.');
-  }
-
-  if (!/^player-[a-z0-9-]+$/.test(appName)) {
-    throw new Error(
-      'App name must use kebab-case and start with "player-", for example "player-menu-board".',
-    );
-  }
-
-  if (appName === TEMPLATE_APP_NAME) {
-    throw new Error(
-      `App name must not reuse the template name "${TEMPLATE_APP_NAME}".`,
-    );
-  }
+  validatePlayerAppName(appName, {
+    allowTemplate: false,
+    argumentName: '--name',
+    templateAppName: TEMPLATE_APP_NAME,
+  });
 }
 
 function toTitleCase(appName) {
