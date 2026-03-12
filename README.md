@@ -92,9 +92,12 @@ pnpm discover
 # 3. Add your player and deploy
 pnpm player add my-player 192.168.1.50 --default
 pnpm deploy:player
+
+# Deploy a different player app or target a named player
+pnpm deploy:player -- --app player-minimal --player my-player
 ```
 
-Your React app is now running on the BrightSign player. Changes? Just run `pnpm deploy:player` again.
+Your React app is now running on the BrightSign player. Changes? Run `pnpm deploy:player` again, or use `pnpm deploy:player -- --app <app-name>` for a specific player app.
 
 **Full guides:**
 
@@ -225,12 +228,8 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
 
 ### AI Accelerators
 
-- **`.github/agents/signage-architect.agent.md`** - GitHub Copilot agent for building premium signage screens
-  - Emphasizes distance readability, deterministic layouts, and 24/7 operation
-   - Can pair with the signage and BrightSign runtime skills for wall-screen layout, motion, and playback constraints
-  - Enforces signage design principles (not website patterns)
-  - Integrates with BrightSign platform documentation via MCP
-  - [View agent definition](./.github/agents/signage-architect.agent.md)
+- **`.github/agents/signage-architect.agent.md`** - GitHub Copilot agent for building premium signage screens.
+  Emphasizes distance readability, deterministic layouts, and 24/7 operation. Can pair with the signage and BrightSign runtime skills for wall-screen layout, motion, and playback constraints. Enforces signage design principles instead of website patterns and integrates with BrightSign platform documentation via MCP. [View agent definition](./.github/agents/signage-architect.agent.md)
 
 ### Demo Site
 
@@ -367,6 +366,7 @@ pnpm discover              # Find all BrightSign players on your LAN
 pnpm player list           # Show registered players
 pnpm player add <name> <ip> --default  # Add a player
 pnpm deploy:player         # Build and deploy to default player
+pnpm deploy:player -- --app <app-name> --player <name>  # Target a specific app and player
 ```
 
 **See [BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md) for troubleshooting and advanced workflows.**

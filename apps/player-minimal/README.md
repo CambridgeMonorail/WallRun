@@ -28,9 +28,12 @@ pnpm nx serve player-minimal
 pnpm deploy:player
 
 # Or step by step
-pnpm nx build player-minimal    # Build production bundle
-pnpm package:player             # Create deployment ZIP
-pnpm deploy:local               # Upload to player via REST API
+pnpm nx build player-minimal          # Build production bundle
+pnpm nx run player-minimal:package    # Create deployment ZIP
+pnpm nx run player-minimal:deploy-local # Upload to player via REST API
+
+# Target a different player app from the root scripts
+pnpm deploy:player -- --app player-minimal
 ```
 
 ## What's Running on the Player
@@ -42,7 +45,7 @@ pnpm deploy:local               # Upload to player via REST API
 
 ## Project Structure
 
-```
+```text
 apps/player-minimal/
 ├── src/
 │   ├── app/
@@ -149,7 +152,7 @@ export const playerConfig: PlayerConfig = {
 After changing the orientation, rebuild and redeploy:
 
 ```bash
-pnpm deploy:player
+pnpm nx run player-minimal:deploy
 ```
 
 ## Demo Features
@@ -183,27 +186,45 @@ config = {
 
 The player will load from your dev server with hot reload!
 
+### App-Specific Packaging
+
+The packaging and deploy scripts can now target a specific player app:
+
+```bash
+pnpm package:player -- --app player-minimal
+pnpm deploy:local -- --app player-minimal
+pnpm deploy:player -- --app player-minimal --player dev-player
+```
+
+Nx targets are also available on each player app scaffold:
+
+```bash
+pnpm nx run player-minimal:package
+pnpm nx run player-minimal:deploy-local
+pnpm nx run player-minimal:deploy
+```
+
 ### Debugging
 
 - **Production bootstrap**: Inspector is disabled by default
 - **Development bootstrap**: Use `tools/brightsign-test-files/autorun-dev.brs` or `pnpm deploy:dev-mode` for DevTools access on port 2999
-- **Player Web UI**: https://192.168.0.62/ (Local DWS)
+- **Player Web UI**: [https://192.168.0.62/](https://192.168.0.62/) (Local DWS)
 
 ### Common Issues
 
-**Black Screen**
+#### Black Screen
 
 - Check Chrome 120 is enabled in autorun.brs
 - Verify `@tailwindcss/vite` plugin is loaded
 - If using dev-mode bootstrap, check the Web Inspector console for errors
 
-**Tailwind Classes Not Rendering**
+#### Tailwind Classes Not Rendering
 
 - Ensure `@tailwindcss/vite` plugin is in vite.config.mts
 - Verify `@import 'tailwindcss';` is in styles.css
 - Check build output for app.css file
 
-**File Upload Fails**
+#### File Upload Fails
 
 - Use HTTPS port 443, not HTTP port 80
 - Verify player credentials in `.brightsign/players.json`

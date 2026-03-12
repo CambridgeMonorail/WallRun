@@ -58,6 +58,7 @@ pnpm dev:brightsign           # Start dev server
 
 # Production deployment
 pnpm deploy:player            # Build + package + deploy
+pnpm deploy:player -- --app player-minimal --player dev-player
 pnpm deploy:quick             # Quick deploy (existing build)
 
 # Player management
