@@ -1,6 +1,6 @@
 # The Sign Age
 
-![The Sign Age Logo](docs/images/logos/app-logo.svg)
+![The Sign Age Logo](docs/images/logos/readme-hero.png)
 
 ![Project Status](https://img.shields.io/badge/status-alpha-orange?style=for-the-badge)
 ![Version](https://img.shields.io/github/package-json/v/CambridgeMonorail/TheSignAge?style=for-the-badge)
