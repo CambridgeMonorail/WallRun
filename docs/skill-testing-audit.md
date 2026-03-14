@@ -360,3 +360,40 @@ Each skill was tested by one of these methods:
    - Used for: planning (documentation + hypothetical plan generation)
 
 Skills requiring hardware (BrightSign) or external services (Chrome DevTools MCP connected to a running app) were tested via documentation evaluation only.
+
+---
+
+## Fixes Applied
+
+All issues identified in the priority fixes table above have been addressed. Commit `bd9835b` on branch `chore/skill-testing-audit` contains all changes.
+
+### Summary of changes
+
+| Priority | Skill | Fix | Status |
+|----------|-------|-----|--------|
+| 🔴 Critical | chrome-devtools-webapp-debug | Added MCP tool reference tables, evidence gathering sequence, troubleshooting section | ✅ Done |
+| 🔴 Critical | code-review-ready | Fixed broken cross-skill reference links | ✅ Done |
+| 🟡 High | systematic-debugging | Added "Debugging Async and Timing Issues" section with techniques for race conditions, stale closures, useEffect cleanup | ✅ Done |
+| 🟡 High | verification | Added "Fixing Verification Failures" section with specific fixes for format, lint, type-check, test, and build failures | ✅ Done |
+| 🟡 High | code-review-ready | Added "Splitting PRs in a Monorepo" section with library-first strategy | ✅ Done |
+| 🟡 High | chrome-devtools-webapp-debug | Added 3 new reference workflows: rendering-layout, interaction-failure, auth-session | ✅ Done |
+| 🟢 Medium | planning | Defined "context-safe chunks", added plan granularity decision table | ✅ Done |
+| 🟢 Medium | signage-placeholder-images | Added visual style guidance: solid colour blocks, labelled SVGs, placeholder service URLs, strategy selection table | ✅ Done |
+| 🟢 Medium | systematic-debugging | Added "Debugging Intermittent Bugs" strategies and "When to Invest in Deep Debugging" decision framework | ✅ Done |
+| 🟢 Medium | verification | Added "Verification by Change Type" section (docs-only, config, deps, library changes) | ✅ Done |
+
+### Additional fixes applied across all skills
+
+- Fixed broken cross-skill reference links in code-review-ready, systematic-debugging, verification, and planning (links pointed to `planning.md`, `verification.md`, etc. instead of proper relative paths to `../../<skill>/SKILL.md`)
+- Skills mirror (`.github/skills/`) synced via `pnpm sync:skills`
+
+### Updated ratings (post-fix)
+
+| Skill | Before | After | Notes |
+|-------|--------|-------|-------|
+| chrome-devtools-webapp-debug | ⭐⭐⭐ | ⭐⭐⭐⭐ | Now has MCP tool docs and scenario workflows; still untested live with MCP |
+| systematic-debugging | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ | Async, timing, and intermittent coverage closes major gap |
+| code-review-ready | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ | Monorepo guidance and fixed links improve practical usability |
+| verification | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ | Failure debugging and edge case coverage fills the main gaps |
+| planning | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ | Granularity guide and context-safe chunk definition add clarity |
+| signage-placeholder-images | ⭐⭐⭐⭐ | ⭐⭐⭐⭐½ | Visual style guidance addresses the "what does it look like?" gap |
