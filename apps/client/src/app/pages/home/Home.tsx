@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@tsa/shadcnui';
 import {
   BookOpen,
@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 
 export const Home: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="doc-shell font-sans">
       <div className="demo-panel demo-grid mb-12 px-8 py-10 text-center md:px-12 md:py-12">
