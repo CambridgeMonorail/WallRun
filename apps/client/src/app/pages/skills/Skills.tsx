@@ -4,6 +4,7 @@ import { Button } from '@tsa/shadcnui';
 import {
   Bot,
   BookOpen,
+  GitFork,
   Monitor,
   Wrench,
   Package,
@@ -285,6 +286,59 @@ export const SkillsPage: FC = () => {
           with the skill name, description, license, and metadata, followed by
           the skill contract in Markdown. Reference files provide progressive
           detail without bloating the main contract.
+        </p>
+      </section>
+
+      {/* Clone for full experience */}
+      <section className="demo-panel mb-12 p-6 sm:p-8">
+        <h2 className="mb-4 flex items-center gap-2 text-2xl font-medium text-foreground">
+          <GitFork className="h-6 w-6" />
+          Want Everything? Clone The Repo
+        </h2>
+        <p className="mb-3 max-w-3xl text-muted-foreground">
+          Installing individual skills is the quickest way to get started, but
+          if you want the full experience — every skill, the signage component
+          libraries, the player app scaffolding, the BrightSign deployment
+          tooling, and the ability to build your own signage apps — you can
+          clone the entire repository and work inside it.
+        </p>
+        <p className="mb-4 max-w-3xl text-muted-foreground">
+          This is especially useful if you are new to signage development.
+          Cloning gives you a working project with real examples you can run
+          immediately. When the repository is updated with new skills,
+          components, or tooling improvements, you pull those changes into your
+          copy just like any other Git update.
+        </p>
+        <div className="code-panel mb-4 overflow-x-auto p-4 font-mono text-sm text-foreground">
+          <pre>
+            {`# 1. Clone the repository
+git clone https://github.com/CambridgeMonorail/TheSignAge.git
+cd TheSignAge
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Start the demo site to explore examples
+pnpm serve:client
+
+# 4. When upstream improvements are available, pull them in
+git pull origin main`}
+          </pre>
+        </div>
+        <p className="mb-3 max-w-3xl text-muted-foreground">
+          Once cloned, you have access to everything:
+        </p>
+        <ul className="mb-4 list-inside list-disc space-y-1 text-muted-foreground">
+          <li>All 20 skills, including the internal BrightSign and player discovery ones</li>
+          <li>Signage component libraries with ready-made UI primitives</li>
+          <li>A scaffold command to generate new player apps from a template</li>
+          <li>One-command packaging and deployment to BrightSign hardware</li>
+          <li>A custom Copilot agent tuned for signage development</li>
+          <li>Working signage examples you can modify and deploy</li>
+        </ul>
+        <p className="max-w-3xl text-sm text-muted-foreground">
+          No special configuration needed. Clone, install, and you are ready to
+          build signage apps with AI assistance from day one.
         </p>
       </section>
 
