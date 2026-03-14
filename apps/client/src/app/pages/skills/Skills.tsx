@@ -149,6 +149,30 @@ export const SkillsPage: FC = () => {
           deployment, and engineering workflows. Install them into any project
           with a single command.
         </p>
+
+        <ul className="mt-4 list-disc list-inside space-y-1 text-sm text-muted-foreground">
+          <li>
+            <strong className="text-foreground">What is a skill</strong> —
+            structured Markdown that teaches agents domain tasks
+          </li>
+          <li>
+            <strong className="text-foreground">Installation</strong> — two
+            options: public skills or everything including BrightSign
+          </li>
+          <li>
+            <strong className="text-foreground">Skill catalog</strong> — 7
+            signage &amp; general purpose, 4 engineering workflows, 9
+            BrightSign
+          </li>
+          <li>
+            <strong className="text-foreground">Skill structure</strong> —
+            directory layout and file conventions
+          </li>
+          <li>
+            <strong className="text-foreground">Clone the repo</strong> — get
+            skills, components, deployment tools, and examples in one step
+          </li>
+        </ul>
       </div>
 
       {/* What is a skill */}
