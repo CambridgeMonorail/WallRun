@@ -500,7 +500,7 @@ test: add comprehensive auth tests
 
 Each commit should be reviewable independently.
 
-### 5. Splitting PRs in a Monorepo
+### 4. Splitting PRs in a Monorepo
 
 When changes span multiple workspace packages (e.g. `@tsa/shadcnui` + `apps/client`), use these strategies:
 
@@ -531,7 +531,7 @@ PR #2: feat(client): use Select in settings page
 3. Mark PR #2 as "depends on #1" in the description
 4. After PR #1 merges, rebase PR #2 onto main
 
-### 6. Create a Testing Plan
+### 5. Create a Testing Plan
 
 ```markdown
 ## Testing Plan
