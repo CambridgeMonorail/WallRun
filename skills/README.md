@@ -4,6 +4,8 @@ This directory contains reusable workflow skills for building and operating digi
 
 These skills are portable `SKILL.md` packages for AI-assisted development. They give an agent or developer domain-specific guidance for planning, debugging, verification, BrightSign deployment, signage layout design, player discovery, and review work.
 
+All skills comply with the [Agent Skills Specification](https://agentskills.io/specification) and are consumable via portable skill tooling.
+
 In practical terms, this directory turns repository knowledge into installable operational guidance. It complements the component libraries and example screens by documenting how to work with them effectively.
 
 ## What This Directory Contains
@@ -20,39 +22,70 @@ Each contract usually defines:
 
 In practice, that means a consumer can install these skills and get signage-specific help rather than generic coding assistance.
 
-## Skill Groups
+## Reusability Tiers
 
-### Signage Design and Runtime
+Skills are classified by how portable they are outside this repository. The tier determines whether a skill is visible to public consumers or requires an opt-in flag.
+
+### Tier 1 — Fully reusable
+
+No repo-specific references. Useful in any project.
+
+- `signage-layout-system`: builds full-screen layouts for large displays, distance readability, and continuous operation
+- `signage-animation-system`: designs motion that works on always-on public displays
+- `signage-menu-board`: builds food and service menu boards with signage-first hierarchy rules
+- `signage-placeholder-images`: plans consistent placeholder image names, dimensions, labels, alt text, and replacement notes for signage layouts before final creative arrives
+- `chrome-devtools-webapp-debug`: investigates web app issues with browser evidence
+- `systematic-debugging`: drives root-cause debugging with evidence and verification
+- `instructions-detox`: audits instruction files for bloat, overlap, and stale rules
+
+### Tier 2 — Portable with minor assumptions
+
+Useful outside this repo but may reference common tooling conventions (e.g. monorepo structure, verification commands). Easily adapted.
+
+- `planning`: creates structured implementation plans for multi-step work
+- `code-review-ready`: evaluates whether a change set is ready for PR review
+- `verification`: runs and summarizes validation before review
+- `shadcnui-component-review`: reviews shadcn/ui components in a component library
+
+### Tier 3 — Repo-specific (internal)
+
+Tied to this repository's BrightSign hardware, player tooling, or local infrastructure. Marked with `metadata.internal: true` in their frontmatter and hidden from public discovery by default.
+
+To install internal skills, set the environment variable before running the CLI:
+
+```bash
+INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge
+```
+
+**Signage build and runtime:**
 
 - `brightsign-signage-build`: bundles layout, runtime, packaging, and verification for BrightSign signage builds
-- `signage-layout-system`: builds full-screen layouts for large displays, distance readability, and continuous operation
-- `signage-placeholder-images`: plans consistent placeholder image names, dimensions, labels, alt text, and replacement notes for signage layouts before final creative arrives
-- `signage-menu-board`: builds food and service menu boards with signage-first hierarchy rules
-- `signage-animation-system`: designs motion that works on always-on public displays
 - `brightsign-runtime`: explains how to adapt web apps to BrightSign hardware constraints
 
-### BrightSign Packaging and Deployment
+**Packaging and deployment:**
 
 - `brightsign-package`: packages React apps for BrightSign OS 9.x players
 - `brightsign-deploy-local`: deploys to local BrightSign players for fast iteration
 - `brightsign-fleet-deploy`: publishes versioned builds for fleet-wide rollout
 - `brightsign-debug`: helps diagnose BrightSign player issues
 
-### Player Discovery Tooling
+**Player discovery tooling:**
 
 - `player-discovery-scan`: scans a subnet for BrightSign players
 - `player-discovery-probe`: checks a single IP for BrightSign diagnostics
 - `player-discovery-export`: exports discovery results to JSON and CSV
 
-### Engineering Workflow Skills
+## Skill Directory Conventions
 
-- `planning`: creates structured implementation plans for multi-step work
-- `systematic-debugging`: drives root-cause debugging with evidence and verification
-- `verification`: runs and summarizes validation before review
-- `code-review-ready`: evaluates whether a change set is ready for PR review
-- `chrome-devtools-webapp-debug`: investigates web app issues with browser evidence
-- `instructions-detox`: audits instruction files for bloat, overlap, and stale rules
-- `shadcnui-component-review`: reviews shadcn/ui components in the library
+Each skill directory follows the [Agent Skills Specification](https://agentskills.io/specification) structure:
+
+```
+skills/<skill-name>/
+  SKILL.md          # Skill contract (required, < 500 lines)
+  references/       # Supporting documentation (detailed guides, workflows)
+  assets/           # Static resources (templates, example files)
+  scripts/          # Executable helpers
+```
 
 ## Why It Is Structured This Way
 
