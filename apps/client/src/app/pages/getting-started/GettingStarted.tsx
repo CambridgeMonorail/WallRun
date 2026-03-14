@@ -60,10 +60,29 @@ export const GettingStartedPage: FC = () => {
           <Code className="w-6 h-6" />
           Choose Your Starting Point
         </h2>
-        <p className="text-muted-foreground mb-6 max-w-3xl">
+        <p className="text-muted-foreground mb-4 max-w-3xl">
           How you use The Sign Age depends on what you are building and where
           you are in the process. Pick the option that matches your situation.
         </p>
+
+        <ul className="list-disc list-inside text-muted-foreground mb-6 space-y-1 text-sm max-w-3xl">
+          <li>
+            <strong className="text-foreground">Add components</strong> — pull
+            individual signage UI components into an existing React app
+          </li>
+          <li>
+            <strong className="text-foreground">Copy from GitHub</strong> —
+            browse the source and grab what you need, no CLI required
+          </li>
+          <li>
+            <strong className="text-foreground">Clone the repo</strong> — get
+            the full toolkit: libraries, skills, examples, and deployment tools
+          </li>
+          <li>
+            <strong className="text-foreground">Scaffold a player app</strong>{' '}
+            — generate a BrightSign-ready signage app from a built-in template
+          </li>
+        </ul>
 
         <div className="space-y-6">
           <div className="demo-panel p-6">
