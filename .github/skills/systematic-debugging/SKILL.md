@@ -1,6 +1,10 @@
 ---
 name: systematic-debugging
 description: Diagnose complex bugs by reproducing the issue, gathering evidence, isolating root cause, and verifying the fix. Use when behavior is unexpected, intermittent, cross-cutting, or not obviously explained by the code, and produce a debugging record with repro steps, findings, root cause, fix, and regression checks.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Systematic Debugging Skill
@@ -62,9 +66,8 @@ Produce:
 - Prefer a failing test or reproducible case when practical.
 - If the issue cannot be reproduced, say so and list the remaining unknowns.
 
-## Integration
+## References
 
-- Referenced from [AGENTS.md](../../../AGENTS.md) debugging section
-- See [detailed debugging guide](workflows/detailed-guide.md) for complete examples
+- See [detailed debugging guide](references/detailed-guide.md) for complete examples
 
-For complete examples and debugging techniques, see the [detailed debugging guide](workflows/detailed-guide.md).
+For complete examples and debugging techniques, see the [detailed debugging guide](references/detailed-guide.md).

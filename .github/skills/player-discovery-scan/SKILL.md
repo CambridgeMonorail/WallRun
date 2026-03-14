@@ -1,8 +1,13 @@
 ---
 name: player-discovery-scan
 description: Discover BrightSign players on a local subnet by running the player discovery scan and writing results to dist/players.json. Use when asked to find players on a LAN or scan a CIDR range.
-argument-hint: '<cidr> e.g. 192.168.0.0/24'
-user-invokable: true
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
+  argument-hint: '<cidr> e.g. 192.168.0.0/24'
+  user-invokable: true
 ---
 
 # Player Discovery Scan

@@ -1,6 +1,10 @@
 ---
 name: code-review-ready
 description: Prepare a change set for pull request review by checking scope, reviewability, verification evidence, screenshots, and PR description quality. Use when a branch is nearly ready to merge or when a user asks whether a PR is reviewable, and produce a concrete readiness checklist plus missing items.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Code Review Ready Skill
@@ -55,7 +59,7 @@ Gather or infer:
 ✅ **One logical change** - Single feature, bug fix, or refactoring
 ✅ **Clear description** - What, why, and how
 ✅ **Visual evidence** - Screenshots for UI changes
-✅ **Verification passed** - Include `pnpm verify` output
+✅ **Verification passed** - Include verification command output (e.g., `pnpm verify`, `npm test`, `make check`)
 
 ## Output Contract
 
@@ -73,9 +77,8 @@ Produce:
 - Prefer concrete missing items over abstract advice.
 - Treat oversized PRs as a reviewability issue even when the code is correct.
 
-## Integration
+## References
 
-- Referenced from [AGENTS.md](../../../AGENTS.md) PR requirements
-- See [detailed code review guide](workflows/detailed-guide.md) for complete examples
+- See [detailed code review guide](references/detailed-guide.md) for complete examples
 
-For complete examples and tips for breaking down large PRs, see the [detailed code review guide](workflows/detailed-guide.md).
+For complete examples and tips for breaking down large PRs, see the [detailed code review guide](references/detailed-guide.md).

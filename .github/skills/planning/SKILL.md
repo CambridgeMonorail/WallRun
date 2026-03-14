@@ -1,6 +1,10 @@
 ---
 name: planning
-description: Create a structured implementation plan for multi-step engineering work such as new features, multi-file refactors, or complex bug fixes. Use when the work needs sequencing, acceptance criteria, and file-level scope, and produce a plan in docs/plans with tasks, commands, risks, and expected outcomes.
+description: Create a structured implementation plan for multi-step engineering work such as new features, multi-file refactors, or complex bug fixes. Use when the work needs sequencing, acceptance criteria, and file-level scope, and produce a plan with tasks, commands, risks, and expected outcomes.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Planning Skill
@@ -42,11 +46,11 @@ Create a plan when the work has one or more of these traits:
 3. Break the work into concrete tasks in execution order.
 4. For each task, identify files to change, commands to run, and expected results.
 5. Call out risks, unknowns, and verification steps.
-6. Write the plan to `docs/plans/` using a dated, descriptive filename.
+6. Write the plan to a dedicated plans directory (e.g., `docs/plans/`) using a dated, descriptive filename.
 
 ## Plan Template
 
-See [detailed plan template](workflows/detailed-guide.md) for complete structure with examples.
+See [detailed plan template](references/detailed-guide.md) for complete structure with examples.
 
 ## Key Elements
 
@@ -64,7 +68,7 @@ Every plan must include:
 
 Produce a plan that includes:
 
-1. the target plan path in `docs/plans/`
+1. the target plan path (e.g., `docs/plans/`)
 2. a clear goal and context section
 3. ordered implementation tasks
 4. affected files or areas
@@ -77,10 +81,9 @@ Produce a plan that includes:
 - Do not create broad plans for trivial work.
 - Keep tasks actionable enough that another engineer could execute them.
 
-## Integration
+## References
 
-- Reference from [AGENTS.md](../../../AGENTS.md) workflow guidance
-- Plans live in `docs/plans/` directory
+- Plans live in a dedicated directory (e.g., `docs/plans/`)
 - Update plan status as work progresses
 
-For complete examples and detailed guidance, see the [detailed planning guide](workflows/detailed-guide.md).
+For complete examples and detailed guidance, see the [detailed planning guide](references/detailed-guide.md).

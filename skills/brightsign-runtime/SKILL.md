@@ -1,6 +1,11 @@
 ---
 name: brightsign-runtime
 description: Explain how to build and adapt web applications that run reliably on BrightSign players. Use when generating code intended for BrightSign hardware, and produce implementation guidance or code that respects static deployment, embedded runtime constraints, media autoplay requirements, limited resources, and always-on operation.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
 ---
 
 # BrightSign Runtime Skill

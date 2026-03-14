@@ -1,6 +1,10 @@
 ---
 name: instructions-detox
 description: Audit Copilot instruction files for bloat, overlap, stale rules, and weak applyTo scope. Use when reviewing or refactoring .instructions.md, AGENTS.md, copilot-instructions.md, or SKILL.md files, and produce a prioritized markdown report with findings, line references, and recommended deletions or rewrites.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Instructions Detox Skill
@@ -70,11 +74,11 @@ Produce a markdown report containing:
 
 ## Workflows
 
-1. [Full Detox Review](workflows/01-full-detox-review.md) - Complete 8-step audit process
-2. [Quick Bloat Check](workflows/02-quick-bloat-check.md) - Fast bloat scan (< 15 min)
-3. [Rot Detection](workflows/03-rot-detection.md) - Verify instructions match reality
-4. [Scope Audit](workflows/04-scope-audit.md) - Review applyTo patterns
-5. [Maintenance Review](workflows/05-maintenance-review.md) - Quarterly check-in
+1. [Full Detox Review](references/01-full-detox-review.md) - Complete 8-step audit process
+2. [Quick Bloat Check](references/02-quick-bloat-check.md) - Fast bloat scan (< 15 min)
+3. [Rot Detection](references/03-rot-detection.md) - Verify instructions match reality
+4. [Scope Audit](references/04-scope-audit.md) - Review applyTo patterns
+5. [Maintenance Review](references/05-maintenance-review.md) - Quarterly check-in
 
 ## Agent
 

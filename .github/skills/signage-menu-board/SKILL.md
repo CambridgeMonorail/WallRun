@@ -1,6 +1,10 @@
 ---
 name: signage-menu-board
 description: Build food and service menu boards for large displays using clear zone templates, price hierarchy rules, and common content shapes. Use when creating restaurant, cafe, concessions, or service signage where menu items and prices must read clearly from distance.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Signage Menu Board Skill
@@ -130,9 +134,9 @@ type MenuBoardContent = {
 - Use imagery only when it reinforces the item hierarchy.
 - Keep legal or service notes out of the primary focal area.
 
-## BrightSign Considerations
+## Embedded Signage Hardware Considerations
 
-When the target is BrightSign:
+When the target is embedded signage hardware (e.g., BrightSign, ChromeOS kiosk, Raspberry Pi):
 
 - prefer local or static image assets
 - avoid carousels unless explicitly requested
@@ -161,5 +165,5 @@ Before finalizing, check whether the result:
 
 ## Related Files
 
-- See `workflows/detailed-guide.md` for menu-board-specific implementation guidance.
+- See `references/detailed-guide.md` for menu-board-specific implementation guidance.
 - Use `brightsign-signage-build` when the menu board must also be packaged and verified as a BrightSign app.
