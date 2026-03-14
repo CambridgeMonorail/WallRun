@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@tsa/shadcnui';
 import { BookOpen, Code, Layers, Terminal } from 'lucide-react';
 
@@ -7,7 +7,6 @@ import { BookOpen, Code, Layers, Terminal } from 'lucide-react';
  * GettingStartedPage - Practical guide for developers to start using The Sign Age
  */
 export const GettingStartedPage: FC = () => {
-  const navigate = useNavigate();
 
   const handleStorybookClick = () => {
     window.open(
@@ -198,12 +197,12 @@ pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation land
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
               This requires the cloned repository. See{' '}
-              <button
-                onClick={() => navigate('/tooling')}
+              <Link
+                to="/tooling"
                 className="text-foreground hover:underline"
               >
                 Tooling &amp; Deployment
-              </button>{' '}
+              </Link>{' '}
               for the full packaging and deployment workflow.
             </p>
           </div>
@@ -303,8 +302,8 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
           </pre>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Button onClick={() => navigate('/tooling')} variant="secondary">
-            Open Tooling & Deployment
+          <Button asChild variant="secondary">
+            <Link to="/tooling">Open Tooling & Deployment</Link>
           </Button>
           <Button onClick={handleGitHubClick} variant="ghost">
             Open GitHub Repository
@@ -430,12 +429,12 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">1.</span>
             <p className="text-muted-foreground">
               Browse the{' '}
-              <button
-                onClick={() => navigate('/library')}
+              <Link
+                to="/library"
                 className="text-foreground hover:underline"
               >
                 Component Library
-              </button>{' '}
+              </Link>{' '}
               to explore available signage components
             </p>
           </div>
@@ -443,12 +442,12 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">2.</span>
             <p className="text-muted-foreground">
               Open{' '}
-              <button
-                onClick={() => navigate('/tooling')}
+              <Link
+                to="/tooling"
                 className="text-foreground hover:underline"
               >
                 Tooling &amp; Deployment
-              </button>{' '}
+              </Link>{' '}
               to scaffold player apps and review BrightSign workflows
             </p>
           </div>
@@ -456,12 +455,12 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">3.</span>
             <p className="text-muted-foreground">
               View the{' '}
-              <button
-                onClick={() => navigate('/gallery')}
+              <Link
+                to="/gallery"
                 className="text-foreground hover:underline"
               >
                 Gallery
-              </button>{' '}
+              </Link>{' '}
               to see full-screen signage examples
             </p>
           </div>
@@ -483,14 +482,14 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
 
       <section className="demo-panel-soft text-center px-6 py-8">
         <div className="space-x-4">
-          <Button onClick={() => navigate('/library')} variant="secondary">
-            Browse Components
+          <Button asChild variant="secondary">
+            <Link to="/library">Browse Components</Link>
           </Button>
-          <Button onClick={() => navigate('/tooling')} variant="secondary">
-            Tooling &amp; Deployment
+          <Button asChild variant="secondary">
+            <Link to="/tooling">Tooling &amp; Deployment</Link>
           </Button>
-          <Button onClick={() => navigate('/gallery')} variant="secondary">
-            View Gallery
+          <Button asChild variant="secondary">
+            <Link to="/gallery">View Gallery</Link>
           </Button>
         </div>
       </section>
