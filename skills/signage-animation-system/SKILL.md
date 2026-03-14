@@ -1,6 +1,10 @@
 ---
 name: signage-animation-system
 description: Generate animations suitable for large public displays. Use when designing motion for dashboards, menu boards, status screens, or information displays that run continuously, and produce animation guidance or code that is slow, legible, loop-safe, and readable from distance.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Signage Animation System Skill
@@ -99,5 +103,5 @@ Before finalizing, check whether the result:
 ## Related Skills
 
 - Use `signage-layout-system` to shape the screen structure and hierarchy first.
-- Use `brightsign-runtime` when animation choices must respect BrightSign runtime limits.
+- When targeting embedded signage hardware, apply runtime constraints from the target platform (e.g., limited GPU, constrained memory, specific browser engine).
 - Use live-data skills when motion reflects freshness, updates, or degraded data states.

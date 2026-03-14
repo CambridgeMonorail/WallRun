@@ -1,6 +1,11 @@
 ---
 name: brightsign-fleet-deploy
 description: Publish versioned React apps to GitHub Releases for fleet-wide BrightSign player updates
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
 ---
 
 # BrightSign Fleet Deploy Skill

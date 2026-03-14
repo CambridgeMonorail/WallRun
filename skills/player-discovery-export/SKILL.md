@@ -1,8 +1,13 @@
 ---
 name: player-discovery-export
 description: Export player discovery results to JSON and CSV and print a terminal-friendly summary. Use when asked to share results in a readable way or generate CSV for support.
-argument-hint: '[--in dist/players.json] [--json dist/players.json] [--csv dist/players.csv]'
-user-invokable: true
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
+  argument-hint: '[--in dist/players.json] [--json dist/players.json] [--csv dist/players.csv]'
+  user-invokable: true
 ---
 
 # Player Discovery Export

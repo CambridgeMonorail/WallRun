@@ -1,6 +1,11 @@
 ---
 name: brightsign-package
 description: Package React apps for BrightSign OS 9.x players with optimized bundles and autorun.brs bootstrap
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
 ---
 
 # BrightSign Package Skill
@@ -321,7 +326,7 @@ python3 -m http.server 8080
 
 Reference files in this skill:
 
-- [autorun-template.brs](./autorun-template.brs) - Complete autorun.brs template
+- [autorun-template.brs](assets/autorun-template.brs) - Complete autorun.brs template
 - [vite.config.example.ts](./vite.config.example.ts) - Full Vite config
 - [package-script.sh](./package-script.sh) - Automated packaging script
 

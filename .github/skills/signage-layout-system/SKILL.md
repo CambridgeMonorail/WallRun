@@ -1,6 +1,10 @@
 ---
 name: signage-layout-system
 description: Generate full-screen digital signage layouts designed for large displays, distance readability, and continuous operation. Use when building dashboards, menu boards, status screens, or information displays that run on wall-mounted screens, and produce layout guidance or UI code that prioritizes zoning, hierarchy, and glanceable content over typical web-app chrome.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Signage Layout System Skill
@@ -109,5 +113,5 @@ Before finalizing, check whether the result:
 
 - Use `signage-animation-system` for motion systems tuned to public displays.
 - Use `signage-menu-board` for restaurant-specific hierarchy and price layouts.
-- Use `signage-live-data` or similar live-data skills when the screen depends on resilient API-driven content.
+- For embedded playback hardware, apply runtime constraints from the target platform (e.g., limited browser engine, static deployment, memory limits).
 - Use `brightsign-runtime` when implementation choices must account for player constraints.

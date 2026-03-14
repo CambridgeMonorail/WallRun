@@ -15,6 +15,7 @@ import { GalleryPage } from '../pages/gallery/Gallery';
 import { LibraryPage } from '../pages/library/Library';
 import { GettingStartedPage } from '../pages/getting-started/GettingStarted';
 import { ToolingPage } from '../pages/tooling/Tooling';
+import { SkillsPage } from '../pages/skills/Skills';
 import { NotFound } from '../pages/not-found/NotFound';
 import { WelcomeScreen } from '../pages/signage/WelcomeScreen';
 import { RestaurantMenu } from '../pages/signage/RestaurantMenu';
@@ -52,6 +53,7 @@ const paths = {
   gallery: '/gallery',
   gettingStarted: '/getting-started',
   tooling: '/tooling',
+  skills: '/skills',
   home: '/',
   signage: {
     welcome: '/signage/welcome',
@@ -126,6 +128,7 @@ const sidebarData: SidebarConfiguration = {
       items: [
         { title: 'Getting Started', url: paths.gettingStarted },
         { title: 'Tooling & Deployment', url: paths.tooling },
+        { title: 'Installable Skills', url: paths.skills },
         { title: 'Component Library', url: paths.components.library },
         { title: 'Color Palette', url: paths.components.colorPalette },
       ],
@@ -241,6 +244,7 @@ const routes = [
   createRoute(paths.gallery, GalleryPage),
   createRoute(paths.gettingStarted, GettingStartedPage),
   createRoute(paths.tooling, ToolingPage),
+  createRoute(paths.skills, SkillsPage),
   createRoute(paths.signage.welcome, WelcomeScreen, false),
   createRoute(paths.signage.menu, RestaurantMenu, false),
   createRoute(paths.signage.wayfinding, OfficeDirectory, false),

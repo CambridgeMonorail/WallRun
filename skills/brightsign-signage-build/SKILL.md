@@ -1,6 +1,11 @@
 ---
 name: brightsign-signage-build
 description: Build a BrightSign-targeted digital signage app by combining full-screen layout design, BrightSign runtime constraints, packaging expectations, and verification into one repeatable workflow. Use when creating or substantially changing a signage screen that will be packaged for BrightSign players.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
 ---
 
 # BrightSign Signage Build Skill
@@ -110,5 +115,5 @@ Before finalizing, check whether the result:
 
 ## Related Files
 
-- See `workflows/detailed-guide.md` for the full execution pattern.
+- See `references/detailed-guide.md` for the full execution pattern.
 - Use `signage-menu-board` when the request is specifically for food or service menu boards.

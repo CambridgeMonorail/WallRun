@@ -1,6 +1,10 @@
 ---
 name: verification
 description: Verify a change set before review by running the appropriate checks, collecting evidence, and summarizing results for a pull request. Use when a feature, fix, or refactor is ready for validation, and produce a concise verification report covering format, lint, type-check, tests, build scope, and manual checks where relevant.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Verification Skill
@@ -55,8 +59,17 @@ Add build and manual checks when the change requires them.
 
 ### The Verification Command
 
+Run your project's verification command. Examples:
+
 ```bash
+# Monorepo with pnpm
 pnpm verify
+
+# npm-based projects
+npm test && npm run lint && npm run typecheck
+
+# Make-based projects
+make check
 ```
 
 Use narrower affected-scope commands when they provide equivalent coverage for the change.
@@ -71,9 +84,8 @@ Produce:
 4. any gaps, skips, or unresolved risks
 5. a concise PR-ready verification summary
 
-## Integration
+## References
 
-- Referenced from [AGENTS.md](../../../AGENTS.md) PR requirements
-- See [detailed verification guide](workflows/detailed-guide.md) for complete templates
+- See [detailed verification guide](references/detailed-guide.md) for complete templates
 
-For complete verification requirements and templates, see the [detailed verification guide](workflows/detailed-guide.md).
+For complete verification requirements and templates, see the [detailed verification guide](references/detailed-guide.md).

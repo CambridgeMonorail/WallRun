@@ -1,8 +1,13 @@
 ---
 name: player-discovery-probe
 description: Probe a single IP address for BrightSign Diagnostic Web Server (DWS) and print diagnostics. Use when asked to check whether a specific player is reachable.
-argument-hint: '<ip> e.g. 192.168.1.50 [--port 80|8008|8080]'
-user-invokable: true
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
+  argument-hint: '<ip> e.g. 192.168.1.50 [--port 80|8008|8080]'
+  user-invokable: true
 ---
 
 # Player Discovery Probe

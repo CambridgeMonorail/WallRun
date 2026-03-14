@@ -1,6 +1,10 @@
 ---
 name: signage-placeholder-images
 description: Use this skill when building or editing digital signage apps that need consistent placeholder image planning, naming, sizing and insertion before final artwork is available.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Signage Placeholder Images

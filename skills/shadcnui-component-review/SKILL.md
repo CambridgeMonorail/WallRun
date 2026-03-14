@@ -1,15 +1,17 @@
 ---
 name: shadcnui-component-review
-description: End-to-end review of shadcn/ui components in libs/shadcnui/src/lib.
+description: End-to-end review of shadcn/ui components in a component library. Use when a new or modified shadcn/ui component needs standards review covering categorization, exports, accessibility, tests, and Storybook coverage.
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
 ---
 
 # Shadcn UI Component Review Skill
 
 ## Purpose
 
-This skill performs an end-to-end review of a newly added or modified component under:
-
-`libs/shadcnui/src/lib`
+This skill performs an end-to-end review of a newly added or modified shadcn/ui component under your component library directory (e.g., `libs/shadcnui/src/lib`).
 
 It will identify issues, apply straightforward fixes, and leave clear recommendations for anything that requires design decisions or larger refactors.
 
@@ -26,7 +28,7 @@ Use this skill when:
 
 The user should provide:
 
-- Component path relative to `libs/shadcnui/src/lib` (example: `data-display/badge`)
+- Component path relative to your component library root (example: `data-display/badge`)
 - Optional: special concerns (for example, accessibility, API design, variants, performance)
 
 If the component path is missing, infer it from recent changes where possible. If you cannot infer it, ask once and stop.

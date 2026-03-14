@@ -1,6 +1,11 @@
 ---
 name: brightsign-deploy-local
 description: Deploy React apps to local BrightSign OS 9.x players via HTTP API for rapid development iteration
+license: MIT
+metadata:
+  author: CambridgeMonorail
+  version: "1.0"
+  internal: true
 ---
 
 # BrightSign Local Deploy Skill
