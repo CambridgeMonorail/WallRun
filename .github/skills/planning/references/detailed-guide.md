@@ -13,8 +13,10 @@ In this repository, a "Plan" (`docs/plans/*.md`) serves two simultaneous purpose
 
 2.  **Task Tracker (The "How")**:
     *   It acts as a dynamic checklist to manage AI context.
-    *   It breaks large features into "context-safe" chunks (1-5 files).
+    *   It breaks large features into **context-safe chunks** — task units small enough (typically 1–5 files) that an AI agent can hold the full context in a single session without losing track of changes, dependencies, or intent.
     *   It tracks progress state (`[ ]` to `[x]`) to support the `/implement-next` workflow.
+
+> **What makes a chunk "context-safe"?** A chunk is context-safe when a developer or agent can understand it without reading the entire plan. Each chunk should change fewer than ~5 files, have a single clear intent ("add component", "write tests", "update exports"), and produce a verifiable result (tests pass, types check, story renders). If a task requires holding two unrelated subsystems in mind simultaneously, split it.
 
 ## When to Create a Plan
 
@@ -42,6 +44,25 @@ Skip planning for:
 - **Documentation updates** - README changes, comment updates
 - **Single-line bug fixes** - Obvious, isolated fixes
 - **Renaming** - Variable or function name changes
+
+### Plan Granularity Decision Guide
+
+Use this quick-reference table when you're unsure whether a plan is worth the overhead:
+
+| Signal | Lightweight plan (checklist in PR) | Full plan (`docs/plans/`) |
+|---|---|---|
+| Files affected | 2–4 in one project | 5+ or across projects |
+| New public API | No | Yes |
+| Design trade-offs | Minor (naming, placement) | Significant (architecture, data flow) |
+| Risk of regression | Low | Medium–High |
+| Estimated tasks | 1–2 | 3+ |
+| Coordination needed | Solo | Multiple contributors or reviewers |
+
+**Lightweight plan:** A brief checklist in the PR description or a comment in the issue — no separate file needed.
+
+**Full plan:** A dated file in `docs/plans/` following the template below. Worth the upfront cost because it prevents scope drift, AI context loss, and reviewer confusion.
+
+> **Rule of thumb:** If you can describe all the changes in 3 bullet points and they all live in one project, skip the plan file. If you find yourself writing more than 5 bullet points or touching multiple projects, create one.
 
 ## Plan Format
 
@@ -479,7 +500,7 @@ If you're unsure whether to create a plan, err on the side of planning. It's bet
 
 For more guidance, see:
 - [AGENTS.md](../../../AGENTS.md) - Overall workflow guidance
-- [Systematic Debugging](systematic-debugging.md) - For bug fix planning
-- [Verification](verification.md) - For completion criteria
+- [Systematic Debugging](../../systematic-debugging/SKILL.md) - For bug fix planning
+- [Verification](../../verification/SKILL.md) - For completion criteria
 
 **Last Updated:** 2026-01-28

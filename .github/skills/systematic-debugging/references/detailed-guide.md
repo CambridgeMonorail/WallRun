@@ -353,6 +353,139 @@ try {
 
 **Better:** Follow the full verification checklist.
 
+## Debugging Async and Timing Issues
+
+Async bugs require different techniques because the failure depends on execution order, not just logic.
+
+### Recognising async bugs
+
+- The bug is intermittent or "works sometimes"
+- Adding a `console.log` or breakpoint makes the bug disappear
+- The bug appears under load or slow network but not locally
+- State appears correct at one point and wrong at another with no obvious mutation
+
+### Techniques
+
+**Add timestamps to logs:**
+```typescript
+console.log(`[${Date.now()}] fetchUser started`);
+const user = await fetchUser();
+console.log(`[${Date.now()}] fetchUser resolved`, user);
+```
+
+**Check for race conditions in useEffect:**
+```typescript
+// Bug: component unmounts before fetch completes
+useEffect(() => {
+  let cancelled = false;
+  fetchData().then(data => {
+    if (!cancelled) setData(data); // Guard against stale update
+  });
+  return () => { cancelled = true; };
+}, [id]);
+```
+
+**Check for stale closures:**
+```typescript
+// Bug: handler captures stale state
+const handleClick = useCallback(() => {
+  console.log('count is:', count); // Is this the current value?
+  setCount(count + 1);
+}, []); // Missing `count` in dependency array = stale closure
+```
+
+**Test with artificial delays:**
+```typescript
+// Make timing bugs more visible
+const fetchData = async () => {
+  await new Promise(r => setTimeout(r, 2000)); // Exaggerate delay
+  return realFetch();
+};
+```
+
+**Use Promise.race to find timeout issues:**
+```typescript
+const result = await Promise.race([
+  fetchData(),
+  new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout after 5s')), 5000))
+]);
+```
+
+### Common async root causes
+
+| Symptom | Likely cause |
+|---------|-------------|
+| State updates after unmount | Missing cleanup in useEffect |
+| Data shows then disappears | Two competing fetches, last one returns empty |
+| Intermittent "undefined" errors | Race between data fetch and render |
+| Handler uses stale values | Closure captures old state/props |
+| Works with DevTools open | Breakpoint changes timing enough to mask race |
+
+## Debugging Intermittent Bugs
+
+When a bug cannot be reliably reproduced:
+
+### Step 1: Increase observability
+
+- Add structured logging around the suspected area
+- Include timestamps, request IDs, and state snapshots
+- Log both the happy path and error paths
+
+### Step 2: Identify conditions
+
+- Does it happen more under load? (Timing issue)
+- Does it happen with specific data? (Edge case)
+- Does it happen after a certain duration? (Memory leak or state accumulation)
+- Does it happen only on certain devices or browsers? (Environment issue)
+
+### Step 3: Narrow the window
+
+- If you can reproduce 1 in 10 times, run 20 attempts and compare the logs from failing vs passing runs
+- Look for ordering differences, missing events, or unexpected null values
+
+### Step 4: Write a stress test
+
+```typescript
+it('handles concurrent updates without data loss', async () => {
+  const results = await Promise.all(
+    Array.from({ length: 50 }, (_, i) => updateRecord(i))
+  );
+  expect(results.every(r => r.success)).toBe(true);
+});
+```
+
+### Step 5: If still not reproducible
+
+- Document what you know and the conditions you've ruled out
+- Add monitoring or assertions that will catch the issue in production
+- Don't apply a speculative fix — it may mask the real problem without solving it
+
+## When to Invest in Deep Debugging
+
+Not every bug deserves the full 6-step process. Use this decision guide:
+
+### Use the full 6-step process when:
+
+- The bug affects multiple users or a critical path
+- You've already tried an obvious fix and it didn't work
+- The bug is intermittent and could recur unpredictably
+- Understanding the root cause teaches something valuable about the system
+- A wrong fix could introduce worse problems
+
+### Use a quick targeted fix when:
+
+- The root cause is obvious (typo, wrong variable name, missing import)
+- The fix is a one-line change with no risk of side effects
+- The bug is in code that will be replaced soon
+- Time pressure is high and the fix is safe even if the root cause is unclear
+
+### Escalate when:
+
+- You've spent more than 30 minutes without narrowing the cause
+- The bug requires access you don't have (production logs, specific hardware)
+- The bug spans multiple systems or teams
+- You suspect a framework or library bug rather than application code
+
 ## Real-World Example
 
 ### Bug Report
@@ -447,9 +580,9 @@ Fixes #789
 
 ## Integration with Other Skills
 
-- **[Planning](planning.md)** - For complex bug fixes, create a plan
-- **[Verification](verification.md)** - Always verify fixes thoroughly
-- **[Code Review Ready](code-review-ready.md)** - Document your debugging process
+- **[Planning](../../planning/SKILL.md)** - For complex bug fixes, create a plan
+- **[Verification](../../verification/SKILL.md)** - Always verify fixes thoroughly
+- **[Code Review Ready](../../code-review-ready/SKILL.md)** - Document your debugging process
 
 ## Debugging Mindset
 

@@ -118,13 +118,19 @@ Instead of running each command separately, use the unified verification command
 pnpm verify
 ```
 
-This command runs all standard checks in sequence:
-1. Format check
-2. Lint (affected)
-3. Type check (affected)
-4. Tests (affected)
+This runs these checks in sequence:
+1. `pnpm format:check` — Format check
+2. `pnpm lint:affected` — Lint (affected projects only)
+3. `pnpm type-check:affected` — Type check (affected projects only)
+4. `pnpm test:affected` — Tests (affected projects only)
+5. `pnpm build:affected` — Build (affected projects only)
 
-**Note:** The exact implementation of `pnpm verify` may vary. Check `package.json` for the current definition.
+"Affected" means Nx compares your branch to the base branch (usually `main`) and determines which projects have changed files or depend on changed files. This keeps verification fast while still catching cascading breakage.
+
+When to use `:all` instead of `:affected`:
+- Infrastructure changes (tsconfig.base.json, eslint.base.config, nx.json)
+- Shared utility changes that Nx might not track
+- When `pnpm verify` passes but CI fails
 
 ## PR Verification Evidence Template
 
@@ -497,6 +503,115 @@ If CI fails but local passes:
 3. Run verification again
 4. Check for environment differences
 
+## Fixing Verification Failures
+
+### Format check fails
+
+```bash
+# Auto-fix formatting issues
+pnpm format
+# Then re-run check to confirm
+pnpm format:check
+```
+
+Format failures are always auto-fixable. Run the formatter, commit the result.
+
+### Lint fails
+
+```bash
+# See the specific errors
+pnpm lint:affected
+```
+
+Common fixes:
+- **Unused imports:** Remove them or prefix with `_` for intentionally unused params
+- **Missing return types:** Add explicit return types to exported functions
+- **a11y violations:** Add missing ARIA attributes, labels, or roles
+- **`any` type:** Replace with `unknown` and add a type guard
+
+If a lint rule is wrong for this case, disable it with a targeted inline comment and explain why:
+```typescript
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- guaranteed by parent component
+const value = props.data!;
+```
+
+### Type check fails
+
+```bash
+pnpm type-check:affected
+```
+
+Common fixes:
+- **Property does not exist:** Check import paths, update interface definitions
+- **Type not assignable:** Add missing props, update union types, or use a type guard
+- **Module not found:** Check tsconfig paths, verify barrel exports
+
+### Tests fail
+
+```bash
+# Run specific failing test for detailed output
+pnpm test:shadcnui -- --reporter=verbose
+```
+
+Common fixes:
+- **Snapshot mismatch:** Review the diff. If the change is intentional, update snapshots: `pnpm test:shadcnui -- -u`
+- **Missing mock:** Add or update mocks for dependencies
+- **Assertion failure:** Either fix the code or update the test if the behaviour intentionally changed
+- **Timeout:** Increase timeout for async tests, or fix the async logic
+
+### Build fails
+
+```bash
+pnpm build:affected
+```
+
+Common fixes:
+- **Missing export:** Ensure the barrel file re-exports new components
+- **Circular dependency:** Restructure imports to break the cycle
+- **Bundle error:** Check for Node-only code imported in browser bundles
+
+## Verification by Change Type
+
+### Docs-only changes (README, .md files, comments)
+
+```bash
+pnpm format:check   # Required — formatting applies to markdown too
+```
+
+Lint, type-check, and tests can be skipped if only `.md` files changed. Mention this in the PR:
+```markdown
+## Verification
+Docs-only change. Format check passed. No code changes.
+```
+
+### Config changes (tsconfig, vite.config, eslint.config, tailwind.config)
+
+```bash
+pnpm verify          # Run full verification — config changes can break anything
+```
+
+Config changes affect build behaviour, type resolution, and lint rules. Always run the full suite and use `:all` scope if unsure:
+```bash
+pnpm lint:all && pnpm type-check:all && pnpm test:all
+```
+
+### Dependency updates (package.json, pnpm-lock.yaml)
+
+```bash
+pnpm verify          # Full verification required
+pnpm build:all       # Recommended — build all to catch bundling issues
+```
+
+Include the dependency change summary in the PR description.
+
+### Library changes consumed by apps
+
+```bash
+pnpm verify          # Nx affected will include consuming apps automatically
+```
+
+Verify that both the library and its consumers pass. If Nx affected misses a consumer, run that project explicitly.
+
 ## Quick Reference
 
 ### Minimal Evidence (All PRs)
@@ -557,9 +672,9 @@ pnpm verify
 
 ## Integration with Other Skills
 
-- **[Planning](planning.md)** - Plans include verification steps
-- **[Code Review Ready](code-review-ready.md)** - Verification evidence required
-- **[Systematic Debugging](systematic-debugging.md)** - Verification proves bugs are fixed
+- **[Planning](../../planning/SKILL.md)** - Plans include verification steps
+- **[Code Review Ready](../../code-review-ready/SKILL.md)** - Verification evidence required
+- **[Systematic Debugging](../../systematic-debugging/SKILL.md)** - Verification proves bugs are fixed
 
 ## Remember
 

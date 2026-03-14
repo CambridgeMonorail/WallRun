@@ -66,6 +66,12 @@ Files changed: 12 files, +287 −45
 
 **Principle:** Each PR should solve one problem or add one feature.
 
+**What counts as one logical change:**
+- A new component plus its tests, Storybook stories, and export = **one change**
+- A bug fix plus the regression test that covers it = **one change**
+- A component bug fix plus an unrelated component refactor = **two changes** (split them)
+- Updating a shared utility plus all consumers that need to adapt = **one change** (if the utility change forces the consumer updates)
+
 **Why:**
 - Clear purpose and scope
 - Easier to review the logic
@@ -494,7 +500,38 @@ test: add comprehensive auth tests
 
 Each commit should be reviewable independently.
 
-### 4. Create a Testing Plan
+### 4. Splitting PRs in a Monorepo
+
+When changes span multiple workspace packages (e.g. `@tsa/shadcnui` + `apps/client`), use these strategies:
+
+**Library-first splitting:**
+```
+PR #1: feat(shadcnui): add Select component
+  - Component, tests, Storybook stories, barrel export
+  - Can be reviewed and merged independently
+
+PR #2: feat(client): use Select in settings page
+  - Depends on PR #1
+  - Only changes the consuming app
+```
+
+**When to keep cross-package changes together:**
+- The library change is small and meaningless without the consumer update
+- A shared type change that requires immediate consumer fixes to pass type-check
+- The total diff is still under 500 lines
+
+**When to always split:**
+- Library refactor plus unrelated app feature
+- Changes to two different libraries that don't depend on each other
+- Infrastructure changes (tsconfig, eslint, vite.config) mixed with feature work
+
+**Handling dependent PRs:**
+1. Create PR #1 (the dependency) and get it reviewed
+2. Branch PR #2 off PR #1's branch, not off main
+3. Mark PR #2 as "depends on #1" in the description
+4. After PR #1 merges, rebase PR #2 onto main
+
+### 5. Create a Testing Plan
 
 ```markdown
 ## Testing Plan
@@ -519,9 +556,9 @@ Each commit should be reviewable independently.
 
 ## Integration with Other Skills
 
-- **[Planning](planning.md)** - Plans help structure reviewable PRs
-- **[Verification](verification.md)** - Verification evidence required
-- **[Systematic Debugging](systematic-debugging.md)** - Explain debugging process for bug fixes
+- **[Planning](../../planning/SKILL.md)** - Plans help structure reviewable PRs
+- **[Verification](../../verification/SKILL.md)** - Verification evidence required
+- **[Systematic Debugging](../../systematic-debugging/SKILL.md)** - Explain debugging process for bug fixes
 
 ## Quick Review Checklist
 
