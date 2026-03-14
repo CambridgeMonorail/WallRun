@@ -58,99 +58,134 @@ export const GettingStartedPage: FC = () => {
       <section className="mb-12">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
           <Code className="w-6 h-6" />
-          Installation
+          Choose Your Starting Point
         </h2>
-        <p className="text-muted-foreground mb-4">
-          The Sign Age components are part of the{' '}
-          <a
-            href="https://ui.shadcn.com/docs/installation"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground hover:underline"
-          >
-            shadcn/ui ecosystem
-          </a>
-          . Install components using the shadcn CLI with our custom registry:
+        <p className="text-muted-foreground mb-6 max-w-3xl">
+          How you use The Sign Age depends on what you are building and where
+          you are in the process. Pick the option that matches your situation.
         </p>
 
-        <div className="space-y-4">
-          <div>
+        <div className="space-y-6">
+          <div className="demo-panel p-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              Option 1: Using shadcn CLI (Recommended)
+              Add signage components to an existing React project
             </h3>
+            <p className="text-muted-foreground mb-3 max-w-3xl">
+              You already have a React app and want to pull in specific signage
+              UI components — things like metric cards, screen frames, schedule
+              gates, or auto-paging lists. Components are copied directly into
+              your project with all dependencies resolved. No build changes
+              needed.
+            </p>
             <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
-                {`# Add a single component from The Sign Age registry
+                {`# Add individual components from The Sign Age registry
 npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list
 
-# Add multiple components
+# Add several at once
 npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json metric-card event-card schedule-gate`}
               </pre>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Components will be copied directly into your project with all
-              dependencies resolved. Browse available components in the
-              Components section.
+              This uses the{' '}
+              <a
+                href="https://ui.shadcn.com/docs/installation"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:underline"
+              >
+                shadcn/ui CLI
+              </a>
+              . You own the code once it's in your project — update it however
+              you like.
             </p>
           </div>
 
-          <div>
+          <div className="demo-panel p-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              Option 2: Clone and Reference Locally
+              Copy a component directly from GitHub
             </h3>
-            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
-              <pre>
-                {`# Clone the repository
-git clone https://github.com/CambridgeMonorail/TheSignAge.git
-cd TheSignAge
-
-# Install dependencies
-pnpm install
-
-# Build the libraries
-pnpm build:shadcnui
-pnpm build:shadcnui-signage`}
-              </pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-medium text-foreground mb-2">
-              Option 3: Copy Components Directly
-            </h3>
-            <p className="text-muted-foreground mb-2">
+            <p className="text-muted-foreground mb-3 max-w-3xl">
+              If you prefer not to run a CLI, or you want to inspect the code
+              first, browse the source and copy what you need. Every component
+              is self-contained.
+            </p>
+            <p className="text-muted-foreground text-sm">
               Browse{' '}
-              <button
-                onClick={handleGitHubClick}
+              <a
+                href="https://github.com/CambridgeMonorail/TheSignAge/tree/main/libs/shadcnui-signage/src/lib"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground hover:underline"
               >
                 libs/shadcnui-signage
-              </button>{' '}
-              on GitHub and copy the components you need into your project. All
-              components are self-contained with minimal dependencies.
+              </a>{' '}
+              on GitHub and take what you need. Good for evaluating a single
+              component before committing to the registry approach.
             </p>
           </div>
 
-          <div>
+          <div className="demo-panel p-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              Option 4: Scaffold A Full Player App
+              Clone the entire repository
             </h3>
+            <p className="text-muted-foreground mb-3 max-w-3xl">
+              If you want the full toolkit — component libraries, AI skills,
+              player app scaffolding, BrightSign deployment commands, and
+              working signage examples — clone the repo and work inside it. This
+              is the best option if you are starting from scratch or want to
+              build multiple signage apps. You get every upstream improvement
+              just by pulling.
+            </p>
             <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
-                {`# Compatibility entry point
-pnpm scaffold:player --name player-arrivals
+                {`git clone https://github.com/CambridgeMonorail/TheSignAge.git
+cd TheSignAge
+pnpm install
 
-# Nx-native generator
+# Run the demo site to explore examples
+pnpm serve:client
+
+# Stay current with upstream improvements
+git pull origin main`}
+              </pre>
+            </div>
+            <p className="text-muted-foreground mt-2 text-sm">
+              Once cloned, you can generate new player apps, deploy to
+              BrightSign hardware, use the AI signage architect agent, and
+              access all 20 installable skills.
+            </p>
+          </div>
+
+          <div className="demo-panel p-6">
+            <h3 className="text-lg font-medium text-foreground mb-2">
+              Scaffold a BrightSign player app
+            </h3>
+            <p className="text-muted-foreground mb-3 max-w-3xl">
+              If you have already cloned the repo and want to build a signage
+              app that runs on BrightSign hardware, generate a new player app
+              from the built-in template. The generated app has the right
+              packaging shape, autorun bootstrap, and deployment config out of
+              the box.
+            </p>
+            <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
+              <pre>
+                {`# Generate a new player app
 pnpm nx g sign-age:player-app --name player-arrivals
 
-# Generate a landscape menu board app
+# Or with specific options
 pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation landscape --noStatusPage`}
               </pre>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
-              Use this when you want a BrightSign-ready application shell rather
-              than individual components. The generated app keeps the same
-              packaging and deployment shape used by the built-in player app.
+              This requires the cloned repository. See{' '}
+              <button
+                onClick={() => navigate('/tooling')}
+                className="text-foreground hover:underline"
+              >
+                Tooling &amp; Deployment
+              </button>{' '}
+              for the full packaging and deployment workflow.
             </p>
           </div>
         </div>
