@@ -391,7 +391,7 @@ useEffect(() => {
 const handleClick = useCallback(() => {
   console.log('count is:', count); // Is this the current value?
   setCount(count + 1);
-}, [count]); // Missing dependency = stale closure
+}, []); // Missing `count` in dependency array = stale closure
 ```
 
 **Test with artificial delays:**
