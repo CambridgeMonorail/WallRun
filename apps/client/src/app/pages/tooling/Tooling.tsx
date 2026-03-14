@@ -138,21 +138,15 @@ pnpm player add lobby-display 192.168.1.50 --default`}
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
             <Button variant="secondary" asChild>
+              <Link to="/skills">View Skills Catalog</Link>
+            </Button>
+            <Button variant="ghost" asChild>
               <a
                 href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/skills/README.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Read Skills Guide
-              </a>
-            </Button>
-            <Button variant="ghost" asChild>
-              <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/tooling/github-copilot-tooling.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open Copilot Tooling Docs
               </a>
             </Button>
           </div>
