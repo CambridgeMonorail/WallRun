@@ -183,25 +183,65 @@ export const SkillsPage: FC = () => {
       <section className="demo-panel mb-12 p-6 sm:p-8">
         <h2 className="mb-4 flex items-center gap-2 text-2xl font-medium text-foreground">
           <Package className="h-6 w-6" />
-          Installation
+          How To Get Skills Into Your Project
         </h2>
         <p className="mb-4 max-w-3xl text-muted-foreground">
-          Install all public skills from this repository into your project:
+          There are two ways to use these skills. Which one you choose depends
+          on whether you want to add signage guidance to an existing project or
+          start fresh with the full toolkit.
         </p>
-        <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
-          <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
+
+        <div className="mb-6">
+          <h3 className="mb-2 text-lg font-medium text-foreground">
+            Option 1: Install skills into your own project
+          </h3>
+          <p className="mb-3 max-w-3xl text-muted-foreground">
+            If you already have a codebase and want your AI agent to understand
+            signage design, debugging workflows, or engineering best practices,
+            install the public skills directly. They are copied into your
+            project as Markdown files — no runtime dependencies, no build
+            changes.
+          </p>
+          <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
+            <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
+          </div>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            This installs the 11 public skills (signage design, debugging,
+            planning, verification, and more). Your agent picks them up
+            automatically the next time it runs.
+          </p>
         </div>
-        <p className="mt-4 mb-4 max-w-3xl text-muted-foreground">
-          To also include repo-specific skills (BrightSign tooling, player
-          discovery), opt in with the environment variable:
-        </p>
-        <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
-          <pre>{`INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge`}</pre>
+
+        <div className="mb-6">
+          <h3 className="mb-2 text-lg font-medium text-foreground">
+            Option 2: Include BrightSign and player tooling skills
+          </h3>
+          <p className="mb-3 max-w-3xl text-muted-foreground">
+            The 9 internal skills cover BrightSign packaging, deployment, player
+            discovery, and hardware debugging. They are hidden by default
+            because they assume you are working with BrightSign hardware. If
+            that describes your setup, opt in:
+          </p>
+          <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
+            <pre>{`INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge`}</pre>
+          </div>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            This gives you all 20 skills — signage design, engineering
+            workflows, and BrightSign-specific tooling.
+          </p>
         </div>
-        <p className="mt-3 text-sm text-muted-foreground">
-          The CLI reads each skill's SKILL.md frontmatter. Internal skills are
-          hidden by default and only included when the flag is set.
-        </p>
+
+        <div className="rounded border border-border bg-muted/30 p-4">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">
+              What does the CLI actually do?
+            </span>{' '}
+            It reads each skill's SKILL.md frontmatter, downloads the skill
+            directory into your project, and makes it available to your AI
+            agent. No code is executed. You can inspect every file before your
+            agent sees it.
+          </p>
+        </div>
       </section>
 
       {/* Tier 1 */}
