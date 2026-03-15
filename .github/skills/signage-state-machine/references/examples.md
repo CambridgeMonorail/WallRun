@@ -3,14 +3,7 @@
 ## State Type Definition
 
 ```typescript
-type SignageState =
-  | { status: 'boot' }
-  | { status: 'loading' }
-  | { status: 'content'; data: ContentData }
-  | { status: 'refreshing'; data: ContentData }
-  | { status: 'data-error'; lastGoodData: ContentData | null }
-  | { status: 'offline'; cachedData: ContentData | null }
-  | { status: 'idle' };
+type SignageState = { status: 'boot' } | { status: 'loading' } | { status: 'content'; data: ContentData } | { status: 'refreshing'; data: ContentData } | { status: 'data-error'; lastGoodData: ContentData | null } | { status: 'offline'; cachedData: ContentData | null } | { status: 'idle' };
 ```
 
 ## State Container — Discriminated Union vs Booleans
@@ -57,15 +50,7 @@ A `useReducer`-based hook that enforces valid transitions:
 ```typescript
 import { useReducer } from 'react';
 
-type SignageAction =
-  | { type: 'LOAD' }
-  | { type: 'CONTENT_READY'; data: ContentData }
-  | { type: 'REFRESH_START' }
-  | { type: 'REFRESH_SUCCESS'; data: ContentData }
-  | { type: 'DATA_ERROR' }
-  | { type: 'OFFLINE' }
-  | { type: 'RECONNECT' }
-  | { type: 'IDLE' };
+type SignageAction = { type: 'LOAD' } | { type: 'CONTENT_READY'; data: ContentData } | { type: 'REFRESH_START' } | { type: 'REFRESH_SUCCESS'; data: ContentData } | { type: 'DATA_ERROR' } | { type: 'OFFLINE' } | { type: 'RECONNECT' } | { type: 'IDLE' };
 
 function assertNever(action: never): never {
   throw new Error('Unhandled signage action: ' + JSON.stringify(action));
@@ -85,21 +70,11 @@ function signageReducer(state: SignageState, action: SignageAction): SignageStat
     case 'REFRESH_SUCCESS':
       return { status: 'content', data: action.data };
     case 'DATA_ERROR': {
-      const lastGood =
-        state.status === 'content' || state.status === 'refreshing'
-          ? state.data
-          : state.status === 'data-error'
-            ? state.lastGoodData
-            : null;
+      const lastGood = state.status === 'content' || state.status === 'refreshing' ? state.data : state.status === 'data-error' ? state.lastGoodData : null;
       return { status: 'data-error', lastGoodData: lastGood };
     }
     case 'OFFLINE': {
-      const cached =
-        state.status === 'content' || state.status === 'refreshing'
-          ? state.data
-          : state.status === 'offline'
-            ? state.cachedData
-            : null;
+      const cached = state.status === 'content' || state.status === 'refreshing' ? state.data : state.status === 'offline' ? state.cachedData : null;
       return { status: 'offline', cachedData: cached };
     }
     case 'RECONNECT':

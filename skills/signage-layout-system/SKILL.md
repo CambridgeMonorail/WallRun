@@ -4,7 +4,7 @@ description: Generate full-screen digital signage layouts designed for large dis
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Layout System Skill
@@ -86,10 +86,10 @@ Use zones such as:
 
 When a layout includes tables, lists, or repeated rows:
 
-| Orientation | Max visible rows | Max columns | Notes                                      |
-| ----------- | ---------------- | ----------- | ------------------------------------------ |
-| Landscape   | 10–12            | 4–6         | Keep cell text at 36 px+ minimum           |
-| Portrait    | 14–16            | 3–4         | Narrower columns, taller visible area      |
+| Orientation | Max visible rows | Max columns | Notes                                 |
+| ----------- | ---------------- | ----------- | ------------------------------------- |
+| Landscape   | 10–12            | 4–6         | Keep cell text at 36 px+ minimum      |
+| Portrait    | 14–16            | 3–4         | Narrower columns, taller visible area |
 
 - If content exceeds the row limit, paginate with timed rotation (8–15 s per page).
 - Column headers should be visually distinct from data rows (weight, size, or background).

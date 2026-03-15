@@ -4,7 +4,7 @@ description: Build and package React apps for BrightSign OS 9.x players with aut
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.1"
+  version: '1.1'
   internal: true
 ---
 
@@ -66,10 +66,10 @@ Three critical build requirements:
 
 The Chromium version embedded in BrightSign OS 9.x varies by firmware:
 
-| BrightSign OS | Embedded Chromium | Recommended `build.target` |
-|---|---|---|
-| 9.0.0 – 9.1.91 | 98 | `['chrome98', 'es2020']` |
-| 9.1.92+ | 120 | `['chrome120', 'es2022']` |
+| BrightSign OS  | Embedded Chromium | Recommended `build.target` |
+| -------------- | ----------------- | -------------------------- |
+| 9.0.0 – 9.1.91 | 98                | `['chrome98', 'es2020']`   |
+| 9.1.92+        | 120               | `['chrome120', 'es2022']`  |
 
 This repo's `apps/player-minimal` targets **OS 9.1.92+** (`['chrome120', 'es2022']`). If you must support older 9.x firmware, lower the target to `['chrome98', 'es2020']` and avoid ES2022+ features.
 

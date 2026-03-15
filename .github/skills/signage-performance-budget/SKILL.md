@@ -184,13 +184,13 @@ Verdict: ❌ Over budget — requires optimization before deployment
 
 Approximate capabilities for common BrightSign OS 9.x player models. Use to calibrate budgets when target hardware is known.
 
-| Model     | Series | CPU / RAM        | GPU / Decode          | Practical Guidance                                          |
-| --------- | ------ | ---------------- | --------------------- | ----------------------------------------------------------- |
-| HD224     | HD     | Dual-core / 1 GB | Basic, 1080p decode   | Minimal CSS effects, ≤ 500 DOM nodes, no backdrop-filter    |
-| XD1034    | XD     | Quad-core / 2 GB | Moderate, 4K decode   | Light animation OK, ≤ 800 DOM nodes, limit will-change to 3 |
-| XD1234    | XD     | Quad-core / 2 GB | Moderate, 4K decode   | Similar to XD1034, adds USB-C                               |
-| XT1144    | XT     | Quad-core / 4 GB | Strong, 4K decode     | Most CSS effects OK, ≤ 1000 DOM nodes, still avoid blur     |
-| XT2144    | XT     | Quad-core / 4 GB | Strong, dual 4K       | Highest headroom; still test backdrop-filter                 |
+| Model  | Series | CPU / RAM        | GPU / Decode        | Practical Guidance                                          |
+| ------ | ------ | ---------------- | ------------------- | ----------------------------------------------------------- |
+| HD224  | HD     | Dual-core / 1 GB | Basic, 1080p decode | Minimal CSS effects, ≤ 500 DOM nodes, no backdrop-filter    |
+| XD1034 | XD     | Quad-core / 2 GB | Moderate, 4K decode | Light animation OK, ≤ 800 DOM nodes, limit will-change to 3 |
+| XD1234 | XD     | Quad-core / 2 GB | Moderate, 4K decode | Similar to XD1034, adds USB-C                               |
+| XT1144 | XT     | Quad-core / 4 GB | Strong, 4K decode   | Most CSS effects OK, ≤ 1000 DOM nodes, still avoid blur     |
+| XT2144 | XT     | Quad-core / 4 GB | Strong, dual 4K     | Highest headroom; still test backdrop-filter                |
 
 When in doubt, target HD-series constraints — if it runs well there, it runs everywhere.
 

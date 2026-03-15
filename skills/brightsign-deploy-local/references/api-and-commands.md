@@ -10,14 +10,14 @@ BrightSign OS 9.x players expose a REST API on **port 443 (HTTPS)** for file man
 
 ### Available Endpoints
 
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/api/v1/info/` | GET | Player information (model, serial, firmware, uptime, network) |
-| `/api/v1/files/sd/` | GET | List SD card contents |
-| `/api/v1/files/sd/` | PUT | Upload files to SD card (form data) |
-| `/api/v1/files/download/sd/<path>` | GET | Download file from SD card |
-| `/api/v1/files/sd/<path>` | DELETE | Delete file from SD card |
-| `/api/v1/control/reboot` | PUT | Reboot the player |
+| Endpoint                           | Method | Purpose                                                       |
+| ---------------------------------- | ------ | ------------------------------------------------------------- |
+| `/api/v1/info/`                    | GET    | Player information (model, serial, firmware, uptime, network) |
+| `/api/v1/files/sd/`                | GET    | List SD card contents                                         |
+| `/api/v1/files/sd/`                | PUT    | Upload files to SD card (form data)                           |
+| `/api/v1/files/download/sd/<path>` | GET    | Download file from SD card                                    |
+| `/api/v1/files/sd/<path>`          | DELETE | Delete file from SD card                                      |
+| `/api/v1/control/reboot`           | PUT    | Reboot the player                                             |
 
 Chrome DevTools Inspector: `http://<player-ip>:2999` (if enabled in autorun.brs)
 

@@ -2,7 +2,7 @@
 
 ## Placeholder Visual Style Guidance
 
-During development, placeholder images need to be *visible* in the layout so developers can verify sizing, spacing, and zone hierarchy. Use one of these strategies, listed from simplest to most polished:
+During development, placeholder images need to be _visible_ in the layout so developers can verify sizing, spacing, and zone hierarchy. Use one of these strategies, listed from simplest to most polished:
 
 ### 1. Solid colour blocks (simplest)
 
@@ -10,9 +10,7 @@ Use a Tailwind `bg-*` utility with centred label text. No external files needed.
 
 ```tsx
 <div className="flex h-full w-full items-center justify-center bg-muted">
-  <span className="text-2xl font-semibold tracking-wide text-muted-foreground">
-    HERO FOOD IMAGE
-  </span>
+  <span className="text-2xl font-semibold tracking-wide text-muted-foreground">HERO FOOD IMAGE</span>
 </div>
 ```
 
@@ -23,17 +21,11 @@ Best for: early prototyping, layout scaffolding, component tests.
 Generate a simple inline SVG with dimensions, label, and a subtle crosshatch or diagonal-line pattern so it is clearly a placeholder at a glance.
 
 ```tsx
-<svg
-  viewBox="0 0 1920 1080"
-  className="h-full w-full"
-  role="img"
-  aria-label="Placeholder for background hero food image"
->
+<svg viewBox="0 0 1920 1080" className="h-full w-full" role="img" aria-label="Placeholder for background hero food image">
   <rect width="100%" height="100%" fill="#e5e7eb" />
   <line x1="0" y1="0" x2="100%" y2="100%" stroke="#d1d5db" strokeWidth="2" />
   <line x1="100%" y1="0" x2="0" y2="100%" stroke="#d1d5db" strokeWidth="2" />
-  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle"
-    fill="#6b7280" fontSize="48" fontFamily="system-ui">
+  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fill="#6b7280" fontSize="48" fontFamily="system-ui">
     HERO FOOD IMAGE · 1920×1080
   </text>
 </svg>
@@ -56,13 +48,13 @@ Best for: integration tests that require real image URLs, quick demos that canno
 
 ### Choosing a strategy
 
-| Context | Recommended strategy |
-|---|---|
-| Component unit tests | Solid colour block (no external deps) |
-| Storybook stories | Labelled SVG |
-| Design review / stakeholder demo | Labelled SVG |
+| Context                               | Recommended strategy                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| Component unit tests                  | Solid colour block (no external deps)                        |
+| Storybook stories                     | Labelled SVG                                                 |
+| Design review / stakeholder demo      | Labelled SVG                                                 |
 | Integration tests needing `<img>` src | Static file in `public/placeholders/` or placeholder service |
-| BrightSign player builds | Static file in `public/placeholders/` (never external URL) |
+| BrightSign player builds              | Static file in `public/placeholders/` (never external URL)   |
 
 ## Code Integration Guidance
 
@@ -75,17 +67,15 @@ When editing React signage components:
 Example:
 
 ```tsx
-<img
-  src="/placeholders/menu/home-hero-food-image-1920x1080.png"
-  alt="Placeholder for background hero food image"
-  className="h-full w-full object-cover"
-/>
+<img src="/placeholders/menu/home-hero-food-image-1920x1080.png" alt="Placeholder for background hero food image" className="h-full w-full object-cover" />
 ```
 
 Optional comment:
 
 ```tsx
-{/* Replace with approved campaign hero image */}
+{
+  /* Replace with approved campaign hero image */
+}
 ```
 
 Do not add unnecessary comments if the file naming already makes the intent obvious.

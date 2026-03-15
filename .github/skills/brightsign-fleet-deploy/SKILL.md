@@ -4,7 +4,7 @@ description: Build, version, and publish React apps to GitHub Releases for fleet
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.1"
+  version: '1.1'
   internal: true
 ---
 
@@ -45,11 +45,11 @@ Fleet deployment follows this pipeline:
 
 Follow semantic versioning (MAJOR.MINOR.PATCH):
 
-| Bump    | When                                  | Auto-update safe? |
-| ------- | ------------------------------------- | ----------------- |
-| Patch   | Bug fixes, no new features            | Yes               |
-| Minor   | New features, backward compatible     | Yes               |
-| Major   | Breaking changes                      | No — manual only  |
+| Bump  | When                              | Auto-update safe? |
+| ----- | --------------------------------- | ----------------- |
+| Patch | Bug fixes, no new features        | Yes               |
+| Minor | New features, backward compatible | Yes               |
+| Major | Breaking changes                  | No — manual only  |
 
 ### Step 2: Build and package
 

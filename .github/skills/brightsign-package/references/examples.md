@@ -194,8 +194,8 @@ python3 -m http.server 8080
 
 ## Common Issues
 
-| Issue | Solution |
-|---|---|
-| Bundle too large (>500KB) | Enable code splitting, remove unused deps, check bundle analyzer |
-| White screen on player | Check console for errors, verify relative asset paths, no CDN URLs |
-| App doesn't start | Verify `autorun.brs` in root, check `file:///sd:/index.html` path |
+| Issue                     | Solution                                                           |
+| ------------------------- | ------------------------------------------------------------------ |
+| Bundle too large (>500KB) | Enable code splitting, remove unused deps, check bundle analyzer   |
+| White screen on player    | Check console for errors, verify relative asset paths, no CDN URLs |
+| App doesn't start         | Verify `autorun.brs` in root, check `file:///sd:/index.html` path  |

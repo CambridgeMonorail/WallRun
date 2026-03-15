@@ -56,10 +56,10 @@ These are baseline minimums for standard 1920×1080 signage at 3–5 metre viewi
 
 The baseline table above is for **1080p at 3–5 m**. Use these multipliers for other setups:
 
-| Resolution   | Multiplier | Headline | Body  | Secondary | Tertiary |
-| ------------ | ---------- | -------- | ----- | --------- | -------- |
-| 1080p        | 1×         | 96 px    | 48 px | 36 px     | 24 px    |
-| 4K (2160p)   | 2×         | 192 px   | 96 px | 72 px     | 48 px    |
+| Resolution | Multiplier | Headline | Body  | Secondary | Tertiary |
+| ---------- | ---------- | -------- | ----- | --------- | -------- |
+| 1080p      | 1×         | 96 px    | 48 px | 36 px     | 24 px    |
+| 4K (2160p) | 2×         | 192 px   | 96 px | 72 px     | 48 px    |
 
 For longer viewing distances on a 1080p screen:
 

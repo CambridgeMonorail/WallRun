@@ -4,7 +4,7 @@ description: Scan a local subnet to discover BrightSign players via DWS fingerpr
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
   internal: true
   argument-hint: '<cidr> e.g. 192.168.0.0/24'
   user-invokable: true

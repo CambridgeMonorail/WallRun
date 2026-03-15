@@ -4,7 +4,7 @@ description: Export player discovery results to JSON and CSV and print a termina
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
   internal: true
   argument-hint: '[--in dist/players.json] [--json dist/players.json] [--csv dist/players.csv]'
   user-invokable: true

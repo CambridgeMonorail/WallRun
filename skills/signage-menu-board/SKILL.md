@@ -4,7 +4,7 @@ description: Build food and service menu boards for large displays using clear z
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Menu Board Skill

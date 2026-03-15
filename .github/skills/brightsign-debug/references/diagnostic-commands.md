@@ -55,11 +55,11 @@ curl -s http://<player-ip>:8008/GetDeviceInfo | jq .
 
 **Key fields to check:**
 
-| Field | Concern |
-|---|---|
-| `firmware` | Must be OS 9.x or later |
-| `uptime` | Low uptime may indicate crash loops |
-| `temperature` | >70°C indicates cooling issues |
+| Field            | Concern                                |
+| ---------------- | -------------------------------------- |
+| `firmware`       | Must be OS 9.x or later                |
+| `uptime`         | Low uptime may indicate crash loops    |
+| `temperature`    | >70°C indicates cooling issues         |
 | `storage.freeMB` | Low storage causes deployment failures |
 
 ## Remote Inspector (Chrome DevTools)
@@ -106,12 +106,12 @@ curl http://<player-ip>:8008/logs | grep -i error
 
 **Common log patterns:**
 
-| Log | Meaning |
-|---|---|
-| `ERROR: Failed to load resource: net::ERR_FILE_NOT_FOUND` | Missing asset file — check paths |
-| `ERROR: Uncaught ReferenceError: React is not defined` | Bundle dependency issue |
-| `WARNING: Application Cache is deprecated` | Ignore (BrightSign Chromium quirk) |
-| `INFO: HTML Widget started successfully` | Widget initialized correctly |
+| Log                                                       | Meaning                            |
+| --------------------------------------------------------- | ---------------------------------- |
+| `ERROR: Failed to load resource: net::ERR_FILE_NOT_FOUND` | Missing asset file — check paths   |
+| `ERROR: Uncaught ReferenceError: React is not defined`    | Bundle dependency issue            |
+| `WARNING: Application Cache is deprecated`                | Ignore (BrightSign Chromium quirk) |
+| `INFO: HTML Widget started successfully`                  | Widget initialized correctly       |
 
 ## Verify File Deployment
 

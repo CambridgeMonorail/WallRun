@@ -4,7 +4,7 @@ description: Diagnose connectivity to a single BrightSign player by probing its 
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
   internal: true
   argument-hint: '<ip> e.g. 192.168.1.50 [--port 80|8008|8080]'
   user-invokable: true

@@ -89,9 +89,7 @@ self.addEventListener('fetch', (event: FetchEvent) => {
         const cached = await cache.match(event.request);
         if (cached) return cached;
         // API gets empty JSON; images get a 504 so <img> onerror fires
-        return isApiRequest
-          ? new Response('{}', { status: 503 })
-          : new Response(null, { status: 504 });
+        return isApiRequest ? new Response('{}', { status: 503 }) : new Response(null, { status: 504 });
       }
     }),
   );

@@ -4,7 +4,7 @@ description: Deploy React apps to local BrightSign OS 9.x players via HTTP API f
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.1"
+  version: '1.1'
   internal: true
 ---
 

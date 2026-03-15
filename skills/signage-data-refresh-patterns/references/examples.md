@@ -31,10 +31,7 @@ type UseSignageDataResult<T> = {
   lastUpdated: number | null;
 };
 
-function useSignageData<T>(
-  fetcher: () => Promise<T>,
-  options: UseSignageDataOptions<T>,
-): UseSignageDataResult<T> {
+function useSignageData<T>(fetcher: () => Promise<T>, options: UseSignageDataOptions<T>): UseSignageDataResult<T> {
   const { interval, validate, onError, offlineThreshold = 600_000 } = options;
 
   const [data, setData] = useState<T | null>(null);

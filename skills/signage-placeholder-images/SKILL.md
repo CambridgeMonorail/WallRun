@@ -4,7 +4,7 @@ description: Generate consistent placeholder image plans with naming, sizing, la
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.1"
+  version: '1.1'
 ---
 
 # Signage Placeholder Images
@@ -50,37 +50,37 @@ For each image zone in a signage layout, produce:
 
 ## Standard Placeholder Types
 
-| Type | Examples |
-|---|---|
-| Hero | `HERO IMAGE`, `BACKGROUND HERO FOOD IMAGE`, `SEASONAL CAMPAIGN IMAGE` |
-| Supporting content | `PROMO IMAGE`, `LIFESTYLE IMAGE`, `SUPPORTING PRODUCT IMAGE` |
-| Menu board | `FOOD IMAGE HERE`, `DRINK IMAGE HERE`, `MENU ITEM IMAGE` |
-| Brand | `BRAND LOGO HERE`, `PARTNER LOGO HERE` |
-| UI/demo | `SCREENSHOT HERE`, `APP PREVIEW IMAGE`, `DASHBOARD PREVIEW` |
+| Type               | Examples                                                              |
+| ------------------ | --------------------------------------------------------------------- |
+| Hero               | `HERO IMAGE`, `BACKGROUND HERO FOOD IMAGE`, `SEASONAL CAMPAIGN IMAGE` |
+| Supporting content | `PROMO IMAGE`, `LIFESTYLE IMAGE`, `SUPPORTING PRODUCT IMAGE`          |
+| Menu board         | `FOOD IMAGE HERE`, `DRINK IMAGE HERE`, `MENU ITEM IMAGE`              |
+| Brand              | `BRAND LOGO HERE`, `PARTNER LOGO HERE`                                |
+| UI/demo            | `SCREENSHOT HERE`, `APP PREVIEW IMAGE`, `DASHBOARD PREVIEW`           |
 
 ## Standard Dimensions
 
 ### Full-screen signage
 
-| Format | Dimensions |
-|---|---|
-| Landscape HD | 1920×1080 |
-| Portrait HD | 1080×1920 |
-| Landscape 4K | 3840×2160 |
-| Portrait 4K | 2160×3840 |
+| Format       | Dimensions |
+| ------------ | ---------- |
+| Landscape HD | 1920×1080  |
+| Portrait HD  | 1080×1920  |
+| Landscape 4K | 3840×2160  |
+| Portrait 4K  | 2160×3840  |
 
 ### Common image zones
 
-| Zone | Dimensions |
-|---|---|
-| Hero landscape | 1920×1080 |
-| Hero portrait | 1080×1920 |
-| Wide promo panel | 1600×900 |
-| Half-screen promo | 960×1080 |
-| Square menu tile | 800×800 |
-| Portrait product card | 900×1200 |
-| Landscape product card | 1200×675 |
-| Featured dish panel | 1200×1200 or 1600×900 |
+| Zone                   | Dimensions            |
+| ---------------------- | --------------------- |
+| Hero landscape         | 1920×1080             |
+| Hero portrait          | 1080×1920             |
+| Wide promo panel       | 1600×900              |
+| Half-screen promo      | 960×1080              |
+| Square menu tile       | 800×800               |
+| Portrait product card  | 900×1200              |
+| Landscape product card | 1200×675              |
+| Featured dish panel    | 1200×1200 or 1600×900 |
 
 Match placeholder dimensions to the intended rendered area when the layout is a zone inside a larger screen.
 

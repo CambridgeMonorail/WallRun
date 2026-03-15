@@ -4,7 +4,7 @@ description: Generate animations suitable for large public displays. Use when de
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Animation System Skill
@@ -95,12 +95,20 @@ Reusable CSS animation patterns safe for continuous signage playback.
   animation: signage-fade-out 1.5s ease-in-out forwards;
 }
 @keyframes signage-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes signage-fade-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 ```
 
@@ -111,8 +119,13 @@ Reusable CSS animation patterns safe for continuous signage playback.
   animation: signage-pulse 4s ease-in-out infinite;
 }
 @keyframes signage-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 ```
 
@@ -124,9 +137,15 @@ Reusable CSS animation patterns safe for continuous signage playback.
   background-size: 200% 200%;
 }
 @keyframes signage-bg-shift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 ```
 

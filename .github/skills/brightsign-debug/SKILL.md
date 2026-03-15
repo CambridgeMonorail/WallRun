@@ -4,7 +4,7 @@ description: Diagnose and troubleshoot BrightSign OS 9.x player issues using dev
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.1"
+  version: '1.1'
   internal: true
 ---
 

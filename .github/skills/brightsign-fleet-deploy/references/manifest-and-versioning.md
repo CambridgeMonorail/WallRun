@@ -36,16 +36,16 @@ sed -i "s/\"checksum\": \"\"/\"checksum\": \"${CHECKSUM}\"/" dist/brightsign-pac
 
 ### Manifest Fields
 
-| Field | Description |
-|---|---|
-| `version` | Semantic version (x.y.z) |
-| `commit` | Git commit SHA for traceability |
-| `buildTime` | ISO 8601 timestamp |
-| `minOSVersion` | Minimum BrightSign OS version required |
-| `checksum` | SHA256 hash of package contents (for integrity verification) |
-| `downloadUrl` | GitHub Releases download URL |
-| `releaseNotes` | Human-readable summary |
-| `changelog` | Array of changes since last version |
+| Field          | Description                                                  |
+| -------------- | ------------------------------------------------------------ |
+| `version`      | Semantic version (x.y.z)                                     |
+| `commit`       | Git commit SHA for traceability                              |
+| `buildTime`    | ISO 8601 timestamp                                           |
+| `minOSVersion` | Minimum BrightSign OS version required                       |
+| `checksum`     | SHA256 hash of package contents (for integrity verification) |
+| `downloadUrl`  | GitHub Releases download URL                                 |
+| `releaseNotes` | Human-readable summary                                       |
+| `changelog`    | Array of changes since last version                          |
 
 ## Version Guidelines
 
@@ -61,8 +61,8 @@ npm version minor   # 1.0.1 → 1.1.0 (new features)
 npm version major   # 1.1.0 → 2.0.0 (breaking changes)
 ```
 
-| Level | When to Use | Auto-update Safe? |
-|---|---|---|
-| **Patch** (1.0.x) | Bug fixes, no new features | Yes |
-| **Minor** (1.x.0) | New features, backward compatible | Yes |
-| **Major** (x.0.0) | Breaking changes | Requires manual approval |
+| Level             | When to Use                       | Auto-update Safe?        |
+| ----------------- | --------------------------------- | ------------------------ |
+| **Patch** (1.0.x) | Bug fixes, no new features        | Yes                      |
+| **Minor** (1.x.0) | New features, backward compatible | Yes                      |
+| **Major** (x.0.0) | Breaking changes                  | Requires manual approval |
