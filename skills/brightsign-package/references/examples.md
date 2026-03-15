@@ -88,12 +88,20 @@ export default defineConfig({
     },
 
     // CRITICAL: Use IIFE format, not ES modules
+    cssCodeSplit: false,
+    modulePreload: false,
     rollupOptions: {
       output: {
         format: 'iife',
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
+        inlineDynamicImports: true, // Single bundle for predictable deployment
+        // Fixed filenames for BrightSign (no hashes needed)
+        entryFileNames: 'assets/app.js',
+        chunkFileNames: 'assets/app.js',
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name ?? '';
+          if (name.endsWith('.css')) return 'assets/app.css';
+          return 'assets/[name][extname]';
+        },
       },
     },
 

@@ -30,18 +30,19 @@ Use this skill when you need to:
 
 ## Package Structure
 
-A properly packaged BrightSign app:
+A properly packaged BrightSign app. This example reflects the **current** build output for `apps/player-minimal` in this repo:
 
 ```
 brightsign-package/
 ├── autorun.brs          # Bootstrap script (REQUIRED)
 ├── index.html           # Entry point HTML
-├── assets/              # JS, CSS, images
-│   ├── index-[hash].js  # Main bundle (<100KB gzipped target)
-│   ├── vendor-[hash].js # Vendor chunk (React, libraries)
-│   └── *.css            # Stylesheets
+├── assets/
+│   ├── app.js           # Single IIFE bundle (all code + vendor)
+│   └── app.css          # Styles
 └── manifest.json        # Optional: Version metadata
 ```
+
+The exact filenames and chunking strategy are **app-specific**. The `apps/player-minimal` build uses fixed filenames (`app.js`, `app.css`) with `inlineDynamicImports: true` to produce a single bundle. Other apps may be configured to emit hashed filenames (e.g. `index-[hash].js`) or split vendor code into a separate chunk. Always check the actual Vite build output for the specific app.
 
 ## Workflow
 
