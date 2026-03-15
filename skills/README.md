@@ -1,8 +1,8 @@
 # Skills
 
-This directory contains reusable workflow skills for building and operating digital signage software with The Sign Age.
+This directory contains reusable signage-domain skills for designing, building, and operating digital signage software with The Sign Age.
 
-These skills are portable `SKILL.md` packages for AI-assisted development. They give an agent or developer domain-specific guidance for planning, debugging, verification, BrightSign deployment, signage layout design, player discovery, and review work.
+These skills are portable `SKILL.md` packages for AI-assisted development. They give an agent or developer domain-specific guidance on layout systems, animation, distance legibility, safe display boundaries, performance budgets, data refresh patterns, operational fallbacks, BrightSign deployment, player discovery, and review work.
 
 All skills comply with the [Agent Skills Specification](https://agentskills.io/specification) and are consumable via portable skill tooling.
 
