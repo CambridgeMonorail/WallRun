@@ -55,7 +55,7 @@ boot → loading → content → (refresh cycle)
 
 | State          | Description                                          | What the Viewer Sees                                |
 | -------------- | ---------------------------------------------------- | --------------------------------------------------- |
-| **Boot**       | App initializing, player starting                    | Branded splash or blank (< 3 seconds)               |
+| **Boot**       | App initializing, player starting                    | Branded splash screen (< 3 seconds)                 |
 | **Loading**    | First data fetch in progress                         | Branded splash or last-known content                |
 | **Content**    | Live data displayed normally                         | The intended signage content                        |
 | **Refreshing** | Background data refresh in progress                  | Current content (unchanged until new data is ready) |
