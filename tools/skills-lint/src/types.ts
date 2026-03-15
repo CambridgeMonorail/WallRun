@@ -141,8 +141,4 @@ export interface SkillLintConfig {
   warningSkillMdLines: number;
   maxSectionLines: number;
   inlineExampleDensityWarning: number;
-  requireWhenToUseSection: boolean;
-  requireWorkflowSection: boolean;
-  requireOutputFormatSection: boolean;
-  failOnMissingTestPlanInCi: boolean;
 }

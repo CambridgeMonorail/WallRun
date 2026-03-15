@@ -5,10 +5,6 @@ export const DEFAULT_CONFIG: SkillLintConfig = {
   warningSkillMdLines: 350,
   maxSectionLines: 150,
   inlineExampleDensityWarning: 0.4,
-  requireWhenToUseSection: true,
-  requireWorkflowSection: true,
-  requireOutputFormatSection: true,
-  failOnMissingTestPlanInCi: true,
 };
 
 export const CATEGORY_WEIGHTS: Record<RuleCategory, number> = {

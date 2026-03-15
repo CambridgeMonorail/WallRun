@@ -128,7 +128,7 @@ program
       // Write markdown report to skill directory
       const skillLintReportPath = join(
         absRoot,
-        report.skillName,
+        report.skillPath,
         'LINT_REPORT.md'
       );
       writeFileSync(skillLintReportPath, renderMarkdownReport(report), 'utf8');

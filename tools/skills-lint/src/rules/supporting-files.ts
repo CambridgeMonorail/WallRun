@@ -19,17 +19,17 @@ export const ruleJunkAssets: LintRule = {
 
     if (assets.length === 0) return pass(this.id, this.maxPoints);
 
-    const junkExtensions = new Set([
-      '.DS_Store',
-      '.thumbs.db',
-      '.tmp',
-      '.bak',
-      '.log',
-    ]);
+    const junkFilenames = new Set(['thumbs.db', 'desktop.ini', '.ds_store']);
+    const junkExtensions = new Set(['.tmp', '.bak', '.log']);
 
     const junk = assets.filter((f) => {
       const filename = f.relativePath.split(/[\\/]/).pop() ?? '';
-      return junkExtensions.has(f.extension) || filename.startsWith('.');
+      const lowerFilename = filename.toLowerCase();
+      return (
+        junkFilenames.has(lowerFilename) ||
+        junkExtensions.has(f.extension) ||
+        (filename.startsWith('.') && filename !== '.gitkeep')
+      );
     });
 
     if (junk.length === 0) return pass(this.id, this.maxPoints);
