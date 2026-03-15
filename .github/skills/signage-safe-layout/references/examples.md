@@ -12,7 +12,6 @@ Apply to any full-screen signage container to enforce the 5% safe margin:
   box-sizing: border-box;
   width: 100%;
   height: 100dvh;
-  overflow: hidden;
 }
 
 /* Tighter utility for inner zones that already sit inside a safe frame */
@@ -34,7 +33,6 @@ A minimal CSS Grid shell that fills the viewport using resolution-independent un
   height: 100dvh;
   padding: 5%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 /* Portrait reflow: stack zones vertically with equal spacing */
