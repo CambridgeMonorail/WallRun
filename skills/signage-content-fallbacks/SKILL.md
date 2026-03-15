@@ -101,41 +101,15 @@ Scheduled promotion from CMS
 
 ### Component-Level Fallback
 
-Each content zone should handle its own fallbacks:
-
-```typescript
-type ZoneContent<T> = {
-  live: T | null;
-  cached: T | null;
-  static: T;           // Always present — bundled with app
-};
-
-function resolveContent<T>(content: ZoneContent<T>): T {
-  return content.live ?? content.cached ?? content.static;
-}
-```
+Each content zone should use a typed `ZoneContent<T>` container with `live`, `cached`, and `static` fields. A `resolveContent()` helper picks the first non-null value. See [implementation examples](references/examples.md) for the TypeScript pattern.
 
 ### Image Fallback
 
-```typescript
-function SignageImage({ src, fallbackSrc, alt }: {
-  src: string;
-  fallbackSrc: string;
-  alt: string;
-}) {
-  // Renders src, falls back to fallbackSrc on error
-  // Never renders a broken image icon
-}
-```
+Wrap images in a component that renders a `fallbackSrc` on load error — never show a broken image icon. See [implementation examples](references/examples.md) for the component signature.
 
 ### Zone-Level Visibility
 
-If a zone has no content at any fallback level, hide it and redistribute space rather than showing an empty area:
-
-```typescript
-// If the weather zone has no data at any level, expand the main content zone
-const showWeatherZone = resolveContent(weatherContent) !== null;
-```
+If a zone has no content at any fallback level, hide it and redistribute space rather than showing an empty area. See [implementation examples](references/examples.md) for the pattern.
 
 ## Static Fallback Requirements
 
@@ -179,29 +153,9 @@ When reviewing or generating fallback patterns, produce:
 
 ## Example Output Format
 
-```
-Content Fallback Review
+A fallback review lists each zone's coverage at each fallback level (Live / Cached / Static / Emergency), identifies gaps where a zone could be blank, and gives concrete fix recommendations.
 
-Zone: Menu Items
-• Live: ✅ API endpoint configured
-• Cached: ✅ localStorage cache with 1-hour TTL
-• Static: ❌ No bundled fallback menu
-• Emergency: ❌ No placeholder
-
-Zone: Hero Image
-• Live: ✅ CMS image URL
-• Cached: ❌ No image caching
-• Static: ✅ Bundled placeholder image
-• Emergency: ✅ CSS gradient background
-
-Gaps:
-• Menu zone has no static fallback — cold start offline shows blank
-• Hero image has no cache layer — API failure shows placeholder immediately
-
-Recommendations:
-• Add default-menu.json to fallback/ directory
-• Implement service worker or localStorage image caching for hero
-```
+See [implementation examples](references/examples.md) for a complete example.
 
 ## Constraints
 

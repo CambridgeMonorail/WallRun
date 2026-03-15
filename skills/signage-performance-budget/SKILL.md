@@ -1,6 +1,6 @@
 ---
 name: signage-performance-budget
-description: Enforce bundle size, image weight, font loading, and frame-rate budgets for digital signage running on embedded hardware like BrightSign players. Use when building or reviewing signage apps to prevent performance issues on resource-constrained devices.
+description: Audit and validate bundle size, image weight, font loading, and frame-rate budgets for digital signage running on embedded hardware like BrightSign players. Use when building or reviewing signage apps to prevent performance issues on resource-constrained devices.
 license: MIT
 metadata:
   author: CambridgeMonorail
