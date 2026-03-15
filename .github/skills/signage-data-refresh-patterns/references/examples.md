@@ -73,6 +73,10 @@ function useSignageData<T>(
 
       // Schedule next fetch at normal interval (add ±10% jitter)
       const jitter = interval * 0.1 * (Math.random() * 2 - 1);
+      if (timerRef.current !== null) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
       timerRef.current = setTimeout(doFetch, interval + jitter);
     } catch (error: unknown) {
       onError?.(error);
@@ -92,6 +96,10 @@ function useSignageData<T>(
 
       // Retry with backoff
       const delay = getBackoffDelay(failureCount.current - 1);
+      if (timerRef.current !== null) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
       timerRef.current = setTimeout(doFetch, delay);
     }
   }, [fetcher, interval, validate, onError, offlineThreshold, getBackoffDelay]);
