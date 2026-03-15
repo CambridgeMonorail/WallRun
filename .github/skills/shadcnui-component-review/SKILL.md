@@ -4,7 +4,7 @@ description: End-to-end review of shadcn/ui components in a component library. U
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Shadcn UI Component Review Skill
@@ -59,6 +59,14 @@ Avoid redundant runs.
 
 Do not output secrets or sensitive data.
 If a screenshot or browser tooling is involved elsewhere, use test accounts.
+
+## Reference Files
+
+- [Taxonomy and exports](references/taxonomy-and-exports.md) — category placement rules, barrel export conventions, naming patterns
+- [Accessibility and focus](references/a11y-and-focus.md) — ARIA requirements, keyboard navigation, focus management by component type
+- [Tests and Storybook](references/tests-and-storybook.md) — test patterns, coverage expectations, Storybook story conventions
+- [Performance and bundle](references/performance-and-bundle.md) — tree-shaking, lazy loading, bundle size considerations
+- [Review and fix workflow](references/review-and-fix.md) — step-by-step review process, common fixes, checklist
 
 ## Definition of done
 

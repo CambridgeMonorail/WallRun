@@ -4,7 +4,7 @@ description: Generate animations suitable for large public displays. Use when de
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Animation System Skill
@@ -81,6 +81,87 @@ Optimize for calm, readable, repeatable movement that can run for long periods w
 - Keep motion systems simple enough to remain stable on embedded playback hardware.
 - When in doubt, reduce motion rather than increasing it.
 
+## Starter CSS Patterns
+
+Reusable CSS animation patterns safe for continuous signage playback.
+
+### Crossfade (content rotation)
+
+```css
+.signage-crossfade-enter {
+  animation: signage-fade-in 1.5s ease-in-out forwards;
+}
+.signage-crossfade-exit {
+  animation: signage-fade-out 1.5s ease-in-out forwards;
+}
+@keyframes signage-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes signage-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+```
+
+### Opacity Pulse (subtle "alive" indicator)
+
+```css
+.signage-pulse {
+  animation: signage-pulse 4s ease-in-out infinite;
+}
+@keyframes signage-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+```
+
+### Background Shift (ambient motion)
+
+```css
+.signage-bg-shift {
+  animation: signage-bg-shift 30s linear infinite;
+  background-size: 200% 200%;
+}
+@keyframes signage-bg-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+```
+
+### GPU Layer Promotion
+
+For any animated element on embedded hardware, promote to its own compositor layer to avoid repainting the entire screen:
+
+```css
+.signage-animated {
+  will-change: opacity, transform;
+  /* Remove will-change after animation completes on one-shot animations */
+}
+```
+
+Use `will-change` sparingly — each promoted layer consumes GPU memory. On BrightSign HD-series players, limit to 2–3 promoted layers.
+
 ## Output Contract
 
 When responding with guidance or code, produce:
@@ -103,5 +184,6 @@ Before finalizing, check whether the result:
 ## Related Skills
 
 - Use `signage-layout-system` to shape the screen structure and hierarchy first.
-- When targeting embedded signage hardware, apply runtime constraints from the target platform (e.g., limited GPU, constrained memory, specific browser engine).
-- Use live-data skills when motion reflects freshness, updates, or degraded data states.
+- Use `signage-performance-budget` to validate animation complexity against hardware capabilities.
+- Use `signage-data-refresh-patterns` when motion reflects data freshness or live updates.
+- Use `brightsign-runtime` for specific browser engine and GPU constraints on BrightSign players.

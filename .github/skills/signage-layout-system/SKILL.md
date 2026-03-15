@@ -4,7 +4,7 @@ description: Generate full-screen digital signage layouts designed for large dis
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Layout System Skill
@@ -75,10 +75,26 @@ Use zones such as:
 ## Constraints
 
 - Avoid SaaS-style card grids with many equally weighted panels.
-- Avoid form UI, table-heavy layouts, and dense navigation chrome unless the screen genuinely requires them.
+- Avoid form UI and dense navigation chrome unless the screen genuinely requires them.
 - Avoid tiny badges, helper text, and low-contrast detail that only works at laptop distance.
 - Avoid visual clutter that competes with the primary message.
 - Avoid assuming user interaction; signage is usually glance-first and passive.
+
+**Table and list layouts are acceptable** when the screen's purpose is data presentation (e.g., flight departures, transit arrivals, leaderboards, schedules). In those cases, apply the data density limits below.
+
+## Data Density Limits
+
+When a layout includes tables, lists, or repeated rows:
+
+| Orientation | Max visible rows | Max columns | Notes                                 |
+| ----------- | ---------------- | ----------- | ------------------------------------- |
+| Landscape   | 10–12            | 4–6         | Keep cell text at 36 px+ minimum      |
+| Portrait    | 14–16            | 3–4         | Narrower columns, taller visible area |
+
+- If content exceeds the row limit, paginate with timed rotation (8–15 s per page).
+- Column headers should be visually distinct from data rows (weight, size, or background).
+- Avoid horizontal scrolling — if it doesn't fit, reduce columns or abbreviate.
+- See `signage-distance-legibility` for minimum text sizes within table cells.
 
 ## Output Contract
 
@@ -113,5 +129,6 @@ Before finalizing, check whether the result:
 
 - Use `signage-animation-system` for motion systems tuned to public displays.
 - Use `signage-menu-board` for restaurant-specific hierarchy and price layouts.
-- For embedded playback hardware, apply runtime constraints from the target platform (e.g., limited browser engine, static deployment, memory limits).
+- Use `signage-distance-legibility` for text sizing validation at viewing distance.
+- Use `signage-safe-layout` for safe margins, orientation support, and resolution independence.
 - Use `brightsign-runtime` when implementation choices must account for player constraints.

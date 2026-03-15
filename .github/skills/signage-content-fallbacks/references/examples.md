@@ -20,12 +20,91 @@ function resolveContent<T>(content: ZoneContent<T>): T | null {
 
 ## Image Fallback
 
+A signage-safe image component that never shows a broken image icon:
+
 ```typescript
-function SignageImage({ src, fallbackSrc, alt }: { src: string; fallbackSrc: string; alt: string }) {
-  // Renders src, falls back to fallbackSrc on error
-  // Never renders a broken image icon
+import { useEffect, useState } from 'react';
+
+function SignageImage({
+  src,
+  fallbackSrc,
+  alt,
+  className,
+}: {
+  src: string;
+  fallbackSrc: string;
+  alt: string;
+  className?: string;
+}) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [hasErrored, setHasErrored] = useState(false);
+
+  // Reset when the upstream src or fallback changes (CMS update, content rotation)
+  useEffect(() => {
+    setCurrentSrc(src);
+    setHasErrored(false);
+  }, [src, fallbackSrc]);
+
+  const handleError = () => {
+    if (!hasErrored) {
+      setHasErrored(true);
+      setCurrentSrc(fallbackSrc);
+    }
+  };
+
+  return (
+    <img
+      src={currentSrc}
+      alt={alt}
+      className={className}
+      onError={handleError}
+    />
+  );
 }
 ```
+
+## Service Worker Caching
+
+For offline resilience on signage hardware, register a service worker that caches API responses and images:
+
+```typescript
+// sw.ts — minimal cache-first strategy for signage
+const CACHE_NAME = 'signage-v1';
+const CACHED_API_PATHS = ['/api/menu', '/api/schedule'];
+const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'];
+
+self.addEventListener('fetch', (event: FetchEvent) => {
+  const url = new URL(event.request.url);
+  const isApiRequest = CACHED_API_PATHS.some((p) => url.pathname.startsWith(p));
+  const isImageRequest = IMAGE_EXTENSIONS.some((ext) => url.pathname.endsWith(ext));
+  if (!isApiRequest && !isImageRequest) return;
+
+  event.respondWith(
+    caches.open(CACHE_NAME).then(async (cache) => {
+      try {
+        const response = await fetch(event.request);
+        cache.put(event.request, response.clone());
+        return response;
+      } catch {
+        const cached = await cache.match(event.request);
+        if (cached) return cached;
+        // API gets empty JSON; images get a 504 so <img> onerror fires
+        return isApiRequest ? new Response('{}', { status: 503 }) : new Response(null, { status: 504 });
+      }
+    }),
+  );
+});
+```
+
+## Offline Testing
+
+Verify fallback chains by testing with network disabled:
+
+1. Load the signage app with live data, confirm content renders.
+2. Disconnect network (or block API host via DevTools).
+3. Confirm cached data appears with no visible disruption.
+4. Simulate missing or stale cached data (e.g., clear storage or unregister the service worker) — confirm the static fallback activates.
+5. Reconnect network — confirm live data resumes automatically.
 
 ## Zone-Level Visibility
 

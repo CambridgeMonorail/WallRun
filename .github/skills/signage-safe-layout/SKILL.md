@@ -100,6 +100,14 @@ Patterns that commonly break on signage hardware:
 | `transform: rotate()` for display orientation   | Conflicts with player-level rotation | Let the player handle rotation        |
 | Small fixed-position elements near edges        | Clipped by overscan                  | Move into safe frame                  |
 
+## Implementation Patterns
+
+Apply safe layout constraints using CSS utilities and a development overlay. See [implementation examples](references/examples.md) for:
+
+- A `.safe-frame` CSS class that enforces the 5% inset
+- A full-screen `.signage-shell` CSS Grid shell with portrait reflow
+- A `<SafeFrameOverlay />` React component for visualising the safe boundary during development
+
 ## Output Contract
 
 When reviewing or generating a signage layout, produce:
@@ -135,4 +143,10 @@ Orientation Support: ❌ (landscape only)
 - Do not approve layouts with critical content outside the 5% safe margin.
 - Do not approve fixed pixel dimensions for primary layout structure.
 - Do not assume the deployment orientation is known unless explicitly stated.
+
+## Related Skills
+
+- Use `signage-layout-system` to structure zones and hierarchy before applying safe margins.
+- Use `signage-distance-legibility` to verify text sizes survive after safe-margin insets.
+- Use `signage-performance-budget` when targeting specific BrightSign hardware.
 - Do not use CSS transforms for display rotation — this is a player-level concern.
