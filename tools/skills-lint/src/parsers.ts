@@ -1,4 +1,4 @@
-import matter from 'gray-matter';
+import { createRequire } from 'node:module';
 import type {
   MarkdownHeading,
   MarkdownLink,
@@ -6,6 +6,11 @@ import type {
   ParsedMarkdown,
   SkillFrontmatter,
 } from './types.js';
+
+const require = createRequire(import.meta.url);
+const matter = require('gray-matter') as (
+  input: string
+) => { data: Record<string, unknown>; content: string };
 
 export function parseFrontmatter(raw: string): {
   frontmatter: SkillFrontmatter;
@@ -48,7 +53,7 @@ function extractHeadings(lines: string[]): MarkdownHeading[] {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (line.startsWith('```')) {
+    if (line.trimStart().startsWith('```')) {
       inCodeBlock = !inCodeBlock;
       continue;
     }
@@ -74,7 +79,7 @@ function extractLinks(lines: string[]): MarkdownLink[] {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (line.startsWith('```')) {
+    if (line.trimStart().startsWith('```')) {
       inCodeBlock = !inCodeBlock;
       continue;
     }
@@ -127,7 +132,7 @@ function countNumberedLists(lines: string[]): number {
   let inCodeBlock = false;
 
   for (const line of lines) {
-    if (line.startsWith('```')) {
+    if (line.trimStart().startsWith('```')) {
       inCodeBlock = !inCodeBlock;
       continue;
     }
@@ -143,7 +148,7 @@ function countBulletLists(lines: string[]): number {
   let inCodeBlock = false;
 
   for (const line of lines) {
-    if (line.startsWith('```')) {
+    if (line.trimStart().startsWith('```')) {
       inCodeBlock = !inCodeBlock;
       continue;
     }
