@@ -4,7 +4,7 @@ description: Review and enforce minimum text sizes, contrast requirements, infor
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Distance Legibility Skill
@@ -43,14 +43,14 @@ Every element must justify its size against viewing distance, not screen resolut
 
 These are baseline minimums for standard 1920×1080 signage at 3–5 metre viewing distance. Scale proportionally for 4K or larger viewing distances.
 
-| Element | Minimum Size | Notes |
-|---------|-------------|-------|
-| Headline / Hero text | 96px+ | Primary attention anchor |
-| Primary body text | 48px+ | Menu items, key information |
-| Secondary text | 36px+ | Descriptions, supporting detail |
-| Tertiary / metadata | 24px+ | Timestamps, footnotes — use sparingly |
-| Touch targets (if interactive) | 120px+ | Rare in signage, but generous when needed |
-| Icon size | 48px+ | Must be recognizable, not decorative |
+| Element                        | Minimum Size | Notes                                     |
+| ------------------------------ | ------------ | ----------------------------------------- |
+| Headline / Hero text           | 96px+        | Primary attention anchor                  |
+| Primary body text              | 48px+        | Menu items, key information               |
+| Secondary text                 | 36px+        | Descriptions, supporting detail           |
+| Tertiary / metadata            | 24px+        | Timestamps, footnotes — use sparingly     |
+| Touch targets (if interactive) | 120px+       | Rare in signage, but generous when needed |
+| Icon size                      | 48px+        | Must be recognizable, not decorative      |
 
 ## Contrast and Colour Rules
 

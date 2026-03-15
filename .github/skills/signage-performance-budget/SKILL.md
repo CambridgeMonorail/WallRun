@@ -4,7 +4,7 @@ description: Audit and validate bundle size, image weight, font loading, and fra
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Performance Budget Skill
@@ -41,70 +41,70 @@ Do not use this skill when:
 
 ### JavaScript Bundle
 
-| Metric | Target | Hard Limit | Notes |
-|--------|--------|------------|-------|
-| Main bundle (gzipped) | < 150 KB | < 300 KB | Total JS loaded on boot |
-| Total JS (gzipped) | < 250 KB | < 500 KB | Including lazy-loaded chunks |
-| Third-party libraries | < 100 KB | < 200 KB | Avoid heavy frameworks/libs |
+| Metric                | Target   | Hard Limit | Notes                        |
+| --------------------- | -------- | ---------- | ---------------------------- |
+| Main bundle (gzipped) | < 150 KB | < 300 KB   | Total JS loaded on boot      |
+| Total JS (gzipped)    | < 250 KB | < 500 KB   | Including lazy-loaded chunks |
+| Third-party libraries | < 100 KB | < 200 KB   | Avoid heavy frameworks/libs  |
 
 ### Assets
 
-| Metric | Target | Hard Limit | Notes |
-|--------|--------|------------|-------|
-| Total page weight | < 1 MB | < 2 MB | All assets for initial render |
-| Individual image | < 200 KB | < 500 KB | After optimization |
-| Total images per screen | < 500 KB | < 1 MB | All images visible at once |
-| Font files (total) | < 100 KB | < 250 KB | Subset aggressively |
-| Video/animation assets | < 5 MB | < 10 MB | Pre-optimized for target resolution |
+| Metric                  | Target   | Hard Limit | Notes                               |
+| ----------------------- | -------- | ---------- | ----------------------------------- |
+| Total page weight       | < 1 MB   | < 2 MB     | All assets for initial render       |
+| Individual image        | < 200 KB | < 500 KB   | After optimization                  |
+| Total images per screen | < 500 KB | < 1 MB     | All images visible at once          |
+| Font files (total)      | < 100 KB | < 250 KB   | Subset aggressively                 |
+| Video/animation assets  | < 5 MB   | < 10 MB    | Pre-optimized for target resolution |
 
 ### Runtime Performance
 
-| Metric | Target | Minimum | Notes |
-|--------|--------|---------|-------|
-| First contentful paint | < 2 seconds | < 4 seconds | From app load, not player boot |
-| Frame rate during animation | 30 fps | 24 fps | Smooth perceived motion |
-| Memory usage (steady state) | < 100 MB | < 200 MB | After initial load stabilizes |
-| Layout recalculations | Minimal | No continuous reflow | Avoid per-frame layout thrash |
-| CPU usage (idle) | < 10% | < 25% | When content is static |
+| Metric                      | Target      | Minimum              | Notes                          |
+| --------------------------- | ----------- | -------------------- | ------------------------------ |
+| First contentful paint      | < 2 seconds | < 4 seconds          | From app load, not player boot |
+| Frame rate during animation | 30 fps      | 24 fps               | Smooth perceived motion        |
+| Memory usage (steady state) | < 100 MB    | < 200 MB             | After initial load stabilizes  |
+| Layout recalculations       | Minimal     | No continuous reflow | Avoid per-frame layout thrash  |
+| CPU usage (idle)            | < 10%       | < 25%                | When content is static         |
 
 ## Common Performance Traps
 
 ### JavaScript
 
-| Trap | Problem | Solution |
-|------|---------|----------|
-| Heavy animation libraries (GSAP, Framer Motion full) | Large bundle, high CPU | Use CSS animations/transitions, or tree-shake aggressively |
-| Full icon libraries | 500 KB+ for a few icons | Import individual icons only |
-| Moment.js, Lodash (full) | Massive unused code | Use date-fns, native methods, or targeted imports |
-| Polyfills for old browsers | Unnecessary weight | BrightSign uses Chromium — target modern JS |
-| React dev mode in production | 2× bundle size, slow rendering | Ensure production builds |
+| Trap                                                 | Problem                        | Solution                                                   |
+| ---------------------------------------------------- | ------------------------------ | ---------------------------------------------------------- |
+| Heavy animation libraries (GSAP, Framer Motion full) | Large bundle, high CPU         | Use CSS animations/transitions, or tree-shake aggressively |
+| Full icon libraries                                  | 500 KB+ for a few icons        | Import individual icons only                               |
+| Moment.js, Lodash (full)                             | Massive unused code            | Use date-fns, native methods, or targeted imports          |
+| Polyfills for old browsers                           | Unnecessary weight             | BrightSign uses Chromium — target modern JS                |
+| React dev mode in production                         | 2× bundle size, slow rendering | Ensure production builds                                   |
 
 ### Images
 
-| Trap | Problem | Solution |
-|------|---------|----------|
-| Unoptimized PNGs/JPEGs | 2–5 MB per image | Compress, resize to display resolution, use WebP |
-| 4K images on 1080p screens | 4× the pixels needed | Size images to deployment resolution |
-| Many small decorative images | HTTP request overhead | Use CSS, SVG inline, or sprite sheets |
-| Background images at full resolution | Massive file size | Compress aggressively — backgrounds tolerate quality loss |
+| Trap                                 | Problem               | Solution                                                  |
+| ------------------------------------ | --------------------- | --------------------------------------------------------- |
+| Unoptimized PNGs/JPEGs               | 2–5 MB per image      | Compress, resize to display resolution, use WebP          |
+| 4K images on 1080p screens           | 4× the pixels needed  | Size images to deployment resolution                      |
+| Many small decorative images         | HTTP request overhead | Use CSS, SVG inline, or sprite sheets                     |
+| Background images at full resolution | Massive file size     | Compress aggressively — backgrounds tolerate quality loss |
 
 ### Fonts
 
-| Trap | Problem | Solution |
-|------|---------|----------|
-| Full Google Fonts downloads | 500 KB–2 MB per family | Subset to characters actually used |
-| Multiple font weights/styles | Compounds file size | Use 2–3 weights maximum |
-| Web font loading blocking render | Delays first paint | Use `font-display: swap` and preload critical fonts |
-| Custom fonts loaded from CDN | Network dependency at boot | Bundle fonts locally for signage |
+| Trap                             | Problem                    | Solution                                            |
+| -------------------------------- | -------------------------- | --------------------------------------------------- |
+| Full Google Fonts downloads      | 500 KB–2 MB per family     | Subset to characters actually used                  |
+| Multiple font weights/styles     | Compounds file size        | Use 2–3 weights maximum                             |
+| Web font loading blocking render | Delays first paint         | Use `font-display: swap` and preload critical fonts |
+| Custom fonts loaded from CDN     | Network dependency at boot | Bundle fonts locally for signage                    |
 
 ### CSS and Rendering
 
-| Trap | Problem | Solution |
-|------|---------|----------|
-| Complex box-shadows and filters | GPU-intensive on embedded hardware | Use simple shadows or none |
-| CSS backdrop-filter / blur | Very expensive on weak GPUs | Avoid or use sparingly |
-| Continuous CSS animations on many elements | Frame drops | Limit simultaneous animations to 2–3 |
-| Large numbers of DOM nodes | Slow rendering and reflow | Keep DOM under 500 nodes per screen |
+| Trap                                       | Problem                            | Solution                             |
+| ------------------------------------------ | ---------------------------------- | ------------------------------------ |
+| Complex box-shadows and filters            | GPU-intensive on embedded hardware | Use simple shadows or none           |
+| CSS backdrop-filter / blur                 | Very expensive on weak GPUs        | Avoid or use sparingly               |
+| Continuous CSS animations on many elements | Frame drops                        | Limit simultaneous animations to 2–3 |
+| Large numbers of DOM nodes                 | Slow rendering and reflow          | Keep DOM under 500 nodes per screen  |
 
 ## Measurement and Verification
 

@@ -10,7 +10,7 @@ Each content zone should handle its own fallbacks using a typed container:
 type ZoneContent<T> = {
   live: T | null;
   cached: T | null;
-  static: T;           // Always present — bundled with app
+  static: T; // Always present — bundled with app
 };
 
 function resolveContent<T>(content: ZoneContent<T>): T {
@@ -21,11 +21,7 @@ function resolveContent<T>(content: ZoneContent<T>): T {
 ## Image Fallback
 
 ```typescript
-function SignageImage({ src, fallbackSrc, alt }: {
-  src: string;
-  fallbackSrc: string;
-  alt: string;
-}) {
+function SignageImage({ src, fallbackSrc, alt }: { src: string; fallbackSrc: string; alt: string }) {
   // Renders src, falls back to fallbackSrc on error
   // Never renders a broken image icon
 }

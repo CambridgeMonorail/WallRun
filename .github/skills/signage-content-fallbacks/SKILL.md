@@ -4,7 +4,7 @@ description: Ensure digital signage screens always display content by implementi
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Content Fallbacks Skill
@@ -53,12 +53,12 @@ Every piece of dynamic content must have a fallback chain with at least three le
 
 ### Fallback Level Definitions
 
-| Level | Source | Freshness | Availability |
-|-------|--------|-----------|--------------|
-| **Live** | API / feed / CMS | Real-time | Depends on network and service |
-| **Cached** | localStorage, IndexedDB, or in-memory | Minutes to hours old | Available if previously fetched |
-| **Static** | Bundled JSON, images, or markup | Shipped with build | Always available |
-| **Emergency** | Hardcoded branded placeholder | N/A | Always available |
+| Level         | Source                                | Freshness            | Availability                    |
+| ------------- | ------------------------------------- | -------------------- | ------------------------------- |
+| **Live**      | API / feed / CMS                      | Real-time            | Depends on network and service  |
+| **Cached**    | localStorage, IndexedDB, or in-memory | Minutes to hours old | Available if previously fetched |
+| **Static**    | Bundled JSON, images, or markup       | Shipped with build   | Always available                |
+| **Emergency** | Hardcoded branded placeholder         | N/A                  | Always available                |
 
 ## Content-Type Fallback Patterns
 
@@ -115,12 +115,12 @@ If a zone has no content at any fallback level, hide it and redistribute space r
 
 Every signage app must ship with static fallback content:
 
-| Content Type | Requirement |
-|-------------|-------------|
-| Text content | Default JSON or hardcoded data covering all required fields |
-| Images | Placeholder images at correct aspect ratio, bundled in the build |
-| Layout | Every zone must have a rendering path that uses only bundled assets |
-| Branding | Logo, colours, and brand elements available without network |
+| Content Type | Requirement                                                         |
+| ------------ | ------------------------------------------------------------------- |
+| Text content | Default JSON or hardcoded data covering all required fields         |
+| Images       | Placeholder images at correct aspect ratio, bundled in the build    |
+| Layout       | Every zone must have a rendering path that uses only bundled assets |
+| Branding     | Logo, colours, and brand elements available without network         |
 
 ### Building Static Fallbacks
 
@@ -132,14 +132,14 @@ Every signage app must ship with static fallback content:
 
 Test each level of the fallback chain:
 
-| Test | Method |
-|------|--------|
-| Live data works | Normal operation |
-| API failure → cached | Block API, verify cached content displays |
-| App cold start offline | Clear cache, disable network, verify static fallback |
-| Image CDN failure | Block image URLs, verify placeholder images |
-| Partial data failure | Return incomplete API response, verify graceful handling |
-| Sustained outage | Run offline for 30+ minutes, verify stable display |
+| Test                   | Method                                                   |
+| ---------------------- | -------------------------------------------------------- |
+| Live data works        | Normal operation                                         |
+| API failure → cached   | Block API, verify cached content displays                |
+| App cold start offline | Clear cache, disable network, verify static fallback     |
+| Image CDN failure      | Block image URLs, verify placeholder images              |
+| Partial data failure   | Return incomplete API response, verify graceful handling |
+| Sustained outage       | Run offline for 30+ minutes, verify stable display       |
 
 ## Output Contract
 

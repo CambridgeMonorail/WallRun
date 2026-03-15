@@ -4,7 +4,7 @@ description: Generate state machine patterns for digital signage screens that ru
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage State Machine Skill
@@ -53,15 +53,15 @@ boot → loading → content → (refresh cycle)
 
 ### State Definitions
 
-| State | Description | What the Viewer Sees |
-|-------|-------------|---------------------|
-| **Boot** | App initializing, player starting | Branded splash or blank (< 3 seconds) |
-| **Loading** | First data fetch in progress | Branded splash or last-known content |
-| **Content** | Live data displayed normally | The intended signage content |
-| **Refreshing** | Background data refresh in progress | Current content (unchanged until new data is ready) |
-| **Data Error** | API returned an error or bad data | Last-known good content or static fallback |
-| **Offline** | Network unreachable | Cached content or static fallback |
-| **Idle** | No content scheduled (e.g., outside operating hours) | Branded idle screen or screen-off signal |
+| State          | Description                                          | What the Viewer Sees                                |
+| -------------- | ---------------------------------------------------- | --------------------------------------------------- |
+| **Boot**       | App initializing, player starting                    | Branded splash or blank (< 3 seconds)               |
+| **Loading**    | First data fetch in progress                         | Branded splash or last-known content                |
+| **Content**    | Live data displayed normally                         | The intended signage content                        |
+| **Refreshing** | Background data refresh in progress                  | Current content (unchanged until new data is ready) |
+| **Data Error** | API returned an error or bad data                    | Last-known good content or static fallback          |
+| **Offline**    | Network unreachable                                  | Cached content or static fallback                   |
+| **Idle**       | No content scheduled (e.g., outside operating hours) | Branded idle screen or screen-off signal            |
 
 ### Critical Rules
 
@@ -76,14 +76,7 @@ boot → loading → content → (refresh cycle)
 ### Boot → Loading → Content
 
 ```typescript
-type SignageState =
-  | { status: 'boot' }
-  | { status: 'loading' }
-  | { status: 'content'; data: ContentData }
-  | { status: 'refreshing'; data: ContentData }
-  | { status: 'data-error'; lastGoodData: ContentData | null }
-  | { status: 'offline'; cachedData: ContentData | null }
-  | { status: 'idle' };
+type SignageState = { status: 'boot' } | { status: 'loading' } | { status: 'content'; data: ContentData } | { status: 'refreshing'; data: ContentData } | { status: 'data-error'; lastGoodData: ContentData | null } | { status: 'offline'; cachedData: ContentData | null } | { status: 'idle' };
 ```
 
 ### Background Refresh Pattern

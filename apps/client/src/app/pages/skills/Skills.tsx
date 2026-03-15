@@ -172,8 +172,7 @@ export const SkillsPage: FC = () => {
           </li>
           <li>
             <strong className="text-foreground">Skill catalog</strong> — 12
-            signage &amp; development, 1 engineering workflow, 9
-            BrightSign
+            signage &amp; development, 1 engineering workflow, 9 BrightSign
           </li>
           <li>
             <strong className="text-foreground">Skill structure</strong> —
@@ -261,8 +260,8 @@ export const SkillsPage: FC = () => {
             <pre>{`INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge`}</pre>
           </div>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            This gives you all 22 skills — signage design, development
-            patterns, and BrightSign-specific tooling.
+            This gives you all 22 skills — signage design, development patterns,
+            and BrightSign-specific tooling.
           </p>
         </div>
 
@@ -287,8 +286,8 @@ export const SkillsPage: FC = () => {
             Signage Design &amp; Development
           </h2>
           <p className="mb-1 text-sm text-muted-foreground">
-            Fully reusable — domain knowledge for building signage with
-            React, no dependency on this repository.
+            Fully reusable — domain knowledge for building signage with React,
+            no dependency on this repository.
           </p>
           <ul className="divide-y divide-border">
             {tier1Skills.map((s) => (
@@ -306,8 +305,8 @@ export const SkillsPage: FC = () => {
             Component Quality
           </h2>
           <p className="mb-1 text-sm text-muted-foreground">
-            Portable with minor tooling assumptions — easily adapted to
-            other component libraries.
+            Portable with minor tooling assumptions — easily adapted to other
+            component libraries.
           </p>
           <ul className="divide-y divide-border">
             {tier2Skills.map((s) => (
@@ -405,9 +404,14 @@ git pull origin main`}
           Once cloned, you have access to everything:
         </p>
         <ul className="mb-4 list-inside list-disc space-y-1 text-muted-foreground">
-          <li>All 22 skills, including the internal BrightSign and player discovery ones</li>
+          <li>
+            All 22 skills, including the internal BrightSign and player
+            discovery ones
+          </li>
           <li>Signage component libraries with ready-made UI primitives</li>
-          <li>A scaffold command to generate new player apps from a template</li>
+          <li>
+            A scaffold command to generate new player apps from a template
+          </li>
           <li>One-command packaging and deployment to BrightSign hardware</li>
           <li>A custom Copilot agent tuned for signage development</li>
           <li>Working signage examples you can modify and deploy</li>

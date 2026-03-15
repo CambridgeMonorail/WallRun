@@ -4,7 +4,7 @@ description: Enforce safe layout constraints for digital signage running on unkn
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Safe Layout Skill
@@ -41,13 +41,13 @@ If critical content is placed near the screen edge, some displays will clip it. 
 
 ## Safe Frame Rules
 
-| Rule | Guideline |
-|------|-----------|
-| Safe margin | Minimum 5% inset from all edges for critical content |
-| CTA / prices / key text | Must be inside safe frame — never within 48px of any edge |
-| Background and decorative elements | May bleed to edges |
-| Logo placement | Inside safe frame unless brand guidelines require edge position |
-| Tickers and scrolling text | Start and end within safe frame |
+| Rule                               | Guideline                                                       |
+| ---------------------------------- | --------------------------------------------------------------- |
+| Safe margin                        | Minimum 5% inset from all edges for critical content            |
+| CTA / prices / key text            | Must be inside safe frame — never within 48px of any edge       |
+| Background and decorative elements | May bleed to edges                                              |
+| Logo placement                     | Inside safe frame unless brand guidelines require edge position |
+| Tickers and scrolling text         | Start and end within safe frame                                 |
 
 ## Resolution Independence Rules
 
@@ -59,46 +59,46 @@ Signage players commonly run at:
 - 2160×3840 (4K portrait)
 - Non-standard resolutions from video walls or specialty panels
 
-| Rule | Guideline |
-|------|-----------|
-| Avoid hardcoded pixel dimensions | Use relative units (%, vw, vh, fr) for layout structure |
-| Avoid relying on exact viewport height | `100vh` can be unreliable; prefer `100dvh` or flex/grid fill |
-| Design for aspect ratio, not resolution | A layout that works at 16:9 should scale from 1080p to 4K |
-| Test both landscape and portrait | Unless the deployment is locked to one orientation |
-| Avoid fixed-width containers | Use fluid containers that adapt to available space |
+| Rule                                    | Guideline                                                    |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Avoid hardcoded pixel dimensions        | Use relative units (%, vw, vh, fr) for layout structure      |
+| Avoid relying on exact viewport height  | `100vh` can be unreliable; prefer `100dvh` or flex/grid fill |
+| Design for aspect ratio, not resolution | A layout that works at 16:9 should scale from 1080p to 4K    |
+| Test both landscape and portrait        | Unless the deployment is locked to one orientation           |
+| Avoid fixed-width containers            | Use fluid containers that adapt to available space           |
 
 ## Rotation and Orientation Rules
 
 Many signage deployments rotate a landscape display to portrait mode at the OS or player level.
 
-| Rule | Guideline |
-|------|-----------|
-| Content must read correctly in the deployed orientation | Do not assume landscape |
-| Avoid CSS transforms for rotation | Let the player handle display rotation |
-| Test layouts at 9:16 and 16:9 | Critical content zones must adapt to both |
-| Vertical stacking for portrait | Multi-zone layouts should reflow to vertical stacking in portrait |
+| Rule                                                    | Guideline                                                         |
+| ------------------------------------------------------- | ----------------------------------------------------------------- |
+| Content must read correctly in the deployed orientation | Do not assume landscape                                           |
+| Avoid CSS transforms for rotation                       | Let the player handle display rotation                            |
+| Test layouts at 9:16 and 16:9                           | Critical content zones must adapt to both                         |
+| Vertical stacking for portrait                          | Multi-zone layouts should reflow to vertical stacking in portrait |
 
 ## Overscan and Bezel Compensation
 
-| Rule | Guideline |
-|------|-----------|
-| Assume 3–5% overscan on consumer displays | Professional displays may have 0%, but do not rely on it |
-| Bezel-adjacent content on video walls | Add extra margin equal to bezel width |
-| Do not place text or icons flush with edges | Even on zero-overscan displays, edge content feels cramped |
-| Test with a visible safe-frame overlay during development | Remove before deployment |
+| Rule                                                      | Guideline                                                  |
+| --------------------------------------------------------- | ---------------------------------------------------------- |
+| Assume 3–5% overscan on consumer displays                 | Professional displays may have 0%, but do not rely on it   |
+| Bezel-adjacent content on video walls                     | Add extra margin equal to bezel width                      |
+| Do not place text or icons flush with edges               | Even on zero-overscan displays, edge content feels cramped |
+| Test with a visible safe-frame overlay during development | Remove before deployment                                   |
 
 ## CSS and Layout Anti-Patterns
 
 Patterns that commonly break on signage hardware:
 
-| Anti-Pattern | Problem | Alternative |
-|--------------|---------|-------------|
-| `position: absolute` with pixel offsets | Breaks at different resolutions | Use CSS Grid or Flexbox positioning |
-| `100vh` for full-screen height | Unreliable on some players | Use `100dvh`, flex fill, or grid fill |
-| Fixed pixel widths on containers | Does not adapt to resolution changes | Use percentage or fractional units |
-| `overflow: hidden` on viewport-level containers | Can mask clipping issues | Prefer layout that naturally fits |
-| `transform: rotate()` for display orientation | Conflicts with player-level rotation | Let the player handle rotation |
-| Small fixed-position elements near edges | Clipped by overscan | Move into safe frame |
+| Anti-Pattern                                    | Problem                              | Alternative                           |
+| ----------------------------------------------- | ------------------------------------ | ------------------------------------- |
+| `position: absolute` with pixel offsets         | Breaks at different resolutions      | Use CSS Grid or Flexbox positioning   |
+| `100vh` for full-screen height                  | Unreliable on some players           | Use `100dvh`, flex fill, or grid fill |
+| Fixed pixel widths on containers                | Does not adapt to resolution changes | Use percentage or fractional units    |
+| `overflow: hidden` on viewport-level containers | Can mask clipping issues             | Prefer layout that naturally fits     |
+| `transform: rotate()` for display orientation   | Conflicts with player-level rotation | Let the player handle rotation        |
+| Small fixed-position elements near edges        | Clipped by overscan                  | Move into safe frame                  |
 
 ## Output Contract
 

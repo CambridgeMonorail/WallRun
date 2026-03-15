@@ -4,7 +4,7 @@ description: Generate polling, backoff, and non-blocking data update patterns fo
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
 ---
 
 # Signage Data Refresh Patterns Skill
@@ -41,13 +41,13 @@ Do not use this skill when:
 
 ### Polling Intervals
 
-| Content Type | Recommended Interval | Notes |
-|-------------|---------------------|-------|
-| Real-time data (stocks, transit) | 15–30 seconds | Balance freshness vs. API load |
-| Menu / pricing | 60–120 seconds | Changes are infrequent |
-| Weather / news | 300–600 seconds | Slow-changing content |
-| Promotional content | 600–3600 seconds | Often schedule-driven |
-| Static configuration | On boot + hourly | Emergency overrides |
+| Content Type                     | Recommended Interval | Notes                          |
+| -------------------------------- | -------------------- | ------------------------------ |
+| Real-time data (stocks, transit) | 15–30 seconds        | Balance freshness vs. API load |
+| Menu / pricing                   | 60–120 seconds       | Changes are infrequent         |
+| Weather / news                   | 300–600 seconds      | Slow-changing content          |
+| Promotional content              | 600–3600 seconds     | Often schedule-driven          |
+| Static configuration             | On boot + hourly     | Emergency overrides            |
 
 ### Refresh Timing
 
@@ -81,12 +81,12 @@ Current content visible
 
 When a data fetch fails, use exponential backoff with a ceiling:
 
-| Attempt | Delay | Notes |
-|---------|-------|-------|
-| 1st retry | 5 seconds | Quick retry for transient errors |
-| 2nd retry | 15 seconds | |
-| 3rd retry | 30 seconds | |
-| 4th retry | 60 seconds | |
+| Attempt    | Delay                 | Notes                                 |
+| ---------- | --------------------- | ------------------------------------- |
+| 1st retry  | 5 seconds             | Quick retry for transient errors      |
+| 2nd retry  | 15 seconds            |                                       |
+| 3rd retry  | 30 seconds            |                                       |
+| 4th retry  | 60 seconds            |                                       |
 | 5th+ retry | 120 seconds (ceiling) | Continue retrying at ceiling interval |
 
 ### Backoff Rules
@@ -104,10 +104,10 @@ When a data fetch fails, use exponential backoff with a ceiling:
 function useSignageData<T>(
   fetcher: () => Promise<T>,
   options: {
-    interval: number;      // milliseconds
+    interval: number; // milliseconds
     validate?: (data: T) => boolean;
     onError?: (error: unknown) => void;
-  }
+  },
 ) {
   // Maintains current data while fetching
   // Validates before swapping
@@ -122,13 +122,13 @@ function useSignageData<T>(
 // ✅ Good: stage and swap
 const newData = await fetchData();
 if (isValid(newData)) {
-  setData(newData);  // Single state update, no flicker
+  setData(newData); // Single state update, no flicker
 }
 
 // ❌ Bad: clear and reload
-setData(null);       // Viewer sees blank/loading
+setData(null); // Viewer sees blank/loading
 const newData = await fetchData();
-setData(newData);    // Viewer sees content return
+setData(newData); // Viewer sees content return
 ```
 
 ### Multi-Source Coordination
