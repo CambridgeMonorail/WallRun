@@ -48,7 +48,7 @@ A minimal CSS Grid shell that fills the viewport using resolution-independent un
 ## Development Safe-Frame Overlay
 
 A React component that renders the 5% safe frame boundary during development.
-Add it to your root layout and remove before deployment.
+Add it to your root layout and gate it behind `import.meta.env.DEV` so it only renders in development.
 
 ```tsx
 function SafeFrameOverlay() {
