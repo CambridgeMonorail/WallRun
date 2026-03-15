@@ -70,7 +70,7 @@ For longer viewing distances on a 1080p screen:
 | 8 m      | 160 px   | 80 px | 60 px     | 40 px    |
 | 10 m     | 192 px   | 96 px | 72 px     | 48 px    |
 
-**Rule of thumb:** multiply the baseline by `viewingDistance / 3` (rounded up).
+**Rule of thumb:** use the 3 m row as the baseline. For distances between rows, interpolate linearly between the nearest values in this table.
 
 ## Contrast and Colour Rules
 
