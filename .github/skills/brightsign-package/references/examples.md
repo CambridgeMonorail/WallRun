@@ -51,6 +51,8 @@ end sub
 
 ## Vite Configuration for BrightSign
 
+The example below matches the current `apps/player-minimal/vite.config.mts` build section. Use it as a starting point for new BrightSign apps:
+
 ```typescript
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -75,25 +77,25 @@ export default defineConfig({
   base: './',
 
   build: {
-    target: 'es2020',
     outDir: '../../dist/apps/player-minimal',
     emptyOutDir: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.info', 'console.debug'],
-      },
+    reportCompressedSize: false,
+    commonjsOptions: {
+      transformMixedEsModules: true,
     },
-
-    // CRITICAL: Use IIFE format, not ES modules
-    cssCodeSplit: false,
-    modulePreload: false,
+    // BrightSign OS 9.1.92+ = Chrome 120; for older 9.x use ['chrome98', 'es2020']
+    target: ['chrome120', 'es2022'],
+    minify: 'esbuild',
+    sourcemap: false,
+    cssCodeSplit: false, // Single CSS file
+    modulePreload: false, // Avoid module preload behavior
     rollupOptions: {
       output: {
-        format: 'iife',
+        format: 'iife', // IIFE format for file:// compatibility
         inlineDynamicImports: true, // Single bundle for predictable deployment
+        generatedCode: {
+          constBindings: true,
+        },
         // Fixed filenames for BrightSign (no hashes needed)
         entryFileNames: 'assets/app.js',
         chunkFileNames: 'assets/app.js',
@@ -104,8 +106,7 @@ export default defineConfig({
         },
       },
     },
-
-    chunkSizeWarningLimit: 100,
+    chunkSizeWarningLimit: 200, // Adjusted for single bundle approach
   },
 });
 ```
@@ -114,7 +115,7 @@ export default defineConfig({
 
 1. **IIFE format required**: `format: 'iife'` — ES modules fail because `file://` protocol doesn't provide MIME types
 2. **Strip type="module"**: Custom plugin replaces with `defer` attribute
-3. **Target es2020**: BrightSign OS 9.x uses Chromium 98 — avoid ES2022+ features
+3. **Match target to firmware**: repo baseline is `['chrome120', 'es2022']` for OS 9.1.92+; use `['chrome98', 'es2020']` for older 9.x
 4. **CSS handling**: Tailwind CSS may not load from `file://` — consider inlining critical CSS
 
 ## Build and Package Commands
@@ -174,14 +175,14 @@ cd ../..
 - Inline small SVGs (<5KB)
 - Lazy-load images below the fold
 
-### Chromium 98 compatibility
+### Chromium compatibility
 
-BrightSign OS 9.x uses Chromium 98. Avoid:
+The Chromium version depends on BrightSign OS firmware:
 
-- CSS container queries
-- CSS `:has()` selector
-- Import assertions
-- `Array.at()` method (use `array[array.length - 1]`)
+- **OS 9.1.92+** (Chromium 120) — supports CSS container queries, `:has()`, `Array.at()`, top-level await (though top-level await requires ES modules, which are not used in IIFE builds)
+- **OS 9.0.0–9.1.91** (Chromium 98) — avoid CSS container queries, `:has()`, import assertions, `Array.at()` (use `array[array.length - 1]`)
+
+Always match your `build.target` to the oldest firmware in your fleet.
 
 ## Local Testing
 

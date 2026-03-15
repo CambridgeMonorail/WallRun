@@ -62,7 +62,16 @@ Three critical build requirements:
 
 1. **IIFE format** — ES modules fail on `file://` protocol (no MIME types)
 2. **Strip `type="module"`** — custom Vite plugin replaces with `defer`
-3. **Target es2020** — BrightSign OS 9.x embeds Chromium 98
+3. **Match build target to firmware** — see matrix below
+
+The Chromium version embedded in BrightSign OS 9.x varies by firmware:
+
+| BrightSign OS | Embedded Chromium | Recommended `build.target` |
+|---|---|---|
+| 9.0.0 – 9.1.91 | 98 | `['chrome98', 'es2020']` |
+| 9.1.92+ | 120 | `['chrome120', 'es2022']` |
+
+This repo's `apps/player-minimal` targets **OS 9.1.92+** (`['chrome120', 'es2022']`). If you must support older 9.x firmware, lower the target to `['chrome98', 'es2020']` and avoid ES2022+ features.
 
 See [code examples](references/examples.md) for the complete Vite config.
 
@@ -113,12 +122,13 @@ When packaging an app, produce:
 
 ## Reference Files
 
-- [Code examples](references/examples.md) — autorun.brs template, Vite config, build commands, optimisation tips, Chromium 98 compatibility
+- [Code examples](references/examples.md) — autorun.brs template, Vite config, build commands, optimisation tips, Chromium compatibility
 - [autorun-template.brs](assets/autorun-template.brs) — complete autorun.brs template file
 
 ## Constraints
 
 - BrightSign OS 9.x minimum
-- Chromium 98 embedded browser — no CSS container queries, `:has()`, or ES2022+ features
+- Chromium version depends on OS firmware (98 for <9.1.92, 120 for 9.1.92+)
+- Repo baseline is OS 9.1.92+ / Chrome 120 / es2022 — adjust if targeting older firmware
 - `file://` protocol — no ES module imports, no dynamic import() unless bundled
 - SD card storage — bundle size matters
