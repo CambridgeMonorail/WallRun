@@ -22,7 +22,7 @@ export function UpdateChecker() {
         const response = await fetch(MANIFEST_URL);
         const manifest = await response.json();
 
-        const currentVersion = process.env.NX_APP_VERSION || '0.0.0';
+        const currentVersion = import.meta.env.VITE_APP_VERSION || '0.0.0';
 
         if (isNewerVersion(manifest.version, currentVersion)) {
           setLatestVersion(manifest.version);
