@@ -33,18 +33,20 @@ No repo-specific references. Useful in any project.
 - `signage-layout-system`: builds full-screen layouts for large displays, distance readability, and continuous operation
 - `signage-animation-system`: designs motion that works on always-on public displays
 - `signage-menu-board`: builds food and service menu boards with signage-first hierarchy rules
+- `signage-distance-legibility`: enforces minimum text sizes, contrast, density, and hierarchy for distance viewing
+- `signage-safe-layout`: enforces overscan, bezel, rotation, and resolution-independent constraints
+- `signage-state-machine`: generates boot/load/content/fallback/offline state patterns for 24/7 displays
+- `signage-data-refresh-patterns`: generates polling, backoff, and non-blocking data update patterns
+- `signage-performance-budget`: checks bundle size, image weight, font loading, and frame-rate budgets
+- `signage-content-fallbacks`: ensures graceful degradation when APIs or feeds fail
 - `signage-placeholder-images`: plans consistent placeholder image names, dimensions, labels, alt text, and replacement notes for signage layouts before final creative arrives
 - `chrome-devtools-webapp-debug`: investigates web app issues with browser evidence
-- `systematic-debugging`: drives root-cause debugging with evidence and verification
 - `instructions-detox`: audits instruction files for bloat, overlap, and stale rules
 
 ### Tier 2 — Portable with minor assumptions
 
 Useful outside this repo but may reference common tooling conventions (e.g. monorepo structure, verification commands). Easily adapted.
 
-- `planning`: creates structured implementation plans for multi-step work
-- `code-review-ready`: evaluates whether a change set is ready for PR review
-- `verification`: runs and summarizes validation before review
 - `shadcnui-component-review`: reviews shadcn/ui components in a component library
 
 ### Tier 3 — Repo-specific (internal)

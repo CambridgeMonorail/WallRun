@@ -240,7 +240,7 @@ skills/skill-name/
 
 ### Example
 
-From [Planning Skill](../../skills/planning/workflows/detailed-guide.md):
+From AGENTS.md planning guidance:
 
 ```markdown
 ## When Planning is Required
