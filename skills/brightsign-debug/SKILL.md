@@ -65,7 +65,7 @@ Check firmware version, uptime, temperature, and storage. See [diagnostic comman
 
 ### Step 4: Open remote inspector (Chrome DevTools)
 
-Connect Chrome DevTools to `<player-ip>:8008` for live JavaScript debugging: console, sources, network, performance, and memory tabs. See [diagnostic commands](references/diagnostic-commands.md) for setup steps.
+Connect Chrome DevTools to `<player-ip>:2999` for live JavaScript debugging: console, sources, network, performance, and memory tabs. The inspector port (2999) is separate from the DWS port (8008). See [diagnostic commands](references/diagnostic-commands.md) for setup steps.
 
 ### Step 5: Review logs
 

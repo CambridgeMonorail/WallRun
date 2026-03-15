@@ -64,12 +64,14 @@ curl -s http://<player-ip>:8008/GetDeviceInfo | jq .
 
 ## Remote Inspector (Chrome DevTools)
 
+The JavaScript inspector runs on **port 2999** (separate from DWS on 8008). It is enabled in the dev-mode autorun.brs via the `inspector_server` config; the production bootstrap does not expose it.
+
 ### Step 1: Enable Remote Debugging
 
-Typically enabled by default in autorun.brs:
+Enabled in dev-mode autorun.brs:
 
 ```brightscript
-htmlWidget.EnableRemoteDebugger(true)
+inspector_server: { port: 2999 }
 ```
 
 ### Step 2: Configure Chrome DevTools
@@ -77,7 +79,7 @@ htmlWidget.EnableRemoteDebugger(true)
 1. Open Chrome on your development machine
 2. Navigate to `chrome://inspect`
 3. Click "Configure..."
-4. Add: `<player-ip>:8008`
+4. Add: `<player-ip>:2999`
 5. Your React app should appear under "Remote Target"
 6. Click "inspect" to open DevTools
 
