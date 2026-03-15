@@ -37,9 +37,74 @@ export const GettingStartedPage: FC = () => {
           Build signage screens as real software. Deterministic,
           offline-capable, and designed for displays that live on walls. Start
           with components, then graduate to full player apps and device
-          workflows.
+          workflows. This is an independent developer experiment and is not
+          affiliated with or endorsed by BrightSign.
         </p>
       </div>
+
+      <section className="demo-panel-soft mb-12 px-8 py-8 sm:px-10">
+        <h2 className="text-2xl font-medium text-foreground mb-4">
+          About The Project
+        </h2>
+        <div className="space-y-4 text-muted-foreground max-w-3xl">
+          <p className="text-lg">
+            Digital signage is software that lives on walls. The Sign Age treats
+            it that way.
+          </p>
+          <p>
+            Most signage tooling assumes you want a CMS, a slide deck, or a
+            drag-and-drop editor. The Sign Age starts from a different premise:
+            signage screens are just frontend applications with unusual
+            constraints — fixed resolution, no user input, 24/7 runtime, viewed
+            from distance.
+          </p>
+          <p>
+            This project explores what happens when you build signage with
+            normal modern tools: React components, Tailwind layouts, TypeScript,
+            Vite, and a monorepo workflow. The result is code-driven,
+            testable, version-controlled signage — built like any other
+            frontend software.
+          </p>
+        </div>
+      </section>
+
+      <section className="demo-panel mb-12 p-6 sm:p-8">
+        <div className="space-y-4 text-muted-foreground">
+          <p>
+            The Sign Age is an independent, experimental developer project.
+          </p>
+          <p className="font-medium text-foreground">
+            It is <strong>not an official BrightSign product or BrightSign
+            supported project</strong>.
+          </p>
+          <p>
+            The examples in this repository use BrightSign players because, in
+            my experience, they are among the most robust and reliable digital
+            signage players available. They are widely deployed in real-world
+            environments such as retail, hospitals, transport hubs and corporate
+            spaces, which makes them a practical platform for exploring signage
+            software development.
+          </p>
+          <p>
+            This project simply explores the idea that digital signage could be
+            built using normal modern frontend tooling. React components, layout
+            systems and code driven workflows instead of slide decks and CMS
+            templates.
+          </p>
+          <p>
+            If you are looking for official BrightSign information,
+            documentation or supported tools, please visit:{' '}
+            <a
+              href="https://www.brightsign.biz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:underline"
+            >
+              https://www.brightsign.biz/
+            </a>
+          </p>
+        </div>
+      </section>
 
       <section className="demo-panel mb-12 p-6 sm:p-8">
         <h2 className="text-2xl font-medium text-foreground mb-4 flex items-center gap-2">
@@ -286,6 +351,22 @@ showing 3 categories with 4 items each, 1080p landscape`}
           real player app on hardware, move into the deployment workflow:
           discover a player, register it locally, then deploy a specific app.
         </p>
+        <div className="mb-6">
+          <h3 className="text-lg font-medium text-foreground mb-2">
+            Why BrightSign Players?
+          </h3>
+          <p className="text-muted-foreground mb-2 max-w-3xl">
+            The Sign Age examples currently target BrightSign players because
+            they are widely regarded as extremely stable signage hardware
+            designed for 24/7 operation.
+          </p>
+          <p className="text-muted-foreground max-w-3xl">
+            However, the ideas explored in this project are not tied to
+            BrightSign specifically. The goal is to explore what digital signage
+            development might look like if it behaved more like normal frontend
+            software development.
+          </p>
+        </div>
         <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
           <pre>
             {`# Optional: find BrightSign players on your LAN

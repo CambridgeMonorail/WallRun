@@ -58,7 +58,7 @@ export const Default: Story = {
       { icon: Instagram, url: 'https://instagram.com' },
       { icon: Linkedin, url: 'https://linkedin.com' },
     ],
-    copyrightText: '© 2024 Your Company. All rights reserved.',
+    copyrightText: `© ${new Date().getFullYear()} Your Company. All rights reserved.`,
   },
 };
 
@@ -77,7 +77,7 @@ export const WithDifferentProps: Story = {
       { icon: Instagram, url: 'https://instagram.com' },
       { icon: Linkedin, url: 'https://linkedin.com' },
     ],
-    copyrightText: '© 2024 Your Company. All rights reserved.',
+    copyrightText: `© ${new Date().getFullYear()} Your Company. All rights reserved.`,
     className: 'bg-dark text-light',
   },
 };
@@ -97,7 +97,7 @@ export const WithCustomColors: Story = {
       { icon: Instagram, url: 'https://instagram.com' },
       { icon: Linkedin, url: 'https://linkedin.com' },
     ],
-    copyrightText: '© 2024 Your Company. All rights reserved.',
+    copyrightText: `© ${new Date().getFullYear()} Your Company. All rights reserved.`,
     backgroundColor: 'bg-secondary',
     textColor: 'text-secondary-foreground',
   },
