@@ -212,8 +212,10 @@ function signageReducer(state: SignageState, action: SignageAction): SignageStat
   }
 }
 
+const initialSignageState: SignageState = { status: 'boot' };
+
 function useSignageState() {
-  return useReducer(signageReducer, { status: 'boot' } as SignageState);
+  return useReducer(signageReducer, initialSignageState);
 }
 ```
 
