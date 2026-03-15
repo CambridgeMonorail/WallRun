@@ -70,11 +70,14 @@ For offline resilience on signage hardware, register a service worker that cache
 ```typescript
 // sw.ts — minimal cache-first strategy for signage
 const CACHE_NAME = 'signage-v1';
-const CACHED_PATHS = ['/api/menu', '/api/schedule'];
+const CACHED_API_PATHS = ['/api/menu', '/api/schedule'];
+const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'];
 
 self.addEventListener('fetch', (event: FetchEvent) => {
   const url = new URL(event.request.url);
-  if (!CACHED_PATHS.some((p) => url.pathname.startsWith(p))) return;
+  const isApiRequest = CACHED_API_PATHS.some((p) => url.pathname.startsWith(p));
+  const isImageRequest = IMAGE_EXTENSIONS.some((ext) => url.pathname.endsWith(ext));
+  if (!isApiRequest && !isImageRequest) return;
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
@@ -84,7 +87,11 @@ self.addEventListener('fetch', (event: FetchEvent) => {
         return response;
       } catch {
         const cached = await cache.match(event.request);
-        return cached ?? new Response('{}', { status: 503 });
+        if (cached) return cached;
+        // API gets empty JSON; images get a 504 so <img> onerror fires
+        return isApiRequest
+          ? new Response('{}', { status: 503 })
+          : new Response(null, { status: 504 });
       }
     }),
   );
