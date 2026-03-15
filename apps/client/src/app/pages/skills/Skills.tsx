@@ -172,7 +172,7 @@ export const SkillsPage: FC = () => {
           </li>
           <li>
             <strong className="text-foreground">Skill catalog</strong> — 12
-            signage &amp; development, 1 engineering workflow, 9 BrightSign
+            signage &amp; development, 1 component quality, 9 BrightSign
           </li>
           <li>
             <strong className="text-foreground">Skill structure</strong> —
