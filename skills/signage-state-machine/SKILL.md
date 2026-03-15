@@ -168,6 +168,10 @@ type SignageAction =
   | { type: 'RECONNECT' }
   | { type: 'IDLE' };
 
+function assertNever(action: never): never {
+  throw new Error('Unhandled signage action: ' + JSON.stringify(action));
+}
+
 function signageReducer(state: SignageState, action: SignageAction): SignageState {
   switch (action.type) {
     case 'LOAD':
@@ -203,6 +207,8 @@ function signageReducer(state: SignageState, action: SignageAction): SignageStat
       return { status: 'loading' };
     case 'IDLE':
       return { status: 'idle' };
+    default:
+      return assertNever(action);
   }
 }
 
