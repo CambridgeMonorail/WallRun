@@ -45,6 +45,7 @@ function useSignageData<T>(
   const failureCount = useRef(0);
   const firstFailureTime = useRef<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isActiveRef = useRef(false);
 
   const getBackoffDelay = useCallback((failures: number): number => {
     // 5s, 15s, 30s, 60s, 120s ceiling
@@ -55,6 +56,8 @@ function useSignageData<T>(
   const doFetch = useCallback(async () => {
     try {
       const result = await fetcher();
+
+      if (!isActiveRef.current) return;
 
       // Validate before swapping
       if (validate && !validate(result)) {
@@ -79,6 +82,8 @@ function useSignageData<T>(
       }
       timerRef.current = setTimeout(doFetch, interval + jitter);
     } catch (error: unknown) {
+      if (!isActiveRef.current) return;
+
       onError?.(error);
       failureCount.current += 1;
 
@@ -105,9 +110,14 @@ function useSignageData<T>(
   }, [fetcher, interval, validate, onError, offlineThreshold, getBackoffDelay]);
 
   useEffect(() => {
+    isActiveRef.current = true;
     doFetch();
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      isActiveRef.current = false;
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
     };
   }, [doFetch]);
 
