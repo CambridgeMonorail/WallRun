@@ -98,23 +98,11 @@ When a data fetch fails, use exponential backoff with a ceiling:
 
 ## Implementation Patterns
 
-### Basic Polling Hook
+### `useSignageData` Hook
 
-```typescript
-function useSignageData<T>(
-  fetcher: () => Promise<T>,
-  options: {
-    interval: number; // milliseconds
-    validate?: (data: T) => boolean;
-    onError?: (error: unknown) => void;
-  },
-) {
-  // Maintains current data while fetching
-  // Validates before swapping
-  // Implements backoff on failure
-  // Never returns undefined after first successful fetch
-}
-```
+The core polling hook maintains current data while fetching, validates before swapping, implements exponential backoff on failure, and never returns `undefined` after the first successful fetch.
+
+See the [data refresh implementation examples](references/examples.md) for the complete implementation with types, backoff ladder, jitter, and offline detection.
 
 ### Data Swap Pattern
 
@@ -163,3 +151,9 @@ When generating or reviewing data refresh patterns, produce:
 - Do not assume API availability — every fetch must have a failure path.
 - Do not poll more frequently than needed — respect API rate limits and player resources.
 - Do not use `window.location.reload()` as a refresh strategy.
+
+## Related Skills
+
+- Use `signage-state-machine` to model boot, content, offline, and error states around the data lifecycle.
+- Use `signage-content-fallbacks` to define what the viewer sees when data is unavailable.
+- Use `signage-performance-budget` to calibrate polling intervals for player hardware.

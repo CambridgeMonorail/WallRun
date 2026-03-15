@@ -164,3 +164,9 @@ See [implementation examples](references/examples.md) for a complete example.
 - Do not show error objects, stack traces, or technical messages as fallback content.
 - Do not use broken image icons as an acceptable fallback — always provide a replacement.
 - Do not hide data freshness — if showing stale cached data, indicate the age.
+
+## Related Skills
+
+- Use `signage-state-machine` to model boot/offline/error states that trigger fallback chains.
+- Use `signage-placeholder-images` for consistent placeholder artwork in static fallback screens.
+- Use `signage-data-refresh-patterns` for the polling and backoff logic that detects failures.

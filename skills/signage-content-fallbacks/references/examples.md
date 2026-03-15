@@ -20,12 +20,80 @@ function resolveContent<T>(content: ZoneContent<T>): T | null {
 
 ## Image Fallback
 
+A signage-safe image component that never shows a broken image icon:
+
 ```typescript
-function SignageImage({ src, fallbackSrc, alt }: { src: string; fallbackSrc: string; alt: string }) {
-  // Renders src, falls back to fallbackSrc on error
-  // Never renders a broken image icon
+import { useState } from 'react';
+
+function SignageImage({
+  src,
+  fallbackSrc,
+  alt,
+  className,
+}: {
+  src: string;
+  fallbackSrc: string;
+  alt: string;
+  className?: string;
+}) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [hasErrored, setHasErrored] = useState(false);
+
+  const handleError = () => {
+    if (!hasErrored) {
+      setHasErrored(true);
+      setCurrentSrc(fallbackSrc);
+    }
+  };
+
+  return (
+    <img
+      src={currentSrc}
+      alt={alt}
+      className={className}
+      onError={handleError}
+    />
+  );
 }
 ```
+
+## Service Worker Caching
+
+For offline resilience on signage hardware, register a service worker that caches API responses and images:
+
+```typescript
+// sw.ts — minimal cache-first strategy for signage
+const CACHE_NAME = 'signage-v1';
+const CACHED_PATHS = ['/api/menu', '/api/schedule'];
+
+self.addEventListener('fetch', (event: FetchEvent) => {
+  const url = new URL(event.request.url);
+  if (!CACHED_PATHS.some((p) => url.pathname.startsWith(p))) return;
+
+  event.respondWith(
+    caches.open(CACHE_NAME).then(async (cache) => {
+      try {
+        const response = await fetch(event.request);
+        cache.put(event.request, response.clone());
+        return response;
+      } catch {
+        const cached = await cache.match(event.request);
+        return cached ?? new Response('{}', { status: 503 });
+      }
+    }),
+  );
+});
+```
+
+## Offline Testing
+
+Verify fallback chains by testing with network disabled:
+
+1. Load the signage app with live data, confirm content renders.
+2. Disconnect network (or block API host via DevTools).
+3. Confirm cached data appears with no visible disruption.
+4. Wait beyond the cache TTL — confirm static fallback activates.
+5. Reconnect network — confirm live data resumes automatically.
 
 ## Zone-Level Visibility
 

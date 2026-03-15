@@ -52,6 +52,26 @@ These are baseline minimums for standard 1920×1080 signage at 3–5 metre viewi
 | Touch targets (if interactive) | 120px+       | Rare in signage, but generous when needed |
 | Icon size                      | 48px+        | Must be recognizable, not decorative      |
 
+### Resolution and Distance Scaling
+
+The baseline table above is for **1080p at 3–5 m**. Use these multipliers for other setups:
+
+| Resolution   | Multiplier | Headline | Body  | Secondary | Tertiary |
+| ------------ | ---------- | -------- | ----- | --------- | -------- |
+| 1080p        | 1×         | 96 px    | 48 px | 36 px     | 24 px    |
+| 4K (2160p)   | 2×         | 192 px   | 96 px | 72 px     | 48 px    |
+
+For longer viewing distances on a 1080p screen:
+
+| Distance | Headline | Body  | Secondary | Tertiary |
+| -------- | -------- | ----- | --------- | -------- |
+| 3 m      | 96 px    | 48 px | 36 px     | 24 px    |
+| 5 m      | 120 px   | 60 px | 48 px     | 32 px    |
+| 8 m      | 160 px   | 80 px | 60 px     | 40 px    |
+| 10 m     | 192 px   | 96 px | 72 px     | 48 px    |
+
+**Rule of thumb:** multiply the baseline by `viewingDistance / 3` (rounded up).
+
 ## Contrast and Colour Rules
 
 - Minimum contrast ratio: WCAG AA (4.5:1 for text), but **prefer higher** for distance viewing.
@@ -128,3 +148,9 @@ Supporting content is subordinate: ❌ (description text too prominent)
 - Do not approve text below the minimum size thresholds without explicit justification.
 - Do not treat WCAG AA as sufficient — it is a floor, not a target for distance viewing.
 - Do not approve designs where the primary message takes more than 2 seconds to identify.
+
+## Related Skills
+
+- Use `signage-layout-system` for zone structure and hierarchy.
+- Use `signage-safe-layout` to ensure text doesn't fall outside safe margins after sizing.
+- Use `signage-menu-board` for menu-specific text hierarchy and price sizing.

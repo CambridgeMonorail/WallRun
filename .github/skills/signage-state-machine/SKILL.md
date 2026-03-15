@@ -76,7 +76,14 @@ boot → loading → content → (refresh cycle)
 ### Boot → Loading → Content
 
 ```typescript
-type SignageState = { status: 'boot' } | { status: 'loading' } | { status: 'content'; data: ContentData } | { status: 'refreshing'; data: ContentData } | { status: 'data-error'; lastGoodData: ContentData | null } | { status: 'offline'; cachedData: ContentData | null } | { status: 'idle' };
+type SignageState =
+  | { status: 'boot' }
+  | { status: 'loading' }
+  | { status: 'content'; data: ContentData }
+  | { status: 'refreshing'; data: ContentData }
+  | { status: 'data-error'; lastGoodData: ContentData | null }
+  | { status: 'offline'; cachedData: ContentData | null }
+  | { status: 'idle' };
 ```
 
 ### Background Refresh Pattern
@@ -144,6 +151,66 @@ switch (state.status) {
 - On boot, check for cached data before fetching fresh data.
 - Validate cached data age — stale-but-present is better than empty.
 
+### `useSignageState` Hook
+
+A `useReducer`-based hook that enforces valid transitions:
+
+```typescript
+import { useReducer } from 'react';
+
+type SignageAction =
+  | { type: 'LOAD' }
+  | { type: 'CONTENT_READY'; data: ContentData }
+  | { type: 'REFRESH_START' }
+  | { type: 'REFRESH_SUCCESS'; data: ContentData }
+  | { type: 'DATA_ERROR' }
+  | { type: 'OFFLINE' }
+  | { type: 'RECONNECT' }
+  | { type: 'IDLE' };
+
+function signageReducer(state: SignageState, action: SignageAction): SignageState {
+  switch (action.type) {
+    case 'LOAD':
+      return { status: 'loading' };
+    case 'CONTENT_READY':
+      return { status: 'content', data: action.data };
+    case 'REFRESH_START':
+      if (state.status === 'content') {
+        return { status: 'refreshing', data: state.data };
+      }
+      return state; // Ignore if not in content state
+    case 'REFRESH_SUCCESS':
+      return { status: 'content', data: action.data };
+    case 'DATA_ERROR': {
+      const lastGood =
+        state.status === 'content' || state.status === 'refreshing'
+          ? state.data
+          : state.status === 'data-error'
+            ? state.lastGoodData
+            : null;
+      return { status: 'data-error', lastGoodData: lastGood };
+    }
+    case 'OFFLINE': {
+      const cached =
+        state.status === 'content' || state.status === 'refreshing'
+          ? state.data
+          : state.status === 'offline'
+            ? state.cachedData
+            : null;
+      return { status: 'offline', cachedData: cached };
+    }
+    case 'RECONNECT':
+      return { status: 'loading' };
+    case 'IDLE':
+      return { status: 'idle' };
+  }
+}
+
+function useSignageState() {
+  return useReducer(signageReducer, { status: 'boot' } as SignageState);
+}
+```
+
 ## Output Contract
 
 When generating or reviewing a signage app, produce:
@@ -172,3 +239,9 @@ Before finalizing, verify:
 - Do not show application-level errors to the viewer.
 - Do not assume network is available at boot time.
 - Do not leave any state without a visual output definition.
+
+## Related Skills
+
+- Use `signage-content-fallbacks` to define the fallback chain for each zone.
+- Use `signage-data-refresh-patterns` for polling and backoff logic that feeds state transitions.
+- Use `signage-placeholder-images` when static fallback screens need placeholder artwork.

@@ -67,6 +67,36 @@ Best when one promoted item must dominate without hiding the core menu.
 - main field: compact category list
 - footer: service and compliance notes
 
+## Portrait Orientation Variants
+
+When the display is portrait (9:16), adapt the landscape templates:
+
+### Portrait: Feature Pair + Hero
+
+- top: brand or category label
+- center: hero image or offer panel (full width)
+- bottom: one or two featured menu cards stacked vertically
+
+### Portrait: Category Columns
+
+- top: brand and category band
+- center: single column of categories, stacked vertically
+- bottom: service notes, allergens, or ordering detail
+
+For two or fewer categories, stack them. For three or more, use two narrow columns.
+
+### Portrait: Promo Strip + Core Menu
+
+- top: promo zone (full width, landscape-cropped image)
+- center: compact category list (single column)
+- footer: service and compliance notes
+
+## Category Capacity Guidelines
+
+- **Maximum items per category:** 8–12 for landscape, 6–8 for portrait.
+- If a category exceeds the limit, split it or paginate with timed rotation.
+- More items per screen reduces legibility — see `signage-distance-legibility` for minimum text sizes.
+
 ## Price Hierarchy Rules
 
 1. Price is usually the second-most important visual element after the item name.
@@ -163,7 +193,10 @@ Before finalizing, check whether the result:
 - preserves strong spacing and alignment
 - would still work on a busy wall-mounted screen
 
-## Related Files
+## Related Skills
 
-- See `references/detailed-guide.md` for menu-board-specific implementation guidance.
+- See the [menu-board implementation guide](references/detailed-guide.md) for detailed workflow and examples.
 - Use `brightsign-signage-build` when the menu board must also be packaged and verified as a BrightSign app.
+- Use `signage-distance-legibility` for minimum text sizes — especially price and item name sizing.
+- Use `signage-safe-layout` to ensure menu content respects safe margins on unknown displays.
+- Use `signage-content-fallbacks` when menu data comes from an API that may fail.

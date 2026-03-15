@@ -560,3 +560,9 @@ This skill is successful when:
 - alt text is honest
 - replacement intent is obvious
 - the resulting codebase is easier to update once final assets arrive
+
+## Related Skills
+
+- Use `signage-content-fallbacks` to define what happens when final images fail to load at runtime.
+- Use `signage-distance-legibility` to verify placeholder dimensions match required viewing sizes.
+- Use `signage-safe-layout` to ensure placeholder image zones respect safe margins.
