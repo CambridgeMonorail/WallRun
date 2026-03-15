@@ -1,5 +1,12 @@
 # Diagnostic Commands Reference
 
+BrightSign players expose two diagnostic interfaces:
+
+- **DWS** (port 8008, HTTP) — unauthenticated, browser-friendly. Commands below use this port.
+- **LDWS** (port 443, HTTPS, digest auth) — used by `scripts/deploy-local.mjs` for REST API operations.
+
+For interactive debugging, DWS on port 8008 is typically the easiest path. For scripted/automated access, the LDWS on port 443 is preferred (see `brightsign-deploy-local` skill).
+
 ## Find Player IP Address
 
 ### Method 1: Network Scan

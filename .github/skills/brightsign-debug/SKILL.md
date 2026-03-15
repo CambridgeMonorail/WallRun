@@ -37,7 +37,7 @@ When a player isn't working correctly, follow this systematic approach:
 2. Display is connected and receiving signal
 3. Network connectivity established
 4. Player IP address known
-5. Diagnostic web server accessible (port 8008)
+5. Diagnostic web server accessible (DWS on port 8008, or LDWS on port 443)
 6. `autorun.brs` present on SD card
 7. `index.html` and assets deployed
 8. Console shows no JavaScript errors
@@ -52,9 +52,12 @@ When a player isn't working correctly, follow this systematic approach:
 
 ### Step 2: Access diagnostic web server
 
-Open `http://<player-ip>:8008` in a browser, or use curl for API access.
+BrightSign exposes two diagnostic interfaces:
 
-The diagnostic interface provides: device information, file browser (SD card), log viewer, system utilities, and remote inspector link.
+- **DWS** (port 8008, HTTP) — browser-based diagnostic UI, remote inspector, log viewer. Best for interactive debugging.
+- **LDWS** (port 443, HTTPS, digest auth) — REST API used by this repo's deploy scripts (`scripts/deploy-local.mjs`). Best for automated/scripted access.
+
+For debugging, open `http://<player-ip>:8008` in a browser. For API operations, use `https://<player-ip>/api/v1/` with digest auth (see deploy-local skill).
 
 ### Step 3: Query device information
 
@@ -92,7 +95,7 @@ When debugging a player issue, produce:
 
 ## Constraints
 
-- Diagnostic web server must be enabled on the player
+- Diagnostic web server must be enabled on the player (DWS on port 8008, and/or LDWS on port 443)
 - Remote inspector requires Chrome browser on development machine
-- Port 8008 must be accessible from development machine network
+- DWS port 8008 or LDWS port 443 must be accessible from development machine network
 - BrightSign OS 9.x minimum
