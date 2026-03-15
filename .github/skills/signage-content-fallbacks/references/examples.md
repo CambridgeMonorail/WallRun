@@ -23,7 +23,7 @@ function resolveContent<T>(content: ZoneContent<T>): T | null {
 A signage-safe image component that never shows a broken image icon:
 
 ```typescript
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function SignageImage({
   src,
@@ -38,6 +38,12 @@ function SignageImage({
 }) {
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasErrored, setHasErrored] = useState(false);
+
+  // Reset when the upstream src or fallback changes (CMS update, content rotation)
+  useEffect(() => {
+    setCurrentSrc(src);
+    setHasErrored(false);
+  }, [src, fallbackSrc]);
 
   const handleError = () => {
     if (!hasErrored) {
