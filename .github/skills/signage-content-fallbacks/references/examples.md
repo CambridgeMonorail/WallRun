@@ -105,7 +105,7 @@ Verify fallback chains by testing with network disabled:
 1. Load the signage app with live data, confirm content renders.
 2. Disconnect network (or block API host via DevTools).
 3. Confirm cached data appears with no visible disruption.
-4. Wait beyond the cache TTL — confirm static fallback activates.
+4. Simulate missing or stale cached data (e.g., clear storage or unregister the service worker) — confirm the static fallback activates.
 5. Reconnect network — confirm live data resumes automatically.
 
 ## Zone-Level Visibility
