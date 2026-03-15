@@ -75,7 +75,7 @@
     "discover:scan": "node tools/player-discovery/src/main.mjs scan",
     "discover:probe": "node tools/player-discovery/src/main.mjs probe",
     "discover:export": "node tools/player-discovery/src/main.mjs export",
-    "skill-lint": "tsx tools/skills-lint/src/cli.ts",
+    "skill-lint": "tsx tools/skills-lint/src/cli.ts lint",
     "skill-lint:all": "tsx tools/skills-lint/src/cli.ts lint-all skills",
     "skill-lint:report": "tsx tools/skills-lint/src/cli.ts report skills --out reports/skills",
     "skill-lint:ci": "tsx tools/skills-lint/src/cli.ts ci skills"
