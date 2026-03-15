@@ -33,6 +33,36 @@ const tier1Skills: Skill[] = [
       'Food and service menu boards with signage-first hierarchy rules.',
   },
   {
+    name: 'signage-distance-legibility',
+    description:
+      'Minimum text sizes, contrast, density, and hierarchy for viewing at 3–10 metres.',
+  },
+  {
+    name: 'signage-safe-layout',
+    description:
+      'Overscan, bezel compensation, rotation, and resolution-independent layout constraints.',
+  },
+  {
+    name: 'signage-state-machine',
+    description:
+      'Boot, loading, content, fallback, and offline state patterns for 24/7 displays.',
+  },
+  {
+    name: 'signage-data-refresh-patterns',
+    description:
+      'Polling, backoff, and non-blocking data updates that never disrupt the viewer.',
+  },
+  {
+    name: 'signage-performance-budget',
+    description:
+      'Bundle size, image weight, font loading, and frame-rate budgets for embedded hardware.',
+  },
+  {
+    name: 'signage-content-fallbacks',
+    description:
+      'Graceful degradation chains ensuring content always exists when APIs or feeds fail.',
+  },
+  {
     name: 'signage-placeholder-images',
     description:
       'Consistent placeholder image planning before final creative arrives.',
@@ -43,11 +73,6 @@ const tier1Skills: Skill[] = [
       'Investigate broken pages and frontend regressions using Chrome DevTools.',
   },
   {
-    name: 'systematic-debugging',
-    description:
-      'Root-cause debugging with evidence gathering and verification.',
-  },
-  {
     name: 'instructions-detox',
     description:
       'Audit AI instruction files for bloat, overlap, and stale rules.',
@@ -55,20 +80,6 @@ const tier1Skills: Skill[] = [
 ];
 
 const tier2Skills: Skill[] = [
-  {
-    name: 'planning',
-    description:
-      'Structured implementation plans for multi-step engineering work.',
-  },
-  {
-    name: 'code-review-ready',
-    description:
-      'Evaluate whether a change set is ready for pull request review.',
-  },
-  {
-    name: 'verification',
-    description: 'Run and summarize validation checks before review.',
-  },
   {
     name: 'shadcnui-component-review',
     description:
@@ -160,8 +171,8 @@ export const SkillsPage: FC = () => {
             options: public skills or everything including BrightSign
           </li>
           <li>
-            <strong className="text-foreground">Skill catalog</strong> — 7
-            signage &amp; general purpose, 4 engineering workflows, 9
+            <strong className="text-foreground">Skill catalog</strong> — 12
+            signage &amp; development, 1 engineering workflow, 9
             BrightSign
           </li>
           <li>
@@ -230,9 +241,9 @@ export const SkillsPage: FC = () => {
             <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
           </div>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            This installs the 11 public skills (signage design, debugging,
-            planning, verification, and more). Your agent picks them up
-            automatically the next time it runs.
+            This installs the 13 public skills (signage design, distance
+            legibility, safe layout, state management, data refresh, and more).
+            Your agent picks them up automatically the next time it runs.
           </p>
         </div>
 
@@ -250,8 +261,8 @@ export const SkillsPage: FC = () => {
             <pre>{`INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge`}</pre>
           </div>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            This gives you all 20 skills — signage design, engineering
-            workflows, and BrightSign-specific tooling.
+            This gives you all 22 skills — signage design, development
+            patterns, and BrightSign-specific tooling.
           </p>
         </div>
 
@@ -273,10 +284,11 @@ export const SkillsPage: FC = () => {
         <div className="demo-panel p-6 sm:p-8">
           <h2 className="mb-2 flex items-center gap-2 text-2xl font-medium text-foreground">
             <Monitor className="h-6 w-6" />
-            Signage &amp; General Purpose
+            Signage Design &amp; Development
           </h2>
           <p className="mb-1 text-sm text-muted-foreground">
-            Fully reusable — no dependency on this repository.
+            Fully reusable — domain knowledge for building signage with
+            React, no dependency on this repository.
           </p>
           <ul className="divide-y divide-border">
             {tier1Skills.map((s) => (
@@ -291,11 +303,11 @@ export const SkillsPage: FC = () => {
         <div className="demo-panel p-6 sm:p-8">
           <h2 className="mb-2 flex items-center gap-2 text-2xl font-medium text-foreground">
             <Wrench className="h-6 w-6" />
-            Engineering Workflows
+            Component Quality
           </h2>
           <p className="mb-1 text-sm text-muted-foreground">
-            Portable with minor tooling assumptions — easily adapted to other
-            monorepos.
+            Portable with minor tooling assumptions — easily adapted to
+            other component libraries.
           </p>
           <ul className="divide-y divide-border">
             {tier2Skills.map((s) => (
@@ -393,7 +405,7 @@ git pull origin main`}
           Once cloned, you have access to everything:
         </p>
         <ul className="mb-4 list-inside list-disc space-y-1 text-muted-foreground">
-          <li>All 20 skills, including the internal BrightSign and player discovery ones</li>
+          <li>All 22 skills, including the internal BrightSign and player discovery ones</li>
           <li>Signage component libraries with ready-made UI primitives</li>
           <li>A scaffold command to generate new player apps from a template</li>
           <li>One-command packaging and deployment to BrightSign hardware</li>
