@@ -44,7 +44,7 @@ If critical content is placed near the screen edge, some displays will clip it. 
 | Rule                               | Guideline                                                       |
 | ---------------------------------- | --------------------------------------------------------------- |
 | Safe margin                        | Minimum 5% inset from all edges for critical content            |
-| CTA / prices / key text            | Must be inside safe frame — never within 48px of any edge       |
+| CTA / prices / key text            | Must be inside safe frame (5% inset minimum)                    |
 | Background and decorative elements | May bleed to edges                                              |
 | Logo placement                     | Inside safe frame unless brand guidelines require edge position |
 | Tickers and scrolling text         | Start and end within safe frame                                 |
