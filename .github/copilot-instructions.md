@@ -147,13 +147,13 @@ Work is complete when:
 - ✅ **Changes are reviewable** - Small diffs, clear commit messages
 - ✅ **Evidence provided** - PR includes verification output
 
-See [AGENTS.md](../AGENTS.md) for detailed workflow guidance and [Verification Skill](../skills/verification/workflows/detailed-guide.md) for PR evidence requirements.
+See [AGENTS.md](../AGENTS.md) for detailed workflow guidance.
 
 ## Agent Expectations
 
 When working as an agent in this repository:
 
-1. **Plan before acting** - For non-trivial changes, create a plan in `docs/plans/` (see [Planning Skill](../skills/planning/workflows/detailed-guide.md))
+1. **Plan before acting** - For non-trivial changes, create a plan in `docs/plans/`
 2. **Work incrementally** - Make small, reviewable commits with conventional commit messages
 3. **Verify your work** - Run `pnpm verify` before declaring completion
 4. **Document decisions** - Explain trade-offs and reasoning in commit messages and PRs
@@ -161,11 +161,6 @@ When working as an agent in this repository:
 6. **Clarify ambiguous scope before coding** - If a request could reasonably mean creating something new or modifying an existing app, stop and ask which one the user wants.
 7. **Never modify an existing app without confirmation** - Unless the user explicitly names the existing app or clearly asks for a change to it, clarify first instead of reusing or altering an existing app.
 
-**Workflow Skills:** See [skills/](../skills/) for structured workflow guides. `.github/skills/` is the generated Copilot mirror.
-
-- [Planning](../skills/planning/workflows/detailed-guide.md) - When and how to create implementation plans
-- [Systematic Debugging](../skills/systematic-debugging/workflows/detailed-guide.md) - Root cause analysis process
-- [Code Review Ready](../skills/code-review-ready/workflows/detailed-guide.md) - Making changes reviewable
-- [Verification](../skills/verification/workflows/detailed-guide.md) - PR evidence expectations
+**Workflow Skills:** See [skills/](../skills/) for domain-specific signage skills. `.github/skills/` is the generated Copilot mirror.
 
 For complete behavioral guidance, see [AGENTS.md](../AGENTS.md) at the repository root.

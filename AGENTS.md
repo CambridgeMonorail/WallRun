@@ -39,14 +39,6 @@ When working as an agent in this repository:
 
 ### 3. Create a Plan (for non-trivial work)
 
-See [Planning Skill](skills/planning/workflows/detailed-guide.md) for:
-
-- When a plan is required vs. optional vs. not needed
-- Plan template with full structure
-- Good vs. bad plan examples
-- Planning process and best practices
-- Real-world examples (feature, refactoring, bug fix)
-
 **Plan location:** `docs/plans/YYYY-MM-DD-<slug>.md`
 
 **Quick plan structure:**
@@ -83,17 +75,6 @@ This runs:
 - Type check (affected projects)
 - Tests (affected projects)
 
-See [Verification Skill](skills/verification/workflows/detailed-guide.md) for:
-
-- Required verification checks (format, lint, type-check, tests, build)
-- The unified `pnpm verify` command
-- PR verification evidence template
-- Additional evidence for UI changes, performance changes, bug fixes
-- Verification workflow step-by-step
-- Common verification failures and fixes
-- Edge cases to test
-- Tools for evidence collection
-
 ## Definition of Done
 
 Work is complete when:
@@ -107,31 +88,20 @@ Work is complete when:
 
 ## Workflow Skills
 
-These skills provide detailed process guidance for common development tasks. Reference them for step-by-step workflows and best practices.
+Domain-specific skills are in `skills/`. See `skills/README.md` for the full catalogue.
 
-### Core Skills
+Key signage skills:
 
-- **[Planning](skills/planning/workflows/detailed-guide.md)** - How to create structured implementation plans
-  - When to create plans (required/optional/not needed)
-  - Plan template and structure
-  - Good vs. bad plan examples
-  - Planning process and integration with AGENTS.md
-- **[Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md)** - Root cause analysis workflow
-  - 6-step debugging process (understand, reproduce, find root cause, fix, verify, document)
-  - Real-world debugging examples
-  - Common pitfalls and how to avoid them
-  - When to invest in debugging vs. workaround
-- **[Code Review Ready](skills/code-review-ready/workflows/detailed-guide.md)** - Making changes easy to review
-  - Reviewable PR checklist (< 500 lines, one logical change, clear description)
-  - PR description template
-  - Visual evidence requirements for UI changes
-  - Anti-patterns to avoid ("Everything PR", "Mystery PR", "Trust Me PR")
-- **[Verification](skills/verification/workflows/detailed-guide.md)** - PR evidence expectations
-  - Required verification checks (format, lint, type-check, tests)
-  - The unified `pnpm verify` command
-  - PR verification evidence template
-  - Additional evidence for UI changes, performance, bug fixes
-  - Verification workflow and common failures
+- **signage-layout-system** — Full-screen layouts for distance viewing and clear zoning
+- **signage-animation-system** — Loop-safe motion for always-on public displays
+- **signage-menu-board** — Food and service menu boards with price hierarchy
+- **signage-distance-legibility** — Minimum text sizes, contrast, and density for viewing at distance
+- **signage-safe-layout** — Overscan, bezel, rotation, and resolution-independent constraints
+- **signage-state-machine** — Boot/load/content/fallback/offline state patterns for 24/7 displays
+- **signage-data-refresh-patterns** — Polling, backoff, and non-blocking data updates
+- **signage-performance-budget** — Bundle size, image weight, and frame-rate budgets for embedded hardware
+- **signage-content-fallbacks** — Graceful degradation when APIs or feeds fail
+- **instructions-detox** — Audit instruction files for bloat, overlap, and stale rules
 
 ## Commit Discipline
 
@@ -195,21 +165,12 @@ Fixes #456
 
 ### For Bug Fixes
 
-Follow the [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) skill:
-
-1. **Understand the problem** - Reproduce reliably, gather evidence
-2. **Find the root cause** - Use debugging techniques, not guesswork
-3. **Write a failing test** - Exposes the bug before fixing
-4. **Fix the root cause** - Not just symptoms
-5. **Verify the fix** - Test passes, no regressions
-6. **Document what changed and why** - In commit message and PR description
-
-See the Systematic Debugging skill for:
-
-- Detailed 6-step debugging process
-- Real-world debugging examples
-- Common pitfalls and solutions
-- When to invest in debugging vs. workaround
+1. **Understand the problem** — Reproduce reliably, gather evidence
+2. **Find the root cause** — Use debugging techniques, not guesswork
+3. **Write a failing test** — Exposes the bug before fixing
+4. **Fix the root cause** — Not just symptoms
+5. **Verify the fix** — Test passes, no regressions
+6. **Document what changed and why** — In commit message and PR description
 
 ## Common Validation Commands
 
@@ -297,33 +258,16 @@ Output:
 - Any edge cases considered
 - Any known limitations
 
-See [Code Review Ready](skills/code-review-ready/workflows/detailed-guide.md) for:
-
-- Detailed reviewable PR checklist
-- PR description template
-- Visual evidence requirements
-- Size guidelines (< 500 lines target)
-- How to avoid common anti-patterns
-- Tips for breaking down large PRs
-
 ## Debugging Approach
 
 When debugging issues, follow a systematic process:
 
-1. **Understand the problem** - Reproduce reliably, gather evidence
-2. **Find root cause** - Use debugging techniques, not guesswork
-3. **Minimize reproduction** - Simplify to smallest failing case
-4. **Fix correctly** - Address the underlying issue, not symptoms
-5. **Verify thoroughly** - Ensure fix works and doesn't break other things
-6. **Document** - Explain what was wrong and how you fixed it
-
-See [Systematic Debugging](skills/systematic-debugging/workflows/detailed-guide.md) for:
-
-- Detailed 6-step debugging process
-- Debugging techniques and tools
-- Real-world debugging examples with step-by-step walkthroughs
-- Common pitfalls and how to avoid them
-- When to invest in deep debugging vs. quick workaround
+1. **Understand the problem** — Reproduce reliably, gather evidence
+2. **Find root cause** — Use debugging techniques, not guesswork
+3. **Minimize reproduction** — Simplify to smallest failing case
+4. **Fix correctly** — Address the underlying issue, not symptoms
+5. **Verify thoroughly** — Ensure fix works and doesn't break other things
+6. **Document** — Explain what was wrong and how you fixed it
 
 ## Repository Context
 

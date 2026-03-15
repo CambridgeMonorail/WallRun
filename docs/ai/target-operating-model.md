@@ -204,20 +204,19 @@ Defines **how agents should work**, not what code to write:
 - Single-line bug fixes
 ```
 
-## Workflow Skills
+## Domain Skills
 
 **Directory:** [skills/](../../skills/)
 
 ### Purpose
 
-Structured, repeatable process guides for common workflows:
+Structured, repeatable guidance for signage design, BrightSign deployment, and component quality:
 
-- **Planning** - How to create implementation plans
-- **Systematic Debugging** - Root cause analysis process
-- **Code Review Ready** - Making changes reviewable
-- **Verification** - PR evidence requirements
-- **BrightSign Deploy** - Player deployment workflows
-- **Chrome DevTools Debug** - Web app debugging with MCP
+- **Signage Layout & Design** - Full-screen layouts, animation, menu boards, distance legibility
+- **Signage Operational Constraints** - Safe layout boundaries, state machines, data refresh patterns, performance budgets, content fallbacks
+- **BrightSign Deployment** - Runtime adaptation, packaging, local and fleet deployment, debugging
+- **Component Quality** - shadcn/ui component review and standards compliance
+- **Utilities** - Chrome DevTools debugging, instruction file auditing, player discovery
 
 ### Structure
 
@@ -225,31 +224,34 @@ Each skill has:
 
 ```
 skills/skill-name/
-├── SKILL.md                      # Short description for skill discovery
-└── workflows/
-    └── detailed-guide.md         # Comprehensive workflow guide
+├── SKILL.md                      # Complete skill specification
+└── references/                   # Optional longer examples and code samples
+    └── examples.md
 ```
 
 `.github/skills/` is generated from this tree for GitHub Copilot-native repository support.
 
 ### When to Reference
 
-- AGENTS.md references skills for detailed processes
-- Agents invoke skills when they need structured guidance
-- Skills provide "how to do X" where AGENTS.md provides "when to do X"
+- AGENTS.md references skills for detailed domain guidance
+- Agents invoke skills when they need specialized knowledge
+- Skills provide "how to do X in this domain" where AGENTS.md provides "when to do X"
 
 ### Example
 
-From [Planning Skill](../../skills/planning/workflows/detailed-guide.md):
+From AGENTS.md workflow guidance:
 
 ```markdown
-## When Planning is Required
+## Definition of Done
 
-**REQUIRED** - Must create a plan:
+Work is complete when:
 
-- New features spanning multiple files
-- Refactoring that affects multiple projects
-- Architectural changes or pattern introductions
+- ✅ **Code follows conventions** - Lint and type-check pass
+- ✅ **Tests written and passing** - For new features and bug fixes
+- ✅ **Documentation updated** - README, comments, or guides as needed
+- ✅ **Verification passes** - `pnpm verify` runs successfully
+- ✅ **Changes are reviewable** - Small diffs, clear commit messages
+- ✅ **Evidence provided** - PR includes verification output
 ```
 
 ## Custom Agents

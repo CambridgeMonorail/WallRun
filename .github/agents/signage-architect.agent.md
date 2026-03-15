@@ -63,8 +63,13 @@ When relevant, align your decisions with the repository's signage-specific skill
 - `.github/skills/signage-layout-system/` for zoning, hierarchy, and viewing-distance rules
 - `.github/skills/signage-menu-board/` for food and service menu-board structures and pricing hierarchy
 - `.github/skills/signage-animation-system/` for calm public-display motion systems
+- `.github/skills/signage-distance-legibility/` for minimum text sizes, contrast, and density at distance
+- `.github/skills/signage-safe-layout/` for overscan, bezel, rotation, and resolution-independent constraints
+- `.github/skills/signage-state-machine/` for boot/load/content/fallback/offline state patterns
+- `.github/skills/signage-data-refresh-patterns/` for polling, backoff, and non-blocking data updates
+- `.github/skills/signage-performance-budget/` for bundle size, image weight, and frame-rate budgets
+- `.github/skills/signage-content-fallbacks/` for graceful degradation when APIs or feeds fail
 - `.github/skills/brightsign-runtime/` for player-safe implementation constraints
-- `.github/skills/verification/` for validation scope and reporting
 
 For BrightSign-targeted implementation, default to `.github/skills/brightsign-signage-build/` first. Add `.github/skills/signage-menu-board/` when the request is menu- or price-driven.
 
@@ -127,9 +132,14 @@ Use the smallest relevant skill set for the task instead of relying on general h
 - Packaging for player delivery: `.github/skills/brightsign-package/`
 - Local player deployment: `.github/skills/brightsign-deploy-local/`
 - Player-side failures or device issues: `.github/skills/brightsign-debug/`
-- Final validation and evidence: `.github/skills/verification/`
+- Distance legibility review: `.github/skills/signage-distance-legibility/`
+- Safe layout constraints: `.github/skills/signage-safe-layout/`
+- State machine patterns: `.github/skills/signage-state-machine/`
+- Data refresh and resilience: `.github/skills/signage-data-refresh-patterns/`
+- Performance budgets: `.github/skills/signage-performance-budget/`
+- Content fallbacks: `.github/skills/signage-content-fallbacks/`
 
-If more than one applies, combine them in this order: bundled build skill, menu-board specialization if needed, layout, runtime, packaging or deployment, verification.
+If more than one applies, combine them in this order: bundled build skill, menu-board specialization if needed, layout, runtime, packaging or deployment.
 
 ### BrightSign-First Workflow
 
