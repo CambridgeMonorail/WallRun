@@ -56,11 +56,12 @@ export function UpdateChecker() {
       return;
     }
 
-    // Save to local storage for Node.js script to extract
-    localStorage.setItem('pending-update', await blob.text());
-
-    // Trigger reboot (player will install on next boot)
-    window.location.href = 'http://localhost:8008/reboot';
+    // Signal update readiness — actual file deployment and reboot
+    // are handled externally via LDWS API (PUT /api/v1/control/reboot).
+    // The player-side app detects the update; a management script or
+    // CI pipeline pushes files and triggers the reboot.
+    console.log(`Update v${manifest.version} verified. Ready for deployment.`);
+    setUpdateAvailable(true);
   }
 
   function isNewerVersion(remote: string, local: string): boolean {
