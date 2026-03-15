@@ -28,7 +28,7 @@ export const ruleSkillMdTooLong: LintRule = {
           {
             severity: 'error',
             code: this.id,
-            message: `SKILL.md is ${lines} lines (hard limit: ${maxSkillMdLines}).`,
+            message: `SKILL.md is ${lines} lines (hard limit: ${maxSkillMdLines + 200}; recommended max: ${maxSkillMdLines}).`,
             suggestion:
               'Move examples, detailed guidance, and reference material into references/ files.',
             file: 'SKILL.md',
