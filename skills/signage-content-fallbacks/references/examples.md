@@ -10,11 +10,11 @@ Each content zone should handle its own fallbacks using a typed container:
 type ZoneContent<T> = {
   live: T | null;
   cached: T | null;
-  static: T; // Always present — bundled with app
+  static?: T | null; // Preferably present — bundled with app, but optional for removable zones
 };
 
-function resolveContent<T>(content: ZoneContent<T>): T {
-  return content.live ?? content.cached ?? content.static;
+function resolveContent<T>(content: ZoneContent<T>): T | null {
+  return content.live ?? content.cached ?? content.static ?? null;
 }
 ```
 
