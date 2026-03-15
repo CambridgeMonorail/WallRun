@@ -4,7 +4,7 @@ description: Generate state machine patterns for digital signage screens that ru
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: '1.0'
+  version: '1.1'
 ---
 
 # Signage State Machine Skill
@@ -27,8 +27,6 @@ Use this skill when you need to:
 
 ## Do Not Use When
 
-Do not use this skill when:
-
 - building interactive web apps where users control navigation and retry
 - the screen has no external data dependencies and displays only static content
 - the task is about layout or visual design (use other signage skills)
@@ -37,11 +35,7 @@ Do not use this skill when:
 
 **A signage screen must always show content. Blank screens, spinners, and error messages are failures.**
 
-The screen must transition through states deterministically and recover without human intervention.
-
 ## Standard State Model
-
-Every signage screen should implement these states:
 
 ```
 boot → loading → content → (refresh cycle)
@@ -53,15 +47,15 @@ boot → loading → content → (refresh cycle)
 
 ### State Definitions
 
-| State          | Description                                          | What the Viewer Sees                                |
-| -------------- | ---------------------------------------------------- | --------------------------------------------------- |
-| **Boot**       | App initializing, player starting                    | Branded splash screen (< 3 seconds)                 |
-| **Loading**    | First data fetch in progress                         | Branded splash or last-known content                |
-| **Content**    | Live data displayed normally                         | The intended signage content                        |
-| **Refreshing** | Background data refresh in progress                  | Current content (unchanged until new data is ready) |
-| **Data Error** | API returned an error or bad data                    | Last-known good content or static fallback          |
-| **Offline**    | Network unreachable                                  | Cached content or static fallback                   |
-| **Idle**       | No content scheduled (e.g., outside operating hours) | Branded idle screen or screen-off signal            |
+| State          | What the Viewer Sees                                |
+| -------------- | --------------------------------------------------- |
+| **Boot**       | Branded splash screen (< 3 seconds)                 |
+| **Loading**    | Branded splash or last-known content                |
+| **Content**    | The intended signage content                        |
+| **Refreshing** | Current content (unchanged until new data is ready) |
+| **Data Error** | Last-known good content or static fallback          |
+| **Offline**    | Cached content or static fallback                   |
+| **Idle**       | Branded idle screen or screen-off signal            |
 
 ### Critical Rules
 
@@ -75,18 +69,9 @@ boot → loading → content → (refresh cycle)
 
 ### Boot → Loading → Content
 
-```typescript
-type SignageState =
-  | { status: 'boot' }
-  | { status: 'loading' }
-  | { status: 'content'; data: ContentData }
-  | { status: 'refreshing'; data: ContentData }
-  | { status: 'data-error'; lastGoodData: ContentData | null }
-  | { status: 'offline'; cachedData: ContentData | null }
-  | { status: 'idle' };
-```
+Initial startup sequence. Show branded splash during boot and loading, transition to content once data is available.
 
-### Background Refresh Pattern
+### Background Refresh
 
 ```
 content (visible)
@@ -95,7 +80,7 @@ content (visible)
        └→ failure → keep current content, log, retry later
 ```
 
-### Recovery Pattern
+### Recovery from Offline
 
 ```
 offline
@@ -106,150 +91,41 @@ offline
 
 ## Implementation Guidance
 
-### State Container
+- **Use a single state discriminator** — discriminated union, not multiple boolean flags
+- **Map every state to a visual output** — no state should render nothing
+- **Cache last-known-good data** in memory and optionally localStorage
+- **On boot, check for cached data** before fetching fresh
+- **Validate cached data age** — stale-but-present is better than empty
 
-Use a single state discriminator rather than multiple boolean flags:
-
-```typescript
-// ✅ Good: single discriminated union
-const [state, setState] = useState<SignageState>({ status: 'boot' });
-
-// ❌ Bad: multiple booleans that can conflict
-const [isLoading, setIsLoading] = useState(true);
-const [isError, setIsError] = useState(false);
-const [isOffline, setIsOffline] = useState(false);
-```
-
-### Rendering by State
-
-Map each state to a visual output. No state should render nothing:
-
-```typescript
-switch (state.status) {
-  case 'boot':
-  case 'loading':
-    return <BrandedSplash />;
-  case 'content':
-  case 'refreshing':
-    return <SignageContent data={state.data} />;
-  case 'data-error':
-    return state.lastGoodData
-      ? <SignageContent data={state.lastGoodData} />
-      : <StaticFallback />;
-  case 'offline':
-    return state.cachedData
-      ? <SignageContent data={state.cachedData} />
-      : <StaticFallback />;
-  case 'idle':
-    return <IdleScreen />;
-}
-```
-
-### Data Caching
-
-- Cache the last-known-good data in memory and optionally in localStorage.
-- On boot, check for cached data before fetching fresh data.
-- Validate cached data age — stale-but-present is better than empty.
-
-### `useSignageState` Hook
-
-A `useReducer`-based hook that enforces valid transitions:
-
-```typescript
-import { useReducer } from 'react';
-
-type SignageAction =
-  | { type: 'LOAD' }
-  | { type: 'CONTENT_READY'; data: ContentData }
-  | { type: 'REFRESH_START' }
-  | { type: 'REFRESH_SUCCESS'; data: ContentData }
-  | { type: 'DATA_ERROR' }
-  | { type: 'OFFLINE' }
-  | { type: 'RECONNECT' }
-  | { type: 'IDLE' };
-
-function assertNever(action: never): never {
-  throw new Error('Unhandled signage action: ' + JSON.stringify(action));
-}
-
-function signageReducer(state: SignageState, action: SignageAction): SignageState {
-  switch (action.type) {
-    case 'LOAD':
-      return { status: 'loading' };
-    case 'CONTENT_READY':
-      return { status: 'content', data: action.data };
-    case 'REFRESH_START':
-      if (state.status === 'content') {
-        return { status: 'refreshing', data: state.data };
-      }
-      return state; // Ignore if not in content state
-    case 'REFRESH_SUCCESS':
-      return { status: 'content', data: action.data };
-    case 'DATA_ERROR': {
-      const lastGood =
-        state.status === 'content' || state.status === 'refreshing'
-          ? state.data
-          : state.status === 'data-error'
-            ? state.lastGoodData
-            : null;
-      return { status: 'data-error', lastGoodData: lastGood };
-    }
-    case 'OFFLINE': {
-      const cached =
-        state.status === 'content' || state.status === 'refreshing'
-          ? state.data
-          : state.status === 'offline'
-            ? state.cachedData
-            : null;
-      return { status: 'offline', cachedData: cached };
-    }
-    case 'RECONNECT':
-      return { status: 'loading' };
-    case 'IDLE':
-      return { status: 'idle' };
-    default:
-      return assertNever(action);
-  }
-}
-
-const initialSignageState: SignageState = { status: 'boot' };
-
-function useSignageState() {
-  return useReducer(signageReducer, initialSignageState);
-}
-```
+See [code examples](references/examples.md) for the complete `SignageState` type, `useSignageState` reducer hook, rendering patterns, and caching utilities.
 
 ## Output Contract
 
 When generating or reviewing a signage app, produce:
 
-1. the state model with all states and transitions
-2. what the viewer sees in each state (no blank screens, no spinners, no errors)
-3. the fallback chain: live data → cached data → static fallback
-4. recovery behaviour for network restoration
-5. any states that are missing or have undefined visual output
+1. The state model with all states and transitions
+2. What the viewer sees in each state (no blank screens, no spinners, no errors)
+3. The fallback chain: live data → cached data → static fallback
+4. Recovery behaviour for network restoration
+5. Any states that are missing or have undefined visual output
 
 ## Evaluation Checklist
 
-Before finalizing, verify:
-
 - [ ] Every state renders visible content
-- [ ] No loading spinner is shown to the public
-- [ ] No error message is shown to the public
+- [ ] No loading spinner shown to the public
+- [ ] No error message shown to the public
 - [ ] Background refresh does not flash or flicker visible content
 - [ ] Offline state displays cached or static fallback
 - [ ] Recovery from offline to online is automatic
 - [ ] Boot sequence completes in under 3 seconds to first visual
 
+## Reference Files
+
+- [Code examples](references/examples.md) — SignageState type, useSignageState reducer hook with exhaustive action handling, rendering patterns, data caching utilities
+
 ## Constraints
 
-- Do not use boolean flag combinations for state — use a discriminated union.
-- Do not show application-level errors to the viewer.
-- Do not assume network is available at boot time.
-- Do not leave any state without a visual output definition.
-
-## Related Skills
-
-- Use `signage-content-fallbacks` to define the fallback chain for each zone.
-- Use `signage-data-refresh-patterns` for polling and backoff logic that feeds state transitions.
-- Use `signage-placeholder-images` when static fallback screens need placeholder artwork.
+- Do not use boolean flag combinations for state — use a discriminated union
+- Do not show application-level errors to the viewer
+- Do not assume network is available at boot time
+- Do not leave any state without a visual output definition

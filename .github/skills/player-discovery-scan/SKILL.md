@@ -1,6 +1,6 @@
 ---
 name: player-discovery-scan
-description: Discover BrightSign players on a local subnet by running the player discovery scan and writing results to dist/players.json. Use when asked to find players on a LAN or scan a CIDR range.
+description: Scan a local subnet to discover BrightSign players via DWS fingerprinting and generate a players.json inventory. Use when asked to find players on a LAN or scan a CIDR range.
 license: MIT
 metadata:
   author: CambridgeMonorail
@@ -23,6 +23,13 @@ Run the Nx-based player discovery scan against a developer-provided CIDR to find
 - Outputs are sensitive. Always write to `dist/` and never commit results.
 - Prefer probing a known IP before scanning a full subnet when debugging.
 
+## Workflow
+
+1. Confirm the user has provided an explicit CIDR range
+2. Run the scan command
+3. Report the number of players found
+4. Confirm output path and remind about gitignore
+
 ## Commands to run
 
 Run a scan (scriptable):
@@ -41,7 +48,7 @@ Optional thorough scan (more ports):
 nx run player-discovery:scan -- --cidr <CIDR> --thorough
 ```
 
-## Output expectations
+## Output Format
 
 - Print a short summary: number of players found
 - Confirm output path: `dist/players.json`

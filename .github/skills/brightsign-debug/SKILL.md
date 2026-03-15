@@ -1,10 +1,10 @@
 ---
 name: brightsign-debug
-description: Debug BrightSign OS 9.x players using device info APIs, remote inspector, and diagnostic tools
+description: Diagnose and troubleshoot BrightSign OS 9.x player issues using device info APIs, remote Chrome DevTools inspector, log analysis, and file verification. Use when a player app is not starting, displaying incorrectly, or exhibiting performance problems.
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: "1.1"
   internal: true
 ---
 
@@ -16,227 +16,83 @@ Diagnose and troubleshoot issues on BrightSign OS 9.x digital signage players.
 
 Use this skill when you need to:
 
-- Diagnose why an app isn't starting or displaying
-- Check player hardware and network status
-- Access console logs and error messages
-- Debug JavaScript issues remotely
-- Verify file deployment and integrity
-- Troubleshoot performance problems
+- diagnose why an app isn't starting or displaying
+- check player hardware and network status
+- access console logs and error messages
+- debug JavaScript issues remotely via Chrome DevTools
+- verify file deployment and integrity
+- troubleshoot performance problems
+
+## Do Not Use When
+
+- deploying an app (use `brightsign-deploy-local` or `brightsign-fleet-deploy`)
+- packaging an app (use `brightsign-package`)
+- designing a signage layout (use signage layout skills)
 
 ## Quick Diagnostics Checklist
 
 When a player isn't working correctly, follow this systematic approach:
 
-1. ✅ **Player is powered and booted**
-2. ✅ **Display is connected and receiving signal**
-3. ✅ **Network connectivity established**
-4. ✅ **Player IP address known**
-5. ✅ **Diagnostic web server accessible (port 8008)**
-6. ✅ **autorun.brs present on SD card**
-7. ✅ **index.html and assets deployed**
-8. ✅ **Console shows no JavaScript errors**
+1. Player is powered and booted
+2. Display is connected and receiving signal
+3. Network connectivity established
+4. Player IP address known
+5. Diagnostic web server accessible (port 8008)
+6. `autorun.brs` present on SD card
+7. `index.html` and assets deployed
+8. Console shows no JavaScript errors
 
-## Find Player IP Address
+## Workflow
 
-### Method 1: Player On-Screen Display
+### Step 1: Find player IP address
 
-- Access player menu (button sequence varies by model)
-- Navigate to: **Setup → Network → Status**
-- Note the IPv4 address
+- **Player menu**: Setup → Network → Status
+- **Router DHCP table**: look for "BrightSign" hostname
+- **Network scan**: see [diagnostic commands](references/diagnostic-commands.md)
 
-### Method 2: Check Router DHCP Table
+### Step 2: Access diagnostic web server
 
-- Log into router admin interface
-- Look for "BrightSign" hostname in DHCP leases
-- Note assigned IP address
+Open `http://<player-ip>:8008` in a browser, or use curl for API access.
 
-### Method 3: Network Scan
+The diagnostic interface provides: device information, file browser (SD card), log viewer, system utilities, and remote inspector link.
 
-```bash
-# Scan for BrightSign diagnostic servers (port 8008)
-nmap -p 8008 --open 192.168.1.0/24
+### Step 3: Query device information
 
-# Or use this faster script
-for i in {1..254}; do
-  timeout 1 bash -c "echo > /dev/tcp/192.168.1.$i/8008" 2>/dev/null && echo "192.168.1.$i"
-done
-```
+Check firmware version, uptime, temperature, and storage. See [diagnostic commands](references/diagnostic-commands.md) for curl examples and key fields to monitor.
 
-### Method 4: mDNS/Bonjour Discovery
+### Step 4: Open remote inspector (Chrome DevTools)
 
-```bash
-# On macOS/Linux with avahi
-avahi-browse -t _http._tcp | grep BrightSign
+Connect Chrome DevTools to `<player-ip>:8008` for live JavaScript debugging: console, sources, network, performance, and memory tabs. See [diagnostic commands](references/diagnostic-commands.md) for setup steps.
 
-# Returns: brightsign-ABC123._http._tcp local
-```
+### Step 5: Review logs
 
-## Access Diagnostic Web Server
+Check player logs for error patterns. Common issues include missing assets (`ERR_FILE_NOT_FOUND`), bundle dependency errors, and widget initialization failures.
 
-Once you have the IP address:
+### Step 6: Verify file deployment
 
-```bash
-# Open diagnostic interface in browser
-open http://<player-ip>:8008
+Confirm all expected files are on the SD card with correct sizes and checksums. See [diagnostic commands](references/diagnostic-commands.md) for verification commands.
 
-# Or use curl for API access
-curl http://<player-ip>:8008/GetDeviceInfo
-```
+### Step 7: Apply fix and test
 
-**Diagnostic interface provides:**
+Based on findings, apply the appropriate fix and redeploy. Common troubleshooting scenarios are covered in [troubleshooting guide](references/troubleshooting.md).
 
-- Device information and status
-- File browser (SD card contents)
-- Log viewer
-- System utilities
-- Remote inspector link
+## Output Format
 
-## Query Device Information
+When debugging a player issue, produce:
 
-Get comprehensive device details:
+1. **Findings** — what was observed (errors, missing files, wrong config)
+2. **Root cause** — what is causing the issue
+3. **Fix** — specific actions to resolve
+4. **Verification** — how to confirm the fix worked
 
-```bash
-# Get device info (JSON)
-curl -s http://<player-ip>:8008/GetDeviceInfo | jq .
+## Reference Files
 
-# Example response:
-{
-  "model": "XD1035",
-  "serial": "ABC123456789",
-  "firmware": "9.1.35",
-  "bootVersion": "9.1.35",
-  "uptime": 3600,
-  "temperature": 45,
-  "voltage": 12.0,
-  "network": {
-    "ipAddress": "192.168.1.100",
-    "macAddress": "00:11:22:33:44:55",
-    "hostname": "brightsign-ABC123",
-    "gateway": "192.168.1.1"
-  },
-  "storage": {
-    "totalMB": 8192,
-    "usedMB": 512,
-    "freeMB": 7680
-  }
-}
-```
+- [Diagnostic commands](references/diagnostic-commands.md) — IP discovery, device info queries, remote inspector setup, log analysis, file verification
+- [Troubleshooting guide](references/troubleshooting.md) — common issues (white screen, crashes, missing assets, network failures, performance)
 
-**Key fields to check:**
+## Constraints
 
-- `firmware` - Ensure OS 9.x or later
-- `uptime` - Low uptime may indicate crash loops
-- `temperature` - High temp (>70°C) indicates cooling issues
-- `storage.freeMB` - Low storage causes deployment failures
-
-## Access Remote Inspector (Chrome DevTools)
-
-Debug JavaScript in real-time using Chrome DevTools:
-
-### Step 1: Enable Remote Debugging
-
-Remote debugging is typically enabled by default in autorun.brs:
-
-```brightscript
-' In autorun.brs
-htmlWidget.EnableRemoteDebugger(true)
-```
-
-### Step 2: Open Chrome DevTools
-
-```bash
-# Get inspector URL
-curl http://<player-ip>:8008/inspector
-
-# Or open directly in Chrome
-open "chrome://inspect/#devices"
-```
-
-### Step 3: Configure DevTools
-
-1. Open Chrome on your development machine
-2. Navigate to `chrome://inspect`
-3. Click "Configure..."
-4. Add: `<player-ip>:8008`
-5. Your React app should appear under "Remote Target"
-6. Click "inspect" to open DevTools
-
-### Step 4: Debug Application
-
-Use DevTools as normal:
-
-- **Console** - View console.log, errors, warnings
-- **Sources** - Set breakpoints, step through code
-- **Network** - Inspect API calls and resource loading
-- **Performance** - Profile rendering and CPU usage
-- **Memory** - Check for memory leaks
-
-## View Player Logs
-
-Access system logs for low-level diagnostics:
-
-```bash
-# Get logs (text format)
-curl http://<player-ip>:8008/logs
-
-# Or download logs
-curl http://<player-ip>:8008/logs > player-logs.txt
-
-# Filter for errors
-curl http://<player-ip>:8008/logs | grep -i error
-```
-
-**Common log patterns:**
-
-```
-ERROR: Failed to load resource: net::ERR_FILE_NOT_FOUND
-→ Missing asset file (check paths in index.html)
-
-ERROR: Uncaught ReferenceError: React is not defined
-→ Bundle dependency issue (check vendor chunks)
-
-WARNING: Application Cache is deprecated
-→ Ignore (BrightSign Chromium quirk)
-
-INFO: HTML Widget started successfully
-→ Good - widget initialized correctly
-```
-
-## Verify File Deployment
-
-Check that files were uploaded correctly:
-
-```bash
-# List SD card contents
-curl http://<player-ip>:8008/files?path=/sd:/
-
-# Check specific file exists
-curl -I http://<player-ip>:8008/files?path=/sd:/index.html
-
-# Download file for inspection
-curl http://<player-ip>:8008/files?path=/sd:/index.html > index.html
-
-# Verify bundle integrity
-curl http://<player-ip>:8008/files?path=/sd:/assets/index-abc123.js > bundle.js
-sha256sum bundle.js
-```
-
-## Troubleshooting
-
-See [troubleshooting guide](references/troubleshooting.md) for detailed diagnostics covering:
-
-- White screen / blank display
-- App crashes or restarts
-- Assets not loading
-- Network requests failing
-- Performance degradation
-- Debug overlay component
-- Diagnostic scripts
-
-## Resources
-
-For more information:
-
-- BrightSign OS 9.x Diagnostic Web Server API
-- Chrome DevTools Protocol documentation
-- BrightSign troubleshooting guides
+- Diagnostic web server must be enabled on the player
+- Remote inspector requires Chrome browser on development machine
+- Port 8008 must be accessible from development machine network
+- BrightSign OS 9.x minimum
