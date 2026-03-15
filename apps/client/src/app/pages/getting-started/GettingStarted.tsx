@@ -42,10 +42,33 @@ export const GettingStartedPage: FC = () => {
         </p>
       </div>
 
-      <section className="demo-panel mb-12 p-6 sm:p-8">
+      <section className="demo-panel-soft mb-12 px-8 py-8 sm:px-10">
         <h2 className="text-2xl font-medium text-foreground mb-4">
-          Project Status and Disclaimer
+          About The Project
         </h2>
+        <div className="space-y-4 text-muted-foreground max-w-3xl">
+          <p className="text-lg">
+            Digital signage is software that lives on walls. The Sign Age treats
+            it that way.
+          </p>
+          <p>
+            Most signage tooling assumes you want a CMS, a slide deck, or a
+            drag-and-drop editor. The Sign Age starts from a different premise:
+            signage screens are just frontend applications with unusual
+            constraints — fixed resolution, no user input, 24/7 runtime, viewed
+            from distance.
+          </p>
+          <p>
+            This project explores what happens when you build signage with
+            normal modern tools: React components, Tailwind layouts, TypeScript,
+            Vite, and a monorepo workflow. The result is code-driven,
+            testable, version-controlled signage — built like any other
+            frontend software.
+          </p>
+        </div>
+      </section>
+
+      <section className="demo-panel mb-12 p-6 sm:p-8">
         <div className="space-y-4 text-muted-foreground">
           <p>
             The Sign Age is an independent, experimental developer project.

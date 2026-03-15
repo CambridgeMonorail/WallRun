@@ -236,7 +236,7 @@ export const LandingPage: FC = () => {
             url: 'https://x.com/TimDMorris',
           },
         ]}
-        copyrightText={`© ${new Date().getFullYear()} TheSignAge. All rights reserved.`}
+        copyrightText={`© ${new Date().getFullYear()} TheSignAge · Built in the open by CambridgeMonorail`}
         data-testid="footer"
       />
     </div>
