@@ -419,12 +419,6 @@ git push
 
 ## Resources
 
-Reference scripts in this skill:
-
-- [deploy-fleet.ts](./deploy-fleet.ts) - Complete fleet deployment script
-- [manifest-template.json](./manifest-template.json) - Manifest structure
-- [update-checker.tsx](./update-checker.tsx) - Player-side update logic
-
 For more information:
 
 - GitHub Releases API documentation

@@ -327,8 +327,6 @@ python3 -m http.server 8080
 Reference files in this skill:
 
 - [autorun-template.brs](assets/autorun-template.brs) - Complete autorun.brs template
-- [vite.config.example.ts](./vite.config.example.ts) - Full Vite config
-- [package-script.sh](./package-script.sh) - Automated packaging script
 
 For more information:
 
