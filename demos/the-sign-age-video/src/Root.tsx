@@ -7,9 +7,12 @@ import { ReframeScene } from './scenes/ReframeScene';
 import { ShowcaseScene } from './scenes/ShowcaseScene';
 import { ToolkitScene } from './scenes/ToolkitScene';
 import { ConstraintsScene } from './scenes/ConstraintsScene';
+import { PositioningScene } from './scenes/PositioningScene';
+import { OpenSourceScene } from './scenes/OpenSourceScene';
 import { CloseScene } from './scenes/CloseScene';
+import { CreditsScene } from './scenes/CreditsScene';
 
-/** Full video — 7-scene narrative arc (~39s) */
+/** Full video — 10-scene narrative arc (~52s) */
 const MainVideo: FC = () => {
   return (
     <Series>
@@ -31,8 +34,17 @@ const MainVideo: FC = () => {
       <Series.Sequence durationInFrames={DURATIONS.constraints}>
         <ConstraintsScene />
       </Series.Sequence>
+      <Series.Sequence durationInFrames={DURATIONS.positioning}>
+        <PositioningScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={DURATIONS.openSource}>
+        <OpenSourceScene />
+      </Series.Sequence>
       <Series.Sequence durationInFrames={DURATIONS.close}>
         <CloseScene />
+      </Series.Sequence>
+      <Series.Sequence durationInFrames={DURATIONS.credits}>
+        <CreditsScene />
       </Series.Sequence>
     </Series>
   );
@@ -101,9 +113,33 @@ export const RemotionRoot: FC = () => {
         height={HEIGHT}
       />
       <Composition
+        id="PositioningScene"
+        component={PositioningScene}
+        durationInFrames={DURATIONS.positioning}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="OpenSourceScene"
+        component={OpenSourceScene}
+        durationInFrames={DURATIONS.openSource}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
         id="CloseScene"
         component={CloseScene}
         durationInFrames={DURATIONS.close}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="CreditsScene"
+        component={CreditsScene}
+        durationInFrames={DURATIONS.credits}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

@@ -11,21 +11,22 @@ import { ICONS } from '../components/icons';
 import { RevealText } from '../components/RevealText';
 
 const ITEMS_START = 15;
-const STRIKE_START = 90;
+const FADE_START = 90;
 const PUNCHLINE_START = 110;
 
 /**
- * Scene 2 — Frustration (6s)
- * The old world: template editors, drag-and-drop CMS, vendor lock-in.
- * Strikethrough crosses them out. Punchline validates the viewer's frustration.
+ * Scene 2 — Familiar tools (6s)
+ * The existing world: template editors, drag-and-drop CMS, vendor lock-in.
+ * Cards fade back (these tools aren't bad — they're just not how you think).
+ * Punchline: "You're a React developer. You already know how to build this."
  */
 export const FrustrationScene: FC = () => {
   const frame = useCurrentFrame();
   const { items, punchline } = SCRIPT.frustration;
 
-  const strikeProgress = interpolate(
+  const fadeProgress = interpolate(
     frame,
-    [STRIKE_START, STRIKE_START + 20],
+    [FADE_START, FADE_START + 20],
     [0, 1],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) }
   );
@@ -53,7 +54,7 @@ export const FrustrationScene: FC = () => {
 
   return (
     <AbsoluteFill style={{ background: BRAND.bg, opacity: exitOpacity }}>
-      <GlowOrb color="#ef4444" size={500} x={75} y={30} delay={5} />
+      <GlowOrb color={BRAND.violet} size={500} x={75} y={30} delay={5} />
 
       <AbsoluteFill
         style={{
@@ -65,7 +66,7 @@ export const FrustrationScene: FC = () => {
           zIndex: 1,
         }}
       >
-        {/* Old-world cards */}
+        {/* Familiar-world cards — fade back, not crossed out */}
         <div style={{ display: 'flex', gap: 36, position: 'relative' }}>
           {items.map((item, i) => {
             const Icon = ICONS[item.icon];
@@ -85,7 +86,8 @@ export const FrustrationScene: FC = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     gap: 20,
-                    opacity: strikeProgress > 0.5 ? 0.25 : 1,
+                    opacity: 1 - fadeProgress * 0.65,
+                    transform: `scale(${1 - fadeProgress * 0.04})`,
                   }}
                 >
                   <IconBadge size={64} glowColor={BRAND.textMuted}>
@@ -106,21 +108,6 @@ export const FrustrationScene: FC = () => {
             );
           })}
 
-          {/* Red strikethrough */}
-          {strikeProgress > 0 && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: 0,
-                width: `${strikeProgress * 100}%`,
-                height: 4,
-                background: '#ef4444',
-                borderRadius: 2,
-                boxShadow: '0 0 24px rgba(239, 68, 68, 0.6)',
-              }}
-            />
-          )}
         </div>
 
         {/* Punchline */}

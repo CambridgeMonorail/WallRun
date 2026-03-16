@@ -12,7 +12,10 @@ export const DURATIONS = {
   showcase: 9 * FPS,      // 270 frames — 9s
   toolkit: 6 * FPS,       // 180 frames — 6s
   constraints: 5 * FPS,   // 150 frames — 5s
+  positioning: 5 * FPS,   // 150 frames — 5s
+  openSource: 5 * FPS,    // 150 frames — 5s
   close: 4 * FPS,         // 120 frames — 4s
+  credits: 3 * FPS,       //  90 frames — 3s
 } as const;
 
 /** Total video duration */
@@ -23,7 +26,10 @@ export const TOTAL_DURATION =
   DURATIONS.showcase +
   DURATIONS.toolkit +
   DURATIONS.constraints +
-  DURATIONS.close;
+  DURATIONS.positioning +
+  DURATIONS.openSource +
+  DURATIONS.close +
+  DURATIONS.credits;
 
 /** Common animation timings */
 export const MOTION = {

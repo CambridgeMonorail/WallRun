@@ -10,12 +10,12 @@ export const SCRIPT = {
       { icon: 'cursor', label: 'Drag-and-drop CMS' },
       { icon: 'lock', label: 'Vendor lock-in' },
     ],
-    punchline: "You're a developer.\nThis shouldn't be this hard.",
+    punchline: "You're a React developer.\nYou already know how to build this.",
   },
   reframe: {
     pre: 'What if signage was just...',
     headline: 'a React app?',
-    sub: 'Clone. Install. Deploy. Normal tools. Unusual constraints.',
+    sub: 'Your toolchain. Your components. Unusual constraints.',
   },
   showcase: {
     screens: [
@@ -33,7 +33,7 @@ export const SCRIPT = {
   toolkit: {
     headline: "What's inside",
     items: [
-      { icon: 'layers', label: 'Signage component library', detail: 'shadcn/ui — but for walls', color: '#f59e0b' },
+      { icon: 'layers', label: 'Signage component library', detail: 'shadcn/ui primitives, adapted for walls', color: '#f59e0b' },
       { icon: 'type', label: 'Distance-readable typography', detail: '10-foot rule, enforced', color: '#57D5F4' },
       { icon: 'terminal', label: 'One-command BrightSign deploy', detail: 'pnpm deploy:player', color: '#10b981' },
       { icon: 'bot', label: 'Copilot agents for signage', detail: 'AI that knows the constraints', color: '#BF83EC' },
@@ -49,9 +49,31 @@ export const SCRIPT = {
       { stat: '< 2s', label: 'Glance time', detail: 'Understand and move on' },
     ],
   },
+  positioning: {
+    headline: 'Not a CMS replacement.',
+    lines: [
+      'Content management systems are great at what they do.',
+      'This is something different.',
+      'A starting point for developers who think in components,',
+      'not drag-and-drop.',
+    ],
+  },
+  openSource: {
+    headline: 'Open source.\nBuilt in the open.',
+    items: [
+      { label: 'MIT licensed' },
+      { label: 'Early days — contributions welcome' },
+      { label: 'github.com/CambridgeMonorail/TheSignAge' },
+    ],
+  },
   close: {
     headline: 'Signage is software.\nBuild it like software.',
     url: 'github.com/CambridgeMonorail/TheSignAge',
     cta: '★ Star on GitHub',
+  },
+  credits: {
+    madeWith: 'This video was built with',
+    tools: ['Claude', 'Remotion'],
+    tagline: 'Code generates code.',
   },
 } as const;
