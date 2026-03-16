@@ -6,47 +6,37 @@ export const HEIGHT = 1080;
 
 /** Scene durations in frames */
 export const DURATIONS = {
-  intro: 5 * FPS,        // 150 frames = 5s
-  problem: 7 * FPS,      // 210 frames = 7s
-  shift: 6 * FPS,        // 180 frames = 6s
-  repoOverview: 8 * FPS, // 240 frames = 8s
-  whyItMatters: 7 * FPS, // 210 frames = 7s
-  outro: 5 * FPS,        // 150 frames = 5s
+  hook: 4 * FPS,          // 120 frames — 4s
+  frustration: 6 * FPS,   // 180 frames — 6s
+  reframe: 5 * FPS,       // 150 frames — 5s
+  showcase: 9 * FPS,      // 270 frames — 9s
+  toolkit: 6 * FPS,       // 180 frames — 6s
+  constraints: 5 * FPS,   // 150 frames — 5s
+  close: 4 * FPS,         // 120 frames — 4s
 } as const;
 
 /** Total video duration */
 export const TOTAL_DURATION =
-  DURATIONS.intro +
-  DURATIONS.problem +
-  DURATIONS.shift +
-  DURATIONS.repoOverview +
-  DURATIONS.whyItMatters +
-  DURATIONS.outro;
+  DURATIONS.hook +
+  DURATIONS.frustration +
+  DURATIONS.reframe +
+  DURATIONS.showcase +
+  DURATIONS.toolkit +
+  DURATIONS.constraints +
+  DURATIONS.close;
 
 /** Common animation timings */
 export const MOTION = {
-  fadeIn: 20,
-  fadeOut: 15,
-  slideUp: 18,
-  staggerDelay: 8,
-  calloutDelay: 15,
-} as const;
-
-/** Scene start frames (cumulative) */
-export const SCENE_STARTS = {
-  intro: 0,
-  problem: DURATIONS.intro,
-  shift: DURATIONS.intro + DURATIONS.problem,
-  repoOverview: DURATIONS.intro + DURATIONS.problem + DURATIONS.shift,
-  whyItMatters:
-    DURATIONS.intro +
-    DURATIONS.problem +
-    DURATIONS.shift +
-    DURATIONS.repoOverview,
-  outro:
-    DURATIONS.intro +
-    DURATIONS.problem +
-    DURATIONS.shift +
-    DURATIONS.repoOverview +
-    DURATIONS.whyItMatters,
+  /** Standard fade-in duration */
+  fadeIn: 18,
+  /** Exit fade */
+  fadeOut: 12,
+  /** Slide distance for major elements */
+  slideUp: 24,
+  /** Delay between staggered items */
+  stagger: 6,
+  /** Slow reveal for accent elements */
+  accentReveal: 30,
+  /** Quick pop for small elements */
+  pop: 10,
 } as const;
