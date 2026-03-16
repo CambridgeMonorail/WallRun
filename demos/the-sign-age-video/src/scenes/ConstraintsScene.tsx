@@ -5,6 +5,7 @@ import { SCRIPT } from '../data/script';
 import { DURATIONS, MOTION } from '../data/timings';
 import { GridBackground } from '../components/GridBackground';
 import { RevealText } from '../components/RevealText';
+import { GlassCard } from '../components/GlassCard';
 
 const CARDS_START = 30;
 
@@ -68,75 +69,65 @@ export const ConstraintsScene: FC = () => {
               { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
             );
 
+            const glowColor = i % 2 === 0 ? BRAND.accent : BRAND.violet;
+
             return (
               <div
                 key={card.stat}
                 style={{
                   opacity: progress,
                   transform: `translateY(${(1 - progress) * 20}px)`,
-                  padding: '36px 40px',
-                  borderRadius: 16,
-                  border: `1px solid ${BRAND.border}`,
-                  background: BRAND.surface,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 10,
-                  position: 'relative',
-                  overflow: 'hidden',
                 }}
               >
-                {/* Accent top bar */}
-                <div
+                <GlassCard
+                  glow={glowColor}
                   style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: 3,
-                    background: i % 2 === 0 ? BRAND.gradientAccent : BRAND.gradientViolet,
-                    opacity: progress,
-                  }}
-                />
-
-                {/* Stat */}
-                <span
-                  style={{
-                    fontFamily: FONTS.heading,
-                    fontSize: 52,
-                    fontWeight: 600,
-                    color: BRAND.text,
-                    letterSpacing: '-0.03em',
-                    clipPath: `inset(0 ${(1 - statReveal) * 100}% 0 0)`,
+                    padding: '36px 40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 10,
                   }}
                 >
-                  {card.stat}
-                </span>
+                  {/* Stat */}
+                  <span
+                    style={{
+                      fontFamily: FONTS.heading,
+                      fontSize: 52,
+                      fontWeight: 600,
+                      color: BRAND.text,
+                      letterSpacing: '-0.03em',
+                      clipPath: `inset(0 ${(1 - statReveal) * 100}% 0 0)`,
+                    }}
+                  >
+                    {card.stat}
+                  </span>
 
-                {/* Label */}
-                <span
-                  style={{
-                    fontFamily: FONTS.heading,
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: BRAND.accent,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
-                  }}
-                >
-                  {card.label}
-                </span>
+                  {/* Label */}
+                  <span
+                    style={{
+                      fontFamily: FONTS.heading,
+                      fontSize: 20,
+                      fontWeight: 600,
+                      color: glowColor,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.06em',
+                    }}
+                  >
+                    {card.label}
+                  </span>
 
-                {/* Detail */}
-                <span
-                  style={{
-                    fontFamily: FONTS.body,
-                    fontSize: 18,
-                    color: BRAND.textMuted,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {card.detail}
-                </span>
+                  {/* Detail */}
+                  <span
+                    style={{
+                      fontFamily: FONTS.body,
+                      fontSize: 18,
+                      color: BRAND.textMuted,
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {card.detail}
+                  </span>
+                </GlassCard>
               </div>
             );
           })}

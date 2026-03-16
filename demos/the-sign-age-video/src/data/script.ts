@@ -6,9 +6,9 @@ export const SCRIPT = {
   },
   frustration: {
     items: [
-      { icon: '📋', label: 'Template editors' },
-      { icon: '🖱️', label: 'Drag-and-drop CMS' },
-      { icon: '🔒', label: 'Vendor lock-in' },
+      { icon: 'template', label: 'Template editors' },
+      { icon: 'cursor', label: 'Drag-and-drop CMS' },
+      { icon: 'lock', label: 'Vendor lock-in' },
     ],
     punchline: "You're a developer.\nThis shouldn't be this hard.",
   },
@@ -19,10 +19,10 @@ export const SCRIPT = {
   },
   showcase: {
     screens: [
-      { label: 'Restaurant Menu', icon: '🍔', color: '#f59e0b' },
-      { label: 'KPI Dashboard', icon: '📈', color: '#3b82f6' },
-      { label: 'Office Directory', icon: '🏢', color: '#10b981' },
-      { label: 'Event Schedule', icon: '📅', color: '#8b5cf6' },
+      { label: 'Restaurant Menu', icon: 'menu', color: '#f59e0b' },
+      { label: 'KPI Dashboard', icon: 'chart', color: '#57D5F4' },
+      { label: 'Office Directory', icon: 'building', color: '#10b981' },
+      { label: 'Event Schedule', icon: 'calendar', color: '#BF83EC' },
     ],
     terminal: [
       { prompt: true, text: 'pnpm deploy:player' },
@@ -33,11 +33,11 @@ export const SCRIPT = {
   toolkit: {
     headline: "What's inside",
     items: [
-      { label: 'Signage component library', detail: 'shadcn/ui — but for walls', color: '#f59e0b' },
-      { label: 'Distance-readable typography', detail: '10-foot rule, enforced', color: '#3b82f6' },
-      { label: 'One-command BrightSign deploy', detail: 'pnpm deploy:player', color: '#10b981' },
-      { label: 'Copilot agents for signage', detail: 'AI that knows the constraints', color: '#8b5cf6' },
-      { label: 'Offline-first, 24/7 ready', detail: 'State machines. Crash recovery.', color: '#ef4444' },
+      { icon: 'layers', label: 'Signage component library', detail: 'shadcn/ui — but for walls', color: '#f59e0b' },
+      { icon: 'type', label: 'Distance-readable typography', detail: '10-foot rule, enforced', color: '#57D5F4' },
+      { icon: 'terminal', label: 'One-command BrightSign deploy', detail: 'pnpm deploy:player', color: '#10b981' },
+      { icon: 'bot', label: 'Copilot agents for signage', detail: 'AI that knows the constraints', color: '#BF83EC' },
+      { icon: 'shield', label: 'Offline-first, 24/7 ready', detail: 'State machines. Crash recovery.', color: '#ef4444' },
     ],
   },
   constraints: {

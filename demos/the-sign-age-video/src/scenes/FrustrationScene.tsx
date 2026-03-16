@@ -5,6 +5,9 @@ import { SCRIPT } from '../data/script';
 import { DURATIONS, MOTION } from '../data/timings';
 import { FadeIn } from '../components/FadeIn';
 import { GlowOrb } from '../components/GlowOrb';
+import { GlassCard } from '../components/GlassCard';
+import { IconBadge } from '../components/IconBadge';
+import { ICONS } from '../components/icons';
 import { RevealText } from '../components/RevealText';
 
 const ITEMS_START = 15;
@@ -64,42 +67,44 @@ export const FrustrationScene: FC = () => {
       >
         {/* Old-world cards */}
         <div style={{ display: 'flex', gap: 36, position: 'relative' }}>
-          {items.map((item, i) => (
-            <FadeIn
-              key={item.label}
-              delay={ITEMS_START + i * 12}
-              slide={20}
-              scaleFrom={0.92}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: 16,
-                  padding: '40px 48px',
-                  borderRadius: 16,
-                  border: `1px solid ${BRAND.border}`,
-                  background: BRAND.surface,
-                  minWidth: 240,
-                  opacity: strikeProgress > 0.5 ? 0.25 : 1,
-                  transition: 'opacity 0.3s',
-                }}
+          {items.map((item, i) => {
+            const Icon = ICONS[item.icon];
+            return (
+              <FadeIn
+                key={item.label}
+                delay={ITEMS_START + i * 12}
+                slide={20}
+                scaleFrom={0.92}
               >
-                <span style={{ fontSize: 52 }}>{item.icon}</span>
-                <span
+                <GlassCard
+                  variant="soft"
                   style={{
-                    fontFamily: FONTS.body,
-                    fontSize: 24,
-                    color: BRAND.textMuted,
-                    textAlign: 'center',
+                    padding: '40px 48px',
+                    minWidth: 240,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 20,
+                    opacity: strikeProgress > 0.5 ? 0.25 : 1,
                   }}
                 >
-                  {item.label}
-                </span>
-              </div>
-            </FadeIn>
-          ))}
+                  <IconBadge size={64} glowColor={BRAND.textMuted}>
+                    {Icon ? <Icon size={32} color={BRAND.textMuted} /> : null}
+                  </IconBadge>
+                  <span
+                    style={{
+                      fontFamily: FONTS.body,
+                      fontSize: 24,
+                      color: BRAND.textMuted,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {item.label}
+                  </span>
+                </GlassCard>
+              </FadeIn>
+            );
+          })}
 
           {/* Red strikethrough */}
           {strikeProgress > 0 && (

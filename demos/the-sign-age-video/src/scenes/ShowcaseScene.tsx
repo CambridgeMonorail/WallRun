@@ -6,6 +6,9 @@ import { DURATIONS, MOTION } from '../data/timings';
 import { FadeIn } from '../components/FadeIn';
 import { GlowOrb } from '../components/GlowOrb';
 import { TerminalBlock } from '../components/TerminalBlock';
+import { GlassCard } from '../components/GlassCard';
+import { IconBadge } from '../components/IconBadge';
+import { ICONS } from '../components/icons';
 
 const GRID_START = 10;
 const TERMINAL_START = 110;
@@ -78,49 +81,43 @@ export const ShowcaseScene: FC = () => {
               }
             );
 
+            const Icon = ICONS[screen.icon];
+
             return (
               <div
                 key={screen.label}
                 style={{
                   opacity: progress,
                   transform: `translateY(${(1 - progress) * 20}px) scale(${0.95 + progress * 0.05})`,
-                  height: 200,
-                  borderRadius: 16,
-                  border: `1px solid ${screen.color}44`,
-                  background: `${screen.color}08`,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 16,
-                  position: 'relative',
-                  overflow: 'hidden',
                 }}
               >
-                {/* Accent top bar */}
-                <div
+                <GlassCard
+                  glow={screen.color}
                   style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: 3,
-                    background: screen.color,
-                    opacity: 0.7,
-                  }}
-                />
-                <span style={{ fontSize: 48 }}>{screen.icon}</span>
-                <span
-                  style={{
-                    fontFamily: FONTS.heading,
-                    fontSize: 22,
-                    fontWeight: 600,
-                    color: screen.color,
-                    letterSpacing: '0.02em',
+                    height: 200,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: 20,
+                    padding: '24px',
                   }}
                 >
-                  {screen.label}
-                </span>
+                  <IconBadge size={56} glowColor={screen.color}>
+                    {Icon ? <Icon size={28} color={screen.color} /> : null}
+                  </IconBadge>
+                  <span
+                    style={{
+                      fontFamily: FONTS.heading,
+                      fontSize: 22,
+                      fontWeight: 600,
+                      color: BRAND.text,
+                      letterSpacing: '0.02em',
+                    }}
+                  >
+                    {screen.label}
+                  </span>
+                </GlassCard>
               </div>
             );
           })}

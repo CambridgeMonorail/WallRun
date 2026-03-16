@@ -6,6 +6,9 @@ import { DURATIONS, MOTION } from '../data/timings';
 import { FadeIn } from '../components/FadeIn';
 import { GlowOrb } from '../components/GlowOrb';
 import { RevealText } from '../components/RevealText';
+import { GlassCard } from '../components/GlassCard';
+import { IconBadge } from '../components/IconBadge';
+import { ICONS } from '../components/icons';
 
 const ITEMS_START = 30;
 
@@ -45,7 +48,7 @@ export const ToolkitScene: FC = () => {
         </div>
 
         {/* Right: capability rows */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {items.map((item, i) => {
             const rowDelay = ITEMS_START + i * 10;
             const progress = interpolate(
@@ -59,54 +62,52 @@ export const ToolkitScene: FC = () => {
               }
             );
 
+            const Icon = ICONS[item.icon];
+
             return (
               <div
                 key={item.label}
                 style={{
                   opacity: progress,
                   transform: `translateX(${(1 - progress) * 30}px)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 20,
-                  padding: '18px 24px',
-                  borderRadius: 12,
-                  border: `1px solid ${BRAND.borderSubtle}`,
-                  background: BRAND.surface,
                 }}
               >
-                {/* Color accent dot */}
-                <div
+                <GlassCard
+                  variant="soft"
+                  glow={item.color}
                   style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: '50%',
-                    background: item.color,
-                    boxShadow: `0 0 12px ${item.color}44`,
-                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 20,
+                    padding: '18px 24px',
                   }}
-                />
-                {/* Label + detail */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  <span
-                    style={{
-                      fontFamily: FONTS.heading,
-                      fontSize: 22,
-                      fontWeight: 600,
-                      color: BRAND.text,
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: FONTS.body,
-                      fontSize: 17,
-                      color: BRAND.textMuted,
-                    }}
-                  >
-                    {item.detail}
-                  </span>
-                </div>
+                >
+                  <IconBadge size={44} glowColor={item.color}>
+                    {Icon ? <Icon size={22} color={item.color} /> : null}
+                  </IconBadge>
+                  {/* Label + detail */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <span
+                      style={{
+                        fontFamily: FONTS.heading,
+                        fontSize: 22,
+                        fontWeight: 600,
+                        color: BRAND.text,
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: FONTS.body,
+                        fontSize: 17,
+                        color: BRAND.textMuted,
+                      }}
+                    >
+                      {item.detail}
+                    </span>
+                  </div>
+                </GlassCard>
               </div>
             );
           })}
