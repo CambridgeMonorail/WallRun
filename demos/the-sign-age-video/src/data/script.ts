@@ -6,9 +6,9 @@ export const SCRIPT = {
   },
   frustration: {
     items: [
-      { icon: 'template', label: 'Template editors' },
-      { icon: 'cursor', label: 'Drag-and-drop CMS' },
-      { icon: 'lock', label: 'Vendor lock-in' },
+      { icon: 'template', label: "Hardware you've never touched" },
+      { icon: 'cursor', label: "Constraints you've never designed for" },
+      { icon: 'lock', label: "Tools that don't think like you do" },
     ],
     punchline: "You're a React developer.\nYou already know how to build this.",
   },
