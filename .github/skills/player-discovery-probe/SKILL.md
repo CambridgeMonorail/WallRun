@@ -4,9 +4,9 @@ description: Diagnose connectivity to a single BrightSign player by probing its 
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: '1.0'
+  version: '2.0'
   internal: true
-  argument-hint: '<ip> e.g. 192.168.1.50 [--port 80|8008|8080]'
+  argument-hint: '<ip> e.g. 192.168.0.42'
   user-invokable: true
 ---
 
@@ -25,34 +25,42 @@ Quickly verify that a specific host responds and looks like a BrightSign player.
 ## Workflow
 
 1. Confirm the user has provided an explicit IP address
-2. Run the probe command (with optional port override)
+2. Run the probe command
 3. Report whether the player was found and which endpoint responded
-4. Show a short diagnostics block
+4. Show device info (model, serial, firmware) if available
 
 ## Commands to run
 
-Probe a player (choose port if needed):
+Probe a player:
 
 ```bash
-nx run player-discovery:probe -- --ip <IP>
+pnpm discover --host <IP>
 ```
 
-Optional port override:
+With verbose failure details:
 
 ```bash
-nx run player-discovery:probe -- --ip <IP> --port 80
+pnpm discover --host <IP> --verbose
+```
+
+Override ports:
+
+```bash
+pnpm discover --host <IP> --ports 80,8008,8080
 ```
 
 ## Output Format
 
 - Show whether the player was found and which endpoint responded
-- Show a short, human-readable diagnostics block
+- Show device info table (model, serial, firmware)
+- Updates `.brightsign/players.json` with the probed player
 
 ## Troubleshooting guidance
 
 If probe fails:
 
-- Suggest trying different ports (`--port 80`, `--port 8080`, `--port 8008`)
+- Add `--verbose` to see connection failure details per port/endpoint
+- All four ports (8008, 8080, 80, 443) are tried by default
 - Ask about VLAN/subnet mismatch
 - Remind that Local DWS may be disabled
 - Remind that firewalls may block inbound HTTP

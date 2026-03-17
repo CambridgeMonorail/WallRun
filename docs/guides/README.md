@@ -68,7 +68,7 @@ pnpm deploy:quick             # Quick deploy (existing build)
 # Player management
 pnpm player list              # List configured players
 pnpm player add <name> <ip>   # Add new player
-pnpm discover:scan            # Scan network for players
+pnpm discover                 # Scan network for players
 ```
 
 **Important**: BrightSign uses **HTTP Digest authentication** (not Basic auth). Always use `--digest` flag with curl.
