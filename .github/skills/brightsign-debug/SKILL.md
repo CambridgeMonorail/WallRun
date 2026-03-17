@@ -65,7 +65,7 @@ Check firmware version, uptime, temperature, and storage. See [diagnostic comman
 
 ### Step 4: Open remote inspector (Chrome DevTools)
 
-Connect Chrome DevTools to `<player-ip>:2999` for live JavaScript debugging: console, sources, network, performance, and memory tabs. The inspector port (2999) is separate from the DWS port (8008). See [diagnostic commands](references/diagnostic-commands.md) for setup steps.
+Connect Chrome DevTools to `<player-ip>:2999` for live JavaScript debugging: console, sources, network, performance, and memory tabs. The inspector port (2999) is separate from the DWS port (8008), and on tested OS 9.1 players the dev bootstrap needs both `enable_web_inspector=1` in the `html` registry and `inspector_server: { port: 2999 }` in the widget config. See [diagnostic commands](references/diagnostic-commands.md) for setup steps.
 
 ### Step 5: Review logs
 

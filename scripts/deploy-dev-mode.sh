@@ -14,6 +14,44 @@ set -e
 PLAYER=${PLAYER:-192.168.0.62}
 AUTH=${AUTH:-}
 AUTORUN_FILE="tools/brightsign-test-files/autorun-dev.brs"
+DEV_SERVER_IP=${DEV_SERVER_IP:-}
+TEMP_AUTORUN_FILE=""
+
+cleanup() {
+  if [ -n "$TEMP_AUTORUN_FILE" ] && [ -f "$TEMP_AUTORUN_FILE" ]; then
+    rm -f "$TEMP_AUTORUN_FILE"
+  fi
+}
+
+trap cleanup EXIT
+
+detect_local_ip() {
+  if [ -n "$DEV_SERVER_IP" ]; then
+    printf '%s' "$DEV_SERVER_IP"
+    return 0
+  fi
+
+  local detected_ip=""
+
+  if command -v ip >/dev/null 2>&1; then
+    detected_ip=$(ip route get "$PLAYER" 2>/dev/null | awk '{for (i = 1; i <= NF; i++) if ($i == "src") { print $(i + 1); exit }}')
+  fi
+
+  if [ -z "$detected_ip" ] && command -v route >/dev/null 2>&1; then
+    local route_interface
+    route_interface=$(route -n get "$PLAYER" 2>/dev/null | awk '/interface:/{print $2; exit}')
+
+    if [ -n "$route_interface" ] && command -v ipconfig >/dev/null 2>&1; then
+      detected_ip=$(ipconfig getifaddr "$route_interface" 2>/dev/null || true)
+    fi
+
+    if [ -z "$detected_ip" ] && [ -n "$route_interface" ] && command -v ifconfig >/dev/null 2>&1; then
+      detected_ip=$(ifconfig "$route_interface" 2>/dev/null | awk '/inet / { print $2; exit }')
+    fi
+  fi
+
+  printf '%s' "$detected_ip"
+}
 
 if [ -z "$AUTH" ]; then
   echo "❌ Error: AUTH environment variable is required"
@@ -62,20 +100,20 @@ else
   exit 1
 fi
 
-# Get local IP address (for display only)
-if command -v ip &> /dev/null; then
-  LOCAL_IP=$(ip route get 1 | awk '{print $7; exit}')
-elif command -v ipconfig &> /dev/null; then
-  # Windows
-  LOCAL_IP=$(ipconfig | grep -i "IPv4" | head -1 | awk '{print $NF}')
-else
-  LOCAL_IP="YOUR_LOCAL_IP"
+LOCAL_IP=$(detect_local_ip)
+
+if [ -z "$LOCAL_IP" ]; then
+  echo "❌ Could not determine the local IP address reachable by $PLAYER"
+  echo "   Set DEV_SERVER_IP manually and rerun the script."
+  exit 1
 fi
 
+TEMP_AUTORUN_FILE=$(mktemp "${TMPDIR:-/tmp}/autorun-dev.XXXXXX.brs")
+sed "s/__DEV_SERVER_IP__/$LOCAL_IP/g" "$AUTORUN_FILE" > "$TEMP_AUTORUN_FILE"
+
 echo ""
-echo "⚙️  Before deploying, edit $AUTORUN_FILE"
-echo "   Change DEV_SERVER_IP to: $LOCAL_IP"
-read -p "   Press Enter when ready..."
+echo "⚙️  Preparing dev-mode autorun.brs"
+echo "   Using dev server IP: $LOCAL_IP"
 
 # Delete old autorun.brs
 echo ""
@@ -84,7 +122,7 @@ curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X DELETE https://$PLAYER/api/
 
 # Upload new autorun.brs
 echo "📤 Uploading dev-mode autorun.brs..."
-if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X PUT -F "file=@$AUTORUN_FILE" https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
+if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X PUT -F "file=@$TEMP_AUTORUN_FILE;filename=autorun.brs" https://$PLAYER/api/v1/files/sd/ > /dev/null 2>&1; then
   echo "✅ Uploaded autorun.brs"
 else
   echo "❌ Upload failed"
@@ -94,7 +132,7 @@ fi
 # Reboot player
 echo ""
 echo "🔄 Rebooting player..."
-if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X POST https://$PLAYER/api/v1/control/reboot > /dev/null 2>&1; then
+if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X PUT https://$PLAYER/api/v1/control/reboot > /dev/null 2>&1; then
   echo "✅ Reboot command sent"
 else
   echo "⚠️  Could not send reboot command"
@@ -104,7 +142,7 @@ echo ""
 echo "✅ Development mode configured!"
 echo ""
 echo "📝 Next steps:"
-echo "   1. Start your dev server: pnpm dev -- --host 0.0.0.0"
+echo "   1. Start your dev server: pnpm dev:brightsign"
 echo "   2. Player will load from: http://$LOCAL_IP:5173"
 echo "   3. Debug at chrome://inspect/devices"
 echo "   4. Inspector: $PLAYER:2999"

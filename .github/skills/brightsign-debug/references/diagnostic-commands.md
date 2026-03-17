@@ -64,13 +64,17 @@ curl -s http://<player-ip>:8008/GetDeviceInfo | jq .
 
 ## Remote Inspector (Chrome DevTools)
 
-The JavaScript inspector runs on **port 2999** (separate from DWS on 8008). It is enabled in the dev-mode autorun.brs via the `inspector_server` config; the production bootstrap does not expose it.
+The JavaScript inspector runs on **port 2999** (separate from DWS on 8008). It is enabled in the dev-mode autorun.brs via both the `html/enable_web_inspector` registry key and the widget `inspector_server` config; the production bootstrap does not expose it.
 
 ### Step 1: Enable Remote Debugging
 
 Enabled in dev-mode autorun.brs:
 
 ```brightscript
+reg = CreateObject("roRegistrySection", "html")
+reg.Write("enable_web_inspector", "1")
+reg.Flush()
+
 inspector_server: { port: 2999 }
 ```
 
@@ -82,6 +86,33 @@ inspector_server: { port: 2999 }
 4. Add: `<player-ip>:2999`
 5. Your React app should appear under "Remote Target"
 6. Click "inspect" to open DevTools
+
+If port 2999 stays closed after reboot, verify both of the following:
+
+- the player is running the dev-mode bootstrap rather than the packaged production `autorun.brs`
+- `https://<player-ip>/api/v1/registry/html/enable_web_inspector/` returns `"1"`
+
+## SSH Console Access
+
+On BrightSign OS 9.x, SSH is a separate feature from the web inspector. If you need shell-style access to watch BrightScript output or attach to the interpreter, enable it explicitly in your bootstrap or from the debugger.
+
+```brightscript
+netReg = CreateObject("roRegistrySection", "networking")
+netReg.Write("ssh", "22")
+
+networkConfig = CreateObject("roNetworkConfiguration", 0)
+networkConfig.SetLoginPassword("CHANGE_ME")
+networkConfig.Apply()
+netReg.Flush()
+```
+
+Reboot after writing the key, then connect with:
+
+```bash
+ssh brightsign@<player-ip>
+```
+
+Use the password passed to `SetLoginPassword()`. The LDWS `admin` account is not the SSH username.
 
 ### Step 3: Use DevTools
 
