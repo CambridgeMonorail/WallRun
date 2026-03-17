@@ -1,12 +1,12 @@
 ---
 name: player-discovery-scan
-description: Scan a local subnet to discover BrightSign players via DWS fingerprinting and generate a players.json inventory. Use when asked to find players on a LAN or scan a CIDR range.
+description: Scan a local subnet to discover BrightSign players via DWS fingerprinting and update .brightsign/players.json. Use when asked to find players on a LAN or scan a CIDR range.
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: '1.0'
+  version: '2.0'
   internal: true
-  argument-hint: '<cidr> e.g. 192.168.0.0/24'
+  argument-hint: '[--cidr 192.168.0.0/24]'
   user-invokable: true
 ---
 
@@ -14,45 +14,43 @@ metadata:
 
 ## Purpose
 
-Run the Nx-based player discovery scan against a developer-provided CIDR to find BrightSign players via Diagnostic Web Server (DWS) fingerprinting.
+Discover BrightSign players on the local network via DWS fingerprinting and write results to `.brightsign/players.json`.
 
 ## Safety and boundaries
 
-- Never scan without an explicit CIDR provided by the user.
-- Never widen the scan beyond what the user asked for.
-- Outputs are sensitive. Always write to `dist/` and never commit results.
-- Prefer probing a known IP before scanning a full subnet when debugging.
+- Without `--cidr`, the tool auto-detects local private subnets (safe).
+- With `--cidr`, only the user-provided range is scanned.
+- `.brightsign/players.json` is gitignored — never commit it.
+- Prefer `--host <ip>` before scanning a full subnet when debugging.
 
 ## Workflow
 
-1. Confirm the user has provided an explicit CIDR range
-2. Run the scan command
-3. Report the number of players found
-4. Confirm output path and remind about gitignore
+1. If the user provides a CIDR, use it. Otherwise auto-detect.
+2. Run the discover command.
+3. Report the number of players found.
+4. Confirm `.brightsign/players.json` was updated.
 
 ## Commands to run
 
-Run a scan (scriptable):
+Auto-detect and scan:
 
 ```bash
-nx run player-discovery:scan -- --cidr <CIDR>
+pnpm discover
 ```
 
-This writes results to:
-
-- `dist/players.json` (gitignored)
-
-Optional thorough scan (more ports):
+Scan explicit subnet:
 
 ```bash
-nx run player-discovery:scan -- --cidr <CIDR> --thorough
+pnpm discover --cidr <CIDR>
 ```
+
+Results are written to `.brightsign/players.json` (gitignored).
 
 ## Output Format
 
-- Print a short summary: number of players found
-- Confirm output path: `dist/players.json`
-- Remind: `dist/players.json` is gitignored and must not be committed
+- Print a summary table: IP, model, serial, firmware, name
+- Confirm output path: `.brightsign/players.json`
+- Show number of players found
 
 ## Troubleshooting guidance
 
@@ -60,4 +58,4 @@ If zero results:
 
 - Ask whether the developer is on the same VLAN/subnet as the players
 - Remind that Local DWS may be disabled or blocked by firewall rules
-- Suggest running `/player-discovery-probe <IP>` for a known player first
+- Suggest running `pnpm discover --host <IP> --verbose` for a known player first

@@ -1,12 +1,12 @@
 ---
 name: player-discovery-export
-description: Export player discovery results to JSON and CSV and print a terminal-friendly summary. Use when asked to share results in a readable way or generate CSV for support.
+description: Export player discovery results to JSON for sharing. Use when asked to get raw discovery output or pipe results to another tool.
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: '1.0'
+  version: '2.0'
   internal: true
-  argument-hint: '[--in dist/players.json] [--json dist/players.json] [--csv dist/players.csv]'
+  argument-hint: ''
   user-invokable: true
 ---
 
@@ -14,38 +14,33 @@ metadata:
 
 ## Purpose
 
-Transform discovery results into a developer-friendly summary and optional CSV file.
+Output discovery results as raw JSON to stdout for piping to other tools or sharing.
 
 ## Safety and boundaries
 
 - Treat outputs as sensitive (internal IPs, device metadata).
-- Always write generated files to `dist/`.
-- Never commit generated files.
+- Never commit discovery outputs to Git.
 
 ## Workflow
 
-1. Confirm `dist/players.json` exists from a previous scan
-2. Run the export command
-3. Report total count, output paths, and a preview table
-4. Remind that `dist/*` outputs are gitignored
+1. Run the discover command with `--json`
+2. Pipe or redirect output as needed
 
 ## Commands to run
 
-Export from `dist/players.json` (defaults):
+Print raw JSON to stdout (no file write):
 
 ```bash
-nx run player-discovery:export
+pnpm discover --json
 ```
 
-Export with explicit paths:
+Redirect to a file:
 
 ```bash
-nx run player-discovery:export -- --in dist/players.json --json dist/players.json --csv dist/players.csv
+pnpm discover --json > discovery-results.json
 ```
 
 ## Output Format
 
-- Print total count
-- Print output paths written
-- Print a small preview table (first 20)
-- Remind that `dist/*` outputs are gitignored
+- JSON array of discovered players with ip, port, evidence, deviceInfo
+- Suitable for piping to `jq`, sharing, or importing into other tools
