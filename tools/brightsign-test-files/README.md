@@ -75,25 +75,32 @@ Load your React app directly from your dev machine's Vite server over the networ
 
 ### Setup
 
-1. **Edit `autorun-dev.brs`**:
-
-   ```brightscript
-   DEV_SERVER_IP = "192.168.0.100"  ' <<< Change to your dev machine's LAN IP
-   ```
-
-2. **Deploy dev mode bootstrap**:
+1. **Deploy dev mode bootstrap**:
 
    ```bash
    pnpm deploy:dev-mode
    ```
 
-3. **Start dev server** (binds to network):
+   The script auto-detects the LAN IP used to reach the player and injects it into a temporary `autorun.brs` before upload.
+   If auto-detection fails, rerun with `DEV_SERVER_IP=<your-lan-ip>`.
+
+2. **Start dev server** (binds to network):
 
    ```bash
    pnpm dev:brightsign
    ```
 
-4. **Player loads from your dev server** - changes reflect immediately
+3. **Player loads from your dev server** - changes reflect immediately
+
+4. **Attach Chrome DevTools**:
+
+   - Open `chrome://inspect/devices`
+   - Add `<player-ip>:2999`
+   - Click `inspect`
+
+5. **Optional SSH console access**:
+
+   Uncomment the SSH block in `autorun-dev.brs`, set a password, deploy again, then connect with `ssh brightsign@<player-ip>`.
 
 See [BrightSign Dual Mode Workflow Guide](../../docs/guides/brightsign-dual-mode-workflow.md) for details.
 
@@ -104,11 +111,11 @@ See [BrightSign Dual Mode Workflow Guide](../../docs/guides/brightsign-dual-mode
 ### Local Autorun Verification
 
 1. **Check LDWS access**:
-   - Browse to `http://<player-ip>/api/v1/info/`
+   - Browse to `https://<player-ip>/api/v1/info/`
    - You should see JSON with player model, serial, and firmware version
 
 2. **Verify SD card files via LDWS**:
-   - Browse to `http://<player-ip>/api/v1/files/sd/`
+   - Browse to `https://<player-ip>/api/v1/files/sd/`
    - Confirm `autorun.brs` and `index.html` are present
    - If missing, re-copy the files to the SD card root
 
@@ -139,7 +146,7 @@ See [BrightSign Dual Mode Workflow Guide](../../docs/guides/brightsign-dual-mode
 
 ### Verify SD Card File Listing
 
-Via LDWS: `http://<player-ip>/api/v1/files/sd/`
+Via LDWS: `https://<player-ip>/api/v1/files/sd/`
 
 Expected entries:
 

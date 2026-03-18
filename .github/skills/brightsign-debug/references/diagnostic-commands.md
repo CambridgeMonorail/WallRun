@@ -64,13 +64,17 @@ curl -s http://<player-ip>:8008/GetDeviceInfo | jq .
 
 ## Remote Inspector (Chrome DevTools)
 
-The JavaScript inspector runs on **port 2999** (separate from DWS on 8008). It is enabled in the dev-mode autorun.brs via the `inspector_server` config; the production bootstrap does not expose it.
+The JavaScript inspector runs on **port 2999** (separate from DWS on 8008). It is enabled in the dev-mode autorun.brs via both the `html/enable_web_inspector` registry key and the widget `inspector_server` config; the production bootstrap does not expose it.
 
 ### Step 1: Enable Remote Debugging
 
 Enabled in dev-mode autorun.brs:
 
 ```brightscript
+reg = CreateObject("roRegistrySection", "html")
+reg.Write("enable_web_inspector", "1")
+reg.Flush()
+
 inspector_server: { port: 2999 }
 ```
 

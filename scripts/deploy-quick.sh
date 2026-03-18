@@ -107,7 +107,7 @@ echo "✅ Uploaded $file_count files"
 # Reboot player
 echo ""
 echo "🔄 Rebooting player..."
-if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X POST https://$PLAYER/api/v1/control/reboot > /dev/null 2>&1; then
+if curl "${CURL_BASE_ARGS[@]}" "${CURL_TLS_ARGS[@]}" -X PUT https://$PLAYER/api/v1/control/reboot > /dev/null 2>&1; then
   echo "✅ Reboot command sent"
 else
   echo "⚠️  Could not send reboot command"
