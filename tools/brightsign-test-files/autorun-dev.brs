@@ -5,7 +5,7 @@ Sub Main()
   ' Setup:
   ' 1. Inject DEV_SERVER_IP with your machine's LAN IP before upload
   ' 2. Upload this autorun.brs to SD card once
-  ' 3. Run: pnpm dev -- --host 0.0.0.0 on your dev machine
+  ' 3. Run: pnpm dev:brightsign on your dev machine
   ' 4. Player will load from http://YOUR_IP:5173
   ' 5. Debug at chrome://inspect/devices (player IP:2999)
   

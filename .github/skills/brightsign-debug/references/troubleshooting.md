@@ -279,8 +279,8 @@ curl -s http://$PLAYER_IP:8008/logs | grep -i error | tail -10
 # 5. Remote inspector
 echo ""
 echo "5. Remote Inspector:"
-echo "Open Chrome DevTools at: chrome://inspect/devices"
-echo "Add target: $PLAYER_IP:2999"
+echo "Open: http://$PLAYER_IP:8008/inspector"
+echo "Or: chrome://inspect (add $PLAYER_IP:8008)"
 
 echo ""
 echo "=== Diagnostics Complete ==="

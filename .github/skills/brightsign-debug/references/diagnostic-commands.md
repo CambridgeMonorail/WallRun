@@ -87,33 +87,6 @@ inspector_server: { port: 2999 }
 5. Your React app should appear under "Remote Target"
 6. Click "inspect" to open DevTools
 
-If port 2999 stays closed after reboot, verify both of the following:
-
-- the player is running the dev-mode bootstrap rather than the packaged production `autorun.brs`
-- `https://<player-ip>/api/v1/registry/html/enable_web_inspector/` returns `"1"`
-
-## SSH Console Access
-
-On BrightSign OS 9.x, SSH is a separate feature from the web inspector. If you need shell-style access to watch BrightScript output or attach to the interpreter, enable it explicitly in your bootstrap or from the debugger.
-
-```brightscript
-netReg = CreateObject("roRegistrySection", "networking")
-netReg.Write("ssh", "22")
-
-networkConfig = CreateObject("roNetworkConfiguration", 0)
-networkConfig.SetLoginPassword("CHANGE_ME")
-networkConfig.Apply()
-netReg.Flush()
-```
-
-Reboot after writing the key, then connect with:
-
-```bash
-ssh brightsign@<player-ip>
-```
-
-Use the password passed to `SetLoginPassword()`. The LDWS `admin` account is not the SSH username.
-
 ### Step 3: Use DevTools
 
 - **Console** — view errors, warnings, console.log output
