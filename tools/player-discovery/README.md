@@ -116,8 +116,11 @@ Registered as the `player-discovery` Nx project:
 
 ```bash
 nx run player-discovery:discover    # Scan and write players.json
-nx run player-discovery:probe       # Probe single host (pass --host <ip>)
+nx run player-discovery:probe -- --host <ip>  # Probe single host
 ```
+
+Pass `--host <ip>` after the `--` separator so Nx forwards the arguments to the
+underlying discovery script.
 
 pnpm shortcuts:
 

@@ -50,15 +50,17 @@ export const TypeWriter: FC<TypeWriterProps> = ({
       }}
     >
       {text.slice(0, charsToShow)}
-      <span
-        style={{
-          opacity: typingDone ? cursorOpacity : 1,
-          color: BRAND.accent,
-          fontWeight: 300,
-        }}
-      >
-        |
-      </span>
+      {cursor && (
+        <span
+          style={{
+            opacity: typingDone ? cursorOpacity : 1,
+            color: BRAND.accent,
+            fontWeight: 300,
+          }}
+        >
+          |
+        </span>
+      )}
     </div>
   );
 };

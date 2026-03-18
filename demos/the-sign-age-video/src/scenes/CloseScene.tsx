@@ -12,7 +12,7 @@ const URL_DELAY = 50;
 const CTA_DELAY = 70;
 
 /**
- * Scene 7 — Close (4s)
+ * Scene 9 — Close (4s)
  * "Signage is software. Build it like software."
  * GitHub URL + star button. Expanding ring for atmosphere.
  */

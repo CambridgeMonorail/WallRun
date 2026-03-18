@@ -3,7 +3,6 @@ import { type FC } from 'react';
 import { BRAND, FONTS } from '../data/brand';
 import { SCRIPT } from '../data/script';
 import { DURATIONS, MOTION } from '../data/timings';
-import { FadeIn } from '../components/FadeIn';
 import { GlowOrb } from '../components/GlowOrb';
 import { TerminalBlock } from '../components/TerminalBlock';
 import { GlassCard } from '../components/GlassCard';

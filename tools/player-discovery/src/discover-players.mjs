@@ -187,7 +187,7 @@ function getLocalCandidateCidrs() {
         entry.address.startsWith('192.168.') ||
         /^172\.(1[6-9]|2\d|3[0-1])\./.test(entry.address)
       ) {
-        cidrs.add(`${intToIp(network)}/${prefix}`);
+        cidrs.add(`${entry.address}/${prefix}`);
       }
     }
   }
@@ -292,7 +292,7 @@ function normaliseDeviceInfo(data) {
     root?.networking?.result?.description?.trim() ??
     null;
 
-  return {
+  const deviceInfo = {
     model: lookup(['model', 'modelName', 'model_number', 'hwFamily']),
     serial: lookup(['serial', 'serialNumber', 'unitSerial']),
     firmware: lookup([
@@ -305,6 +305,10 @@ function normaliseDeviceInfo(data) {
     name,
     description,
   };
+
+  return deviceInfo.model || deviceInfo.serial || deviceInfo.firmware || deviceInfo.name || deviceInfo.description
+    ? deviceInfo
+    : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -365,13 +369,15 @@ async function probeEndpoint({ ip, port, path: reqPath, timeout }) {
     response.body,
     response.status,
   );
+  const deviceInfo = normaliseDeviceInfo(json) ?? parseGetIdXml(response.body) ?? null;
 
   return {
-    success: Boolean(evidence || json),
+    success: Boolean(evidence || deviceInfo),
     status: response.status,
     headers: response.headers,
     body: response.body,
     json,
+    deviceInfo,
     evidence,
     path: reqPath,
   };
@@ -387,10 +393,7 @@ async function probeHost(ip, ports, timeout, verbose = false) {
 
       if (result.success) {
         // Extract device info from JSON or /GetID XML
-        const deviceInfo =
-          normaliseDeviceInfo(result.json) ??
-          parseGetIdXml(result.body) ??
-          null;
+        const deviceInfo = result.deviceInfo ?? null;
 
         const hit = {
           ip,
@@ -501,6 +504,9 @@ function mergeIntoPlayersJson(discovered, existingPath) {
     const prev = existingByIp.get(d.ip);
     const model = d.deviceInfo?.model ?? prev?.model ?? 'unknown';
     const serial = d.deviceInfo?.serial ?? prev?.serial ?? 'unknown';
+    const tags = Array.from(
+      new Set([...(prev?.tags ?? []).filter((tag) => tag !== 'offline'), 'discovered'])
+    );
 
     // Schema requires name matching ^[a-z0-9-]+$
     const existingName = prev?.name;
@@ -518,7 +524,7 @@ function mergeIntoPlayersJson(discovered, existingPath) {
       firmware: d.deviceInfo?.firmware ?? prev?.firmware ?? undefined,
       description:
         d.deviceInfo?.description ?? prev?.description ?? undefined,
-      tags: prev?.tags ?? ['discovered'],
+      tags,
     });
 
     existingByIp.delete(d.ip);

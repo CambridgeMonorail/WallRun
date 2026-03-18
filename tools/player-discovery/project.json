@@ -13,7 +13,7 @@
     "probe": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/player-discovery/src/discover-players.mjs --host"
+        "command": "node tools/player-discovery/src/discover-players.mjs"
       }
     }
   },

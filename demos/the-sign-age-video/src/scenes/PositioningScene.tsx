@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, useCurrentFrame, Easing } from 'remotion';
+import { AbsoluteFill, interpolate, useCurrentFrame } from 'remotion';
 import { type FC } from 'react';
 import { BRAND, FONTS } from '../data/brand';
 import { SCRIPT } from '../data/script';
