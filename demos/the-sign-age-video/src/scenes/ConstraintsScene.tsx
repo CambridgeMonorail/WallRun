@@ -96,6 +96,7 @@ export const ConstraintsScene: FC = () => {
                       fontWeight: 600,
                       color: BRAND.text,
                       letterSpacing: '-0.03em',
+                      marginRight: 8,
                       clipPath: `inset(0 ${(1 - statReveal) * 100}% 0 0)`,
                     }}
                   >
