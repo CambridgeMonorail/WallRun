@@ -64,4 +64,3 @@ vitest.config.*.timestamp*
 # Player discovery outputs (contain internal IPs and device info)
 dist/players.json
 dist/players.csv
-dist/player-discovery/

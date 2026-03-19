@@ -373,8 +373,9 @@ pnpm player remove <name>     # Remove player
 ### Discovery Commands
 
 ```bash
-pnpm discover:scan            # Scan network for players
-pnpm discover:probe --ip <ip> # Test specific IP
+pnpm discover                 # Scan network for players
+pnpm discover --host <ip>     # Test specific IP
+pnpm discover --verbose       # Debug connection failures
 ```
 
 ---

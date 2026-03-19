@@ -126,7 +126,7 @@ const tier3Skills: Skill[] = [
   },
   {
     name: 'player-discovery-export',
-    description: 'Export discovery results to JSON and CSV.',
+    description: 'Export discovery results as raw JSON for sharing.',
   },
 ];
 

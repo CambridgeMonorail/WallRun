@@ -7,25 +7,13 @@
     "discover": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/player-discovery/src/main.mjs"
-      }
-    },
-    "scan": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "node tools/player-discovery/src/main.mjs scan"
+        "command": "node tools/player-discovery/src/discover-players.mjs"
       }
     },
     "probe": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/player-discovery/src/main.mjs probe"
-      }
-    },
-    "export": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "node tools/player-discovery/src/main.mjs export"
+        "command": "node tools/player-discovery/src/discover-players.mjs"
       }
     }
   },

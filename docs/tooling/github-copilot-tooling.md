@@ -476,29 +476,29 @@ pnpm deploy:player
 
 These skills are designed for on-site development and diagnostics.
 
-- **Scan:** `skills/player-discovery-scan/` (requires an explicit CIDR)
-- **Probe:** `skills/player-discovery-probe/` (requires an explicit IP)
-- **Export:** `skills/player-discovery-export/` (reads `dist/players.json`, writes `dist/players.csv`)
+- **Scan:** `skills/player-discovery-scan/` — scan subnets for BrightSign players
+- **Probe:** `skills/player-discovery-probe/` — check a single IP
+- **Export:** `skills/player-discovery-export/` — output raw JSON for piping or sharing
 
 Related pnpm commands:
 
 ```bash
-# Interactive discovery
+# Scan local subnets, update .brightsign/players.json
 pnpm discover
 
-# Scriptable scan (explicit CIDR)
-pnpm discover:scan --cidr 192.168.1.0/24
+# Scan explicit subnet
+pnpm discover --cidr 192.168.0.0/24
 
 # Probe a single host
-pnpm discover:probe 192.168.1.50 --port 80
+pnpm discover --host 192.168.0.42
 
-# Export results to CSV (gitignored)
-pnpm discover:export
+# Print raw JSON to stdout
+pnpm discover --json
 ```
 
 Security boundary:
 
-- Discovery outputs contain internal IPs and device identifiers and are intentionally gitignored (`dist/players.json`, `dist/players.csv`).
+- Discovery outputs contain internal IPs and device identifiers. `.brightsign/players.json` is gitignored.
 
 ---
 

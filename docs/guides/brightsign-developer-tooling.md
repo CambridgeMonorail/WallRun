@@ -165,31 +165,29 @@ pnpm player import players-export.json
 Auto-discover BrightSign players on your local network:
 
 ```bash
-# Interactive discovery with prompts
+# Scan local subnets, update .brightsign/players.json
 pnpm discover
 
-# Quick scan with defaults (192.168.0.0/24)
-pnpm discover:scan
-
 # Scan specific subnet
-pnpm discover:scan --cidr 10.0.1.0/24
-
-# Thorough scan (more ports: 80, 443, 8008, 8080)
-pnpm discover:scan --thorough
+pnpm discover --cidr 10.0.1.0/24
 
 # Probe a specific player
-pnpm discover:probe 192.168.1.50 --port 8008
+pnpm discover --host 192.168.0.42
 
-# Export results to CSV for sharing/debugging
-pnpm discover:export
+# Debug connection failures
+pnpm discover --verbose
+
+# Print raw JSON to stdout (no file write)
+pnpm discover --json
 ```
 
 **How it works:**
 
-- Scans specified subnet for BrightSign players
-- Probes common ports (80, 8080, 8008, 443)
+- Auto-detects local subnets (or pass `--cidr`)
+- Probes BrightSign DWS ports (8008, 8080, 80, 443)
 - Fingerprints responses from Diagnostic Web Server (DWS)
-- Outputs results to `dist/players.json` (gitignored)
+- Writes results to `.brightsign/players.json` (gitignored, schema-validated)
+- Merges with existing entries, preserves tags and descriptions
 
 **Limitations:**
 
@@ -214,9 +212,9 @@ When deploying, player configuration is determined in this order:
 
 See "Player Discovery" section above. Auto-discovery of BrightSign players is now available via:
 
-- `pnpm discover` - Interactive mode
-- `pnpm discover:scan` - Scriptable mode
-- `pnpm discover:probe` - Single player diagnostics
+- `pnpm discover` — Scan local subnets and update `.brightsign/players.json`
+- `pnpm discover --host <ip>` — Probe a single player
+- `pnpm discover --verbose` — Debug connection failures
 
 ### Player Health Monitoring
 

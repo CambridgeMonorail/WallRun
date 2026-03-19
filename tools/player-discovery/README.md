@@ -1,229 +1,130 @@
-# Player Discovery Tooling
+# Player Discovery
 
-## What this is for
+Scan your local network for BrightSign players and write the results to `.brightsign/players.json` so deployment scripts can use them.
 
-This tooling exists to help developers **discover BrightSign players on a local network** during development, testing, and on-site diagnostics.
-
-It is **not** a production inventory system and it is **not** a replacement for BSN.cloud.
-
-The goals are:
-
-- Quickly answer "what players are on this LAN right now?"
-- Give developers a **friendly terminal experience**, not a pile of scripts
-- Produce **machine-readable discovery data** that other tools can consume
-- Keep sensitive network and device data **out of Git**
-
-This is developer tooling, not a product feature.
+This is **developer tooling** for local discovery — not a production inventory system.
 
 ---
 
 ## Quick Start
 
 ```bash
-# Interactive discovery with prompts
+# Scan local network, update .brightsign/players.json
 pnpm discover
 
-# Quick scan with defaults (192.168.0.0/24)
-pnpm discover:scan
+# Scan a specific subnet
+pnpm discover --cidr 192.168.0.0/24
 
-# Scan specific subnet
-pnpm discover:scan --cidr 10.0.1.0/24
+# Probe a single player
+pnpm discover --host 192.168.0.42
 
-# Thorough scan (more ports)
-pnpm discover:scan --thorough
+# Print raw JSON to stdout (no file write)
+pnpm discover --json
 
-# Probe a specific player
-pnpm discover:probe 192.168.1.50
+# Debug connection failures
+pnpm discover --verbose
 
-# Probe on different port
-pnpm discover:probe 192.168.1.50 --port 8080
-
-# Export existing results to JSON + CSV
-pnpm discover:export
+# See all options
+pnpm discover help
 ```
 
----
-
-## How it works
-
-The discovery tool:
-
-1. Scans a specified subnet (e.g., `192.168.0.0/24`)
-2. Probes common BrightSign ports (80, 8080, optionally 443, 8008)
-3. Fingerprints hosts that respond like BrightSign Diagnostic Web Server (DWS)
-4. Outputs discovered players to `dist/players.json` (gitignored)
-
-Optional enhancements:
-
-- Enrich results using Local DWS APIs if enabled
-- Fetch device info (model, serial, firmware)
-- Export to CSV for sharing
+A new developer should only need `pnpm discover` — the tool auto-detects local subnets, probes BrightSign DWS ports (8008, 8080, 80, 443), and writes discovered players to `.brightsign/players.json`.
 
 ---
 
-## Output Files
+## How It Works
 
-Discovery results are written to:
+1. **Auto-detect subnets** — reads local network interfaces and scans every private /24
+2. **Probe BrightSign ports** — tries 8008 first (modern DWS), then 8080, 80, 443
+3. **Fingerprint responses** — matches BrightSign-specific markers (server header, DWS HTML, `bsp.js`, API JSON, 401 auth)
+4. **Enrich with device info** — hits `/api/v1/info`, `/GetDeviceInfo`, `/GetID` for model, serial, firmware
+5. **Write players.json** — merges with existing entries, marks offline players, uses schema-valid kebab-case names
 
-- `dist/players.json` - Primary output (machine-readable)
-- `dist/players.csv` - Optional CSV export
+---
 
-**These files are gitignored** - they contain internal IP addresses and device identifiers.
+## Output
 
-Example `dist/players.json`:
+Results are written to `.brightsign/players.json` following the schema in `.brightsign/players.schema.json`:
 
 ```json
-[
-  {
-    "ip": "192.168.1.50",
-    "port": 80,
-    "evidence": "body:diagnostic web server",
-    "discoveredAt": "2026-02-17T18:30:00.000Z",
-    "deviceInfo": {
-      "model": "MODEL_EXAMPLE",
-      "serial": "SERIAL_EXAMPLE",
-      "firmware": "FW_EXAMPLE"
+{
+  "$schema": "./players.schema.json",
+  "players": [
+    {
+      "name": "player-42",
+      "ip": "192.168.0.42",
+      "port": 8008,
+      "model": "XD1035",
+      "serial": "XDB00212345",
+      "firmware": "9.0.159",
+      "tags": ["discovered"]
     }
-  }
-]
+  ],
+  "default": "player-42"
+}
 ```
+
+Existing entries are preserved on re-scan — user-set names, tags, and descriptions are kept. Players that were previously discovered but are now offline get an `offline` tag.
 
 ---
 
 ## Integration with Player Config
 
-Discovery output can be imported into the player registry:
+After discovery, use the player config tool to manage the registry:
 
 ```bash
-# Discover players
-pnpm discover:scan
-
-# Add discovered player to registry
-pnpm player add dev-player 192.168.1.50 --model CL435 --default
+pnpm player:list          # List registered players
+pnpm player:add <name> <ip>  # Manually add a player
+pnpm player:remove <name>    # Remove a player
 ```
 
-Future enhancement: `pnpm player import dist/players.json`
+Deployment scripts (`scripts/deploy-*.mjs`) read from `.brightsign/players.json`.
 
 ---
 
-## Known Limitations
+## Options
 
-Discovery will miss players if:
-
-- **Different VLAN** - Players must be on same network segment
-- **Firewall blocking** - Inbound HTTP must be allowed
-- **Local DWS disabled** - Diagnostic Web Server must be enabled on player
-- **Wi-Fi isolation** - Some networks block client-to-client communication
-
-This is expected behavior, not a bug. Discovery is **best effort**.
-
----
-
-## What it does NOT do
-
-- Does not magically find players across VLANs
-- Does not bypass firewalls or disabled Local DWS
-- Does not talk to BSN.cloud
-- Does not store or persist inventory long term
-- Does not authenticate or modify player settings
-
-For reliable fleet management, use BSN.cloud or deploy self-reporting apps to players.
-
----
-
-## Nx Integration
-
-The discovery tool is registered as an Nx project with three targets:
-
-- `nx run player-discovery:discover` - Interactive mode
-- `nx run player-discovery:scan` - Non-interactive scan
-- `nx run player-discovery:probe` - Single player probe
-- `nx run player-discovery:export` - Export results to JSON/CSV
-
-These are also exposed as pnpm scripts for convenience:
-
-- `pnpm discover`
-- `pnpm discover:scan`
-- `pnpm discover:probe`
-- `pnpm discover:export`
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--cidr <subnet>` | CIDR range to scan | Auto-detect local subnets |
+| `--host <ip>` | Probe a single IP | — |
+| `--ports <list>` | Comma-separated ports | `8008,8080,80,443` |
+| `--timeout <ms>` | Probe timeout | `1500` |
+| `--concurrency <n>` | Parallel probes | `32` |
+| `--output <path>` | Override output file | `.brightsign/players.json` |
+| `--json` | Print JSON to stdout, skip file write | — |
+| `--verbose` | Show per-host failure details | — |
 
 ---
 
 ## Troubleshooting
 
-### No players found
+Discovery will miss players if:
 
-1. **Check network**: Are you on the same network?
-2. **Check DWS**: Is Local Diagnostic Web Server enabled?
-3. **Check power**: Are the players powered on?
-4. **Check firewall**: Are ports 80/8080 accessible?
-5. **Try thorough scan**: `pnpm discover:scan --thorough`
+- **Different VLAN** — Players must be on the same network segment as your machine
+- **Firewall blocking** — Inbound HTTP to the player must be allowed
+- **Local DWS disabled** — The Diagnostic Web Server must be enabled on the player
+- **Wi-Fi isolation** — Some networks block client-to-client traffic
 
-### Wrong subnet
+Debug with `pnpm discover --host <ip> --verbose` to see exactly why a specific player isn't being found.
 
-Use `--cidr` to specify your network:
+---
+
+## Nx Integration
+
+Registered as the `player-discovery` Nx project:
 
 ```bash
-pnpm discover:scan --cidr 10.0.1.0/24
+nx run player-discovery:discover    # Scan and write players.json
+nx run player-discovery:probe -- --host <ip>  # Probe single host
 ```
 
-### Probe shows nothing
+Pass `--host <ip>` after the `--` separator so Nx forwards the arguments to the
+underlying discovery script.
 
-Try different ports:
+pnpm shortcuts:
 
 ```bash
-pnpm discover:probe 192.168.1.50 --port 80
-pnpm discover:probe 192.168.1.50 --port 8080
-pnpm discover:probe 192.168.1.50 --port 8008
+pnpm discover               # Full scan
+pnpm discover:probe <ip>    # Single host
 ```
-
----
-
-## Security Considerations
-
-**Never commit discovery output to git.**
-
-The `.gitignore` file excludes:
-
-- `dist/players.json`
-- `dist/players.csv`
-- `dist/player-discovery/`
-
-If you need to share results:
-
-- Share manually via secure channel
-- Redact IP addresses and serials
-- Use temporary sharing (Slack, email, etc.)
-
----
-
-## Future Enhancements
-
-Potential improvements (not yet implemented):
-
-- **Import to registry**: `pnpm player import dist/players.json`
-- **CSV export**: `--format csv` option
-- **Network discovery**: `pnpm discover:network` to suggest subnets
-- **Health checks**: Ping discovered players for uptime
-- **Fleet comparison**: Compare discovery vs. expected inventory
-
-For production inventory, consider:
-
-- Deploy self-reporting app to players
-- Players POST identity to central service
-- Use discovery only for debugging/edge cases
-
----
-
-## Summary
-
-This tool helps you find BrightSign players on your local network quickly and safely:
-
-✅ Interactive and scriptable modes  
-✅ Machine-readable output  
-✅ Git-safe (sensitive data excluded)  
-✅ Nx-integrated  
-✅ Clear limitations and expectations
-
-If discovery finds nothing but you expected players, always ask:
-**"Am I on the same network, and is Local DWS enabled?"**
