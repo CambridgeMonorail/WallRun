@@ -1,0 +1,57 @@
+{
+  "brandName": "Harbour Grain",
+  "mode": "breakfast",
+  "offerLabel": "Breakfast Until 11:30",
+  "categories": [
+    {
+      "id": "breakfast-baps",
+      "title": "Breakfast Baps",
+      "items": [
+        {
+          "id": "bacon-bap",
+          "name": "Smoked Bacon Bap",
+          "price": "£5.80",
+          "tags": ["Popular"],
+          "featured": true
+        },
+        {
+          "id": "sausage-egg-bap",
+          "name": "Sausage & Egg Bap",
+          "price": "£6.40",
+          "featured": true
+        },
+        {
+          "id": "mushroom-spinach-roll",
+          "name": "Mushroom & Spinach Roll",
+          "price": "£5.60",
+          "tags": ["V"]
+        }
+      ]
+    },
+    {
+      "id": "morning-sides",
+      "title": "Morning Sides",
+      "items": [
+        {
+          "id": "hash-browns",
+          "name": "Rosemary Hash Browns",
+          "price": "£2.80"
+        },
+        {
+          "id": "fruit-pot",
+          "name": "Seasonal Fruit Pot",
+          "price": "£3.20",
+          "tags": ["VG", "GF"]
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "hours": "Mon-Sat 07:00-16:00",
+    "qrLabel": "Order Ahead"
+  },
+  "legalNotes": [
+    "Ask staff about allergens.",
+    "Vegetarian options available daily."
+  ]
+}

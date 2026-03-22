@@ -1,0 +1,11 @@
+{
+  "name": "Platform Nine Pantry",
+  "concept": "Transit-side grab-and-go food counter with a small rotating menu, frequent stock changes, and fragile dependence on hero images and fallback messaging.",
+  "cuisine": "Grab-and-go cafe",
+  "serviceModel": "counter-service",
+  "tone": "minimal",
+  "priceRange": "££",
+  "audience": "Commuters making very fast decisions under time pressure.",
+  "locationContext": "Rail concourse screen with unreliable live content updates.",
+  "brandStory": "A simple venue whose runtime quality depends more on resilient fallbacks than on expressive creative direction."
+}

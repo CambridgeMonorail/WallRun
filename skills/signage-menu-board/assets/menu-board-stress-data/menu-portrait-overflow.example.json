@@ -1,0 +1,167 @@
+{
+  "brandName": "Stacked Skillet & Social House Kitchen Collective",
+  "mode": "all-day",
+  "offerLabel": "Breakfast, Lunch, Desserts, Drinks, Retail Sauces, Catering, Loyalty Rewards, and QR Ordering All Day",
+  "categories": [
+    {
+      "id": "signature-breakfasts",
+      "title": "Signature Breakfasts",
+      "items": [
+        {
+          "id": "ultimate-loaded-breakfast-stack",
+          "name": "The Ultimate Loaded Maple-Smoked Double Bacon Breakfast Pancake Stack Experience",
+          "description": "Five layers of pancakes with maple-smoked bacon, whipped butter, candied pecans, seasonal berry compote, chocolate drizzle, and optional syrup flight add-ons.",
+          "price": "£14.5",
+          "featured": true
+        },
+        {
+          "id": "triple-egg-feast",
+          "name": "Triple Egg House Feast With Hash Browns, Toast, Sausage, Bacon, Beans, Mushrooms, Tomatoes, And Extras",
+          "description": "A very large all-day breakfast plate designed to communicate abundance more than clarity.",
+          "price": "14.90"
+        },
+        {
+          "id": "veggie-breakfast-party-platter",
+          "name": "Veggie Breakfast Party Platter For One But Also Sort Of For Sharing",
+          "description": "Vegetarian breakfast platter with multiple sides, sauces, garnish, and dense explanatory copy.",
+          "price": "£13.90"
+        },
+        {
+          "id": "pancake-flight",
+          "name": "Pancake Flight",
+          "price": "£11.80"
+        },
+        {
+          "id": "waffle-bites",
+          "name": "Waffle Bites",
+          "price": "£6.90"
+        },
+        {
+          "id": "granola-pot",
+          "name": "Granola Pot",
+          "price": "£5.20"
+        },
+        {
+          "id": "avocado-toast",
+          "name": "Avocado Toast",
+          "price": "£7.60"
+        },
+        {
+          "id": "breakfast-burrito",
+          "name": "Breakfast Burrito",
+          "price": "£8.40"
+        },
+        {
+          "id": "spicy-beans-bowl",
+          "name": "Spicy Beans Bowl",
+          "price": "£6.70"
+        }
+      ]
+    },
+    {
+      "id": "lunch-favourites",
+      "title": "Lunch Favourites",
+      "items": [
+        {
+          "id": "double-brisket-burger",
+          "name": "Double Brisket Burger With Smoked Cheese, Crispy Onions, Pickles, Special Sauce, And Extra Notes",
+          "description": "A towering burger with too many modifiers to read comfortably at distance.",
+          "price": "£15.20",
+          "featured": true
+        },
+        {
+          "id": "loaded-fries",
+          "name": "Loaded Fries With Everything",
+          "price": "£9.5"
+        },
+        {
+          "id": "club-sandwich",
+          "name": "Triple Club Sandwich",
+          "price": "£12.40"
+        },
+        {
+          "id": "grain-bowl",
+          "name": "Harvest Grain Bowl",
+          "price": "£11.10"
+        },
+        {
+          "id": "soup-combo",
+          "name": "Soup And Half Sandwich Combo",
+          "price": "£10.80"
+        },
+        {
+          "id": "fish-wrap",
+          "name": "Crispy Fish Wrap",
+          "price": "£11.6"
+        },
+        {
+          "id": "chicken-salad",
+          "name": "Crispy Chicken Salad",
+          "price": "£12.20"
+        },
+        {
+          "id": "mac-pot",
+          "name": "Mac Pot",
+          "price": "£7.40"
+        },
+        {
+          "id": "flatbread",
+          "name": "Roast Pepper Flatbread",
+          "price": "£9.90"
+        }
+      ]
+    },
+    {
+      "id": "desserts-and-shakes",
+      "title": "Desserts & Shakes",
+      "items": [
+        {
+          "id": "mega-shake",
+          "name": "Mega Celebration Birthday Cake Loaded Shake With Cream Tower",
+          "description": "Dessert-sized shake with decorative toppings and spectacle-driven presentation notes.",
+          "price": "£8.90"
+        },
+        {
+          "id": "brownie-sundae",
+          "name": "Brownie Sundae",
+          "price": "£7.60"
+        },
+        {
+          "id": "cheesecake",
+          "name": "Cheesecake Slice",
+          "price": "£6.80"
+        },
+        {
+          "id": "cookie-stack",
+          "name": "Warm Cookie Stack",
+          "price": "£6.50"
+        },
+        {
+          "id": "soft-serve",
+          "name": "Soft Serve Cup",
+          "price": "£4.90"
+        },
+        {
+          "id": "milkshake",
+          "name": "Classic Vanilla Shake",
+          "price": "£5.60"
+        },
+        {
+          "id": "coffee-float",
+          "name": "Coffee Float",
+          "price": "£5.40"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "phoneNumber": "01234 567890",
+    "hours": "Open 06:00 until late",
+    "qrLabel": "Scan Now For Catering, Loyalty, Nutritional Information, Delivery, Gift Cards, and Retail Sauce Orders"
+  },
+  "legalNotes": [
+    "Ask staff about allergens, ingredient substitutions, nutritional information, delivery zones, loyalty redemptions, and party bookings.",
+    "Photography may not represent final plated presentation.",
+    "Some offers vary by time of day and selected branch."
+  ]
+}
