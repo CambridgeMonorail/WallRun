@@ -1,0 +1,50 @@
+{
+  "brandName": "Harbour Grain",
+  "mode": "dinner",
+  "offerLabel": "Evening Specials",
+  "categories": [
+    {
+      "id": "flatbreads",
+      "title": "Flatbreads",
+      "items": [
+        {
+          "id": "smoked-mackerel-flatbread",
+          "name": "Smoked Mackerel Flatbread",
+          "price": "£11.80",
+          "featured": true
+        },
+        {
+          "id": "charred-pepper-flatbread",
+          "name": "Charred Pepper Flatbread",
+          "price": "£10.90",
+          "tags": ["V"]
+        }
+      ]
+    },
+    {
+      "id": "plates",
+      "title": "Small Plates",
+      "items": [
+        {
+          "id": "brown-butter-carrots",
+          "name": "Brown Butter Carrots",
+          "price": "£5.80",
+          "tags": ["V", "GF"]
+        },
+        {
+          "id": "crispy-potatoes",
+          "name": "Crispy Sea Salt Potatoes",
+          "price": "£5.20",
+          "tags": ["VG", "GF"]
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "hours": "Thu-Sat 17:00-21:00"
+  },
+  "legalNotes": [
+    "Evening specials subject to availability.",
+    "Ask staff about allergens."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "logoText": "Copper Finch Express",
+  "logoDirection": "Delicate handwritten script with vintage badge ornamentation plus a heavy geometric sub-mark.",
+  "colours": {
+    "background": "#F7F1E8",
+    "foreground": "#1C1C1C",
+    "accent": "#F04D23",
+    "accentSecondary": "#04B3C8"
+  },
+  "typography": {
+    "heading": "Elegant high-contrast serif",
+    "body": "Rounded tech sans",
+    "price": "Brush script"
+  },
+  "iconStyle": "filled",
+  "imageStyle": "Mixed polished product mockups, neon campaign graphics, flat vector icons, and washed-out stock coffee photography.",
+  "surfaceStyle": "Soft cream paper texture overlaid with loud gradient promo stickers."
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Northline Cafe Counter",
+  "concept": "Compact commuter coffee bar with a simple all-day range that should be grouped into a few strong categories but has been fragmented into too many similar buckets.",
+  "cuisine": "Coffee and light food",
+  "serviceModel": "counter-service",
+  "tone": "minimal",
+  "priceRange": "££",
+  "audience": "Fast-moving office workers who need quick decisions.",
+  "locationContext": "Transit-adjacent office lobby with portrait and landscape screens.",
+  "brandStory": "Simple, premium coffee venue whose content model becomes weaker as categories get over-segmented."
+}

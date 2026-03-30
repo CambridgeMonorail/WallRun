@@ -1,0 +1,66 @@
+{
+  "brandName": "Platform Nine Pantry",
+  "mode": "all-day",
+  "offerLabel": "Fresh Counter Favourites",
+  "categories": [
+    {
+      "id": "featured-grabs",
+      "title": "Featured Grabs",
+      "items": [
+        {
+          "id": "chicken-ciabatta",
+          "name": "Chicken Ciabatta",
+          "price": "£6.80",
+          "featured": true,
+          "available": false,
+          "imageSrc": ""
+        },
+        {
+          "id": "halloumi-wrap",
+          "name": "Halloumi Wrap",
+          "price": "£6.20",
+          "featured": true
+        },
+        {
+          "id": "egg-pot",
+          "name": "Egg Protein Pot",
+          "price": "£4.40",
+          "available": false
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "title": "Drinks",
+      "items": [
+        {
+          "id": "flat-white",
+          "name": "Flat White",
+          "price": "£3.60"
+        },
+        {
+          "id": "orange-juice",
+          "name": "Orange Juice",
+          "price": "£3.20",
+          "available": false
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "hours": "Daily 06:00-20:00",
+    "qrLabel": "Scan For Menu"
+  },
+  "legalNotes": ["Ask staff about allergens."],
+  "fallbackContent": {
+    "offerLabel": "",
+    "categories": [],
+    "legalNotes": [],
+    "heroImageSrc": "",
+    "featuredImageSrc": "   ",
+    "images": {
+      "hero": "",
+      "featured": ""
+    }
+  }
+}

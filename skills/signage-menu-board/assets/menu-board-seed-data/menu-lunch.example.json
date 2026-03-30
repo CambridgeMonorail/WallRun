@@ -1,0 +1,53 @@
+{
+  "brandName": "Harbour Grain",
+  "mode": "lunch",
+  "offerLabel": "Lunch From 11:30",
+  "categories": [
+    {
+      "id": "sandwiches",
+      "title": "Sandwiches",
+      "items": [
+        {
+          "id": "crab-roll",
+          "name": "Brown Crab Roll",
+          "price": "£8.90",
+          "featured": true
+        },
+        {
+          "id": "chicken-focaccia",
+          "name": "Chicken Focaccia",
+          "price": "£7.80"
+        },
+        {
+          "id": "mozzarella-tomato",
+          "name": "Mozzarella & Tomato",
+          "price": "£7.20",
+          "tags": ["V"]
+        }
+      ]
+    },
+    {
+      "id": "soups-salads",
+      "title": "Soups & Salads",
+      "items": [
+        {
+          "id": "tomato-soup",
+          "name": "Roasted Tomato Soup",
+          "price": "£5.40",
+          "tags": ["V"]
+        },
+        {
+          "id": "grain-bowl",
+          "name": "Sea Herb Grain Bowl",
+          "price": "£8.20",
+          "tags": ["VG"]
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "hours": "Mon-Sat 07:00-16:00",
+    "qrLabel": "Scan For Full Menu"
+  },
+  "legalNotes": ["Limited soup availability after 14:00."]
+}

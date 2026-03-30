@@ -1,0 +1,108 @@
+{
+  "brandName": "Northline Cafe Counter",
+  "mode": "all-day",
+  "offerLabel": "All-Day Coffee & Counter Favourites",
+  "categories": [
+    {
+      "id": "morning-coffee",
+      "title": "Morning Coffee",
+      "items": [
+        {
+          "id": "flat-white",
+          "name": "Flat White",
+          "price": "£3.60"
+        },
+        {
+          "id": "americano",
+          "name": "Americano",
+          "price": "£3.20"
+        }
+      ]
+    },
+    {
+      "id": "house-coffee",
+      "title": "House Coffee",
+      "items": [
+        {
+          "id": "filter-coffee",
+          "name": "Filter Coffee",
+          "price": "£3.10"
+        },
+        {
+          "id": "batch-brew",
+          "name": "Batch Brew",
+          "price": "£3.20"
+        }
+      ]
+    },
+    {
+      "id": "iced-coffee",
+      "title": "Iced Coffee",
+      "items": [
+        {
+          "id": "iced-latte",
+          "name": "Iced Latte",
+          "price": "£4.20"
+        },
+        {
+          "id": "iced-americano",
+          "name": "Iced Americano",
+          "price": "£3.80"
+        }
+      ]
+    },
+    {
+      "id": "seasonal-coffee",
+      "title": "Seasonal Coffee",
+      "items": [
+        {
+          "id": "honey-oat-latte",
+          "name": "Honey Oat Latte",
+          "price": "£4.40"
+        },
+        {
+          "id": "maple-flat-white",
+          "name": "Maple Flat White",
+          "price": "£4.30"
+        }
+      ]
+    },
+    {
+      "id": "toast",
+      "title": "Toast",
+      "items": [
+        {
+          "id": "ricotta-toast",
+          "name": "Ricotta Toast",
+          "price": "£5.80"
+        },
+        {
+          "id": "jam-toast",
+          "name": "Jam Toast",
+          "price": "£3.40"
+        }
+      ]
+    },
+    {
+      "id": "toasted-sandwiches",
+      "title": "Toasted Sandwiches",
+      "items": [
+        {
+          "id": "ham-cheese-toastie",
+          "name": "Ham & Cheese Toastie",
+          "price": "£5.60"
+        },
+        {
+          "id": "three-cheese-toastie",
+          "name": "Three Cheese Toastie",
+          "price": "£5.40"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "hours": "Mon-Fri 06:30-15:00",
+    "qrLabel": "Scan For Menu"
+  },
+  "legalNotes": ["Ask staff about allergens."]
+}

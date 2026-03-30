@@ -92,9 +92,11 @@ When executing a local deploy, produce:
 
 ## Safety Controls
 
+- **Always confirm with user before deploying** — deployment reboots the player and interrupts any running content
 - `deploy:local` does NOT rebuild — if you changed source code, use `deploy:player`
 - Always verify player connectivity before starting upload
 - Player reboots automatically after upload — ensure no other deploy is in progress
+- Verify rotation and orientation settings match physical display before deploying
 
 ## Troubleshooting
 
