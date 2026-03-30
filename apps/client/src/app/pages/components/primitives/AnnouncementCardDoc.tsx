@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Button } from '@tsa/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
 import { AnnouncementCard } from '@tsa/shadcnui-signage';
-import { Calendar, PartyPopper, Wrench } from 'lucide-react';
+import { Calendar, PartyPopper } from 'lucide-react';
 
 export const AnnouncementCardDocPage: FC = () => {
   return (

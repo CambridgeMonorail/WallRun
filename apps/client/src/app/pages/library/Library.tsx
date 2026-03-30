@@ -86,7 +86,8 @@ export function LibraryPage() {
           </div>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              @tsa/shadcnui-signage ⭐
+              @tsa/shadcnui-signage{' '}
+              <span role="img" aria-label="star">⭐</span>
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
               Signage-oriented components built for distance readability,
