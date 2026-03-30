@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import * as path from 'path';
 
 export default defineConfig(({ mode }) => ({
   root: import.meta.dirname,
@@ -92,7 +93,10 @@ export default defineConfig(({ mode }) => ({
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '{projectRoot}/../../coverage/apps/player-minimal',
+      reportsDirectory: path.resolve(
+        import.meta.dirname,
+        '../../coverage/apps/player-minimal',
+      ),
       provider: 'v8' as const,
     },
   },

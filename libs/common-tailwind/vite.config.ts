@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import * as path from 'path';
 
 export default defineConfig({
   root: __dirname,
@@ -19,7 +20,10 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '{projectRoot}/../../coverage/libs/common-tailwind',
+      reportsDirectory: path.resolve(
+        __dirname,
+        '../../coverage/libs/common-tailwind',
+      ),
       provider: 'v8',
     },
   },
