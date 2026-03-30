@@ -48,6 +48,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Claude AI
+.claude/worktrees
+.claude/settings.local.json
+
 .nx/cache
 .nx/workspace-data
 

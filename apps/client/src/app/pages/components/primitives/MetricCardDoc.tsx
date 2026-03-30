@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Button } from '@tsa/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
 import { MetricCard } from '@tsa/shadcnui-signage';
-import { DollarSign, Users, TrendingUp, ShoppingCart } from 'lucide-react';
+import { DollarSign, Users } from 'lucide-react';
 
 export const MetricCardDocPage: FC = () => {
   return (

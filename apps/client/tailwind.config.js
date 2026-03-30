@@ -4,6 +4,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // eslint-disable-next-line @nx/enforce-module-boundaries
   presets: [require('../../libs/common-tailwind/tailwind.config.js')],
   darkMode: ['class'],
   content: [
