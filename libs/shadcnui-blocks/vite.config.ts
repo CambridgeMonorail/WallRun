@@ -18,7 +18,7 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/libs/shadcnui-blocks',
+      reportsDirectory: '{projectRoot}/../../coverage/libs/shadcnui-blocks',
       provider: 'v8',
     },
   },

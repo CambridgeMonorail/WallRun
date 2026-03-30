@@ -87,5 +87,6 @@
     }
   },
   "packageManager": "pnpm",
-  "workspaceLayout": {}
+  "workspaceLayout": {},
+  "analytics": false
 }

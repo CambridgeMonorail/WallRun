@@ -17,7 +17,7 @@ export default defineConfig({
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/libs/storybook-host',
+      reportsDirectory: '{projectRoot}/../../coverage/libs/storybook-host',
       provider: 'v8',
     },
   },

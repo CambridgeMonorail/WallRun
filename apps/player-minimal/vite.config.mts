@@ -92,7 +92,7 @@ export default defineConfig(({ mode }) => ({
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/player-minimal',
+      reportsDirectory: '{projectRoot}/../../coverage/apps/player-minimal',
       provider: 'v8' as const,
     },
   },

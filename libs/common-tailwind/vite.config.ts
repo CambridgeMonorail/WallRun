@@ -11,10 +11,7 @@ export default defineConfig({
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
   // },
-  assetsInclude: [
-    'src/preflight.css',
-    'src/shadcn-theme.css'
-  ],
+  assetsInclude: ['src/preflight.css', 'src/shadcn-theme.css'],
   test: {
     watch: false,
     globals: true,
@@ -22,7 +19,7 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/libs/common-tailwind',
+      reportsDirectory: '{projectRoot}/../../coverage/libs/common-tailwind',
       provider: 'v8',
     },
   },
