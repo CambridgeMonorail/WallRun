@@ -69,14 +69,31 @@ Signage players commonly run at:
 
 ## Rotation and Orientation Rules
 
-Many signage deployments rotate a landscape display to portrait mode at the OS or player level.
+Many signage deployments rotate a landscape display to portrait mode. How rotation is handled depends on the player:
 
-| Rule                                                    | Guideline                                                         |
-| ------------------------------------------------------- | ----------------------------------------------------------------- |
-| Content must read correctly in the deployed orientation | Do not assume landscape                                           |
-| Avoid CSS transforms for rotation                       | Let the player handle display rotation                            |
-| Test layouts at 9:16 and 16:9                           | Critical content zones must adapt to both                         |
-| Vertical stacking for portrait                          | Multi-zone layouts should reflow to vertical stacking in portrait |
+- **BrightSign**: The `roHtmlWidget` has no rotation API. CSS transforms are the **recommended** approach.
+- **Other players**: Some handle rotation at the OS/player level. Check your player's capabilities.
+
+| Rule                                                    | Guideline                                                                  |
+| ------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Content must read correctly in the deployed orientation | Do not assume landscape                                                    |
+| BrightSign: Use CSS transforms for rotation             | `roHtmlWidget` has no rotation API — CSS is the only option                |
+| Other players: Check player-level rotation first        | Only use CSS rotation if player doesn't handle it                          |
+| Test layouts at 9:16 and 16:9                           | Critical content zones must adapt to both                                  |
+| Vertical stacking for portrait                          | Multi-zone layouts should reflow to vertical stacking in portrait          |
+
+### BrightSign Rotation Decision Table
+
+When using CSS rotation for BrightSign, select the **compensation direction** (opposite to physical screen rotation):
+
+| Physical Screen Rotation      | CSS Compensation | Config Setting    | CSS Transform  |
+| ----------------------------- | ---------------- | ----------------- | -------------- |
+| Standard landscape            | None             | `landscape`       | (none)         |
+| Rotated 90° anti-clockwise    | +90° clockwise   | `portrait-right`  | `rotate(90deg)`  |
+| Rotated 90° clockwise         | -90° anti-clockwise | `portrait-left` | `rotate(-90deg)` |
+| Upside down (180°)            | 180°             | `inverted`        | `rotate(180deg)` |
+
+**Common mistake**: Selecting `portrait-left` when the screen is rotated anti-clockwise. This rotates content the same direction as the screen = 180° = upside down.
 
 ## Overscan and Bezel Compensation
 
@@ -97,7 +114,7 @@ Patterns that commonly break on signage hardware:
 | `100vh` for full-screen height                  | Unreliable on some players           | Use `100dvh`, flex fill, or grid fill |
 | Fixed pixel widths on containers                | Does not adapt to resolution changes | Use percentage or fractional units    |
 | `overflow: hidden` on viewport-level containers | Can mask clipping issues             | Prefer layout that naturally fits     |
-| `transform: rotate()` for display orientation   | Conflicts with player-level rotation | Let the player handle rotation        |
+| `transform: rotate()` for display orientation   | See rotation rules above — varies by player | BrightSign requires CSS rotation; others may not |
 | Small fixed-position elements near edges        | Clipped by overscan                  | Move into safe frame                  |
 
 ## Implementation Patterns
