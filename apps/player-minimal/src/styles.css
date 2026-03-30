@@ -28,7 +28,21 @@ body {
   overflow: hidden;
 }
 
-/* Portrait Left - Display rotated 90° counterclockwise (most common) */
+/*
+ * ROTATION COMPENSATION TABLE
+ * 
+ * Select based on how the PHYSICAL SCREEN is rotated:
+ * 
+ * | Physical Screen Rotation   | Use This Setting  | Content Compensation |
+ * |----------------------------|-------------------|----------------------|
+ * | Standard landscape         | landscape         | None                 |
+ * | Rotated 90° ANTI-CLOCKWISE | portrait-right    | +90° clockwise       |
+ * | Rotated 90° CLOCKWISE      | portrait-left     | -90° anti-clockwise  |
+ * | Upside down (180°)        | inverted          | 180°                 |
+ */
+
+/* portrait-left: Use when physical screen is rotated 90° CLOCKWISE */
+/* Content rotates -90° (anti-clockwise) to compensate */
 .display-rotation-wrapper[data-orientation='portrait-left'] {
   position: absolute;
   width: 100vh;
@@ -39,7 +53,8 @@ body {
   left: 0;
 }
 
-/* Portrait Right - Display rotated 90° clockwise */
+/* portrait-right: Use when physical screen is rotated 90° ANTI-CLOCKWISE */
+/* Content rotates +90° (clockwise) to compensate */
 .display-rotation-wrapper[data-orientation='portrait-right'] {
   position: absolute;
   width: 100vh;
