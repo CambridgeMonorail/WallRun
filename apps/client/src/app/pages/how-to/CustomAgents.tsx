@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Bot } from 'lucide-react';
 
 /**
  * CustomAgents - Introduction to custom GitHub Copilot agents

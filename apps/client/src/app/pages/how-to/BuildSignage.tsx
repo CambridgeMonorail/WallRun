@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Code, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 /**
  * BuildSignage - Guide for implementing signage screens with signage-architect
