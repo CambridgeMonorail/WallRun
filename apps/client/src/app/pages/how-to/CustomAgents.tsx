@@ -64,7 +64,10 @@ export const CustomAgentsPage: FC = () => {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <p>In GitHub Copilot Chat (VS Code), mention the agent by name:</p>
-          <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
+          <pre
+            className="rounded-lg border border-border bg-muted p-4 text-sm"
+            aria-label="Basic agent invocation syntax"
+          >
             <code className="text-foreground">
               @Agent Name [your request here]
             </code>
@@ -72,7 +75,10 @@ export const CustomAgentsPage: FC = () => {
           <p className="mt-4">
             For example, to use the Signage Design Brief Writer:
           </p>
-          <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
+          <pre
+            className="rounded-lg border border-border bg-muted p-4 text-sm"
+            aria-label="Signage Design Brief Writer invocation example"
+          >
             <code className="text-foreground">
               @Signage Design Brief Writer create a brief for a coffee shop menu
               board

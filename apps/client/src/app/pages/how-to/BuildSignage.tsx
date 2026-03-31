@@ -105,7 +105,10 @@ export const BuildSignagePage: FC = () => {
             <p className="mb-3">
               Reference the specific brief you want implemented:
             </p>
-            <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
+            <pre
+              className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
+              aria-label="Agent invocation command example"
+            >
               <code className="text-foreground">
                 {`@signage-architect implement the design brief in docs/signage design briefs/The Green Fork/`}
               </code>
@@ -147,7 +150,10 @@ export const BuildSignagePage: FC = () => {
               5. Verify Locally
             </h3>
             <p className="mb-3">Run the dev server to preview:</p>
-            <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
+            <pre
+              className="rounded-lg border border-border bg-muted p-4 text-sm"
+              aria-label="Development server command"
+            >
               <code className="text-foreground">pnpm nx serve [app-name]</code>
             </pre>
             <p className="mt-2">

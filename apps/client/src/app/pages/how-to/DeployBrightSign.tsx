@@ -104,7 +104,10 @@ export const DeployBrightSignPage: FC = () => {
               1. Find Your Player
             </h3>
             <p className="mb-3">Scan the network to discover players:</p>
-            <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
+            <pre
+              className="rounded-lg border border-border bg-muted p-4 text-sm"
+              aria-label="Player discovery command"
+            >
               <code className="text-foreground">pnpm discover</code>
             </pre>
             <p className="mt-2 text-sm">
@@ -118,7 +121,10 @@ export const DeployBrightSignPage: FC = () => {
               2. Use the Agent to Deploy
             </h3>
             <p className="mb-3">Invoke the BrightSign Deploy agent:</p>
-            <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
+            <pre
+              className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
+              aria-label="Agent invocation example"
+            >
               <code className="text-foreground">
                 {`@BrightSign Deploy
 
@@ -174,7 +180,10 @@ Package and deploy the player-minimal app to the BrightSign player at 192.168.1.
             If your app doesn't load correctly on the player, use the agent to
             diagnose:
           </p>
-          <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
+          <pre
+            className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
+            aria-label="Debugging command example"
+          >
             <code className="text-foreground">
               {`@BrightSign Deploy
 
@@ -251,7 +260,10 @@ Debug the player at 192.168.1.100 - the app is showing a blank screen`}
               <p className="mb-2 text-sm font-medium text-foreground">
                 1. Package the app:
               </p>
-              <pre className="rounded-lg border border-border bg-muted p-3 text-xs">
+              <pre
+                className="rounded-lg border border-border bg-muted p-3 text-xs"
+                aria-label="Package player app command"
+              >
                 <code className="text-foreground">
                   pnpm package:player player-minimal
                 </code>
@@ -261,7 +273,10 @@ Debug the player at 192.168.1.100 - the app is showing a blank screen`}
               <p className="mb-2 text-sm font-medium text-foreground">
                 2. Deploy to player:
               </p>
-              <pre className="rounded-lg border border-border bg-muted p-3 text-xs">
+              <pre
+                className="rounded-lg border border-border bg-muted p-3 text-xs"
+                aria-label="Deploy to player command"
+              >
                 <code className="text-foreground">
                   pnpm deploy:local player-minimal 192.168.1.100
                 </code>

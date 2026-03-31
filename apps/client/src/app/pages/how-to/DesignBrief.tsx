@@ -95,7 +95,10 @@ export const DesignBriefPage: FC = () => {
             <p className="mb-3">
               In GitHub Copilot Chat (VS Code), start your message with:
             </p>
-            <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
+            <pre
+              className="rounded-lg border border-border bg-muted p-4 text-sm"
+              aria-label="Agent name for invocation"
+            >
               <code className="text-foreground">
                 @Signage Design Brief Writer
               </code>
@@ -120,7 +123,10 @@ export const DesignBriefPage: FC = () => {
             <h3 className="mb-2 text-lg font-medium text-foreground">
               3. Example Prompt
             </h3>
-            <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
+            <pre
+              className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
+              aria-label="Example prompt for creating a design brief"
+            >
               <code className="text-foreground">
                 {`@Signage Design Brief Writer
 
