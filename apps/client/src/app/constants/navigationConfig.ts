@@ -7,6 +7,7 @@ import {
   Monitor,
   Blocks,
   Wrench,
+  BookOpen,
 } from 'lucide-react';
 
 import { LandingPage } from '../pages/landing/Landing';
@@ -36,6 +37,11 @@ import { SignageHeaderDocPage } from '../pages/components/layouts/SignageHeaderD
 import { FullscreenHeroDocPage } from '../pages/components/blocks/FullscreenHeroDoc';
 import { InfoCardGridDocPage } from '../pages/components/blocks/InfoCardGridDoc';
 import { ContentRotatorDocPage } from '../pages/components/behaviour/ContentRotatorDoc';
+import { HowToPage } from '../pages/how-to/HowTo';
+import { CustomAgentsPage } from '../pages/how-to/CustomAgents';
+import { DesignBriefPage } from '../pages/how-to/DesignBrief';
+import { BuildSignagePage } from '../pages/how-to/BuildSignage';
+import { DeployBrightSignPage } from '../pages/how-to/DeployBrightSign';
 import { ScheduleGateDocPage } from '../pages/components/behaviour/ScheduleGateDoc';
 import { AutoPagingListDocPage } from '../pages/components/behaviour/AutoPagingListDoc';
 import { SignageTransitionDocPage } from '../pages/components/behaviour/SignageTransitionDoc';
@@ -55,6 +61,13 @@ const paths = {
   tooling: '/tooling',
   skills: '/skills',
   home: '/',
+  howTo: {
+    index: '/how-to',
+    customAgents: '/how-to/custom-agents',
+    designBrief: '/how-to/design-brief',
+    buildSignage: '/how-to/build-signage',
+    deployBrightSign: '/how-to/deploy-brightsign',
+  },
   signage: {
     welcome: '/signage/welcome',
     menu: '/signage/menu',
@@ -131,6 +144,17 @@ const sidebarData: SidebarConfiguration = {
         { title: 'Installable Skills', url: paths.skills },
         { title: 'Component Library', url: paths.components.library },
         { title: 'Color Palette', url: paths.components.colorPalette },
+      ],
+    },
+    {
+      title: 'How To Guides',
+      url: paths.howTo.index,
+      icon: BookOpen,
+      items: [
+        { title: 'Using Custom Agents', url: paths.howTo.customAgents },
+        { title: 'Create a Design Brief', url: paths.howTo.designBrief },
+        { title: 'Build a Signage Screen', url: paths.howTo.buildSignage },
+        { title: 'Deploy to BrightSign', url: paths.howTo.deployBrightSign },
       ],
     },
     {
@@ -245,6 +269,11 @@ const routes = [
   createRoute(paths.gettingStarted, GettingStartedPage),
   createRoute(paths.tooling, ToolingPage),
   createRoute(paths.skills, SkillsPage),
+  createRoute(paths.howTo.index, HowToPage),
+  createRoute(paths.howTo.customAgents, CustomAgentsPage),
+  createRoute(paths.howTo.designBrief, DesignBriefPage),
+  createRoute(paths.howTo.buildSignage, BuildSignagePage),
+  createRoute(paths.howTo.deployBrightSign, DeployBrightSignPage),
   createRoute(paths.signage.welcome, WelcomeScreen, false),
   createRoute(paths.signage.menu, RestaurantMenu, false),
   createRoute(paths.signage.wayfinding, OfficeDirectory, false),
