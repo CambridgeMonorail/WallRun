@@ -1,3 +1,19 @@
+---
+name: requirements-planner
+description: Technical requirements analyst and implementation planner for The Sign Age monorepo
+tools: ['read', 'search', 'list']
+model: Claude Sonnet 4.5
+handoffs:
+  - label: Start Implementation
+    agent: agent
+    prompt: Implement the plan outlined above. Work through each task incrementally, validating after each step with pnpm verify.
+    send: false
+  - label: Build Signage From Plan
+    agent: signage-architect
+    prompt: Build the signage screen from the implementation plan above. Focus on the signage-specific components and layouts identified in the plan.
+    send: false
+---
+
 # Requirements Planner Agent
 
 ## Identity and mission
