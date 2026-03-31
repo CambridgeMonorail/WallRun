@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@tsa/shadcnui';
-import { BookOpen, Bot, FileText, Code, Package } from 'lucide-react';
+import { Bot, FileText, Code, Package } from 'lucide-react';
 
 type HowToGuide = {
   title: string;

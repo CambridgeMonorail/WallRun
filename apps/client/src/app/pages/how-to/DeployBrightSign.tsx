@@ -28,8 +28,8 @@ export const DeployBrightSignPage: FC = () => {
         <div className="space-y-4 text-muted-foreground">
           <p>
             The <strong className="text-foreground">BrightSign Deploy</strong>{' '}
-            agent handles the complete deployment workflow for BrightSign OS
-            9.x players.
+            agent handles the complete deployment workflow for BrightSign OS 9.x
+            players.
           </p>
 
           <div className="rounded-lg border border-border bg-muted/50 p-4">
@@ -47,8 +47,8 @@ export const DeployBrightSignPage: FC = () => {
               <li className="flex gap-2">
                 <Upload className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                 <span>
-                  <strong>Deploy via HTTP</strong> — Push builds to players
-                  via Diagnostic Web Server (port 8008)
+                  <strong>Deploy via HTTP</strong> — Push builds to players via
+                  Diagnostic Web Server (port 8008)
                 </span>
               </li>
               <li className="flex gap-2">
@@ -78,8 +78,8 @@ export const DeployBrightSignPage: FC = () => {
           <p>Before deploying, ensure you have:</p>
           <ul className="ml-6 list-disc space-y-2">
             <li>
-              A BrightSign OS 9.x player on the same network as your
-              development machine
+              A BrightSign OS 9.x player on the same network as your development
+              machine
             </li>
             <li>
               The player's IP address (use{' '}
@@ -120,7 +120,7 @@ export const DeployBrightSignPage: FC = () => {
             <p className="mb-3">Invoke the BrightSign Deploy agent:</p>
             <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
               <code className="text-foreground">
-{`@BrightSign Deploy
+                {`@BrightSign Deploy
 
 Package and deploy the player-minimal app to the BrightSign player at 192.168.1.100`}
               </code>
@@ -148,8 +148,8 @@ Package and deploy the player-minimal app to the BrightSign player at 192.168.1.
               4. Upload to Player
             </h3>
             <p>
-              The agent uploads the package to the player's SD card via the
-              HTTP API and triggers a reboot.
+              The agent uploads the package to the player's SD card via the HTTP
+              API and triggers a reboot.
             </p>
           </div>
 
@@ -176,7 +176,7 @@ Package and deploy the player-minimal app to the BrightSign player at 192.168.1.
           </p>
           <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
             <code className="text-foreground">
-{`@BrightSign Deploy
+              {`@BrightSign Deploy
 
 Debug the player at 192.168.1.100 - the app is showing a blank screen`}
             </code>
@@ -202,8 +202,8 @@ Debug the player at 192.168.1.100 - the app is showing a blank screen`}
               Blank Screen After Deploy
             </h3>
             <p className="text-sm">
-              Usually caused by incorrect bundle format. Ensure Vite config
-              uses IIFE format, not ES modules. The agent will check this.
+              Usually caused by incorrect bundle format. Ensure Vite config uses
+              IIFE format, not ES modules. The agent will check this.
             </p>
           </div>
 

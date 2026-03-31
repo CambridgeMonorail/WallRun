@@ -45,8 +45,8 @@ export const CustomAgentsPage: FC = () => {
               Specialized knowledge and guardrails encoded in their prompt
             </li>
             <li>
-              <strong className="text-foreground">Model selection</strong> —
-              Can use specific models optimized for their work
+              <strong className="text-foreground">Model selection</strong> — Can
+              use specific models optimized for their work
             </li>
           </ul>
           <p>
@@ -74,8 +74,8 @@ export const CustomAgentsPage: FC = () => {
           </p>
           <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
             <code className="text-foreground">
-              @Signage Design Brief Writer create a brief for a coffee shop
-              menu board
+              @Signage Design Brief Writer create a brief for a coffee shop menu
+              board
             </code>
           </pre>
         </div>
@@ -141,12 +141,12 @@ export const CustomAgentsPage: FC = () => {
               </h3>
               <ul className="ml-6 list-disc space-y-1 text-sm">
                 <li>
-                  <strong>UI Design Reviewer</strong> — Review UI/UX and
-                  provide actionable feedback
+                  <strong>UI Design Reviewer</strong> — Review UI/UX and provide
+                  actionable feedback
                 </li>
                 <li>
-                  <strong>shadcnui-component-reviewer</strong> — Review shadcn/ui
-                  components for standards
+                  <strong>shadcnui-component-reviewer</strong> — Review
+                  shadcn/ui components for standards
                 </li>
                 <li>
                   <strong>Custom Agent Foundry</strong> — Design new custom
@@ -177,11 +177,15 @@ export const CustomAgentsPage: FC = () => {
               Each agent has a specialized role
             </li>
             <li>
-              <strong className="text-foreground">Iterate in conversation</strong>{' '}
+              <strong className="text-foreground">
+                Iterate in conversation
+              </strong>{' '}
               — Ask for revisions within the same chat session
             </li>
             <li>
-              <strong className="text-foreground">Review generated files</strong>{' '}
+              <strong className="text-foreground">
+                Review generated files
+              </strong>{' '}
               — Always review agent output before committing
             </li>
             <li>

@@ -27,7 +27,10 @@ export const DesignBriefPage: FC = () => {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <p>
-            The <strong className="text-foreground">Signage Design Brief Writer</strong>{' '}
+            The{' '}
+            <strong className="text-foreground">
+              Signage Design Brief Writer
+            </strong>{' '}
             generates structured 10-section markdown design briefs for digital
             signage — especially restaurant menus, menu boards, and public
             display concepts.
@@ -48,8 +51,8 @@ export const DesignBriefPage: FC = () => {
               <li className="flex gap-2">
                 <FileText className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
-                  <strong>Technical layout</strong> — Screen specs, zones,
-                  grid, and typography hierarchy
+                  <strong>Technical layout</strong> — Screen specs, zones, grid,
+                  and typography hierarchy
                 </span>
               </li>
               <li className="flex gap-2">
@@ -70,7 +73,9 @@ export const DesignBriefPage: FC = () => {
                 <Folder className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   Saved in its own folder:{' '}
-                  <code className="text-xs">docs/signage design briefs/[Venue Name]/</code>
+                  <code className="text-xs">
+                    docs/signage design briefs/[Venue Name]/
+                  </code>
                 </span>
               </li>
             </ul>
@@ -91,7 +96,9 @@ export const DesignBriefPage: FC = () => {
               In GitHub Copilot Chat (VS Code), start your message with:
             </p>
             <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
-              <code className="text-foreground">@Signage Design Brief Writer</code>
+              <code className="text-foreground">
+                @Signage Design Brief Writer
+              </code>
             </pre>
           </div>
 
@@ -99,9 +106,7 @@ export const DesignBriefPage: FC = () => {
             <h3 className="mb-2 text-lg font-medium text-foreground">
               2. Provide Your Concept
             </h3>
-            <p className="mb-3">
-              Describe the signage concept. Include:
-            </p>
+            <p className="mb-3">Describe the signage concept. Include:</p>
             <ul className="ml-6 list-disc space-y-1">
               <li>Venue name and concept</li>
               <li>Visual tone (premium, casual, modern, traditional)</li>
@@ -117,7 +122,7 @@ export const DesignBriefPage: FC = () => {
             </h3>
             <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
               <code className="text-foreground">
-{`@Signage Design Brief Writer
+                {`@Signage Design Brief Writer
 
 Create a design brief for "The Green Fork" - a premium plant-based café with a modern, vibrant aesthetic. Target audience is health-conscious professionals.
 
@@ -170,11 +175,15 @@ Create a design brief for "The Green Fork" - a premium plant-based café with a 
         <div className="space-y-3 text-muted-foreground">
           <ul className="ml-6 list-disc space-y-2">
             <li>
-              <strong className="text-foreground">Be specific about tone</strong>{' '}
+              <strong className="text-foreground">
+                Be specific about tone
+              </strong>{' '}
               — "Premium but approachable" is better than just "nice"
             </li>
             <li>
-              <strong className="text-foreground">Include constraints early</strong>{' '}
+              <strong className="text-foreground">
+                Include constraints early
+              </strong>{' '}
               — Mention legibility distance, color requirements, accessibility
               needs
             </li>
@@ -187,7 +196,9 @@ Create a design brief for "The Green Fork" - a premium plant-based café with a 
               — How many menu items? How much text per page?
             </li>
             <li>
-              <strong className="text-foreground">Request example content</strong>{' '}
+              <strong className="text-foreground">
+                Request example content
+              </strong>{' '}
               — The agent can invent realistic menu items and copy
             </li>
           </ul>

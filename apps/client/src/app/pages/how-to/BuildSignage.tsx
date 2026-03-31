@@ -39,9 +39,7 @@ export const BuildSignagePage: FC = () => {
             <ul className="space-y-2 text-sm">
               <li className="flex gap-2">
                 <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
-                <span>
-                  Full-screen layouts optimized for distance viewing
-                </span>
+                <span>Full-screen layouts optimized for distance viewing</span>
               </li>
               <li className="flex gap-2">
                 <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
@@ -58,8 +56,8 @@ export const BuildSignagePage: FC = () => {
               <li className="flex gap-2">
                 <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                 <span>
-                  Signage-safe layouts (overscan margins, safe typography,
-                  high contrast)
+                  Signage-safe layouts (overscan margins, safe typography, high
+                  contrast)
                 </span>
               </li>
               <li className="flex gap-2">
@@ -109,7 +107,7 @@ export const BuildSignagePage: FC = () => {
             </p>
             <pre className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm">
               <code className="text-foreground">
-{`@signage-architect implement the design brief in docs/signage design briefs/The Green Fork/`}
+                {`@signage-architect implement the design brief in docs/signage design briefs/The Green Fork/`}
               </code>
             </pre>
           </div>
@@ -150,9 +148,7 @@ export const BuildSignagePage: FC = () => {
             </h3>
             <p className="mb-3">Run the dev server to preview:</p>
             <pre className="rounded-lg border border-border bg-muted p-4 text-sm">
-              <code className="text-foreground">
-                pnpm nx serve [app-name]
-              </code>
+              <code className="text-foreground">pnpm nx serve [app-name]</code>
             </pre>
             <p className="mt-2">
               The agent will provide the exact command for your new app.
@@ -193,8 +189,8 @@ export const BuildSignagePage: FC = () => {
               "Increase the price text size by 20%"
             </li>
             <li>
-              <strong className="text-foreground">Refine layout</strong> —
-              "Move the logo to top-right corner"
+              <strong className="text-foreground">Refine layout</strong> — "Move
+              the logo to top-right corner"
             </li>
             <li>
               <strong className="text-foreground">Add animation</strong> —
@@ -231,8 +227,8 @@ export const BuildSignagePage: FC = () => {
               margin to avoid overscan and bezel clipping
             </li>
             <li>
-              <strong className="text-foreground">High contrast</strong> —
-              WCAG AAA minimum, optimized for distance and ambient light
+              <strong className="text-foreground">High contrast</strong> — WCAG
+              AAA minimum, optimized for distance and ambient light
             </li>
             <li>
               <strong className="text-foreground">Loop-safe animation</strong> —
