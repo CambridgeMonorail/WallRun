@@ -144,7 +144,7 @@ Package and deploy the player-minimal app to the BrightSign player at 192.168.1.
               <li>Organize files in BrightSign-compatible structure</li>
               <li>
                 Create deployment package in{' '}
-                <code className="text-xs">dist/[app-name]-brightsign/</code>
+                <code className="text-xs">dist/&lt;app-name&gt;-brightsign/</code>
               </li>
             </ul>
           </div>

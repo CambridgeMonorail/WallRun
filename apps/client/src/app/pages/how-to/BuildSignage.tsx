@@ -154,7 +154,7 @@ export const BuildSignagePage: FC = () => {
               className="rounded-lg border border-border bg-muted p-4 text-sm"
               aria-label="Development server command"
             >
-              <code className="text-foreground">pnpm nx serve [app-name]</code>
+              <code className="text-foreground">pnpm nx serve &lt;app-name&gt;</code>
             </pre>
             <p className="mt-2">
               The agent will provide the exact command for your new app.
