@@ -38,30 +38,30 @@ export const BuildSignagePage: FC = () => {
             </h3>
             <ul className="space-y-2 text-sm">
               <li className="flex gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>Full-screen layouts optimized for distance viewing</span>
               </li>
               <li className="flex gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   Component implementations using shadcnui-signage primitives
                 </span>
               </li>
               <li className="flex gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   BrightSign-compatible React apps with autorun configuration
                 </span>
               </li>
               <li className="flex gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   Signage-safe layouts (overscan margins, safe typography, high
                   contrast)
                 </span>
               </li>
               <li className="flex gap-2">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   State machines for boot/load/content/fallback behavior
                 </span>

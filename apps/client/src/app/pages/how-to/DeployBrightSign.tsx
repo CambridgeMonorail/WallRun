@@ -38,28 +38,28 @@ export const DeployBrightSignPage: FC = () => {
             </h3>
             <ul className="space-y-2 text-sm">
               <li className="flex gap-2">
-                <Package className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+                <Package className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   <strong>Package apps</strong> — Build optimized IIFE bundles
                   with autorun.brs bootstrap
                 </span>
               </li>
               <li className="flex gap-2">
-                <Upload className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                <Upload className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   <strong>Deploy via HTTP</strong> — Push builds to players via
                   Diagnostic Web Server (port 8008)
                 </span>
               </li>
               <li className="flex gap-2">
-                <Bug className="mt-0.5 h-4 w-4 shrink-0 text-orange-600" />
+                <Bug className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   <strong>Debug player issues</strong> — Inspect runtime state,
                   logs, and device info
                 </span>
               </li>
               <li className="flex gap-2">
-                <Network className="mt-0.5 h-4 w-4 shrink-0 text-purple-600" />
+                <Network className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>
                   <strong>Discover players</strong> — Scan network to find
                   BrightSign devices
