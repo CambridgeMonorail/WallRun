@@ -48,7 +48,7 @@ This PR adds a custom Copilot agent for creating signage design briefs and compr
 - **Token-first styling**: All components use shadcn tokens exclusively
   - `bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`
   - `bg-card`, `bg-muted`, `bg-accent`
-- **No hardcoded colors**: ✅ Zero hardcoded hex values in component files
+- **No hardcoded colors**: ✅ Components use semantic tokens, not hardcoded Tailwind palette classes (e.g., text-green-600) or inline hex values
 - **Semantic HTML**: Proper use of `<section>`, `<h1>`, `<h2>`, `<h3>`, `<p>`, `<ul>`, `<li>`
 - **Typography scale**: Follows style guide precisely
   - Page titles: `text-3xl md:text-4xl`
