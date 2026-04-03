@@ -42,7 +42,7 @@ Before starting the walkthrough:
 7. <https://cambridgemonorail.github.io/WallRun/#/signage/welcome>
 8. <https://cambridgemonorail.github.io/WallRun/#/signage/menu>
 9. <https://cambridgemonorail.github.io/WallRun/#/signage/announcements>
-10. <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#the-sign-age>
+10. <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#wallrun>
 11. <https://github.com/CambridgeMonorail/WallRun/tree/main/skills>
 12. <https://github.com/CambridgeMonorail/WallRun/tree/main/libs/shadcnui-signage>
 13. <https://cambridgemonorail.github.io/WallRun/#/signage/welcome>
@@ -177,7 +177,7 @@ Before starting the walkthrough:
 
 ### 10. GitHub Repository
 
-**Show:** <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#the-sign-age>
+**Show:** <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#wallrun>
 
 > "To close the loop, here is the repository behind the public demo. The project is open, the documentation is in the repo, and the same structure you saw on the site is backed by actual libraries and tooling."
 

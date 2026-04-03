@@ -46,7 +46,7 @@ Confirm before starting:
    Pause: 10-12s
    Line: "This announcements screen shows the communication side of signage: multiple content cards, clear categorization, and fast scanning."
 
-10. URL: <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#the-sign-age>
+10. URL: <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#wallrun>
     Pause: 6-8s
     Line: "Here is the repository behind the public demo, with the same structure backed by actual libraries and tooling."
 
