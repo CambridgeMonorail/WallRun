@@ -1,4 +1,4 @@
-# Demo Script: The Sign Age - Public Site Walkthrough
+# Demo Script: WallRun - Public Site Walkthrough
 
 **Duration:** 4-6 minutes  
 **Audience:** Developers, contributors, and stakeholders who want a quick project tour  
@@ -33,19 +33,19 @@ Before starting the walkthrough:
 
 ## Route Order
 
-1. <https://cambridgemonorail.github.io/TheSignAge/>
-2. <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
-3. <https://cambridgemonorail.github.io/TheSignAge/#/components>
-4. <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
-5. <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
-6. <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
-7. <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
-8. <https://cambridgemonorail.github.io/TheSignAge/#/signage/menu>
-9. <https://cambridgemonorail.github.io/TheSignAge/#/signage/announcements>
-10. <https://github.com/CambridgeMonorail/TheSignAge?tab=readme-ov-file#the-sign-age>
-11. <https://github.com/CambridgeMonorail/TheSignAge/tree/main/skills>
-12. <https://github.com/CambridgeMonorail/TheSignAge/tree/main/libs/shadcnui-signage>
-13. <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+1. <https://cambridgemonorail.github.io/WallRun/>
+2. <https://cambridgemonorail.github.io/WallRun/#/getting-started>
+3. <https://cambridgemonorail.github.io/WallRun/#/components>
+4. <https://cambridgemonorail.github.io/WallRun/#/components/primitives/metric-card>
+5. <https://cambridgemonorail.github.io/WallRun/#/components/layouts/split-screen>
+6. <https://cambridgemonorail.github.io/WallRun/#/gallery>
+7. <https://cambridgemonorail.github.io/WallRun/#/signage/welcome>
+8. <https://cambridgemonorail.github.io/WallRun/#/signage/menu>
+9. <https://cambridgemonorail.github.io/WallRun/#/signage/announcements>
+10. <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#wallrun>
+11. <https://github.com/CambridgeMonorail/WallRun/tree/main/skills>
+12. <https://github.com/CambridgeMonorail/WallRun/tree/main/libs/shadcnui-signage>
+13. <https://cambridgemonorail.github.io/WallRun/#/signage/welcome>
 
 ---
 
@@ -53,9 +53,9 @@ Before starting the walkthrough:
 
 ### 1. Landing Page
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/>
+**Show:** <https://cambridgemonorail.github.io/WallRun/>
 
-> "This is The Sign Age: digital signage treated as software rather than a slide deck or CMS. The focus is deterministic screen composition, installable components, and delivery workflows for always-on displays."
+> "This is WallRun: digital signage treated as software rather than a slide deck or CMS. The focus is deterministic screen composition, installable components, and delivery workflows for always-on displays."
 
 **On-screen focus:**
 
@@ -67,7 +67,7 @@ Before starting the walkthrough:
 
 ### 2. Getting Started
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/getting-started>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/getting-started>
 
 > "The getting started guide makes the adoption path concrete. You can install components from the registry, clone the repo, or copy the source into an existing React project."
 
@@ -81,7 +81,7 @@ Before starting the walkthrough:
 
 ### 3. Component Library Overview
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/components>
 
 > "The component library is organized the way a developer expects: primitives, layouts, and higher-level patterns. The useful distinction here is that the pieces are signage-oriented from the start."
 
@@ -93,7 +93,7 @@ Before starting the walkthrough:
 
 ### 4. Metric Card Primitive
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components/primitives/metric-card>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/components/primitives/metric-card>
 
 > "This metric card is a good primitive example. It is built for large-format readability, strong contrast, and fast scanning from distance, which is very different from a typical laptop dashboard card."
 
@@ -107,7 +107,7 @@ Before starting the walkthrough:
 
 ### 5. Split Screen Layout
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/components/layouts/split-screen>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/components/layouts/split-screen>
 
 > "This split-screen layout shows the other half of the system: deterministic zoning. Signage screens need stable structure, and this gives you predictable ratios like 60/40 or 70/30 without layout drift."
 
@@ -121,7 +121,7 @@ Before starting the walkthrough:
 
 ### 6. Gallery Overview
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/gallery>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/gallery>
 
 > "The gallery turns those building blocks into complete screen examples. This is the fastest way to understand the range of use cases the project is targeting."
 
@@ -136,19 +136,19 @@ Before starting the walkthrough:
 
 ### 7. Welcome Screen
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/signage/welcome>
 
 > "First, the welcome screen. This is the simplest expression of the design system: large type, clean hierarchy, and a focal message that reads instantly on a wall-mounted display."
 
 **On-screen focus:**
 
 - "Welcome"
-- "to The Sign Age"
+- "to WallRun"
 - "Digital Signage as Software"
 
 ### 8. Menu Screen
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/menu>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/signage/menu>
 
 > "Next, a menu board. Here the emphasis shifts to structured density: categories, pricing, and item descriptions arranged so the screen stays scannable without losing detail."
 
@@ -162,7 +162,7 @@ Before starting the walkthrough:
 
 ### 9. Announcements Screen
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/announcements>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/signage/announcements>
 
 > "This announcements screen shows the communication side of signage: multiple content cards, clear categorization, and enough structure for people to parse updates at a glance."
 
@@ -177,7 +177,7 @@ Before starting the walkthrough:
 
 ### 10. GitHub Repository
 
-**Show:** <https://github.com/CambridgeMonorail/TheSignAge?tab=readme-ov-file#the-sign-age>
+**Show:** <https://github.com/CambridgeMonorail/WallRun?tab=readme-ov-file#wallrun>
 
 > "To close the loop, here is the repository behind the public demo. The project is open, the documentation is in the repo, and the same structure you saw on the site is backed by actual libraries and tooling."
 
@@ -190,7 +190,7 @@ Before starting the walkthrough:
 
 ### 11. Skills Directory
 
-**Show:** <https://github.com/CambridgeMonorail/TheSignAge/tree/main/skills>
+**Show:** <https://github.com/CambridgeMonorail/WallRun/tree/main/skills>
 
 > "One notable part of this repo is the skills directory. These are portable workflow skills for Copilot-assisted development, including planning, verification, debugging, BrightSign deployment, signage layout design, and more."
 
@@ -205,7 +205,7 @@ Before starting the walkthrough:
 
 ### 12. Signage Components Source
 
-**Show:** <https://github.com/CambridgeMonorail/TheSignAge/tree/main/libs/shadcnui-signage>
+**Show:** <https://github.com/CambridgeMonorail/WallRun/tree/main/libs/shadcnui-signage>
 
 > "And this is the signage component library itself. This is where the primitives, layouts, blocks, and supporting code live for the screens we just looked at."
 
@@ -219,9 +219,9 @@ Before starting the walkthrough:
 
 ### 13. Return to Welcome Screen
 
-**Show:** <https://cambridgemonorail.github.io/TheSignAge/#/signage/welcome>
+**Show:** <https://cambridgemonorail.github.io/WallRun/#/signage/welcome>
 
-> "To finish where we started, this is the kind of output The Sign Age is built to support: clear, purposeful screens built with the same engineering discipline we expect from the rest of our software stack."
+> "To finish where we started, this is the kind of output WallRun is built to support: clear, purposeful screens built with the same engineering discipline we expect from the rest of our software stack."
 
 > "If you want to explore further, the public site, the component docs, and the repository all line up directly."
 
@@ -231,7 +231,7 @@ Before starting the walkthrough:
 
 Use this if you want a tighter read:
 
-> "The Sign Age treats digital signage as software. The public site shows the model: a getting started path, a component library with installable primitives and layouts, a gallery of representative full-screen experiences, and an open repository with both the source code and the Copilot workflow skills behind it. The result is a signage toolkit built for developers who want deterministic, distance-readable, production-ready screens."
+> "WallRun treats digital signage as software. The public site shows the model: a getting started path, a component library with installable primitives and layouts, a gallery of representative full-screen experiences, and an open repository with both the source code and the Copilot workflow skills behind it. The result is a signage toolkit built for developers who want deterministic, distance-readable, production-ready screens."
 
 ---
 
@@ -267,4 +267,3 @@ Use this if you want a tighter read:
 - 3:55 Skills Directory
 - 4:20 Signage Components Source
 - 4:45 Closing
-

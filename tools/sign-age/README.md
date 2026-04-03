@@ -1,6 +1,6 @@
 # sign-age
 
-Internal Nx plugin for The Sign Age workspace.
+Internal Nx plugin for WallRun workspace.
 
 ## Generator
 

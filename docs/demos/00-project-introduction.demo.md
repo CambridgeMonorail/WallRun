@@ -1,8 +1,8 @@
-# Demo Script: The Sign Age - Project Introduction
+# Demo Script: WallRun - Project Introduction
 
 **Duration:** 3-5 minutes  
 **Audience:** Developers interested in digital signage, Nx monorepos, or React applications  
-**Goal:** Introduce The Sign Age project and its unique approach to digital signage
+**Goal:** Introduce WallRun project and its unique approach to digital signage
 
 ---
 
@@ -22,11 +22,11 @@
 
 ### Introduction (30 seconds)
 
-> "Hi, I'm [name] and today I'm introducing **The Sign Age** - a development framework for building custom digital signage applications with React."
+> "Hi, I'm [name] and today I'm introducing **WallRun** - a development framework for building custom digital signage applications with React."
 
 **Show:** GitHub repository homepage
 
-> "The Sign Age is an open-source project for web developers who want to build digital signage using the tools they already know - React, TypeScript, Tailwind, and modern component libraries."
+> "WallRun is an open-source project for web developers who want to build digital signage using the tools they already know - React, TypeScript, Tailwind, and modern component libraries."
 
 ### Who This Is For (45 seconds)
 
@@ -36,7 +36,7 @@
 
 **Scroll to 'What this is not' section briefly**
 
-> "But if you're a developer who needs complete control over your UI, wants to integrate custom data sources, or is building bespoke signage experiences - this is for you. The Sign Age provides:"
+> "But if you're a developer who needs complete control over your UI, wants to integrate custom data sources, or is building bespoke signage experiences - this is for you. WallRun provides:"
 
 **Scroll through tech stack:**
 
@@ -159,7 +159,7 @@ pnpm verify           # Pre-PR validation
 pnpm serve:client
 ```
 
-**Open:** [http://localhost:4200/TheSignAge/](http://localhost:4200/TheSignAge/)
+**Open:** [http://localhost:4200/WallRun/](http://localhost:4200/WallRun/)
 
 > "Here's the demo site running locally. You can browse the component library, see code examples, and test everything interactively."
 
@@ -169,7 +169,7 @@ pnpm serve:client
 
 **Show:** GitHub repository page again
 
-> "The Sign Age is open source under the MIT license. We welcome contributions, feedback, and ideas."
+> "WallRun is open source under the MIT license. We welcome contributions, feedback, and ideas."
 
 **Show:** Link to repository, issues, discussions
 
@@ -180,7 +180,7 @@ pnpm serve:client
 - BrightSign deployment workflows
 - Real-world signage applications
 
-> "Links in the description. Thanks for watching, and if you're building digital signage applications, give The Sign Age a try."
+> "Links in the description. Thanks for watching, and if you're building digital signage applications, give WallRun a try."
 
 ---
 
@@ -198,7 +198,7 @@ pnpm serve:client
 - 4:45 Live Demo (if included)
 - 5:15 Closing
 - Add description with links:
-- GitHub repository: [https://github.com/CambridgeMonorail/TheSignAge](https://github.com/CambridgeMonorail/TheSignAge)
+- GitHub repository: [https://github.com/CambridgeMonorail/WallRun](https://github.com/CambridgeMonorail/WallRun)
 - Documentation: [link]
 - BrightSign platform: [link]
 - Add relevant tags: #digitalSignage #React #TypeScript #OpenSource #BrightSign

@@ -56,13 +56,13 @@ jobs:
 
       - name: Build client app
         run: |
-          export BASE_URL='/TheSignAge/'
+          export BASE_URL='/WallRun/'
           export DEBUG='true'
           pnpm exec nx build client --configuration=production --base=$BASE_URL
 
       - name: Build storybook
         run: |
-          export BASE_URL='/TheSignAge/storybook/'
+          export BASE_URL='/WallRun/storybook/'
           export DEBUG='true'
           pnpm exec nx build-storybook storybook-host
 

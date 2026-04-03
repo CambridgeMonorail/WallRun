@@ -1,5 +1,5 @@
 /**
- * Brand tokens for TheSignAge demo video.
+ * Brand tokens for WallRun demo video.
  *
  * Derived from the canonical theme sources:
  *   - Locked palette:  docs/design/STYLE_GUIDE.md
@@ -36,7 +36,8 @@ export const BRAND = {
   gradientAccent: 'linear-gradient(135deg, #57D5F4 0%, #BF83EC 100%)',
   gradientViolet: 'linear-gradient(135deg, #BF83EC 0%, #8B5CF6 100%)',
   gradientSurface: 'linear-gradient(180deg, #212529 0%, #1C1E21 100%)',
-  gradientRadial: 'radial-gradient(ellipse at 50% 0%, rgba(87, 213, 244, 0.08) 0%, transparent 60%)',
+  gradientRadial:
+    'radial-gradient(ellipse at 50% 0%, rgba(87, 213, 244, 0.08) 0%, transparent 60%)',
 } as const;
 
 export const FONTS = {

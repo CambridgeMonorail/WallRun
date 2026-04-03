@@ -48,12 +48,12 @@ export const AutoPagingListDocPage: FC = () => {
         <h2 className="text-2xl font-medium mb-4">Installation</h2>
         <CodeSnippet
           language="bash"
-          code={`npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list`}
+          code={`npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list`}
         />
         <p className="text-muted-foreground mt-4">
           Or{' '}
           <a
-            href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx"
+            href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground hover:underline"
@@ -136,7 +136,7 @@ export function Departures({ rows }: { rows: Array<{ id: string; label: string }
         <div className="flex flex-wrap gap-4">
           <Button asChild variant="outline">
             <a
-              href="https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/signage-behaviour-autopaginglist--docs"
+              href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/signage-behaviour-autopaginglist--docs"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -145,7 +145,7 @@ export function Departures({ rows }: { rows: Array<{ id: string; label: string }
           </Button>
           <Button asChild variant="outline">
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx"
               target="_blank"
               rel="noopener noreferrer"
             >

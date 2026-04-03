@@ -313,7 +313,7 @@ export const ComponentIndexPage: FC = () => {
             </Link>{' '}
             for installation instructions and{' '}
             <a
-              href="https://cambridgemonorail.github.io/TheSignAge/storybook/"
+              href="https://cambridgemonorail.github.io/WallRun/storybook/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:underline"

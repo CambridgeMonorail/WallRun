@@ -957,7 +957,7 @@ pnpm verify
 **Files in `docs/demos/`:**
 
 - ✅ `00-project-introduction.demo.md` - 3-5 minute project overview
-  - Introduces The Sign Age project
+  - Introduces WallRun project
   - Technology stack and structure
   - BrightSign platform integration
   - Design philosophy

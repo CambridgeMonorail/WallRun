@@ -12,7 +12,7 @@ The repository currently stores Copilot skills only under `.github/skills/`, whi
 
 - Introduce a top-level `skills/` directory as the canonical skill source.
 - Keep `.github/skills/` available as a mirrored output for GitHub Copilot.
-- Document the supported install path with `npx skills add CambridgeMonorail/TheSignAge`.
+- Document the supported install path with `npx skills add CambridgeMonorail/WallRun`.
 - Avoid manual dual-maintenance of two skill trees.
 
 ## Non-Goals
@@ -34,7 +34,7 @@ Move the existing skill folders to `skills/`, add a small sync script that mirro
   - Acceptance criteria: a documented command rebuilds `.github/skills/` from `skills/`.
   - Files affected: `scripts/sync-skills.mjs`, `package.json`
 - [x] Update repository docs to explain the portable skill model and install command.
-  - Acceptance criteria: key docs reference `skills/` as canonical, `.github/skills/` as generated mirror, and `npx skills add CambridgeMonorail/TheSignAge`.
+  - Acceptance criteria: key docs reference `skills/` as canonical, `.github/skills/` as generated mirror, and `npx skills add CambridgeMonorail/WallRun`.
   - Files affected: `README.md`, `.github/AI-TOOLING.md`, `docs/tooling/github-copilot-tooling.md`, `docs/ai/target-operating-model.md`
 - [x] Verify the sync script and review the resulting tree.
   - Acceptance criteria: sync command completes successfully and `.github/skills/` matches the root skill set.

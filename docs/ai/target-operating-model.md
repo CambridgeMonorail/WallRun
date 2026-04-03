@@ -6,7 +6,7 @@ This document describes how GitHub Copilot instructions are organized in this re
 
 ## Overview
 
-The Sign Age uses a **three-layer instruction model** to provide comprehensive guidance for GitHub Copilot agents and inline completions:
+WallRun uses a **three-layer instruction model** to provide comprehensive guidance for GitHub Copilot agents and inline completions:
 
 ```
 ┌─────────────────────────────────────────────────┐

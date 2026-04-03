@@ -1,16 +1,16 @@
 ---
-applyTo: "demos/the-sign-age-video/**/*.{ts,tsx}"
+applyTo: 'demos/wallrun-video/**/*.{ts,tsx}'
 ---
 
 # Remotion demo instructions
 
-You are working inside an existing Nx monorepo on a Remotion-based demo video for TheSignAge.
+You are working inside an existing Nx monorepo on a Remotion-based demo video for WallRun.
 
-This file is only for the demo video project under `demos/the-sign-age-video`.
+This file is only for the demo video project under `demos/wallrun-video`.
 
 ## Intent
 
-Build a polished developer-facing explainer video for TheSignAge using React and TypeScript.
+Build a polished developer-facing explainer video for WallRun using React and TypeScript.
 
 This is not a product app.
 This is not a landing page.
@@ -41,9 +41,10 @@ It is a code-driven video composition made of reusable scenes.
 
 ## Creative direction
 
-TheSignAge is about digital signage as software.
+WallRun is about digital signage as software.
 
 The video should feel:
+
 - editorial
 - technical
 - clear
@@ -52,6 +53,7 @@ The video should feel:
 - signage-aware
 
 It should not feel like:
+
 - a generic SaaS promo
 - a startup advert
 - a cinematic trailer full of noise
@@ -70,6 +72,7 @@ It should not feel like:
 ## Preferred workflow
 
 When creating a scene:
+
 1. define the single message of the scene
 2. define the duration in frames
 3. block the layout
@@ -81,6 +84,7 @@ When creating a scene:
 ## Definition of done
 
 A scene is done when:
+
 - it communicates one idea clearly
 - it reads quickly
 - the typography is legible

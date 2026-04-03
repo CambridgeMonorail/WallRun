@@ -306,7 +306,11 @@ function normaliseDeviceInfo(data) {
     description,
   };
 
-  return deviceInfo.model || deviceInfo.serial || deviceInfo.firmware || deviceInfo.name || deviceInfo.description
+  return deviceInfo.model ||
+    deviceInfo.serial ||
+    deviceInfo.firmware ||
+    deviceInfo.name ||
+    deviceInfo.description
     ? deviceInfo
     : null;
 }
@@ -329,8 +333,9 @@ function httpRequest({ ip, port, path: reqPath, timeout }) {
         timeout,
         rejectUnauthorized: false,
         headers: {
-          'User-Agent': 'TheSignAge-PlayerDiscovery/2.0',
-          Accept: 'application/json, text/xml;q=0.9, text/html;q=0.8, */*;q=0.7',
+          'User-Agent': 'WallRun-PlayerDiscovery/2.0',
+          Accept:
+            'application/json, text/xml;q=0.9, text/html;q=0.8, */*;q=0.7',
         },
       },
       (res) => {
@@ -340,10 +345,20 @@ function httpRequest({ ip, port, path: reqPath, timeout }) {
           if (body.length > 20_000) res.destroy();
         });
         res.on('end', () =>
-          resolve({ ok: true, status: res.statusCode ?? 0, headers: res.headers, body }),
+          resolve({
+            ok: true,
+            status: res.statusCode ?? 0,
+            headers: res.headers,
+            body,
+          }),
         );
         res.on('close', () =>
-          resolve({ ok: true, status: res.statusCode ?? 0, headers: res.headers, body }),
+          resolve({
+            ok: true,
+            status: res.statusCode ?? 0,
+            headers: res.headers,
+            body,
+          }),
         );
       },
     );
@@ -369,7 +384,8 @@ async function probeEndpoint({ ip, port, path: reqPath, timeout }) {
     response.body,
     response.status,
   );
-  const deviceInfo = normaliseDeviceInfo(json) ?? parseGetIdXml(response.body) ?? null;
+  const deviceInfo =
+    normaliseDeviceInfo(json) ?? parseGetIdXml(response.body) ?? null;
 
   return {
     success: Boolean(evidence || deviceInfo),
@@ -505,7 +521,10 @@ function mergeIntoPlayersJson(discovered, existingPath) {
     const model = d.deviceInfo?.model ?? prev?.model ?? 'unknown';
     const serial = d.deviceInfo?.serial ?? prev?.serial ?? 'unknown';
     const tags = Array.from(
-      new Set([...(prev?.tags ?? []).filter((tag) => tag !== 'offline'), 'discovered'])
+      new Set([
+        ...(prev?.tags ?? []).filter((tag) => tag !== 'offline'),
+        'discovered',
+      ]),
     );
 
     // Schema requires name matching ^[a-z0-9-]+$
@@ -513,7 +532,9 @@ function mergeIntoPlayersJson(discovered, existingPath) {
     const nameIsValid = existingName && /^[a-z0-9-]+$/.test(existingName);
     const name = nameIsValid
       ? existingName
-      : toKebabName(d.deviceInfo?.name ?? prev?.name ?? `player-${lastOctet(d.ip)}`);
+      : toKebabName(
+          d.deviceInfo?.name ?? prev?.name ?? `player-${lastOctet(d.ip)}`,
+        );
 
     players.push({
       name,
@@ -522,8 +543,7 @@ function mergeIntoPlayersJson(discovered, existingPath) {
       model,
       serial,
       firmware: d.deviceInfo?.firmware ?? prev?.firmware ?? undefined,
-      description:
-        d.deviceInfo?.description ?? prev?.description ?? undefined,
+      description: d.deviceInfo?.description ?? prev?.description ?? undefined,
       tags,
     });
 
@@ -546,13 +566,14 @@ function mergeIntoPlayersJson(discovered, existingPath) {
   players.sort((a, b) => ipToInt(a.ip) - ipToInt(b.ip));
 
   const existingDefault = existing.default;
-  const normalizedDefault = existingDefault && !/^[a-z0-9-]+$/.test(existingDefault)
-    ? toKebabName(existingDefault)
-    : existingDefault;
+  const normalizedDefault =
+    existingDefault && !/^[a-z0-9-]+$/.test(existingDefault)
+      ? toKebabName(existingDefault)
+      : existingDefault;
   const defaultPlayer =
     normalizedDefault && players.some((p) => p.name === normalizedDefault)
       ? normalizedDefault
-      : players[0]?.name ?? null;
+      : (players[0]?.name ?? null);
 
   return {
     $schema: './players.schema.json',
@@ -607,16 +628,16 @@ function printTable(players) {
   const header = cols.map((c) => c.toUpperCase().padEnd(widths[c])).join('  ');
   const divider = cols.map((c) => '-'.repeat(widths[c])).join('  ');
   const body = rows
-    .map((r) => cols.map((c) => String(r[c] ?? '').padEnd(widths[c])).join('  '))
+    .map((r) =>
+      cols.map((c) => String(r[c] ?? '').padEnd(widths[c])).join('  '),
+    )
     .join('\n');
 
   console.log(`\n${header}\n${divider}\n${body}\n`);
 }
 
 function printFailures(results) {
-  const failures = results
-    .filter((item) => item?.found === false)
-    .slice(0, 5);
+  const failures = results.filter((item) => item?.found === false).slice(0, 5);
   if (failures.length === 0) return;
 
   console.log('Sample connection failures:');
@@ -649,16 +670,16 @@ async function main() {
   } else {
     const localCidrs = [...new Set(getLocalCandidateCidrs().map(trimTo24))];
     if (localCidrs.length === 0) {
-      console.error(
-        'No private IPv4 interfaces found. Pass --cidr or --host.',
-      );
+      console.error('No private IPv4 interfaces found. Pass --cidr or --host.');
       exit(1);
     }
     for (const cidr of localCidrs) targets.push(...expandCIDR(cidr));
     console.error(`Auto-detected subnets: ${localCidrs.join(', ')}`);
   }
 
-  console.error(`Scanning ${targets.length} host(s) on ports ${args.ports.join(', ')}...`);
+  console.error(
+    `Scanning ${targets.length} host(s) on ports ${args.ports.join(', ')}...`,
+  );
 
   // Scan
   let scanned = 0;

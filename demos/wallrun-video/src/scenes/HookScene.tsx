@@ -19,12 +19,19 @@ export const HookScene: FC = () => {
     frame,
     [DURATIONS.hook - MOTION.fadeOut, DURATIONS.hook],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
     <AbsoluteFill style={{ background: BRAND.bg, opacity: exitOpacity }}>
-      <GlowOrb color={BRAND.accent} size={600} x={50} y={50} delay={0} pulse={0.04} />
+      <GlowOrb
+        color={BRAND.accent}
+        size={600}
+        x={50}
+        y={50}
+        delay={0}
+        pulse={0.04}
+      />
 
       <AbsoluteFill
         style={{

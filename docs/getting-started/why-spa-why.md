@@ -1,6 +1,6 @@
 # Why a React SPA (for Signage) in a Next.js World?
 
-Next.js is excellent at building SEO-friendly websites and content-rich experiences. But **The Sign Age** is not trying to be a marketing site.
+Next.js is excellent at building SEO-friendly websites and content-rich experiences. But **WallRun** is not trying to be a marketing site.
 
 We’re exploring digital signage as software: always-on screens, often offline, with constraints that look more like embedded systems than “the modern web”. For that work, a React Single-Page Application (SPA) is often the simplest, most direct tool.
 

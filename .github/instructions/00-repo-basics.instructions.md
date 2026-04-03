@@ -63,6 +63,7 @@ applyTo: 'apps/**/*.{ts,tsx,js,jsx}, libs/**/*.{ts,tsx,js,jsx}'
 **Extract handlers for reused logic or external calls:**
 
 ✅ **Good - Named handlers for external calls**:
+
 ```typescript
 export function MyPage() {
   const handleGitHubClick = () => {
@@ -83,6 +84,7 @@ export function MyPage() {
 ```
 
 ❌ **Avoid - Duplicated inline handlers**:
+
 ```typescript
 {/* Repeats window.open boilerplate, harder to maintain */}
 <Button onClick={() => window.open('url1', '_blank', 'noopener,noreferrer')}>
@@ -94,6 +96,7 @@ export function MyPage() {
 ```
 
 **When inline handlers are acceptable:**
+
 - Simple navigation: `onClick={() => navigate('/path')}`
 - State updates: `onClick={() => setOpen(true)}`
 - Callbacks with arguments: `onClick={() => handleSelect(item.id)}`
@@ -147,7 +150,7 @@ When updating `apps/client/public/registry/registry.json`:
 - Exclude React and workspace packages (`@tsa/*`)
 - Use `"type": "registry:component"` for components, `"registry:lib"` for utilities
 - Descriptions must match actual behavior (read the code, don't copy from similar components)
-- Installation format: `npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json component-name`
+- Installation format: `npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name`
 
 ### Library Documentation
 

@@ -1,46 +1,21 @@
 import { Button } from '@tsa/shadcnui';
 import imageSrc from '../../../assets/images/shad-samples.svg';
 
+const EXTERNAL_LINKS = {
+  github: 'https://github.com/CambridgeMonorail/WallRun',
+  storybook:
+    'https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation',
+  shadcn: 'https://ui.shadcn.com',
+  readme:
+    'https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/README.md',
+  roadmap:
+    'https://github.com/CambridgeMonorail/WallRun/blob/main/ROADMAP.md',
+} as const;
+
 /**
  * LibraryPage component
  */
 export function LibraryPage() {
-  const handleGitHubClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleStorybookClick = () => {
-    window.open(
-      'https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/introduction--documentation',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleShadcnClick = () => {
-    window.open('https://ui.shadcn.com', '_blank', 'noopener,noreferrer');
-  };
-
-  const handleReadmeClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/README.md',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleRoadmapClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge/blob/main/ROADMAP.md',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
   return (
     <div className="doc-shell font-sans">
       <div className="demo-panel demo-grid mb-10 space-y-4 px-8 py-8 sm:px-10">
@@ -52,12 +27,14 @@ export function LibraryPage() {
 
         <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
           React components for digital signage and web interfaces. Built with{' '}
-          <button
-            onClick={handleShadcnClick}
+          <a
+            href={EXTERNAL_LINKS.shadcn}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-foreground hover:underline"
           >
             shadcn/ui
-          </button>
+          </a>
           , React 19, and Tailwind v4. See{' '}
           <button
             onClick={() => (window.location.href = '/getting-started')}
@@ -79,22 +56,24 @@ export function LibraryPage() {
               @tsa/shadcnui
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
-              Our copy of shadcn/ui components, organized by category.
-              Standard web UI primitives — buttons, cards, inputs, navigation,
-              data display. Used as building blocks across the monorepo.
+              Our copy of shadcn/ui components, organized by category. Standard
+              web UI primitives — buttons, cards, inputs, navigation, data
+              display. Used as building blocks across the monorepo.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
               @tsa/shadcnui-signage{' '}
-              <span role="img" aria-label="star">⭐</span>
+              <span role="img" aria-label="star">
+                ⭐
+              </span>
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
               Signage-oriented components built for distance readability,
               fixed-aspect layouts, and 24/7 operation on BrightSign devices.
-              Includes primitives (ScreenFrame, MetricCard, EventCard),
-              layouts (SignageContainer, SplitScreen), and behaviour components
-              (Clock, Countdown, ContentRotator).
+              Includes primitives (ScreenFrame, MetricCard, EventCard), layouts
+              (SignageContainer, SplitScreen), and behaviour components (Clock,
+              Countdown, ContentRotator).
             </p>
           </div>
           <ul className="list-disc list-inside mb-4 space-y-1 text-muted-foreground">
@@ -103,8 +82,10 @@ export function LibraryPage() {
             <li>Deterministic rendering for known resolutions</li>
             <li>Designed for always-on, unattended displays</li>
           </ul>
-          <Button onClick={handleGitHubClick} variant={'secondary'}>
-            View on GitHub
+          <Button asChild variant={'secondary'}>
+            <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+              View on GitHub
+            </a>
           </Button>
         </div>
 
@@ -125,7 +106,7 @@ export function LibraryPage() {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <p>
-            The Sign Age signage components support the{' '}
+            WallRun signage components support the{' '}
             <strong className="text-foreground">
               shadcn registry protocol
             </strong>{' '}
@@ -144,12 +125,12 @@ export function LibraryPage() {
             <pre>
               {`# Install a single signage component
 npx shadcn@latest add \\
-  https://cambridgemonorail.github.io/TheSignAge/registry/registry.json \\
+  https://cambridgemonorail.github.io/WallRun/registry/registry.json \\
   clock
 
 # Install multiple components
 npx shadcn@latest add \\
-  https://cambridgemonorail.github.io/TheSignAge/registry/registry.json \\
+  https://cambridgemonorail.github.io/WallRun/registry/registry.json \\
   metric-card event-card schedule-gate`}
             </pre>
           </div>
@@ -172,10 +153,8 @@ npx shadcn@latest add \\
               components correctly, including all dependencies.
             </li>
             <li>
-              <strong className="text-foreground">
-                You stay in control
-              </strong>{' '}
-              - Updates are opt-in. No breaking changes to your build. Fast
+              <strong className="text-foreground">You stay in control</strong> -
+              Updates are opt-in. No breaking changes to your build. Fast
               iteration without semver forever.
             </li>
             <li>
@@ -186,8 +165,8 @@ npx shadcn@latest add \\
             </li>
           </ul>
           <p className="text-sm italic">
-            Registry support means The Sign Age components feel like software,
-            not a demo site with copy buttons.
+            Registry support means WallRun components feel like software, not a
+            demo site with copy buttons.
           </p>
         </div>
       </section>
@@ -197,12 +176,14 @@ npx shadcn@latest add \\
           Interactive Documentation
         </h2>
         <p className="mb-4 text-muted-foreground">
-          Browse Storybook for live component previews, props documentation,
-          and usage examples. All components include interactive controls and
+          Browse Storybook for live component previews, props documentation, and
+          usage examples. All components include interactive controls and
           real-world scenarios.
         </p>
-        <Button onClick={handleStorybookClick} variant={'secondary'}>
-          Open Storybook
+        <Button asChild variant={'secondary'}>
+          <a href={EXTERNAL_LINKS.storybook} target="_blank" rel="noopener noreferrer">
+            Open Storybook
+          </a>
         </Button>
       </section>
 
@@ -216,23 +197,31 @@ npx shadcn@latest add \\
         </p>
         <ul className="list-none space-y-2">
           <li>
-            <Button onClick={handleReadmeClick} variant={'ghost'}>
-              Component Library README
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.readme} target="_blank" rel="noopener noreferrer">
+                Component Library README
+              </a>
             </Button>
           </li>
           <li>
-            <Button onClick={handleRoadmapClick} variant={'ghost'}>
-              Project Roadmap
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.roadmap} target="_blank" rel="noopener noreferrer">
+                Project Roadmap
+              </a>
             </Button>
           </li>
           <li>
-            <Button onClick={handleGitHubClick} variant={'ghost'}>
-              GitHub Repository
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </a>
             </Button>
           </li>
           <li>
-            <Button onClick={handleShadcnClick} variant={'ghost'}>
-              shadcn/ui Official Site
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.shadcn} target="_blank" rel="noopener noreferrer">
+                shadcn/ui Official Site
+              </a>
             </Button>
           </li>
         </ul>
@@ -247,11 +236,15 @@ npx shadcn@latest add \\
           real-world usage examples for all components.
         </p>
         <div className="flex gap-3 justify-center">
-          <Button onClick={handleStorybookClick} variant={'secondary'}>
-            Open Storybook
+          <Button asChild variant={'secondary'}>
+            <a href={EXTERNAL_LINKS.storybook} target="_blank" rel="noopener noreferrer">
+              Open Storybook
+            </a>
           </Button>
-          <Button onClick={handleGitHubClick} variant={'secondary'}>
-            View Source Code
+          <Button asChild variant={'secondary'}>
+            <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+              View Source Code
+            </a>
           </Button>
         </div>
       </section>

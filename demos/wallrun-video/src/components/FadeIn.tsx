@@ -34,7 +34,8 @@ export const FadeIn: FC<FadeInProps> = ({
 
   const translateY = slide > 0 ? (1 - progress) * slide : 0;
   const translateX = slideX !== 0 ? (1 - progress) * slideX : 0;
-  const scale = scaleFrom !== undefined ? scaleFrom + progress * (1 - scaleFrom) : 1;
+  const scale =
+    scaleFrom !== undefined ? scaleFrom + progress * (1 - scaleFrom) : 1;
 
   return (
     <div

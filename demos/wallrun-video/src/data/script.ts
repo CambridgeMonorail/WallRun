@@ -33,19 +33,56 @@ export const SCRIPT = {
   toolkit: {
     headline: "What's inside",
     items: [
-      { icon: 'layers', label: 'Signage component library', detail: 'shadcn/ui primitives, adapted for walls', color: '#f59e0b' },
-      { icon: 'type', label: 'Distance-readable typography', detail: '10-foot rule, enforced', color: '#57D5F4' },
-      { icon: 'terminal', label: 'One-command BrightSign deploy', detail: 'pnpm deploy:player', color: '#10b981' },
-      { icon: 'bot', label: 'Copilot agents for signage', detail: 'AI that knows the constraints', color: '#BF83EC' },
-      { icon: 'shield', label: 'Offline-first, 24/7 ready', detail: 'State machines. Crash recovery.', color: '#ef4444' },
+      {
+        icon: 'layers',
+        label: 'Signage component library',
+        detail: 'shadcn/ui primitives, adapted for walls',
+        color: '#f59e0b',
+      },
+      {
+        icon: 'type',
+        label: 'Distance-readable typography',
+        detail: '10-foot rule, enforced',
+        color: '#57D5F4',
+      },
+      {
+        icon: 'terminal',
+        label: 'One-command BrightSign deploy',
+        detail: 'pnpm deploy:player',
+        color: '#10b981',
+      },
+      {
+        icon: 'bot',
+        label: 'Copilot agents for signage',
+        detail: 'AI that knows the constraints',
+        color: '#BF83EC',
+      },
+      {
+        icon: 'shield',
+        label: 'Offline-first, 24/7 ready',
+        detail: 'State machines. Crash recovery.',
+        color: '#ef4444',
+      },
     ],
   },
   constraints: {
     headline: 'Built for the real world',
     cards: [
-      { stat: '3–10m', label: 'Viewing distance', detail: 'Readable from across the room' },
-      { stat: '24/7', label: 'Always on', detail: 'Survives reboots, outages, crashes' },
-      { stat: '1080p+', label: 'Fixed resolution', detail: 'No responsive guessing' },
+      {
+        stat: '3–10m',
+        label: 'Viewing distance',
+        detail: 'Readable from across the room',
+      },
+      {
+        stat: '24/7',
+        label: 'Always on',
+        detail: 'Survives reboots, outages, crashes',
+      },
+      {
+        stat: '1080p+',
+        label: 'Fixed resolution',
+        detail: 'No responsive guessing',
+      },
       { stat: '< 2s', label: 'Glance time', detail: 'Understand and move on' },
     ],
   },
@@ -63,12 +100,12 @@ export const SCRIPT = {
     items: [
       { label: 'MIT licensed' },
       { label: 'Early days — contributions welcome' },
-      { label: 'github.com/CambridgeMonorail/TheSignAge' },
+      { label: 'github.com/CambridgeMonorail/WallRun' },
     ],
   },
   close: {
     headline: 'Signage is software.\nBuild it like software.',
-    url: 'github.com/CambridgeMonorail/TheSignAge',
+    url: 'github.com/CambridgeMonorail/WallRun',
     cta: '★ Star on GitHub',
   },
   credits: {

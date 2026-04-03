@@ -237,7 +237,7 @@ export const SkillsPage: FC = () => {
             changes.
           </p>
           <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
-            <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
+            <pre>{`npx skills add CambridgeMonorail/WallRun`}</pre>
           </div>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
             This installs the 13 public skills (signage design, distance
@@ -257,7 +257,7 @@ export const SkillsPage: FC = () => {
             that describes your setup, opt in:
           </p>
           <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
-            <pre>{`INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge`}</pre>
+            <pre>{`INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/WallRun`}</pre>
           </div>
           <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
             This gives you all 22 skills — signage design, development patterns,
@@ -387,8 +387,8 @@ export const SkillsPage: FC = () => {
         <div className="code-panel mb-4 overflow-x-auto p-4 font-mono text-sm text-foreground">
           <pre>
             {`# 1. Clone the repository
-git clone https://github.com/CambridgeMonorail/TheSignAge.git
-cd TheSignAge
+git clone https://github.com/CambridgeMonorail/WallRun.git
+cd WallRun
 
 # 2. Install dependencies
 pnpm install
@@ -434,7 +434,7 @@ git pull origin main`}
         <div className="flex flex-wrap justify-center gap-3">
           <Button variant="secondary" asChild>
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/tree/main/skills"
+              href="https://github.com/CambridgeMonorail/WallRun/tree/main/skills"
               target="_blank"
               rel="noopener noreferrer"
             >

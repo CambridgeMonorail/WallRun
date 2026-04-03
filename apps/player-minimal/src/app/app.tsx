@@ -41,7 +41,7 @@ export function App() {
         {/* Top: Minimal Brand */}
         <div className="text-center">
           <div className="text-2xl font-light tracking-[0.3em] text-white/60">
-            THE SIGN AGE
+            WALLRUN
           </div>
         </div>
 

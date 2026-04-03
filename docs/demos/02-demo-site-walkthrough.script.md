@@ -1,8 +1,8 @@
-# The Sign Age Walkthrough Script
+# WallRun Walkthrough Script
 
 ## Spoken Script
 
-1. "This is The Sign Age: digital signage treated as software rather than a slide deck or CMS. The focus is deterministic screen composition, installable components, and delivery workflows for always-on displays."
+1. "This is WallRun: digital signage treated as software rather than a slide deck or CMS. The focus is deterministic screen composition, installable components, and delivery workflows for always-on displays."
 
 2. "The getting started guide makes the adoption path concrete. You can install components from the registry, clone the repo, or copy the source into an existing React project."
 
@@ -26,4 +26,4 @@
 
 12. "And this is the signage component library itself, where the primitives, layouts, blocks, and supporting code live."
 
-13. "This is the kind of output The Sign Age is built to support: clear, purposeful screens built with the same engineering discipline we expect from the rest of our software stack."
+13. "This is the kind of output WallRun is built to support: clear, purposeful screens built with the same engineering discipline we expect from the rest of our software stack."

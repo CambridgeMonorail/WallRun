@@ -10,7 +10,7 @@ Create a React component library for building digital signage screens using shad
 
 The library is intended for developers building content closer to PowerPoint slides than web apps, with occasional interactivity.
 
-This library must integrate cleanly into The Sign Age's existing Nx monorepo and sit on top of our current shadcn foundations.
+This library must integrate cleanly into WallRun's existing Nx monorepo and sit on top of our current shadcn foundations.
 
 ## Existing libraries
 
@@ -40,7 +40,7 @@ This library will contain signage-specific primitives, layouts, and blocks.
 
 ## Dependency rules
 
-These rules are strict and align with The Sign Age monorepo conventions:
+These rules are strict and align with WallRun monorepo conventions:
 
 ### `libs/shadcnui` dependencies
 
@@ -103,11 +103,11 @@ Simple React functional components with TypeScript, no hidden runtime behavior.
 
 ### Accessibility first
 
-Follow The Sign Age's accessibility baseline: semantic HTML, keyboard navigation, ARIA attributes, WCAG AA contrast.
+Follow WallRun's accessibility baseline: semantic HTML, keyboard navigation, ARIA attributes, WCAG AA contrast.
 
 ## Folder structure
 
-Following The Sign Age's library organization patterns:
+Following WallRun's library organization patterns:
 
 ```
 libs/shadcnui-signage/
@@ -306,7 +306,7 @@ type InfoCardGridProps = {
 - Use shadcn/ui tokens from `common-tailwind` for colors, borders, radius, and typography
 - Avoid custom CSS unless strictly necessary
 - No hardcoded colors outside token usage
-- Follow The Sign Age's utility-first approach
+- Follow WallRun's utility-first approach
 - Use `cn()` utility from `@tsa/shadcnui` for conditional classes
 
 ## Storybook requirements
@@ -350,7 +350,7 @@ Storybook 10.2.0 is the primary demo surface for component documentation.
 
 ## Accessibility requirements
 
-Following The Sign Age's accessibility baseline (WCAG AA minimum):
+Following WallRun's accessibility baseline (WCAG AA minimum):
 
 - Use semantic HTML elements (section, article, header, etc.)
 - Proper heading hierarchy (h1, h2, h3)

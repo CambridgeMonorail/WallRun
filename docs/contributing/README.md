@@ -1,6 +1,6 @@
 # Contributing
 
-Guidelines and processes for contributing to The Sign Age.
+Guidelines and processes for contributing to WallRun.
 
 ## Documents in this Section
 

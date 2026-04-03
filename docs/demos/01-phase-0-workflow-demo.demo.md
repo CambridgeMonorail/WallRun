@@ -35,7 +35,7 @@
 
 ### Introduction (45 seconds)
 
-> "Welcome back! In the last video, I introduced The Sign Age project. Today, I want to show you something unique about how we built it - our Copilot-first workflow system."
+> "Welcome back! In the last video, I introduced WallRun project. Today, I want to show you something unique about how we built it - our Copilot-first workflow system."
 
 **Show:** VS Code with project root visible
 
@@ -407,7 +407,7 @@ What evidence do I need to provide when I'm done with the Timeline component?
 
 ### Closing (20 seconds)
 
-> "The Sign Age is more than a digital signage framework - it's a case study in how to structure projects for effective AI-assisted development."
+> "WallRun is more than a digital signage framework - it's a case study in how to structure projects for effective AI-assisted development."
 
 **Show:** Links in description
 

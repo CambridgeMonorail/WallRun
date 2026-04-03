@@ -15,9 +15,11 @@ export const Home: FC = () => {
   return (
     <div className="doc-shell font-sans">
       <div className="demo-panel demo-grid mb-12 px-8 py-10 text-center md:px-12 md:py-12">
-        <p className="display-kicker mb-4 text-xs sm:text-sm">Operational Demo Environment</p>
+        <p className="display-kicker mb-4 text-xs sm:text-sm">
+          Operational Demo Environment
+        </p>
         <h1 className="display-type mb-4 text-4xl text-foreground md:text-5xl">
-          The Sign Age
+          WallRun
         </h1>
         <p className="mx-auto mb-8 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
           Digital signage as software. Build deterministic, data-driven content
@@ -51,7 +53,10 @@ export const Home: FC = () => {
           aria-label="Navigate to Getting Started guide"
         >
           <div className="flex items-start gap-4">
-            <BookOpen className="w-8 h-8 text-foreground flex-shrink-0 mt-1" aria-hidden="true" />
+            <BookOpen
+              className="w-8 h-8 text-foreground flex-shrink-0 mt-1"
+              aria-hidden="true"
+            />
             <div>
               <h3 className="text-xl font-medium text-foreground mb-2">
                 Getting Started
@@ -74,7 +79,10 @@ export const Home: FC = () => {
           aria-label="Navigate to Component Library"
         >
           <div className="flex items-start gap-4">
-            <Layers className="w-8 h-8 text-foreground flex-shrink-0 mt-1" aria-hidden="true" />
+            <Layers
+              className="w-8 h-8 text-foreground flex-shrink-0 mt-1"
+              aria-hidden="true"
+            />
             <div>
               <h3 className="text-xl font-medium text-foreground mb-2">
                 Component Library
@@ -97,7 +105,10 @@ export const Home: FC = () => {
           aria-label="Navigate to Signage Gallery"
         >
           <div className="flex items-start gap-4">
-            <Layout className="w-8 h-8 text-foreground flex-shrink-0 mt-1" aria-hidden="true" />
+            <Layout
+              className="w-8 h-8 text-foreground flex-shrink-0 mt-1"
+              aria-hidden="true"
+            />
             <div>
               <h3 className="text-xl font-medium text-foreground mb-2">
                 Signage Gallery
@@ -120,7 +131,10 @@ export const Home: FC = () => {
           aria-label="Navigate to Theme and Colors page"
         >
           <div className="flex items-start gap-4">
-            <Palette className="w-8 h-8 text-foreground flex-shrink-0 mt-1" aria-hidden="true" />
+            <Palette
+              className="w-8 h-8 text-foreground flex-shrink-0 mt-1"
+              aria-hidden="true"
+            />
             <div>
               <h3 className="text-xl font-medium text-foreground mb-2">
                 Theme & Colors
@@ -143,15 +157,18 @@ export const Home: FC = () => {
           What You Can Use From This Repo
         </h2>
         <p className="max-w-3xl text-base text-muted-foreground mb-6 leading-relaxed">
-          The demo app is not just a showcase. It points to four distinct
-          things you can consume: signage components, registry-based install
-          paths, portable Copilot skills, and BrightSign deployment workflows.
+          The demo app is not just a showcase. It points to four distinct things
+          you can consume: signage components, registry-based install paths,
+          portable Copilot skills, and BrightSign deployment workflows.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="section-shell p-5">
             <div className="flex items-start gap-3 mb-3">
-              <Layers className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <Layers
+                className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <div>
                 <h3 className="text-lg font-medium text-foreground">
                   Signage Components
@@ -163,7 +180,7 @@ export const Home: FC = () => {
               </div>
             </div>
             <div className="code-panel mb-3 overflow-x-auto p-3 font-mono text-xs text-foreground">
-              <pre>{`npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list`}</pre>
+              <pre>{`npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list`}</pre>
             </div>
             <Button asChild variant="secondary">
               <Link to="/getting-started">See install options</Link>
@@ -172,7 +189,10 @@ export const Home: FC = () => {
 
           <div className="section-shell p-5">
             <div className="flex items-start gap-3 mb-3">
-              <BookOpen className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <BookOpen
+                className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <div>
                 <h3 className="text-lg font-medium text-foreground">
                   Component Reference
@@ -189,7 +209,7 @@ export const Home: FC = () => {
               </Button>
               <Button variant="ghost" asChild>
                 <a
-                  href="https://cambridgemonorail.github.io/TheSignAge/storybook/"
+                  href="https://cambridgemonorail.github.io/WallRun/storybook/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -201,24 +221,27 @@ export const Home: FC = () => {
 
           <div className="section-shell p-5">
             <div className="flex items-start gap-3 mb-3">
-              <Bot className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <Bot
+                className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <div>
                 <h3 className="text-lg font-medium text-foreground">
                   Portable Skills
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Reusable <code className="text-xs">SKILL.md</code>{' '}
-                  workflows for BrightSign deployment, discovery, debugging,
-                  verification, and planning.
+                  Reusable <code className="text-xs">SKILL.md</code> workflows
+                  for BrightSign deployment, discovery, debugging, verification,
+                  and planning.
                 </p>
               </div>
             </div>
             <div className="code-panel mb-3 overflow-x-auto p-3 font-mono text-xs text-foreground">
-              <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
+              <pre>{`npx skills add CambridgeMonorail/WallRun`}</pre>
             </div>
             <Button variant="secondary" asChild>
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/skills/README.md"
+                href="https://github.com/CambridgeMonorail/WallRun/blob/main/skills/README.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -229,7 +252,10 @@ export const Home: FC = () => {
 
           <div className="section-shell p-5">
             <div className="flex items-start gap-3 mb-3">
-              <Layout className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <Layout
+                className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <div>
                 <h3 className="text-lg font-medium text-foreground">
                   Player Workflows
@@ -242,7 +268,7 @@ export const Home: FC = () => {
             </div>
             <Button variant="secondary" asChild>
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/guides/brightsign-deployment.md"
+                href="https://github.com/CambridgeMonorail/WallRun/blob/main/docs/guides/brightsign-deployment.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -260,12 +286,15 @@ export const Home: FC = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a
-            href="https://cambridgemonorail.github.io/TheSignAge/storybook/"
+            href="https://cambridgemonorail.github.io/WallRun/storybook/"
             target="_blank"
             rel="noopener noreferrer"
             className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
           >
-            <ExternalLink className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+            <ExternalLink
+              className="w-5 h-5 text-muted-foreground"
+              aria-hidden="true"
+            />
             <div>
               <div className="font-medium text-foreground">Storybook</div>
               <div className="text-sm text-muted-foreground">
@@ -274,12 +303,15 @@ export const Home: FC = () => {
             </div>
           </a>
           <a
-            href="https://github.com/CambridgeMonorail/TheSignAge"
+            href="https://github.com/CambridgeMonorail/WallRun"
             target="_blank"
             rel="noopener noreferrer"
             className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-violet)/0.3)]"
           >
-            <Github className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+            <Github
+              className="w-5 h-5 text-muted-foreground"
+              aria-hidden="true"
+            />
             <div>
               <div className="font-medium text-foreground">GitHub</div>
               <div className="text-sm text-muted-foreground">
@@ -288,12 +320,15 @@ export const Home: FC = () => {
             </div>
           </a>
           <a
-            href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/apps/client/public/registry/README.md"
+            href="https://github.com/CambridgeMonorail/WallRun/blob/main/apps/client/public/registry/README.md"
             target="_blank"
             rel="noopener noreferrer"
             className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-amber)/0.3)]"
           >
-            <ExternalLink className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+            <ExternalLink
+              className="w-5 h-5 text-muted-foreground"
+              aria-hidden="true"
+            />
             <div>
               <div className="font-medium text-foreground">Registry README</div>
               <div className="text-sm text-muted-foreground">
@@ -302,12 +337,15 @@ export const Home: FC = () => {
             </div>
           </a>
           <a
-            href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/tooling/github-copilot-tooling.md"
+            href="https://github.com/CambridgeMonorail/WallRun/blob/main/docs/tooling/github-copilot-tooling.md"
             target="_blank"
             rel="noopener noreferrer"
             className="section-shell flex items-center gap-3 p-4 transition duration-300 hover:-translate-y-1 hover:border-[hsl(var(--glow-cyan)/0.3)]"
           >
-            <ExternalLink className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+            <ExternalLink
+              className="w-5 h-5 text-muted-foreground"
+              aria-hidden="true"
+            />
             <div>
               <div className="font-medium text-foreground">Copilot Tooling</div>
               <div className="text-sm text-muted-foreground">

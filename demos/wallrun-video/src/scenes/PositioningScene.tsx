@@ -23,7 +23,7 @@ export const PositioningScene: FC = () => {
     frame,
     [DURATIONS.positioning - MOTION.fadeOut, DURATIONS.positioning],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
@@ -65,7 +65,8 @@ export const PositioningScene: FC = () => {
                 style={{
                   fontFamily: FONTS.body,
                   fontSize: 28,
-                  color: i === lines.length - 1 ? BRAND.accent : BRAND.textMuted,
+                  color:
+                    i === lines.length - 1 ? BRAND.accent : BRAND.textMuted,
                   margin: 0,
                   textAlign: 'center',
                   letterSpacing: '0.01em',

@@ -52,7 +52,7 @@ export const KPIDashboard: FC = () => {
         <footer className="mt-16 text-center">
           <div className="inline-block bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl px-12 py-6">
             <p className="text-xl text-slate-400">
-              Dashboard powered by The Sign Age • Digital signage toolkit
+              Dashboard powered by WallRun • Digital signage toolkit
             </p>
           </div>
         </footer>

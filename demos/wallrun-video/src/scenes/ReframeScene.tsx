@@ -24,33 +24,44 @@ export const ReframeScene: FC = () => {
     frame,
     [PRE_DELAY, PRE_DELAY + MOTION.fadeIn],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   const subOpacity = interpolate(
     frame,
     [SUB_DELAY, SUB_DELAY + MOTION.fadeIn],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
   const subY = interpolate(
     frame,
     [SUB_DELAY, SUB_DELAY + MOTION.fadeIn],
     [12, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) }
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: Easing.out(Easing.cubic),
+    },
   );
 
   const exitOpacity = interpolate(
     frame,
     [DURATIONS.reframe - MOTION.fadeOut, DURATIONS.reframe],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
     <AbsoluteFill style={{ background: BRAND.bg, opacity: exitOpacity }}>
       <GridBackground cellSize={80} delay={0} />
-      <GlowOrb color={BRAND.accent} size={900} x={50} y={40} delay={10} pulse={0.06} />
+      <GlowOrb
+        color={BRAND.accent}
+        size={900}
+        x={50}
+        y={40}
+        delay={10}
+        pulse={0.06}
+      />
 
       <AbsoluteFill
         style={{

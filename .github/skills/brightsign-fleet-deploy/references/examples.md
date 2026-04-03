@@ -9,7 +9,7 @@ Add to your React app so players can poll for and self-install updates:
 
 import { useEffect, useState } from 'react';
 
-const MANIFEST_URL = 'https://cambridgemonorail.github.io/TheSignAge/releases/latest-manifest.json';
+const MANIFEST_URL = 'https://cambridgemonorail.github.io/WallRun/releases/latest-manifest.json';
 const CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
 
 export function UpdateChecker() {
@@ -125,7 +125,7 @@ async function deployFleet(version?: string) {
 
     console.log(`\n✓ Fleet deployment complete!`);
     console.log(`Version: ${version}`);
-    console.log(`Download: https://github.com/CambridgeMonorail/TheSignAge/releases/download/v${version}/player-minimal-v${version}.zip`);
+    console.log(`Download: https://github.com/CambridgeMonorail/WallRun/releases/download/v${version}/player-minimal-v${version}.zip`);
   } catch (error) {
     console.error('Fleet deployment failed:', error);
     process.exit(1);

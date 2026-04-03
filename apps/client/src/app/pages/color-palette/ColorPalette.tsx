@@ -224,7 +224,7 @@ const ColorPalettePage: React.FC = () => {
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-4xl font-bold mb-8">Theme Color Demonstration</h1>
-      
+
       {/* THEME RESOURCES */}
       <Card className="mb-8">
         <CardHeader>
@@ -232,9 +232,9 @@ const ColorPalettePage: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="mb-4 text-muted-foreground">
-            The Sign Age uses a custom shadcn/ui theme optimized for digital signage.
-            The theme follows STYLE_GUIDE.md specifications with locked colors and
-            accessibility-first design.
+            WallRun uses a custom shadcn/ui theme optimized for digital signage.
+            The theme follows STYLE_GUIDE.md specifications with locked colors
+            and accessibility-first design.
           </p>
           <div className="flex flex-col gap-2">
             <div>
@@ -252,7 +252,7 @@ const ColorPalettePage: React.FC = () => {
           </div>
           <div className="mt-4 flex gap-2">
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/common-tailwind/src/shadcn-theme.css"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/common-tailwind/src/shadcn-theme.css"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-primary hover:underline"

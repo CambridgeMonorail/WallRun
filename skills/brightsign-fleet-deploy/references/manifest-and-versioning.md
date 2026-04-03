@@ -19,7 +19,7 @@ cat > dist/brightsign-package/manifest.json << EOF
   "buildTime": "${BUILD_TIME}",
   "minOSVersion": "9.0.0",
   "checksum": "",
-  "downloadUrl": "https://github.com/CambridgeMonorail/TheSignAge/releases/download/v${VERSION}/player-minimal-v${VERSION}.zip",
+  "downloadUrl": "https://github.com/CambridgeMonorail/WallRun/releases/download/v${VERSION}/player-minimal-v${VERSION}.zip",
   "releaseNotes": "Release v${VERSION}",
   "changelog": []
 }

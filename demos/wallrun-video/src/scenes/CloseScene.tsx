@@ -36,13 +36,24 @@ export const CloseScene: FC = () => {
     frame,
     [CTA_DELAY, CTA_DELAY + MOTION.fadeIn],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) }
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: Easing.out(Easing.cubic),
+    },
   );
 
   return (
     <AbsoluteFill style={{ background: BRAND.bg }}>
       <GridBackground delay={0} drift={false} />
-      <GlowOrb color={BRAND.accent} size={900} x={50} y={42} delay={0} pulse={0.08} />
+      <GlowOrb
+        color={BRAND.accent}
+        size={900}
+        x={50}
+        y={42}
+        delay={0}
+        pulse={0.08}
+      />
 
       {/* Expanding ring */}
       <div

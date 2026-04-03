@@ -25,7 +25,7 @@ export const ShowcaseScene: FC = () => {
     frame,
     [DURATIONS.showcase - MOTION.fadeOut, DURATIONS.showcase],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   // Screen grid fades out when terminal appears
@@ -33,7 +33,7 @@ export const ShowcaseScene: FC = () => {
     frame,
     [TERMINAL_START - 20, TERMINAL_START],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   // Terminal enters
@@ -41,7 +41,7 @@ export const ShowcaseScene: FC = () => {
     frame,
     [TERMINAL_START, TERMINAL_START + 15],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
@@ -77,7 +77,7 @@ export const ShowcaseScene: FC = () => {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
                 easing: Easing.out(Easing.cubic),
-              }
+              },
             );
 
             const Icon = ICONS[screen.icon];
@@ -142,11 +142,14 @@ export const ShowcaseScene: FC = () => {
                   frame,
                   [lineDelay, lineDelay + 10],
                   [0, 1],
-                  { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+                  { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
                 );
 
                 return (
-                  <div key={i} style={{ opacity: lineOpacity, display: 'flex', gap: 8 }}>
+                  <div
+                    key={i}
+                    style={{ opacity: lineOpacity, display: 'flex', gap: 8 }}
+                  >
                     {line.prompt && (
                       <span
                         style={{

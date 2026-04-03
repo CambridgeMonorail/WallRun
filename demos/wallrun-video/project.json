@@ -1,0 +1,26 @@
+{
+  "name": "wallrun-video",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "demos/wallrun-video/src",
+  "targets": {
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec remotion studio demos/wallrun-video/src/index.ts"
+      }
+    },
+    "render": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec remotion render demos/wallrun-video/src/index.ts Main dist/demos/wallrun-video/wallrun-demo.mp4"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --project demos/wallrun-video/tsconfig.json --noEmit"
+      }
+    }
+  }
+}

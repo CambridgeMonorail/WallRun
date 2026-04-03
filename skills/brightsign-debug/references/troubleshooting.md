@@ -107,7 +107,7 @@ Detailed troubleshooting for common BrightSign player issues.
 **Solutions:**
 
 - Use relative paths (not absolute `/` paths)
-- Vite config: `base: './'` not `base: '/TheSignAge/'`
+- Vite config: `base: './'` not `base: '/WallRun/'`
 - Rebuild and redeploy with correct base path
 
 ### Issue: Network Requests Fail

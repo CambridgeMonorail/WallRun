@@ -1,6 +1,6 @@
 # Getting Started
 
-New to The Sign Age? Start here to understand the project's purpose, structure, and philosophy.
+New to WallRun? Start here to understand the project's purpose, structure, and philosophy.
 
 ## Documents in this Section
 

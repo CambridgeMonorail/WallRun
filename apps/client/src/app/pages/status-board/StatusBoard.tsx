@@ -333,7 +333,7 @@ export function StatusBoardPage() {
               <p>
                 For assistance, please visit our{' '}
                 <a
-                  href="https://github.com/CambridgeMonorail/TheSignAge"
+                  href="https://github.com/CambridgeMonorail/WallRun"
                   className="text-primary underline"
                   target="_blank"
                   rel="noopener noreferrer"

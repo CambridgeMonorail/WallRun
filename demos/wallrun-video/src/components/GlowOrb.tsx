@@ -33,9 +33,7 @@ export const GlowOrb: FC<GlowOrbProps> = ({
     easing: Easing.out(Easing.cubic),
   });
 
-  const pulseScale = pulse > 0
-    ? 1 + Math.sin(frame * 0.03) * pulse
-    : 1;
+  const pulseScale = pulse > 0 ? 1 + Math.sin(frame * 0.03) * pulse : 1;
 
   return (
     <div

@@ -261,4 +261,4 @@ Use `pnpm scaffold:player` when you want the existing script entry point. Use `p
 
 ## License
 
-Part of The Sign Age monorepo. See root LICENSE for details.
+Part of WallRun monorepo. See root LICENSE for details.

@@ -28,28 +28,36 @@ export const FrustrationScene: FC = () => {
     frame,
     [FADE_START, FADE_START + 20],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) }
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: Easing.out(Easing.cubic),
+    },
   );
 
   const punchOpacity = interpolate(
     frame,
     [PUNCHLINE_START, PUNCHLINE_START + MOTION.fadeIn],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   const punchY = interpolate(
     frame,
     [PUNCHLINE_START, PUNCHLINE_START + MOTION.fadeIn],
     [15, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) }
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+      easing: Easing.out(Easing.cubic),
+    },
   );
 
   const exitOpacity = interpolate(
     frame,
     [DURATIONS.frustration - MOTION.fadeOut, DURATIONS.frustration],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
@@ -107,7 +115,6 @@ export const FrustrationScene: FC = () => {
               </FadeIn>
             );
           })}
-
         </div>
 
         {/* Punchline */}

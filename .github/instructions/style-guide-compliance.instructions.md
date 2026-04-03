@@ -1,6 +1,6 @@
 ---
 name: 'Style Guide Compliance'
-description: 'Visual style and interaction standards for The Sign Age demo website'
+description: 'Visual style and interaction standards for WallRun demo website'
 applyTo: 'apps/client/src/**/*.{ts,tsx}'
 ---
 
@@ -11,6 +11,7 @@ applyTo: 'apps/client/src/**/*.{ts,tsx}'
 This style guide applies to the **demo website chrome** (navigation, shell, layouts, UI controls), NOT to signage content being demonstrated.
 
 ### What Follows STYLE_GUIDE.md
+
 - Website navigation and header
 - Page layouts and shells
 - Website UI controls (buttons, forms, cards)
@@ -18,6 +19,7 @@ This style guide applies to the **demo website chrome** (navigation, shell, layo
 - Any B2B SaaS interface elements
 
 ### What Does NOT Follow STYLE_GUIDE.md
+
 - Signage content components (in `apps/client/src/pages/**/signage/**` or similar)
 - Digital signage demonstrations
 - Signage preview/showcase areas
@@ -29,7 +31,7 @@ All code in the demo website **chrome/shell** must follow `docs/design/STYLE_GUI
 
 ## Product Intent
 
-The Sign Age treats digital signage as software infrastructure. The demo site should feel like:
+WallRun treats digital signage as software infrastructure. The demo site should feel like:
 
 - High-quality B2B admin tools
 - Developer-focused SaaS products
@@ -67,6 +69,7 @@ Use these values ONLY in theme configuration:
 **All color usage must go through shadcn tokens.**
 
 ✅ **Use**:
+
 - `bg-background`
 - `text-foreground`
 - `text-muted-foreground`
@@ -76,11 +79,13 @@ Use these values ONLY in theme configuration:
 - `bg-muted`
 
 ❌ **Avoid**:
+
 - Hard-coded hex colors in components
 - Ad hoc opacity hacks (e.g., `bg-black/20`)
 - Custom color classes outside theme
 
 ✅ **Allowed when token-derived and reusable**:
+
 - `border-border/60`, `bg-card/80`, `bg-background/70`
 - Shared semantic surface classes defined in the theme layer
 - Subtle blur or depth effects built from tokens rather than raw color hacks
@@ -94,6 +99,7 @@ Use these values ONLY in theme configuration:
 Code blocks must use theme tokens, not hardcoded colors.
 
 ✅ **Correct code block styling**:
+
 ```tsx
 <div className="bg-muted text-foreground p-4 rounded font-mono text-sm">
   <pre>{code}</pre>
@@ -101,6 +107,7 @@ Code blocks must use theme tokens, not hardcoded colors.
 ```
 
 Or for more complex code displays:
+
 ```tsx
 <div className="bg-card text-foreground p-4 rounded font-mono text-sm">
   <pre>{code}</pre>
@@ -108,6 +115,7 @@ Or for more complex code displays:
 ```
 
 ❌ **Avoid hardcoded colors**:
+
 ```tsx
 // Don't do this
 <div className="bg-slate-900 text-slate-100 p-4 rounded font-mono text-sm">
@@ -147,6 +155,7 @@ Use a restrained, modern SaaS scale:
 - **Small text**: `text-sm text-muted-foreground`
 
 **Rules**:
+
 - Avoid dramatic size jumps
 - Avoid bold for impact
 - Let spacing create hierarchy
@@ -160,11 +169,10 @@ Use a restrained, modern SaaS scale:
 - Predictable spacing between sections
 
 **Recommended base wrapper**:
+
 ```tsx
 <div className="min-h-screen bg-background text-foreground">
-  <div className="mx-auto max-w-5xl px-6 py-12 md:px-8 md:py-16">
-    {/* content */}
-  </div>
+  <div className="mx-auto max-w-5xl px-6 py-12 md:px-8 md:py-16">{/* content */}</div>
 </div>
 ```
 
@@ -185,31 +193,40 @@ White space is part of the interface.
 Buttons should feel like precise controls.
 
 **Always set variant explicitly** - Never rely on default variant:
-```tsx
-{/* ✅ Correct - explicit variant */}
-<Button variant="secondary">Action</Button>
 
-{/* ❌ Avoid - implicit default variant */}
-<Button>Action</Button>
+```tsx
+{
+  /* ✅ Correct - explicit variant */
+}
+<Button variant="secondary">Action</Button>;
+
+{
+  /* ❌ Avoid - implicit default variant */
+}
+<Button>Action</Button>;
 ```
 
 **Default to**:
+
 - `variant="secondary"` (standard actions)
 - `variant="ghost"` (low-priority actions)
 
 Use `variant="default"` sparingly and deliberately.
 
 **When to use variant="default":**
+
 - Critical actions with significant consequences (e.g., "Delete Account", "Confirm Payment")
 - Primary CTAs in onboarding flows (rarely)
 - Use only when one action is clearly more important than all others
 
 **Common navigation actions use secondary:**
+
 - "View Documentation", "Open Storybook", "Browse Components"
 - "View Gallery", "View Source Code"
 - Navigation between sections of the site
 
 ✅ **Correct**:
+
 ```tsx
 <Button onClick={handleNavigate} variant="secondary">
   Browse Components
@@ -217,14 +234,18 @@ Use `variant="default"` sparingly and deliberately.
 ```
 
 ❌ **Avoid**:
+
 ```tsx
-{/* Don't use default for standard navigation */}
+{
+  /* Don't use default for standard navigation */
+}
 <Button onClick={handleNavigate} variant="default">
   Browse Components
-</Button>
+</Button>;
 ```
 
 **Rules**:
+
 - No gradients
 - No glow
 - No animated flair
@@ -247,12 +268,14 @@ Links are navigation, not decoration.
 Cards should feel structural.
 
 **Rules**:
+
 - Flat surfaces
 - Subtle borders
 - Minimal or no shadow
 - Consistent padding
 
 **Suggested**:
+
 - Reduce default shadcn shadow if it feels decorative
 - Use `border-border/60` for separation
 - Prefer shared semantic surface utilities when the chrome needs more depth than a flat card
@@ -264,6 +287,7 @@ Cards should feel like containers, not highlights.
 Inputs should feel robust and tool-like.
 
 **Rules**:
+
 - Clear focus rings
 - No playful placeholder copy
 - No oversized controls
@@ -276,6 +300,7 @@ Forms should feel like configuration, not onboarding.
 Tables are first-class citizens.
 
 **Rules**:
+
 - Clear column alignment
 - Calm row spacing
 - Subtle dividers
@@ -288,16 +313,19 @@ If data looks busy, reduce decoration first.
 Motion is restrained and functional.
 
 ### Allowed
+
 - Fades
 - Subtle opacity transitions
 - Short linear movement
 
 ### Timing
+
 - **Duration**: 150–300ms
 - **Easing**: Linear or ease (no bounce, spring, elastic)
 - **Consistency**: Same timing across the app
 
 ### Avoid
+
 - Bounce or spring easing
 - Zoom punches
 - Scroll-driven effects
@@ -310,12 +338,14 @@ Motion is restrained and functional.
 Copy should feel like a serious SaaS product.
 
 ### Voice
+
 - Calm
 - Declarative
 - Precise
 - Slightly dry
 
 ### Avoid
+
 - Marketing language
 - Calls to action
 - Exclamation marks
@@ -324,6 +354,7 @@ Copy should feel like a serious SaaS product.
 **Write like**: Internal product documentation.
 
 **Examples**:
+
 - ✅ "Configure display zones"
 - ❌ "Let's set up your zones!"
 - ✅ "Authentication required"

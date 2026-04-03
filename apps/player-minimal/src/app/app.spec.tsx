@@ -10,7 +10,7 @@ describe('App', () => {
 
   it('should render branding', () => {
     const { getByText } = render(<App />);
-    expect(getByText('THE SIGN AGE')).toBeTruthy();
+    expect(getByText('WALLRUN')).toBeTruthy();
   });
 
   it('should render tech stack', () => {

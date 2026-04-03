@@ -14,8 +14,8 @@ export const ToolingPage: FC = () => {
         </h1>
 
         <p className="max-w-3xl text-base text-muted-foreground md:text-lg">
-          The Sign Age is not only a component library. It also ships the
-          workflows for scaffolding player apps, packaging them for BrightSign,
+          WallRun is not only a component library. It also ships the workflows
+          for scaffolding player apps, packaging them for BrightSign,
           discovering devices on your LAN, and reusing AI guidance through
           portable skills.
         </p>
@@ -74,7 +74,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
         <div className="mt-4 flex flex-wrap gap-3">
           <Button variant="secondary" asChild>
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/docs/guides/brightsign-deployment.md"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/docs/guides/brightsign-deployment.md"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -83,7 +83,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
           </Button>
           <Button variant="ghost" asChild>
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/apps/player-minimal/README.md"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/apps/player-minimal/README.md"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -114,7 +114,7 @@ pnpm player add lobby-display 192.168.1.50 --default`}
           </div>
           <Button className="mt-4" variant="secondary" asChild>
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/tools/player-discovery/README.md"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/tools/player-discovery/README.md"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -134,7 +134,7 @@ pnpm player add lobby-display 192.168.1.50 --default`}
             discovery.
           </p>
           <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
-            <pre>{`npx skills add CambridgeMonorail/TheSignAge`}</pre>
+            <pre>{`npx skills add CambridgeMonorail/WallRun`}</pre>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
             <Button variant="secondary" asChild>
@@ -142,7 +142,7 @@ pnpm player add lobby-display 192.168.1.50 --default`}
             </Button>
             <Button variant="ghost" asChild>
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/skills/README.md"
+                href="https://github.com/CambridgeMonorail/WallRun/blob/main/skills/README.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -24,7 +24,7 @@ export const ToolkitScene: FC = () => {
     frame,
     [DURATIONS.toolkit - MOTION.fadeOut, DURATIONS.toolkit],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
@@ -47,7 +47,9 @@ export const ToolkitScene: FC = () => {
         </div>
 
         {/* Right: capability rows */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div
+          style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}
+        >
           {items.map((item, i) => {
             const rowDelay = ITEMS_START + i * 10;
             const progress = interpolate(
@@ -58,7 +60,7 @@ export const ToolkitScene: FC = () => {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
                 easing: Easing.out(Easing.cubic),
-              }
+              },
             );
 
             const Icon = ICONS[item.icon];
@@ -85,7 +87,9 @@ export const ToolkitScene: FC = () => {
                     {Icon ? <Icon size={22} color={item.color} /> : null}
                   </IconBadge>
                   {/* Label + detail */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <div
+                    style={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+                  >
                     <span
                       style={{
                         fontFamily: FONTS.heading,

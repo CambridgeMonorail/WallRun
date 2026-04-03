@@ -445,6 +445,6 @@ git filter-branch --force --index-filter \
 
 If you have questions or suggestions for improving the player management workflow, please:
 
-1. Check existing issues: [GitHub Issues](https://github.com/CambridgeMonorail/TheSignAge/issues)
+1. Check existing issues: [GitHub Issues](https://github.com/CambridgeMonorail/WallRun/issues)
 2. Create a new issue with label `brightsign` and `tooling`
 3. Discuss in team chat before committing configuration patterns

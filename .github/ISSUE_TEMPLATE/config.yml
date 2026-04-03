@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Questions / Discussion
-    url: https://github.com/CambridgeMonorail/TheSignAge/discussions
+    url: https://github.com/CambridgeMonorail/WallRun/discussions
     about: "Not sure it's a bug? Start here. (Screens are patient; humans less so.)"
   - name: Documentation Index
-    url: https://github.com/CambridgeMonorail/TheSignAge/tree/main/docs
-    about: "Browse guides and project context."
+    url: https://github.com/CambridgeMonorail/WallRun/tree/main/docs
+    about: 'Browse guides and project context.'

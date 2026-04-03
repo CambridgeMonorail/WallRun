@@ -29,4 +29,4 @@ To help us reproduce and fix the issue quickly:
 
 We appreciate coordinated disclosure. We’ll aim to acknowledge your report promptly and work with you on a reasonable timeline for a fix.
 
-Thanks for helping keep The Sign Age safe — unattended screens deserve unattended security.
+Thanks for helping keep WallRun safe — unattended screens deserve unattended security.

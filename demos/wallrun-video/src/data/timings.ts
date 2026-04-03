@@ -6,16 +6,16 @@ export const HEIGHT = 1080;
 
 /** Scene durations in frames */
 export const DURATIONS = {
-  hook: 4 * FPS,          // 120 frames — 4s
-  frustration: 6 * FPS,   // 180 frames — 6s
-  reframe: 5 * FPS,       // 150 frames — 5s
-  showcase: 9 * FPS,      // 270 frames — 9s
-  toolkit: 6 * FPS,       // 180 frames — 6s
-  constraints: 5 * FPS,   // 150 frames — 5s
-  positioning: 5 * FPS,   // 150 frames — 5s
-  openSource: 5 * FPS,    // 150 frames — 5s
-  close: 4 * FPS,         // 120 frames — 4s
-  credits: 3 * FPS,       //  90 frames — 3s
+  hook: 4 * FPS, // 120 frames — 4s
+  frustration: 6 * FPS, // 180 frames — 6s
+  reframe: 5 * FPS, // 150 frames — 5s
+  showcase: 9 * FPS, // 270 frames — 9s
+  toolkit: 6 * FPS, // 180 frames — 6s
+  constraints: 5 * FPS, // 150 frames — 5s
+  positioning: 5 * FPS, // 150 frames — 5s
+  openSource: 5 * FPS, // 150 frames — 5s
+  close: 4 * FPS, // 120 frames — 4s
+  credits: 3 * FPS, //  90 frames — 3s
 } as const;
 
 /** Total video duration */

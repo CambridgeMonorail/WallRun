@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>The Sign Age</title>
+    <title>WallRun</title>
     <script>
       (function () {
         var segmentCount = 1;
@@ -14,7 +14,9 @@
           .slice(pathname.length)
           .replace(/^\//, '')
           .replace(/&/g, '~and~');
-        var search = window.location.search ? '&' + window.location.search.slice(1).replace(/&/g, '~and~') : '';
+        var search = window.location.search
+          ? '&' + window.location.search.slice(1).replace(/&/g, '~and~')
+          : '';
         var hash = window.location.hash || '';
 
         window.location.replace(pathname + '/?/' + rest + search + hash);

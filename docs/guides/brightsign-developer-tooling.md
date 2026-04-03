@@ -373,7 +373,7 @@ BrightSign Diagnostic Web Server (DWS) is **not encrypted**:
 
 Have ideas for improving the developer experience?
 
-- Open an issue: [GitHub Issues](https://github.com/CambridgeMonorail/TheSignAge/issues)
+- Open an issue: [GitHub Issues](https://github.com/CambridgeMonorail/WallRun/issues)
 - Tag with: `brightsign`, `tooling`, `developer-experience`
 
 **Copilot Agent Skills:** See [GitHub Copilot Tooling](../tooling/github-copilot-tooling.md#skills) for the `player-discovery-*` skills.

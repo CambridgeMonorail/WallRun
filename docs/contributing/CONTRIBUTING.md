@@ -1,6 +1,6 @@
-# Contributing to The Sign Age
+# Contributing to WallRun
 
-Thanks for your interest in contributing to **The Sign Age** — a repo that treats digital signage like what it really is: software bolted to a wall.
+Thanks for your interest in contributing to **WallRun** — a repo that treats digital signage like what it really is: software bolted to a wall.
 
 Whether you’re fixing a typo, tightening a layout, or adding a signage primitive, we appreciate it. (The screens won’t judge your code. But `pnpm verify` might.)
 
@@ -14,7 +14,7 @@ Please read and follow our [Code of Conduct](../../CODE_OF_CONDUCT.md).
 
 - Docs index: [docs/README.md](../README.md)
 - Component library: [libs/shadcnui-signage/README.md](../../libs/shadcnui-signage/README.md)
-- Open issues: [github.com/CambridgeMonorail/TheSignAge/issues](https://github.com/CambridgeMonorail/TheSignAge/issues)
+- Open issues: [github.com/CambridgeMonorail/WallRun/issues](https://github.com/CambridgeMonorail/WallRun/issues)
 
 ## Issues
 
@@ -37,8 +37,8 @@ If you’re opening an issue:
 1. Fork the repo and clone your fork:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/TheSignAge.git
-   cd TheSignAge
+   git clone https://github.com/YOUR_USERNAME/WallRun.git
+   cd WallRun
    ```
 
 2. Install dependencies:

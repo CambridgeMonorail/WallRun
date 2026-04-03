@@ -443,7 +443,7 @@ npx nx graph
 
 ## Notes
 
-- Follow The Sign Age conventions: named exports only, colocate tests, JSDoc comments
+- Follow WallRun conventions: named exports only, colocate tests, JSDoc comments
 - Use existing shadcn components from `@tsa/shadcnui` (Card, Button, etc.)
 - Use Tailwind v4 CSS-first configuration from `common-tailwind`
 - Test early and often: run `pnpm test:shadcnui-signage` after each component

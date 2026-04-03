@@ -120,7 +120,7 @@ The root `skills/` directory is the source of truth for portable skills. Run `pn
 
 **How to use**: Just ask Copilot! "Create a plan for...", "Debug this...", "Review this component...".
 
-**Portable install**: `npx skills add CambridgeMonorail/TheSignAge`
+**Portable install**: `npx skills add CambridgeMonorail/WallRun`
 
 The open skills CLI supports GitHub shorthand, full GitHub URLs, repo paths, local paths, project installs, and global installs. In this repo, `skills/` is canonical and `.github/skills/` is a generated mirror.
 

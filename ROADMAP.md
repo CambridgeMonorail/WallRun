@@ -1,4 +1,4 @@
-# The Sign Age: Roadmap
+# WallRun: Roadmap
 
 This roadmap focuses on what we plan to build, organized by developer value and complexity. The priority is **shipping to real BrightSign players** with a fast, repeatable developer workflow.
 
@@ -29,6 +29,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Goal:** Build a React app, ship it to a player, see it on screen in minutes.
 
 **Deliverables:**
+
 - [ ] Tiny React status page app (version + build timestamp + uptime)
 - [ ] **Local network deploy script**: Push assets to player storage via HTTP/SSH and restart
 - [ ] **Fleet deploy script**: Publish zipped package to URL, player fetches and installs
@@ -43,6 +44,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Goal:** Diagnose without guessing. Know what's happening on the player.
 
 **Deliverables:**
+
 - [ ] One-page debug playbook: find IP, open inspector, fetch logs, common issues
 - [ ] Helper scripts for enabling diagnostic access and querying device info
 - [ ] Debug overlay component (toggle with keyboard/touch, shows: version, network status, last API call, memory usage)
@@ -54,6 +56,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Goal:** Repeatable structure for "web app plus local services".
 
 **Deliverables:**
+
 - [ ] Project template: React UI + optional Node sidecar (same JS context as Chromium)
 - [ ] Clear rules: what goes in Node vs browser code
 - [ ] Bundling guidance: avoid shipping 2,000-file node_modules
@@ -72,6 +75,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Small chain wants breakfast/lunch menus, "sold out" flags, instant price changes without republishing.
 
 **Deliverables:**
+
 - [ ] **DataFetcher** component - Periodic API polling with error handling and retry logic
 - [ ] Example: Contentful menu board integration (live demo + docs)
 - [ ] Local caching: last known good data so screen works when network fails
@@ -80,6 +84,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 - [ ] Tutorial: "Build a menu board in 30 minutes"
 
 **Component Additions:**
+
 - [ ] **PriceTag** primitive - Large price display with currency formatting
 - [ ] **MenuGrid** block - Three-column layout optimized for menu boards
 
@@ -88,6 +93,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Retail campaigns with date windows and store targeting.
 
 **Deliverables:**
+
 - [ ] JSON campaign model with date windows and targeting rules
 - [ ] On-device rule evaluation (no server round-trip for display logic)
 - [ ] Preload next campaign assets (never blank the screen during transition)
@@ -105,6 +111,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Fuel prices, café boards, live KPIs, train departures.
 
 **Deliverables:**
+
 - [ ] Polling strategy with diff-based updates (only animate changed cells)
 - [ ] Clear "last updated" indicator and stale state handling
 - [ ] **LiveDataGrid** block - Optimized for frequent updates without full rerender
@@ -112,6 +119,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 - [ ] Performance benchmark: < 16ms render time for 100-cell grid update
 
 **Component Additions:**
+
 - [ ] **AnimatedNumber** primitive - Smooth number transitions
 - [ ] **StatusBadge** primitive - Color-coded status indicators
 
@@ -120,6 +128,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** GP surgery, council office, service desk.
 
 **Deliverables:**
+
 - [ ] Big typography, minimal motion, resilient polling
 - [ ] Optional chime (never required, always tasteful)
 - [ ] **QueueDisplay** block - Optimized for readability at distance
@@ -136,6 +145,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Venues with unstable WiFi or captive portals.
 
 **Deliverables:**
+
 - [ ] Enhanced OfflineFallback with file-backed cache
 - [ ] Node helper to manage cache integrity and expiry
 - [ ] Explicit stale indicators (already have StaleDataIndicator, enhance it)
@@ -149,6 +159,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Schools, factories, offices needing urgent full-screen message override.
 
 **Deliverables:**
+
 - [ ] **EmergencyBanner** component - Priority state machine with expiry rules
 - [ ] Offline-safe behavior (persists locally, expires automatically)
 - [ ] Example: Fire alarm, lockdown notice, urgent announcement
@@ -165,6 +176,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Museum exhibit button, retail "call staff" button, presence sensor wake.
 
 **Deliverables:**
+
 - [ ] Event bus from GPIO to React (roGpioControlPort wrapper)
 - [ ] Debounce and safety rules
 - [ ] **GPIOButton** component - Maps hardware button to React event
@@ -178,6 +190,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** Video wall, multi-screen art piece.
 
 **Deliverables:**
+
 - [ ] Leader/follower architecture (one player is source of truth)
 - [ ] Drift correction (compensate for network latency)
 - [ ] Failover behavior (what happens when leader dies)
@@ -189,6 +202,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 **Use Case:** On-site technician can hit local endpoint to change config, pull diagnostics, trigger modes.
 
 **Deliverables:**
+
 - [ ] Node HTTP server on player exposing safe endpoints
 - [ ] Device info reporting (uptime, temperature, storage)
 - [ ] Log export endpoint (download last 1000 lines as JSON)
@@ -204,6 +218,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 ### Component Library Expansion
 
 **High Priority (aligns with Priorities 1-2):**
+
 - [ ] **ScrollingText** - Marquee/ticker for long text content
 - [ ] **ProgressBar** - Visual progress indicator
 - [ ] **IconGrid** - Wayfinding, services grid
@@ -211,6 +226,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 - [ ] **VideoPlayer** - Simple video playback with loop control
 
 **Medium Priority (supporting features):**
+
 - [ ] **QRCodeDisplay** - Generate and display QR codes
 - [ ] Real-time chart components (line, bar, pie)
 - [ ] Leaderboard component with sorting
@@ -225,12 +241,14 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 ### Documentation
 
 **High Priority:**
+
 - [ ] Tutorial: "Building your first signage screen"
 - [ ] Tutorial: "Deploying to BrightSign in 10 minutes"
 - [ ] Common patterns and anti-patterns guide
 - [ ] Troubleshooting guide (network issues, player debugging)
 
 **Medium Priority:**
+
 - [ ] Component API reference (complete)
 - [ ] Storybook controls for all variants
 - [ ] Real-world usage patterns per component
@@ -240,12 +258,14 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 ## 🔮 Long-Term Vision (2027+)
 
 ### Ecosystem
+
 - [ ] NPM package publication (`@thesignage/signage-components`)
 - [ ] Standalone CLI for creating new signage projects (`create-signage-app`)
 - [ ] Component marketplace/gallery
 - [ ] Community-contributed components
 
 ### Industry Templates
+
 - [ ] Restaurant menu templates (breakfast/lunch/dinner with schedule switching)
 - [ ] Retail store templates (promotions, hours, services)
 - [ ] Office templates (directory, calendar, announcements)
@@ -253,6 +273,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 - [ ] Education templates (class schedules, events)
 
 ### Advanced Platform Features
+
 - [ ] Touch-enabled navigation patterns
 - [ ] Hardware-accelerated video playback
 - [ ] WebGL for advanced graphics
@@ -275,7 +296,7 @@ See [CONTRIBUTING.md](./docs/contributing/CONTRIBUTING.md) for guidelines.
 
 ## 📊 Versioning Strategy
 
-The Sign Age follows semantic versioning:
+WallRun follows semantic versioning:
 
 - **v0.x** (Current - Alpha): Breaking changes expected, API unstable, deployment workflow being established
 - **v1.0-beta** (Target Q2 2026): Deployment workflow stable, core components mature, minor breaking changes possible
@@ -287,16 +308,16 @@ The Sign Age follows semantic versioning:
 
 ## 📅 Milestone Tracking
 
-| Milestone | Target | Status | Blockers |
-|-----------|--------|--------|----------|
-| Foundation (UI Library) | Q4 2025 | ✅ Complete | - |
+| Milestone                   | Target      | Status             | Blockers                       |
+| --------------------------- | ----------- | ------------------ | ------------------------------ |
+| Foundation (UI Library)     | Q4 2025     | ✅ Complete        | -                              |
 | **Priority 0: Deploy Loop** | **Q1 2026** | **🚧 In Progress** | Need player access for testing |
-| Priority 1: CMS Content | Q2 2026 | 📋 Planned | Blocked by Priority 0 |
-| Priority 2: Live Data | Q2 2026 | 📋 Planned | Blocked by Priority 0 |
-| Priority 3: Offline-First | Q3 2026 | 📋 Planned | - |
-| Priority 4: Hardware | Q3-Q4 2026 | 📋 Planned | Requires Priority 0-3 |
-| Beta Release (v1.0-beta) | Q2 2026 | 🔮 Future | Requires Priority 0-1 complete |
-| Stable Release (v1.0) | Q3 2026 | 🔮 Future | Requires real-world validation |
+| Priority 1: CMS Content     | Q2 2026     | 📋 Planned         | Blocked by Priority 0          |
+| Priority 2: Live Data       | Q2 2026     | 📋 Planned         | Blocked by Priority 0          |
+| Priority 3: Offline-First   | Q3 2026     | 📋 Planned         | -                              |
+| Priority 4: Hardware        | Q3-Q4 2026  | 📋 Planned         | Requires Priority 0-3          |
+| Beta Release (v1.0-beta)    | Q2 2026     | 🔮 Future          | Requires Priority 0-1 complete |
+| Stable Release (v1.0)       | Q3 2026     | 🔮 Future          | Requires real-world validation |
 
 ---
 

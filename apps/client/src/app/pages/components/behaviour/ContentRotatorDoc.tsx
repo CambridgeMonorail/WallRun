@@ -38,12 +38,12 @@ export const ContentRotatorDocPage: FC = () => {
         <h2 className="text-2xl font-medium mb-4">Installation</h2>
         <CodeSnippet
           language="bash"
-          code={`npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json content-rotator`}
+          code={`npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json content-rotator`}
         />
         <p className="text-muted-foreground mt-4">
           Or{' '}
           <a
-            href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/behaviour/ContentRotator.tsx"
+            href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/ContentRotator.tsx"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground hover:underline"
@@ -124,7 +124,7 @@ export function LobbyLoop() {
         <div className="flex flex-wrap gap-4">
           <Button asChild variant="outline">
             <a
-              href="https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/signage-behaviour-contentrotator--docs"
+              href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/signage-behaviour-contentrotator--docs"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -133,7 +133,7 @@ export function LobbyLoop() {
           </Button>
           <Button asChild variant="outline">
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/behaviour/ContentRotator.tsx"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/ContentRotator.tsx"
               target="_blank"
               rel="noopener noreferrer"
             >

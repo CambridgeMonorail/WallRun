@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Setup script for The Sign Age development environment
+ * Setup script for WallRun development environment
  *
  * Initializes configuration files needed for BrightSign development:
  * - .env (from .env.example)
@@ -30,7 +30,7 @@ const configs = [
   },
 ];
 
-console.log('🚀 Setting up The Sign Age development environment...\n');
+console.log('🚀 Setting up WallRun development environment...\n');
 
 let setupCount = 0;
 let skipCount = 0;

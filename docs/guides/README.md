@@ -1,6 +1,6 @@
 # Guides
 
-Practical how-to guides for common tasks in The Sign Age. These tutorials walk through specific features and implementation patterns.
+Practical how-to guides for common tasks in WallRun. These tutorials walk through specific features and implementation patterns.
 
 ## Documents in this Section
 

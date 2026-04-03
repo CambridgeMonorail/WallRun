@@ -127,7 +127,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 aria-label="View GitHub repository"
               >
                 <a
-                  href="https://github.com/CambridgeMonorail/TheSignAge"
+                  href="https://github.com/CambridgeMonorail/WallRun"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -145,7 +145,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 data-testid="storybook-link"
               >
                 <a
-                  href="https://cambridgemonorail.github.io/TheSignAge/storybook/"
+                  href="https://cambridgemonorail.github.io/WallRun/storybook/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

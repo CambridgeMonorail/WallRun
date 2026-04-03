@@ -11,7 +11,7 @@ import {
   Video,
 } from 'lucide-react';
 
-import logoSrc from '../../../assets/images/app-logo.webp';
+import logoSrc from '../../../assets/images/new-logo.svg';
 
 import {
   AboutSection,
@@ -45,7 +45,7 @@ export const LandingPage: FC = () => {
             'BrightSign-ready delivery workflows',
           ]}
           image={logoSrc}
-          imageAlt="The Sign Age logo"
+          imageAlt="WallRun logo"
           ctaPrimary={{
             text: 'Get Started',
             onClick: () => navigate('/getting-started'),
@@ -60,8 +60,8 @@ export const LandingPage: FC = () => {
         />
       </div>
       <AboutSection
-        title="Why The Sign Age?"
-        description="The Sign Age is an open source working notebook for building signage software, not a CMS or a product funnel. It's a component library, tooling reference, and living documentation for developers treating digital signage as programmable systems."
+        title="Why WallRun?"
+        description="WallRun is an open source working notebook for building signage software, not a CMS or a product funnel. It's a component library, tooling reference, and living documentation for developers treating digital signage as programmable systems."
         logos={[
           <Logo
             name="nx"
@@ -169,18 +169,13 @@ export const LandingPage: FC = () => {
       <CTASection
         variant="dark"
         title="Built In Public On GitHub"
-        description="The Sign Age is built by developers for developers. Read the code, open issues, send patches, and shape the project in the open."
+        description="WallRun is built by developers for developers. Read the code, open issues, send patches, and shape the project in the open."
         buttonText="View The Open Source Repo"
-        buttonAction={() =>
-          window.open(
-            'https://github.com/CambridgeMonorail/TheSignAge',
-            '_blank',
-          )
-        }
+        buttonHref="https://github.com/CambridgeMonorail/WallRun"
         data-testid="community-section"
       />
       <StepsSection
-        title="Explore The Sign Age"
+        title="Explore WallRun"
         steps={[
           {
             title: 'Get Started',
@@ -219,24 +214,24 @@ export const LandingPage: FC = () => {
           { text: 'Gallery', url: '/gallery' },
           {
             text: 'Storybook',
-            url: 'https://cambridgemonorail.github.io/TheSignAge/storybook/',
+            url: 'https://cambridgemonorail.github.io/WallRun/storybook/',
           },
           {
             text: 'GitHub',
-            url: 'https://github.com/CambridgeMonorail/TheSignAge',
+            url: 'https://github.com/CambridgeMonorail/WallRun',
           },
         ]}
         socialMediaIcons={[
           {
             icon: (props) => <Github {...props} />,
-            url: 'https://github.com/CambridgeMonorail/TheSignAge',
+            url: 'https://github.com/CambridgeMonorail/WallRun',
           },
           {
             icon: (props) => <Twitter {...props} />,
             url: 'https://x.com/TimDMorris',
           },
         ]}
-        copyrightText={`© ${new Date().getFullYear()} TheSignAge · Built in the open by CambridgeMonorail`}
+        copyrightText={`© ${new Date().getFullYear()} WallRun · Built in the open by CambridgeMonorail`}
         data-testid="footer"
       />
     </div>

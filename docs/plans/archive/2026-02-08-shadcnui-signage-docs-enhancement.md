@@ -460,12 +460,12 @@ export function Dashboard() {
         <h2 className="text-2xl font-medium mb-4">Links</h2>
         <div className="flex gap-4">
           <Button asChild variant="outline">
-            <a href="https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/primitives-metriccard--docs" target="_blank">
+            <a href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/primitives-metriccard--docs" target="_blank">
               View in Storybook
             </a>
           </Button>
           <Button asChild variant="outline">
-            <a href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx" target="_blank">
+            <a href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx" target="_blank">
               View Source
             </a>
           </Button>
@@ -514,7 +514,7 @@ export function Dashboard() {
 - ✅ Navigation updated with Components section
 - ✅ All Storybook and GitHub links work
 - ✅ Existing Gallery and examples preserved
-- ✅ Site works on local dev server (tested at http://localhost:4200/TheSignAge/)
+- ✅ Site works on local dev server (tested at http://localhost:4200/WallRun/)
 - ✅ TypeScript type-check passes
 - ✅ All tests pass (13/13 passing)
 - ✅ No breaking changes to existing content
@@ -590,7 +590,7 @@ Each page includes:
 
 - ✅ TypeScript: No type errors
 - ✅ Tests: 13/13 passing (including new CodeSnippet tests)
-- ✅ Local testing: Site verified at http://localhost:4200/TheSignAge/
+- ✅ Local testing: Site verified at http://localhost:4200/WallRun/
 - ✅ Navigation: All links working correctly
 - ✅ Existing content: Gallery and examples preserved and functional
 - ✅ Component pages: All 9 pages rendering correctly

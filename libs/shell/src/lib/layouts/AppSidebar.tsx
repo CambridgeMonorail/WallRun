@@ -13,10 +13,10 @@ import { NavMain } from '../nav/NavMain';
 /**
  * AppSidebar component
  *
- * This component renders the sidebar of the application for The Sign Age demo site.
+ * This component renders the sidebar of the application for WallRun demo site.
  *
  * The sidebar is composed of:
- * - SidebarHeader: Contains the project name "The Sign Age"
+ * - SidebarHeader: Contains the project name "WallRun"
  * - SidebarContent: Contains the NavMain component to display the main navigation items.
  * - SidebarRail: An additional sidebar rail for extra functionality or icons.
  *
@@ -31,11 +31,7 @@ export const AppSidebar = (
   const sidebarData = useSidebarData();
 
   return (
-    <Sidebar
-      collapsible="icon"
-      className="chrome-sidebar"
-      {...props}
-    >
+    <Sidebar collapsible="icon" className="chrome-sidebar" {...props}>
       <SidebarHeader>
         <div className="demo-panel-soft m-2 flex items-start gap-3 px-3 py-4">
           <div className="chrome-badge flex h-11 w-11 items-center justify-center rounded-2xl text-primary-foreground">
@@ -55,7 +51,7 @@ export const AppSidebar = (
           </div>
           <div className="grid min-w-0 flex-1 text-left leading-snug">
             <span className="block text-sm font-medium uppercase tracking-[0.08em] text-foreground">
-              The Sign Age
+              WallRun
             </span>
             <span className="block text-[0.7rem] text-muted-foreground">
               Digital signage toolkit
