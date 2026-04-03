@@ -69,7 +69,7 @@ export const ScreenFrameDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry screen-frame"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json screen-frame"
           />
         </div>
 
