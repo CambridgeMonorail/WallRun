@@ -9,7 +9,7 @@ export default create({
 
   brandTitle: 'WallRun Storybook',
   brandUrl: 'https://cambridgemonorail.github.io/WallRun/',
-  brandImage: './app-logo.webp',
+  brandImage: './new-logo.svg',
   brandTarget: '_self',
 
   //
