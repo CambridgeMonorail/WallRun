@@ -171,9 +171,7 @@ export const LandingPage: FC = () => {
         title="Built In Public On GitHub"
         description="WallRun is built by developers for developers. Read the code, open issues, send patches, and shape the project in the open."
         buttonText="View The Open Source Repo"
-        buttonAction={() =>
-          window.open('https://github.com/CambridgeMonorail/WallRun', '_blank')
-        }
+        buttonHref="https://github.com/CambridgeMonorail/WallRun"
         data-testid="community-section"
       />
       <StepsSection

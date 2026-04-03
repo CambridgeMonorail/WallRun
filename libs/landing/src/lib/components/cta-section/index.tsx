@@ -16,7 +16,9 @@ interface CTASectionProps {
   /** The text to display on the button. */
   buttonText: string;
   /** The action to perform when the button is clicked. */
-  buttonAction: () => void;
+  buttonAction?: () => void;
+  /** External URL to navigate to. Renders a proper anchor element. */
+  buttonHref?: string;
   /**
    * The visual variant for the section's background and text.
    * Defaults to 'light'.
@@ -34,6 +36,7 @@ export const CTASection: FC<CTASectionProps> = ({
   description,
   buttonText,
   buttonAction,
+  buttonHref,
   variant = 'light',
 }) => {
   const baseSectionClasses = 'w-full px-4 py-8 sm:px-6 lg:px-8';
@@ -63,15 +66,29 @@ export const CTASection: FC<CTASectionProps> = ({
           <h2 className={`${headingClasses} mb-6`}>{title}</h2>
           <p className={`${paragraphClasses} mb-8`}>{description}</p>
         </div>
-        <Button
-          size="lg"
-          onClick={buttonAction}
-          variant={buttonVariant}
-          className={buttonClassName}
-          aria-label={buttonText}
-        >
-          {buttonText}
-        </Button>
+        {buttonHref ? (
+          <Button
+            asChild
+            size="lg"
+            variant={buttonVariant}
+            className={buttonClassName}
+            aria-label={buttonText}
+          >
+            <a href={buttonHref} target="_blank" rel="noopener noreferrer">
+              {buttonText}
+            </a>
+          </Button>
+        ) : (
+          <Button
+            size="lg"
+            onClick={buttonAction}
+            variant={buttonVariant}
+            className={buttonClassName}
+            aria-label={buttonText}
+          >
+            {buttonText}
+          </Button>
+        )}
       </div>
     </section>
   );
