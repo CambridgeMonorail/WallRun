@@ -1,46 +1,21 @@
 import { Button } from '@tsa/shadcnui';
 import imageSrc from '../../../assets/images/shad-samples.svg';
 
+const EXTERNAL_LINKS = {
+  github: 'https://github.com/CambridgeMonorail/WallRun',
+  storybook:
+    'https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation',
+  shadcn: 'https://ui.shadcn.com',
+  readme:
+    'https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/README.md',
+  roadmap:
+    'https://github.com/CambridgeMonorail/WallRun/blob/main/ROADMAP.md',
+} as const;
+
 /**
  * LibraryPage component
  */
 export function LibraryPage() {
-  const handleGitHubClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/WallRun',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleStorybookClick = () => {
-    window.open(
-      'https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleShadcnClick = () => {
-    window.open('https://ui.shadcn.com', '_blank', 'noopener,noreferrer');
-  };
-
-  const handleReadmeClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/README.md',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleRoadmapClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/WallRun/blob/main/ROADMAP.md',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
   return (
     <div className="doc-shell font-sans">
       <div className="demo-panel demo-grid mb-10 space-y-4 px-8 py-8 sm:px-10">
@@ -52,12 +27,14 @@ export function LibraryPage() {
 
         <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
           React components for digital signage and web interfaces. Built with{' '}
-          <button
-            onClick={handleShadcnClick}
+          <a
+            href={EXTERNAL_LINKS.shadcn}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-foreground hover:underline"
           >
             shadcn/ui
-          </button>
+          </a>
           , React 19, and Tailwind v4. See{' '}
           <button
             onClick={() => (window.location.href = '/getting-started')}
@@ -105,8 +82,10 @@ export function LibraryPage() {
             <li>Deterministic rendering for known resolutions</li>
             <li>Designed for always-on, unattended displays</li>
           </ul>
-          <Button onClick={handleGitHubClick} variant={'secondary'}>
-            View on GitHub
+          <Button asChild variant={'secondary'}>
+            <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+              View on GitHub
+            </a>
           </Button>
         </div>
 
@@ -201,8 +180,10 @@ npx shadcn@latest add \\
           usage examples. All components include interactive controls and
           real-world scenarios.
         </p>
-        <Button onClick={handleStorybookClick} variant={'secondary'}>
-          Open Storybook
+        <Button asChild variant={'secondary'}>
+          <a href={EXTERNAL_LINKS.storybook} target="_blank" rel="noopener noreferrer">
+            Open Storybook
+          </a>
         </Button>
       </section>
 
@@ -216,23 +197,31 @@ npx shadcn@latest add \\
         </p>
         <ul className="list-none space-y-2">
           <li>
-            <Button onClick={handleReadmeClick} variant={'ghost'}>
-              Component Library README
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.readme} target="_blank" rel="noopener noreferrer">
+                Component Library README
+              </a>
             </Button>
           </li>
           <li>
-            <Button onClick={handleRoadmapClick} variant={'ghost'}>
-              Project Roadmap
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.roadmap} target="_blank" rel="noopener noreferrer">
+                Project Roadmap
+              </a>
             </Button>
           </li>
           <li>
-            <Button onClick={handleGitHubClick} variant={'ghost'}>
-              GitHub Repository
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </a>
             </Button>
           </li>
           <li>
-            <Button onClick={handleShadcnClick} variant={'ghost'}>
-              shadcn/ui Official Site
+            <Button asChild variant={'ghost'}>
+              <a href={EXTERNAL_LINKS.shadcn} target="_blank" rel="noopener noreferrer">
+                shadcn/ui Official Site
+              </a>
             </Button>
           </li>
         </ul>
@@ -247,11 +236,15 @@ npx shadcn@latest add \\
           real-world usage examples for all components.
         </p>
         <div className="flex gap-3 justify-center">
-          <Button onClick={handleStorybookClick} variant={'secondary'}>
-            Open Storybook
+          <Button asChild variant={'secondary'}>
+            <a href={EXTERNAL_LINKS.storybook} target="_blank" rel="noopener noreferrer">
+              Open Storybook
+            </a>
           </Button>
-          <Button onClick={handleGitHubClick} variant={'secondary'}>
-            View Source Code
+          <Button asChild variant={'secondary'}>
+            <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+              View Source Code
+            </a>
           </Button>
         </div>
       </section>
