@@ -113,7 +113,7 @@ The existing CLI scaffold should remain in place during rollout. If practical, s
 - Converted `scripts/scaffold-player-app.mjs` into a compatibility wrapper around `pnpm nx g wallrun:player-app`.
 - Preserved `--force` behavior and fixed forced regeneration so it reuses the existing target app's auto-selected port.
 - Updated packaging and scaffold wrapper scripts to invoke the local pnpm CLI through Node for reliable Windows execution.
-- Validated the generator with `pnpm nx test sign-age`, direct generator smoke generation, `type-check`, `build`, `package`, and wrapper-based regeneration.
+- Validated the generator with `pnpm nx test wallrun`, direct generator smoke generation, `type-check`, `build`, `package`, and wrapper-based regeneration.
 
 ## Risks and Trade-offs
 

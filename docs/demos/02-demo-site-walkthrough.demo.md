@@ -60,7 +60,7 @@ Before starting the walkthrough:
 **On-screen focus:**
 
 - "DIGITAL SIGNAGE AS SOFTWARE"
-- "WHY THE SIGN AGE?"
+- "WHY WALLRUN?"
 - "SIGNAGE-SPECIFIC FEATURES"
 
 > "The project combines modern frontend tooling with signage constraints like fixed-aspect layouts, distance-readable typography, offline-first behavior, and BrightSign-oriented delivery."
