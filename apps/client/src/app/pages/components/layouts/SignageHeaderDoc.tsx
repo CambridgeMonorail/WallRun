@@ -55,7 +55,7 @@ export const SignageHeaderDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry signage-header"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json signage-header"
           />
         </div>
 

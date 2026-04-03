@@ -58,7 +58,7 @@ export const FullscreenHeroDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry fullscreen-hero"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json fullscreen-hero"
           />
         </div>
 

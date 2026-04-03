@@ -72,7 +72,7 @@ export const SplitScreenDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry split-screen"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json split-screen"
           />
         </div>
 

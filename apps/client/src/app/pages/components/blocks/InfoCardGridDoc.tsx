@@ -70,7 +70,7 @@ export const InfoCardGridDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry info-card-grid"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json info-card-grid"
           />
         </div>
 

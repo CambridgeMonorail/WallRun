@@ -68,7 +68,7 @@ export const AnnouncementCardDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry announcement-card"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json announcement-card"
           />
         </div>
 

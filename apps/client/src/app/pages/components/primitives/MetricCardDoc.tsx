@@ -84,7 +84,7 @@ export const MetricCardDocPage: FC = () => {
           </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry metric-card"
+            code="npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card"
           />
           <p className="text-sm text-muted-foreground mt-2">
             This will copy the component and install dependencies automatically.
