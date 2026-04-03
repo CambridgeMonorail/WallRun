@@ -11,7 +11,7 @@ This roadmap focuses on what we plan to build, organized by developer value and 
 ## ✅ Foundation Complete (Q4 2025 - Q1 2026)
 
 - Nx + pnpm monorepo, Tailwind v4, shadcn/ui base components
-- Signage component library (`@tsa/shadcnui-signage`): primitives, layouts, blocks, behaviors
+- Signage component library (`@wallrun/shadcnui-signage`): primitives, layouts, blocks, behaviors
 - Vitest + Testing Library, Storybook, GitHub Actions CI/CD
 - Component registry for `npx shadcn add` installation
 - GitHub Copilot instructions and agents

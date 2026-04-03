@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge } from '@tsa/shadcnui';
+import { Badge } from '@wallrun/shadcnui';
 import { Activity, Box, Layout, Layers } from 'lucide-react';
 
 interface ComponentInfo {
@@ -299,7 +299,7 @@ export const ComponentIndexPage: FC = () => {
             <strong className="text-foreground">Installation:</strong> All
             components are available via the{' '}
             <code className="bg-muted px-2 py-1 rounded">
-              @tsa/shadcnui-signage
+              @wallrun/shadcnui-signage
             </code>{' '}
             package.
           </p>

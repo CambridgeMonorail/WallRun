@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
   Tooltip,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { BarChart, ResponsiveContainer, XAxis, YAxis, Bar } from 'recharts';
 
 interface TargetAchievementData {

@@ -136,7 +136,7 @@ export const BuildSignagePage: FC = () => {
             <ul className="ml-6 list-disc space-y-1">
               <li>
                 Create React components using signage primitives from{' '}
-                <code className="text-xs">@tsa/shadcnui-signage</code>
+                <code className="text-xs">@wallrun/shadcnui-signage</code>
               </li>
               <li>Apply signage layout constraints and safe zones</li>
               <li>Implement the visual direction from the brief</li>
@@ -154,7 +154,9 @@ export const BuildSignagePage: FC = () => {
               className="rounded-lg border border-border bg-muted p-4 text-sm"
               aria-label="Development server command"
             >
-              <code className="text-foreground">pnpm nx serve &lt;app-name&gt;</code>
+              <code className="text-foreground">
+                pnpm nx serve &lt;app-name&gt;
+              </code>
             </pre>
             <p className="mt-2">
               The agent will provide the exact command for your new app.

@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { ScheduleGate } from '@tsa/shadcnui-signage';
+import { ScheduleGate } from '@wallrun/shadcnui-signage';
 
 export const ScheduleGateDocPage: FC = () => {
   const [preset, setPreset] = useState<'open' | 'closed'>('open');
@@ -96,7 +96,7 @@ export const ScheduleGateDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="Menu.tsx"
-          code={`import { ScheduleGate } from '@tsa/shadcnui-signage';
+          code={`import { ScheduleGate } from '@wallrun/shadcnui-signage';
 
 export function DaypartMenu() {
   return (

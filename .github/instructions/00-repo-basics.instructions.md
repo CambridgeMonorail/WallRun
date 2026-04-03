@@ -147,7 +147,7 @@ When updating `apps/client/public/registry/registry.json`:
 
 - List only packages the component actually imports (check `import` statements)
 - Include all transitive files (if component uses `useTicker.ts`, include `time.types.ts` too)
-- Exclude React and workspace packages (`@tsa/*`)
+- Exclude React and workspace packages (`@wallrun/*`)
 - Use `"type": "registry:component"` for components, `"registry:lib"` for utilities
 - Descriptions must match actual behavior (read the code, don't copy from similar components)
 - Installation format: `npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name`

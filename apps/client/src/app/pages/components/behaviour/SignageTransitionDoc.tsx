@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { SignageTransition } from '@tsa/shadcnui-signage';
+import { SignageTransition } from '@wallrun/shadcnui-signage';
 
 export const SignageTransitionDocPage: FC = () => {
   const [step, setStep] = useState(0);
@@ -79,7 +79,7 @@ export const SignageTransitionDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="RotatingPanel.tsx"
-          code={`import { SignageTransition } from '@tsa/shadcnui-signage';
+          code={`import { SignageTransition } from '@wallrun/shadcnui-signage';
 
 export function RotatingPanel({ children }: { children: React.ReactNode }) {
   return (

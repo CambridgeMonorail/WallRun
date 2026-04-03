@@ -7,22 +7,44 @@ import { NavMain } from './NavMain';
 
 const mockUseSidebar = vi.fn();
 
-vi.mock('@tsa/shadcnui', () => ({
+vi.mock('@wallrun/shadcnui', () => ({
   Collapsible: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  CollapsibleContent: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  CollapsibleTrigger: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  SidebarGroup: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  SidebarGroupLabel: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+  CollapsibleContent: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
+  CollapsibleTrigger: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
+  SidebarGroup: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
+  SidebarGroupLabel: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
   SidebarMenu: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  SidebarMenuButton: ({ children, onClick }: { children: ReactNode; onClick?: () => void }) => (
+  SidebarMenuButton: ({
+    children,
+    onClick,
+  }: {
+    children: ReactNode;
+    onClick?: () => void;
+  }) => (
     <button type="button" onClick={onClick}>
       {children}
     </button>
   ),
-  SidebarMenuItem: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  SidebarMenuSub: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  SidebarMenuSubButton: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-  SidebarMenuSubItem: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+  SidebarMenuItem: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
+  SidebarMenuSub: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
+  SidebarMenuSubButton: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
+  SidebarMenuSubItem: ({ children }: { children: ReactNode }) => (
+    <div>{children}</div>
+  ),
   useSidebar: () => mockUseSidebar(),
 }));
 

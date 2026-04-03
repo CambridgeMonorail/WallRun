@@ -25,12 +25,7 @@
     "displayOrientation": {
       "type": "string",
       "description": "Display orientation written into src/config.ts.",
-      "enum": [
-        "landscape",
-        "portrait-left",
-        "portrait-right",
-        "inverted"
-      ],
+      "enum": ["landscape", "portrait-left", "portrait-right", "inverted"],
       "default": "portrait-right"
     },
     "noStatusPage": {

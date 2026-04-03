@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { StaleDataIndicator } from '@tsa/shadcnui-signage';
-import { Button } from '@tsa/shadcnui';
+import { StaleDataIndicator } from '@wallrun/shadcnui-signage';
+import { Button } from '@wallrun/shadcnui';
 
 export const StaleDataIndicatorDocPage: FC = () => {
   const nowMs = new Date('2026-02-09T12:00:00Z').getTime();
@@ -87,7 +87,7 @@ export const StaleDataIndicatorDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="Status.tsx"
-          code={`import { StaleDataIndicator } from '@tsa/shadcnui-signage';
+          code={`import { StaleDataIndicator } from '@wallrun/shadcnui-signage';
 
 export function Status({ lastUpdatedEpochMs }: { lastUpdatedEpochMs: number }) {
   return (

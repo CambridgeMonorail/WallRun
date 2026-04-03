@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
-import { cn } from '@tsa/shadcnui';
+import { cn } from '@wallrun/shadcnui';
 
 export interface AnnouncementCardProps {
   /**

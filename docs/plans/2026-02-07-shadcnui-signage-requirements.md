@@ -2,7 +2,7 @@
 
 **Status:** Active baseline reference
 
-**Scope note:** This document captures the original baseline requirements for the first phase of `@tsa/shadcnui-signage`. The current library has expanded beyond this initial scope, including additional components and behaviour primitives. Keep using this file for foundational constraints and design intent, not as the complete current inventory.
+**Scope note:** This document captures the original baseline requirements for the first phase of `@wallrun/shadcnui-signage`. The current library has expanded beyond this initial scope, including additional components and behaviour primitives. Keep using this file for foundational constraints and design intent, not as the complete current inventory.
 
 ## Purpose
 
@@ -20,13 +20,13 @@ The repository already contains:
 
 Base shadcn/ui components organized by category (data-display, feedback, input-controls, layout, navigation, utilities). Uses Tailwind v4 tokens and theme configuration. This is the source of truth for primitives.
 
-**Import path:** `@tsa/shadcnui`
+**Import path:** `@wallrun/shadcnui`
 
 ### `libs/shadcnui-blocks`
 
 Generic higher-level UI compositions built from `libs/shadcnui` (action-buttons, charts, pricing, stats, etc.). These are not signage-specific.
 
-**Import path:** `@tsa/shadcnui-blocks`
+**Import path:** `@wallrun/shadcnui-blocks`
 
 ## New library to create
 
@@ -34,7 +34,7 @@ Generic higher-level UI compositions built from `libs/shadcnui` (action-buttons,
 
 `libs/shadcnui-signage`
 
-**Import path:** `@tsa/shadcnui-signage`
+**Import path:** `@wallrun/shadcnui-signage`
 
 This library will contain signage-specific primitives, layouts, and blocks.
 
@@ -49,21 +49,21 @@ These rules are strict and align with WallRun monorepo conventions:
 
 ### `libs/shadcnui-blocks` dependencies
 
-- May depend on `@tsa/shadcnui`
+- May depend on `@wallrun/shadcnui`
 - May depend on `common-tailwind`
 
 ### `libs/shadcnui-signage` dependencies
 
-- May depend on `@tsa/shadcnui`
-- May depend on `@tsa/shadcnui-blocks` (only where appropriate)
+- May depend on `@wallrun/shadcnui`
+- May depend on `@wallrun/shadcnui-blocks` (only where appropriate)
 - May depend on `common-tailwind`
 
 ### Import rules
 
 **Consuming apps must import only from public entry points:**
 
-- ✅ `import { Component } from '@tsa/shadcnui-signage'`
-- ❌ `import { Component } from '@tsa/shadcnui-signage/lib/primitives'`
+- ✅ `import { Component } from '@wallrun/shadcnui-signage'`
+- ❌ `import { Component } from '@wallrun/shadcnui-signage/lib/primitives'`
 
 **All public exports must come from `src/index.ts` using named exports only (no default exports).**
 
@@ -79,7 +79,7 @@ These rules are strict and align with WallRun monorepo conventions:
 
 ### Shadcn compatible
 
-Use existing components, tokens, and patterns from `@tsa/shadcnui` rather than re-implementing them.
+Use existing components, tokens, and patterns from `@wallrun/shadcnui` rather than re-implementing them.
 
 ### Screen first
 
@@ -307,7 +307,7 @@ type InfoCardGridProps = {
 - Avoid custom CSS unless strictly necessary
 - No hardcoded colors outside token usage
 - Follow WallRun's utility-first approach
-- Use `cn()` utility from `@tsa/shadcnui` for conditional classes
+- Use `cn()` utility from `@wallrun/shadcnui` for conditional classes
 
 ## Storybook requirements
 
@@ -392,10 +392,10 @@ If Playwright 1.55.1 is configured:
 Create `libs/shadcnui-signage/README.md` including:
 
 - **Purpose**: What this library is for
-- **Relationship**: How it relates to `@tsa/shadcnui` and `@tsa/shadcnui-blocks`
+- **Relationship**: How it relates to `@wallrun/shadcnui` and `@wallrun/shadcnui-blocks`
 - **Components**: List of v0.1 components
 - **Concepts**: Resolution and safe area explanation
-- **Usage examples**: Matching public exports from `@tsa/shadcnui-signage`
+- **Usage examples**: Matching public exports from `@wallrun/shadcnui-signage`
 - **Installation**: How to use in consuming apps
 - **Testing**: How to run unit tests (`pnpm test:shadcnui-signage`)
 
@@ -411,7 +411,7 @@ Create `libs/shadcnui-signage/README.md` including:
 ## Definition of done
 
 - ✅ Library created with Nx: `npx nx g @nx/react:lib shadcnui-signage`
-- ✅ TypeScript path mapping added to `tsconfig.base.json`: `"@tsa/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"]`
+- ✅ TypeScript path mapping added to `tsconfig.base.json`: `"@wallrun/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"]`
 - ✅ `libs/shadcnui-signage` builds successfully: `pnpm build:shadcnui-signage`
 - ✅ Public API exports the four v0.1 components from `src/index.ts` (named exports only)
 - ✅ Storybook stories exist and render in Storybook 10.2.0

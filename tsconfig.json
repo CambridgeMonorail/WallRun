@@ -3,9 +3,9 @@
     "baseUrl": ".",
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "paths": {
-      "@tsa/shadcnui": ["libs/shadcnui/src/index.ts"],
-      "@tsa/shadcnui/*": ["libs/shadcnui/src/*"],
-      "@tsa/shell": ["libs/shell/src/index.ts"]
+      "@wallrun/shadcnui": ["libs/shadcnui/src/index.ts"],
+      "@wallrun/shadcnui/*": ["libs/shadcnui/src/*"],
+      "@wallrun/shell": ["libs/shell/src/index.ts"]
     }
   },
   "ts-node": {

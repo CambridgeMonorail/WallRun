@@ -1,6 +1,12 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { extname, join, relative, resolve } from 'node:path';
-import { formatFiles, joinPathFragments, logger, Tree, workspaceRoot } from '@nx/devkit';
+import {
+  formatFiles,
+  joinPathFragments,
+  logger,
+  Tree,
+  workspaceRoot,
+} from '@nx/devkit';
 import { PlayerAppGeneratorSchema } from './schema';
 
 const TEMPLATE_APP_NAME = 'player-minimal';
@@ -50,7 +56,10 @@ export async function playerAppGenerator(
     throw new Error(`Template directory not found: ${TEMPLATE_DIR}`);
   }
 
-  if (tree.exists(targetRoot) || existsSync(resolve(workspaceRoot, targetRoot))) {
+  if (
+    tree.exists(targetRoot) ||
+    existsSync(resolve(workspaceRoot, targetRoot))
+  ) {
     if (normalized.force) {
       tree.delete(targetRoot);
     } else {

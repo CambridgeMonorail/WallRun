@@ -186,7 +186,7 @@ Both are valid, but your `aliases.ui` needs to match the choice.
 #### This project structure:
 
 - shadcn components live in `libs/shadcnui/src/components/ui/*`
-- Components are imported as `@tsa/shadcnui` across the monorepo
+- Components are imported as `@wallrun/shadcnui` across the monorepo
 - The `components.json` at root targets the `libs/shadcnui` library
 
 ---
@@ -249,7 +249,7 @@ A short `UPGRADE_NOTES.md` including:
 **shadcn component location:**
 
 - Library: `libs/shadcnui/src/components/ui/*`
-- Imported as: `@tsa/shadcnui`
+- Imported as: `@wallrun/shadcnui`
 - Configuration: `components.json` at workspace root
 
 **Component inventory:**

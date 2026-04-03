@@ -166,7 +166,7 @@ The `--create-commits` flag creates logical commits for each migration, making i
 All production code type errors resolved:
 
 1. **Toast module imports** - Fixed import path from `feedback/toast/toast`
-2. **PricingTier type** - Fixed import from `@tsa/shadcnui-blocks`
+2. **PricingTier type** - Fixed import from `@wallrun/shadcnui-blocks`
 3. **JSX namespace** - Changed `JSX.Element` → `React.JSX.Element` in AppSidebar
 4. **Button variants** - Changed `"primary"` → `"default"` or `"destructive"` (7 instances)
 5. **lucide-react icons** - Changed `Icon` → `LucideIcon` type in Layout.stories

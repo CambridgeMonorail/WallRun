@@ -54,7 +54,7 @@ pnpm deploy:dev-mode          # Set up development mode (one-time)
 
 # Scaffold a new BrightSign player app
 pnpm scaffold:player --name player-arrivals
-pnpm nx g sign-age:player-app --name player-arrivals
+pnpm nx g wallrun:player-app --name player-arrivals
 
 # Development workflow (fast iteration)
 pnpm dev:brightsign           # Start dev server

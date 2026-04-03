@@ -7,7 +7,7 @@ import {
   OfflineFallback,
   SignageTransition,
   StaleDataIndicator,
-} from '@tsa/shadcnui-signage';
+} from '@wallrun/shadcnui-signage';
 import { SignageExample } from './components/SignageExample';
 
 type Meeting = { id: string; time: string; title: string; room: string };

@@ -82,7 +82,7 @@ Digital signage as software. Nx + pnpm monorepo using React 19, Tailwind v4, sha
   - Commands: `pnpm run build:affected`, `pnpm run test:affected`, `pnpm run lint:affected`
 - Prefer existing pnpm scripts defined in `package.json` - do not invent new scripts
 - Avoid broad refactors unless explicitly requested
-- Use workspace imports for cross-project: `@tsa/shadcnui`, `@tsa/shell`, `@tsa/landing`
+- Use workspace imports for cross-project: `@wallrun/shadcnui`, `@wallrun/shell`, `@wallrun/landing`
 - Use relative imports within same project: `../../components/Button`
 - Apps import from libs; libs never import from apps
 - Path mappings in `tsconfig.base.json`

@@ -1,6 +1,17 @@
-import { cn, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@tsa/shadcnui';
+import {
+  cn,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@wallrun/shadcnui';
 import { getClampClass } from '../utils/clamp';
-import type { InfoCardItem, ColumnCount, Density } from '../types/signage.types';
+import type {
+  InfoCardItem,
+  ColumnCount,
+  Density,
+} from '../types/signage.types';
 
 export type InfoCardGridProps = {
   /**
@@ -74,30 +85,35 @@ export function InfoCardGrid({
         columnClasses[columns],
         gapClass,
         paddingClass,
-        className
+        className,
       )}
       data-testid="info-card-grid"
       data-columns={columns}
       data-density={density}
     >
       {items.map((item, index) => {
-        const isHighlighted = highlightIndex !== undefined && index === highlightIndex;
+        const isHighlighted =
+          highlightIndex !== undefined && index === highlightIndex;
 
         return (
           <Card
             key={index}
             className={cn(
               'flex flex-col transition-all',
-              isHighlighted && 'ring-2 ring-primary ring-offset-2 shadow-lg'
+              isHighlighted && 'ring-2 ring-primary ring-offset-2 shadow-lg',
             )}
             data-testid={`info-card-${index}`}
             data-highlighted={isHighlighted || undefined}
           >
-            <CardHeader className={density === 'comfortable' ? 'space-y-2' : 'space-y-1 pb-2'}>
+            <CardHeader
+              className={
+                density === 'comfortable' ? 'space-y-2' : 'space-y-1 pb-2'
+              }
+            >
               <CardTitle
                 className={cn(
                   getClampClass(2),
-                  density === 'comfortable' ? 'text-3xl' : 'text-2xl'
+                  density === 'comfortable' ? 'text-3xl' : 'text-2xl',
                 )}
               >
                 {item.title}
@@ -106,7 +122,7 @@ export function InfoCardGrid({
                 <div
                   className={cn(
                     'font-bold text-primary',
-                    density === 'comfortable' ? 'text-5xl' : 'text-4xl'
+                    density === 'comfortable' ? 'text-5xl' : 'text-4xl',
                   )}
                   data-testid={`card-value-${index}`}
                 >
@@ -119,7 +135,7 @@ export function InfoCardGrid({
                 <CardDescription
                   className={cn(
                     getClampClass(3),
-                    density === 'comfortable' ? 'text-xl' : 'text-lg'
+                    density === 'comfortable' ? 'text-xl' : 'text-lg',
                   )}
                   data-testid={`card-description-${index}`}
                 >
@@ -131,7 +147,7 @@ export function InfoCardGrid({
                   className={cn(
                     'mt-4 text-muted-foreground',
                     getClampClass(1),
-                    density === 'comfortable' ? 'text-base' : 'text-sm'
+                    density === 'comfortable' ? 'text-base' : 'text-sm',
                   )}
                   data-testid={`card-meta-${index}`}
                 >

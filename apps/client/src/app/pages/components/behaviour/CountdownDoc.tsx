@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { Countdown } from '@tsa/shadcnui-signage';
-import { Button } from '@tsa/shadcnui';
+import { Countdown } from '@wallrun/shadcnui-signage';
+import { Button } from '@wallrun/shadcnui';
 
 export const CountdownDocPage: FC = () => {
   const targetEpochMs = useMemo(() => Date.now() + 90_000, []);
@@ -73,7 +73,7 @@ export const CountdownDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="Timer.tsx"
-          code={`import { Countdown } from '@tsa/shadcnui-signage';
+          code={`import { Countdown } from '@wallrun/shadcnui-signage';
 
 export function Timer({ targetEpochMs }: { targetEpochMs: number }) {
   return (

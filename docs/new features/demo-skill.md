@@ -6,7 +6,7 @@ For your workflow (Nx monorepo + Copilot + Remotion) you ideally want **three la
    Already exists in your repo.
 
 2. **Scoped instruction file using `applyTo`**
-   Constrains behaviour for files in `demos/the-sign-age-video`.
+   Constrains behaviour for files in `demos/wallrun-video`.
 
 3. **A project-specific Copilot Skill**
    Gives Copilot structured knowledge about **Remotion video development for WallRun**.
@@ -58,7 +58,7 @@ description: Build and edit Remotion demo videos for WallRun inside the Nx monor
 
 This skill helps build and maintain the Remotion video demo located at:
 
-demos/the-sign-age-video
+demos/wallrun-video
 
 It provides structure for:
 
@@ -84,7 +84,7 @@ This repository is an **Nx monorepo**.
 
 The Remotion video lives under:
 
-demos/the-sign-age-video
+demos/wallrun-video
 
 The project renders a **developer-facing explainer video** for:
 
@@ -136,7 +136,7 @@ Prioritise:
 
 All code should live inside:
 
-demos/the-sign-age-video/src
+demos/wallrun-video/src
 
 Structure:
 
@@ -309,7 +309,7 @@ Plus the Remotion demo project:
 ```
 
 demos/
-the-sign-age-video/
+wallrun-video/
 
 ```
 
@@ -335,5 +335,5 @@ That combination tends to produce **dramatically better agent behaviour**.
 
 ---
 
-If you want, I can also give you the **three tiny starter files for the Remotion project** (`Root.tsx`, `index.ts`, and a clean `IntroScene.tsx`) so your developer can literally paste them in and run `nx preview the-sign-age-video`.
+If you want, I can also give you the **three tiny starter files for the Remotion project** (`Root.tsx`, `index.ts`, and a clean `IntroScene.tsx`) so your developer can literally paste them in and run `nx preview wallrun-video`.
 ```

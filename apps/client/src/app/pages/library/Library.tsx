@@ -1,4 +1,4 @@
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import imageSrc from '../../../assets/images/shad-samples.svg';
 
 const EXTERNAL_LINKS = {
@@ -8,8 +8,7 @@ const EXTERNAL_LINKS = {
   shadcn: 'https://ui.shadcn.com',
   readme:
     'https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/README.md',
-  roadmap:
-    'https://github.com/CambridgeMonorail/WallRun/blob/main/ROADMAP.md',
+  roadmap: 'https://github.com/CambridgeMonorail/WallRun/blob/main/ROADMAP.md',
 } as const;
 
 /**
@@ -53,7 +52,7 @@ export function LibraryPage() {
           </h2>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              @tsa/shadcnui
+              @wallrun/shadcnui
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
               Our copy of shadcn/ui components, organized by category. Standard
@@ -63,7 +62,7 @@ export function LibraryPage() {
           </div>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              @tsa/shadcnui-signage{' '}
+              @wallrun/shadcnui-signage{' '}
               <span role="img" aria-label="star">
                 ⭐
               </span>
@@ -83,7 +82,11 @@ export function LibraryPage() {
             <li>Designed for always-on, unattended displays</li>
           </ul>
           <Button asChild variant={'secondary'}>
-            <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+            <a
+              href={EXTERNAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View on GitHub
             </a>
           </Button>
@@ -181,7 +184,11 @@ npx shadcn@latest add \\
           real-world scenarios.
         </p>
         <Button asChild variant={'secondary'}>
-          <a href={EXTERNAL_LINKS.storybook} target="_blank" rel="noopener noreferrer">
+          <a
+            href={EXTERNAL_LINKS.storybook}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Open Storybook
           </a>
         </Button>
@@ -198,28 +205,44 @@ npx shadcn@latest add \\
         <ul className="list-none space-y-2">
           <li>
             <Button asChild variant={'ghost'}>
-              <a href={EXTERNAL_LINKS.readme} target="_blank" rel="noopener noreferrer">
+              <a
+                href={EXTERNAL_LINKS.readme}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Component Library README
               </a>
             </Button>
           </li>
           <li>
             <Button asChild variant={'ghost'}>
-              <a href={EXTERNAL_LINKS.roadmap} target="_blank" rel="noopener noreferrer">
+              <a
+                href={EXTERNAL_LINKS.roadmap}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Project Roadmap
               </a>
             </Button>
           </li>
           <li>
             <Button asChild variant={'ghost'}>
-              <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+              <a
+                href={EXTERNAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub Repository
               </a>
             </Button>
           </li>
           <li>
             <Button asChild variant={'ghost'}>
-              <a href={EXTERNAL_LINKS.shadcn} target="_blank" rel="noopener noreferrer">
+              <a
+                href={EXTERNAL_LINKS.shadcn}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 shadcn/ui Official Site
               </a>
             </Button>
@@ -237,12 +260,20 @@ npx shadcn@latest add \\
         </p>
         <div className="flex gap-3 justify-center">
           <Button asChild variant={'secondary'}>
-            <a href={EXTERNAL_LINKS.storybook} target="_blank" rel="noopener noreferrer">
+            <a
+              href={EXTERNAL_LINKS.storybook}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Open Storybook
             </a>
           </Button>
           <Button asChild variant={'secondary'}>
-            <a href={EXTERNAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+            <a
+              href={EXTERNAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View Source Code
             </a>
           </Button>

@@ -88,7 +88,7 @@ If the architect wants those concepts preserved, they should be treated as a fol
 
 ### Plugin
 
-Create a repo-local Nx plugin under `tools/sign-age` or a similarly named internal workspace plugin.
+Create a repo-local Nx plugin under `tools/wallrun` or a similarly named internal workspace plugin.
 
 ### Generator Strategy
 

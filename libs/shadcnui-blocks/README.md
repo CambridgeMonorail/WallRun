@@ -22,7 +22,7 @@ The `StatItem` component encapsulates individual statistic elements, including a
 #### Usage
 
 ```tsx
-import { StatItem } from '@TSA/shadcnui-blocks';
+import { StatItem } from '@wallrun/shadcnui-blocks';
 import { FaUser } from 'react-icons/fa';
 
 <StatItem
@@ -44,7 +44,7 @@ The `StatsBlock` component aggregates multiple `StatItem` components into a cohe
 #### Usage
 
 ```tsx
-import { StatsBlock } from '@TSA/shadcnui-blocks';
+import { StatsBlock } from '@wallrun/shadcnui-blocks';
 import { FaUser, FaChartLine, FaDollarSign } from 'react-icons/fa';
 
 const stats = [
@@ -100,7 +100,7 @@ The `NumberAndSecondaryStat` component displays a main value, optional label, se
 #### Usage
 
 ```tsx
-import { NumberAndSecondaryStat } from '@TSA/shadcnui-blocks';
+import { NumberAndSecondaryStat } from '@wallrun/shadcnui-blocks';
 
 <NumberAndSecondaryStat
   mainValue={1234}

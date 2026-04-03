@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardDescription,
   Button,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 
 /**
  * Interface representing a pricing tier.

@@ -13,7 +13,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { ChevronRight, type LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

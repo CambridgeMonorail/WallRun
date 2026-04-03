@@ -5,7 +5,7 @@ import {
   SignageContainer,
   SignageHeader,
   AnnouncementCard,
-} from '@tsa/shadcnui-signage';
+} from '@wallrun/shadcnui-signage';
 
 const announcements = [
   {

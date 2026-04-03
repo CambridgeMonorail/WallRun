@@ -49,7 +49,7 @@ import { ClockDocPage } from '../pages/components/behaviour/ClockDoc';
 import { CountdownDocPage } from '../pages/components/behaviour/CountdownDoc';
 import { OfflineFallbackDocPage } from '../pages/components/behaviour/OfflineFallbackDoc';
 import { StaleDataIndicatorDocPage } from '../pages/components/behaviour/StaleDataIndicatorDoc';
-import { Layout } from '@tsa/shell';
+import { Layout } from '@wallrun/shell';
 
 /**
  * Object containing all the paths used in the application.

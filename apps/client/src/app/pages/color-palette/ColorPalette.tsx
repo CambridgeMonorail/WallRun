@@ -8,7 +8,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import React, { useEffect, useState } from 'react';
 
 interface ColorPair {

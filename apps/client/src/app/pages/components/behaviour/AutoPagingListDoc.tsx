@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { AutoPagingList } from '@tsa/shadcnui-signage';
-import { Button } from '@tsa/shadcnui';
+import { AutoPagingList } from '@wallrun/shadcnui-signage';
+import { Button } from '@wallrun/shadcnui';
 
 type Item = { id: string; label: string };
 
@@ -89,7 +89,7 @@ export const AutoPagingListDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="Departures.tsx"
-          code={`import { AutoPagingList } from '@tsa/shadcnui-signage';
+          code={`import { AutoPagingList } from '@wallrun/shadcnui-signage';
 
 export function Departures({ rows }: { rows: Array<{ id: string; label: string }> }) {
   return (

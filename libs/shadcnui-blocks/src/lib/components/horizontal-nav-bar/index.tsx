@@ -8,7 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 
 type MenuItem = {
   label: string;

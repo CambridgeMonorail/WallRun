@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { Check, X } from 'lucide-react';
 
 /**

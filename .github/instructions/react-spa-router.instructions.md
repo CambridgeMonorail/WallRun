@@ -43,7 +43,7 @@ applyTo: 'apps/client/**/*.{ts,tsx}, libs/shell/**/*.{ts,tsx}, libs/landing/**/*
 
 ## Feature Module Integration
 
-- Shared components from libs: `@tsa/shadcnui`, `@tsa/shadcnui-blocks`, `@tsa/shell`, `@tsa/landing`
+- Shared components from libs: `@wallrun/shadcnui`, `@wallrun/shadcnui-blocks`, `@wallrun/shell`, `@wallrun/landing`
 - Each module exports components with consistent API
 - Use workspace imports for cross-library dependencies
 
@@ -54,11 +54,13 @@ applyTo: 'apps/client/**/*.{ts,tsx}, libs/shell/**/*.{ts,tsx}, libs/landing/**/*
 **Critical**: Never use `target="_blank"` for internal SPA routes. This breaks client-side routing and causes full page reloads.
 
 **Internal links** (routes within the app):
+
 - Paths starting with `/` (e.g., `/getting-started`, `/library`, `/gallery`)
 - Should navigate within the SPA without opening new tabs
 - Should NOT have `target="_blank"`
 
 **External links** (outside the app):
+
 - URLs starting with `http://` or `https://`
 - Should open in new tabs with `target="_blank"` and `rel="noopener noreferrer"`
 - Examples: GitHub, Storybook (hosted elsewhere), documentation sites
@@ -68,38 +70,45 @@ applyTo: 'apps/client/**/*.{ts,tsx}, libs/shell/**/*.{ts,tsx}, libs/landing/**/*
 When building components that accept navigation links (headers, footers, navigation menus):
 
 ✅ **Correct - Smart link handling**:
+
 ```tsx
 const isExternalUrl = (url: string) => {
   return url.startsWith('http://') || url.startsWith('https://');
 };
 
-{navigationLinks.map((link) => {
-  const isExternal = isExternalUrl(link.url);
-  return (
-    <a
-      href={link.url}
-      {...(isExternal && {
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      })}
-    >
-      {link.text}
-    </a>
-  );
-})}
+{
+  navigationLinks.map((link) => {
+    const isExternal = isExternalUrl(link.url);
+    return (
+      <a
+        href={link.url}
+        {...(isExternal && {
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        })}
+      >
+        {link.text}
+      </a>
+    );
+  });
+}
 ```
 
-❌ **Avoid - Hard-coded target="_blank" for all links**:
+❌ **Avoid - Hard-coded target="\_blank" for all links**:
+
 ```tsx
-{/* This breaks internal navigation */}
+{
+  /* This breaks internal navigation */
+}
 <a href={link.url} target="_blank" rel="noopener noreferrer">
   {link.text}
-</a>
+</a>;
 ```
 
 ### Testing Link Behavior
 
 When implementing navigation components:
+
 1. ✅ Test internal routes (`/gallery`) stay in same tab
 2. ✅ Test external links (GitHub, Storybook) open new tabs
 3. ✅ Verify no full page reload for internal routes

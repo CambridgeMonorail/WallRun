@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@tsa/shadcnui';
+import { Card, CardContent, CardHeader, CardTitle } from '@wallrun/shadcnui';
 import {
   LineChart,
   Line,

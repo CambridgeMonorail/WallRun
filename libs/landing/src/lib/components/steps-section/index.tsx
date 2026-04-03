@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
-import { Steps, Step } from '@tsa/shadcnui-blocks';
+import { Button } from '@wallrun/shadcnui';
+import { Steps, Step } from '@wallrun/shadcnui-blocks';
 
 /**
  * Props for the StepsSection component.
@@ -38,8 +38,12 @@ const StepsSection: FC<StepsSectionProps> = ({
     >
       <div className="demo-panel mx-auto max-w-6xl px-6 py-10 text-center sm:px-8 sm:py-12">
         <div className="mx-auto max-w-3xl">
-          <p className="display-kicker mb-4 text-xs sm:text-sm">Activation Sequence</p>
-          <h2 className="display-type mb-6 text-3xl text-foreground sm:text-4xl">{title}</h2>
+          <p className="display-kicker mb-4 text-xs sm:text-sm">
+            Activation Sequence
+          </p>
+          <h2 className="display-type mb-6 text-3xl text-foreground sm:text-4xl">
+            {title}
+          </h2>
         </div>
         <div className="section-shell mx-auto mb-8 max-w-5xl px-4 py-6 text-left sm:px-6">
           <Steps steps={steps} />

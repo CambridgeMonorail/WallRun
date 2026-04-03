@@ -41,14 +41,14 @@ For each file in the component:
 
 1. Open the file
 2. Read all `import` statements at the top
-3. Identify third-party packages (not from `react`, `@tsa/*`, or relative paths)
+3. Identify third-party packages (not from `react`, `@wallrun/*`, or relative paths)
 4. Add each package to the `dependencies` array
 
 **Example imports:**
 
 ```typescript
 import { useMemo } from 'react'; // ❌ Don't include (React assumed)
-import { Button } from '@tsa/shadcnui'; // ❌ Don't include (workspace package)
+import { Button } from '@wallrun/shadcnui'; // ❌ Don't include (workspace package)
 import { formatDistance } from 'date-fns'; // ✅ Include "date-fns"
 import { Calendar } from 'lucide-react'; // ✅ Include "lucide-react"
 import { cn } from '../utils/cn'; // Check if cn.ts is in files[]
@@ -223,7 +223,7 @@ Before committing registry changes:
 - [ ] Traced all relative imports (`../`, `./`)
 - [ ] Verified no transitive files missing
 - [ ] Confirmed dependencies list only includes actual NPM packages
-- [ ] Excluded React and `@tsa/*` workspace packages
+- [ ] Excluded React and `@wallrun/*` workspace packages
 - [ ] Read component implementation
 - [ ] Verified description matches actual behavior
 - [ ] Set correct type for each file

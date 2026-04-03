@@ -9,8 +9,8 @@ applyTo: '**/*.tsx'
 ## Tailwind and Component Conventions
 
 - Use Tailwind CSS utility classes for all styling
-- Import shadcn/ui components from `@tsa/shadcnui`
-- Use `cn()` utility for conditional classes (from `@tsa/shadcnui`)
+- Import shadcn/ui components from `@wallrun/shadcnui`
+- Use `cn()` utility for conditional classes (from `@wallrun/shadcnui`)
 - Mobile-first responsive design with breakpoints: `sm:`, `md:`, `lg:`, `xl:`, `2xl:`
 - Dark mode support where applicable using `dark:` variant
 - Avoid custom CSS unless absolutely necessary
@@ -18,7 +18,7 @@ applyTo: '**/*.tsx'
 ## Shadcn/ui Usage
 
 - All shadcn/ui components live in `libs/shadcnui/src/lib/`
-- Import from workspace: `import { Button, Card } from '@tsa/shadcnui'`
+- Import from workspace: `import { Button, Card } from '@wallrun/shadcnui'`
 - Follow shadcn/ui component API and prop patterns
 - Extend shadcn components rather than creating new primitives
 - Common components: Button, Card, Input, Select, Dialog, Dropdown, Table, Badge, etc.
@@ -80,6 +80,7 @@ When a shell surface needs extra depth, prefer a shared token-based utility clas
 ### Drift Prevention
 
 Before committing changes, ask:
+
 - Does this feel like premium B2B SaaS software?
 - Have we used tokens rather than one-off styles?
 - Did we add anything for flair rather than clarity?
@@ -120,43 +121,44 @@ Before committing changes, ask:
 **Critical distinction**: Use the correct element for the correct purpose.
 
 **Use `<a>` (anchor) for navigation:**
+
 - External links (GitHub, documentation, other sites)
 - Internal SPA routes (with href)
 - Downloads
 - Any action that changes location or opens a URL
 
 ✅ **Correct - External link with anchor**:
+
 ```tsx
-<a
-  href="https://github.com/..."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-primary hover:underline"
->
+<a href="https://github.com/..." target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
   View on GitHub
 </a>
 ```
 
 ❌ **Avoid - Button with window.open for links**:
+
 ```tsx
-{/* Wrong: Breaks accessibility, right-click, link preview, etc. */}
-<button onClick={() => window.open('https://...', '_blank')}>
-  View on GitHub
-</button>
+{
+  /* Wrong: Breaks accessibility, right-click, link preview, etc. */
+}
+<button onClick={() => window.open('https://...', '_blank')}>View on GitHub</button>;
 ```
 
 **Use `<button>` for actions:**
+
 - Triggering UI changes (open modal, toggle visibility)
 - Form submissions
 - Triggering operations (save, delete, refresh)
 - Any action that doesn't navigate
 
 ✅ **Correct - Button for action**:
+
 ```tsx
 <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 ```
 
 **Why this matters:**
+
 - Screen readers announce links and buttons differently
 - Keyboard users expect different behaviors (Enter vs Space)
 - Links provide browser features (right-click, copy link, open in new tab)

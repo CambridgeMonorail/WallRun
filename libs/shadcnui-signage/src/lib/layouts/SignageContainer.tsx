@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { cn } from '@tsa/shadcnui';
+import { cn } from '@wallrun/shadcnui';
 
 export type GradientVariant =
   | 'emerald'

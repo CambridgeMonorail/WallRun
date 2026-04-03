@@ -45,7 +45,7 @@ import { NotFound } from '../pages/not-found/NotFound';
 import { PricingPage } from '../pages/pricing/Pricing';
 import { StatusBoardPage } from '../.pages/status-board/StatusBoard';
 import { TermsAndConditionsPage } from '../pages/terms-and-conditions/TermsAndConditions';
-import { Layout } from '@tsa/shell';
+import { Layout } from '@wallrun/shell';
 
 const paths = {
   landing: '/',

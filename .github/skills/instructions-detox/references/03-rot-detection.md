@@ -37,7 +37,7 @@ Example:
 ```
 - "Always use named exports" (00-repo-basics.instructions.md)
 - "Never use default exports" (00-repo-basics.instructions.md)
-- "Import shadcn from @tsa/shadcnui" (ui-and-accessibility.instructions.md)
+- "Import shadcn from @wallrun/shadcnui" (ui-and-accessibility.instructions.md)
 - "Use .test.tsx for tests" (testing-and-quality.instructions.md)
 ```
 
@@ -82,8 +82,8 @@ Y_count=$(grep -r "^let " apps/ | wc -l)
 #### Import path verification:
 
 ```bash
-# Example: Import from @tsa/shadcnui
-grep -r "from '@tsa/shadcnui'" apps/ --include="*.tsx" | wc -l
+# Example: Import from @wallrun/shadcnui
+grep -r "from '@wallrun/shadcnui'" apps/ --include="*.tsx" | wc -l
 ```
 
 **Expected:** Multiple matches  

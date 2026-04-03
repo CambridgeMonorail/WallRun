@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/vitest';
 import { CodeSnippet } from './CodeSnippet';
 
 describe('CodeSnippet', () => {
-  const sampleCode = `import { Button } from '@tsa/shadcnui';
+  const sampleCode = `import { Button } from '@wallrun/shadcnui';
 
 export const App = () => <Button>Click me</Button>;`;
 

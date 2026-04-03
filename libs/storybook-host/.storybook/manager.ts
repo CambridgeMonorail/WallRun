@@ -1,6 +1,6 @@
 import { addons } from 'storybook/manager-api';
-import tsaTheme from './tsaTheme';
+import wallrunTheme from './wallrunTheme';
 
 addons.setConfig({
-  theme: tsaTheme,
+  theme: wallrunTheme,
 });

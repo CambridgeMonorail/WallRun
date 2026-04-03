@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { Bot, Radar, Rocket, Wrench } from 'lucide-react';
 
 export const ToolingPage: FC = () => {
@@ -37,10 +37,10 @@ export const ToolingPage: FC = () => {
 pnpm scaffold:player --name player-arrivals
 
 # Nx-native generator
-pnpm nx g sign-age:player-app --name player-arrivals
+pnpm nx g wallrun:player-app --name player-arrivals
 
 # Example: landscape app without status page
-pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation landscape --noStatusPage`}
+pnpm nx g wallrun:player-app --name player-menu-board --displayOrientation landscape --noStatusPage`}
           </pre>
         </div>
         <p className="mt-3 text-sm text-muted-foreground">

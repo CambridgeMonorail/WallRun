@@ -75,7 +75,7 @@ function parseArgs(argv) {
 function main() {
   try {
     const options = parseArgs(process.argv.slice(2));
-    const generatorArgs = ['nx', 'g', 'sign-age:player-app'];
+    const generatorArgs = ['nx', 'g', 'wallrun:player-app'];
 
     if (options.name) {
       generatorArgs.push('--name', options.name);

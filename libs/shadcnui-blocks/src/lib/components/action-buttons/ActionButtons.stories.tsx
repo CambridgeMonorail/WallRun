@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TooltipProvider } from '@tsa/shadcnui';
+import { TooltipProvider } from '@wallrun/shadcnui';
 import { ActionButtons, ActionButtonsProps } from './index';
 import { Beer, Coffee, Apple } from 'lucide-react';
 

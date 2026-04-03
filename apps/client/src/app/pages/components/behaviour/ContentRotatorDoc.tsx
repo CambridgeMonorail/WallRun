@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { ContentRotator } from '@tsa/shadcnui-signage';
-import { Button } from '@tsa/shadcnui';
+import { ContentRotator } from '@wallrun/shadcnui-signage';
+import { Button } from '@wallrun/shadcnui';
 
 export const ContentRotatorDocPage: FC = () => {
   return (
@@ -80,7 +80,7 @@ export const ContentRotatorDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="LobbyLoop.tsx"
-          code={`import { ContentRotator } from '@tsa/shadcnui-signage';
+          code={`import { ContentRotator } from '@wallrun/shadcnui-signage';
 
 export function LobbyLoop() {
   return (

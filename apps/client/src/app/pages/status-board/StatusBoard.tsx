@@ -19,9 +19,9 @@ import {
   ChartContainer,
   Button,
   Input,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { useEffect, useState } from 'react';
-import { Logo } from '@tsa/shadcnui-blocks';
+import { Logo } from '@wallrun/shadcnui-blocks';
 import { navigationConfig } from '../../constants/navigationConfig';
 
 const chartConfig = {

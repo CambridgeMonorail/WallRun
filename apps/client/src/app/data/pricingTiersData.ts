@@ -1,4 +1,4 @@
-import type { PricingTier } from '@tsa/shadcnui-blocks';
+import type { PricingTier } from '@wallrun/shadcnui-blocks';
 import { featuresList } from './featuresData';
 
 export const pricingTiers: PricingTier[] = [

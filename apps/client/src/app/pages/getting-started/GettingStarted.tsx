@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { BookOpen, Code, Layers, Terminal } from 'lucide-react';
 
 /**
@@ -253,10 +253,10 @@ git pull origin main`}
             <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
                 {`# Generate a new player app
-pnpm nx g sign-age:player-app --name player-arrivals
+pnpm nx g wallrun:player-app --name player-arrivals
 
 # Or with specific options
-pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation landscape --noStatusPage`}
+pnpm nx g wallrun:player-app --name player-menu-board --displayOrientation landscape --noStatusPage`}
               </pre>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
@@ -405,7 +405,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
   SignageContainer,
   SignageHeader,
   MetricCard
-} from '@tsa/shadcnui-signage';`}
+} from '@wallrun/shadcnui-signage';`}
               </pre>
             </div>
           </div>

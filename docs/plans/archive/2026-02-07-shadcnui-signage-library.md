@@ -8,13 +8,13 @@
 
 ## Goal
 
-Create a new React component library (`@tsa/shadcnui-signage`) for building digital signage screens, optimized for fixed-aspect displays, distance readability, and predictable layouts. The library will include four v0.1 components: ScreenFrame, SplitScreen, FullscreenHero, and InfoCardGrid.
+Create a new React component library (`@wallrun/shadcnui-signage`) for building digital signage screens, optimized for fixed-aspect displays, distance readability, and predictable layouts. The library will include four v0.1 components: ScreenFrame, SplitScreen, FullscreenHero, and InfoCardGrid.
 
 ## Context
 
 ### Current State
 
-- Existing libraries: `@tsa/shadcnui` (base components) and `@tsa/shadcnui-blocks` (generic compositions)
+- Existing libraries: `@wallrun/shadcnui` (base components) and `@wallrun/shadcnui-blocks` (generic compositions)
 - Nx 22.4.1 + pnpm monorepo with Vite, React 19, TypeScript 5.9.3
 - Storybook 10.2.0 for component documentation
 - Vitest 4.0.0 for unit testing
@@ -33,8 +33,8 @@ This library extends our existing shadcn foundation for this specific use case.
 
 ### Dependencies
 
-- Must depend on `@tsa/shadcnui` for base components
-- May depend on `@tsa/shadcnui-blocks` where appropriate
+- Must depend on `@wallrun/shadcnui` for base components
+- May depend on `@wallrun/shadcnui-blocks` where appropriate
 - May depend on `common-tailwind` for shared Tailwind configuration
 - Must not create circular dependencies with apps
 
@@ -53,7 +53,7 @@ This library extends our existing shadcn foundation for this specific use case.
 
 2. **Configure TypeScript path mapping** ⬜
    - File: `tsconfig.base.json`
-   - Add: `"@tsa/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"]`
+   - Add: `"@wallrun/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"]`
    - Verify: Import resolves in consuming app
 
 3. **Create folder structure** ⬜
@@ -61,7 +61,7 @@ This library extends our existing shadcn foundation for this specific use case.
    - Verify: Folders exist with correct structure
 
 4. **Add dependencies to project.json** ⬜
-   - Add `@tsa/shadcnui`, `@tsa/shadcnui-blocks`, `common-tailwind` as dependencies
+   - Add `@wallrun/shadcnui`, `@wallrun/shadcnui-blocks`, `common-tailwind` as dependencies
    - Verify: Dependencies resolve correctly
 
 5. **Create initial README.md** ⬜
@@ -72,7 +72,7 @@ This library extends our existing shadcn foundation for this specific use case.
 **Acceptance Criteria:**
 
 - ✅ Library builds: `pnpm build:shadcnui-signage`
-- ✅ TypeScript imports work: `import { } from '@tsa/shadcnui-signage'`
+- ✅ TypeScript imports work: `import { } from '@wallrun/shadcnui-signage'`
 - ✅ Nx graph shows correct dependencies
 - ✅ README.md exists with basic documentation
 
@@ -287,7 +287,7 @@ This library extends our existing shadcn foundation for this specific use case.
    - Props: `items`, `columns`, `density`, `highlightIndex`, `className`
    - Types: `InfoCardItem = { title, value?, description?, meta? }`
    - Logic: Equal height cards, clamped text, highlight without layout shift
-   - Style: Use Tailwind v4, shadcn Card component from `@tsa/shadcnui`
+   - Style: Use Tailwind v4, shadcn Card component from `@wallrun/shadcnui`
 
 2. **Test InfoCardGrid component** ⬜
    - File: `src/lib/blocks/InfoCardGrid.spec.tsx`
@@ -342,7 +342,7 @@ This library extends our existing shadcn foundation for this specific use case.
 
 3. **Test in consuming app** ⬜
    - App: `apps/client`
-   - Import: `import { ScreenFrame } from '@tsa/shadcnui-signage'`
+   - Import: `import { ScreenFrame } from '@wallrun/shadcnui-signage'`
    - Create: Test page demonstrating all components
    - Verify: Components render correctly, no import errors
 
@@ -444,7 +444,7 @@ npx nx graph
 ## Notes
 
 - Follow WallRun conventions: named exports only, colocate tests, JSDoc comments
-- Use existing shadcn components from `@tsa/shadcnui` (Card, Button, etc.)
+- Use existing shadcn components from `@wallrun/shadcnui` (Card, Button, etc.)
 - Use Tailwind v4 CSS-first configuration from `common-tailwind`
 - Test early and often: run `pnpm test:shadcnui-signage` after each component
 - Verify Storybook stories as you build: `pnpm storybook`
@@ -466,4 +466,4 @@ npx nx graph
 **Mitigation:** Use semantic HTML, verify contrast with DevTools, test keyboard navigation
 
 **Risk:** Storybook integration issues  
-**Mitigation:** Test stories incrementally, follow existing Storybook patterns from `@tsa/shadcnui`
+**Mitigation:** Test stories incrementally, follow existing Storybook patterns from `@wallrun/shadcnui`

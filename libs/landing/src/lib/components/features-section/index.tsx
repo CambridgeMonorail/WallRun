@@ -1,5 +1,10 @@
 import { FC, ReactNode } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription } from '@tsa/shadcnui';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@wallrun/shadcnui';
 
 interface Feature {
   title: string;
@@ -32,8 +37,12 @@ const FeaturesSection: FC<FeaturesSectionProps> = ({
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 text-center">
-          <p className="display-kicker mb-4 text-xs sm:text-sm">Capability Surface</p>
-          <h2 className="display-type text-3xl text-foreground sm:text-4xl">{title}</h2>
+          <p className="display-kicker mb-4 text-xs sm:text-sm">
+            Capability Surface
+          </p>
+          <h2 className="display-type text-3xl text-foreground sm:text-4xl">
+            {title}
+          </h2>
         </div>
       </div>
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">

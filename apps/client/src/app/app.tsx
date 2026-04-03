@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Toaster } from '@tsa/shadcnui';
+import { Toaster } from '@wallrun/shadcnui';
 import { navigationConfig } from './constants/navigationConfig';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { SeoManager } from './components/SeoManager';

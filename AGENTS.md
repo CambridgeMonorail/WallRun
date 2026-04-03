@@ -294,7 +294,7 @@ pnpm run lint:affected
 
 - Apps import from libs
 - Libs never import from apps
-- Use workspace imports: `@tsa/shadcnui`, `@tsa/shell`
+- Use workspace imports: `@wallrun/shadcnui`, `@wallrun/shell`
 - Use relative imports within same project
 
 ## Getting Help

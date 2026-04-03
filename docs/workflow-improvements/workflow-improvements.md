@@ -670,7 +670,7 @@ When implementing, maintain clear separation:
 ### Use Instruction Files When You're Saying
 
 - ✅ "Use TypeScript strict mode"
-- ✅ "Import shadcn/ui components from @tsa/shadcnui"
+- ✅ "Import shadcn/ui components from @wallrun/shadcnui"
 - ✅ "Use named exports, not default exports"
 - ✅ "Ensure ARIA labels on interactive elements"
 - ✅ "Colocate tests with implementation files"

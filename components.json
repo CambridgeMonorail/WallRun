@@ -10,7 +10,7 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@tsa/shadcnui/components",
-    "utils": "@tsa/shadcnui/lib/utils"
+    "components": "@wallrun/shadcnui/components",
+    "utils": "@wallrun/shadcnui/lib/utils"
   }
 }
