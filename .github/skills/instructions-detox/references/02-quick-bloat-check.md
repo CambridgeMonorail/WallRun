@@ -61,7 +61,6 @@ grep -c "This ensures\|This improves\|This helps" .github/instructions/*.md
 **Look for duplicates:**
 
 1. Search for common phrases across multiple files:
-
    - "Use TypeScript"
    - "Import from @wallrun/shadcnui"
    - "Run pnpm commands"

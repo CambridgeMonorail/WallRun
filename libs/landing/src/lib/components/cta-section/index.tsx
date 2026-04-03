@@ -40,8 +40,10 @@ export const CTASection: FC<CTASectionProps> = ({
   variant = 'light',
 }) => {
   const baseSectionClasses = 'w-full px-4 py-8 sm:px-6 lg:px-8';
-  const baseHeadingClasses = 'display-type text-3xl text-foreground sm:text-4xl';
-  const baseParagraphClasses = 'mx-auto max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg';
+  const baseHeadingClasses =
+    'display-type text-3xl text-foreground sm:text-4xl';
+  const baseParagraphClasses =
+    'mx-auto max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg';
 
   let sectionClasses = 'bg-transparent text-foreground';
   let headingClasses = baseHeadingClasses;

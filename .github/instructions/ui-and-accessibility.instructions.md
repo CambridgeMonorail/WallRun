@@ -80,6 +80,7 @@ When a shell surface needs extra depth, prefer a shared token-based utility clas
 ### Drift Prevention
 
 Before committing changes, ask:
+
 - Does this feel like premium B2B SaaS software?
 - Have we used tokens rather than one-off styles?
 - Did we add anything for flair rather than clarity?
@@ -120,43 +121,44 @@ Before committing changes, ask:
 **Critical distinction**: Use the correct element for the correct purpose.
 
 **Use `<a>` (anchor) for navigation:**
+
 - External links (GitHub, documentation, other sites)
 - Internal SPA routes (with href)
 - Downloads
 - Any action that changes location or opens a URL
 
 ✅ **Correct - External link with anchor**:
+
 ```tsx
-<a
-  href="https://github.com/..."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-primary hover:underline"
->
+<a href="https://github.com/..." target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
   View on GitHub
 </a>
 ```
 
 ❌ **Avoid - Button with window.open for links**:
+
 ```tsx
-{/* Wrong: Breaks accessibility, right-click, link preview, etc. */}
-<button onClick={() => window.open('https://...', '_blank')}>
-  View on GitHub
-</button>
+{
+  /* Wrong: Breaks accessibility, right-click, link preview, etc. */
+}
+<button onClick={() => window.open('https://...', '_blank')}>View on GitHub</button>;
 ```
 
 **Use `<button>` for actions:**
+
 - Triggering UI changes (open modal, toggle visibility)
 - Form submissions
 - Triggering operations (save, delete, refresh)
 - Any action that doesn't navigate
 
 ✅ **Correct - Button for action**:
+
 ```tsx
 <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 ```
 
 **Why this matters:**
+
 - Screen readers announce links and buttons differently
 - Keyboard users expect different behaviors (Enter vs Space)
 - Links provide browser features (right-click, copy link, open in new tab)

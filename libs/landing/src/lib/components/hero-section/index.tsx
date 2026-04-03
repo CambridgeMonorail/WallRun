@@ -77,7 +77,8 @@ export const HeroSection: FC<HeroSectionProps> = ({
   let sectionClasses = 'bg-transparent text-foreground';
   let titleClasses = 'text-foreground';
   let subtitleClasses = 'display-kicker text-[hsl(var(--glow-amber))]';
-  let descriptionClasses = 'text-base leading-7 text-muted-foreground sm:text-lg';
+  let descriptionClasses =
+    'text-base leading-7 text-muted-foreground sm:text-lg';
   let highlightIconClasses = 'text-[hsl(var(--glow-cyan))]';
   let buttonPrimaryVariant: 'default' | 'secondary' = 'default';
   let buttonSecondaryVariant: 'default' | 'secondary' | 'outline' = 'outline';
@@ -111,7 +112,12 @@ export const HeroSection: FC<HeroSectionProps> = ({
 
       if (isInternalRoute(cta.link)) {
         return (
-          <Button asChild variant={variant} className={className} data-testid={testId}>
+          <Button
+            asChild
+            variant={variant}
+            className={className}
+            data-testid={testId}
+          >
             <Link to={cta.link} onClick={cta.onClick}>
               {cta.text}
             </Link>
@@ -120,7 +126,12 @@ export const HeroSection: FC<HeroSectionProps> = ({
       }
 
       return (
-        <Button asChild variant={variant} className={className} data-testid={testId}>
+        <Button
+          asChild
+          variant={variant}
+          className={className}
+          data-testid={testId}
+        >
           <a
             href={cta.link}
             onClick={cta.onClick}
@@ -164,7 +175,10 @@ export const HeroSection: FC<HeroSectionProps> = ({
           data-testid="hero-content"
         >
           {subtitle && (
-            <p className={`${subtitleClasses} text-xs sm:text-sm`} data-testid="hero-subtitle">
+            <p
+              className={`${subtitleClasses} text-xs sm:text-sm`}
+              data-testid="hero-subtitle"
+            >
               {subtitle}
             </p>
           )}
@@ -193,29 +207,29 @@ export const HeroSection: FC<HeroSectionProps> = ({
                   className="demo-panel-soft flex items-center gap-3 rounded-2xl px-4 py-3"
                   data-testid={`hero-highlight-${index}`}
                 >
-                  <CheckIcon className={`h-5 w-5 shrink-0 ${highlightIconClasses}`} />
+                  <CheckIcon
+                    className={`h-5 w-5 shrink-0 ${highlightIconClasses}`}
+                  />
                   <span>{highlight}</span>
                 </li>
               ))}
             </ul>
           )}
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-            {ctaPrimary && (
+            {ctaPrimary &&
               renderCta(
                 ctaPrimary,
                 buttonPrimaryVariant,
                 'min-w-40 rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]',
                 'cta-primary',
-              )
-            )}
-            {ctaSecondary && (
+              )}
+            {ctaSecondary &&
               renderCta(
                 ctaSecondary,
                 buttonSecondaryVariant,
                 'min-w-40 rounded-full border border-white/12 bg-background/10 px-6 py-6 text-sm uppercase tracking-[0.18em] text-foreground backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[hsl(var(--glow-violet)/0.32)] hover:bg-white/6',
                 'cta-secondary',
-              )
-            )}
+              )}
           </div>
         </div>
 

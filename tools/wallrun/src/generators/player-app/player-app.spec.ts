@@ -28,7 +28,10 @@ describe('player-app generator', () => {
       false,
     );
 
-    const projectConfig = readJson(tree, 'apps/player-test-screen/project.json');
+    const projectConfig = readJson(
+      tree,
+      'apps/player-test-screen/project.json',
+    );
     expect(projectConfig.name).toBe('player-test-screen');
     expect(projectConfig.tags).toEqual(['scope:signage', 'type:app']);
 
@@ -54,18 +57,26 @@ describe('player-app generator', () => {
       return new Set([4200, 4201]);
     });
 
-    await playerAppGenerator(tree, {
-      name: 'player-test-screen',
-    }, {
-      getUsedPorts,
-    });
+    await playerAppGenerator(
+      tree,
+      {
+        name: 'player-test-screen',
+      },
+      {
+        getUsedPorts,
+      },
+    );
 
-    await playerAppGenerator(tree, {
-      name: 'player-test-screen',
-      force: true,
-    }, {
-      getUsedPorts,
-    });
+    await playerAppGenerator(
+      tree,
+      {
+        name: 'player-test-screen',
+        force: true,
+      },
+      {
+        getUsedPorts,
+      },
+    );
 
     const viteConfig = tree.read(
       'apps/player-test-screen/vite.config.mts',
