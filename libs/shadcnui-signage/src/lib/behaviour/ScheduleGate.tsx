@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { cn } from '@tsa/shadcnui';
+import { cn } from '@wallrun/shadcnui';
 import { toZonedTime } from 'date-fns-tz';
 import type { NowProvider } from '../types/time.types';
 import { useTicker } from '../hooks/useTicker';

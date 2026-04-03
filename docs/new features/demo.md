@@ -11,7 +11,7 @@ Below is a tighter developer handoff you can paste into the repo or send directl
 Create a **code-driven YouTube demo video** for **WallRun** inside the **existing Nx monorepo**, under:
 
 ```text
-demos/the-sign-age-video
+demos/wallrun-video
 ```
 
 This should use **Remotion** for preview and rendering, and **VS Code Copilot** should be guided with **demo-specific scoped instructions**, not new generic repo-wide instructions.
@@ -33,14 +33,14 @@ Create:
 
 ```text
 demos/
-  the-sign-age-video/
+  wallrun-video/
 ```
 
 Suggested structure:
 
 ```text
 demos/
-  the-sign-age-video/
+  wallrun-video/
     src/
       components/
       scenes/
@@ -76,32 +76,32 @@ If we later add other Remotion packages, keep versions locked to the same number
 
 ### 3. Nx targets for preview and render
 
-Add a `project.json` in `demos/the-sign-age-video` so the video behaves like a normal workspace project.
+Add a `project.json` in `demos/wallrun-video` so the video behaves like a normal workspace project.
 
 Suggested starting point:
 
 ```json
 {
-  "name": "the-sign-age-video",
+  "name": "wallrun-video",
   "projectType": "application",
-  "sourceRoot": "demos/the-sign-age-video/src",
+  "sourceRoot": "demos/wallrun-video/src",
   "targets": {
     "preview": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "pnpm exec remotion studio demos/the-sign-age-video/src/index.ts"
+        "command": "pnpm exec remotion studio demos/wallrun-video/src/index.ts"
       }
     },
     "render": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "pnpm exec remotion render demos/the-sign-age-video/src/index.ts Main dist/demos/the-sign-age-video/the-sign-age-demo.mp4"
+        "command": "pnpm exec remotion render demos/wallrun-video/src/index.ts Main dist/demos/wallrun-video/wallrun-demo.mp4"
       }
     },
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "tsc --project demos/the-sign-age-video/tsconfig.json --noEmit"
+        "command": "tsc --project demos/wallrun-video/tsconfig.json --noEmit"
       }
     }
   }
@@ -130,14 +130,14 @@ Use `applyTo` so the guidance only affects the demo project.
 
 ```md
 ---
-applyTo: 'demos/the-sign-age-video/**/*.{ts,tsx}'
+applyTo: 'demos/wallrun-video/**/*.{ts,tsx}'
 ---
 
 # Remotion demo instructions
 
 You are working inside an existing Nx monorepo on a Remotion-based demo video for WallRun.
 
-This file is only for the demo video project under `demos/the-sign-age-video`.
+This file is only for the demo video project under `demos/wallrun-video`.
 
 ## Intent
 
@@ -312,7 +312,7 @@ Point back to the repo and future experiments.
 ## Suggested source structure
 
 ```text
-demos/the-sign-age-video/src/
+demos/wallrun-video/src/
   components/
     BrowserFrame.tsx
     Caption.tsx
@@ -373,7 +373,7 @@ Bad uses:
 ### Create intro scene
 
 ```text
-Create a Remotion scene component in demos/the-sign-age-video/src/scenes/IntroScene.tsx.
+Create a Remotion scene component in demos/wallrun-video/src/scenes/IntroScene.tsx.
 
 Requirements:
 - TypeScript React component
@@ -390,7 +390,7 @@ Requirements:
 ### Create repo overview scene
 
 ```text
-Create a Remotion scene in demos/the-sign-age-video/src/scenes/RepoOverviewScene.tsx.
+Create a Remotion scene in demos/wallrun-video/src/scenes/RepoOverviewScene.tsx.
 
 The scene should show a staged GitHub repository screenshot inside a browser frame and animate in 3 to 4 callout labels explaining the main parts of WallRun.
 
@@ -401,7 +401,7 @@ Use reusable components where appropriate.
 ### Refactor repeated motion
 
 ```text
-Refactor repeated fade-and-slide animation logic in demos/the-sign-age-video/src/scenes into a reusable helper component under demos/the-sign-age-video/src/components.
+Refactor repeated fade-and-slide animation logic in demos/wallrun-video/src/scenes into a reusable helper component under demos/wallrun-video/src/components.
 Keep behaviour unchanged.
 Use TypeScript and named exports.
 ```
@@ -412,7 +412,7 @@ Use TypeScript and named exports.
 
 ### Must have
 
-- `demos/the-sign-age-video` project created
+- `demos/wallrun-video` project created
 - Remotion installed in the workspace with exact versions
 - Nx `preview` target
 - Nx `render` target
@@ -433,13 +433,13 @@ Use TypeScript and named exports.
 
 ## Minimal action list
 
-1. Create `demos/the-sign-age-video`
+1. Create `demos/wallrun-video`
 2. Install `remotion` and `@remotion/cli` with exact versions
 3. Add `project.json` with `preview`, `render`, and `typecheck`
-4. Add `.github/instructions/remotion-demo.instructions.md` with `applyTo: "demos/the-sign-age-video/**/*.{ts,tsx}"`
+4. Add `.github/instructions/remotion-demo.instructions.md` with `applyTo: "demos/wallrun-video/**/*.{ts,tsx}"`
 5. Run `npx skills add remotion-dev/skills`
 6. Build V1 as a stylised explainer
-7. Render first cut to `dist/demos/the-sign-age-video/`
+7. Render first cut to `dist/demos/wallrun-video/`
 
 ---
 

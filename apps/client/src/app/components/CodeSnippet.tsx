@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { Check, Copy } from 'lucide-react';
-import { cn } from '@tsa/shadcnui';
+import { cn } from '@wallrun/shadcnui';
 
 export interface CodeSnippetProps {
   /**
@@ -41,7 +41,7 @@ export interface CodeSnippetProps {
  * <CodeSnippet
  *   language="tsx"
  *   filename="App.tsx"
- *   code={`import { Button } from '@tsa/shadcnui';\n\nexport const App = () => <Button>Click me</Button>;`}
+ *   code={`import { Button } from '@wallrun/shadcnui';\n\nexport const App = () => <Button>Click me</Button>;`}
  * />
  * ```
  */

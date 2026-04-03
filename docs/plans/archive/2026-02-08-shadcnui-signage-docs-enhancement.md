@@ -72,7 +72,7 @@ From `libs/shadcnui-signage/src/index.ts`:
 - ❌ Removing existing Library overview page
 - ❌ Changing Storybook deployment
 - ❌ Creating shadcn registry (future enhancement)
-- ❌ Documenting `@tsa/shadcnui` components (standard shadcn)
+- ❌ Documenting `@wallrun/shadcnui` components (standard shadcn)
 - ❌ Adding search functionality (future enhancement)
 
 ## Architecture Decision
@@ -410,7 +410,7 @@ export const MetricCardDoc = () => {
       {/* Installation */}
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Installation</h2>
-        <CodeSnippet language="bash" code="pnpm add @tsa/shadcnui-signage" />
+        <CodeSnippet language="bash" code="pnpm add @wallrun/shadcnui-signage" />
       </section>
 
       {/* Usage */}
@@ -419,7 +419,7 @@ export const MetricCardDoc = () => {
         <CodeSnippet
           language="tsx"
           filename="Dashboard.tsx"
-          code={`import { MetricCard } from '@tsa/shadcnui-signage';
+          code={`import { MetricCard } from '@wallrun/shadcnui-signage';
 import { DollarSign } from 'lucide-react';
 
 export function Dashboard() {
@@ -704,7 +704,7 @@ The enhancement follows the existing demo site architecture:
 
 - React 19 + React Router for routing
 - Tailwind v4 for styling
-- Same Layout component from @tsa/shell
+- Same Layout component from @wallrun/shell
 - Consistent with existing page patterns
 - No new dependencies added (except @testing-library/jest-dom for tests)
 

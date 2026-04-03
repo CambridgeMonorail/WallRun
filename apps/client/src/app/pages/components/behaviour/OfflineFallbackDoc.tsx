@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { OfflineFallback } from '@tsa/shadcnui-signage';
+import { OfflineFallback } from '@wallrun/shadcnui-signage';
 
 export const OfflineFallbackDocPage: FC = () => {
   const [isHealthy, setIsHealthy] = useState(true);
@@ -88,7 +88,7 @@ export const OfflineFallbackDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="Screen.tsx"
-          code={`import { OfflineFallback } from '@tsa/shadcnui-signage';
+          code={`import { OfflineFallback } from '@wallrun/shadcnui-signage';
 
 export function Screen({ isHealthy }: { isHealthy: boolean }) {
   return (

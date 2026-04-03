@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 
 /**
  * Possible color variants for the CTA section.

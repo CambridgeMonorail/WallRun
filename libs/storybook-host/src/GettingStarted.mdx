@@ -39,7 +39,7 @@ This starts the demo website at `http://localhost:4173`.
 
 ## Using Signage Components
 
-### Import from @tsa/shadcnui-signage
+### Import from @wallrun/shadcnui-signage
 
 ```typescript
 import {
@@ -48,13 +48,13 @@ import {
   FullscreenHero,
   InfoCardGrid,
   SplitScreen,
-} from '@tsa/shadcnui-signage';
+} from '@wallrun/shadcnui-signage';
 ```
 
 ### Basic Example: Fullscreen Hero
 
 ```tsx
-import { ScreenFrame, FullscreenHero } from '@tsa/shadcnui-signage';
+import { ScreenFrame, FullscreenHero } from '@wallrun/shadcnui-signage';
 
 export function MySignage() {
   return (
@@ -72,7 +72,7 @@ export function MySignage() {
 ### Example: Split Screen Layout
 
 ```tsx
-import { ScreenFrame, SplitScreen } from '@tsa/shadcnui-signage';
+import { ScreenFrame, SplitScreen } from '@wallrun/shadcnui-signage';
 
 export function DashboardSignage() {
   return (
@@ -96,7 +96,7 @@ export function DashboardSignage() {
 ### Example: Info Card Grid
 
 ```tsx
-import { ScreenFrame, InfoCardGrid } from '@tsa/shadcnui-signage';
+import { ScreenFrame, InfoCardGrid } from '@wallrun/shadcnui-signage';
 
 const cards = [
   {
@@ -161,14 +161,14 @@ Welcome to the WallRun (TSA) monorepo. This document provides an overview of the
 
 ## Overview of Libraries
 
-#### 1. **`@tsa/shadcnui`**
+#### 1. **`@wallrun/shadcnui`**
 
-- **Description**: A library providing base UI components styled with @tsa/shadcnui, ensuring a consistent look and feel across the application. It includes components like switches, tables, and more.
+- **Description**: A library providing base UI components styled with @wallrun/shadcnui, ensuring a consistent look and feel across the application. It includes components like switches, tables, and more.
 - **Usage**: Use these components to maintain a cohesive design system throughout the application.
 - **Example**:
 
   ```tsx
-  import { Switch, Table, TableRow, TableCell } from '@tsa/shadcnui';
+  import { Switch, Table, TableRow, TableCell } from '@wallrun/shadcnui';
 
   const Settings = () => (
     <div>
@@ -183,16 +183,16 @@ Welcome to the WallRun (TSA) monorepo. This document provides an overview of the
   );
   ```
 
-For more information on @tsa/shadcnui, visit their [website](https://ui.shadcn.com/).
+For more information on @wallrun/shadcnui, visit their [website](https://ui.shadcn.com/).
 
-#### 2. **`@tsa/shadcnui-blocks`**
+#### 2. **`@wallrun/shadcnui-blocks`**
 
 - **Description**: A collection of composite UI components built from the base Shadcn UI components. The library includes components such as buttons, cards, dialogs, and more.
 - **Usage**: Import and use these components to build consistent and cohesive user interfaces.
 - **Example**:
 
   ```tsx
-  import { Button, Card, Dialog } from '@tsa/shadcnui-blocks';
+  import { Button, Card, Dialog } from '@wallrun/shadcnui-blocks';
 
   const App = () => (
     <div>
@@ -205,26 +205,26 @@ For more information on @tsa/shadcnui, visit their [website](https://ui.shadcn.c
   );
   ```
 
-#### 3. **`@tsa/common-tailwind`**
+#### 3. **`@wallrun/common-tailwind`**
 
 - **Description**: A library containing common Tailwind CSS configurations and utility classes used across the monorepo. It includes preflight styles and theme configurations.
 - **Usage**: Import the CSS files to apply consistent styling and utility classes throughout the application.
 - **Example**:
   ```css
-  @import '@tsa/common-tailwind/src/preflight.css';
-  @import '@tsa/common-tailwind/src/shadcn-theme.css';
+  @import '@wallrun/common-tailwind/src/preflight.css';
+  @import '@wallrun/common-tailwind/src/shadcn-theme.css';
   ```
 
 For more information on Tailwind CSS, visit their [website](https://tailwindcss.com/).
 
-#### 4. **`@tsa/landing`**
+#### 4. **`@wallrun/landing`**
 
 - **Description**: A library containing components and sections specifically designed for the landing pages of the application. It includes sections like Hero, About, CTA, and more.
 - **Usage**: Use these components to build engaging and informative landing pages.
 - **Example**:
 
   ```tsx
-  import { HeroSection, AboutSection, CTASection } from '@tsa/landing';
+  import { HeroSection, AboutSection, CTASection } from '@wallrun/landing';
 
   const LandingPage = () => (
     <div>
@@ -235,14 +235,14 @@ For more information on Tailwind CSS, visit their [website](https://tailwindcss.
   );
   ```
 
-#### 5. **`@tsa/shell`**
+#### 5. **`@wallrun/shell`**
 
 - **Description**: A library providing layout components and utilities for the overall structure of the application. It includes components like `Layout`, `AppSidebar`, `Breadcrumb`, and more.
 - **Usage**: Use these components to create a consistent and responsive layout for the application.
 - **Example**:
 
   ```tsx
-  import { Layout, AppSidebar, Breadcrumb } from '@tsa/shell';
+  import { Layout, AppSidebar, Breadcrumb } from '@wallrun/shell';
 
   const App = () => (
     <Layout>
@@ -257,11 +257,11 @@ For more information on Tailwind CSS, visit their [website](https://tailwindcss.
 
 The monorepo is organized into several libraries, each serving a specific purpose to ensure a modular, maintainable, and cohesive codebase. These libraries include:
 
-- **`@tsa/shadcnui`**: Base @tsa/shadcnui components.
-- **`@tsa/shadcnui-blocks`**: Composite UI components built from @tsa/shadcnui components.
-- **`@tsa/common-tailwind`**: Common Tailwind CSS configurations.
-- **`@tsa/landing`**: Components for landing pages.
-- **`@tsa/shell`**: Layout components and utilities.
+- **`@wallrun/shadcnui`**: Base @wallrun/shadcnui components.
+- **`@wallrun/shadcnui-blocks`**: Composite UI components built from @wallrun/shadcnui components.
+- **`@wallrun/common-tailwind`**: Common Tailwind CSS configurations.
+- **`@wallrun/landing`**: Components for landing pages.
+- **`@wallrun/shell`**: Layout components and utilities.
 
 By leveraging these libraries, you can build a consistent and maintainable application with a clear separation of concerns.
 

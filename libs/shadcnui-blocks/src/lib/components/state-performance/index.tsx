@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { AlertCircle, AlertTriangle, Table } from 'lucide-react';
 
 export interface StatePerformanceData {

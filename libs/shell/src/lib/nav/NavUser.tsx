@@ -15,7 +15,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import {
   BadgeCheck,
   Bell,

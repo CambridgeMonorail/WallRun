@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@tsa/shadcnui';
+import { Avatar, AvatarFallback, AvatarImage } from '@wallrun/shadcnui';
 
 interface Sale {
   name: string;

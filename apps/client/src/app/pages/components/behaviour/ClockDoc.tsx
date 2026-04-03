@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { Clock } from '@tsa/shadcnui-signage';
-import { Button } from '@tsa/shadcnui';
+import { Clock } from '@wallrun/shadcnui-signage';
+import { Button } from '@wallrun/shadcnui';
 
 export const ClockDocPage: FC = () => {
   return (
@@ -79,7 +79,7 @@ export const ClockDocPage: FC = () => {
         <CodeSnippet
           language="tsx"
           filename="Header.tsx"
-          code={`import { Clock } from '@tsa/shadcnui-signage';
+          code={`import { Clock } from '@wallrun/shadcnui-signage';
 
 export function Header() {
   return <Clock format="HH:mm" className="text-6xl tabular-nums" />;

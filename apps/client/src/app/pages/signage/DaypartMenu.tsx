@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Clock, ScheduleGate } from '@tsa/shadcnui-signage';
+import { Clock, ScheduleGate } from '@wallrun/shadcnui-signage';
 import { SignageExample } from './components/SignageExample';
 
 export const DaypartMenu: FC = () => {

@@ -19,7 +19,7 @@
 
 If you've ever thought “this should just be a React app,” this repo is the missing glue:
 
-- A **signage-oriented component library** (`@tsa/shadcnui-signage`) built for distance readability and fixed-aspect layouts
+- A **signage-oriented component library** (`@wallrun/shadcnui-signage`) built for distance readability and fixed-aspect layouts
 - A **packaging + deploy workflow** for BrightSign players (no manual ZIP rituals)
 - **Git-safe player management** (no IPs or credentials committed)
 - **Player discovery tooling** to find devices on your local network
@@ -117,7 +117,7 @@ Use the signage component library to create custom screens:
 # Create a new BrightSign player app scaffold
 pnpm scaffold:player --name player-arrivals
 # Or use the Nx-native generator directly
-pnpm nx g sign-age:player-app --name player-arrivals
+pnpm nx g wallrun:player-app --name player-arrivals
 
 # Start Storybook to browse components
 pnpm serve:storybook
@@ -165,7 +165,7 @@ For the available skills and the Copilot mirror model, see:
 
 ## ✨ Key Features
 
-- **`@tsa/shadcnui-signage`** - Signage-specific React components (distance-readable, deterministic rendering)
+- **`@wallrun/shadcnui-signage`** - Signage-specific React components (distance-readable, deterministic rendering)
 - **One-command deployment** - `pnpm deploy:player` packages and deploys to BrightSign OS 9.x
 - **Player discovery** - Find all BrightSign devices on your LAN automatically
 - **Git-safe configuration** - No IPs or credentials committed (uses `.brightsign/players.json`, git-ignored)

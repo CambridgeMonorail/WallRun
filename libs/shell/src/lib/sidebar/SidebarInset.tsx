@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { SidebarContent } from '@tsa/shadcnui';
+import { SidebarContent } from '@wallrun/shadcnui';
 
 interface SidebarInsetProps {
   children: ReactNode;

@@ -19,7 +19,7 @@ Transform the `apps/client` demo site from a generic SPA boilerplate showcase in
 - Navigation includes: Landing, Dashboard, About, Features, Pricing, FAQ, Contact, Blog, Terms, StatusBoard, Library, Color Palette
 - Current content does not reflect WallRun's digital signage purpose
 - Project README.md clearly states: "Digital signage as a software platform"
-- `@tsa/shadcnui-signage` library has been created with ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid components
+- `@wallrun/shadcnui-signage` library has been created with ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid components
 
 ### Why This Work
 
@@ -27,7 +27,7 @@ The demo site is the first impression for anyone visiting the project. Currently
 
 - ❌ Misrepresents the project as a "boilerplate that speeds up SPA development"
 - ❌ Shows generic web app pages that don't demonstrate signage concepts
-- ❌ Doesn't showcase the signage-specific components in `@tsa/shadcnui-signage`
+- ❌ Doesn't showcase the signage-specific components in `@wallrun/shadcnui-signage`
 - ❌ Misses opportunity to demonstrate distance-readable typography, fixed-aspect layouts, and deterministic rendering
 
 The demo should:
@@ -72,17 +72,17 @@ The demo should:
 
 ### Layout Strategy
 
-**Landing page:** Uses existing `@tsa/landing` components with updated content
+**Landing page:** Uses existing `@wallrun/landing` components with updated content
 
 **Gallery page:** Custom grid layout with preview cards, uses Layout component with sidebar for navigation
 
-**Signage examples:** Full-screen (no Layout/sidebar), uses `@tsa/shadcnui-signage` components directly
+**Signage examples:** Full-screen (no Layout/sidebar), uses `@wallrun/shadcnui-signage` components directly
 
 ### Component Reuse
 
-- **Landing:** Reuse HeroSection, FeaturesSection, CTASection, Footer from `@tsa/landing`
-- **Gallery:** Custom component using Card from `@tsa/shadcnui`
-- **Signage examples:** Use ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid from `@tsa/shadcnui-signage`
+- **Landing:** Reuse HeroSection, FeaturesSection, CTASection, Footer from `@wallrun/landing`
+- **Gallery:** Custom component using Card from `@wallrun/shadcnui`
+- **Signage examples:** Use ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid from `@wallrun/shadcnui-signage`
 
 ### Navigation Pattern
 
@@ -138,7 +138,7 @@ The demo should:
 
 5. **Update Footer** ⬜
    - File: `apps/client/src/app/pages/landing/Landing.tsx`
-   - Keep existing Footer from `@tsa/landing`
+   - Keep existing Footer from `@wallrun/landing`
    - Verify links point to correct locations (GitHub repo, etc.)
    - Verify: Footer renders correctly
 
@@ -190,7 +190,7 @@ The demo should:
 
 3. **Create ExampleCard component** ⬜
    - File: `apps/client/src/app/pages/gallery/components/ExampleCard.tsx`
-   - Use Card from `@tsa/shadcnui`
+   - Use Card from `@wallrun/shadcnui`
    - Display: icon, title, description, aspect ratio badge, resolution badge
    - Click handler navigates to example path
    - Hover effect to indicate interactivity
@@ -231,7 +231,7 @@ The demo should:
 
 ### Phase 3: Create Signage Example Pages ⬜ Not Started
 
-**Objective:** Build full-screen signage examples using `@tsa/shadcnui-signage` components.
+**Objective:** Build full-screen signage examples using `@wallrun/shadcnui-signage` components.
 
 **Tasks:**
 
@@ -245,7 +245,7 @@ The demo should:
 2. **Create Welcome Screen example** ⬜
    - File: `apps/client/src/app/pages/signage/WelcomeScreen.tsx`
    - Route: `/signage/welcome`
-   - Uses FullscreenHero component from `@tsa/shadcnui-signage`
+   - Uses FullscreenHero component from `@wallrun/shadcnui-signage`
    - Content: "Welcome to [Company Name]" with large, distance-readable typography
    - Background: Simple gradient or image
    - Verify: Renders as full-screen welcome screen
@@ -299,7 +299,7 @@ The demo should:
 **Acceptance Criteria:**
 
 - ✅ At least 4-6 signage examples implemented
-- ✅ Each example uses components from `@tsa/shadcnui-signage`
+- ✅ Each example uses components from `@wallrun/shadcnui-signage`
 - ✅ Examples render full-screen without Layout/sidebar
 - ✅ Typography is distance-readable (large, high contrast)
 - ✅ Layouts are deterministic and fixed-aspect
@@ -439,7 +439,7 @@ The demo should:
 
 - Landing page clearly communicates digital signage focus
 - Gallery page provides directory of signage examples
-- Multiple full-screen signage examples using `@tsa/shadcnui-signage` components
+- Multiple full-screen signage examples using `@wallrun/shadcnui-signage` components
 - Demonstrates distance-readable typography, fixed-aspect layouts, deterministic rendering
 - Clean navigation focused on signage showcase
 - Aligned with project purpose as stated in README.md
@@ -448,7 +448,7 @@ The demo should:
 
 - [ ] Landing page accurately represents WallRun project
 - [ ] Gallery page displays at least 4-6 signage examples
-- [ ] Each signage example uses components from `@tsa/shadcnui-signage`
+- [ ] Each signage example uses components from `@wallrun/shadcnui-signage`
 - [ ] Signage examples render full-screen without Layout
 - [ ] Browser back button works correctly
 - [ ] No references to "boilerplate" or generic SPA concepts
@@ -465,7 +465,7 @@ The demo should:
 
 ## Notes
 
-- This work depends on `@tsa/shadcnui-signage` components being functional (ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid)
+- This work depends on `@wallrun/shadcnui-signage` components being functional (ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid)
 - If signage components are not ready, Phase 3 can use placeholder implementations with TODO comments
 - Consider adding a "Work in Progress" badge to signage examples that are not fully polished
 - Gallery page could be enhanced later with filtering, search, aspect ratio toggle

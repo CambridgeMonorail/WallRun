@@ -5,7 +5,7 @@ import {
   SignageContainer,
   SignageHeader,
   MetricCard,
-} from '@tsa/shadcnui-signage';
+} from '@wallrun/shadcnui-signage';
 
 export const KPIDashboard: FC = () => {
   return (

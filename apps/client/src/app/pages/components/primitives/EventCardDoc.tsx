@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { EventCard } from '@tsa/shadcnui-signage';
+import { EventCard } from '@wallrun/shadcnui-signage';
 
 export const EventCardDocPage: FC = () => {
   return (

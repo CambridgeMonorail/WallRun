@@ -1,4 +1,4 @@
-import { LogoCarousel } from '@tsa/shadcnui-blocks';
+import { LogoCarousel } from '@wallrun/shadcnui-blocks';
 import { ReactElement } from 'react';
 
 /**

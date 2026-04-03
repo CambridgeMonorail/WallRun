@@ -500,7 +500,7 @@ describe('RetailPromo', () => {
 
 ## Working with shadcnui-signage Library
 
-The `@tsa/shadcnui-signage` library provides reusable signage-specific components.
+The `@wallrun/shadcnui-signage` library provides reusable signage-specific components.
 
 ### Available Components
 
@@ -518,7 +518,7 @@ The `@tsa/shadcnui-signage` library provides reusable signage-specific component
 ### Usage Example
 
 ```tsx
-import { ScreenFrame, InfoCardGrid } from '@tsa/shadcnui-signage';
+import { ScreenFrame, InfoCardGrid } from '@wallrun/shadcnui-signage';
 export const MySignage: FC = () => {
   return (
     <ScreenFrame resolution="1080p" safeZone={0.05}>
@@ -666,7 +666,7 @@ User: "Build a menu"Agent: "I need to clarify a few things..."User: "Make reason
 **Solution:** Check `tsconfig.base.json` for correct path mapping:
 
 ```json
-{ "compilerOptions": { "paths": { "@tsa/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"] } } }
+{ "compilerOptions": { "paths": { "@wallrun/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"] } } }
 ```
 
 ### Problem: Animations Laggy on Hardware

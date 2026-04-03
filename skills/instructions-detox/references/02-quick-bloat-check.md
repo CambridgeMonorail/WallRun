@@ -63,7 +63,7 @@ grep -c "This ensures\|This improves\|This helps" .github/instructions/*.md
 1. Search for common phrases across multiple files:
 
    - "Use TypeScript"
-   - "Import from @tsa/shadcnui"
+   - "Import from @wallrun/shadcnui"
    - "Run pnpm commands"
 
 2. Check if same pattern explained differently

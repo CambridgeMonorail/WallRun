@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { SignageHeader } from '@tsa/shadcnui-signage';
+import { SignageHeader } from '@wallrun/shadcnui-signage';
 
 export const SignageHeaderDocPage: FC = () => {
   return (

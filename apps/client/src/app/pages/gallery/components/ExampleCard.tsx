@@ -6,8 +6,8 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-} from '@tsa/shadcnui';
-import { Badge } from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
+import { Badge } from '@wallrun/shadcnui';
 import type { SignageExample } from '../signageExamples';
 
 export interface ExampleCardProps {

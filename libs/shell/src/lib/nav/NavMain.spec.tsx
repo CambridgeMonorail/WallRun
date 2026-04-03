@@ -7,7 +7,7 @@ import { NavMain } from './NavMain';
 
 const mockUseSidebar = vi.fn();
 
-vi.mock('@tsa/shadcnui', () => ({
+vi.mock('@wallrun/shadcnui', () => ({
   Collapsible: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   CollapsibleContent: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   CollapsibleTrigger: ({ children }: { children: ReactNode }) => <div>{children}</div>,

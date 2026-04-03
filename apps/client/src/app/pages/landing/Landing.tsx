@@ -20,8 +20,8 @@ import {
   Footer,
   StepsSection,
   HeroSection,
-} from '@tsa/landing';
-import { Logo, Tagline } from '@tsa/shadcnui-blocks';
+} from '@wallrun/landing';
+import { Logo, Tagline } from '@wallrun/shadcnui-blocks';
 
 export const LandingPage: FC = () => {
   const navigate = useNavigate();

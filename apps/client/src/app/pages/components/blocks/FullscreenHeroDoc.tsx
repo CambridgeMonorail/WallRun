@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { FullscreenHero } from '@tsa/shadcnui-signage';
+import { FullscreenHero } from '@wallrun/shadcnui-signage';
 
 export const FullscreenHeroDocPage: FC = () => {
   return (

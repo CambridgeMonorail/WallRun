@@ -1,6 +1,6 @@
 # shadcnui-signage
 
-`@tsa/shadcnui-signage` is WallRun's React component library for building full-screen digital signage.
+`@wallrun/shadcnui-signage` is WallRun's React component library for building full-screen digital signage.
 
 It is designed for screens that live on walls, run for long periods, and need to communicate clearly from a distance. Instead of treating signage like a responsive web page, this library treats it like a fixed-format software surface with explicit layout, readable typography, predictable timing, and operational safeguards.
 
@@ -46,11 +46,11 @@ In short, this library helps you build signage as software rather than approxima
 
 This library builds on WallRun's broader component foundations:
 
-- **`@tsa/shadcnui`** for base shadcn/ui components
-- **`@tsa/shadcnui-blocks`** for more general UI compositions
+- **`@wallrun/shadcnui`** for base shadcn/ui components
+- **`@wallrun/shadcnui-blocks`** for more general UI compositions
 - **`common-tailwind`** for shared Tailwind v4 configuration and theme tokens
 
-`@tsa/shadcnui-signage` adds the signage-specific layer: full-screen composition, fixed-format layout, timing logic, and operational UI patterns.
+`@wallrun/shadcnui-signage` adds the signage-specific layer: full-screen composition, fixed-format layout, timing logic, and operational UI patterns.
 
 ## Component Categories
 
@@ -145,7 +145,7 @@ All layout components use fixed sizing and explicit aspect ratios. There are no 
 This library is part of WallRun monorepo. Import components using the workspace path:
 
 ```typescript
-import { ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid } from '@tsa/shadcnui-signage';
+import { ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid } from '@wallrun/shadcnui-signage';
 ```
 
 If you are exploring the public demo, this is the library behind the signage examples and the component documentation pages.
@@ -155,7 +155,7 @@ If you are exploring the public demo, this is the library behind the signage exa
 ### Basic Clock Display
 
 ```typescript
-import { Clock } from '@tsa/shadcnui-signage';
+import { Clock } from '@wallrun/shadcnui-signage';
 
 export function Header() {
   return <Clock format="HH:mm" className="text-6xl tabular-nums" />;
@@ -165,7 +165,7 @@ export function Header() {
 ### Content Rotation
 
 ```typescript
-import { ContentRotator } from '@tsa/shadcnui-signage';
+import { ContentRotator } from '@wallrun/shadcnui-signage';
 
 export function AnnouncementRotator() {
   return (
@@ -181,7 +181,7 @@ export function AnnouncementRotator() {
 ### Schedule-Based Content
 
 ```typescript
-import { ScheduleGate } from '@tsa/shadcnui-signage';
+import { ScheduleGate } from '@wallrun/shadcnui-signage';
 
 export function BreakfastMenu() {
   return (
@@ -200,7 +200,7 @@ export function BreakfastMenu() {
 ### Full-Screen Hero
 
 ```typescript
-import { FullscreenHero, SignageContainer } from '@tsa/shadcnui-signage';
+import { FullscreenHero, SignageContainer } from '@wallrun/shadcnui-signage';
 
 export function WelcomeScreen() {
   return (
@@ -218,7 +218,7 @@ export function WelcomeScreen() {
 ### Auto-Paging List
 
 ```typescript
-import { AutoPagingList } from '@tsa/shadcnui-signage';
+import { AutoPagingList } from '@wallrun/shadcnui-signage';
 
 export function EventSchedule({ events }) {
   return (

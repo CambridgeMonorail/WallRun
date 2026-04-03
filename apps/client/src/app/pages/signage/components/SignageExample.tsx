@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 
 export interface SignageExampleProps {
   children: ReactNode;

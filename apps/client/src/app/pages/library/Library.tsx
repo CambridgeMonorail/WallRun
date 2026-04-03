@@ -1,4 +1,4 @@
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import imageSrc from '../../../assets/images/shad-samples.svg';
 
 const EXTERNAL_LINKS = {
@@ -53,7 +53,7 @@ export function LibraryPage() {
           </h2>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              @tsa/shadcnui
+              @wallrun/shadcnui
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
               Our copy of shadcn/ui components, organized by category. Standard
@@ -63,7 +63,7 @@ export function LibraryPage() {
           </div>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
-              @tsa/shadcnui-signage{' '}
+              @wallrun/shadcnui-signage{' '}
               <span role="img" aria-label="star">
                 ⭐
               </span>

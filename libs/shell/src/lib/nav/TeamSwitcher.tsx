@@ -14,7 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { ElementType } from 'react';
 
 export function TeamSwitcher({

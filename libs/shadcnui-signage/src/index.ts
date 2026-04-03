@@ -1,5 +1,5 @@
 /**
- * @tsa/shadcnui-signage
+ * @wallrun/shadcnui-signage
  *
  * React component library for building digital signage screens.
  * Optimized for fixed-aspect displays, distance readability, and predictable layouts.

@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@tsa/shadcnui'; // Import shadcn Button component
+import { Button } from '@wallrun/shadcnui'; // Import shadcn Button component
 
 /**
  * Possible color variants for the HeroSection.

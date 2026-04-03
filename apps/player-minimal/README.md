@@ -210,10 +210,10 @@ Use either scaffold entry point to create a new BrightSign player app from this 
 
 ```bash
 pnpm scaffold:player --name player-menu-board
-pnpm nx g sign-age:player-app --name player-menu-board
+pnpm nx g wallrun:player-app --name player-menu-board
 ```
 
-Use `pnpm scaffold:player` when you want the existing script entry point. Use `pnpm nx g sign-age:player-app` when you want native Nx generator workflows.
+Use `pnpm scaffold:player` when you want the existing script entry point. Use `pnpm nx g wallrun:player-app` when you want native Nx generator workflows.
 
 ### Debugging
 

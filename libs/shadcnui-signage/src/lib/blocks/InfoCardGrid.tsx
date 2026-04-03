@@ -1,4 +1,4 @@
-import { cn, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@tsa/shadcnui';
+import { cn, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@wallrun/shadcnui';
 import { getClampClass } from '../utils/clamp';
 import type { InfoCardItem, ColumnCount, Density } from '../types/signage.types';
 

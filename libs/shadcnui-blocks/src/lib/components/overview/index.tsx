@@ -5,7 +5,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 
 interface DataPoint {
   month: string;

@@ -200,7 +200,7 @@ Ensure that components within the `shell` library are organized logically. For e
 When using components from the `shell` library, update imports consistently across your application. This helps maintain a clean and understandable codebase.
 
 ```tsx
-import { Layout, AppSidebar, SidebarProvider, SidebarInset, SidebarTrigger } from '@tsa/shell';
+import { Layout, AppSidebar, SidebarProvider, SidebarInset, SidebarTrigger } from '@wallrun/shell';
 ```
 
 ### 3. Decompose Components for Reusability
@@ -257,7 +257,7 @@ The `StatItem` component is designed to encapsulate individual statistic element
 ### Usage
 
 ```tsx
-import { StatItem } from '@tsa/shadcnui-blocks';
+import { StatItem } from '@wallrun/shadcnui-blocks';
 import { FaUser } from 'react-icons/fa';
 
 const Example = () => <StatItem icon={<FaUser className="text-primary" />} value="1,234" title="Users" description="Number of active users" />;
@@ -274,7 +274,7 @@ The `StatsBlock` component aggregates multiple `StatItem` components into a cohe
 ### Usage
 
 ```tsx
-import { StatsBlock } from '@tsa/shadcnui-blocks';
+import { StatsBlock } from '@wallrun/shadcnui-blocks';
 import { FaUser, FaChartLine, FaDollarSign } from 'react-icons/fa';
 
 const stats = [

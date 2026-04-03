@@ -56,12 +56,12 @@ The existing CLI scaffold should remain in place during rollout. If practical, s
   - Files affected: `package.json`, `pnpm-lock.yaml`, generated plugin files under `tools/`
   - Commands to run:
     - `pnpm nx add @nx/plugin`
-    - `pnpm nx g @nx/plugin:plugin tools/sign-age`
+    - `pnpm nx g @nx/plugin:plugin tools/wallrun`
   - Expected result: the workspace can host a first-class local Nx generator.
 
 - [x] Task 2: Define the generator API that matches the current player scaffold
   - Acceptance criteria: the generator schema uses repo-accurate options and names, with `name` required and player-specific options aligned to current runtime behavior.
-  - Files affected: plugin generator schema files under `tools/sign-age/**`, supporting docs
+  - Files affected: plugin generator schema files under `tools/wallrun/**`, supporting docs
   - Commands to run:
     - `pnpm nx g <local-plugin>:player-app --help`
   - Expected result: the generator exposes an API that fits the repo as it exists today.
@@ -76,7 +76,7 @@ The existing CLI scaffold should remain in place during rollout. If practical, s
 
 - [x] Task 4: Implement the player-app generator using the current template contract
   - Acceptance criteria: the generator creates a new `apps/player-*` app that matches the current player template expectations, including README, Vite config, runtime config, and app-local Nx targets.
-  - Files affected: generator implementation under `tools/sign-age/**`, possibly `apps/player-minimal/TEMPLATE_CONTRACT.md` if clarifications are needed
+  - Files affected: generator implementation under `tools/wallrun/**`, possibly `apps/player-minimal/TEMPLATE_CONTRACT.md` if clarifications are needed
   - Commands to run:
     - `pnpm nx g <local-plugin>:player-app --name player-generator-smoke`
   - Expected result: Nx-native generation produces the same effective scaffold shape as the existing script.
@@ -108,9 +108,9 @@ The existing CLI scaffold should remain in place during rollout. If practical, s
 
 ## Implementation Notes
 
-- Added a repo-local Nx plugin at `tools/sign-age` with a `player-app` generator.
+- Added a repo-local Nx plugin at `tools/wallrun` with a `player-app` generator.
 - Implemented generator output by copying from `apps/player-minimal` and applying repo-specific replacements for app name, port, tags, README, and `displayOrientation`.
-- Converted `scripts/scaffold-player-app.mjs` into a compatibility wrapper around `pnpm nx g sign-age:player-app`.
+- Converted `scripts/scaffold-player-app.mjs` into a compatibility wrapper around `pnpm nx g wallrun:player-app`.
 - Preserved `--force` behavior and fixed forced regeneration so it reuses the existing target app's auto-selected port.
 - Updated packaging and scaffold wrapper scripts to invoke the local pnpm CLI through Node for reliable Windows execution.
 - Validated the generator with `pnpm nx test sign-age`, direct generator smoke generation, `type-check`, `build`, `package`, and wrapper-based regeneration.

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
+import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
-import { AnnouncementCard } from '@tsa/shadcnui-signage';
+import { AnnouncementCard } from '@wallrun/shadcnui-signage';
 import { Calendar, PartyPopper } from 'lucide-react';
 
 export const AnnouncementCardDocPage: FC = () => {

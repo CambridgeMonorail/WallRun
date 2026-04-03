@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Button } from '@tsa/shadcnui';
-import { Steps, Step } from '@tsa/shadcnui-blocks';
+import { Button } from '@wallrun/shadcnui';
+import { Steps, Step } from '@wallrun/shadcnui-blocks';
 
 /**
  * Props for the StepsSection component.

@@ -6,7 +6,7 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarRail,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 import { useSidebarData } from './sidebarContext';
 import { NavMain } from '../nav/NavMain';
 

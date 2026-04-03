@@ -47,5 +47,5 @@ Recent repo work added an Nx-native player app generator and expanded the canoni
 ## Verification
 
 - Confirm the new route is present in navigation.
-- Confirm updated copy references `pnpm scaffold:player`, `pnpm nx g sign-age:player-app`, `pnpm deploy:player`, and `npx skills add CambridgeMonorail/WallRun` where appropriate.
+- Confirm updated copy references `pnpm scaffold:player`, `pnpm nx g wallrun:player-app`, `pnpm deploy:player`, and `npx skills add CambridgeMonorail/WallRun` where appropriate.
 - Run file diagnostics after edits.

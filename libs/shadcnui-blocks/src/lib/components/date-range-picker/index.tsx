@@ -9,7 +9,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@tsa/shadcnui';
+} from '@wallrun/shadcnui';
 
 /**
  * CalendarDateRangePicker component allows users to select a date range using a calendar popover.

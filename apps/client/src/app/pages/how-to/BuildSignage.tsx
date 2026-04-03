@@ -136,7 +136,7 @@ export const BuildSignagePage: FC = () => {
             <ul className="ml-6 list-disc space-y-1">
               <li>
                 Create React components using signage primitives from{' '}
-                <code className="text-xs">@tsa/shadcnui-signage</code>
+                <code className="text-xs">@wallrun/shadcnui-signage</code>
               </li>
               <li>Apply signage layout constraints and safe zones</li>
               <li>Implement the visual direction from the brief</li>

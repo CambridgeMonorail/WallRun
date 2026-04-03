@@ -4,7 +4,7 @@ import {
   SignageContainer,
   SignageHeader,
   EventCard,
-} from '@tsa/shadcnui-signage';
+} from '@wallrun/shadcnui-signage';
 
 interface Event {
   time: string;

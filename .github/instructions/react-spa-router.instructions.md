@@ -43,7 +43,7 @@ applyTo: 'apps/client/**/*.{ts,tsx}, libs/shell/**/*.{ts,tsx}, libs/landing/**/*
 
 ## Feature Module Integration
 
-- Shared components from libs: `@tsa/shadcnui`, `@tsa/shadcnui-blocks`, `@tsa/shell`, `@tsa/landing`
+- Shared components from libs: `@wallrun/shadcnui`, `@wallrun/shadcnui-blocks`, `@wallrun/shell`, `@wallrun/landing`
 - Each module exports components with consistent API
 - Use workspace imports for cross-library dependencies
 

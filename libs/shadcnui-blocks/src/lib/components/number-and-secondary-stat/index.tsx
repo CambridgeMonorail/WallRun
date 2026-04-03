@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ArrowUp, ArrowDown } from 'lucide-react';
-import { Card, CardContent, CardFooter, Badge } from '@tsa/shadcnui';
+import { Card, CardContent, CardFooter, Badge } from '@wallrun/shadcnui';
 import { SparkLine } from '../charts/SparkLine';
 
 /**

@@ -18,16 +18,16 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@tsa/landing": ["libs/landing/src/index.ts"],
-      "@tsa/shadcnui": ["libs/shadcnui/src/index.ts"],
-      "@tsa/shadcnui-blocks": ["libs/shadcnui-blocks/src/index.ts"],
-      "@tsa/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"],
-      "@tsa/shadcnui/*": ["libs/shadcnui/src/*"],
-      "@tsa/shell": ["libs/shell/src/index.ts"],
+      "@wallrun/landing": ["libs/landing/src/index.ts"],
+      "@wallrun/shadcnui": ["libs/shadcnui/src/index.ts"],
+      "@wallrun/shadcnui-blocks": ["libs/shadcnui-blocks/src/index.ts"],
+      "@wallrun/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"],
+      "@wallrun/shadcnui/*": ["libs/shadcnui/src/*"],
+      "@wallrun/shell": ["libs/shell/src/index.ts"],
       "common-tailwind": ["libs/common-tailwind/src/index.ts"],
       "common-tailwind/styles": ["libs/common-tailwind/src/styles.ts"],
       "storybook-host": ["libs/storybook-host/src/index.ts"],
-      "sign-age": ["tools/sign-age/src/index.ts"]
+      "wallrun": ["tools/wallrun/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
