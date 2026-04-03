@@ -9,7 +9,7 @@ For your workflow (Nx monorepo + Copilot + Remotion) you ideally want **three la
    Constrains behaviour for files in `demos/the-sign-age-video`.
 
 3. **A project-specific Copilot Skill**
-   Gives Copilot structured knowledge about **Remotion video development for TheSignAge**.
+   Gives Copilot structured knowledge about **Remotion video development for WallRun**.
 
 The important difference is:
 
@@ -51,7 +51,7 @@ Structure:
 ````md
 ---
 name: remotion-demo-video
-description: Build and edit Remotion demo videos for TheSignAge inside the Nx monorepo demos directory
+description: Build and edit Remotion demo videos for WallRun inside the Nx monorepo demos directory
 ---
 
 # Remotion Demo Video Skill
@@ -88,7 +88,7 @@ demos/the-sign-age-video
 
 The project renders a **developer-facing explainer video** for:
 
-TheSignAge
+WallRun
 
 The audience is **frontend developers**, not marketers.
 
@@ -231,8 +231,9 @@ Extract timing constants when practical.
 Example:
 
 ```ts
-const TITLE_FADE_IN = 20
-const CALL_OUT_DELAY = 15
+const TITLE_FADE_IN = 20;
+const CALL_OUT_DELAY = 15;
+```
 ````
 
 ---
@@ -253,11 +254,11 @@ const CALL_OUT_DELAY = 15
 
 A scene is done when:
 
-* the message is immediately clear
-* typography reads at video scale
-* animation is restrained
-* timings are easy to edit
-* the code is structured cleanly
+- the message is immediately clear
+- typography reads at video scale
+- animation is restrained
+- timings are easy to edit
+- the code is structured cleanly
 
 ```
 
@@ -292,14 +293,14 @@ Your setup should now look like this:
 ```
 
 .github/
-copilot-instructions.md          (already exists)
+copilot-instructions.md (already exists)
 
 instructions/
-remotion-demo.instructions.md  (applyTo scoped rules)
+remotion-demo.instructions.md (applyTo scoped rules)
 
 skills/
 remotion-demo-video/
-SKILL.md                     (task knowledge)
+SKILL.md (task knowledge)
 
 ```
 

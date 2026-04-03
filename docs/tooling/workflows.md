@@ -47,8 +47,8 @@ This workflow automates the **deployment** of the built application to **GitHub 
    - Checks out the repository.
    - Sets up Node.js v22 and installs `pnpm`.
 2. **Build**:
-   - Builds the client app for `/TheSignAge/`.
-   - Builds Storybook for `/TheSignAge/storybook/`.
+   - Builds the client app for `/WallRun/`.
+   - Builds Storybook for `/WallRun/storybook/`.
    - Verifies the generated outputs before upload.
 3. **Deploy**:
    - Uploads the combined Pages artifact from `dist/apps/client`.

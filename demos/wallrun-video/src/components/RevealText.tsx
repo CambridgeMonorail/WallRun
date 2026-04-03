@@ -24,27 +24,17 @@ export const RevealText: FC<RevealTextProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const clipProgress = interpolate(
-    frame,
-    [delay, delay + duration],
-    [0, 100],
-    {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp',
-      easing: Easing.out(Easing.cubic),
-    }
-  );
+  const clipProgress = interpolate(frame, [delay, delay + duration], [0, 100], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+    easing: Easing.out(Easing.cubic),
+  });
 
-  const translateY = interpolate(
-    frame,
-    [delay, delay + duration],
-    [20, 0],
-    {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp',
-      easing: Easing.out(Easing.cubic),
-    }
-  );
+  const translateY = interpolate(frame, [delay, delay + duration], [20, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+    easing: Easing.out(Easing.cubic),
+  });
 
   return (
     <div

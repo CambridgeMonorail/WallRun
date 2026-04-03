@@ -9,16 +9,22 @@ export const AnnouncementCardDocPage: FC = () => {
     <div className="container mx-auto px-4 py-8 max-w-5xl">
       <div className="mb-10 space-y-4">
         <p className="text-sm text-muted-foreground">Primitives</p>
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">AnnouncementCard</h1>
+        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
+          AnnouncementCard
+        </h1>
         <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
-          Display announcements with title, description, date, icon, and category for bulletin boards and notification displays.
+          Display announcements with title, description, date, icon, and
+          category for bulletin boards and notification displays.
         </p>
       </div>
 
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Built On</h2>
         <div className="bg-muted p-6 rounded-lg">
-          <p className="mb-4"><strong>No shadcn primitives</strong> - Built with native HTML and Tailwind CSS.</p>
+          <p className="mb-4">
+            <strong>No shadcn primitives</strong> - Built with native HTML and
+            Tailwind CSS.
+          </p>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
             <li>Uses Lucide icons for categorical identification</li>
             <li>Frosted glass effect (backdrop-blur) for visual depth</li>
@@ -55,12 +61,14 @@ export const AnnouncementCardDocPage: FC = () => {
         <p className="text-muted-foreground mb-4">
           Copy the source code into your project.
         </p>
-        
+
         <div className="mb-6">
-          <h3 className="text-lg font-medium mb-3">Using the CLI (Recommended)</h3>
+          <h3 className="text-lg font-medium mb-3">
+            Using the CLI (Recommended)
+          </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/TheSignAge/registry announcement-card"
+            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry announcement-card"
           />
         </div>
 
@@ -72,7 +80,7 @@ export const AnnouncementCardDocPage: FC = () => {
             <h3 className="text-lg font-medium mb-2">1. Copy the component</h3>
             <p className="text-muted-foreground">
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/AnnouncementCard.tsx"
+                href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/AnnouncementCard.tsx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
@@ -82,11 +90,10 @@ export const AnnouncementCardDocPage: FC = () => {
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-2">2. Install dependencies</h3>
-            <CodeSnippet
-              language="bash"
-              code="pnpm add lucide-react"
-            />
+            <h3 className="text-lg font-medium mb-2">
+              2. Install dependencies
+            </h3>
+            <CodeSnippet language="bash" code="pnpm add lucide-react" />
           </div>
         </div>
       </section>
@@ -116,9 +123,21 @@ export function Announcements() {
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Signage Considerations</h2>
         <div className="space-y-4 text-muted-foreground">
-          <div><strong className="text-foreground">Glass Morphism:</strong> Backdrop blur effect works best over gradient or image backgrounds, creating visual depth.</div>
-          <div><strong className="text-foreground">Icon Selection:</strong> Choose icons that clearly represent the announcement category for quick visual scanning.</div>
-          <div><strong className="text-foreground">Content Length:</strong> Keep descriptions concise (2-3 lines) for optimal readability from distance.</div>
+          <div>
+            <strong className="text-foreground">Glass Morphism:</strong>{' '}
+            Backdrop blur effect works best over gradient or image backgrounds,
+            creating visual depth.
+          </div>
+          <div>
+            <strong className="text-foreground">Icon Selection:</strong> Choose
+            icons that clearly represent the announcement category for quick
+            visual scanning.
+          </div>
+          <div>
+            <strong className="text-foreground">Content Length:</strong> Keep
+            descriptions concise (2-3 lines) for optimal readability from
+            distance.
+          </div>
         </div>
       </section>
 
@@ -126,10 +145,22 @@ export function Announcements() {
         <h2 className="text-2xl font-medium mb-4">Links</h2>
         <div className="flex flex-wrap gap-4">
           <Button asChild variant="outline">
-            <a href="https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/primitives-announcementcard--docs" target="_blank" rel="noopener noreferrer">View in Storybook</a>
+            <a
+              href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/primitives-announcementcard--docs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View in Storybook
+            </a>
           </Button>
           <Button asChild variant="outline">
-            <a href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/AnnouncementCard.tsx" target="_blank" rel="noopener noreferrer">View Source</a>
+            <a
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/AnnouncementCard.tsx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Source
+            </a>
           </Button>
         </div>
       </section>

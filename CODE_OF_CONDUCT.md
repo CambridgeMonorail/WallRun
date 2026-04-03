@@ -2,7 +2,7 @@
 
 ## Our pledge
 
-We want **The Sign Age** to be a welcoming, inclusive place to learn, build, and collaborate.
+We want **WallRun** to be a welcoming, inclusive place to learn, build, and collaborate.
 
 That means:
 

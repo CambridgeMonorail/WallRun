@@ -1,6 +1,6 @@
 # Documentation
 
-Welcome to **The Sign Age** documentation. This is a working notebook for building digital signage as software: prototypes, reusable UI building blocks, and practical tooling for frontend engineers.
+Welcome to **WallRun** documentation. This is a working notebook for building digital signage as software: prototypes, reusable UI building blocks, and practical tooling for frontend engineers.
 
 ## 📚 Documentation Structure
 
@@ -94,7 +94,7 @@ Planned features and future work.
 ## 📖 Additional Resources
 
 - **[Main README](../README.md)** - Project overview, installation, and usage
-- **[GitHub Repository](https://github.com/CambridgeMonorail/TheSignAge)** - Source code and issues
+- **[GitHub Repository](https://github.com/CambridgeMonorail/WallRun)** - Source code and issues
 - **[Nx Documentation](https://nx.dev/)** - Monorepo tooling
 - **[shadcn/ui](https://ui.shadcn.com/)** - Component library
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
@@ -104,7 +104,7 @@ Planned features and future work.
 ## 🤝 Getting Help
 
 - **Read the Docs** - Check the relevant section above
-- **Search Issues** - [GitHub Issues](https://github.com/CambridgeMonorail/TheSignAge/issues)
+- **Search Issues** - [GitHub Issues](https://github.com/CambridgeMonorail/WallRun/issues)
 - **Ask Copilot** - Use `@requirements-planner` or other custom agents
 - **Open an Issue** - For bugs or feature requests
 - **Start a Discussion** - For questions and ideas

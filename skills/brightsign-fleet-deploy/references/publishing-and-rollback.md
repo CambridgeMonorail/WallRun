@@ -84,7 +84,7 @@ RELEASE_RESPONSE=$(curl -X POST \
   -H "Authorization: token ${GITHUB_TOKEN}" \
   -H "Content-Type: application/json" \
   -d "${RELEASE_DATA}" \
-  https://api.github.com/repos/CambridgeMonorail/TheSignAge/releases)
+  https://api.github.com/repos/CambridgeMonorail/WallRun/releases)
 
 UPLOAD_URL=$(echo "${RELEASE_RESPONSE}" | grep -Po '"upload_url": "\K[^"]*' | sed 's/{?name,label}//')
 

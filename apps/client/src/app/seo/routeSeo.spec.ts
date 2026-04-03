@@ -4,10 +4,10 @@ import { getCanonicalUrl, getRouteSeo } from './routeSeo';
 describe('routeSeo', () => {
   it('should build canonical URLs for the deployed site base path', () => {
     expect(getCanonicalUrl('/')).toBe(
-      'https://cambridgemonorail.github.io/TheSignAge/',
+      'https://cambridgemonorail.github.io/WallRun/',
     );
     expect(getCanonicalUrl('/tooling')).toBe(
-      'https://cambridgemonorail.github.io/TheSignAge/tooling',
+      'https://cambridgemonorail.github.io/WallRun/tooling',
     );
   });
 
@@ -23,7 +23,9 @@ describe('routeSeo', () => {
 
     expect(seo.title).toContain('MetricCard Component Docs');
     expect(seo.keywords).toContain('MetricCard');
-    expect(seo.structuredData?.some((item) => item['@type'] === 'BreadcrumbList')).toBe(true);
+    expect(
+      seo.structuredData?.some((item) => item['@type'] === 'BreadcrumbList'),
+    ).toBe(true);
   });
 
   it('should noindex unknown paths', () => {

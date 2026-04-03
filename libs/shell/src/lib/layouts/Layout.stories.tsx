@@ -87,7 +87,7 @@ export const Default: Story = {
       user: {
         name: 'TSA',
         email: 'm@example.com',
-        avatar: 'TheSignAge/assets/images/avatars/TSA.jpg',
+        avatar: 'WallRun/assets/images/avatars/TSA.jpg',
       },
       teams: [
         {

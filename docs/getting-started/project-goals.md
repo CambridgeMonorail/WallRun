@@ -1,6 +1,6 @@
-# The Sign Age: Project Goals
+# WallRun: Project Goals
 
-The Sign Age is an exploration of digital signage as software.
+WallRun is an exploration of digital signage as software.
 
 The goal is not to build “a website, but on a TV”. The goal is to build **reliable, testable, data-driven signage content** that runs on always-on, unattended devices—often offline—and behaves predictably.
 

@@ -4,11 +4,11 @@ Below is a tighter developer handoff you can paste into the repo or send directl
 
 ---
 
-# Add a Remotion demo video project to TheSignAge monorepo
+# Add a Remotion demo video project to WallRun monorepo
 
 ## Goal
 
-Create a **code-driven YouTube demo video** for **TheSignAge** inside the **existing Nx monorepo**, under:
+Create a **code-driven YouTube demo video** for **WallRun** inside the **existing Nx monorepo**, under:
 
 ```text
 demos/the-sign-age-video
@@ -18,10 +18,10 @@ This should use **Remotion** for preview and rendering, and **VS Code Copilot** 
 
 The repo already has:
 
-* a working Nx + pnpm monorepo structure
-* existing global Copilot instructions
-* existing Copilot/skills workflow support
-* a strong signage/design stance we should inherit rather than restate from scratch. ([GitHub][1])
+- a working Nx + pnpm monorepo structure
+- existing global Copilot instructions
+- existing Copilot/skills workflow support
+- a strong signage/design stance we should inherit rather than restate from scratch. ([GitHub][1])
 
 ---
 
@@ -130,18 +130,18 @@ Use `applyTo` so the guidance only affects the demo project.
 
 ```md
 ---
-applyTo: "demos/the-sign-age-video/**/*.{ts,tsx}"
+applyTo: 'demos/the-sign-age-video/**/*.{ts,tsx}'
 ---
 
 # Remotion demo instructions
 
-You are working inside an existing Nx monorepo on a Remotion-based demo video for TheSignAge.
+You are working inside an existing Nx monorepo on a Remotion-based demo video for WallRun.
 
 This file is only for the demo video project under `demos/the-sign-age-video`.
 
 ## Intent
 
-Build a polished developer-facing explainer video for TheSignAge using React and TypeScript.
+Build a polished developer-facing explainer video for WallRun using React and TypeScript.
 
 This is not a product app.
 This is not a landing page.
@@ -172,9 +172,10 @@ It is a code-driven video composition made of reusable scenes.
 
 ## Creative direction
 
-TheSignAge is about digital signage as software.
+WallRun is about digital signage as software.
 
 The video should feel:
+
 - editorial
 - technical
 - clear
@@ -183,6 +184,7 @@ The video should feel:
 - signage-aware
 
 It should not feel like:
+
 - a generic SaaS promo
 - a startup advert
 - a cinematic trailer full of noise
@@ -201,6 +203,7 @@ It should not feel like:
 ## Preferred workflow
 
 When creating a scene:
+
 1. define the single message of the scene
 2. define the duration in frames
 3. block the layout
@@ -212,6 +215,7 @@ When creating a scene:
 ## Definition of done
 
 A scene is done when:
+
 - it communicates one idea clearly
 - it reads quickly
 - the typography is legible
@@ -240,10 +244,10 @@ Use Remotion’s skills as the **framework-specific layer**, and our scoped inst
 Remotion’s skills will know Remotion.
 They will not know:
 
-* our `demos/` convention
-* TheSignAge’s tone
-* our preferred scene structure
-* our signage-first design constraints
+- our `demos/` convention
+- WallRun’s tone
+- our preferred scene structure
+- our signage-first design constraints
 
 ---
 
@@ -255,11 +259,11 @@ For V1, make a **stylised explainer**, not a fiddly screen-recorded walkthrough.
 
 That is:
 
-* quicker to build
-* easier for Copilot to help with
-* easier to keep visually strong
-* easier to revise later
-* more reusable for future demos
+- quicker to build
+- easier for Copilot to help with
+- easier to keep visually strong
+- easier to revise later
+- more reusable for future demos
 
 ### Suggested sequence
 
@@ -276,17 +280,17 @@ Web developers can build almost anything, but digital signage still often gets t
 
 #### 3. The shift
 
-TheSignAge treats signage as software.
+WallRun treats signage as software.
 
 #### 4. What is in the repo
 
 Show the idea of:
 
-* signage component library
-* demo site
-* player app
-* installable skills
-* developer workflow
+- signage component library
+- demo site
+- player app
+- installable skills
+- developer workflow
 
 Those are all explicitly described in the repo overview. ([GitHub][1])
 
@@ -294,10 +298,10 @@ Those are all explicitly described in the repo overview. ([GitHub][1])
 
 Explain why this is interesting for frontend developers:
 
-* deterministic layout
-* distance readability
-* wall-screen constraints
-* code-driven composition instead of slide tooling
+- deterministic layout
+- distance readability
+- wall-screen constraints
+- code-driven composition instead of slide tooling
 
 #### 6. Outro
 
@@ -347,20 +351,20 @@ Centralised copy, timings, and tokens.
 
 Good uses:
 
-* scaffold scene files
-* create reusable timing constants
-* refactor repeated animation wrappers
-* build browser or IDE frame components
-* wire staged screenshot reveals
-* clean up composition registration
-* extract shared motion primitives
+- scaffold scene files
+- create reusable timing constants
+- refactor repeated animation wrappers
+- build browser or IDE frame components
+- wire staged screenshot reveals
+- clean up composition registration
+- extract shared motion primitives
 
 Bad uses:
 
-* invent the entire art direction
-* dump too much copy on screen
-* create overcomplicated transitions for the sake of it
-* improvise large repo-wide changes outside the demo project
+- invent the entire art direction
+- dump too much copy on screen
+- create overcomplicated transitions for the sake of it
+- improvise large repo-wide changes outside the demo project
 
 ---
 
@@ -388,7 +392,7 @@ Requirements:
 ```text
 Create a Remotion scene in demos/the-sign-age-video/src/scenes/RepoOverviewScene.tsx.
 
-The scene should show a staged GitHub repository screenshot inside a browser frame and animate in 3 to 4 callout labels explaining the main parts of TheSignAge.
+The scene should show a staged GitHub repository screenshot inside a browser frame and animate in 3 to 4 callout labels explaining the main parts of WallRun.
 
 Prioritise spacing, legibility, and clarity over flashy motion.
 Use reusable components where appropriate.
@@ -408,22 +412,22 @@ Use TypeScript and named exports.
 
 ### Must have
 
-* `demos/the-sign-age-video` project created
-* Remotion installed in the workspace with exact versions
-* Nx `preview` target
-* Nx `render` target
-* scoped instruction file at `.github/instructions/remotion-demo.instructions.md`
-* Remotion skills installed with `npx skills add remotion-dev/skills`
-* one main composition
-* 4 to 6 reusable scenes
-* first rendered draft of the YouTube demo
+- `demos/the-sign-age-video` project created
+- Remotion installed in the workspace with exact versions
+- Nx `preview` target
+- Nx `render` target
+- scoped instruction file at `.github/instructions/remotion-demo.instructions.md`
+- Remotion skills installed with `npx skills add remotion-dev/skills`
+- one main composition
+- 4 to 6 reusable scenes
+- first rendered draft of the YouTube demo
 
 ### Nice to have
 
-* shared title/caption/callout primitives
-* browser frame component
-* data-driven scene timing constants
-* easy path to add a portrait/social cut later
+- shared title/caption/callout primitives
+- browser frame component
+- data-driven scene timing constants
+- easy path to add a portrait/social cut later
 
 ---
 
@@ -451,4 +455,4 @@ Just add a clean Remotion demo project inside the existing monorepo, scope Copil
 
 If you want, I can now turn this into a **best-and-final README.md** plus concrete starter files for `project.json`, `Root.tsx`, and `index.ts`.
 
-[1]: https://github.com/CambridgeMonorail/TheSignAge?utm_source=chatgpt.com "CambridgeMonorail/TheSignAge: Software that lives on walls."
+[1]: https://github.com/CambridgeMonorail/WallRun?utm_source=chatgpt.com 'CambridgeMonorail/WallRun: Software that lives on walls.'

@@ -7,7 +7,7 @@ import imageSrc from '../../../assets/images/shad-samples.svg';
 export function LibraryPage() {
   const handleGitHubClick = () => {
     window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge',
+      'https://github.com/CambridgeMonorail/WallRun',
       '_blank',
       'noopener,noreferrer',
     );
@@ -15,7 +15,7 @@ export function LibraryPage() {
 
   const handleStorybookClick = () => {
     window.open(
-      'https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/introduction--documentation',
+      'https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation',
       '_blank',
       'noopener,noreferrer',
     );
@@ -27,7 +27,7 @@ export function LibraryPage() {
 
   const handleReadmeClick = () => {
     window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/README.md',
+      'https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/README.md',
       '_blank',
       'noopener,noreferrer',
     );
@@ -35,7 +35,7 @@ export function LibraryPage() {
 
   const handleRoadmapClick = () => {
     window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge/blob/main/ROADMAP.md',
+      'https://github.com/CambridgeMonorail/WallRun/blob/main/ROADMAP.md',
       '_blank',
       'noopener,noreferrer',
     );
@@ -79,22 +79,24 @@ export function LibraryPage() {
               @tsa/shadcnui
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
-              Our copy of shadcn/ui components, organized by category.
-              Standard web UI primitives — buttons, cards, inputs, navigation,
-              data display. Used as building blocks across the monorepo.
+              Our copy of shadcn/ui components, organized by category. Standard
+              web UI primitives — buttons, cards, inputs, navigation, data
+              display. Used as building blocks across the monorepo.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="text-lg font-medium text-foreground mb-2">
               @tsa/shadcnui-signage{' '}
-              <span role="img" aria-label="star">⭐</span>
+              <span role="img" aria-label="star">
+                ⭐
+              </span>
             </h3>
             <p className="mb-2 leading-relaxed text-muted-foreground">
               Signage-oriented components built for distance readability,
               fixed-aspect layouts, and 24/7 operation on BrightSign devices.
-              Includes primitives (ScreenFrame, MetricCard, EventCard),
-              layouts (SignageContainer, SplitScreen), and behaviour components
-              (Clock, Countdown, ContentRotator).
+              Includes primitives (ScreenFrame, MetricCard, EventCard), layouts
+              (SignageContainer, SplitScreen), and behaviour components (Clock,
+              Countdown, ContentRotator).
             </p>
           </div>
           <ul className="list-disc list-inside mb-4 space-y-1 text-muted-foreground">
@@ -125,7 +127,7 @@ export function LibraryPage() {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <p>
-            The Sign Age signage components support the{' '}
+            WallRun signage components support the{' '}
             <strong className="text-foreground">
               shadcn registry protocol
             </strong>{' '}
@@ -144,12 +146,12 @@ export function LibraryPage() {
             <pre>
               {`# Install a single signage component
 npx shadcn@latest add \\
-  https://cambridgemonorail.github.io/TheSignAge/registry/registry.json \\
+  https://cambridgemonorail.github.io/WallRun/registry/registry.json \\
   clock
 
 # Install multiple components
 npx shadcn@latest add \\
-  https://cambridgemonorail.github.io/TheSignAge/registry/registry.json \\
+  https://cambridgemonorail.github.io/WallRun/registry/registry.json \\
   metric-card event-card schedule-gate`}
             </pre>
           </div>
@@ -172,10 +174,8 @@ npx shadcn@latest add \\
               components correctly, including all dependencies.
             </li>
             <li>
-              <strong className="text-foreground">
-                You stay in control
-              </strong>{' '}
-              - Updates are opt-in. No breaking changes to your build. Fast
+              <strong className="text-foreground">You stay in control</strong> -
+              Updates are opt-in. No breaking changes to your build. Fast
               iteration without semver forever.
             </li>
             <li>
@@ -186,8 +186,8 @@ npx shadcn@latest add \\
             </li>
           </ul>
           <p className="text-sm italic">
-            Registry support means The Sign Age components feel like software,
-            not a demo site with copy buttons.
+            Registry support means WallRun components feel like software, not a
+            demo site with copy buttons.
           </p>
         </div>
       </section>
@@ -197,8 +197,8 @@ npx shadcn@latest add \\
           Interactive Documentation
         </h2>
         <p className="mb-4 text-muted-foreground">
-          Browse Storybook for live component previews, props documentation,
-          and usage examples. All components include interactive controls and
+          Browse Storybook for live component previews, props documentation, and
+          usage examples. All components include interactive controls and
           real-world scenarios.
         </p>
         <Button onClick={handleStorybookClick} variant={'secondary'}>

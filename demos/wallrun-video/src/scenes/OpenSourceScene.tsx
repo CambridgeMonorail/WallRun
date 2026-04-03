@@ -23,13 +23,20 @@ export const OpenSourceScene: FC = () => {
     frame,
     [DURATIONS.openSource - MOTION.fadeOut, DURATIONS.openSource],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
     <AbsoluteFill style={{ background: BRAND.bg, opacity: exitOpacity }}>
       <GridBackground cellSize={100} delay={0} drift={false} />
-      <GlowOrb color={BRAND.accent} size={700} x={40} y={40} delay={0} pulse={0.05} />
+      <GlowOrb
+        color={BRAND.accent}
+        size={700}
+        x={40}
+        y={40}
+        delay={0}
+        pulse={0.05}
+      />
 
       <AbsoluteFill
         style={{

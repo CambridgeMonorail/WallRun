@@ -1,6 +1,6 @@
 ---
 name: remotion-demo-video
-description: Build and edit Remotion demo videos for TheSignAge inside the Nx monorepo demos directory
+description: Build and edit Remotion demo videos for WallRun inside the Nx monorepo demos directory
 ---
 
 # Remotion Demo Video Skill
@@ -8,7 +8,7 @@ description: Build and edit Remotion demo videos for TheSignAge inside the Nx mo
 This skill helps build and maintain the Remotion video demo located at:
 
 ```
-demos/the-sign-age-video
+demos/wallrun-video
 ```
 
 It provides structure for:
@@ -36,10 +36,10 @@ This repository is an **Nx monorepo**.
 The Remotion video lives under:
 
 ```
-demos/the-sign-age-video
+demos/wallrun-video
 ```
 
-The project renders a **developer-facing explainer video** for TheSignAge.
+The project renders a **developer-facing explainer video** for WallRun.
 
 The audience is **frontend developers**, not marketers.
 
@@ -88,7 +88,7 @@ Prioritise:
 All code should live inside:
 
 ```
-demos/the-sign-age-video/src
+demos/wallrun-video/src
 ```
 
 Structure:
@@ -193,9 +193,9 @@ const CALLOUT_DELAY = 15;
 
 ## Nx targets
 
-- **preview** — `nx preview the-sign-age-video` opens Remotion Studio
-- **render** — `nx render the-sign-age-video` renders the full video to `dist/demos/the-sign-age-video/`
-- **type-check** — `nx type-check the-sign-age-video` runs TypeScript compiler
+- **preview** — `nx preview wallrun-video` opens Remotion Studio
+- **render** — `nx render wallrun-video` renders the full video to `dist/demos/wallrun-video/`
+- **type-check** — `nx type-check wallrun-video` runs TypeScript compiler
 
 ---
 

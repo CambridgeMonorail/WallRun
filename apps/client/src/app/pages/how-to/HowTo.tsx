@@ -125,8 +125,7 @@ export const HowToPage: FC = () => {
         </h2>
         <div className="space-y-3 text-muted-foreground">
           <p>
-            For general information about getting started with The Sign Age, see
-            the{' '}
+            For general information about getting started with WallRun, see the{' '}
             <Link
               to="/getting-started"
               className="text-foreground underline hover:no-underline"

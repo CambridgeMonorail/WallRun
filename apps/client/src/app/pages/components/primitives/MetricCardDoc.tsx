@@ -39,9 +39,7 @@ export const MetricCardDocPage: FC = () => {
               Large typography (7xl value, 3xl labels) for 10-foot viewing
               distance
             </li>
-            <li>
-              High-contrast color scheme for ambient lighting conditions
-            </li>
+            <li>High-contrast color scheme for ambient lighting conditions</li>
           </ul>
         </div>
       </section>
@@ -79,12 +77,14 @@ export const MetricCardDocPage: FC = () => {
           Copy the source code into your project. This component is designed to
           be copied and customized to your needs.
         </p>
-        
+
         <div className="mb-6">
-          <h3 className="text-lg font-medium mb-3">Using the CLI (Recommended)</h3>
+          <h3 className="text-lg font-medium mb-3">
+            Using the CLI (Recommended)
+          </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/TheSignAge/registry metric-card"
+            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry metric-card"
           />
           <p className="text-sm text-muted-foreground mt-2">
             This will copy the component and install dependencies automatically.
@@ -99,7 +99,7 @@ export const MetricCardDocPage: FC = () => {
             <h3 className="text-lg font-medium mb-2">1. Copy the component</h3>
             <p className="text-muted-foreground">
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx"
+                href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
@@ -109,11 +109,10 @@ export const MetricCardDocPage: FC = () => {
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-2">2. Install dependencies</h3>
-            <CodeSnippet
-              language="bash"
-              code="pnpm add lucide-react"
-            />
+            <h3 className="text-lg font-medium mb-2">
+              2. Install dependencies
+            </h3>
+            <CodeSnippet language="bash" code="pnpm add lucide-react" />
           </div>
         </div>
       </section>
@@ -247,7 +246,7 @@ export function Dashboard() {
         <div className="flex flex-wrap gap-4">
           <Button asChild variant="outline">
             <a
-              href="https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/primitives-metriccard--docs"
+              href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/primitives-metriccard--docs"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -256,7 +255,7 @@ export function Dashboard() {
           </Button>
           <Button asChild variant="outline">
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx"
               target="_blank"
               rel="noopener noreferrer"
             >

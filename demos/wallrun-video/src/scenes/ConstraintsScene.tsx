@@ -22,7 +22,7 @@ export const ConstraintsScene: FC = () => {
     frame,
     [DURATIONS.constraints - MOTION.fadeOut, DURATIONS.constraints],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (
@@ -59,14 +59,14 @@ export const ConstraintsScene: FC = () => {
                 extrapolateLeft: 'clamp',
                 extrapolateRight: 'clamp',
                 easing: Easing.out(Easing.cubic),
-              }
+              },
             );
 
             const statReveal = interpolate(
               frame,
               [cardDelay + 4, cardDelay + 20],
               [0, 1],
-              { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+              { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
             );
 
             const glowColor = i % 2 === 0 ? BRAND.accent : BRAND.violet;

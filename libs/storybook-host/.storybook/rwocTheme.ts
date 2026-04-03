@@ -7,8 +7,8 @@ export default create({
   fontBase: '"Manrope", "Helvetica", sans-serif',
   fontCode: 'monospace',
 
-  brandTitle: 'TheSignAge Storybook',
-  brandUrl: 'https://cambridgemonorail.github.io/TheSignAge/',
+  brandTitle: 'WallRun Storybook',
+  brandUrl: 'https://cambridgemonorail.github.io/WallRun/',
   brandImage: './app-logo.webp',
   brandTarget: '_self',
 

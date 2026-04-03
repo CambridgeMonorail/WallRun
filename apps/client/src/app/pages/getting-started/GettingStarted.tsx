@@ -4,13 +4,12 @@ import { Button } from '@tsa/shadcnui';
 import { BookOpen, Code, Layers, Terminal } from 'lucide-react';
 
 /**
- * GettingStartedPage - Practical guide for developers to start using The Sign Age
+ * GettingStartedPage - Practical guide for developers to start using WallRun
  */
 export const GettingStartedPage: FC = () => {
-
   const handleStorybookClick = () => {
     window.open(
-      'https://cambridgemonorail.github.io/TheSignAge/storybook/',
+      'https://cambridgemonorail.github.io/WallRun/storybook/',
       '_blank',
       'noopener,noreferrer',
     );
@@ -18,7 +17,7 @@ export const GettingStartedPage: FC = () => {
 
   const handleGitHubClick = () => {
     window.open(
-      'https://github.com/CambridgeMonorail/TheSignAge',
+      'https://github.com/CambridgeMonorail/WallRun',
       '_blank',
       'noopener,noreferrer',
     );
@@ -48,12 +47,12 @@ export const GettingStartedPage: FC = () => {
         </h2>
         <div className="space-y-4 text-muted-foreground max-w-3xl">
           <p className="text-lg">
-            Digital signage is software that lives on walls. The Sign Age treats
-            it that way.
+            Digital signage is software that lives on walls. WallRun treats it
+            that way.
           </p>
           <p>
             Most signage tooling assumes you want a CMS, a slide deck, or a
-            drag-and-drop editor. The Sign Age starts from a different premise:
+            drag-and-drop editor. WallRun starts from a different premise:
             signage screens are just frontend applications with unusual
             constraints — fixed resolution, no user input, 24/7 runtime, viewed
             from distance.
@@ -61,21 +60,21 @@ export const GettingStartedPage: FC = () => {
           <p>
             This project explores what happens when you build signage with
             normal modern tools: React components, Tailwind layouts, TypeScript,
-            Vite, and a monorepo workflow. The result is code-driven,
-            testable, version-controlled signage — built like any other
-            frontend software.
+            Vite, and a monorepo workflow. The result is code-driven, testable,
+            version-controlled signage — built like any other frontend software.
           </p>
         </div>
       </section>
 
       <section className="demo-panel mb-12 p-6 sm:p-8">
         <div className="space-y-4 text-muted-foreground">
-          <p>
-            The Sign Age is an independent, experimental developer project.
-          </p>
+          <p>WallRun is an independent, experimental developer project.</p>
           <p className="font-medium text-foreground">
-            It is <strong>not an official BrightSign product or BrightSign
-            supported project</strong>.
+            It is{' '}
+            <strong>
+              not an official BrightSign product or BrightSign supported project
+            </strong>
+            .
           </p>
           <p>
             The examples in this repository use BrightSign players because, in
@@ -125,8 +124,8 @@ export const GettingStartedPage: FC = () => {
           Choose Your Starting Point
         </h2>
         <p className="text-muted-foreground mb-4 max-w-3xl">
-          How you use The Sign Age depends on what you are building and where
-          you are in the process. Pick the option that matches your situation.
+          How you use WallRun depends on what you are building and where you are
+          in the process. Pick the option that matches your situation.
         </p>
 
         <ul className="list-disc list-inside text-muted-foreground mb-6 space-y-1 text-sm max-w-3xl">
@@ -143,8 +142,8 @@ export const GettingStartedPage: FC = () => {
             the full toolkit: libraries, skills, examples, and deployment tools
           </li>
           <li>
-            <strong className="text-foreground">Scaffold a player app</strong>{' '}
-            — generate a BrightSign-ready signage app from a built-in template
+            <strong className="text-foreground">Scaffold a player app</strong> —
+            generate a BrightSign-ready signage app from a built-in template
           </li>
         </ul>
 
@@ -162,11 +161,11 @@ export const GettingStartedPage: FC = () => {
             </p>
             <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
-                {`# Add individual components from The Sign Age registry
-npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list
+                {`# Add individual components from WallRun registry
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
 
 # Add several at once
-npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json metric-card event-card schedule-gate`}
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate`}
               </pre>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
@@ -196,7 +195,7 @@ npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/re
             <p className="text-muted-foreground text-sm">
               Browse{' '}
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/tree/main/libs/shadcnui-signage/src/lib"
+                href="https://github.com/CambridgeMonorail/WallRun/tree/main/libs/shadcnui-signage/src/lib"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground hover:underline"
@@ -222,8 +221,8 @@ npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/re
             </p>
             <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
-                {`git clone https://github.com/CambridgeMonorail/TheSignAge.git
-cd TheSignAge
+                {`git clone https://github.com/CambridgeMonorail/WallRun.git
+cd WallRun
 pnpm install
 
 # Run the demo site to explore examples
@@ -262,10 +261,7 @@ pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation land
             </div>
             <p className="text-muted-foreground mt-2 text-sm">
               This requires the cloned repository. See{' '}
-              <Link
-                to="/tooling"
-                className="text-foreground hover:underline"
-              >
+              <Link to="/tooling" className="text-foreground hover:underline">
                 Tooling &amp; Deployment
               </Link>{' '}
               for the full packaging and deployment workflow.
@@ -280,8 +276,8 @@ pnpm nx g sign-age:player-app --name player-menu-board --displayOrientation land
           AI-Assisted Development
         </h2>
         <p className="text-muted-foreground mb-4">
-          The Sign Age includes a custom GitHub Copilot agent optimized for
-          building signage content. The{' '}
+          WallRun includes a custom GitHub Copilot agent optimized for building
+          signage content. The{' '}
           <code className="text-sm bg-muted px-1.5 py-0.5 rounded">
             signage-architect
           </code>{' '}
@@ -356,9 +352,9 @@ showing 3 categories with 4 items each, 1080p landscape`}
             Why BrightSign Players?
           </h3>
           <p className="text-muted-foreground mb-2 max-w-3xl">
-            The Sign Age examples currently target BrightSign players because
-            they are widely regarded as extremely stable signage hardware
-            designed for 24/7 operation.
+            WallRun examples currently target BrightSign players because they
+            are widely regarded as extremely stable signage hardware designed
+            for 24/7 operation.
           </p>
           <p className="text-muted-foreground max-w-3xl">
             However, the ideas explored in this project are not tied to
@@ -510,10 +506,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">1.</span>
             <p className="text-muted-foreground">
               Browse the{' '}
-              <Link
-                to="/library"
-                className="text-foreground hover:underline"
-              >
+              <Link to="/library" className="text-foreground hover:underline">
                 Component Library
               </Link>{' '}
               to explore available signage components
@@ -523,10 +516,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">2.</span>
             <p className="text-muted-foreground">
               Open{' '}
-              <Link
-                to="/tooling"
-                className="text-foreground hover:underline"
-              >
+              <Link to="/tooling" className="text-foreground hover:underline">
                 Tooling &amp; Deployment
               </Link>{' '}
               to scaffold player apps and review BrightSign workflows
@@ -536,10 +526,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">3.</span>
             <p className="text-muted-foreground">
               View the{' '}
-              <Link
-                to="/gallery"
-                className="text-foreground hover:underline"
-              >
+              <Link to="/gallery" className="text-foreground hover:underline">
                 Gallery
               </Link>{' '}
               to see full-screen signage examples

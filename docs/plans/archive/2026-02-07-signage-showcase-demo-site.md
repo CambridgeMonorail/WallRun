@@ -8,7 +8,7 @@
 
 ## Goal
 
-Transform the `apps/client` demo site from a generic SPA boilerplate showcase into a digital signage showcase that demonstrates the capabilities of The Sign Age project. The site should present a landing page that explains the project purpose, followed by a directory/gallery of full-screen signage examples that users can navigate to experience what digital signage content looks like.
+Transform the `apps/client` demo site from a generic SPA boilerplate showcase into a digital signage showcase that demonstrates the capabilities of WallRun project. The site should present a landing page that explains the project purpose, followed by a directory/gallery of full-screen signage examples that users can navigate to experience what digital signage content looks like.
 
 ## Context
 
@@ -17,7 +17,7 @@ Transform the `apps/client` demo site from a generic SPA boilerplate showcase in
 - **apps/client** currently showcases generic SPA features from the original template
 - Landing page describes "The Boilerplate That Speeds Up SPA Development"
 - Navigation includes: Landing, Dashboard, About, Features, Pricing, FAQ, Contact, Blog, Terms, StatusBoard, Library, Color Palette
-- Current content does not reflect The Sign Age's digital signage purpose
+- Current content does not reflect WallRun's digital signage purpose
 - Project README.md clearly states: "Digital signage as a software platform"
 - `@tsa/shadcnui-signage` library has been created with ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid components
 
@@ -98,7 +98,7 @@ The demo should:
 
 ### Phase 1: Update Landing Page Content ⬜ Not Started
 
-**Objective:** Transform landing page to accurately represent The Sign Age project.
+**Objective:** Transform landing page to accurately represent WallRun project.
 
 **Tasks:**
 
@@ -401,7 +401,7 @@ The demo should:
 3. **Update README.md** ⬜
    - File: `README.md` (root)
    - Update "What This Repo Contains" to mention demo site
-   - Add note: "Visit the demo at http://localhost:4200/TheSignAge/ to see signage examples"
+   - Add note: "Visit the demo at http://localhost:4200/WallRun/ to see signage examples"
    - Verify: README accurately describes project
 
 4. **Run verification** ⬜
@@ -446,7 +446,7 @@ The demo should:
 
 ## Success Metrics
 
-- [ ] Landing page accurately represents The Sign Age project
+- [ ] Landing page accurately represents WallRun project
 - [ ] Gallery page displays at least 4-6 signage examples
 - [ ] Each signage example uses components from `@tsa/shadcnui-signage`
 - [ ] Signage examples render full-screen without Layout

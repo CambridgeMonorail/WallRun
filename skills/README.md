@@ -1,6 +1,6 @@
 # Skills
 
-This directory contains reusable signage-domain skills for designing, building, and operating digital signage software with The Sign Age.
+This directory contains reusable signage-domain skills for designing, building, and operating digital signage software with WallRun.
 
 These skills are portable `SKILL.md` packages for AI-assisted development. They give an agent or developer domain-specific guidance on layout systems, animation, distance legibility, safe display boundaries, performance budgets, data refresh patterns, operational fallbacks, BrightSign deployment, player discovery, and review work.
 
@@ -56,7 +56,7 @@ Tied to this repository's BrightSign hardware, player tooling, or local infrastr
 To install internal skills, set the environment variable before running the CLI:
 
 ```bash
-INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/TheSignAge
+INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/WallRun
 ```
 
 **Signage build and runtime:**
@@ -103,7 +103,7 @@ Because of that, `skills/` is the source of truth and `.github/skills/` is a gen
 Portable skill consumers can install from this repository with:
 
 ```bash
-npx skills add CambridgeMonorail/TheSignAge
+npx skills add CambridgeMonorail/WallRun
 ```
 
 The skills CLI supports project or global installs and can target multiple agent ecosystems.

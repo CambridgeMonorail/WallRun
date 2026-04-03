@@ -1,8 +1,10 @@
 # STYLE_GUIDE.md
-## The Sign Age Demo Website
+
+## WallRun Demo Website
+
 ### Tailwind + shadcn/ui
 
-This document defines the visual and interaction style for **The Sign Age** demo website.
+This document defines the visual and interaction style for **WallRun** demo website.
 
 The site should feel like a modern, premium B2B SaaS product.
 Calm, confident, and durable.
@@ -15,19 +17,22 @@ If it looks like internal tooling from a company that takes engineering seriousl
 
 ## 1. Product Intent
 
-The Sign Age treats digital signage as software infrastructure.
+WallRun treats digital signage as software infrastructure.
 
 The demo site exists to:
+
 - support explanation and demos
 - communicate technical seriousness
 - feel like real software, not content
 
 The reference points are:
+
 - high-quality B2B admin tools
 - developer-focused SaaS products
 - internal platforms that quietly run critical systems
 
 Not:
+
 - startup homepages
 - funnels
 - portfolios
@@ -46,6 +51,7 @@ These principles override individual component decisions.
 - Software first, content second
 
 Premium here means:
+
 - deliberate spacing
 - careful hierarchy
 - predictable behaviour
@@ -94,6 +100,7 @@ The demo website uses a two-tier typography system.
 Inter remains the default. Michroma is an accent, not a replacement body font.
 
 Chosen for:
+
 - screen clarity
 - neutrality in core UI
 - modern SaaS familiarity
@@ -121,6 +128,7 @@ All colour usage must go through shadcn tokens.
 Hex values belong only in the theme layer.
 
 Use:
+
 - `bg-background`
 - `text-foreground`
 - `text-muted-foreground`
@@ -130,12 +138,14 @@ Use:
 - `bg-muted`
 
 Avoid:
+
 - hard-coded colours in components
 - ad hoc opacity hacks
 
 Token-first does **not** mean every surface must be flat or visually plain.
 
 Richer shell chrome is allowed when it is expressed through:
+
 - token-derived utilities such as `border-border/60`, `bg-card/80`, or `text-foreground`
 - shared semantic surface classes defined in the theme layer
 - reusable component patterns rather than one-off decorative class strings
@@ -155,6 +165,7 @@ Premium SaaS feels consistent because everything comes from the same token syste
 - Predictable spacing between sections
 
 Recommended base wrapper:
+
 - `min-h-screen bg-background text-foreground`
 - `mx-auto max-w-5xl px-6 py-12 md:px-8 md:py-16`
 
@@ -194,6 +205,7 @@ Use a restrained, modern SaaS scale.
   `text-sm text-muted-foreground`
 
 Rules:
+
 - Avoid dramatic size jumps
 - Avoid bold for impact
 - Let spacing create hierarchy
@@ -207,12 +219,14 @@ Rules:
 Buttons should feel like precise controls.
 
 Default:
+
 - `variant="secondary"`
 - `variant="ghost"` for low-priority actions
 
 Use `variant="default"` sparingly and deliberately.
 
 Rules:
+
 - No gradients
 - No glow
 - No animated flair
@@ -239,12 +253,14 @@ Links are navigation, not decoration.
 Cards should feel structural.
 
 Rules:
+
 - Flat surfaces
 - Subtle borders
 - Minimal or no shadow
 - Consistent padding
 
 Suggested:
+
 - reduce default shadcn shadow if it feels decorative
 - use `border-border/60` for separation
 - prefer shared semantic surface utilities for premium chrome rather than repeating long arbitrary-value class strings
@@ -258,6 +274,7 @@ Cards should feel like containers, not highlights.
 Inputs should feel robust and tool-like.
 
 Rules:
+
 - Clear focus rings
 - No playful placeholder copy
 - No oversized controls
@@ -272,6 +289,7 @@ Forms should feel like configuration, not onboarding.
 Tables are first-class citizens.
 
 Rules:
+
 - Clear column alignment
 - Calm row spacing
 - Subtle dividers
@@ -286,15 +304,18 @@ If data looks busy, reduce decoration first.
 Motion is restrained and functional.
 
 Allowed:
+
 - fades
 - subtle opacity transitions
 - short linear movement
 
 Timing:
+
 - 150–300ms
 - consistent across the app
 
 Avoid:
+
 - bounce or spring easing
 - zoom punches
 - scroll-driven effects
@@ -314,6 +335,7 @@ Copy should feel like a serious SaaS product.
 - Slightly dry
 
 Avoid:
+
 - marketing language
 - calls to action
 - exclamation marks

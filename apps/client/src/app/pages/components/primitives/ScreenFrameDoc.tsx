@@ -15,8 +15,8 @@ export const ScreenFrameDocPage: FC = () => {
         </h1>
 
         <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
-          Preview container for signage screens that enforces fixed aspect ratios
-          and resolutions for accurate content preview.
+          Preview container for signage screens that enforces fixed aspect
+          ratios and resolutions for accurate content preview.
         </p>
       </div>
 
@@ -62,12 +62,14 @@ export const ScreenFrameDocPage: FC = () => {
         <p className="text-muted-foreground mb-4">
           Copy the source code into your project.
         </p>
-        
+
         <div className="mb-6">
-          <h3 className="text-lg font-medium mb-3">Using the CLI (Recommended)</h3>
+          <h3 className="text-lg font-medium mb-3">
+            Using the CLI (Recommended)
+          </h3>
           <CodeSnippet
             language="bash"
-            code="npx shadcn add https://cambridgemonorail.github.io/TheSignAge/registry screen-frame"
+            code="npx shadcn add https://cambridgemonorail.github.io/WallRun/registry screen-frame"
           />
         </div>
 
@@ -79,7 +81,7 @@ export const ScreenFrameDocPage: FC = () => {
             <h3 className="text-lg font-medium mb-2">1. Copy the component</h3>
             <p className="text-muted-foreground">
               <a
-                href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx"
+                href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
@@ -89,8 +91,12 @@ export const ScreenFrameDocPage: FC = () => {
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-2">2. Install dependencies</h3>
-            <p className="text-sm text-muted-foreground">No additional dependencies required.</p>
+            <h3 className="text-lg font-medium mb-2">
+              2. Install dependencies
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              No additional dependencies required.
+            </p>
           </div>
         </div>
       </section>
@@ -124,28 +130,34 @@ export function SignagePreview() {
           <div>
             <strong className="text-foreground">Development Preview:</strong>{' '}
             ScreenFrame is primarily a development and QA tool. It allows you to
-            preview signage content at exact target resolutions during development.
+            preview signage content at exact target resolutions during
+            development.
           </div>
           <div>
-            <strong className="text-foreground">Aspect Ratio Enforcement:</strong>{' '}
-            Ensures content maintains the correct aspect ratio (16:9, 16:10, 9:16)
-            regardless of the browser window size.
+            <strong className="text-foreground">
+              Aspect Ratio Enforcement:
+            </strong>{' '}
+            Ensures content maintains the correct aspect ratio (16:9, 16:10,
+            9:16) regardless of the browser window size.
           </div>
           <div>
-            <strong className="text-foreground">Safe Area Overlay:</strong> Enable{' '}
-            <code className="bg-muted px-1 py-0.5 rounded">showSafeArea</code> to
-            visualize the 5% margin where content should be kept for optimal viewing
-            on various displays.
+            <strong className="text-foreground">Safe Area Overlay:</strong>{' '}
+            Enable{' '}
+            <code className="bg-muted px-1 py-0.5 rounded">showSafeArea</code>{' '}
+            to visualize the 5% margin where content should be kept for optimal
+            viewing on various displays.
           </div>
           <div>
-            <strong className="text-foreground">Scale for Testing:</strong> Use the{' '}
-            <code className="bg-muted px-1 py-0.5 rounded">scale</code> prop to fit
-            full-resolution content in smaller viewports during development.
+            <strong className="text-foreground">Scale for Testing:</strong> Use
+            the <code className="bg-muted px-1 py-0.5 rounded">scale</code> prop
+            to fit full-resolution content in smaller viewports during
+            development.
           </div>
           <div>
-            <strong className="text-foreground">Production Use:</strong> In production
-            deployments on BrightSign or similar devices, ScreenFrame is typically not
-            needed as the display itself enforces the resolution.
+            <strong className="text-foreground">Production Use:</strong> In
+            production deployments on BrightSign or similar devices, ScreenFrame
+            is typically not needed as the display itself enforces the
+            resolution.
           </div>
         </div>
       </section>
@@ -215,7 +227,7 @@ export function SignagePreview() {
         <div className="flex flex-wrap gap-4">
           <Button asChild variant="outline">
             <a
-              href="https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/primitives-screenframe--docs"
+              href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/primitives-screenframe--docs"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -224,7 +236,7 @@ export function SignagePreview() {
           </Button>
           <Button asChild variant="outline">
             <a
-              href="https://github.com/CambridgeMonorail/TheSignAge/blob/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx"
               target="_blank"
               rel="noopener noreferrer"
             >

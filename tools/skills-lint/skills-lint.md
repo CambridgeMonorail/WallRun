@@ -1,6 +1,6 @@
 # Claude Skill Linter
 
-*A structured evaluation framework for reviewing agent skills*
+_A structured evaluation framework for reviewing agent skills_
 
 This checklist allows developers to **audit, score, and improve each skill** in the repository.
 
@@ -338,9 +338,9 @@ Needs refactor.
 
 Typical fixes:
 
-* move documentation
-* simplify instructions
-* improve triggers
+- move documentation
+- simplify instructions
+- improve triggers
 
 ---
 
@@ -365,7 +365,7 @@ For mature skill repositories.
 
 # Recommended Workflow for Your Repo
 
-For **The Sign Age skills repo**, the developer should:
+For **WallRun skills repo**, the developer should:
 
 1. Iterate over every skill in `skills/`
 2. Run the linter rubric
@@ -384,5 +384,3 @@ Skills should read like **a playbook for an agent**.
 Short.
 Structured.
 Actionable.
-
-

@@ -1,4 +1,4 @@
-# Spec: Copilot-first Agent Workflow Improvements for `The Sign Age`
+# Spec: Copilot-first Agent Workflow Improvements for `WallRun`
 
 ## Table of Contents
 
@@ -313,7 +313,7 @@ If your guidance includes words like "first", "then", "before", "after", it prob
 
 ## Context
 
-We want to learn from the workflow ideas in `obra/superpowers` while remaining GitHub Copilot compliant, and apply them to our React SPA signage monorepo `CambridgeMonorail/TheSignAge`. ([GitHub][1])
+We want to learn from the workflow ideas in `obra/superpowers` while remaining GitHub Copilot compliant, and apply them to our React SPA signage monorepo `CambridgeMonorail/WallRun`. ([GitHub][1])
 
 We are explicitly not adopting TDD as a required practice, but we do want the rest of the workflow structure: planning, systematic debugging, code review discipline, and verification evidence. ([GitHub][2])
 
@@ -403,7 +403,8 @@ Use these sources as the baseline for what Copilot supports today:
    - ✅ `.github/instructions/*.instructions.md` - Yes, 4 files with proper `applyTo` scoping
    - ❌ `AGENTS.md` files - No root or nested AGENTS.md files yet
    - ✅ `.github/agents/` - 8 custom agent definitions already exist
-  - ✅ `skills/` - canonical skill categories already defined
+
+- ✅ `skills/` - canonical skill categories already defined
 
 3. **Current scripts inventory:**
    - **Build:** `build:affected`, `build:all`, `build:client`, `build:shadcnui`, `build:storybook`
@@ -720,4 +721,4 @@ When implementing, maintain clear separation:
 [8]: https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/?utm_source=chatgpt.com 'GitHub Copilot now supports Agent Skills'
 [9]: https://agents.md/?utm_source=chatgpt.com 'AGENTS.md'
 [10]: https://github.com/microsoft/vscode/issues/271489?utm_source=chatgpt.com 'GitHub Copilot ignores nested AGENTS.md files but ...'
-[11]: https://github.com/CambridgeMonorail/TheSignAge?utm_source=chatgpt.com 'CambridgeMonorail/TheSignAge'
+[11]: https://github.com/CambridgeMonorail/WallRun?utm_source=chatgpt.com 'CambridgeMonorail/WallRun'

@@ -16,32 +16,30 @@ export const CreditsScene: FC = () => {
   const frame = useCurrentFrame();
   const { madeWith, tools, tagline } = SCRIPT.credits;
 
-  const introOpacity = interpolate(
-    frame,
-    [5, 5 + MOTION.fadeIn],
-    [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
-  );
+  const introOpacity = interpolate(frame, [5, 5 + MOTION.fadeIn], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
 
   const toolsOpacity = interpolate(
     frame,
     [TOOLS_START, TOOLS_START + MOTION.fadeIn],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   const taglineOpacity = interpolate(
     frame,
     [TAGLINE_START, TAGLINE_START + MOTION.fadeIn],
     [0, 1],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   const exitOpacity = interpolate(
     frame,
     [DURATIONS.credits - MOTION.fadeOut, DURATIONS.credits],
     [1, 0],
-    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' },
   );
 
   return (

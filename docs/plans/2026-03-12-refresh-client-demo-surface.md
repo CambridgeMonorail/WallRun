@@ -2,7 +2,7 @@
 
 ## Goal
 
-Update the client demo so it reflects The Sign Age as more than a component showcase by surfacing player app scaffolding, BrightSign deployment workflows, player discovery, and portable skills in the routed experience.
+Update the client demo so it reflects WallRun as more than a component showcase by surfacing player app scaffolding, BrightSign deployment workflows, player discovery, and portable skills in the routed experience.
 
 ## Context
 
@@ -47,5 +47,5 @@ Recent repo work added an Nx-native player app generator and expanded the canoni
 ## Verification
 
 - Confirm the new route is present in navigation.
-- Confirm updated copy references `pnpm scaffold:player`, `pnpm nx g sign-age:player-app`, `pnpm deploy:player`, and `npx skills add CambridgeMonorail/TheSignAge` where appropriate.
+- Confirm updated copy references `pnpm scaffold:player`, `pnpm nx g sign-age:player-app`, `pnpm deploy:player`, and `npx skills add CambridgeMonorail/WallRun` where appropriate.
 - Run file diagnostics after edits.

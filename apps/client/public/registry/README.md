@@ -11,7 +11,7 @@ Add the registry to your `components.json`:
 ```json
 {
   "registries": {
-    "shadcnui-signage": "https://cambridgemonorail.github.io/TheSignAge/registry"
+    "shadcnui-signage": "https://cambridgemonorail.github.io/WallRun/registry"
   }
 }
 ```
@@ -28,35 +28,40 @@ npx shadcn add shadcnui-signage/signage-container
 
 All component source code is available in this repository. Copy the component files directly from:
 
-`https://github.com/CambridgeMonorail/TheSignAge/tree/main/libs/shadcnui-signage/src/lib`
+`https://github.com/CambridgeMonorail/WallRun/tree/main/libs/shadcnui-signage/src/lib`
 
 ## Available Components
 
 ### Primitives
+
 - **metric-card** - Display KPIs with values, change indicators, and icons
 - **screen-frame** - Preview container with aspect ratio enforcement
 - **event-card** - Event information with time, title, speaker, and track
 - **announcement-card** - Announcements with glass morphism effects
 
 ### Layouts
+
 - **split-screen** - Two-panel layout with configurable ratio
 - **signage-container** - Full-screen container with gradient backgrounds
 - **signage-header** - Standard header with optional tag and subtitle
 
 ### Blocks
+
 - **fullscreen-hero** - Hero sections for welcome screens
 - **info-card-grid** - Grid layout for informational cards
 
 ## Documentation
 
 Full documentation and live examples:
-- **Demo Site**: https://cambridgemonorail.github.io/TheSignAge/
-- **Components**: https://cambridgemonorail.github.io/TheSignAge/#/components
-- **Storybook**: https://cambridgemonorail.github.io/TheSignAge/storybook/
+
+- **Demo Site**: https://cambridgemonorail.github.io/WallRun/
+- **Components**: https://cambridgemonorail.github.io/WallRun/#/components
+- **Storybook**: https://cambridgemonorail.github.io/WallRun/storybook/
 
 ## Dependencies
 
 Most components require:
+
 - `lucide-react` for icons
 - Tailwind CSS v4 for styling
 

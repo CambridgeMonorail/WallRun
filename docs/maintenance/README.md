@@ -1,6 +1,6 @@
 # Maintenance
 
-Documentation for maintaining, upgrading, and securing The Sign Age codebase over time.
+Documentation for maintaining, upgrading, and securing WallRun codebase over time.
 
 This section should contain active maintenance guidance and durable records. Time-bound status snapshots belong in `docs/maintenance/archive/`.
 

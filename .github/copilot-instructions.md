@@ -1,4 +1,4 @@
-# The Sign Age
+# WallRun
 
 Digital signage as software. Nx + pnpm monorepo using React 19, Tailwind v4, shadcn/ui, and Vite to build reusable signage-oriented UI primitives, layouts, and blocks.
 

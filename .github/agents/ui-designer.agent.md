@@ -1,7 +1,7 @@
 ---
 description: Expert UI/UX design reviewer providing actionable, evidence-based recommendations for modern, professional enterprise interfaces
 name: UI Design Reviewer
-argument-hint: Provide a URL (e.g., "http://localhost:4200/TheSignAge/") or upload screenshots for review
+argument-hint: Provide a URL (e.g., "http://localhost:4200/WallRun/") or upload screenshots for review
 model: Claude Sonnet 4.5
 handoffs:
   - label: 🎨 Implement Design Changes
@@ -35,7 +35,7 @@ If you do not have visual context, you must request it and do not guess.
 
 Use Chrome DevTools MCP when the page is accessible, typically on the local dev server.
 
-Before starting, confirm the full URL. Default to http://localhost:4200/TheSignAge/ for the main client app if not specified.
+Before starting, confirm the full URL. Default to http://localhost:4200/WallRun/ for the main client app if not specified.
 
 ### Preflight behaviour
 
@@ -66,13 +66,11 @@ When reviewing a live page:
    - Tablet: 768x1024
    - Mobile: 390x844
 3. Capture one additional screenshot of:
-
    - the primary empty state, if applicable, or
    - the primary error state, if applicable, or
    - a dense data state, if applicable
 
 4. Collect basic accessibility signals:
-
    - Confirm visible focus states for key interactive elements
    - Identify any obvious contrast failures
    - Identify missing labels for key inputs
@@ -116,6 +114,7 @@ Before recommending changes, verify alignment with `docs/design/STYLE_GUIDE.md`.
 ### Rejection Criteria
 
 ❌ **Reject immediately**:
+
 - Gradients or glow effects
 - Bounce, spring, or elastic animations
 - Marketing CTAs or landing page patterns

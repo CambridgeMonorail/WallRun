@@ -1,6 +1,6 @@
 # Understanding the Project Structure
 
-This document provides an overview of the project structure for **The Sign Age** (TSA) monorepo.
+This document provides an overview of the project structure for **WallRun** (TSA) monorepo.
 
 The repo is an **Nx + pnpm** workspace designed as a working notebook for building digital signage UI and tooling (with a BrightSign emphasis). Nx provides project boundaries and “affected” workflows so builds/tests stay fast as the repo grows.
 
@@ -82,7 +82,7 @@ vitest.workspace.ts
 
 ## Conclusion
 
-The Sign Age is organized as an Nx monorepo so apps can consume reusable libraries with clear boundaries.
+WallRun is organized as an Nx monorepo so apps can consume reusable libraries with clear boundaries.
 
 If you’re new here, a good starting path is:
 

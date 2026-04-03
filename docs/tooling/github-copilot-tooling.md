@@ -301,7 +301,7 @@ Skills are reusable workflows and procedures that can be referenced by agents or
 **Portable install**:
 
 ```bash
-npx skills add CambridgeMonorail/TheSignAge
+npx skills add CambridgeMonorail/WallRun
 ```
 
 The open skills CLI supports GitHub shorthand, full repo URLs, direct repo paths, and local paths. It is not an Nx feature and it is not limited to Claude-specific install locations.
@@ -761,4 +761,4 @@ Notes:
 
 ---
 
-_This document is maintained as part of The Sign Age project. For updates or corrections, please submit a pull request._
+_This document is maintained as part of WallRun project. For updates or corrections, please submit a pull request._

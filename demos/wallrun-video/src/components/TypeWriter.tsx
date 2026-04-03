@@ -31,7 +31,7 @@ export const TypeWriter: FC<TypeWriterProps> = ({
     interpolate(frame, [delay, delay + text.length * speed], [0, text.length], {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
-    })
+    }),
   );
 
   const cursorOpacity = cursor ? (Math.floor(frame / 15) % 2 === 0 ? 1 : 0) : 0;

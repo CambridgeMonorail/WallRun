@@ -1,6 +1,6 @@
 # Statement of Intent
 
-The Sign Age is an exploration of digital signage as software.
+WallRun is an exploration of digital signage as software.
 
 This repository exists to document, prototype, and share practical work around building bespoke, generative, and data-driven content for digital signage players, with a particular focus on BrightSign devices, from the perspective of experienced frontend developers.
 

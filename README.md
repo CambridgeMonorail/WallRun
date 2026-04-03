@@ -1,19 +1,21 @@
-# The Sign Age
+# WallRun
 
-![The Sign Age Logo](docs/images/logos/readme-hero.png)
+> **Formerly "The Sign Age"** — same project, new name.
+
+![WallRun Logo](docs/images/logos/readme-hero.png)
 
 ![Project Status](https://img.shields.io/badge/status-alpha-orange?style=for-the-badge)
-![Version](https://img.shields.io/github/package-json/v/CambridgeMonorail/TheSignAge?style=for-the-badge)
-![Build Status](https://img.shields.io/github/actions/workflow/status/CambridgeMonorail/TheSignAge/ci.yml?style=for-the-badge)
-![Deploy Status](https://img.shields.io/github/actions/workflow/status/CambridgeMonorail/TheSignAge/deploy.yml?label=deploy&style=for-the-badge)
-![License](https://img.shields.io/github/license/CambridgeMonorail/TheSignAge?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/CambridgeMonorail/TheSignAge?style=for-the-badge)
+![Version](https://img.shields.io/github/package-json/v/CambridgeMonorail/WallRun?style=for-the-badge)
+![Build Status](https://img.shields.io/github/actions/workflow/status/CambridgeMonorail/WallRun/ci.yml?style=for-the-badge)
+![Deploy Status](https://img.shields.io/github/actions/workflow/status/CambridgeMonorail/WallRun/deploy.yml?label=deploy&style=for-the-badge)
+![License](https://img.shields.io/github/license/CambridgeMonorail/WallRun?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/CambridgeMonorail/WallRun?style=for-the-badge)
 
 **NOTE: This project is currently in alpha. In fact, it's very alpha. This means it is still under active development and may undergo significant changes. Features may be incomplete or unstable. Got suggestions on what you would like to see or how to make it better? Add an issue and let us know!**
 
 ## What This Is (and Why It Exists)
 
-**The Sign Age** is a developer-first workspace for building **real digital signage** with modern web tooling — especially targeting **BrightSign OS 9.x players**.
+**WallRun** is a developer-first workspace for building **real digital signage** with modern web tooling — especially targeting **BrightSign OS 9.x players**.
 
 If you've ever thought “this should just be a React app,” this repo is the missing glue:
 
@@ -32,7 +34,7 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 
 ### What this is not
 
-**The Sign Age is not a content management system (CMS).** It's a development framework for building custom signage applications with React.
+**WallRun is not a content management system (CMS).** It's a development framework for building custom signage applications with React.
 
 #### When to use established CMS platforms instead
 
@@ -43,7 +45,7 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 - **[Navori](https://navori.com/app/brightsign/)** - Ideal for large, high-performance digital signage networks
 - **[Signagelive](https://support.signagelive.com/en/articles/137967-signagelive-for-brightsign-overview)** - Highly compatible cloud-based CMS for diverse applications
 
-**Use The Sign Age when:**
+**Use WallRun when:**
 
 - You need complete control over UI/UX with custom React components
 - You're building bespoke signage experiences that don't fit CMS templates
@@ -62,18 +64,18 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 No BrightSign player needed. Just clone, install, and run:
 
 ```bash
-git clone https://github.com/CambridgeMonorail/TheSignAge.git
-cd TheSignAge
+git clone https://github.com/CambridgeMonorail/WallRun.git
+cd WallRun
 pnpm install
 pnpm serve:client
 ```
 
-Open [http://localhost:4200/TheSignAge/](http://localhost:4200/TheSignAge/) to explore signage examples, component library, and documentation.
+Open [http://localhost:4200/WallRun/](http://localhost:4200/WallRun/) to explore signage examples, component library, and documentation.
 
 **Or browse online:**
 
-- **Live Demo:** [https://cambridgemonorail.github.io/TheSignAge/](https://cambridgemonorail.github.io/TheSignAge/)
-- **Storybook:** [https://cambridgemonorail.github.io/TheSignAge/storybook/](https://cambridgemonorail.github.io/TheSignAge/storybook/)
+- **Live Demo:** [https://cambridgemonorail.github.io/WallRun/](https://cambridgemonorail.github.io/WallRun/)
+- **Storybook:** [https://cambridgemonorail.github.io/WallRun/storybook/](https://cambridgemonorail.github.io/WallRun/storybook/)
 
 ---
 
@@ -138,7 +140,7 @@ Components are in `libs/shadcnui-signage/` with:
 The signage components are distributed through a shadcn-compatible registry. Install them into your own project with:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json auto-paging-list
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
 ```
 
 You can also browse the available components and installation options in:
@@ -151,7 +153,7 @@ You can also browse the available components and installation options in:
 The repository also exposes portable `SKILL.md` workflows that can be installed with the open skills CLI:
 
 ```bash
-npx skills add CambridgeMonorail/TheSignAge
+npx skills add CambridgeMonorail/WallRun
 ```
 
 For the available skills and the Copilot mirror model, see:
@@ -174,7 +176,7 @@ For the available skills and the Copilot mirror model, see:
 
 ## Overview
 
-**The Sign Age** is an exploration of digital signage as software.
+**WallRun** is an exploration of digital signage as software.
 
 This repository exists to document, prototype, and share practical work around building bespoke, generative, and data-driven content for digital signage players—especially **BrightSign** devices—from the perspective of experienced frontend developers.
 
@@ -209,15 +211,15 @@ This is an **Nx + pnpm** monorepo with a focus on tooling and reusable UI buildi
   - Fixed-aspect primitives, layouts, and blocks
   - Deterministic rendering for 1080p/4K screens
   - Designed for always-on, unattended displays
-  - [View in Storybook](https://cambridgemonorail.github.io/TheSignAge/storybook/?path=/docs/1-signage-primitives-screenframe--docs) | [Source](./libs/shadcnui-signage/)
+  - [View in Storybook](https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/1-signage-primitives-screenframe--docs) | [Source](./libs/shadcnui-signage/)
 
 - **`libs/shadcnui` / `libs/shadcnui-blocks`**: Supporting component primitives (our copy of shadcn/ui) and compositions for demo website
 
 ### Applications
 
-- **`apps/client`**: Demo site showcasing signage examples and components (**[View Live Demo](https://cambridgemonorail.github.io/TheSignAge/)**)
+- **`apps/client`**: Demo site showcasing signage examples and components (**[View Live Demo](https://cambridgemonorail.github.io/WallRun/)**)
 - **`apps/player-minimal`**: BrightSign deployment target with status monitoring (**[Deployment Guide](./docs/guides/brightsign-deployment.md)**)
-- **Storybook**: Interactive component documentation (**[Browse Components](https://cambridgemonorail.github.io/TheSignAge/storybook/)**)
+- **Storybook**: Interactive component documentation (**[Browse Components](https://cambridgemonorail.github.io/WallRun/storybook/)**)
 
 ### Deployment Tools
 
@@ -246,7 +248,7 @@ The demo site (`apps/client`) showcases digital signage concepts in action:
 - **Gallery**: Directory of full-screen signage examples
 - **Signage Examples**: Welcome screens, restaurant menus, office directories, KPI dashboards, announcements boards, and event schedules
 
-Run `pnpm run serve:client` and visit `http://localhost:4200/TheSignAge/` to explore the examples.
+Run `pnpm run serve:client` and visit `http://localhost:4200/WallRun/` to explore the examples.
 
 ## Developer Tooling
 
@@ -308,13 +310,13 @@ To install the project, follow these steps:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/CambridgeMonorail/TheSignAge.git
+   git clone https://github.com/CambridgeMonorail/WallRun.git
    ```
 
 2. Navigate to the project directory:
 
    ```sh
-   cd TheSignAge
+   cd WallRun
    ```
 
 3. Install dependencies:
@@ -358,7 +360,7 @@ These targets are either [inferred automatically](https://nx.dev/concepts/inferr
 ### Local Development
 
 ```bash
-pnpm serve:client          # Run demo site (http://localhost:4200/TheSignAge/)
+pnpm serve:client          # Run demo site (http://localhost:4200/WallRun/)
 pnpm serve:player          # Run BrightSign player app locally
 pnpm serve:storybook       # Browse component library
 ```
@@ -429,7 +431,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 - Contributing guide: [docs/contributing/CONTRIBUTING.md](./docs/contributing/CONTRIBUTING.md)
 - Code of Conduct: [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - Security policy: [SECURITY.md](./SECURITY.md)
-- Issues: [github.com/CambridgeMonorail/TheSignAge/issues](https://github.com/CambridgeMonorail/TheSignAge/issues) (bug reports, feature requests, and docs improvements)
+- Issues: [github.com/CambridgeMonorail/WallRun/issues](https://github.com/CambridgeMonorail/WallRun/issues) (bug reports, feature requests, and docs improvements)
 
 ## License
 

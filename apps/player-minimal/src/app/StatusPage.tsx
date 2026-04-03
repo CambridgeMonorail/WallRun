@@ -99,9 +99,7 @@ export const StatusPage: FC<StatusPageProps> = ({
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-card text-foreground p-8">
       <div className="max-w-7xl w-full">
         <header className="text-center mb-12">
-          <h1 className="text-6xl font-bold mb-2 text-foreground">
-            The Sign Age
-          </h1>
+          <h1 className="text-6xl font-bold mb-2 text-foreground">WallRun</h1>
           <p className="text-2xl text-muted-foreground">
             Player Status Monitor
           </p>

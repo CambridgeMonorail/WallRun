@@ -1,6 +1,6 @@
 # Creating Digital Signage Content
 
-**A comprehensive guide to designing and building premium digital signage screens for The Sign Age.**
+**A comprehensive guide to designing and building premium digital signage screens for WallRun.**
 
 [↑ Back to Guides](./README.md)
 
@@ -22,12 +22,12 @@
 
 ## Overview
 
-Digital signage in The Sign Age is **content designed for always-on public displays** viewed from a distance. It's fundamentally different from web UI:
+Digital signage in WallRun is **content designed for always-on public displays** viewed from a distance. It's fundamentally different from web UI:
 
--   **Viewing distance:** 10+ feet (requires larger typography)
--   **Display environment:** Public spaces, unattended 24/7 operation
--   **Visual impact:** Must be compelling and professional-looking
--   **Performance:** Hardware-optimized, offline-capable
+- **Viewing distance:** 10+ feet (requires larger typography)
+- **Display environment:** Public spaces, unattended 24/7 operation
+- **Visual impact:** Must be compelling and professional-looking
+- **Performance:** Hardware-optimized, offline-capable
 
 **Key Distinction:** Signage content (what's displayed on screens) vs. website chrome (navigation, forms, settings).
 
@@ -60,20 +60,20 @@ In VS Code Copilot Chat:
 
 The agent will ask:
 
--   Screen specs (resolution, orientation)
--   Viewing distance
--   Layout type and content structure
--   Brand styling preferences
--   Data source (static vs. dynamic)
+- Screen specs (resolution, orientation)
+- Viewing distance
+- Layout type and content structure
+- Brand styling preferences
+- Data source (static vs. dynamic)
 
 ### 3. Review and Iterate
 
 The agent generates premium-quality code. Review for:
 
--   ✅ Text readable from viewing distance (7xl+ headlines)
--   ✅ Sophisticated color palette (gradients, not flat grays)
--   ✅ Visual depth (ambient lighting, glass morphism)
--   ✅ Proper spacing and hierarchy
+- ✅ Text readable from viewing distance (7xl+ headlines)
+- ✅ Sophisticated color palette (gradients, not flat grays)
+- ✅ Visual depth (ambient lighting, glass morphism)
+- ✅ Proper spacing and hierarchy
 
 [↑ Back to top](#table-of-contents)
 
@@ -88,43 +88,42 @@ The agent follows a **QUESTIONS ONLY** approach before writing code.
 **What the Agent Always Clarifies:**
 
 1.  **Screen Specs**
-    
-    -   Resolution: 1080p (1920×1080), 4K (3840×2160), portrait
-    -   Orientation: landscape or portrait
-    -   Aspect ratio: 16:9 or 9:16
+    - Resolution: 1080p (1920×1080), 4K (3840×2160), portrait
+    - Orientation: landscape or portrait
+    - Aspect ratio: 16:9 or 9:16
+
 2.  **Viewing Distance**
-    
-    -   Default: 10 feet
-    -   Affects minimum text size (10-foot rule: 1 inch per 10 feet)
+    - Default: 10 feet
+    - Affects minimum text size (10-foot rule: 1 inch per 10 feet)
+
 3.  **Layout Type**
-    
-    -   Menu, dashboard, wayfinding, event schedule, announcements, promo
+    - Menu, dashboard, wayfinding, event schedule, announcements, promo
+
 4.  **Content Source**
-    
-    -   Static sample data (hardcoded)
-    -   JSON config file
-    -   API-backed (live data)
+    - Static sample data (hardcoded)
+    - JSON config file
+    - API-backed (live data)
+
 5.  **Update Behavior**
-    
-    -   Static (no updates)
-    -   Rotating slides
-    -   Scrolling ticker
-    -   Live polling with interval
+    - Static (no updates)
+    - Rotating slides
+    - Scrolling ticker
+    - Live polling with interval
+
 6.  **Brand Styling**
-    
-    -   Color scheme preference
-    -   Theme intent (corporate, retail, hospitality)
+    - Color scheme preference
+    - Theme intent (corporate, retail, hospitality)
 
 ### Default Assumptions (If You Don't Answer)
 
 If you decline to answer, the agent assumes:
 
--   1920×1080 landscape
--   10ft viewing distance
--   7:1 contrast ratio
--   5% safe margins
--   Premium aesthetic with gradient backgrounds
--   Static sample data
+- 1920×1080 landscape
+- 10ft viewing distance
+- 7:1 contrast ratio
+- 5% safe margins
+- Premium aesthetic with gradient backgrounds
+- Static sample data
 
 ### Integration with Plan Agent
 
@@ -157,13 +156,22 @@ Premium signage looks like it came from a **professional digital signage studio*
 **Amateur (Avoid):**
 
 ```tsx
-<div className="bg-slate-100 p-4">  <h1 className="text-4xl font-bold">Title</h1>  <p className="text-lg">Description text</p></div>
+<div className="bg-slate-100 p-4">
+  {' '}
+  <h1 className="text-4xl font-bold">Title</h1> <p className="text-lg">Description text</p>
+</div>
 ```
 
 **Premium (Target):**
 
 ```tsx
-<div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-16 relative overflow-hidden">  {/* Ambient glow effect */}  <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />    <div className="relative z-10">    <h1 className="text-8xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">      Title    </h1>    <p className="text-3xl text-slate-300 leading-relaxed">      Description text    </p>  </div></div>
+<div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-16 relative overflow-hidden">
+  {' '}
+  {/* Ambient glow effect */} <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" /> <div className="relative z-10">
+    {' '}
+    <h1 className="text-8xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent"> Title </h1> <p className="text-3xl text-slate-300 leading-relaxed"> Description text </p>{' '}
+  </div>
+</div>
 ```
 
 ### Design Principles
@@ -172,19 +180,19 @@ Premium signage looks like it came from a **professional digital signage studio*
 
 **Never:**
 
--   Flat `slate-100`, `slate-900`, or generic gray backgrounds
--   Single-color backgrounds
--   Basic `text-gray-600` text
+- Flat `slate-100`, `slate-900`, or generic gray backgrounds
+- Single-color backgrounds
+- Basic `text-gray-600` text
 
 **Always:**
 
--   Gradient backgrounds: `bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900`
--   Brand-appropriate schemes:
-    -   **Restaurant:** Teal/coral (`from-teal-950`, `text-orange-400`)
-    -   **Corporate:** Blue/cyan (`from-blue-950 via-cyan-950`)
-    -   **Events:** Violet/fuchsia (`from-violet-950 via-purple-950`)
-    -   **Retail:** Pink/indigo (`from-pink-950 via-indigo-950`)
--   Gradient text for headlines: `bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent`
+- Gradient backgrounds: `bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900`
+- Brand-appropriate schemes:
+  - **Restaurant:** Teal/coral (`from-teal-950`, `text-orange-400`)
+  - **Corporate:** Blue/cyan (`from-blue-950 via-cyan-950`)
+  - **Events:** Violet/fuchsia (`from-violet-950 via-purple-950`)
+  - **Retail:** Pink/indigo (`from-pink-950 via-indigo-950`)
+- Gradient text for headlines: `bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent`
 
 #### 2. Visual Depth & Spatial Hierarchy
 
@@ -197,7 +205,7 @@ Premium signage looks like it came from a **professional digital signage studio*
 **Glass Morphism:**
 
 ```tsx
-<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-10">  {/* Content */}</div>
+<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-10"> {/* Content */}</div>
 ```
 
 **Grid/Texture Overlays:**
@@ -209,7 +217,7 @@ Premium signage looks like it came from a **professional digital signage studio*
 **Shadows:**
 
 ```tsx
-<div className="shadow-2xl">  {/* Card content */}</div>
+<div className="shadow-2xl"> {/* Card content */}</div>
 ```
 
 #### 3. Motion and Life
@@ -223,35 +231,45 @@ Premium signage looks like it came from a **professional digital signage studio*
 **Hover Effects:**
 
 ```tsx
-<div className="group relative">  <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />  {/* Content */}</div>
+<div className="group relative">
+  {' '}
+  <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" /> {/* Content */}
+</div>
 ```
 
 **Entrance Animations:**
 
 ```tsx
-{items.map((item, index) => (  <div     key={item.id}    className="transition-all duration-300"    style={{ animationDelay: `${index * 100}ms` }}  >    {/* Content */}  </div>))}
+{
+  items.map((item, index) => (
+    <div key={item.id} className="transition-all duration-300" style={{ animationDelay: `${index * 100}ms` }}>
+      {' '}
+      {/* Content */}{' '}
+    </div>
+  ));
+}
 ```
 
 #### 4. Typographic Sophistication
 
 **Size Hierarchy:**
 
--   Headlines: `text-8xl` (96px) or `text-9xl` (128px)
--   Subheads: `text-4xl` (36px) to `text-5xl` (48px)
--   Body: `text-2xl` (24px) to `text-3xl` (30px)
--   Captions: `text-xl` (20px)
+- Headlines: `text-8xl` (96px) or `text-9xl` (128px)
+- Subheads: `text-4xl` (36px) to `text-5xl` (48px)
+- Body: `text-2xl` (24px) to `text-3xl` (30px)
+- Captions: `text-xl` (20px)
 
 **Font Weights:**
 
--   Headlines: `font-bold`
--   Subheads: `font-semibold`
--   Body: `font-medium`
--   Never use `font-light` on dark backgrounds
+- Headlines: `font-bold`
+- Subheads: `font-semibold`
+- Body: `font-medium`
+- Never use `font-light` on dark backgrounds
 
 **Spacing:**
 
--   Tracking: `tracking-wide`, `tracking-tight`
--   Leading: `leading-relaxed`, `leading-tight`
+- Tracking: `tracking-wide`, `tracking-tight`
+- Leading: `leading-relaxed`, `leading-tight`
 
 **Divider Elements:**
 
@@ -264,13 +282,16 @@ Premium signage looks like it came from a **professional digital signage studio*
 **Badge/Pill Elements:**
 
 ```tsx
-<div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xl px-5 py-2 rounded-full font-bold shadow-lg">  Floor 3</div>
+<div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xl px-5 py-2 rounded-full font-bold shadow-lg"> Floor 3</div>
 ```
 
 **Icon Containers:**
 
 ```tsx
-<div className="p-4 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-2xl shadow-xl">  <Icon className="w-12 h-12 text-white" /></div>
+<div className="p-4 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-2xl shadow-xl">
+  {' '}
+  <Icon className="w-12 h-12 text-white" />
+</div>
 ```
 
 **Accent Lines:**
@@ -281,22 +302,28 @@ Premium signage looks like it came from a **professional digital signage studio*
 
 **Rounded Corners:**
 
--   Cards: `rounded-2xl` or `rounded-3xl`
--   Badges: `rounded-full`
--   Never use `rounded` or `rounded-lg`
+- Cards: `rounded-2xl` or `rounded-3xl`
+- Badges: `rounded-full`
+- Never use `rounded` or `rounded-lg`
 
 **Whitespace:**
 
--   Page padding: `p-16` (not `p-4` or `p-8`)
--   Section spacing: `mb-16`, `space-y-8`
--   Breathing room between elements
+- Page padding: `p-16` (not `p-4` or `p-8`)
+- Section spacing: `mb-16`, `space-y-8`
+- Breathing room between elements
 
 #### 6. Image Placeholders
 
 When content needs images (product photos, food items, profile pictures):
 
 ```tsx
-{/* Placeholder with gradient background */}<div className="w-full h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-white/10 flex items-center justify-center">  {/* 400x300 product image would go here */}  <ImageIcon className="w-16 h-16 text-white/30" /></div>
+{
+  /* Placeholder with gradient background */
+}
+<div className="w-full h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-white/10 flex items-center justify-center">
+  {' '}
+  {/* 400x300 product image would go here */} <ImageIcon className="w-16 h-16 text-white/30" />
+</div>;
 ```
 
 Add sizing guidance in comments for future image integration.
@@ -311,10 +338,10 @@ Add sizing guidance in comments for future image integration.
 
 **Characteristics:**
 
--   3-column grid for meal categories (Breakfast, Lunch, Dinner)
--   Item name, description, price per item
--   Food imagery placeholders
--   Teal/coral or warm gradient palette
+- 3-column grid for meal categories (Breakfast, Lunch, Dinner)
+- Item name, description, price per item
+- Food imagery placeholders
+- Teal/coral or warm gradient palette
 
 **Key Elements:**
 
@@ -326,11 +353,11 @@ Add sizing guidance in comments for future image integration.
 
 **Characteristics:**
 
--   2-column grid of departments
--   Floor number badges
--   Room number and phone extension
--   Blue/cyan corporate palette
--   "You are here" indicator
+- 2-column grid of departments
+- Floor number badges
+- Room number and phone extension
+- Blue/cyan corporate palette
+- "You are here" indicator
 
 **Key Elements:**
 
@@ -342,11 +369,11 @@ Add sizing guidance in comments for future image integration.
 
 **Characteristics:**
 
--   2×2 grid of metric cards
--   Large numbers (7xl) for values
--   Green/red color coding for trends
--   Icons for each metric
--   Emerald accent gradients
+- 2×2 grid of metric cards
+- Large numbers (7xl) for values
+- Green/red color coding for trends
+- Icons for each metric
+- Emerald accent gradients
 
 **Key Elements:**
 
@@ -358,11 +385,11 @@ Add sizing guidance in comments for future image integration.
 
 **Characteristics:**
 
--   Vertical stack of event cards
--   Time badges with clock icons
--   Track/category color coding
--   Speaker names and room locations
--   Violet/fuchsia conference palette
+- Vertical stack of event cards
+- Time badges with clock icons
+- Track/category color coding
+- Speaker names and room locations
+- Violet/fuchsia conference palette
 
 **Key Elements:**
 
@@ -374,11 +401,11 @@ Add sizing guidance in comments for future image integration.
 
 **Characteristics:**
 
--   Large card stack
--   Icon containers with glass effect
--   Category badges
--   Pink/purple/indigo gradient palette
--   Grid texture overlay
+- Large card stack
+- Icon containers with glass effect
+- Category badges
+- Pink/purple/indigo gradient palette
+- Grid texture overlay
 
 **Key Elements:**
 
@@ -390,16 +417,22 @@ Add sizing guidance in comments for future image integration.
 
 **Characteristics:**
 
--   Centered content
--   Massive headline (12rem/14rem)
--   Animated ambient orbs
--   Minimal text
--   Dramatic gradient background
+- Centered content
+- Massive headline (12rem/14rem)
+- Animated ambient orbs
+- Minimal text
+- Dramatic gradient background
 
 **Key Elements:**
 
 ```tsx
-<div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-950 via-purple-950 to-pink-950 relative overflow-hidden">  {/* Animated orbs with staggered delays */}  <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-3xl animate-pulse" />  <div     className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-500/20 rounded-full blur-3xl animate-pulse"     style={{ animationDelay: '1s' }}  />    <div className="text-center relative z-10">    <h1 className="text-[12rem] font-bold bg-gradient-to-r from-blue-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">      Welcome    </h1>  </div></div>
+<div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-950 via-purple-950 to-pink-950 relative overflow-hidden">
+  {' '}
+  {/* Animated orbs with staggered delays */} <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-3xl animate-pulse" /> <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} /> <div className="text-center relative z-10">
+    {' '}
+    <h1 className="text-[12rem] font-bold bg-gradient-to-r from-blue-400 via-purple-300 to-pink-400 bg-clip-text text-transparent"> Welcome </h1>{' '}
+  </div>
+</div>
 ```
 
 [↑ Back to top](#table-of-contents)
@@ -439,7 +472,18 @@ export const signageExamples = [  // ... existing examples  {    id: 'retail-pro
 Create `apps/client/src/app/pages/signage/RetailPromo.spec.tsx`:
 
 ```tsx
-import { render, screen } from '@testing-library/react';import { RetailPromo } from './RetailPromo';describe('RetailPromo', () => {  it('renders the retail promo screen', () => {    render(<RetailPromo />);    expect(screen.getByTestId('retail-promo')).toBeInTheDocument();  });  it('displays promotional content', () => {    render(<RetailPromo />);    expect(screen.getByText(/special offer/i)).toBeInTheDocument();  });});
+import { render, screen } from '@testing-library/react';
+import { RetailPromo } from './RetailPromo';
+describe('RetailPromo', () => {
+  it('renders the retail promo screen', () => {
+    render(<RetailPromo />);
+    expect(screen.getByTestId('retail-promo')).toBeInTheDocument();
+  });
+  it('displays promotional content', () => {
+    render(<RetailPromo />);
+    expect(screen.getByText(/special offer/i)).toBeInTheDocument();
+  });
+});
 ```
 
 **Important:** Add `data-testid="retail-promo"` to your component's root div.
@@ -447,7 +491,7 @@ import { render, screen } from '@testing-library/react';import { RetailPromo } f
 ### 5. Verify
 
 ```bash
-# Run the apppnpm start# Navigate to http://localhost:4200/TheSignAge/#/signage/retail-promo# Check the gallery page shows the new example# Run testspnpm test:client
+# Run the apppnpm start# Navigate to http://localhost:4200/WallRun/#/signage/retail-promo# Check the gallery page shows the new example# Run testspnpm test:client
 ```
 
 [↑ Back to top](#table-of-contents)
@@ -462,19 +506,33 @@ The `@tsa/shadcnui-signage` library provides reusable signage-specific component
 
 **Layouts:**
 
--   `ScreenFrame` - Wrapper with safe zones and aspect ratio enforcement
--   `SplitScreen` - Two-column or two-row layouts
--   `FullscreenHero` - Centered content for welcome screens
+- `ScreenFrame` - Wrapper with safe zones and aspect ratio enforcement
+- `SplitScreen` - Two-column or two-row layouts
+- `FullscreenHero` - Centered content for welcome screens
 
 **Blocks:**
 
--   `InfoCardGrid` - Grid of information cards
--   (More components being added)
+- `InfoCardGrid` - Grid of information cards
+- (More components being added)
 
 ### Usage Example
 
 ```tsx
-import { ScreenFrame, InfoCardGrid } from '@tsa/shadcnui-signage';export const MySignage: FC = () => {  return (    <ScreenFrame resolution="1080p" safeZone={0.05}>      <InfoCardGrid        cards={[          { title: 'Card 1', content: 'Description' },          { title: 'Card 2', content: 'Description' },        ]}        columns={2}      />    </ScreenFrame>  );};
+import { ScreenFrame, InfoCardGrid } from '@tsa/shadcnui-signage';
+export const MySignage: FC = () => {
+  return (
+    <ScreenFrame resolution="1080p" safeZone={0.05}>
+      {' '}
+      <InfoCardGrid
+        cards={[
+          { title: 'Card 1', content: 'Description' },
+          { title: 'Card 2', content: 'Description' },
+        ]}
+        columns={2}
+      />{' '}
+    </ScreenFrame>
+  );
+};
 ```
 
 ### Creating New Library Components
@@ -523,10 +581,10 @@ See [shadcnui-signage Implementation Plan](../plans/2026-02-07-shadcnui-signage-
 
 **Check for:**
 
--   No console errors
--   Smooth animations (60fps)
--   No memory leaks (for 24/7 operation)
--   Proper cleanup of intervals/timers
+- No console errors
+- Smooth animations (60fps)
+- No memory leaks (for 24/7 operation)
+- Proper cleanup of intervals/timers
 
 ```tsx
 // Good: Cleanup in useEffectuseEffect(() => {  const interval = setInterval(() => {    // Update data  }, 5000);    return () => clearInterval(interval); // Cleanup!}, []);
@@ -536,9 +594,9 @@ See [shadcnui-signage Implementation Plan](../plans/2026-02-07-shadcnui-signage-
 
 For a 10-foot viewing distance on 1080p (1920×1080):
 
--   **Minimum text size:** 72pt / 96px ≈ `text-7xl`
--   **Recommended headline:** `text-8xl` (96px) or larger
--   **Body text:** `text-3xl` (30px) minimum
+- **Minimum text size:** 72pt / 96px ≈ `text-7xl`
+- **Recommended headline:** `text-8xl` (96px) or larger
+- **Body text:** `text-3xl` (30px) minimum
 
 **Formula:** 1 inch per 10 feet of distance = ~72pt at 1080p
 
@@ -564,8 +622,8 @@ User: "Build a menu"Agent: "I need to clarify a few things..."User: "Make reason
 
 **Solution:** Increase text sizes:
 
--   Headlines: `text-7xl` → `text-8xl` or `text-9xl`
--   Body: `text-xl` → `text-2xl` or `text-3xl`
+- Headlines: `text-7xl` → `text-8xl` or `text-9xl`
+- Body: `text-xl` → `text-2xl` or `text-3xl`
 
 ### Problem: Design Looks Flat/Amateur
 
@@ -585,10 +643,10 @@ User: "Build a menu"Agent: "I need to clarify a few things..."User: "Make reason
 
 **Solution:** Simplify content:
 
--   Use bullet points instead of paragraphs
--   Show only essential information
--   Split into multiple rotating slides
--   Use icons to replace text where possible
+- Use bullet points instead of paragraphs
+- Show only essential information
+- Split into multiple rotating slides
+- Use icons to replace text where possible
 
 ### Problem: Route Not Found
 
@@ -608,7 +666,7 @@ User: "Build a menu"Agent: "I need to clarify a few things..."User: "Make reason
 **Solution:** Check `tsconfig.base.json` for correct path mapping:
 
 ```json
-{  "compilerOptions": {    "paths": {      "@tsa/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"]    }  }}
+{ "compilerOptions": { "paths": { "@tsa/shadcnui-signage": ["libs/shadcnui-signage/src/index.ts"] } } }
 ```
 
 ### Problem: Animations Laggy on Hardware
@@ -618,7 +676,10 @@ User: "Build a menu"Agent: "I need to clarify a few things..."User: "Make reason
 **Solution:** Add `will-change`:
 
 ```tsx
-<div style={{ willChange: 'transform' }} className="animate-pulse">  {/* Content */}</div>
+<div style={{ willChange: 'transform' }} className="animate-pulse">
+  {' '}
+  {/* Content */}
+</div>
 ```
 
 [↑ Back to top](#table-of-contents)
@@ -627,10 +688,10 @@ User: "Build a menu"Agent: "I need to clarify a few things..."User: "Make reason
 
 ## Additional Resources
 
--   [Signage Architect Agent Definition](../../.github/agents/signage-architect.agent.md)
--   [shadcnui-signage Library Plan](../plans/2026-02-07-shadcnui-signage-library.md)
--   [Project Structure Guide](../getting-started/understanding-the-project-structure.md)
--   [Why SPA for Signage](../getting-started/why-spa-why.md)
+- [Signage Architect Agent Definition](../../.github/agents/signage-architect.agent.md)
+- [shadcnui-signage Library Plan](../plans/2026-02-07-shadcnui-signage-library.md)
+- [Project Structure Guide](../getting-started/understanding-the-project-structure.md)
+- [Why SPA for Signage](../getting-started/why-spa-why.md)
 
 ---
 

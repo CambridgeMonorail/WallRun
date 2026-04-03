@@ -5,7 +5,7 @@
 The shadcn-compatible registry at `apps/client/public/registry/registry.json` enables external users to install signage components via the shadcn CLI:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json component-name
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name
 ```
 
 This guide provides detailed procedures for maintaining accurate registry entries.
@@ -30,6 +30,7 @@ Each component entry requires:
 4. List all imported hooks, utilities, and types
 
 **Example:** For `Clock.tsx`:
+
 - Main file: `Clock.tsx`
 - Hook: `useTicker.ts` (imported)
 - Types: `time.types.ts` (imported by `useTicker.ts`)
@@ -46,11 +47,11 @@ For each file in the component:
 **Example imports:**
 
 ```typescript
-import { useMemo } from 'react';              // ❌ Don't include (React assumed)
-import { Button } from '@tsa/shadcnui';       // ❌ Don't include (workspace package)
-import { formatDistance } from 'date-fns';     // ✅ Include "date-fns"
-import { Calendar } from 'lucide-react';       // ✅ Include "lucide-react"
-import { cn } from '../utils/cn';              // Check if cn.ts is in files[]
+import { useMemo } from 'react'; // ❌ Don't include (React assumed)
+import { Button } from '@tsa/shadcnui'; // ❌ Don't include (workspace package)
+import { formatDistance } from 'date-fns'; // ✅ Include "date-fns"
+import { Calendar } from 'lucide-react'; // ✅ Include "lucide-react"
+import { cn } from '../utils/cn'; // Check if cn.ts is in files[]
 ```
 
 ### Step 3: Trace Transitive Dependencies
@@ -74,11 +75,13 @@ For each imported file (hooks, utilities, types):
 4. Don't copy descriptions from similar components
 
 **Bad description examples:**
+
 - "Shows elapsed time" (when component clamps at zero, not negative)
 - "Displays countdown with zoom effect" (when zoom transition doesn't exist)
 - Generic description copied from another component
 
 **Good description examples:**
+
 - "Displays time remaining until target. Stops at zero when target is reached."
 - "Rotates through child elements on interval with crossfade transition."
 
@@ -106,6 +109,7 @@ npx shadcn@latest add http://localhost:4173/registry/registry.json component-nam
 ```
 
 Verify:
+
 - All files copied correctly
 - No missing imports
 - Component runs without errors
@@ -115,18 +119,20 @@ Verify:
 ### Mistake 1: Copying Dependency Lists
 
 ❌ **Wrong:**
+
 ```json
 {
   "name": "countdown",
-  "dependencies": ["date-fns", "date-fns-tz"]  // Copied from another component
+  "dependencies": ["date-fns", "date-fns-tz"] // Copied from another component
 }
 ```
 
 ✅ **Correct:**
+
 ```json
 {
   "name": "countdown",
-  "dependencies": []  // Checked imports, uses only React and Intl API
+  "dependencies": [] // Checked imports, uses only React and Intl API
 }
 ```
 
@@ -135,6 +141,7 @@ Verify:
 ### Mistake 2: Missing Transitive Dependencies
 
 ❌ **Wrong:**
+
 ```json
 {
   "files": [
@@ -146,6 +153,7 @@ Verify:
 ```
 
 ✅ **Correct:**
+
 ```json
 {
   "files": [
@@ -161,20 +169,20 @@ Verify:
 ### Mistake 3: Wrong File Types
 
 ❌ **Wrong:**
+
 ```json
 {
   "files": [
-    { "path": ".../useTicker.ts", "type": "registry:component" }  // It's a hook!
+    { "path": ".../useTicker.ts", "type": "registry:component" } // It's a hook!
   ]
 }
 ```
 
 ✅ **Correct:**
+
 ```json
 {
-  "files": [
-    { "path": ".../useTicker.ts", "type": "registry:lib" }
-  ]
+  "files": [{ "path": ".../useTicker.ts", "type": "registry:lib" }]
 }
 ```
 
@@ -183,6 +191,7 @@ Verify:
 ### Mistake 4: Inaccurate Descriptions
 
 ❌ **Wrong:**
+
 ```json
 {
   "description": "Shows time remaining with negative values when expired"
@@ -190,11 +199,13 @@ Verify:
 ```
 
 When actual code:
+
 ```typescript
-const remaining = Math.max(0, targetMs - nowMs);  // Clamps at zero!
+const remaining = Math.max(0, targetMs - nowMs); // Clamps at zero!
 ```
 
 ✅ **Correct:**
+
 ```json
 {
   "description": "Shows time remaining until target. Stops at zero when reached."
@@ -225,10 +236,11 @@ Before committing registry changes:
 Always use this format in documentation:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json component-name
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name
 ```
 
 **Key points:**
+
 - Full registry URL with `/registry.json`
 - Component name after the URL (not in URL path)
 - Space-separated for multiple components
@@ -236,12 +248,13 @@ npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/re
 ### Multiple Components
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/TheSignAge/registry/registry.json clock countdown metric-card
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json clock countdown metric-card
 ```
 
 ### Incorrect Patterns
 
 ❌ Don't use:
+
 - Two-step process: `shadcn add registry` then `shadcn add component`
 - Individual JSON URLs: `.../registry/clock.json`
 - Missing `/registry.json`: `.../registry`
@@ -277,6 +290,7 @@ Add dependencies and files as needed following the verification workflow above.
 **Cause:** Package not in `dependencies` array
 
 **Fix:** Add the package to `dependencies`:
+
 ```json
 "dependencies": ["package-name"]
 ```

@@ -1,6 +1,6 @@
 # shadcnui-signage
 
-`@tsa/shadcnui-signage` is The Sign Age's React component library for building full-screen digital signage.
+`@tsa/shadcnui-signage` is WallRun's React component library for building full-screen digital signage.
 
 It is designed for screens that live on walls, run for long periods, and need to communicate clearly from a distance. Instead of treating signage like a responsive web page, this library treats it like a fixed-format software surface with explicit layout, readable typography, predictable timing, and operational safeguards.
 
@@ -42,9 +42,9 @@ This library is useful because it is built around those constraints from the sta
 
 In short, this library helps you build signage as software rather than approximating signage with generic web components.
 
-## Relationship to the Rest of The Sign Age
+## Relationship to the Rest of WallRun
 
-This library builds on The Sign Age's broader component foundations:
+This library builds on WallRun's broader component foundations:
 
 - **`@tsa/shadcnui`** for base shadcn/ui components
 - **`@tsa/shadcnui-blocks`** for more general UI compositions
@@ -142,7 +142,7 @@ All layout components use fixed sizing and explicit aspect ratios. There are no 
 
 ## Installation
 
-This library is part of The Sign Age monorepo. Import components using the workspace path:
+This library is part of WallRun monorepo. Import components using the workspace path:
 
 ```typescript
 import { ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid } from '@tsa/shadcnui-signage';

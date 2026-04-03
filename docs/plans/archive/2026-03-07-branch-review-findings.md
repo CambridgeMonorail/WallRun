@@ -31,7 +31,7 @@ This branch implements a complete BrightSign deployment workflow for React 19 + 
 ```tsx
 it('should render the status page title', () => {
   const { getByText } = render(<App />);
-  expect(getByText('The Sign Age')).toBeTruthy();
+  expect(getByText('WallRun')).toBeTruthy();
   expect(getByText('Player Status Monitor')).toBeTruthy();
 });
 ```

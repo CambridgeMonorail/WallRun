@@ -460,7 +460,7 @@ Versions are read from package.json:
 
 ```json
 {
-  "name": "TheSignAge",
+  "name": "WallRun",
   "version": "1.2.3"
 }
 ```
@@ -556,6 +556,6 @@ The repository includes specialized skills for AI-assisted development:
 
 For issues or questions:
 
-- **Bug reports:** [GitHub Issues](https://github.com/CambridgeMonorail/TheSignAge/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/CambridgeMonorail/TheSignAge/discussions)
+- **Bug reports:** [GitHub Issues](https://github.com/CambridgeMonorail/WallRun/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/CambridgeMonorail/WallRun/discussions)
 - **Contributing:** [docs/contributing/CONTRIBUTING.md](../contributing/CONTRIBUTING.md)
