@@ -11,9 +11,9 @@ export type RouteSeoEntry = {
 };
 
 const siteName = 'WallRun';
-const siteHost = 'https://cambridgemonorail.github.io';
-const siteBasePath = '/WallRun';
-const siteImage = `${siteHost}${siteBasePath}/assets/images/social.png`;
+const siteHost = 'https://wallrun.dev';
+const siteBasePath = '';
+const siteImage = `${siteHost}/assets/images/social.png`;
 const defaultDescription =
   'WallRun is a developer-first workspace for building real digital signage with modern web tooling, signage-ready UI primitives, and BrightSign deployment workflows.';
 const defaultKeywords =

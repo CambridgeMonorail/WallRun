@@ -1,4 +1,6 @@
+# With custom domain wallrun.dev, robots.txt is now at the host root
+
 User-agent: *
 Allow: /
 
-Sitemap: https://cambridgemonorail.github.io/TheSignAge/sitemap.xml
+Sitemap: https://wallrun.dev/sitemap.xml

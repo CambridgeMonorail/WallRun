@@ -1,6 +1,7 @@
 {
-  "name": "TheSignAge",
-  "short_name": "TheSignAge",
+  "name": "WallRun",
+  "short_name": "WallRun",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

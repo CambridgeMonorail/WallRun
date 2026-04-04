@@ -11,7 +11,7 @@ Add the registry to your `components.json`:
 ```json
 {
   "registries": {
-    "shadcnui-signage": "https://cambridgemonorail.github.io/WallRun/registry"
+    "shadcnui-signage": "https://wallrun.dev/registry"
   }
 }
 ```
@@ -54,9 +54,9 @@ All component source code is available in this repository. Copy the component fi
 
 Full documentation and live examples:
 
-- **Demo Site**: https://cambridgemonorail.github.io/WallRun/
-- **Components**: https://cambridgemonorail.github.io/WallRun/#/components
-- **Storybook**: https://cambridgemonorail.github.io/WallRun/storybook/
+- **Demo Site**: https://wallrun.dev/
+- **Components**: https://wallrun.dev/#/components
+- **Storybook**: https://wallrun.dev/storybook/
 
 ## Dependencies
 
