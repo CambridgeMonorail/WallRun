@@ -1,9 +1,6 @@
-# Note: On GitHub Pages project sites, this robots.txt is served at
-# /WallRun/robots.txt, not the host root. Crawlers requesting
-# https://cambridgemonorail.github.io/robots.txt won't see this file.
-# This is a known limitation unless using a custom domain.
+# With custom domain wallrun.dev, robots.txt is now at the host root
 
 User-agent: *
 Allow: /
 
-Sitemap: https://cambridgemonorail.github.io/WallRun/sitemap.xml
+Sitemap: https://wallrun.dev/sitemap.xml

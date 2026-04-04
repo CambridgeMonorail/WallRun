@@ -2,13 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { getCanonicalUrl, getRouteSeo } from './routeSeo';
 
 describe('routeSeo', () => {
-  it('should build canonical URLs for the deployed site base path', () => {
-    expect(getCanonicalUrl('/')).toBe(
-      'https://cambridgemonorail.github.io/WallRun/',
-    );
-    expect(getCanonicalUrl('/tooling')).toBe(
-      'https://cambridgemonorail.github.io/WallRun/tooling',
-    );
+  it('should build canonical URLs for the custom domain', () => {
+    expect(getCanonicalUrl('/')).toBe('https://wallrun.dev/');
+    expect(getCanonicalUrl('/tooling')).toBe('https://wallrun.dev/tooling');
   });
 
   it('should return route-specific metadata for known pages', () => {
