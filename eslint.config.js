@@ -28,7 +28,11 @@ export default [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
+          allow: [
+            '^.*/eslint(\\.base)?\\.config\\.[cm]?js$',
+            // Tailwind config presets use relative paths (CommonJS require, not TS aliases)
+            '^\\.\\./.*/common-tailwind/tailwind\\.config\\.js$',
+          ],
           depConstraints: [
             {
               sourceTag: '*',

@@ -4,13 +4,12 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // eslint-disable-next-line @nx/enforce-module-boundaries
   presets: [require('../../libs/common-tailwind/tailwind.config.js')],
   darkMode: ['class'],
   content: [
     join(
       __dirname,
-      '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+      '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}',
     ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
@@ -39,5 +38,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  // tailwindcss-animate provided by common-tailwind preset
+  plugins: [],
 };
