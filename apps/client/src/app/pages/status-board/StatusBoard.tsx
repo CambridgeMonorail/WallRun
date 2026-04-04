@@ -21,6 +21,7 @@ import {
   Input,
 } from '@wallrun/shadcnui';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Logo } from '@wallrun/shadcnui-blocks';
 import { navigationConfig } from '../../constants/navigationConfig';
 
@@ -71,6 +72,7 @@ const maintenanceSchedule = [
 ];
 
 export function StatusBoardPage() {
+  const navigate = useNavigate();
   const [statusData, setStatusData] = useState([
     { name: 'TRANSMIT', status: 'yellow' },
     { name: 'UNISON', status: 'red' },
@@ -105,9 +107,7 @@ export function StatusBoardPage() {
         </div>
         <Button
           variant="secondary"
-          onClick={() =>
-            (window.location.href = navigationConfig.paths.gallery)
-          }
+          onClick={() => navigate(navigationConfig.paths.gallery)}
         >
           View Gallery
         </Button>
