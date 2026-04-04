@@ -1,3 +1,8 @@
+# Note: On GitHub Pages project sites, this robots.txt is served at
+# /WallRun/robots.txt, not the host root. Crawlers requesting
+# https://cambridgemonorail.github.io/robots.txt won't see this file.
+# This is a known limitation unless using a custom domain.
+
 User-agent: *
 Allow: /
 
