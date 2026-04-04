@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cambridgemonorail.github.io/TheSignAge/sitemap.xml
+Sitemap: https://cambridgemonorail.github.io/WallRun/sitemap.xml
