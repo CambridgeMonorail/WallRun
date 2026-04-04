@@ -5,7 +5,9 @@
     <title>WallRun</title>
     <script>
       (function () {
-        var segmentCount = 1;
+        // segmentCount = 0 for root domain (wallrun.dev)
+        // segmentCount = 1 for subdirectory deployment (github.io/repo/)
+        var segmentCount = 0;
         var pathname = window.location.pathname
           .split('/')
           .slice(0, 1 + segmentCount)
