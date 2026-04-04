@@ -1,4 +1,5 @@
 import { Button } from '@wallrun/shadcnui';
+import { Link } from 'react-router-dom';
 import imageSrc from '../../../assets/images/shad-samples.svg';
 
 const EXTERNAL_LINKS = {
@@ -35,12 +36,12 @@ export function LibraryPage() {
             shadcn/ui
           </a>
           , React 19, and Tailwind v4. See{' '}
-          <button
-            onClick={() => (window.location.href = '/getting-started')}
+          <Link
+            to="/getting-started"
             className="text-foreground hover:underline"
           >
             Getting Started
-          </button>{' '}
+          </Link>{' '}
           for installation.
         </p>
       </div>

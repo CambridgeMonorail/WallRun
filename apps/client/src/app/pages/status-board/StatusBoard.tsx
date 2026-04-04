@@ -21,6 +21,7 @@ import {
   Input,
 } from '@wallrun/shadcnui';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from '@wallrun/shadcnui-blocks';
 import { navigationConfig } from '../../constants/navigationConfig';
 
@@ -103,13 +104,8 @@ export function StatusBoardPage() {
           />
           <h1 className="text-4xl font-bold text-primary">Status Board</h1>
         </div>
-        <Button
-          variant="secondary"
-          onClick={() =>
-            (window.location.href = navigationConfig.paths.gallery)
-          }
-        >
-          View Gallery
+        <Button variant="secondary" asChild>
+          <Link to={navigationConfig.paths.gallery}>View Gallery</Link>
         </Button>
       </header>
 
