@@ -18,11 +18,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Set up Node.js
+      # Set up Node.js with version 24 (Active LTS)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
 
       # Install pnpm
       - name: Install pnpm
