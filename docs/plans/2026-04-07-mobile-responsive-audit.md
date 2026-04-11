@@ -72,7 +72,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 4 | `/getting-started` | Getting Started | ✅ Fixed and verified |
 | 5 | `/gallery` | Gallery | ✅ Fixed and verified |
 | 6 | `/tooling` | Tooling | ✅ Fixed and verified |
-| 7 | `/skills` | Skills | ⬜ Not started |
+| 7 | `/skills` | Skills | ✅ Fixed and verified |
 | 8 | `/color-palette` | Color Palette | ⬜ Not started |
 | 9 | `/library` | Library | ⬜ Not started |
 | 10 | `/how-to` | How-To Index | ⬜ Not started |
@@ -278,5 +278,33 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No horizontal overflow (`scrollWidth === viewport width`)
 - All page-level CTAs verified at 44px height after fix
+
+---
+
+### Page 7 — Skills (`/skills`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Footer CTA cluster was undersized on mobile** — the page-level actions at the bottom of the Skills page rendered at 36px height, below the 44px touch target baseline.
+
+**Fix applied:**
+
+- Set the footer CTA buttons to 44px height on mobile
+- Preserved existing internal and external link semantics
+- Kept the wrapping footer layout for narrow viewports
+
+**Code references:**
+
+- [apps/client/src/app/pages/skills/Skills.tsx](../../apps/client/src/app/pages/skills/Skills.tsx)
+
+**Verification:**
+
+- Route tested: `/skills`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Footer CTA cluster verified at 44px height after fix
 
 ---
