@@ -21,6 +21,7 @@ import {
   SidebarData,
 } from './sidebarContext';
 import { Logo } from '@wallrun/shadcnui-blocks';
+import { useIsMobile } from '@wallrun/shadcnui';
 
 interface LayoutProps {
   /** The main content to be displayed within the layout */
@@ -43,7 +44,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
-  const isLargeScreen = window.innerWidth > 1024;
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', theme === 'light');
@@ -51,12 +52,12 @@ export function Layout({ children, sidebarData }: LayoutProps) {
   }, [theme]);
 
   return (
-    <SidebarProvider defaultOpen={isLargeScreen}>
+    <SidebarProvider defaultOpen={!isMobile}>
       <SidebarDataProvider data={sidebarData}>
         <AppSidebar />
-        <SidebarInset className="flex min-h-svh w-full flex-col bg-transparent">
+        <SidebarInset className="flex min-h-svh min-w-0 flex-col bg-transparent">
           <header
-            className="chrome-shell sticky top-0 z-20 mx-3 mt-3 flex h-16 shrink-0 items-center justify-between gap-2 px-4 transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 w-auto max-w-none"
+            className="chrome-shell sticky top-0 z-20 mx-0 mt-0 flex h-14 shrink-0 items-center justify-between gap-2 px-4 transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 sm:h-16 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
             data-testid="header"
             role="banner"
           >
@@ -139,7 +140,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 asChild
-                className="rounded-full"
+                className="hidden rounded-full sm:inline-flex"
                 title="Open Storybook"
                 aria-label="Open Storybook"
                 data-testid="storybook-link"
