@@ -69,7 +69,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 
 | # | Route | Page | Status |
 | --- | --- | --- | --- |
-| 4 | `/getting-started` | Getting Started | ⬜ Not started |
+| 4 | `/getting-started` | Getting Started | ✅ Fixed and verified |
 | 5 | `/gallery` | Gallery | ⬜ Not started |
 | 6 | `/tooling` | Tooling | ⬜ Not started |
 | 7 | `/skills` | Skills | ⬜ Not started |
@@ -185,5 +185,37 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Sidebar opens as a modal sheet on mobile and locks body scroll while open
 - Header remains full-width and unclipped on mobile
 - Mobile control sizes verified at 44px for sidebar, theme, and GitHub actions after fix
+
+---
+
+### Page 4 — Getting Started (`/getting-started`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Some content actions used buttons for navigation** — external documentation actions inside prose were implemented as buttons with `window.open`, which is the wrong interaction model and weakens accessibility.
+2. **Primary content CTAs needed mobile-sized hit areas** — page-level action buttons were visually acceptable but needed explicit 44px sizing to satisfy the mobile touch target baseline consistently.
+3. **Bottom CTA group needed mobile-safe wrapping** — the final action row relied on horizontal spacing rather than a wrapping layout.
+
+**Fix applied:**
+
+- Replaced prose navigation buttons with semantic external links for Storybook and the signage architect agent document
+- Linked the signage architect reference to the actual GitHub file path rather than the repository root
+- Set page-level CTA buttons to 44px height on mobile
+- Changed the bottom CTA group to a wrapping flex layout with gaps for narrow viewports
+
+**Code references:**
+
+- [apps/client/src/app/pages/getting-started/GettingStarted.tsx](../../apps/client/src/app/pages/getting-started/GettingStarted.tsx)
+
+**Verification:**
+
+- Route tested: `/getting-started`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Page-level CTAs verified at 44px height after fix
+- External documentation actions now render as links with `_blank` and `rel="noopener noreferrer"`
 
 ---
