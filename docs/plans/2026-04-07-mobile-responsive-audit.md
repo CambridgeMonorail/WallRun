@@ -71,7 +71,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | --- | --- | --- | --- |
 | 4 | `/getting-started` | Getting Started | ✅ Fixed and verified |
 | 5 | `/gallery` | Gallery | ✅ Fixed and verified |
-| 6 | `/tooling` | Tooling | ⬜ Not started |
+| 6 | `/tooling` | Tooling | ✅ Fixed and verified |
 | 7 | `/skills` | Skills | ⬜ Not started |
 | 8 | `/color-palette` | Color Palette | ⬜ Not started |
 | 9 | `/library` | Library | ⬜ Not started |
@@ -250,5 +250,33 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - All example cards render as links with route targets and `aria-label` text
 - No undersized interactive elements found in the gallery grid after the fix
+
+---
+
+### Page 6 — Tooling (`/tooling`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Page-level CTAs were undersized on mobile** — deployment, discovery, skills, and footer actions rendered at 36px height, below the 44px touch target baseline.
+
+**Fix applied:**
+
+- Set all page-level CTA buttons on the Tooling page to 44px height
+- Preserved existing link semantics for internal and external destinations
+- Kept the existing wrapping layouts for narrow viewports
+
+**Code references:**
+
+- [apps/client/src/app/pages/tooling/Tooling.tsx](../../apps/client/src/app/pages/tooling/Tooling.tsx)
+
+**Verification:**
+
+- Route tested: `/tooling`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- All page-level CTAs verified at 44px height after fix
 
 ---
