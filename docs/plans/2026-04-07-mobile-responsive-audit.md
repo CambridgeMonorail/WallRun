@@ -75,7 +75,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 7 | `/skills` | Skills | ✅ Fixed and verified |
 | 8 | `/color-palette` | Color Palette | ✅ Fixed and verified |
 | 9 | `/library` | Library | ✅ Fixed and verified |
-| 10 | `/how-to` | How-To Index | ⬜ Not started |
+| 10 | `/how-to` | How-To Index | ✅ Fixed and verified |
 | 11 | `/how-to/custom-agents` | Custom Agents Guide | ⬜ Not started |
 | 12 | `/how-to/design-brief` | Design Brief Guide | ⬜ Not started |
 | 13 | `/how-to/build-signage` | Build Signage Guide | ⬜ Not started |
@@ -365,5 +365,34 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No horizontal overflow (`scrollWidth === viewport width`)
 - All page-level CTAs verified at 44px height after fix
+
+---
+
+### Page 10 — How-To Index (`/how-to`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **More Resources links were undersized on mobile** — the inline footer resource links for Skills and Tooling rendered at 21px height, below the 44px touch target baseline.
+
+**Fix applied:**
+
+- Converted the More Resources block from prose-style inline links into a clearer list of mobile-sized resource links
+- Set each resource link to a 44px minimum height on mobile
+- Preserved the existing guide-card layout and route structure
+
+**Code references:**
+
+- [apps/client/src/app/pages/how-to/HowTo.tsx](../../apps/client/src/app/pages/how-to/HowTo.tsx)
+
+**Verification:**
+
+- Route tested: `/how-to`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Workflow guide cards remain full-size links
+- More Resources links verified at 44px height after fix
 
 ---

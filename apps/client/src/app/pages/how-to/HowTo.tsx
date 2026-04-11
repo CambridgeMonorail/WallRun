@@ -123,38 +123,35 @@ export const HowToPage: FC = () => {
         <h2 className="mb-4 text-2xl font-medium text-foreground">
           More Resources
         </h2>
-        <div className="space-y-3 text-muted-foreground">
-          <p>
-            For general information about getting started with WallRun, see the{' '}
+        <ul className="space-y-3 text-muted-foreground">
+          <li>
             <Link
               to="/getting-started"
-              className="text-foreground underline hover:no-underline"
+              className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
             >
               Getting Started
-            </Link>{' '}
-            guide.
-          </p>
-          <p>
-            For information about installable Copilot skills, see the{' '}
+            </Link>
+            <span className="ml-2">guide for the full project setup flow.</span>
+          </li>
+          <li>
             <Link
               to="/skills"
-              className="text-foreground underline hover:no-underline"
+              className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
             >
               Skills
-            </Link>{' '}
-            documentation.
-          </p>
-          <p>
-            For tooling and deployment workflows, see{' '}
+            </Link>
+            <span className="ml-2">documentation for installable Copilot skills.</span>
+          </li>
+          <li>
             <Link
               to="/tooling"
-              className="text-foreground underline hover:no-underline"
+              className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
             >
-              Tooling & Deployment
+              Tooling &amp; Deployment
             </Link>
-            .
-          </p>
-        </div>
+            <span className="ml-2">for packaging, player discovery, and deployment workflows.</span>
+          </li>
+        </ul>
       </section>
     </div>
   );
