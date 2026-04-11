@@ -74,7 +74,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 6 | `/tooling` | Tooling | ✅ Fixed and verified |
 | 7 | `/skills` | Skills | ✅ Fixed and verified |
 | 8 | `/color-palette` | Color Palette | ✅ Fixed and verified |
-| 9 | `/library` | Library | ⬜ Not started |
+| 9 | `/library` | Library | ✅ Fixed and verified |
 | 10 | `/how-to` | How-To Index | ⬜ Not started |
 | 11 | `/how-to/custom-agents` | Custom Agents Guide | ⬜ Not started |
 | 12 | `/how-to/design-brief` | Design Brief Guide | ⬜ Not started |
@@ -336,5 +336,34 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Tab triggers verified at 44px height after fix
 - Theme resource links verified at 44px height after fix
+
+---
+
+### Page 9 — Library (`/library`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Page-level CTAs were undersized on mobile** — GitHub, Storybook, resource, and footer actions rendered at 36px height, below the 44px touch target baseline.
+2. **Footer CTA row relied on a non-wrapping flex layout** — narrow screens were safe in this viewport, but the layout should not depend on that remaining true at slightly smaller widths.
+
+**Fix applied:**
+
+- Set all page-level CTA buttons on the Library page to 44px height
+- Changed the footer CTA row to a wrapping flex layout with gaps for narrow viewports
+- Preserved existing internal and external link semantics
+
+**Code references:**
+
+- [apps/client/src/app/pages/library/Library.tsx](../../apps/client/src/app/pages/library/Library.tsx)
+
+**Verification:**
+
+- Route tested: `/library`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- All page-level CTAs verified at 44px height after fix
 
 ---

@@ -82,7 +82,7 @@ export function LibraryPage() {
             <li>Deterministic rendering for known resolutions</li>
             <li>Designed for always-on, unattended displays</li>
           </ul>
-          <Button asChild variant={'secondary'}>
+          <Button asChild variant={'secondary'} className="h-11">
             <a
               href={EXTERNAL_LINKS.github}
               target="_blank"
@@ -184,7 +184,7 @@ npx shadcn@latest add \\
           usage examples. All components include interactive controls and
           real-world scenarios.
         </p>
-        <Button asChild variant={'secondary'}>
+        <Button asChild variant={'secondary'} className="h-11">
           <a
             href={EXTERNAL_LINKS.storybook}
             target="_blank"
@@ -205,7 +205,7 @@ npx shadcn@latest add \\
         </p>
         <ul className="list-none space-y-2">
           <li>
-            <Button asChild variant={'ghost'}>
+            <Button asChild variant={'ghost'} className="h-11">
               <a
                 href={EXTERNAL_LINKS.readme}
                 target="_blank"
@@ -216,7 +216,7 @@ npx shadcn@latest add \\
             </Button>
           </li>
           <li>
-            <Button asChild variant={'ghost'}>
+            <Button asChild variant={'ghost'} className="h-11">
               <a
                 href={EXTERNAL_LINKS.roadmap}
                 target="_blank"
@@ -227,7 +227,7 @@ npx shadcn@latest add \\
             </Button>
           </li>
           <li>
-            <Button asChild variant={'ghost'}>
+            <Button asChild variant={'ghost'} className="h-11">
               <a
                 href={EXTERNAL_LINKS.github}
                 target="_blank"
@@ -238,7 +238,7 @@ npx shadcn@latest add \\
             </Button>
           </li>
           <li>
-            <Button asChild variant={'ghost'}>
+            <Button asChild variant={'ghost'} className="h-11">
               <a
                 href={EXTERNAL_LINKS.shadcn}
                 target="_blank"
@@ -259,8 +259,8 @@ npx shadcn@latest add \\
           Storybook provides interactive previews, props documentation, and
           real-world usage examples for all components.
         </p>
-        <div className="flex gap-3 justify-center">
-          <Button asChild variant={'secondary'}>
+        <div className="flex flex-wrap justify-center gap-3">
+          <Button asChild variant={'secondary'} className="h-11">
             <a
               href={EXTERNAL_LINKS.storybook}
               target="_blank"
@@ -269,7 +269,7 @@ npx shadcn@latest add \\
               Open Storybook
             </a>
           </Button>
-          <Button asChild variant={'secondary'}>
+          <Button asChild variant={'secondary'} className="h-11">
             <a
               href={EXTERNAL_LINKS.github}
               target="_blank"
