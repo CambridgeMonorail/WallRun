@@ -76,7 +76,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 8 | `/color-palette` | Color Palette | ✅ Fixed and verified |
 | 9 | `/library` | Library | ✅ Fixed and verified |
 | 10 | `/how-to` | How-To Index | ✅ Fixed and verified |
-| 11 | `/how-to/custom-agents` | Custom Agents Guide | ⬜ Not started |
+| 11 | `/how-to/custom-agents` | Custom Agents Guide | ✅ Fixed and verified |
 | 12 | `/how-to/design-brief` | Design Brief Guide | ⬜ Not started |
 | 13 | `/how-to/build-signage` | Build Signage Guide | ⬜ Not started |
 | 14 | `/how-to/deploy-brightsign` | Deploy BrightSign Guide | ⬜ Not started |
@@ -394,5 +394,35 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Workflow guide cards remain full-size links
 - More Resources links verified at 44px height after fix
+
+---
+
+### Page 11 — Custom Agents Guide (`/how-to/custom-agents`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Inline guide links were undersized on mobile** — the linked agent names in the Available Agents section rendered at 19px height, below the 44px touch target baseline.
+2. **Invocation examples did not declare horizontal scrolling** — the longer preformatted example exceeded the visible width of its container without an explicit overflow rule.
+
+**Fix applied:**
+
+- Increased the linked agent references to 44px minimum height on mobile
+- Added explicit horizontal scrolling to both invocation example blocks
+- Preserved the existing section layout and route structure
+
+**Code references:**
+
+- [apps/client/src/app/pages/how-to/CustomAgents.tsx](../../apps/client/src/app/pages/how-to/CustomAgents.tsx)
+
+**Verification:**
+
+- Route tested: `/how-to/custom-agents`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Linked agent references verified at 44px height after fix
+- Long invocation example scrolls horizontally within its code block
 
 ---
