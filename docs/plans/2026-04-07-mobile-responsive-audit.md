@@ -3,7 +3,7 @@
 **Branch:** `fix/mobile-responsive-audit`
 **Date:** 2026-04-07
 **Device reference:** Pixel 9 (412 × 924 CSS pixels, viewport width 412px)
-**Target:** `http://localhost:4201/`
+**Target:** `http://localhost:4200/`
 **Feedback:** "The site has too many things that don't render neatly on my mobile view"
 
 ## How to Work This Audit
@@ -14,14 +14,23 @@
 > causes the message context to exceed size limits. Follow this workflow instead:
 >
 > 1. **Pick ONE page** (or 2-3 small related pages) per session.
-> 2. **Screenshot, diagnose, and fix** that page only.
-> 3. **Update this document** — mark the page status, log findings, and commit.
-> 4. **Start a new chat session** for the next page.
+> 2. **Diagnose and fix first** using text notes, DOM inspection, and targeted code references.
+> 3. **Use screenshots only when necessary** and cap them at **one mobile screenshot per page**.
+> 4. **Update this document** — mark the page status, log findings, and commit.
+> 5. **Start a new chat session** for the next page.
 >
 > Do NOT attempt to screenshot or audit all pages in a single conversation.
+> Do NOT collect "before/after" galleries for routine fixes inside chat.
 > The goal is steady incremental progress with a persistent written record.
 >
+> ### Evidence budget per page
+>
+> - Default: **0 screenshots**
+> - Allowed when needed: **1 screenshot** showing the current mobile issue or final verification state
+> - Always prefer brief written evidence: route, viewport, issue, fix, verification result
+>
 > ### Status key
+>
 > - ⬜ Not started
 > - 🔍 Audited — issues logged below
 > - 🔧 Fix in progress
@@ -51,15 +60,15 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 ### Priority 1 — First Impressions
 
 | # | Route | Page | Status |
-|---|-------|------|--------|
+| --- | --- | --- | --- |
 | 1 | `/` | Landing Page | ✅ Fixed and verified |
-| 2 | (shell) | Sidebar + Header (Layout) | ⬜ Not started |
+| 2 | (shell) | Sidebar + Header (Layout) | ✅ Fixed and verified |
 | 3 | `*` (404) | Not Found | ⬜ Not started |
 
 ### Priority 2 — Main Content Pages
 
 | # | Route | Page | Status |
-|---|-------|------|--------|
+| --- | --- | --- | --- |
 | 4 | `/getting-started` | Getting Started | ⬜ Not started |
 | 5 | `/gallery` | Gallery | ⬜ Not started |
 | 6 | `/tooling` | Tooling | ⬜ Not started |
@@ -75,7 +84,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 ### Priority 3 — Component Documentation
 
 | # | Route | Page | Status |
-|---|-------|------|--------|
+| --- | --- | --- | --- |
 | 15 | `/components` | Component Index | ⬜ Not started |
 | 16 | `/components/primitives/metric-card` | Metric Card Doc | ⬜ Not started |
 | 17 | `/components/primitives/screen-frame` | Screen Frame Doc | ⬜ Not started |
@@ -91,7 +100,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 ### Priority 4 — Signage Example Screens
 
 | # | Route | Page | Status |
-|---|-------|------|--------|
+| --- | --- | --- | --- |
 | 32 | `/signage/welcome` | Welcome Screen | ⬜ Not started |
 | 33 | `/signage/menu` | Restaurant Menu | ⬜ Not started |
 | 34 | `/signage/wayfinding` | Office Directory | ⬜ Not started |
@@ -126,9 +135,11 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 **Severity:** High
 
 **Issues found:**
+
 1. **No mobile navigation visible** — On phone-width viewports there was no hamburger menu or any navigation affordance. Users landing on `/` had no way to navigate to other pages without knowing URLs.
 
 **Fix applied:**
+
 - Created `LandingNav` component ([apps/client/src/app/pages/landing/LandingNav.tsx](../../apps/client/src/app/pages/landing/LandingNav.tsx))
 - Sticky header with `WallRun` wordmark (left) and hamburger (right) on mobile (`< md`)
 - Desktop: inline links (Get Started, Gallery, Tooling, Library, GitHub icon)
@@ -142,6 +153,37 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 
 ### Page 2 — Sidebar + Header (shell)
 
-_(Not started)_
+**Status:** ✅ Fixed and verified
+**Severity:** High
+
+**Issues found:**
+
+1. **Header touch targets too small on mobile** — the sidebar trigger rendered at ~28px and the theme/GitHub controls at 36px, below the 44px touch target baseline.
+2. **Header chrome too dense at 412px** — the divider between the trigger and breadcrumb spent horizontal space without adding much value on mobile.
+
+**Fix applied:**
+
+- Mobile shell state uses `useIsMobile` instead of `window.innerWidth` for sidebar default-open behaviour
+- Header chrome is flush to the viewport on small screens with reduced height
+- `SidebarInset` includes `min-w-0` to reduce horizontal overflow risk
+- Storybook icon is hidden on small screens to reduce header crowding
+- Mobile-specific `.chrome-shell` overrides were added in global styles
+- Sidebar trigger now uses a 44px mobile hit area
+- Theme and GitHub controls now use 44px mobile hit areas
+- Header separator is hidden on small screens to preserve space for the breadcrumb
+
+**Code references:**
+
+- [apps/client/src/styles.css](../../apps/client/src/styles.css)
+- [libs/shell/src/lib/layouts/Layout.tsx](../../libs/shell/src/lib/layouts/Layout.tsx)
+
+**Verification:**
+
+- Route tested: `/getting-started`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Sidebar opens as a modal sheet on mobile and locks body scroll while open
+- Header remains full-width and unclipped on mobile
+- Mobile control sizes verified at 44px for sidebar, theme, and GitHub actions after fix
 
 ---

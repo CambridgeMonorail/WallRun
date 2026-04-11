@@ -67,11 +67,14 @@ export function Layout({ children, sidebarData }: LayoutProps) {
               aria-label="Breadcrumb navigation"
             >
               <SidebarTrigger
-                className="chrome-pill -ml-1 rounded-full"
+                className="chrome-pill -ml-1 h-11 w-11 rounded-full sm:h-8 sm:w-8"
                 data-testid="sidebar-trigger"
                 aria-label="Toggle sidebar"
               />
-              <Separator orientation="vertical" className="mr-2 h-4" />
+              <Separator
+                orientation="vertical"
+                className="mr-2 hidden h-4 sm:block"
+              />
               <Breadcrumb>
                 <BreadcrumbList>
                   {pathnames.map((value, index) => {
@@ -109,7 +112,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                className="rounded-full"
+                className="h-11 w-11 rounded-full sm:h-9 sm:w-9"
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                 data-testid="theme-toggle-button"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -122,7 +125,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 asChild
-                className="rounded-full"
+                className="h-11 w-11 rounded-full sm:h-9 sm:w-9"
                 title="View GitHub repository"
                 data-testid="github-link"
                 aria-label="View GitHub repository"
