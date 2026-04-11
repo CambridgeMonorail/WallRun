@@ -70,7 +70,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | # | Route | Page | Status |
 | --- | --- | --- | --- |
 | 4 | `/getting-started` | Getting Started | ✅ Fixed and verified |
-| 5 | `/gallery` | Gallery | ⬜ Not started |
+| 5 | `/gallery` | Gallery | ✅ Fixed and verified |
 | 6 | `/tooling` | Tooling | ⬜ Not started |
 | 7 | `/skills` | Skills | ⬜ Not started |
 | 8 | `/color-palette` | Color Palette | ⬜ Not started |
@@ -217,5 +217,38 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Page-level CTAs verified at 44px height after fix
 - External documentation actions now render as links with `_blank` and `rel="noopener noreferrer"`
+
+---
+
+### Page 5 — Gallery (`/gallery`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Example cards were not semantic navigation elements** — gallery cards navigated via `onClick` on a `Card`, so they did not expose proper link semantics for keyboard, accessibility, or touch affordances.
+2. **Gallery footer copy was mouse-centric** — the instruction text used "Click" rather than neutral wording that also fits touch devices.
+
+**Fix applied:**
+
+- Replaced clickable card surfaces with semantic `Link` wrappers
+- Added accessible `aria-label` text for each example card
+- Added visible focus-ring support for keyboard navigation
+- Kept the hover scale effect desktop-only and preserved the mobile single-column layout
+- Updated footer copy to use touch-neutral wording
+
+**Code references:**
+
+- [apps/client/src/app/pages/gallery/components/ExampleCard.tsx](../../apps/client/src/app/pages/gallery/components/ExampleCard.tsx)
+- [apps/client/src/app/pages/gallery/Gallery.tsx](../../apps/client/src/app/pages/gallery/Gallery.tsx)
+
+**Verification:**
+
+- Route tested: `/gallery`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- All example cards render as links with route targets and `aria-label` text
+- No undersized interactive elements found in the gallery grid after the fix
 
 ---
