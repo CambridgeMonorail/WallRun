@@ -73,7 +73,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 5 | `/gallery` | Gallery | ✅ Fixed and verified |
 | 6 | `/tooling` | Tooling | ✅ Fixed and verified |
 | 7 | `/skills` | Skills | ✅ Fixed and verified |
-| 8 | `/color-palette` | Color Palette | ⬜ Not started |
+| 8 | `/color-palette` | Color Palette | ✅ Fixed and verified |
 | 9 | `/library` | Library | ⬜ Not started |
 | 10 | `/how-to` | How-To Index | ⬜ Not started |
 | 11 | `/how-to/custom-agents` | Custom Agents Guide | ⬜ Not started |
@@ -306,5 +306,35 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Footer CTA cluster verified at 44px height after fix
+
+---
+
+### Page 8 — Color Palette (`/color-palette`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Tab triggers were undersized on mobile** — the two primary tab controls rendered at 28px height, below the 44px touch target baseline.
+2. **Theme resource links were undersized on mobile** — the main external links near the top of the page rendered at 40px height.
+
+**Fix applied:**
+
+- Increased both tab triggers to a 44px minimum height on mobile
+- Added mobile-safe sizing to the theme resource links
+- Preserved the existing two-column tab layout and page structure
+
+**Code references:**
+
+- [apps/client/src/app/pages/color-palette/ColorPalette.tsx](../../apps/client/src/app/pages/color-palette/ColorPalette.tsx)
+
+**Verification:**
+
+- Route tested: `/color-palette`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Tab triggers verified at 44px height after fix
+- Theme resource links verified at 44px height after fix
 
 ---
