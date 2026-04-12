@@ -96,17 +96,20 @@ export const SignageHeader: FC<SignageHeaderProps> = ({
   const alignmentClasses = alignment === 'center' ? 'text-center' : 'text-left';
 
   return (
-    <header className={cn('mb-16', alignmentClasses, className)}>
+    <header className={cn('mb-10 sm:mb-12 lg:mb-16', alignmentClasses, className)}>
       {tag && (
         <div
           className={cn(
-            'inline-block mb-4 px-6 py-2 border rounded-full',
+            'mb-3 inline-block rounded-full border px-4 py-2 sm:mb-4 sm:px-5 lg:px-6',
             tagClasses.bg,
             tagClasses.border,
           )}
         >
           <p
-            className={cn('text-xl tracking-widest uppercase', tagClasses.text)}
+            className={cn(
+              'text-sm uppercase tracking-[0.3em] sm:text-base lg:text-xl',
+              tagClasses.text,
+            )}
           >
             {tag}
           </p>
@@ -114,7 +117,7 @@ export const SignageHeader: FC<SignageHeaderProps> = ({
       )}
       <h1
         className={cn(
-          'text-8xl font-bold mb-4',
+          'mb-4 text-5xl font-bold leading-none sm:text-6xl lg:text-8xl',
           tagVariant === 'emerald' &&
             'bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent',
           tagVariant === 'teal' &&
@@ -131,7 +134,11 @@ export const SignageHeader: FC<SignageHeaderProps> = ({
       >
         {title}
       </h1>
-      {subtitle && <p className="text-3xl text-slate-400">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-base text-slate-400 sm:text-xl lg:text-3xl">
+          {subtitle}
+        </p>
+      )}
       {children}
     </header>
   );

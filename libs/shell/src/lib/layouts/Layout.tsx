@@ -21,6 +21,7 @@ import {
   SidebarData,
 } from './sidebarContext';
 import { Logo } from '@wallrun/shadcnui-blocks';
+import { useIsMobile } from '@wallrun/shadcnui';
 
 interface LayoutProps {
   /** The main content to be displayed within the layout */
@@ -43,7 +44,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
-  const isLargeScreen = window.innerWidth > 1024;
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', theme === 'light');
@@ -51,12 +52,12 @@ export function Layout({ children, sidebarData }: LayoutProps) {
   }, [theme]);
 
   return (
-    <SidebarProvider defaultOpen={isLargeScreen}>
+    <SidebarProvider defaultOpen={!isMobile}>
       <SidebarDataProvider data={sidebarData}>
         <AppSidebar />
-        <SidebarInset className="flex min-h-svh w-full flex-col bg-transparent">
+        <SidebarInset className="flex min-h-svh min-w-0 flex-col bg-transparent">
           <header
-            className="chrome-shell sticky top-0 z-20 mx-3 mt-3 flex h-16 shrink-0 items-center justify-between gap-2 px-4 transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 w-auto max-w-none"
+            className="chrome-shell sticky top-0 z-20 mx-0 mt-0 flex h-14 shrink-0 items-center justify-between gap-2 px-4 transition-[width,height] ease-linear supports-[backdrop-filter]:bg-background/45 sm:mx-6 sm:mt-4 sm:h-16 group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
             data-testid="header"
             role="banner"
           >
@@ -66,11 +67,14 @@ export function Layout({ children, sidebarData }: LayoutProps) {
               aria-label="Breadcrumb navigation"
             >
               <SidebarTrigger
-                className="chrome-pill -ml-1 rounded-full"
+                className="chrome-pill -ml-1 h-11 w-11 rounded-full sm:h-8 sm:w-8"
                 data-testid="sidebar-trigger"
                 aria-label="Toggle sidebar"
               />
-              <Separator orientation="vertical" className="mr-2 h-4" />
+              <Separator
+                orientation="vertical"
+                className="mr-2 hidden h-4 sm:block"
+              />
               <Breadcrumb>
                 <BreadcrumbList>
                   {pathnames.map((value, index) => {
@@ -108,7 +112,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                className="rounded-full"
+                className="h-11 w-11 rounded-full sm:h-9 sm:w-9"
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                 data-testid="theme-toggle-button"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -121,7 +125,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 asChild
-                className="rounded-full"
+                className="h-11 w-11 rounded-full sm:h-9 sm:w-9"
                 title="View GitHub repository"
                 data-testid="github-link"
                 aria-label="View GitHub repository"
@@ -139,7 +143,7 @@ export function Layout({ children, sidebarData }: LayoutProps) {
                 variant="ghost"
                 size="icon"
                 asChild
-                className="rounded-full"
+                className="hidden rounded-full sm:inline-flex"
                 title="Open Storybook"
                 aria-label="Open Storybook"
                 data-testid="storybook-link"

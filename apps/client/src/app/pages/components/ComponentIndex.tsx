@@ -162,7 +162,7 @@ export const ComponentIndexPage: FC = () => {
             href="https://ui.shadcn.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground hover:underline"
+            className="inline-flex min-h-11 items-center text-foreground hover:underline"
           >
             shadcn/ui
           </a>{' '}
@@ -307,7 +307,7 @@ export const ComponentIndexPage: FC = () => {
             See{' '}
             <Link
               to="/getting-started"
-              className="text-foreground hover:underline"
+              className="inline-flex min-h-11 items-center text-foreground hover:underline"
             >
               Getting Started
             </Link>{' '}
@@ -316,7 +316,7 @@ export const ComponentIndexPage: FC = () => {
               href="https://cambridgemonorail.github.io/WallRun/storybook/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:underline"
+              className="inline-flex min-h-11 items-center text-foreground hover:underline"
             >
               Storybook
             </a>{' '}

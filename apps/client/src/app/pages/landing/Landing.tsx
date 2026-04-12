@@ -22,6 +22,7 @@ import {
   HeroSection,
 } from '@wallrun/landing';
 import { Logo, Tagline } from '@wallrun/shadcnui-blocks';
+import { LandingNav } from './LandingNav';
 
 export const LandingPage: FC = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export const LandingPage: FC = () => {
       className="relative isolate flex min-h-screen w-full flex-col items-center overflow-hidden bg-transparent text-foreground"
       data-testid="landing-page"
     >
+      <LandingNav />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_20%_18%,hsl(var(--glow-violet)/0.16),transparent_34%),radial-gradient(circle_at_78%_12%,hsl(var(--glow-cyan)/0.14),transparent_28%)]" />
       <div className="pointer-events-none absolute inset-0 demo-grid opacity-60" />
       <div className="w-full" data-testid="hero-section-container">

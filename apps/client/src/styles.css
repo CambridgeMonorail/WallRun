@@ -158,6 +158,16 @@
     backdrop-filter: blur(18px);
   }
 
+  @media (max-width: 639px) {
+    .chrome-shell {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      box-shadow: 0 1px 0 hsl(var(--border) / 0.4);
+    }
+  }
+
   .chrome-shell::before {
     content: '';
     position: absolute;
