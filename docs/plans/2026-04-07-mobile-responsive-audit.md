@@ -85,7 +85,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 
 | # | Route | Page | Status |
 | --- | --- | --- | --- |
-| 15 | `/components` | Component Index | ⬜ Not started |
+| 15 | `/components` | Component Index | ✅ Fixed and verified |
 | 16 | `/components/primitives/metric-card` | Metric Card Doc | ⬜ Not started |
 | 17 | `/components/primitives/screen-frame` | Screen Frame Doc | ⬜ Not started |
 | 18 | `/components/primitives/event-card` | Event Card Doc | ⬜ Not started |
@@ -505,5 +505,33 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No horizontal overflow (`scrollWidth === viewport width`)
 - All command blocks explicitly support horizontal scrolling after fix
+
+---
+
+### Page 15 — Component Index (`/components`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **Inline resource links were undersized on mobile** — the intro and footer links for shadcn/ui, Getting Started, and Storybook rendered below the 44px touch target baseline.
+
+**Fix applied:**
+
+- Increased the small inline resource links to a 44px minimum height on mobile
+- Preserved the existing component card layout and navigation structure
+
+**Code references:**
+
+- [apps/client/src/app/pages/components/ComponentIndex.tsx](../../apps/client/src/app/pages/components/ComponentIndex.tsx)
+
+**Verification:**
+
+- Route tested: `/components`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Component cards remain full-size links
+- Intro and footer resource links verified at 44px height after fix
 
 ---
