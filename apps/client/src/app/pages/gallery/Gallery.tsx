@@ -32,7 +32,7 @@ export const GalleryPage: FC = () => {
 
         <footer className="mt-12 pt-8 border-t border-border">
           <p className="text-sm text-muted-foreground">
-            Click any example to view it in full-screen mode. Use your browser's
+            Open any example to view it in full-screen mode. Use your browser's
             back button to return to the gallery.
           </p>
         </footer>

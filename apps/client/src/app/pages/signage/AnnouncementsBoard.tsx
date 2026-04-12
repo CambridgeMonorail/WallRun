@@ -56,19 +56,25 @@ export const AnnouncementsBoard: FC = () => {
         className="bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950"
       >
         {/* Additional grid overlay */}
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px]" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px]"
+        />
 
         <SignageHeader
           tag="Company News"
           tagVariant="pink"
           title="Announcements"
         >
-          <p className="text-4xl text-white/90 font-light mt-2">
+          <p className="mt-2 text-xl font-light text-white/90 sm:text-2xl lg:text-4xl">
             Stay informed about what's happening
           </p>
         </SignageHeader>
 
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div
+          className="mx-auto max-w-6xl space-y-4 sm:space-y-6 lg:space-y-8"
+          data-testid="announcements-list"
+        >
           {announcements.map((announcement, index) => (
             <AnnouncementCard
               key={announcement.id}

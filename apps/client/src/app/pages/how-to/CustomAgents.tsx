@@ -64,7 +64,7 @@ export const CustomAgentsPage: FC = () => {
         <div className="space-y-4 text-muted-foreground">
           <p>In GitHub Copilot Chat (VS Code), mention the agent by name:</p>
           <pre
-            className="rounded-lg border border-border bg-muted p-4 text-sm"
+            className="overflow-x-auto rounded-lg border border-border bg-muted p-4 text-sm"
             aria-label="Basic agent invocation syntax"
           >
             <code className="text-foreground">
@@ -75,7 +75,7 @@ export const CustomAgentsPage: FC = () => {
             For example, to use the Signage Design Brief Writer:
           </p>
           <pre
-            className="rounded-lg border border-border bg-muted p-4 text-sm"
+            className="overflow-x-auto rounded-lg border border-border bg-muted p-4 text-sm"
             aria-label="Signage Design Brief Writer invocation example"
           >
             <code className="text-foreground">
@@ -105,7 +105,7 @@ export const CustomAgentsPage: FC = () => {
                 <li>
                   <Link
                     to="/how-to/design-brief"
-                    className="text-foreground underline hover:no-underline"
+                    className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
                   >
                     <strong>Signage Design Brief Writer</strong>
                   </Link>{' '}
@@ -114,7 +114,7 @@ export const CustomAgentsPage: FC = () => {
                 <li>
                   <Link
                     to="/how-to/build-signage"
-                    className="text-foreground underline hover:no-underline"
+                    className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
                   >
                     <strong>signage-architect</strong>
                   </Link>{' '}
@@ -131,7 +131,7 @@ export const CustomAgentsPage: FC = () => {
                 <li>
                   <Link
                     to="/how-to/deploy-brightsign"
-                    className="text-foreground underline hover:no-underline"
+                    className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
                   >
                     <strong>BrightSign Deploy</strong>
                   </Link>{' '}

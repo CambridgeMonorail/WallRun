@@ -255,7 +255,7 @@ const ColorPalettePage: React.FC = () => {
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/common-tailwind/src/shadcn-theme.css"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-primary hover:underline"
+                className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
             >
               View Theme Source →
             </a>
@@ -264,7 +264,7 @@ const ColorPalettePage: React.FC = () => {
               href="https://ui.shadcn.com/docs/theming"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-primary hover:underline"
+                className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
             >
               shadcn/ui Theming Guide →
             </a>
@@ -274,8 +274,12 @@ const ColorPalettePage: React.FC = () => {
 
       <Tabs defaultValue="pairs" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8">
-          <TabsTrigger value="pairs">Background-Foreground Pairs</TabsTrigger>
-          <TabsTrigger value="single">Additional Colors</TabsTrigger>
+            <TabsTrigger value="pairs" className="min-h-11 px-3 py-2 text-xs sm:text-sm">
+              Background-Foreground Pairs
+            </TabsTrigger>
+            <TabsTrigger value="single" className="min-h-11 px-3 py-2 text-xs sm:text-sm">
+              Additional Colors
+            </TabsTrigger>
         </TabsList>
         <TabsContent value="pairs">
           <h2 className="text-2xl font-semibold mb-4">Accessibility Matters</h2>

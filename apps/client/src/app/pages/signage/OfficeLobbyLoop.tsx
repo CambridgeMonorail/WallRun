@@ -38,16 +38,23 @@ export const OfficeLobbyLoop: FC = () => {
         className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white"
         data-testid="office-lobby-loop"
       >
-        <div className="px-16 py-14">
-          <div className="flex items-start justify-between gap-10">
+        <div
+          className="px-4 py-6 sm:px-8 sm:py-10 lg:px-16 lg:py-14"
+          data-testid="office-lobby-loop-shell"
+        >
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
             <div>
-              <div className="text-2xl text-white/70">Office Lobby</div>
-              <div className="text-7xl font-semibold tracking-tight">Today</div>
+              <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
+                Office Lobby
+              </div>
+              <div className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-7xl">
+                Today
+              </div>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-6">
               <Clock
                 format="HH:mm"
-                className="text-7xl font-semibold tabular-nums"
+                className="text-4xl font-semibold tabular-nums sm:text-5xl lg:text-7xl"
               />
               <StaleDataIndicator
                 lastUpdatedEpochMs={staleLastUpdatedEpochMs}
@@ -64,33 +71,39 @@ export const OfficeLobbyLoop: FC = () => {
               transition="slide"
               className="w-full"
             >
-              <div className="grid grid-cols-12 gap-10">
-                <div className="col-span-7 rounded-2xl border border-white/10 bg-white/5 p-10">
-                  <div className="text-2xl text-white/70">Message</div>
-                  <div className="mt-3 text-6xl font-semibold tracking-tight">
+              <div
+                className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-10"
+                data-testid="office-lobby-loop-welcome-slide"
+              >
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-7 lg:p-10">
+                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Message</div>
+                  <div className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-6xl">
                     Welcome to HQ
                   </div>
-                  <div className="mt-6 text-3xl text-white/70 max-w-2xl">
+                  <div className="mt-4 max-w-2xl text-lg text-white/70 sm:text-2xl lg:mt-6 lg:text-3xl">
                     Visitors: please check in at reception. Staff: remember your
                     badge.
                   </div>
                 </div>
-                <div className="col-span-5 rounded-2xl border border-white/10 bg-white/5 p-10">
-                  <div className="text-2xl text-white/70">Next update in</div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-5 lg:p-10">
+                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Next update in</div>
                   <Countdown
                     targetEpochMs={nextUpdateEpochMs}
                     format="mm:ss"
-                    className="mt-4 text-8xl font-semibold tabular-nums"
+                    className="mt-3 text-5xl font-semibold tabular-nums sm:text-6xl lg:mt-4 lg:text-8xl"
                   />
-                  <div className="mt-6 text-2xl text-white/60">
+                  <div className="mt-4 text-lg text-white/60 sm:text-xl lg:mt-6 lg:text-2xl">
                     (demo countdown)
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-12 gap-10">
-                <div className="col-span-7 rounded-2xl border border-white/10 bg-white/5 p-10">
-                  <div className="text-2xl text-white/70 mb-6">
+              <div
+                className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-10"
+                data-testid="office-lobby-loop-meetings-slide"
+              >
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-7 lg:p-10">
+                  <div className="mb-4 text-lg text-white/70 sm:text-xl lg:mb-6 lg:text-2xl">
                     Upcoming meetings
                   </div>
                   <AutoPagingList
@@ -99,25 +112,25 @@ export const OfficeLobbyLoop: FC = () => {
                     dwellMs={3500}
                     getKey={(m) => m.id}
                     renderItem={(m) => (
-                      <div className="flex items-baseline justify-between py-4 border-b border-white/10 last:border-b-0">
-                        <div className="flex items-baseline gap-6">
-                          <div className="text-4xl font-semibold tabular-nums">
+                      <div className="flex flex-col gap-3 border-b border-white/10 py-3 last:border-b-0 sm:py-4 lg:flex-row lg:items-baseline lg:justify-between">
+                        <div className="flex flex-col gap-1 lg:flex-row lg:items-baseline lg:gap-6">
+                          <div className="text-2xl font-semibold tabular-nums sm:text-3xl lg:text-4xl">
                             {m.time}
                           </div>
-                          <div className="text-4xl font-semibold tracking-tight">
+                          <div className="text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">
                             {m.title}
                           </div>
                         </div>
-                        <div className="text-3xl text-white/70 tabular-nums">
+                        <div className="text-xl text-white/70 tabular-nums sm:text-2xl lg:text-3xl">
                           {m.room}
                         </div>
                       </div>
                     )}
                   />
                 </div>
-                <div className="col-span-5 rounded-2xl border border-white/10 bg-white/5 p-10">
-                  <div className="text-2xl text-white/70">Notes</div>
-                  <ul className="mt-5 space-y-4 text-3xl text-white/70">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-5 lg:p-10">
+                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Notes</div>
+                  <ul className="mt-4 space-y-3 text-lg text-white/70 sm:text-2xl lg:mt-5 lg:space-y-4 lg:text-3xl">
                     <li>• Fire exits: follow green signage</li>
                     <li>• Quiet zones on Level 2</li>
                     <li>• Wi‑Fi: HQ‑Guest</li>
@@ -125,41 +138,44 @@ export const OfficeLobbyLoop: FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-12 gap-10">
-                <div className="col-span-12 rounded-2xl border border-white/10 bg-white/5 p-10">
-                  <div className="text-2xl text-white/70 mb-6">
+              <div
+                className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-10"
+                data-testid="office-lobby-loop-connectivity-slide"
+              >
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-12 lg:p-10">
+                  <div className="mb-4 text-lg text-white/70 sm:text-xl lg:mb-6 lg:text-2xl">
                     Connectivity boundary
                   </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div className="rounded-xl border border-white/10 bg-black/20 p-8">
-                      <div className="text-xl text-white/70 mb-4">Healthy</div>
+                  <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-8">
+                    <div className="rounded-xl border border-white/10 bg-black/20 p-5 sm:p-6 lg:p-8">
+                      <div className="mb-3 text-lg text-white/70 sm:text-xl lg:mb-4">Healthy</div>
                       <OfflineFallback
                         isOnline={true}
                         isHealthy={true}
                         fallback={<div className="text-3xl">Fallback</div>}
                       >
                         <SignageTransition type="crossfade" durationMs={250}>
-                          <div className="text-4xl font-semibold">
+                          <div className="text-2xl font-semibold sm:text-3xl lg:text-4xl">
                             Live data
                           </div>
                         </SignageTransition>
                       </OfflineFallback>
                     </div>
 
-                    <div className="rounded-xl border border-white/10 bg-black/20 p-8">
-                      <div className="text-xl text-white/70 mb-4">
+                    <div className="rounded-xl border border-white/10 bg-black/20 p-5 sm:p-6 lg:p-8">
+                      <div className="mb-3 text-lg text-white/70 sm:text-xl lg:mb-4">
                         Unhealthy
                       </div>
                       <OfflineFallback
                         isOnline={true}
                         isHealthy={false}
                         fallback={
-                          <div className="text-3xl text-white/70">
+                          <div className="text-2xl text-white/70 sm:text-3xl">
                             Showing fallback (unhealthy)
                           </div>
                         }
                       >
-                        <div className="text-4xl font-semibold">Live data</div>
+                        <div className="text-2xl font-semibold sm:text-3xl lg:text-4xl">Live data</div>
                       </OfflineFallback>
                     </div>
                   </div>

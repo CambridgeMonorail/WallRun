@@ -3,26 +3,16 @@ import { Link } from 'react-router-dom';
 import { Button } from '@wallrun/shadcnui';
 import { BookOpen, Code, Layers, Terminal } from 'lucide-react';
 
+const STORYBOOK_URL =
+  'https://cambridgemonorail.github.io/WallRun/storybook/';
+const GITHUB_URL = 'https://github.com/CambridgeMonorail/WallRun';
+const AGENT_DOC_URL =
+  'https://github.com/CambridgeMonorail/WallRun/blob/main/.github/agents/signage-architect.agent.md';
+
 /**
  * GettingStartedPage - Practical guide for developers to start using WallRun
  */
 export const GettingStartedPage: FC = () => {
-  const handleStorybookClick = () => {
-    window.open(
-      'https://cambridgemonorail.github.io/WallRun/storybook/',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
-  const handleGitHubClick = () => {
-    window.open(
-      'https://github.com/CambridgeMonorail/WallRun',
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
-
   return (
     <div className="doc-shell max-w-5xl font-sans">
       <div className="demo-panel demo-grid mb-10 space-y-4 px-8 py-8 sm:px-10">
@@ -325,12 +315,14 @@ showing 3 categories with 4 items each, 1080p landscape`}
             <p className="text-sm text-muted-foreground">
               The agent follows a clarification-first workflow and enforces
               design quality before generating code. See{' '}
-              <button
-                onClick={handleGitHubClick}
+              <a
+                href={AGENT_DOC_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground hover:underline"
               >
                 .github/agents/signage-architect.agent.md
-              </button>{' '}
+              </a>{' '}
               for full documentation.
             </p>
           </div>
@@ -379,11 +371,13 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
           </pre>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="h-11">
             <Link to="/tooling">Open Tooling & Deployment</Link>
           </Button>
-          <Button onClick={handleGitHubClick} variant="ghost">
-            Open GitHub Repository
+          <Button asChild variant="ghost" className="h-11">
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+              Open GitHub Repository
+            </a>
           </Button>
         </div>
       </section>
@@ -536,12 +530,14 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
             <span className="text-foreground font-medium">4.</span>
             <p className="text-muted-foreground">
               Review{' '}
-              <button
-                onClick={handleStorybookClick}
+              <a
+                href={STORYBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground hover:underline"
               >
                 Storybook
-              </button>{' '}
+              </a>{' '}
               for detailed props and API documentation
             </p>
           </div>
@@ -549,14 +545,14 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
       </section>
 
       <section className="demo-panel-soft text-center px-6 py-8">
-        <div className="space-x-4">
-          <Button asChild variant="secondary">
+        <div className="flex flex-wrap justify-center gap-3">
+          <Button asChild variant="secondary" className="h-11">
             <Link to="/library">Browse Components</Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="h-11">
             <Link to="/tooling">Tooling &amp; Deployment</Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="h-11">
             <Link to="/gallery">View Gallery</Link>
           </Button>
         </div>

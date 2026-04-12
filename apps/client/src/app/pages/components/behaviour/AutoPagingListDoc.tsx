@@ -56,7 +56,7 @@ export const AutoPagingListDocPage: FC = () => {
             href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground hover:underline"
+            className="inline-flex min-h-11 items-center text-foreground hover:underline"
           >
             view source on GitHub
           </a>
@@ -134,7 +134,7 @@ export function Departures({ rows }: { rows: Array<{ id: string; label: string }
       <section>
         <h2 className="text-2xl font-medium mb-4">Links</h2>
         <div className="flex flex-wrap gap-4">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/signage-behaviour-autopaginglist--docs"
               target="_blank"
@@ -143,7 +143,7 @@ export function Departures({ rows }: { rows: Array<{ id: string; label: string }
               View in Storybook
             </a>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx"
               target="_blank"
