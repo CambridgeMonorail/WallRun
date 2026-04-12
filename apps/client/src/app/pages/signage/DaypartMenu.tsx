@@ -9,22 +9,25 @@ export const DaypartMenu: FC = () => {
         className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-slate-950 text-white"
         data-testid="daypart-menu"
       >
-        <div className="px-16 py-14">
-          <div className="flex items-start justify-between">
+        <div
+          className="px-4 py-6 sm:px-8 sm:py-10 lg:px-16 lg:py-14"
+          data-testid="daypart-menu-shell"
+        >
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div>
-              <div className="text-2xl text-white/70">Café</div>
-              <div className="text-7xl font-semibold tracking-tight">
+              <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Café</div>
+              <div className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-7xl">
                 Daypart Menu
               </div>
             </div>
             <Clock
               format="HH:mm"
-              className="text-7xl font-semibold tabular-nums"
+              className="text-4xl font-semibold tabular-nums sm:text-5xl lg:text-7xl"
             />
           </div>
 
-          <div className="mt-12 grid grid-cols-12 gap-10">
-            <div className="col-span-12 rounded-2xl border border-white/10 bg-white/5 p-10">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:gap-6 lg:mt-12 lg:grid-cols-12 lg:gap-10">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-12 lg:p-10">
               <ScheduleGate
                 windows={[
                   { start: '06:00', end: '11:00', timezone: 'Europe/London' },
@@ -32,21 +35,21 @@ export const DaypartMenu: FC = () => {
                 fallback={null}
               >
                 <div>
-                  <div className="text-3xl text-white/70">Breakfast</div>
-                  <div className="mt-6 grid grid-cols-2 gap-6 text-4xl">
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                  <div className="text-xl text-white/70 sm:text-2xl lg:text-3xl">Breakfast</div>
+                  <div className="mt-4 grid grid-cols-1 gap-3 text-2xl sm:mt-5 sm:gap-4 sm:text-3xl lg:mt-6 lg:grid-cols-2 lg:gap-6 lg:text-4xl">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Egg & Avocado</span>
                       <span className="tabular-nums text-white/70">£6.50</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Porridge</span>
                       <span className="tabular-nums text-white/70">£3.20</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Croissant</span>
                       <span className="tabular-nums text-white/70">£2.10</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Flat White</span>
                       <span className="tabular-nums text-white/70">£2.80</span>
                     </div>
@@ -61,21 +64,21 @@ export const DaypartMenu: FC = () => {
                 fallback={null}
               >
                 <div>
-                  <div className="text-3xl text-white/70">Lunch</div>
-                  <div className="mt-6 grid grid-cols-2 gap-6 text-4xl">
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                  <div className="text-xl text-white/70 sm:text-2xl lg:text-3xl">Lunch</div>
+                  <div className="mt-4 grid grid-cols-1 gap-3 text-2xl sm:mt-5 sm:gap-4 sm:text-3xl lg:mt-6 lg:grid-cols-2 lg:gap-6 lg:text-4xl">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Chicken Bowl</span>
                       <span className="tabular-nums text-white/70">£8.90</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Vegan Salad</span>
                       <span className="tabular-nums text-white/70">£7.80</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Soup + Bread</span>
                       <span className="tabular-nums text-white/70">£5.40</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Iced Tea</span>
                       <span className="tabular-nums text-white/70">£2.30</span>
                     </div>
@@ -88,27 +91,27 @@ export const DaypartMenu: FC = () => {
                   { start: '15:00', end: '22:00', timezone: 'Europe/London' },
                 ]}
                 fallback={
-                  <div className="text-3xl text-white/70">
+                  <div className="text-xl text-white/70 sm:text-2xl lg:text-3xl">
                     We’re currently closed.
                   </div>
                 }
               >
-                <div>
-                  <div className="text-3xl text-white/70">Evening</div>
-                  <div className="mt-6 grid grid-cols-2 gap-6 text-4xl">
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                <div data-testid="daypart-menu-evening">
+                  <div className="text-xl text-white/70 sm:text-2xl lg:text-3xl">Evening</div>
+                  <div className="mt-4 grid grid-cols-1 gap-3 text-2xl sm:mt-5 sm:gap-4 sm:text-3xl lg:mt-6 lg:grid-cols-2 lg:gap-6 lg:text-4xl">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Ramen</span>
                       <span className="tabular-nums text-white/70">£10.50</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Veggie Curry</span>
                       <span className="tabular-nums text-white/70">£9.70</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Kimchi Fries</span>
                       <span className="tabular-nums text-white/70">£4.20</span>
                     </div>
-                    <div className="flex justify-between border-b border-white/10 py-4">
+                    <div className="flex justify-between border-b border-white/10 py-3 lg:py-4">
                       <span>Sparkling Water</span>
                       <span className="tabular-nums text-white/70">£1.80</span>
                     </div>

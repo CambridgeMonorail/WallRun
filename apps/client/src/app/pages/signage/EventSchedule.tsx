@@ -76,8 +76,14 @@ export const EventSchedule: FC = () => {
         className="bg-gradient-to-br from-violet-950 via-slate-950 to-indigo-950"
       >
         {/* Additional background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/30 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/30 via-transparent to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"
+        />
 
         <SignageHeader
           tag="Conference Schedule"
@@ -86,7 +92,10 @@ export const EventSchedule: FC = () => {
           subtitle="Digital Signage Summit 2026 • February 7"
         />
 
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div
+          className="mx-auto max-w-6xl space-y-4 sm:space-y-5 lg:space-y-6"
+          data-testid="event-schedule-list"
+        >
           {events.map((event, index) => (
             <EventCard
               key={index}
@@ -99,9 +108,9 @@ export const EventSchedule: FC = () => {
           ))}
         </div>
 
-        <footer className="mt-16 text-center">
-          <div className="inline-block bg-gradient-to-r from-violet-600/20 via-fuchsia-600/20 to-violet-600/20 backdrop-blur-sm border border-violet-500/30 rounded-2xl px-12 py-6">
-            <p className="text-2xl text-violet-200">
+        <footer className="mt-10 text-center sm:mt-12 lg:mt-16">
+          <div className="inline-block rounded-2xl border border-violet-500/30 bg-gradient-to-r from-violet-600/20 via-fuchsia-600/20 to-violet-600/20 px-5 py-4 backdrop-blur-sm sm:px-8 sm:py-5 lg:px-12 lg:py-6">
+            <p className="text-base text-violet-200 sm:text-lg lg:text-2xl">
               Download the mobile app for personalized schedule and
               notifications
             </p>

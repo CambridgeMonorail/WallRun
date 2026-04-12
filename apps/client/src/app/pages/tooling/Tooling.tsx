@@ -72,7 +72,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
           </pre>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
-          <Button variant="secondary" asChild>
+          <Button variant="secondary" asChild className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/docs/guides/brightsign-deployment.md"
               target="_blank"
@@ -81,7 +81,7 @@ pnpm deploy:player -- --app player-arrivals --player lobby-display`}
               Open Deployment Guide
             </a>
           </Button>
-          <Button variant="ghost" asChild>
+          <Button variant="ghost" asChild className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/apps/player-minimal/README.md"
               target="_blank"
@@ -112,7 +112,7 @@ pnpm discover
 pnpm player add lobby-display 192.168.1.50 --default`}
             </pre>
           </div>
-          <Button className="mt-4" variant="secondary" asChild>
+          <Button className="mt-4 h-11" variant="secondary" asChild>
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/tools/player-discovery/README.md"
               target="_blank"
@@ -137,10 +137,10 @@ pnpm player add lobby-display 192.168.1.50 --default`}
             <pre>{`npx skills add CambridgeMonorail/WallRun`}</pre>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Button variant="secondary" asChild>
+            <Button variant="secondary" asChild className="h-11">
               <Link to="/skills">View Skills Catalog</Link>
             </Button>
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" asChild className="h-11">
               <a
                 href="https://github.com/CambridgeMonorail/WallRun/blob/main/skills/README.md"
                 target="_blank"
@@ -162,10 +162,10 @@ pnpm player add lobby-display 192.168.1.50 --default`}
           device when you are ready to move beyond the browser demo.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="h-11">
             <Link to="/getting-started">Open Getting Started</Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="h-11">
             <Link to="/gallery">View Signage Examples</Link>
           </Button>
         </div>

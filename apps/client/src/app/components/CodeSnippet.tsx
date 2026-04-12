@@ -83,7 +83,7 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
           variant="ghost"
           size="sm"
           onClick={handleCopy}
-          className="ml-auto text-muted-foreground hover:text-foreground"
+          className="ml-auto h-11 text-muted-foreground hover:text-foreground"
           data-testid="copy-button"
         >
           {copied ? (

@@ -57,7 +57,7 @@ export const MetricCard: FC<MetricCardProps> = ({
   return (
     <div
       className={cn(
-        'bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-3xl p-10 shadow-2xl relative overflow-hidden group',
+        'group relative overflow-hidden rounded-3xl border border-slate-700/50 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90 p-5 shadow-2xl backdrop-blur-sm sm:p-6 lg:p-10',
         className,
       )}
     >
@@ -72,26 +72,30 @@ export const MetricCard: FC<MetricCardProps> = ({
       />
 
       <div className="relative z-10">
-        <div className="flex justify-between items-start mb-6">
-          <h3 className="text-3xl font-medium text-slate-400">{title}</h3>
-          <div className="text-slate-500 opacity-50">{icon}</div>
+        <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-start sm:justify-between lg:mb-6">
+          <h3 className="text-xl font-medium text-slate-400 sm:text-2xl lg:text-3xl">
+            {title}
+          </h3>
+          <div className="text-slate-500 opacity-50 [&_svg]:h-8 [&_svg]:w-8 sm:[&_svg]:h-10 sm:[&_svg]:w-10 lg:[&_svg]:h-14 lg:[&_svg]:w-14">
+            {icon}
+          </div>
         </div>
 
-        <div className="text-7xl font-bold text-white mb-6 tracking-tight">
+        <div className="mb-4 text-4xl font-bold tracking-tight text-white sm:mb-5 sm:text-5xl lg:mb-6 lg:text-7xl">
           {value}
         </div>
 
         <div className="flex items-center gap-2">
           <div
             className={cn(
-              'flex items-center text-2xl font-bold',
+              'flex items-center text-base font-bold sm:text-lg lg:text-2xl',
               isPositive ? 'text-green-400' : 'text-red-400',
             )}
           >
             {isPositive ? (
-              <ArrowUp className="w-7 h-7 mr-2" />
+              <ArrowUp className="mr-2 h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
             ) : (
-              <ArrowDown className="w-7 h-7 mr-2" />
+              <ArrowDown className="mr-2 h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
             )}
             <span>{change}</span>
           </div>
