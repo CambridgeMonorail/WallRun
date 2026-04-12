@@ -2,7 +2,7 @@
 
 This archive preserves the detailed findings for completed pages from the mobile responsive audit.
 
-Source plan: `docs/plans/2026-04-07-mobile-responsive-audit.md`
+Original control plan: removed after the audit reached 40/40 complete on 2026-04-12.
 Archived on: 2026-04-12
 Coverage: Pages 1-28
 

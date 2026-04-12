@@ -120,7 +120,7 @@ export const SignageContainer: FC<SignageContainerProps> = ({
   return (
     <div
       className={cn(
-        'min-h-screen bg-gradient-to-br text-white p-16 relative overflow-hidden',
+        'relative min-h-screen overflow-hidden bg-gradient-to-br p-4 text-white sm:p-8 lg:p-16',
         gradientClasses[variant],
         className,
       )}
@@ -129,14 +129,19 @@ export const SignageContainer: FC<SignageContainerProps> = ({
       {/* Ambient orb effects */}
       {showAmbientOrbs && (
         <>
-          <div className={cn('absolute rounded-full blur-3xl', orbs.primary)} />
+          <div
+            aria-hidden="true"
+            className={cn('absolute rounded-full blur-3xl', orbs.primary)}
+          />
           {orbs.secondary && (
             <div
+              aria-hidden="true"
               className={cn('absolute rounded-full blur-3xl', orbs.secondary)}
             />
           )}
           {orbs.tertiary && (
             <div
+              aria-hidden="true"
               className={cn('absolute rounded-full blur-3xl', orbs.tertiary)}
             />
           )}
@@ -145,7 +150,10 @@ export const SignageContainer: FC<SignageContainerProps> = ({
 
       {/* Grid overlay */}
       {showGrid && (
-        <div className="absolute inset-0 bg-grid-white/[0.01] bg-[size:60px_60px]" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-grid-white/[0.01] bg-[size:60px_60px]"
+        />
       )}
 
       {/* Content */}

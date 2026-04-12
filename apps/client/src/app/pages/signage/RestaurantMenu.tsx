@@ -65,51 +65,61 @@ export const RestaurantMenu: FC = () => {
   return (
     <SignageExample>
       <div
-        className="min-h-screen bg-gradient-to-br from-slate-950 via-teal-950 to-slate-950 text-white p-16 relative overflow-hidden"
+        className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-teal-950 to-slate-950 p-4 text-white sm:p-8 lg:p-16"
         data-testid="restaurant-menu"
       >
         {/* Ambient background elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-900/20 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-900/10 via-transparent to-transparent" />
-        
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-900/20 via-transparent to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-900/10 via-transparent to-transparent"
+        />
+
         <div className="relative z-10">
-          <header className="text-center mb-16">
-            <div className="inline-block mb-6 px-8 py-3 bg-teal-500/10 border border-teal-500/20 rounded-full">
-              <p className="text-2xl text-teal-300 tracking-wide">DAILY SELECTION</p>
+          <header className="mb-10 text-center sm:mb-12 lg:mb-16">
+            <div className="mb-4 inline-block rounded-full border border-teal-500/20 bg-teal-500/10 px-4 py-2 sm:mb-6 sm:px-6 sm:py-3 lg:px-8">
+              <p className="text-sm tracking-[0.3em] text-teal-300 sm:text-lg lg:text-2xl">
+                DAILY SELECTION
+              </p>
             </div>
-            <h1 className="text-8xl font-bold mb-6 bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent">
+            <h1 className="mb-4 bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-5xl font-bold leading-none text-transparent sm:text-6xl lg:mb-6 lg:text-8xl">
               Today's Menu
             </h1>
-            <p className="text-3xl text-slate-300 tracking-wide">Fresh. Local. Delicious.</p>
+            <p className="text-lg tracking-[0.2em] text-slate-300 sm:text-2xl lg:text-3xl">
+              Fresh. Local. Delicious.
+            </p>
           </header>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-10">
             {Object.entries(menuCategories).map(([category, items]) => (
               <div
                 key={category}
-                className="bg-gradient-to-br from-slate-900/80 to-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-3xl p-8 shadow-2xl"
+                className="rounded-3xl border border-slate-700/50 bg-gradient-to-br from-slate-900/80 to-slate-800/60 p-5 shadow-2xl backdrop-blur-sm sm:p-6 lg:p-8"
               >
-                <div className="mb-8">
-                  <h2 className="text-5xl font-bold text-teal-400 mb-2">
+                <div className="mb-6 sm:mb-8">
+                  <h2 className="mb-2 text-3xl font-bold text-teal-400 sm:text-4xl lg:text-5xl">
                     {category}
                   </h2>
                   <div className="h-1 w-20 bg-gradient-to-r from-teal-500 to-orange-500 rounded-full" />
                 </div>
-                <div className="space-y-8">
+                <div className="space-y-5 sm:space-y-6 lg:space-y-8">
                   {items.map((item: MenuItem) => (
                     <div key={item.name} className="group">
-                      <div className="flex justify-between items-baseline mb-3">
-                        <h3 className="text-3xl font-semibold text-white group-hover:text-teal-300 transition-colors">
+                      <div className="mb-2 flex flex-col gap-2 sm:mb-3 sm:flex-row sm:items-baseline sm:justify-between">
+                        <h3 className="text-xl font-semibold text-white transition-colors group-hover:text-teal-300 sm:text-2xl lg:text-3xl">
                           {item.name}
                         </h3>
-                        <span className="text-3xl font-bold text-orange-400 ml-4">
+                        <span className="text-xl font-bold text-orange-400 sm:ml-4 sm:text-2xl lg:text-3xl">
                           {item.price}
                         </span>
                       </div>
-                      <p className="text-xl text-slate-400 leading-relaxed">
+                      <p className="text-base leading-relaxed text-slate-400 sm:text-lg lg:text-xl">
                         {item.description}
                       </p>
-                      <div className="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent mt-6" />
+                      <div className="mt-4 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent sm:mt-6" />
                     </div>
                   ))}
                 </div>
@@ -117,8 +127,8 @@ export const RestaurantMenu: FC = () => {
             ))}
           </div>
 
-          <footer className="text-center mt-16 pt-8 border-t border-slate-800">
-            <p className="text-2xl text-slate-400">
+          <footer className="mt-10 border-t border-slate-800 pt-6 text-center sm:mt-12 sm:pt-8 lg:mt-16">
+            <p className="text-base text-slate-400 sm:text-xl lg:text-2xl">
               Ask your server about daily specials and dietary options
             </p>
           </footer>
