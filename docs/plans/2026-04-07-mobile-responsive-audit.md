@@ -98,7 +98,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 25 | `/components/behaviour/content-rotator` | Content Rotator Doc | ✅ Fixed and verified |
 | 26 | `/components/behaviour/schedule-gate` | Schedule Gate Doc | ✅ Fixed and verified |
 | 27 | `/components/behaviour/auto-paging-list` | Auto Paging List Doc | ✅ Fixed and verified |
-| 28 | `/components/behaviour/signage-transition` | Signage Transition Doc | ⬜ Not started |
+| 28 | `/components/behaviour/signage-transition` | Signage Transition Doc | ✅ Fixed and verified |
 | 29 | `/components/behaviour/clock` | Clock Doc | ⬜ Not started |
 | 30 | `/components/behaviour/countdown` | Countdown Doc | ⬜ Not started |
 | 31 | `/components/behaviour/offline-fallback` | Offline Fallback Doc | ⬜ Not started |
@@ -898,6 +898,38 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No page-level horizontal overflow (`scrollWidth === viewport width`)
 - Installation source link verified at 44px height after fix
+- Footer CTA buttons verified at 44px height after fix
+
+---
+
+### Page 28 — Signage Transition Doc (`/components/behaviour/signage-transition`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Inline source link in the installation section was undersized on mobile** — “view source on GitHub” rendered at 19px height, below the 44px touch target baseline.
+2. **Example action button was undersized on mobile** — the “Next” control rendered at 36px height.
+3. **Footer CTA buttons were undersized on mobile** — “View in Storybook” and “View Source” rendered at 36px height.
+
+**Fix applied:**
+
+- Increased the inline installation source link to a 44px minimum height on mobile
+- Increased the example action button to 44px height on mobile
+- Increased the footer CTA buttons to 44px height on mobile
+
+**Code references:**
+
+- [apps/client/src/app/pages/components/behaviour/SignageTransitionDoc.tsx](../../apps/client/src/app/pages/components/behaviour/SignageTransitionDoc.tsx)
+
+**Verification:**
+
+- Route tested: `/components/behaviour/signage-transition`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No page-level horizontal overflow (`scrollWidth === viewport width`)
+- Installation source link verified at 44px height after fix
+- Example action button verified at 44px height after fix
 - Footer CTA buttons verified at 44px height after fix
 
 ---
