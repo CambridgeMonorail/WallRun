@@ -87,7 +87,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | --- | --- | --- | --- |
 | 15 | `/components` | Component Index | ✅ Fixed and verified |
 | 16 | `/components/primitives/metric-card` | Metric Card Doc | ✅ Fixed and verified |
-| 17 | `/components/primitives/screen-frame` | Screen Frame Doc | ⬜ Not started |
+| 17 | `/components/primitives/screen-frame` | Screen Frame Doc | ✅ Fixed and verified |
 | 18 | `/components/primitives/event-card` | Event Card Doc | ⬜ Not started |
 | 19 | `/components/primitives/announcement-card` | Announcement Card Doc | ⬜ Not started |
 | 20 | `/components/layouts/split-screen` | Split Screen Doc | ⬜ Not started |
@@ -564,5 +564,37 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - All `Copy` buttons verified at 44px height after fix
 - Source and footer resource links verified at 44px height after fix
+
+---
+
+### Page 17 — Screen Frame Doc (`/components/primitives/screen-frame`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Manual installation source link was undersized on mobile** — the direct source file link rendered at 40px height, below the 44px touch target baseline.
+2. **Footer CTA buttons were undersized on mobile** — “View in Storybook” and “View Source” rendered at 36px height.
+3. **Props table was clipped on narrow screens** — the table content exceeded the viewport width, but its container hid overflow instead of allowing horizontal scroll.
+
+**Fix applied:**
+
+- Increased the direct source file link to a 44px minimum height on mobile
+- Increased the footer CTA buttons to 44px height on mobile
+- Changed the props table wrapper to horizontal scrolling so all columns remain reachable on narrow viewports
+
+**Code references:**
+
+- [apps/client/src/app/pages/components/primitives/ScreenFrameDoc.tsx](../../apps/client/src/app/pages/components/primitives/ScreenFrameDoc.tsx)
+
+**Verification:**
+
+- Route tested: `/components/primitives/screen-frame`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No page-level horizontal overflow (`scrollWidth === viewport width`)
+- Manual installation source link verified at 44px height after fix
+- Footer CTA buttons verified at 44px height after fix
+- Props table remains accessible on mobile via horizontal scrolling instead of clipping
 
 ---
