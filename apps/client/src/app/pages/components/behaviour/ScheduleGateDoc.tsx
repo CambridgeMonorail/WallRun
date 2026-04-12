@@ -55,7 +55,7 @@ export const ScheduleGateDocPage: FC = () => {
             href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/ScheduleGate.tsx"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground hover:underline"
+            className="inline-flex min-h-11 items-center text-foreground hover:underline"
           >
             view source on GitHub
           </a>
@@ -68,12 +68,14 @@ export const ScheduleGateDocPage: FC = () => {
         <div className="flex flex-wrap items-center gap-2 mb-4">
           <Button
             variant={preset === 'open' ? 'secondary' : 'ghost'}
+            className="h-11"
             onClick={() => setPreset('open')}
           >
             Simulate 10:30
           </Button>
           <Button
             variant={preset === 'closed' ? 'secondary' : 'ghost'}
+            className="h-11"
             onClick={() => setPreset('closed')}
           >
             Simulate 20:30
@@ -138,7 +140,7 @@ export function DaypartMenu() {
       <section>
         <h2 className="text-2xl font-medium mb-4">Links</h2>
         <div className="flex flex-wrap gap-4">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/signage-behaviour-schedulegate--docs"
               target="_blank"
@@ -147,7 +149,7 @@ export function DaypartMenu() {
               View in Storybook
             </a>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/behaviour/ScheduleGate.tsx"
               target="_blank"

@@ -84,7 +84,7 @@ export const ScreenFrameDocPage: FC = () => {
                 href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
+                className="inline-flex min-h-11 items-center text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
               >
                 libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx
               </a>
@@ -165,7 +165,7 @@ export function SignagePreview() {
       {/* Props */}
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Props</h2>
-        <div className="border border-border rounded-lg overflow-hidden">
+        <div className="border border-border rounded-lg overflow-x-auto">
           <table className="w-full">
             <thead className="bg-muted">
               <tr>
@@ -225,7 +225,7 @@ export function SignagePreview() {
       <section>
         <h2 className="text-2xl font-medium mb-4">Links</h2>
         <div className="flex flex-wrap gap-4">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/primitives-screenframe--docs"
               target="_blank"
@@ -234,7 +234,7 @@ export function SignagePreview() {
               View in Storybook
             </a>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx"
               target="_blank"

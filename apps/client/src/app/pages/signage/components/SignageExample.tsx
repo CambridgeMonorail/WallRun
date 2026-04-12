@@ -27,9 +27,8 @@ export const SignageExample: FC<SignageExampleProps> = ({
         <div className="absolute top-4 left-4 z-50">
           <Button
             variant="ghost"
-            size="sm"
             onClick={handleBack}
-            className="bg-background/80 backdrop-blur-sm hover:bg-background/90"
+            className="h-11 bg-background/80 px-4 text-sm backdrop-blur-sm hover:bg-background/90"
             data-testid="back-button"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />

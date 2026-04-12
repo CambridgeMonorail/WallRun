@@ -17,50 +17,59 @@ export const OfficeDirectory: FC = () => {
   return (
     <SignageExample>
       <div
-        className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-16 relative overflow-hidden"
+        className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-4 sm:p-8 lg:p-16"
         data-testid="office-directory"
       >
         {/* Ambient lighting effects */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <header className="text-center mb-16">
-            <h1 className="text-8xl font-bold mb-8 bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+        <div
+          aria-hidden="true"
+          className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl sm:h-96 sm:w-96"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl sm:h-96 sm:w-96"
+        />
+
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <header className="mb-10 text-center sm:mb-12 lg:mb-16">
+            <h1 className="mb-5 bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-5xl font-bold leading-none text-transparent sm:mb-6 sm:text-6xl lg:mb-8 lg:text-8xl">
               Office Directory
             </h1>
-            <div className="inline-flex items-center gap-4 text-3xl text-cyan-300 bg-blue-950/50 backdrop-blur-sm border border-blue-800/50 rounded-full px-8 py-4">
-              <MapPin className="w-10 h-10" />
+            <div className="inline-flex items-center gap-3 rounded-full border border-blue-800/50 bg-blue-950/50 px-4 py-3 text-base text-cyan-300 backdrop-blur-sm sm:gap-4 sm:px-6 sm:text-xl lg:px-8 lg:py-4 lg:text-3xl">
+              <MapPin className="h-6 w-6 shrink-0 lg:h-10 lg:w-10" />
               <span>You are here: Main Lobby</span>
             </div>
           </header>
 
-          <div className="grid grid-cols-2 gap-8 mb-16">
+          <div
+            className="mb-10 grid grid-cols-1 gap-4 sm:mb-12 sm:gap-6 md:grid-cols-2 lg:mb-16 lg:gap-8"
+            data-testid="office-directory-grid"
+          >
             {directories.map((dir, index) => (
               <div
                 key={dir.department}
-                className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-md border border-slate-700/50 rounded-2xl p-8 shadow-2xl transform transition-all duration-300"
+                className="rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-5 shadow-2xl backdrop-blur-md transition-all duration-300 sm:p-6 lg:p-8"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="flex justify-between items-start mb-6">
-                  <h2 className="text-4xl font-bold text-white">
+                <div className="mb-4 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-start sm:justify-between">
+                  <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
                     {dir.department}
                   </h2>
-                  <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xl px-5 py-2 rounded-full font-bold shadow-lg">
+                  <div className="w-fit rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 text-sm font-bold text-white shadow-lg sm:text-base lg:px-5 lg:text-xl">
                     Floor {dir.floor}
                   </div>
                 </div>
-                <div className="h-px bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-transparent mb-6" />
-                <div className="flex justify-between items-center text-2xl">
-                  <span className="text-cyan-300 font-semibold">Room {dir.room}</span>
+                <div className="mb-4 h-px bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-transparent sm:mb-6" />
+                <div className="flex flex-col gap-2 text-lg sm:flex-row sm:items-center sm:justify-between sm:text-xl lg:text-2xl">
+                  <span className="font-semibold text-cyan-300">Room {dir.room}</span>
                   <span className="font-mono text-blue-300">{dir.phone}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          <footer className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 text-white rounded-3xl p-10 text-center shadow-2xl border border-blue-500/50">
-            <p className="text-3xl font-medium">
+          <footer className="rounded-3xl border border-blue-500/50 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 p-5 text-center text-white shadow-2xl sm:p-8 lg:p-10">
+            <p className="text-lg font-medium sm:text-2xl lg:text-3xl">
               For assistance, please contact Reception at extension 1001
             </p>
           </footer>

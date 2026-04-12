@@ -432,7 +432,7 @@ git pull origin main`}
           to .github/skills for GitHub Copilot.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          <Button variant="secondary" asChild>
+          <Button variant="secondary" asChild className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/tree/main/skills"
               target="_blank"
@@ -441,7 +441,7 @@ git pull origin main`}
               Open Skills Directory
             </a>
           </Button>
-          <Button variant="secondary" asChild>
+          <Button variant="secondary" asChild className="h-11">
             <a
               href="https://agentskills.io/specification"
               target="_blank"
@@ -450,7 +450,7 @@ git pull origin main`}
               Agent Skills Specification
             </a>
           </Button>
-          <Button variant="ghost" asChild>
+          <Button variant="ghost" asChild className="h-11">
             <Link to="/tooling">Back to Tooling</Link>
           </Button>
         </div>
