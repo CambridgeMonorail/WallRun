@@ -88,7 +88,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 15 | `/components` | Component Index | ✅ Fixed and verified |
 | 16 | `/components/primitives/metric-card` | Metric Card Doc | ✅ Fixed and verified |
 | 17 | `/components/primitives/screen-frame` | Screen Frame Doc | ✅ Fixed and verified |
-| 18 | `/components/primitives/event-card` | Event Card Doc | ⬜ Not started |
+| 18 | `/components/primitives/event-card` | Event Card Doc | ✅ Fixed and verified |
 | 19 | `/components/primitives/announcement-card` | Announcement Card Doc | ⬜ Not started |
 | 20 | `/components/layouts/split-screen` | Split Screen Doc | ⬜ Not started |
 | 21 | `/components/layouts/signage-container` | Signage Container Doc | ⬜ Not started |
@@ -596,5 +596,34 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Manual installation source link verified at 44px height after fix
 - Footer CTA buttons verified at 44px height after fix
 - Props table remains accessible on mobile via horizontal scrolling instead of clipping
+
+---
+
+### Page 18 — Event Card Doc (`/components/primitives/event-card`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **Manual installation source link was undersized on mobile** — the direct source file link rendered at 40px height, below the 44px touch target baseline.
+2. **Footer CTA buttons were undersized on mobile** — “View in Storybook” and “View Source” rendered at 36px height.
+
+**Fix applied:**
+
+- Increased the direct source file link to a 44px minimum height on mobile
+- Increased the footer CTA buttons to 44px height on mobile
+
+**Code references:**
+
+- [apps/client/src/app/pages/components/primitives/EventCardDoc.tsx](../../apps/client/src/app/pages/components/primitives/EventCardDoc.tsx)
+
+**Verification:**
+
+- Route tested: `/components/primitives/event-card`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No page-level horizontal overflow (`scrollWidth === viewport width`)
+- Manual installation source link verified at 44px height after fix
+- Footer CTA buttons verified at 44px height after fix
 
 ---
