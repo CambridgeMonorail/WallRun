@@ -95,20 +95,27 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 22 | `/components/layouts/signage-header` | Signage Header Doc | ✅ Fixed and verified |
 | 23 | `/components/blocks/fullscreen-hero` | Fullscreen Hero Doc | ✅ Fixed and verified |
 | 24 | `/components/blocks/info-card-grid` | Info Card Grid Doc | ✅ Fixed and verified |
-| 25-31 | `/components/behaviour/*` | Behaviour Docs (7 pages) | ⬜ Not started |
+| 25 | `/components/behaviour/content-rotator` | Content Rotator Doc | ✅ Fixed and verified |
+| 26 | `/components/behaviour/schedule-gate` | Schedule Gate Doc | ⬜ Not started |
+| 27 | `/components/behaviour/auto-paging-list` | Auto Paging List Doc | ⬜ Not started |
+| 28 | `/components/behaviour/signage-transition` | Signage Transition Doc | ⬜ Not started |
+| 29 | `/components/behaviour/clock` | Clock Doc | ⬜ Not started |
+| 30 | `/components/behaviour/countdown` | Countdown Doc | ⬜ Not started |
+| 31 | `/components/behaviour/offline-fallback` | Offline Fallback Doc | ⬜ Not started |
+| 32 | `/components/behaviour/stale-data-indicator` | Stale Data Indicator Doc | ⬜ Not started |
 
 ### Priority 4 — Signage Example Screens
 
 | # | Route | Page | Status |
 | --- | --- | --- | --- |
-| 32 | `/signage/welcome` | Welcome Screen | ⬜ Not started |
-| 33 | `/signage/menu` | Restaurant Menu | ⬜ Not started |
-| 34 | `/signage/wayfinding` | Office Directory | ⬜ Not started |
-| 35 | `/signage/dashboard` | KPI Dashboard | ⬜ Not started |
-| 36 | `/signage/announcements` | Announcements Board | ⬜ Not started |
-| 37 | `/signage/event-schedule` | Event Schedule | ⬜ Not started |
-| 38 | `/signage/office-lobby-loop` | Office Lobby Loop | ⬜ Not started |
-| 39 | `/signage/daypart-menu` | Daypart Menu | ⬜ Not started |
+| 33 | `/signage/welcome` | Welcome Screen | ⬜ Not started |
+| 34 | `/signage/menu` | Restaurant Menu | ⬜ Not started |
+| 35 | `/signage/wayfinding` | Office Directory | ⬜ Not started |
+| 36 | `/signage/dashboard` | KPI Dashboard | ⬜ Not started |
+| 37 | `/signage/announcements` | Announcements Board | ⬜ Not started |
+| 38 | `/signage/event-schedule` | Event Schedule | ⬜ Not started |
+| 39 | `/signage/office-lobby-loop` | Office Lobby Loop | ⬜ Not started |
+| 40 | `/signage/daypart-menu` | Daypart Menu | ⬜ Not started |
 
 ---
 
@@ -798,6 +805,38 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No page-level horizontal overflow (`scrollWidth === viewport width`)
 - Manual installation source link verified at 44px height after fix
+- Footer CTA buttons verified at 44px height after fix
+
+---
+
+### Page 25 — Content Rotator Doc (`/components/behaviour/content-rotator`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **Inline source link in the installation section was undersized on mobile** — “view source on GitHub” rendered at 19px height, below the 44px touch target baseline.
+2. **Footer CTA buttons were undersized on mobile** — “View in Storybook” and “View Source” rendered at 36px height.
+3. **Behaviour doc count in the audit table was stale** — the app currently exposes eight `/components/behaviour/*` routes, but the plan still grouped them as seven pages.
+
+**Fix applied:**
+
+- Increased the inline installation source link to a 44px minimum height on mobile
+- Increased the footer CTA buttons to 44px height on mobile
+- Expanded the behaviour section of the audit table to list all eight current routes individually and shifted the signage example numbering accordingly
+
+**Code references:**
+
+- [apps/client/src/app/pages/components/behaviour/ContentRotatorDoc.tsx](../../apps/client/src/app/pages/components/behaviour/ContentRotatorDoc.tsx)
+- [apps/client/src/app/constants/navigationConfig.ts](../../apps/client/src/app/constants/navigationConfig.ts)
+
+**Verification:**
+
+- Route tested: `/components/behaviour/content-rotator`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No page-level horizontal overflow (`scrollWidth === viewport width`)
+- Installation source link verified at 44px height after fix
 - Footer CTA buttons verified at 44px height after fix
 
 ---
