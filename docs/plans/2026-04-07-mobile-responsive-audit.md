@@ -86,7 +86,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | # | Route | Page | Status |
 | --- | --- | --- | --- |
 | 15 | `/components` | Component Index | ✅ Fixed and verified |
-| 16 | `/components/primitives/metric-card` | Metric Card Doc | ⬜ Not started |
+| 16 | `/components/primitives/metric-card` | Metric Card Doc | ✅ Fixed and verified |
 | 17 | `/components/primitives/screen-frame` | Screen Frame Doc | ⬜ Not started |
 | 18 | `/components/primitives/event-card` | Event Card Doc | ⬜ Not started |
 | 19 | `/components/primitives/announcement-card` | Announcement Card Doc | ⬜ Not started |
@@ -533,5 +533,36 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Component cards remain full-size links
 - Intro and footer resource links verified at 44px height after fix
+
+---
+
+### Page 16 — Metric Card Doc (`/components/primitives/metric-card`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Medium
+
+**Issues found:**
+
+1. **Code snippet copy buttons were undersized on mobile** — each `Copy` control rendered at 32px height, below the 44px touch target baseline.
+2. **Doc resource links were undersized on mobile** — the source file link and footer CTA links rendered below the 44px touch target baseline.
+
+**Fix applied:**
+
+- Increased the shared `CodeSnippet` copy button to a 44px mobile touch target
+- Increased the Metric Card doc source link to a 44px minimum height on mobile
+- Increased the footer CTA buttons to 44px height on mobile
+
+**Code references:**
+
+- [apps/client/src/app/components/CodeSnippet.tsx](../../apps/client/src/app/components/CodeSnippet.tsx)
+- [apps/client/src/app/pages/components/primitives/MetricCardDoc.tsx](../../apps/client/src/app/pages/components/primitives/MetricCardDoc.tsx)
+
+**Verification:**
+
+- Route tested: `/components/primitives/metric-card`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- All `Copy` buttons verified at 44px height after fix
+- Source and footer resource links verified at 44px height after fix
 
 ---
