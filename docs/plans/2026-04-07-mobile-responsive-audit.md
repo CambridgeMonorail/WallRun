@@ -78,7 +78,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 10 | `/how-to` | How-To Index | ✅ Fixed and verified |
 | 11 | `/how-to/custom-agents` | Custom Agents Guide | ✅ Fixed and verified |
 | 12 | `/how-to/design-brief` | Design Brief Guide | ✅ Fixed and verified |
-| 13 | `/how-to/build-signage` | Build Signage Guide | ⬜ Not started |
+| 13 | `/how-to/build-signage` | Build Signage Guide | ✅ Fixed and verified |
 | 14 | `/how-to/deploy-brightsign` | Deploy BrightSign Guide | ⬜ Not started |
 
 ### Priority 3 — Component Documentation
@@ -451,5 +451,32 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Build Signage handoff link verified at 44px height after fix
+
+---
+
+### Page 13 — Build Signage Guide (`/how-to/build-signage`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+- No mobile-specific defects found at the target viewport during this pass.
+
+**Fix applied:**
+
+- No code changes required.
+
+**Code references:**
+
+- [apps/client/src/app/pages/how-to/BuildSignage.tsx](../../apps/client/src/app/pages/how-to/BuildSignage.tsx)
+
+**Verification:**
+
+- Route tested: `/how-to/build-signage`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Inline handoff links already rendered at mobile-safe sizes
+- Code examples fit within their containers at this viewport
 
 ---
