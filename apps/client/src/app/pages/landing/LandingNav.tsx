@@ -65,7 +65,7 @@ export const LandingNav: FC = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="h-11 w-11 md:hidden"
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="landing-mobile-menu"
