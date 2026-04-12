@@ -85,7 +85,7 @@ export const SignageContainerDocPage: FC = () => {
                 href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
+                className="inline-flex min-h-11 items-center text-blue-400 hover:text-blue-300 hover:underline font-mono text-sm"
               >
                 libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx
               </a>
@@ -151,7 +151,7 @@ export function WelcomeScreen() {
       <section>
         <h2 className="text-2xl font-medium mb-4">Links</h2>
         <div className="flex flex-wrap gap-4">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/layouts-signagecontainer--docs"
               target="_blank"
@@ -160,7 +160,7 @@ export function WelcomeScreen() {
               View in Storybook
             </a>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="h-11">
             <a
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx"
               target="_blank"
