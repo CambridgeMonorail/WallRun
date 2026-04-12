@@ -79,7 +79,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 11 | `/how-to/custom-agents` | Custom Agents Guide | ✅ Fixed and verified |
 | 12 | `/how-to/design-brief` | Design Brief Guide | ✅ Fixed and verified |
 | 13 | `/how-to/build-signage` | Build Signage Guide | ✅ Fixed and verified |
-| 14 | `/how-to/deploy-brightsign` | Deploy BrightSign Guide | ⬜ Not started |
+| 14 | `/how-to/deploy-brightsign` | Deploy BrightSign Guide | ✅ Fixed and verified |
 
 ### Priority 3 — Component Documentation
 
@@ -478,5 +478,32 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Inline handoff links already rendered at mobile-safe sizes
 - Code examples fit within their containers at this viewport
+
+---
+
+### Page 14 — Deploy BrightSign Guide (`/how-to/deploy-brightsign`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **Manual deployment commands did not declare horizontal scrolling** — the longest command slightly exceeded its container width on mobile, but the `pre` blocks relied on default overflow behavior.
+
+**Fix applied:**
+
+- Added explicit horizontal scrolling to all command and invocation code blocks on the page
+- Preserved existing layout and typography
+
+**Code references:**
+
+- [apps/client/src/app/pages/how-to/DeployBrightSign.tsx](../../apps/client/src/app/pages/how-to/DeployBrightSign.tsx)
+
+**Verification:**
+
+- Route tested: `/how-to/deploy-brightsign`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- All command blocks explicitly support horizontal scrolling after fix
 
 ---

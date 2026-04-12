@@ -104,7 +104,7 @@ export const DeployBrightSignPage: FC = () => {
             </h3>
             <p className="mb-3">Scan the network to discover players:</p>
             <pre
-              className="rounded-lg border border-border bg-muted p-4 text-sm"
+              className="overflow-x-auto rounded-lg border border-border bg-muted p-4 text-sm"
               aria-label="Player discovery command"
             >
               <code className="text-foreground">pnpm discover</code>
@@ -121,7 +121,7 @@ export const DeployBrightSignPage: FC = () => {
             </h3>
             <p className="mb-3">Invoke the BrightSign Deploy agent:</p>
             <pre
-              className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
+              className="overflow-x-auto whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
               aria-label="Agent invocation example"
             >
               <code className="text-foreground">
@@ -180,7 +180,7 @@ Package and deploy the player-minimal app to the BrightSign player at 192.168.1.
             diagnose:
           </p>
           <pre
-            className="whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
+            className="overflow-x-auto whitespace-pre-wrap rounded-lg border border-border bg-muted p-4 text-sm"
             aria-label="Debugging command example"
           >
             <code className="text-foreground">
@@ -260,7 +260,7 @@ Debug the player at 192.168.1.100 - the app is showing a blank screen`}
                 1. Package the app:
               </p>
               <pre
-                className="rounded-lg border border-border bg-muted p-3 text-xs"
+                className="overflow-x-auto rounded-lg border border-border bg-muted p-3 text-xs"
                 aria-label="Package player app command"
               >
                 <code className="text-foreground">
@@ -273,7 +273,7 @@ Debug the player at 192.168.1.100 - the app is showing a blank screen`}
                 2. Deploy to player:
               </p>
               <pre
-                className="rounded-lg border border-border bg-muted p-3 text-xs"
+                className="overflow-x-auto rounded-lg border border-border bg-muted p-3 text-xs"
                 aria-label="Deploy to player command"
               >
                 <code className="text-foreground">
