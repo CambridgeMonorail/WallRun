@@ -88,7 +88,7 @@ export const LandingNav: FC = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className="rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -98,7 +98,7 @@ export const LandingNav: FC = () => {
               href="https://github.com/CambridgeMonorail/WallRun"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="flex min-h-11 items-center gap-2 rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               onClick={() => setOpen(false)}
             >
               <Github className="h-4 w-4" />
