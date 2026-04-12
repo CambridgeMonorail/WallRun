@@ -102,7 +102,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 29 | `/components/behaviour/clock` | Clock Doc | ✅ Fixed and verified |
 | 30 | `/components/behaviour/countdown` | Countdown Doc | ✅ Fixed and verified |
 | 31 | `/components/behaviour/offline-fallback` | Offline Fallback Doc | ✅ Fixed and verified |
-| 32 | `/components/behaviour/stale-data-indicator` | Stale Data Indicator Doc | ⬜ Not started |
+| 32 | `/components/behaviour/stale-data-indicator` | Stale Data Indicator Doc | ✅ Fixed and verified |
 
 ### Priority 4 — Signage Example Screens
 
@@ -136,7 +136,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 
 ## Progress Snapshot
 
-**Current progress:** 32 / 40 pages complete (80%)
+**Current progress:** 33 / 40 pages complete (82.5%)
 
 ### Completion by priority
 
@@ -144,7 +144,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | --- | --- | ---: | ---: |
 | 1 | First impressions | 3 / 3 | 0 |
 | 2 | Main content pages | 11 / 11 | 0 |
-| 3 | Component documentation | 17 / 18 | 1 |
+| 3 | Component documentation | 18 / 18 | 0 |
 | 4 | Signage example screens | 0 / 8 | 8 |
 
 ### Main patterns found so far
@@ -191,15 +191,23 @@ Detailed findings for Pages 1-28 were moved to [2026-04-07-mobile-responsive-aud
 - Verification: route `/components/behaviour/offline-fallback` at 412 × 924 reported `scrollWidth === viewportWidth`; inline source link, example toggle, footer links, and copy buttons all measured 44px height.
 - Evidence: `none`
 
+### Page 32 — `/components/behaviour/stale-data-indicator`
+
+- Status: `✅`
+- Issue: the inline installation source link measured 19px high on mobile, and both footer CTA links measured 36px high.
+- Fix: promoted the inline source link to an inline-flex 44px target and raised both footer CTA buttons to 44px.
+- Verification: route `/components/behaviour/stale-data-indicator` at 412 × 924 reported `scrollWidth === viewportWidth`; inline source link, footer links, and copy buttons all measured 44px height.
+- Evidence: `none`
+
 ## Remaining Pages
 
 ### Next highest-priority pages
 
-1. `/components/behaviour/stale-data-indicator` — Stale Data Indicator Doc
-2. `/signage/welcome` — Welcome Screen
-3. `/signage/menu` — Restaurant Menu
-4. `/signage/wayfinding` — Office Directory
-5. `/signage/dashboard` — KPI Dashboard
+1. `/signage/welcome` — Welcome Screen
+2. `/signage/menu` — Restaurant Menu
+3. `/signage/wayfinding` — Office Directory
+4. `/signage/dashboard` — KPI Dashboard
+5. `/signage/announcements` — Announcements Board
 
 ### Final batch after docs are complete
 
