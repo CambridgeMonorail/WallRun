@@ -94,7 +94,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 21 | `/components/layouts/signage-container` | Signage Container Doc | ✅ Fixed and verified |
 | 22 | `/components/layouts/signage-header` | Signage Header Doc | ✅ Fixed and verified |
 | 23 | `/components/blocks/fullscreen-hero` | Fullscreen Hero Doc | ✅ Fixed and verified |
-| 24 | `/components/blocks/info-card-grid` | Info Card Grid Doc | ⬜ Not started |
+| 24 | `/components/blocks/info-card-grid` | Info Card Grid Doc | ✅ Fixed and verified |
 | 25-31 | `/components/behaviour/*` | Behaviour Docs (7 pages) | ⬜ Not started |
 
 ### Priority 4 — Signage Example Screens
@@ -766,6 +766,35 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 **Verification:**
 
 - Route tested: `/components/blocks/fullscreen-hero`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No page-level horizontal overflow (`scrollWidth === viewport width`)
+- Manual installation source link verified at 44px height after fix
+- Footer CTA buttons verified at 44px height after fix
+
+---
+
+### Page 24 — Info Card Grid Doc (`/components/blocks/info-card-grid`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **Manual installation source link was undersized on mobile** — the direct source file link rendered at 40px height, below the 44px touch target baseline.
+2. **Footer CTA buttons were undersized on mobile** — “View in Storybook” and “View Source” rendered at 36px height.
+
+**Fix applied:**
+
+- Increased the direct source file link to a 44px minimum height on mobile
+- Increased the footer CTA buttons to 44px height on mobile
+
+**Code references:**
+
+- [apps/client/src/app/pages/components/blocks/InfoCardGridDoc.tsx](../../apps/client/src/app/pages/components/blocks/InfoCardGridDoc.tsx)
+
+**Verification:**
+
+- Route tested: `/components/blocks/info-card-grid`
 - Viewport tested: 412 × 924 CSS px (mobile emulation)
 - No page-level horizontal overflow (`scrollWidth === viewport width`)
 - Manual installation source link verified at 44px height after fix
