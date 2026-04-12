@@ -164,7 +164,7 @@ Create a design brief for "The Green Fork" - a premium plant-based café with a 
               the actual screens. See the{' '}
               <Link
                 to="/how-to/build-signage"
-                className="text-foreground underline hover:no-underline"
+                className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
               >
                 Build a Signage Screen
               </Link>{' '}

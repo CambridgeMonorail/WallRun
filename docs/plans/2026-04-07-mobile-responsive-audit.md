@@ -77,7 +77,7 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 | 9 | `/library` | Library | ✅ Fixed and verified |
 | 10 | `/how-to` | How-To Index | ✅ Fixed and verified |
 | 11 | `/how-to/custom-agents` | Custom Agents Guide | ✅ Fixed and verified |
-| 12 | `/how-to/design-brief` | Design Brief Guide | ⬜ Not started |
+| 12 | `/how-to/design-brief` | Design Brief Guide | ✅ Fixed and verified |
 | 13 | `/how-to/build-signage` | Build Signage Guide | ⬜ Not started |
 | 14 | `/how-to/deploy-brightsign` | Deploy BrightSign Guide | ⬜ Not started |
 
@@ -424,5 +424,32 @@ These are designed for large displays, not mobile. However, mobile visitors _wil
 - No horizontal overflow (`scrollWidth === viewport width`)
 - Linked agent references verified at 44px height after fix
 - Long invocation example scrolls horizontally within its code block
+
+---
+
+### Page 12 — Design Brief Guide (`/how-to/design-brief`)
+
+**Status:** ✅ Fixed and verified
+**Severity:** Low
+
+**Issues found:**
+
+1. **The inline handoff link was undersized on mobile** — the link to the Build Signage guide rendered at 21px height, below the 44px touch target baseline.
+
+**Fix applied:**
+
+- Increased the Build Signage handoff link to a 44px minimum height on mobile
+- Preserved the existing page structure and example blocks
+
+**Code references:**
+
+- [apps/client/src/app/pages/how-to/DesignBrief.tsx](../../apps/client/src/app/pages/how-to/DesignBrief.tsx)
+
+**Verification:**
+
+- Route tested: `/how-to/design-brief`
+- Viewport tested: 412 × 924 CSS px (mobile emulation)
+- No horizontal overflow (`scrollWidth === viewport width`)
+- Build Signage handoff link verified at 44px height after fix
 
 ---
