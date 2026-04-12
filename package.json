@@ -189,8 +189,8 @@
     "@types/react-dom": "19.0.3",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "4.0.0",
-    "@vitest/ui": "4.0.0",
+    "@vitest/coverage-v8": "4.1.4",
+    "@vitest/ui": "4.1.4",
     "babel-jest": "30.0.5",
     "chrome-launcher": "^1.1.2",
     "commander": "^14.0.3",
@@ -234,7 +234,7 @@
     "vite": "7.3.2",
     "vite-plugin-dts": "4.5.4",
     "vite-plugin-react-markdown": "^0.2.10",
-    "vitest": "4.0.0",
+    "vitest": "4.1.4",
     "yargs": "^17.7.2"
   }
 }
