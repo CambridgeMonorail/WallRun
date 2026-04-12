@@ -25,7 +25,7 @@ export const LandingNav: FC = () => {
 
   return (
     <nav
-      className="sticky top-0 z-50 w-full border-b border-white/6 bg-background/60 backdrop-blur-lg"
+      className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/60 backdrop-blur-lg"
       data-testid="landing-nav"
       aria-label="Main navigation"
     >
@@ -80,7 +80,7 @@ export const LandingNav: FC = () => {
       {open && (
         <div
           id="landing-mobile-menu"
-          className="border-t border-white/6 bg-background/95 backdrop-blur-lg md:hidden"
+          className="border-t border-border/60 bg-background/95 backdrop-blur-lg md:hidden"
           data-testid="landing-mobile-menu"
         >
           <div className="flex flex-col gap-1 px-4 py-3">
