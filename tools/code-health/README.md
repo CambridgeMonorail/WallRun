@@ -70,6 +70,9 @@ Knip and jscpd are invoked with CLI flags derived from this configuration.
 # Run tests
 nx test code-health
 
-# Type check
-nx run code-health:type-check
+# Lint
+nx lint code-health
+
+# Run the full workflow
+nx run code-health:run
 ```
