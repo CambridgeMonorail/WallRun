@@ -59,10 +59,10 @@ Findings are categorized by confidence level:
 
 ## Copilot Integration
 
-Use the `@code-health` prompt to run analysis interactively:
+Use the `/code-health` prompt to run analysis interactively:
 
 ```
-@code-health Run code health analysis and show me what needs cleanup
+/code-health Run code health analysis and show me what needs cleanup
 ```
 
 The prompt guides Copilot through:
