@@ -55,10 +55,14 @@ Findings are grouped into confidence buckets:
 
 ## Configuration
 
-Ignore rules are configured in:
+Configuration is defined in `tools/code-health/src/config.ts`:
 
-- `knip.config.ts` (root) — Knip configuration
-- `.jscpd.json` (root) — jscpd configuration
+- `excludeDirs` — Directories to skip (node_modules, dist, coverage, etc.)
+- `excludePatterns` — File patterns to ignore (tests, stories, type definitions)
+- `minDuplicationLines` / `minDuplicationTokens` — Thresholds for duplication detection
+- `safeCleanupThreshold` / `likelyCleanupThreshold` — Lines of duplication for confidence buckets
+
+Knip and jscpd are invoked with CLI flags derived from this configuration.
 
 ## Development
 
