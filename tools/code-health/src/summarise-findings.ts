@@ -20,7 +20,10 @@ export async function summariseFindings(): Promise<SummaryOutput> {
   const summaryPath = resolve(outputDir, 'summary.md');
 
   if (!fileExists(unifiedPath)) {
-    log('Unified report not found - run merge first', 'error');
+    log(
+      'Unified report not found - run pnpm code-health:run or nx run code-health:run first',
+      'error',
+    );
     return {
       safe: [],
       likely: [],
