@@ -21,7 +21,12 @@ export async function summariseFindings(): Promise<SummaryOutput> {
 
   if (!fileExists(unifiedPath)) {
     log('Unified report not found - run merge first', 'error');
-    return { safe: [], likely: [], review: [], totals: { safe: 0, likely: 0, review: 0 } };
+    return {
+      safe: [],
+      likely: [],
+      review: [],
+      totals: { safe: 0, likely: 0, review: 0 },
+    };
   }
 
   const report = readJson<UnifiedReport>(unifiedPath);
@@ -131,7 +136,10 @@ function getDuplicationBucket(lines: number): ConfidenceBucket {
 /**
  * Print a console summary
  */
-function printConsoleSummary(report: UnifiedReport, summary: SummaryOutput): void {
+function printConsoleSummary(
+  report: UnifiedReport,
+  summary: SummaryOutput,
+): void {
   console.log('\n' + '='.repeat(60));
   console.log('CODE HEALTH SUMMARY');
   console.log('='.repeat(60) + '\n');
@@ -143,15 +151,25 @@ function printConsoleSummary(report: UnifiedReport, summary: SummaryOutput): voi
   console.log('-'.repeat(40));
   console.log(`  Unused files:          ${report.deadCode.files.length}`);
   console.log(`  Unused exports:        ${report.deadCode.exports.length}`);
-  console.log(`  Unused dependencies:   ${report.deadCode.dependencies.length}`);
-  console.log(`  Unused devDeps:        ${report.deadCode.devDependencies.length}`);
+  console.log(
+    `  Unused dependencies:   ${report.deadCode.dependencies.length}`,
+  );
+  console.log(
+    `  Unused devDeps:        ${report.deadCode.devDependencies.length}`,
+  );
   console.log();
 
   console.log('DUPLICATION');
   console.log('-'.repeat(40));
-  console.log(`  Clone blocks:          ${report.duplication.statistics.cloneCount}`);
-  console.log(`  Duplicated lines:      ${report.duplication.statistics.duplicatedLines}`);
-  console.log(`  Duplication %:         ${report.duplication.statistics.duplicatedPercentage.toFixed(2)}%`);
+  console.log(
+    `  Clone blocks:          ${report.duplication.statistics.cloneCount}`,
+  );
+  console.log(
+    `  Duplicated lines:      ${report.duplication.statistics.duplicatedLines}`,
+  );
+  console.log(
+    `  Duplication %:         ${report.duplication.statistics.duplicatedPercentage.toFixed(2)}%`,
+  );
   console.log();
 
   console.log('CONFIDENCE BUCKETS');
@@ -181,7 +199,10 @@ function printConsoleSummary(report: UnifiedReport, summary: SummaryOutput): voi
 /**
  * Generate markdown summary
  */
-function generateMarkdownSummary(report: UnifiedReport, summary: SummaryOutput): string {
+function generateMarkdownSummary(
+  report: UnifiedReport,
+  summary: SummaryOutput,
+): string {
   const lines: string[] = [
     '# Code Health Summary',
     '',
@@ -239,7 +260,9 @@ function generateMarkdownSummary(report: UnifiedReport, summary: SummaryOutput):
   // Needs review section (abbreviated)
   if (summary.review.length > 0) {
     lines.push('## Needs Review', '');
-    lines.push(`${summary.review.length} findings need manual review. See \`unified.json\` for full details.`);
+    lines.push(
+      `${summary.review.length} findings need manual review. See \`unified.json\` for full details.`,
+    );
     lines.push('');
   }
 

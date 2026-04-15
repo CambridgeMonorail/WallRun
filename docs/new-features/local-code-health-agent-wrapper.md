@@ -356,6 +356,7 @@ Suggested prompt content:
 **Description**: run the local code health workflow and summarize the findings without modifying code.
 
 **Prompt**:
+
 1. Run `pnpm code-health:run`.
 2. Read `reports/code-health/unified.json` and `reports/code-health/summary.md` if present.
 3. Group findings into:

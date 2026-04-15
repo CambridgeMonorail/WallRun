@@ -28,12 +28,12 @@ The code health tool combines two static analysis tools:
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `pnpm code-health:run` | Full workflow (knip + jscpd + merge + summary) |
-| `pnpm code-health:knip` | Dead code detection only |
-| `pnpm code-health:jscpd` | Duplication detection only |
-| `pnpm code-health:summary` | Regenerate summary from existing reports |
+| Command                    | Description                                    |
+| -------------------------- | ---------------------------------------------- |
+| `pnpm code-health:run`     | Full workflow (knip + jscpd + merge + summary) |
+| `pnpm code-health:knip`    | Dead code detection only                       |
+| `pnpm code-health:jscpd`   | Duplication detection only                     |
+| `pnpm code-health:summary` | Regenerate summary from existing reports       |
 
 ## Output
 
@@ -51,11 +51,11 @@ reports/code-health/
 
 Findings are categorized by confidence level:
 
-| Bucket | Description | Examples |
-|--------|-------------|----------|
-| **Safe** | High-confidence, can fix immediately | Unused dependencies, large duplications |
-| **Likely** | Medium-confidence, worth reviewing | Unused files |
-| **Review** | Low-confidence, may be false positives | Unused exports (could be public API) |
+| Bucket     | Description                            | Examples                                |
+| ---------- | -------------------------------------- | --------------------------------------- |
+| **Safe**   | High-confidence, can fix immediately   | Unused dependencies, large duplications |
+| **Likely** | Medium-confidence, worth reviewing     | Unused files                            |
+| **Review** | Low-confidence, may be false positives | Unused exports (could be public API)    |
 
 ## Copilot Integration
 
@@ -66,6 +66,7 @@ Use the `@code-health` prompt to run analysis interactively:
 ```
 
 The prompt guides Copilot through:
+
 1. Running the analysis
 2. Presenting findings by confidence
 3. Suggesting specific actions
@@ -115,6 +116,7 @@ Edit `summarise-findings.ts` to adjust how findings are categorized into confide
 ### "Knip report not found"
 
 Ensure Knip ran successfully:
+
 ```bash
 pnpm code-health:knip
 ```
@@ -122,6 +124,7 @@ pnpm code-health:knip
 ### "jscpd report not found"
 
 Ensure jscpd ran successfully:
+
 ```bash
 pnpm code-health:jscpd
 ```
@@ -129,6 +132,7 @@ pnpm code-health:jscpd
 ### Empty reports
 
 Check that the workspace has files to analyze. Run with verbose output:
+
 ```bash
 pnpm exec knip --reporter json
 ```

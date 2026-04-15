@@ -28,7 +28,24 @@ export async function mergeFindings(): Promise<UnifiedReport> {
 
   // Read existing reports
   let knipReport: KnipReport = {};
-  let jscpdReport: JscpdReport = { statistics: { detectionDate: '', formats: {}, total: { sources: 0, files: 0, lines: 0, tokens: 0, clones: 0, duplicatedLines: 0, duplicatedTokens: 0, percentage: 0, percentageTokens: 0 } }, duplicates: [] };
+  let jscpdReport: JscpdReport = {
+    statistics: {
+      detectionDate: '',
+      formats: {},
+      total: {
+        sources: 0,
+        files: 0,
+        lines: 0,
+        tokens: 0,
+        clones: 0,
+        duplicatedLines: 0,
+        duplicatedTokens: 0,
+        percentage: 0,
+        percentageTokens: 0,
+      },
+    },
+    duplicates: [],
+  };
 
   if (fileExists(knipPath)) {
     knipReport = readJson<KnipReport>(knipPath);
@@ -93,7 +110,10 @@ function extractDeadCode(knip: KnipReport): DeadCodeFindings {
  */
 function extractDuplication(jscpd: JscpdReport): DuplicationFindings {
   const blocks: DuplicationBlock[] = (jscpd.duplicates ?? []).map((clone) => ({
-    files: [clone.firstFile?.name ?? 'unknown', clone.secondFile?.name ?? 'unknown'],
+    files: [
+      clone.firstFile?.name ?? 'unknown',
+      clone.secondFile?.name ?? 'unknown',
+    ],
     lines: clone.lines ?? 0,
     tokens: clone.tokens ?? 0,
     fragmentA: clone.fragment?.slice(0, 200) ?? '',
@@ -127,7 +147,7 @@ function extractDuplication(jscpd: JscpdReport): DuplicationFindings {
  */
 function buildSummary(
   deadCode: DeadCodeFindings,
-  duplication: DuplicationFindings
+  duplication: DuplicationFindings,
 ): ReportSummary {
   const deadCodeCount =
     deadCode.files.length +
@@ -138,9 +158,10 @@ function buildSummary(
   const duplicationBlockCount = duplication.blocks.length;
 
   // High confidence = unused dependencies + large duplications
-  const highConfidenceDeps = deadCode.dependencies.length + deadCode.devDependencies.length;
+  const highConfidenceDeps =
+    deadCode.dependencies.length + deadCode.devDependencies.length;
   const highConfidenceDupes = duplication.blocks.filter(
-    (b) => b.lines >= CONFIG.safeCleanupThreshold
+    (b) => b.lines >= CONFIG.safeCleanupThreshold,
   ).length;
 
   return {

@@ -107,6 +107,9 @@ Output:
 }
 
 main().catch((error) => {
-  log(`Error: ${error instanceof Error ? error.message : String(error)}`, 'error');
+  log(
+    `Error: ${error instanceof Error ? error.message : String(error)}`,
+    'error',
+  );
   process.exit(1);
 });

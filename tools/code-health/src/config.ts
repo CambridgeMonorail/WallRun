@@ -56,6 +56,6 @@ export function getOutputDir(workspaceRoot: string): string {
  */
 export function getWorkspaceRoot(): string {
   // Walk up from current file to find workspace root (where package.json is)
-  let dir = process.cwd();
+  const dir = process.cwd();
   return dir;
 }

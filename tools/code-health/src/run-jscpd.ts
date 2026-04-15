@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { CONFIG, getOutputDir, getWorkspaceRoot } from './config.js';
-import type { JscpdReport, JscpdClone, JscpdStatistics } from './types.js';
+import type { JscpdReport } from './types.js';
 import { fileExists, readJson, writeJson } from './utils/fs.js';
 import { log, runCommand } from './utils/process.js';
 
@@ -25,7 +25,7 @@ export async function runJscpd(): Promise<JscpdReport> {
   // jscpd writes to a directory, not a single file
   const result = runCommand(
     `pnpm exec jscpd . --reporters json --output "${outputDir}" --ignore "${ignorePattern}" --min-lines ${CONFIG.minDuplicationLines} --min-tokens ${CONFIG.minDuplicationTokens}`,
-    { cwd: workspaceRoot }
+    { cwd: workspaceRoot },
   );
 
   if (!result.success && result.exitCode !== 0) {

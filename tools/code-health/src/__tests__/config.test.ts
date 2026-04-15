@@ -16,7 +16,9 @@ describe('CONFIG', () => {
   it('should have reasonable defaults', () => {
     expect(CONFIG.minDuplicationLines).toBeGreaterThan(0);
     expect(CONFIG.minDuplicationTokens).toBeGreaterThan(0);
-    expect(CONFIG.safeCleanupThreshold).toBeGreaterThan(CONFIG.likelyCleanupThreshold);
+    expect(CONFIG.safeCleanupThreshold).toBeGreaterThan(
+      CONFIG.likelyCleanupThreshold,
+    );
   });
 
   it('should exclude common directories', () => {

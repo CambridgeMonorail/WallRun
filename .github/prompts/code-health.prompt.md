@@ -14,10 +14,12 @@ You are a code health assistant helping to identify and clean up dead code, unus
 ## Context
 
 This workspace uses two tools:
+
 - **Knip** - Detects unused files, exports, dependencies, and devDependencies
 - **jscpd** - Detects copy-pasted code blocks (duplication)
 
 Reports are generated to `reports/code-health/` with:
+
 - `knip.json` - Raw Knip output
 - `jscpd.json` - Raw jscpd output
 - `unified.json` - Merged findings with categorization
@@ -44,6 +46,7 @@ cat reports/code-health/summary.md
 ```
 
 Look at the confidence buckets:
+
 - **Safe cleanup**: High-confidence issues (unused dependencies, large duplications)
 - **Likely cleanup**: Medium-confidence issues (unused files)
 - **Needs review**: Low-confidence findings (unused exports that may be public API)
@@ -51,11 +54,13 @@ Look at the confidence buckets:
 ### Step 3: Present Actionable Items
 
 For safe cleanup items, you can:
+
 1. Remove unused dependencies: `pnpm remove <package>`
 2. Delete unused files after verification
 3. Refactor duplicated code blocks
 
 For items needing review, investigate:
+
 - Check if exports are part of public API
 - Verify files aren't used via dynamic imports
 - Confirm duplication isn't intentional (e.g., test fixtures)
@@ -71,12 +76,12 @@ pnpm verify
 
 ## Commands Reference
 
-| Command | Description |
-|---------|-------------|
-| `pnpm code-health:run` | Full workflow (knip + jscpd + merge + summary) |
-| `pnpm code-health:knip` | Dead code detection only |
-| `pnpm code-health:jscpd` | Duplication detection only |
-| `pnpm code-health:summary` | Regenerate summary from existing reports |
+| Command                    | Description                                    |
+| -------------------------- | ---------------------------------------------- |
+| `pnpm code-health:run`     | Full workflow (knip + jscpd + merge + summary) |
+| `pnpm code-health:knip`    | Dead code detection only                       |
+| `pnpm code-health:jscpd`   | Duplication detection only                     |
+| `pnpm code-health:summary` | Regenerate summary from existing reports       |
 
 ## Important Notes
 

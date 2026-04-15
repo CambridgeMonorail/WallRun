@@ -12,7 +12,7 @@ export interface RunResult {
  */
 export function runCommand(
   command: string,
-  options: ExecSyncOptions = {}
+  options: ExecSyncOptions = {},
 ): RunResult {
   try {
     const stdout = execSync(command, {
@@ -60,7 +60,10 @@ export function getPackageVersion(packageName: string): string {
 /**
  * Log a message to console with prefix
  */
-export function log(message: string, type: 'info' | 'warn' | 'error' = 'info'): void {
+export function log(
+  message: string,
+  type: 'info' | 'warn' | 'error' = 'info',
+): void {
   const prefix = {
     info: '\x1b[36m[code-health]\x1b[0m',
     warn: '\x1b[33m[code-health]\x1b[0m',
