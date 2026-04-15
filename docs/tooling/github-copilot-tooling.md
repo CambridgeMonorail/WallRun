@@ -44,15 +44,18 @@ These tools work together to ensure code quality, consistency, and adherence to 
 │   ├── testing-and-quality.instructions.md
 │   └── ui-and-accessibility.instructions.md
 ├── agents/                           # Custom Copilot agents
-│   ├── shadcnui-component-reviewer.agent.md
+│   ├── brightsign-deploy.agent.md
 │   ├── custom-agent-foundry.agent.md
 │   ├── instructions-detox.agent.md
 │   ├── requirements-planner.agent.md
+│   ├── shadcnui-component-reviewer.agent.md
 │   ├── signage-architect.agent.md
+│   ├── signage-design-brief-writer.agent.md
 │   └── ui-designer.agent.md
 ├── chatmodes/                        # Custom chat modes
 │   └── enhanced-gpt4.1.chatmode.md
 ├── prompts/                          # Reusable prompts
+│   ├── code-health.prompt.md
 │   ├── commit.prompt.md
 │   ├── create-signage-placeholders.prompt.md
 │   ├── help.prompt.md
@@ -67,21 +70,29 @@ These tools work together to ensure code quality, consistency, and adherence to 
 
 ```text
 skills/                               # Canonical portable SKILL.md source
-├── shadcnui-component-review/
-├── planning/
-├── systematic-debugging/
-├── code-review-ready/
-├── verification/
-├── chrome-devtools-webapp-debug/
-├── brightsign-deploy-local/
-├── brightsign-package/
 ├── brightsign-debug/
+├── brightsign-deploy-local/
 ├── brightsign-fleet-deploy/
-├── signage-placeholder-images/
-├── player-discovery-scan/
-├── player-discovery-probe/
+├── brightsign-package/
+├── brightsign-runtime/
+├── brightsign-signage-build/
+├── chrome-devtools-webapp-debug/
+├── instructions-detox/
 ├── player-discovery-export/
-└── instructions-detox/
+├── player-discovery-probe/
+├── player-discovery-scan/
+├── remotion-demo-video/
+├── shadcnui-component-review/
+├── signage-animation-system/
+├── signage-content-fallbacks/
+├── signage-data-refresh-patterns/
+├── signage-distance-legibility/
+├── signage-layout-system/
+├── signage-menu-board/
+├── signage-performance-budget/
+├── signage-placeholder-images/
+├── signage-safe-layout/
+└── signage-state-machine/
 ```
 
 `skills/` is the source of truth. Run `pnpm sync:skills` to regenerate `.github/skills/` for GitHub Copilot-native discovery, and `pnpm check:skills` to verify the mirror before pushing.
@@ -132,6 +143,42 @@ Located in `.github/instructions/`, these files apply to specific file patterns:
 ## Custom Agents
 
 Agents are specialized AI assistants that handle specific development tasks. Invoke them via the Copilot chat using `@agent-name`.
+
+### BrightSign Deploy
+
+**File**: `.github/agents/brightsign-deploy.agent.md`
+
+**Purpose**: Deploy React apps to BrightSign OS 9.x digital signage players with optimized packaging and debugging
+
+**When to use**:
+
+- Packaging React apps for BrightSign hardware
+- Deploying to local BrightSign players via HTTP API
+- Debugging player issues using device APIs and remote inspection
+- Setting up fleet deployments with versioned releases
+
+**Usage**:
+
+```text
+@BrightSign Deploy
+Package and deploy player-minimal to my BrightSign player at 192.168.1.100
+```
+
+**Capabilities**:
+
+- Package optimization (<100KB gzipped bundles)
+- `autorun.brs` bootstrap generation for OS 9.x HTML widgets
+- Local deployment via DWS HTTP API (port 8008)
+- Remote Chrome DevTools inspection
+- Fleet management with GitHub Releases
+
+**Handoffs**:
+
+- Start Building Player App
+- Deploy to Player
+- Debug Player Issues
+
+---
 
 ### shadcnui Component Reviewer
 
@@ -272,6 +319,41 @@ Agents are specialized AI assistants that handle specific development tasks. Inv
 @signage-architect
 Build a 3-zone layout for 1080p with a ticker and a hero.
 ```
+
+**Handoffs**:
+
+- Deploy To BrightSign Player
+- Debug BrightSign Runtime Issues
+
+---
+
+### Signage Design Brief Writer
+
+**File**: `.github/agents/signage-design-brief-writer.agent.md`
+
+**Purpose**: Creates implementation-ready markdown design briefs for digital signage, particularly restaurant and menu-board concepts
+
+**When to use**:
+
+- Starting a new signage project that needs creative direction
+- Defining visual concepts before implementation
+- Creating briefs for restaurant menus, wayfinding, dashboards
+
+**Usage**:
+
+```text
+@Signage Design Brief Writer
+Create a menu board brief for "The Rustic Table" - a farm-to-table restaurant with rustic aesthetic, portrait orientation, 3 pages: main menu, drinks, specials
+```
+
+**Output**:
+
+- Creates a new folder under `docs/signage design briefs/<Brief Name>/`
+- Produces `design brief.md` with visual direction, typography, layout zones, and implementation notes
+
+**Handoffs**:
+
+- Implement This Brief (hands off to @signage-architect)
 
 ---
 
