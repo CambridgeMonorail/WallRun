@@ -133,7 +133,7 @@ Update `.gitignore` to exclude `reports/code-health/` if the broader `reports/` 
 User-facing documentation for the finished workflow should live under:
 
 ```text
-docs/tooling/local-code-health.md
+docs/guides/code-health.md
 ```
 
 That fits the existing docs structure better than introducing a new `docs/code-quality/` section.
@@ -343,7 +343,7 @@ The implementation should keep Knip and jscpd ignore rules explicit and document
 Create:
 
 ```text
-.github/prompts/code-health-review.prompt.md
+.github/prompts/code-health.prompt.md
 ```
 
 The prompt should be a focused task, matching how prompts are already used in this repo.
@@ -382,7 +382,7 @@ Do not create a skill shell with placeholder guidance just to mirror the origina
 
 ## Developer Documentation
 
-Add a concise usage guide at `docs/tooling/local-code-health.md` covering:
+Add a concise usage guide at `docs/guides/code-health.md` covering:
 
 - what Knip checks in this repo
 - what jscpd checks in this repo
@@ -424,7 +424,7 @@ pnpm verify
 - `pnpm code-health:summary` prints a concise console summary and writes `reports/code-health/summary.md`
 - `nx run code-health:run` works via `tools/code-health/project.json`
 - the unified report shape is stable and documented
-- the prompt in `.github/prompts/code-health-review.prompt.md` works against the generated report
+- the prompt in `.github/prompts/code-health.prompt.md` works against the generated report
 - no source code is modified by the tool itself
 - generated output is ignored from version control
 
@@ -434,7 +434,7 @@ pnpm verify
 - root package scripts are wired and documented
 - reports are created consistently under `reports/code-health/`
 - merge and summary logic have unit tests
-- developer documentation exists in `docs/tooling/local-code-health.md`
+- developer documentation exists in `docs/guides/code-health.md`
 - prompt file exists and follows current repo prompt format
 - `pnpm verify` passes after the implementation is added
 
