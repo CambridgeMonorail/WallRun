@@ -1,4 +1,5 @@
-import { resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 
 /**
  * Code Health Tool Configuration
@@ -52,10 +53,19 @@ export function getOutputDir(workspaceRoot: string): string {
 }
 
 /**
- * Get the workspace root directory
+ * Get the workspace root directory by walking up until pnpm-workspace.yaml is found
  */
 export function getWorkspaceRoot(): string {
-  // Walk up from current file to find workspace root (where package.json is)
-  const dir = process.cwd();
-  return dir;
+  let dir = process.cwd();
+
+  // Walk up until we find pnpm-workspace.yaml (monorepo marker)
+  while (dir !== dirname(dir)) {
+    if (existsSync(resolve(dir, 'pnpm-workspace.yaml'))) {
+      return dir;
+    }
+    dir = dirname(dir);
+  }
+
+  // Fallback to cwd if no workspace marker found
+  return process.cwd();
 }
