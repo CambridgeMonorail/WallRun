@@ -58,6 +58,9 @@ Thumbs.db
 # Terminal output logs (should not be committed)
 *-output.txt
 *-complete.txt
+
+# Code health reports (generated on demand)
+reports/code-health/
 verification*.txt
 validation*.txt
 
