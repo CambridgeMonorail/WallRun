@@ -1,10 +1,7 @@
+````prompt
 ---
-mode: agent
+name: Code Health Analysis
 description: Run code health analysis (dead code and duplication detection) and present actionable findings
-tools:
-  - run_in_terminal
-  - read_file
-  - grep_search
 ---
 
 # Code Health Workflow
@@ -89,3 +86,4 @@ pnpm verify
 - Unused exports may be intentional public API
 - Some duplication (like test fixtures) is acceptable
 - Always run `pnpm verify` after making changes
+````
