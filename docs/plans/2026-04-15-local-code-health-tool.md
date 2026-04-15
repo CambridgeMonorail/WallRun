@@ -42,12 +42,12 @@ This plan turns that revised spec into actionable implementation tasks.
 
 ### Phase 1: Foundation
 
-- [ ] Task 1: Install Knip and jscpd as dev dependencies
+- [x] Task 1: Install Knip and jscpd as dev dependencies
   - Acceptance criteria: `pnpm exec knip --version` and `pnpm exec jscpd --version` succeed.
   - Commands to run: `pnpm add -D knip jscpd`
   - Files affected: `package.json`, `pnpm-lock.yaml`
 
-- [ ] Task 2: Scaffold `tools/code-health` project
+- [x] Task 2: Scaffold `tools/code-health` project
   - Acceptance criteria: `tools/code-health/project.json` exists and `nx show project code-health` lists expected targets.
   - Files affected:
     - `tools/code-health/project.json`
@@ -61,29 +61,29 @@ This plan turns that revised spec into actionable implementation tasks.
 
 ### Phase 2: Tool Implementation
 
-- [ ] Task 3: Implement `run-knip.ts`
+- [x] Task 3: Implement `run-knip.ts`
   - Acceptance criteria: `pnpm code-health:knip` writes `reports/code-health/knip.json` with valid Knip JSON output.
   - Files affected: `tools/code-health/src/run-knip.ts`
 
-- [ ] Task 4: Implement `run-jscpd.ts`
+- [x] Task 4: Implement `run-jscpd.ts`
   - Acceptance criteria: `pnpm code-health:jscpd` writes `reports/code-health/jscpd.json` with valid jscpd JSON output.
   - Files affected: `tools/code-health/src/run-jscpd.ts`
 
-- [ ] Task 5: Implement `merge-findings.ts`
+- [x] Task 5: Implement `merge-findings.ts`
   - Acceptance criteria: `reports/code-health/unified.json` contains dead code, duplication, and meta sections after running both tools.
   - Files affected: `tools/code-health/src/merge-findings.ts`
 
-- [ ] Task 6: Implement `summarise-findings.ts`
+- [x] Task 6: Implement `summarise-findings.ts`
   - Acceptance criteria: `pnpm code-health:summary` prints a console summary and writes `reports/code-health/summary.md`. Findings are grouped into `safe cleanup`, `likely cleanup`, and `needs review` buckets.
   - Files affected: `tools/code-health/src/summarise-findings.ts`
 
-- [ ] Task 7: Wire CLI entry point (`cli.ts`) with four subcommands
+- [x] Task 7: Wire CLI entry point (`cli.ts`) with four subcommands
   - Acceptance criteria: `tsx tools/code-health/src/cli.ts --help` shows `knip`, `jscpd`, `run`, and `summary` subcommands.
   - Files affected: `tools/code-health/src/cli.ts`
 
 ### Phase 3: Integration
 
-- [ ] Task 8: Add root package scripts
+- [x] Task 8: Add root package scripts
   - Acceptance criteria: `pnpm code-health:run` executes both tools, merges, and summarizes.
   - Files affected: `package.json`
   - Scripts to add:
@@ -92,29 +92,28 @@ This plan turns that revised spec into actionable implementation tasks.
     - `"code-health:run": "tsx tools/code-health/src/cli.ts run"`
     - `"code-health:summary": "tsx tools/code-health/src/cli.ts summary"`
 
-- [ ] Task 9: Add `.gitignore` entry for `reports/code-health/`
+- [x] Task 9: Add `.gitignore` entry for `reports/code-health/`
   - Acceptance criteria: generated reports are not committed.
   - Files affected: `.gitignore`
 
-- [ ] Task 10: Add Copilot prompt `.github/prompts/code-health-review.prompt.md`
+- [x] Task 10: Add Copilot prompt `.github/prompts/code-health.prompt.md`
   - Acceptance criteria: prompt file exists and follows current repo prompt format.
-  - Files affected: `.github/prompts/code-health-review.prompt.md`
+  - Files affected: `.github/prompts/code-health.prompt.md`
 
 ### Phase 4: Documentation and Testing
 
-- [ ] Task 11: Add developer documentation `docs/tooling/local-code-health.md`
+- [x] Task 11: Add developer documentation `docs/guides/code-health.md`
   - Acceptance criteria: document explains what Knip and jscpd check, how to run the workflow, and how to interpret findings.
-  - Files affected: `docs/tooling/local-code-health.md`
+  - Files affected: `docs/guides/code-health.md`
 
-- [ ] Task 12: Add unit tests for merge and summary logic
+- [x] Task 12: Add unit tests for merge and summary logic
   - Acceptance criteria: tests cover parsing Knip/jscpd fixtures, merging into unified schema, and producing stable summary buckets.
   - Files affected:
-    - `tools/code-health/src/__tests__/merge-findings.test.ts`
-    - `tools/code-health/src/__tests__/summarise-findings.test.ts`
-    - `tools/code-health/src/__tests__/fixtures/knip-sample.json`
-    - `tools/code-health/src/__tests__/fixtures/jscpd-sample.json`
+    - `tools/code-health/src/__tests__/categorize-findings.test.ts`
+    - `tools/code-health/src/__tests__/config.test.ts`
+    - `tools/code-health/src/__tests__/counters.test.ts`
 
-- [ ] Task 13: Final validation
+- [x] Task 13: Final validation
   - Acceptance criteria: `pnpm code-health:run` succeeds end-to-end, and `pnpm verify` passes.
   - Commands to run:
     - `pnpm code-health:run`
