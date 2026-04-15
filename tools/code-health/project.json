@@ -1,0 +1,40 @@
+{
+  "name": "code-health",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/code-health/src",
+  "projectType": "application",
+  "targets": {
+    "knip": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx tools/code-health/src/cli.ts knip"
+      }
+    },
+    "jscpd": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx tools/code-health/src/cli.ts jscpd"
+      }
+    },
+    "run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx tools/code-health/src/cli.ts run"
+      }
+    },
+    "summary": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx tools/code-health/src/cli.ts summary"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/code-health"],
+      "options": {
+        "config": "tools/code-health/vitest.config.ts"
+      }
+    }
+  },
+  "tags": ["type:tool", "scope:quality"]
+}

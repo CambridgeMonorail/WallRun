@@ -77,6 +77,10 @@ INSTALL_INTERNAL_SKILLS=1 npx skills add CambridgeMonorail/WallRun
 - `player-discovery-probe`: checks a single IP for BrightSign diagnostics
 - `player-discovery-export`: exports discovery results to JSON and CSV
 
+**Demo and video:**
+
+- `remotion-demo-video`: builds and edits Remotion demo videos in the `demos/wallrun-video` directory
+
 ## Skill Directory Conventions
 
 Each skill directory follows the [Agent Skills Specification](https://agentskills.io/specification) structure:
