@@ -20,6 +20,7 @@ export const CONFIG = {
     'tmp',
     '.nx',
     'storybook-static',
+    '.github/skills', // Mirror of skills/ - expected duplication
   ],
 
   /** File patterns to exclude from duplication detection */

@@ -1,42 +1,30 @@
 import { FC, useState } from 'react';
 import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
+import { DocPageLayout } from '../../../components/DocPageLayout';
 import { OfflineFallback } from '@wallrun/shadcnui-signage';
 
 export const OfflineFallbackDocPage: FC = () => {
   const [isHealthy, setIsHealthy] = useState(true);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl">
-      <div className="mb-10 space-y-4">
-        <p className="text-sm text-muted-foreground">Behaviour</p>
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
-          OfflineFallback
-        </h1>
-        <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
-          A boundary that renders stable fallback content when offline (or when
-          an app-provided health signal is false).
-        </p>
-      </div>
-
-      <section className="mb-12">
-        <h2 className="text-2xl font-medium mb-4">Built On</h2>
-        <div className="bg-muted p-6 rounded-lg">
-          <p className="mb-4">
-            <strong>No shadcn primitives</strong> - Built with conditional
-            rendering.
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-            <li>Manual recovery control via isHealthy prop</li>
-            <li>Defaults to showing content when isHealthy is undefined</li>
-            <li>Fallback UI displayed when offline or unhealthy</li>
-            <li>
-              No automatic recovery - parent must signal health restoration
-            </li>
-          </ul>
-        </div>
-      </section>
-
+    <DocPageLayout
+      header={{
+        category: 'Behaviour',
+        title: 'OfflineFallback',
+        description:
+          'A boundary that renders stable fallback content when offline (or when an app-provided health signal is false).',
+      }}
+      builtOnSummary="No shadcn primitives - Built with conditional rendering."
+      builtOnItems={[
+        { text: 'Manual recovery control via isHealthy prop' },
+        { text: 'Defaults to showing content when isHealthy is undefined' },
+        { text: 'Fallback UI displayed when offline or unhealthy' },
+        {
+          text: 'No automatic recovery - parent must signal health restoration',
+        },
+      ]}
+    >
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Installation</h2>
         <CodeSnippet
@@ -156,6 +144,6 @@ export function Screen({ isHealthy }: { isHealthy: boolean }) {
           </Button>
         </div>
       </section>
-    </div>
+    </DocPageLayout>
   );
 };
