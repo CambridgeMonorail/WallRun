@@ -198,12 +198,8 @@ This page is a **good example** of proper library usage. The only raw HTML is:
 
 3. **New Primitive: `MenuItem`**
    - Single menu item with name and price
-   - Props: `name`, `price`, `description?`, `tags?` (e.g., vegan, gluten-free), `highlight?`
-   - Automatic price formatting with currency
-
-4. **New Primitive: `PriceDisplay`**
-   - Formatted price with proper alignment and currency symbols
-   - Props: `value`, `currency`, `size`
+   - Props: `name`, `price`, `description?`, `tags?` (e.g., vegan, gluten-free), `highlight?`, `currency?`
+   - Includes automatic price formatting with currency and alignment
 
 **Example refactored usage:**
 
