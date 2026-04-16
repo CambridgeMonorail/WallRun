@@ -79,7 +79,7 @@ The `FullscreenHero` component exists and is conceptually the right component, b
 |----------------|-----------------|------|
 | Gradient backgrounds | ❌ Only solid colors | **Yes** |
 | Animated decorative orbs | ❌ Not available | **Yes** |
-| Grid/pattern overlays | ❌ Not available | **Yes** |
+| Grid/pattern overlays | ⚠️ Available in `SignageContainer` via `showGrid` | **Minor** - not available in `FullscreenHero`; could compose or add prop |
 | Gradient text | ❌ Not available | **Yes** |
 | Custom content layout | ⚠️ Limited to title/subtitle/body/cta | **Partial** |
 
@@ -96,9 +96,10 @@ The `FullscreenHero` component exists and is conceptually the right component, b
    - Props: `count`, `colors`, `intensity`, `animation`
    - Accessibility: Honors `prefers-reduced-motion`
 
-3. **New Primitive: `GridOverlay`:**
-   - Subtle grid/dot pattern overlay
-   - Props: `pattern`, `opacity`, `size`
+3. **Grid Overlay Options:**
+   - Option A: Add `showGrid` prop to `FullscreenHero` (matching `SignageContainer`)
+   - Option B: Enhance `SignageContainer.showGrid` with customization props (`gridSize`, `gridOpacity`, `pattern`)
+   - Option C: Extract standalone `GridOverlay` primitive for composition
 
 **Recommendation:**
 Enhance `FullscreenHero` to support gradient backgrounds and gradient text. Create `AmbientOrbs` as a composable decoration primitive. The demo page should then be refactored to use these library components.
@@ -131,18 +132,18 @@ Enhance `FullscreenHero` to support gradient backgrounds and gradient text. Crea
 | Feature Needed | Library Support | Gap? |
 |----------------|-----------------|------|
 | Announcement list layout | ⚠️ Manual spacing | **Minor** - could use a dedicated list layout |
-| Grid overlay | ❌ Not available | **Yes** - same gap as WelcomeScreen |
+| Grid overlay customization | ⚠️ Built-in but not configurable | **Minor** - `showGrid` exists but lacks size/opacity/pattern props |
 | Auto-pagination for many items | ⚠️ Not demonstrated | **No** - `AutoPagingList` exists but not used |
 
 **Observations:**
 This page is a **good example** of proper library usage. The only raw HTML is:
 
-1. Grid overlay (recurring gap)
+1. Custom grid overlay (demo uses `showGrid={false}` and adds its own with different opacity/size)
 2. Custom subtitle paragraph inside `SignageHeader` children slot
 
 **Minor Recommendations:**
 
-1. Add `GridOverlay` primitive (already proposed)
+1. Enhance `SignageContainer`'s `showGrid` with customization props (`gridSize`, `gridOpacity`) or extract a standalone `GridOverlay` primitive
 2. Use the existing `subtitle` prop on `SignageHeader` for the subtitle text, and reserve the children slot for truly custom header content
 3. Demo page could demonstrate `AutoPagingList` for longer lists
 
@@ -244,7 +245,7 @@ This page is a **good example** of proper library usage. The only raw HTML is:
 | Feature Needed | Library Support | Gap? |
 |----------------|-----------------|------|
 | Event list layout | ⚠️ Manual spacing | **Minor** - similar to announcements |
-| Grid overlay | ❌ Not available | **Yes** - recurring gap |
+| Grid overlay customization | ⚠️ Built-in but not configurable | **Minor** - `showGrid` exists but lacks size/opacity props |
 | Footer CTA banner | ❌ Not available | **Yes** |
 | Time grouping (events at same time) | ❌ Manual | **Minor** |
 
@@ -253,7 +254,7 @@ This is a **good example** of proper library usage. Very similar pattern to Anno
 
 **Minor Recommendations:**
 
-1. Add `GridOverlay` primitive (already proposed)
+1. Enhance `SignageContainer`'s `showGrid` with customization props or extract a standalone `GridOverlay` primitive
 2. **New Primitive: `CTABanner`** - Footer call-to-action with icon, text, and optional action
 3. Consider `EventList` wrapper that groups events by time slot
 
@@ -580,7 +581,7 @@ These elements appear in multiple pages as raw HTML:
 
 | Element | Occurrences | Proposed Solution |
 |---------|-------------|-------------------|
-| Grid overlay pattern | 4 pages | `GridOverlay` primitive |
+| Custom grid overlay | 4 pages | Enhance `SignageContainer.showGrid` with `gridSize`/`gridOpacity` props, or extract `GridOverlay` primitive |
 | Ambient orbs | 2 pages | `AmbientOrbs` primitive |
 | Gradient text | 3 pages | `GradientText` primitive or prop |
 | Footer CTA banner | 4 pages | `CTABanner` primitive |
@@ -604,7 +605,7 @@ These elements appear in multiple pages as raw HTML:
 |-----------|------|-----------------|------------|
 | `SignagePanel` | Primitive | OfficeLobbyLoop, general use | Low |
 | `CTABanner` | Primitive | EventSchedule, KPIDashboard, RestaurantMenu, OfficeDirectory | Low |
-| `GridOverlay` | Primitive | Multiple pages | Very Low |
+| `showGrid` enhancement | Props addition | Multiple pages | Very Low |
 | `AmbientOrbs` | Primitive | WelcomeScreen, OfficeDirectory | Low |
 
 ### Low Priority (Enhancements)
@@ -641,4 +642,4 @@ The component library has strong foundations with excellent layout containers (`
 
 However, **critical gaps exist for menu boards and directories** - two of the most common commercial signage use cases. The demo pages that work well (AnnouncementsBoard, EventSchedule, KPIDashboard) are the ones where we built the right primitives. The pages with poor library usage expose missing primitives.
 
-**Recommendation:** Prioritize menu and directory components to bring library coverage to 75%+ of demo pages. Then address recurring patterns (CTABanner, GridOverlay) to achieve consistency.
+**Recommendation:** Prioritize menu and directory components to bring library coverage to 75%+ of demo pages. Then address recurring patterns (CTABanner, grid customization props) to achieve consistency.
