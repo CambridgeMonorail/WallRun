@@ -625,14 +625,13 @@ These elements appear in multiple pages as raw HTML:
 | `FullscreenHero` | Add gradient background variants | Medium |
 | `FullscreenHero` | Add gradient text support | Medium |
 | `FullscreenHero` | Add decorative element slots | Low |
-| `SignageHeader` | Add `subtitle` prop (currently uses children) | Low |
 | `InfoCardGrid` | Support custom card components via render props | Low |
 
 ## Next Steps
 
 1. **Prioritize implementation** - Start with menu components (MenuBoard, MenuSection, MenuItem) as they address the most impactful gaps
 2. **Create implementation issues** - Break down each proposed component into trackable work items
-3. **Refactor demo pages** - As components are added, update demo pages to use them
+3. **Refactor demo pages** - As components are added, update demo pages to use them (including using existing `subtitle` prop on `SignageHeader` instead of children)
 4. **Update documentation** - Ensure Storybook stories exist for all new components
 5. **Consider skill alignment** - The `signage-menu-board` skill exists but components don't - align these
 
