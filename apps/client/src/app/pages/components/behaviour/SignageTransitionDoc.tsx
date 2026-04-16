@@ -1,39 +1,32 @@
 import { FC, useState } from 'react';
 import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from '../../../components/CodeSnippet';
+import { DocPageLayout } from '../../../components/DocPageLayout';
 import { SignageTransition } from '@wallrun/shadcnui-signage';
 
 export const SignageTransitionDocPage: FC = () => {
   const [step, setStep] = useState(0);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl">
-      <div className="mb-10 space-y-4">
-        <p className="text-sm text-muted-foreground">Behaviour</p>
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
-          SignageTransition
-        </h1>
-        <p className="max-w-2xl text-base md:text-lg text-muted-foreground">
-          Predictable, signage-safe transitions (crossfade or slide) with
-          reduced-motion handling.
-        </p>
-      </div>
-
-      <section className="mb-12">
-        <h2 className="text-2xl font-medium mb-4">Built On</h2>
-        <div className="bg-muted p-6 rounded-lg">
-          <p className="mb-4">
-            <strong>No shadcn primitives</strong> - Built with CSS transitions.
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-            <li>CSS-based transitions (crossfade, slide-left, slide-up)</li>
-            <li>Respects prefers-reduced-motion accessibility preference</li>
-            <li>Configurable duration and reduced-motion behavior</li>
-            <li>Wraps single child with transition effects</li>
-          </ul>
-        </div>
-      </section>
-
+    <DocPageLayout
+      header={{
+        category: 'Behaviour',
+        title: 'SignageTransition',
+        description:
+          'Predictable, signage-safe transitions (crossfade or slide) with reduced-motion handling.',
+      }}
+      builtOnSummary={
+        <>
+          <strong>No shadcn primitives</strong> - Built with CSS transitions.
+        </>
+      }
+      builtOnItems={[
+        'CSS-based transitions (crossfade, slide-left, slide-up)',
+        'Respects prefers-reduced-motion accessibility preference',
+        'Configurable duration and reduced-motion behavior',
+        'Wraps single child with transition effects',
+      ]}
+    >
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Installation</h2>
         <CodeSnippet
@@ -141,6 +134,6 @@ export function RotatingPanel({ children }: { children: React.ReactNode }) {
           </Button>
         </div>
       </section>
-    </div>
+    </DocPageLayout>
   );
 };
