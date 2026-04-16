@@ -143,7 +143,7 @@ This page is a **good example** of proper library usage. The only raw HTML is:
 **Minor Recommendations:**
 
 1. Add `GridOverlay` primitive (already proposed)
-2. Consider adding a `subtitle` prop to `SignageHeader` instead of using children slot
+2. Use the existing `subtitle` prop on `SignageHeader` for the subtitle text, and reserve the children slot for truly custom header content
 3. Demo page could demonstrate `AutoPagingList` for longer lists
 
 ---
