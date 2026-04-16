@@ -78,4 +78,24 @@ describe('DocPageLayout', () => {
     expect(screen.getByText('Item B')).toBeInTheDocument();
     expect(screen.getByText('Item C')).toBeInTheDocument();
   });
+
+  it('renders builtOnSummary with ReactNode formatting', () => {
+    const props = {
+      ...defaultProps,
+      builtOnSummary: (
+        <>
+          <strong>Bold lead</strong> - normal description text.
+        </>
+      ),
+    };
+
+    render(
+      <DocPageLayout {...props}>
+        <div>Content</div>
+      </DocPageLayout>,
+    );
+
+    expect(screen.getByText('Bold lead')).toBeInTheDocument();
+    expect(screen.getByText(/- normal description text\./)).toBeInTheDocument();
+  });
 });

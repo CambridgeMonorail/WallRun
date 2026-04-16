@@ -16,8 +16,15 @@ interface BuiltOnItem {
 interface DocPageLayoutProps {
   /** Header configuration */
   header: DocPageHeaderProps;
-  /** Description of what the component is built on */
-  builtOnSummary: string;
+  /**
+   * Summary of what the component is built on.
+   * Accepts ReactNode to allow custom formatting (e.g., bold lead phrase).
+   * @example
+   * <>
+   *   <strong>No shadcn primitives</strong> - Built with conditional rendering.
+   * </>
+   */
+  builtOnSummary: ReactNode;
   /** List of "Built On" bullet points */
   builtOnItems: BuiltOnItem[];
   /** Remaining page content (Installation, Example, Props, etc.) */
@@ -40,7 +47,11 @@ interface DocPageLayoutProps {
  *     title: "OfflineFallback",
  *     description: "A boundary that renders fallback content when offline."
  *   }}
- *   builtOnSummary="No shadcn primitives - Built with conditional rendering."
+ *   builtOnSummary={
+ *     <>
+ *       <strong>No shadcn primitives</strong> - Built with conditional rendering.
+ *     </>
+ *   }
  *   builtOnItems={[
  *     { text: "Manual recovery control via isHealthy prop" },
  *     { text: "Defaults to showing content when isHealthy is undefined" },
@@ -73,9 +84,7 @@ export const DocPageLayout: FC<DocPageLayoutProps> = ({
       <section className="mb-12">
         <h2 className="text-2xl font-medium mb-4">Built On</h2>
         <div className="bg-muted p-6 rounded-lg">
-          <p className="mb-4">
-            <strong>{builtOnSummary}</strong>
-          </p>
+          <p className="mb-4">{builtOnSummary}</p>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
             {builtOnItems.map((item, index) => (
               <li key={index}>{item.text}</li>

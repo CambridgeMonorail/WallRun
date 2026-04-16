@@ -15,7 +15,11 @@ export const SignageTransitionDocPage: FC = () => {
         description:
           'Predictable, signage-safe transitions (crossfade or slide) with reduced-motion handling.',
       }}
-      builtOnSummary="No shadcn primitives - Built with CSS transitions."
+      builtOnSummary={
+        <>
+          <strong>No shadcn primitives</strong> - Built with CSS transitions.
+        </>
+      }
       builtOnItems={[
         { text: 'CSS-based transitions (crossfade, slide-left, slide-up)' },
         { text: 'Respects prefers-reduced-motion accessibility preference' },

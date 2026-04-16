@@ -15,7 +15,12 @@ export const OfflineFallbackDocPage: FC = () => {
         description:
           'A boundary that renders stable fallback content when offline (or when an app-provided health signal is false).',
       }}
-      builtOnSummary="No shadcn primitives - Built with conditional rendering."
+      builtOnSummary={
+        <>
+          <strong>No shadcn primitives</strong> - Built with conditional
+          rendering.
+        </>
+      }
       builtOnItems={[
         { text: 'Manual recovery control via isHealthy prop' },
         { text: 'Defaults to showing content when isHealthy is undefined' },
