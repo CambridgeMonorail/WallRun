@@ -78,7 +78,7 @@ The `FullscreenHero` component exists and is conceptually the right component, b
 | Feature Needed | Library Support | Gap? |
 |----------------|-----------------|------|
 | Gradient backgrounds | ❌ Only solid colors | **Yes** |
-| Animated decorative orbs | ❌ Not available | **Yes** |
+| Animated decorative orbs | ⚠️ `SignageContainer.showAmbientOrbs` provides static orbs | **Partial** - orbs exist but aren't animated; WelcomeScreen needs `animate-pulse` |
 | Grid/pattern overlays | ⚠️ Available in `SignageContainer` via `showGrid` | **Minor** - not available in `FullscreenHero`; could compose or add prop |
 | Gradient text | ❌ Not available | **Yes** |
 | Custom content layout | ⚠️ Limited to title/subtitle/body/cta | **Partial** |
@@ -91,10 +91,11 @@ The `FullscreenHero` component exists and is conceptually the right component, b
    - Add `textVariant` prop: `'solid' | 'gradient'`
    - Add `decorativeElements` slot for orbs/particles
 
-2. **New Primitive: `AmbientOrbs`:**
-   - Reusable animated background decoration
-   - Props: `count`, `colors`, `intensity`, `animation`
-   - Accessibility: Honors `prefers-reduced-motion`
+2. **Ambient Orbs Enhancement:**
+   - `SignageContainer.showAmbientOrbs` already renders static blur orbs
+   - Option A: Add `animateOrbs?: boolean` prop to enable CSS `animate-pulse`
+   - Option B: Extract standalone `AmbientOrbs` primitive with full customization (`count`, `colors`, `intensity`, `animation`)
+   - Either approach should honor `prefers-reduced-motion`
 
 3. **Grid Overlay Options:**
    - Option A: Add `showGrid` prop to `FullscreenHero` (matching `SignageContainer`)
@@ -102,7 +103,7 @@ The `FullscreenHero` component exists and is conceptually the right component, b
    - Option C: Extract standalone `GridOverlay` primitive for composition
 
 **Recommendation:**
-Enhance `FullscreenHero` to support gradient backgrounds and gradient text. Create `AmbientOrbs` as a composable decoration primitive. The demo page should then be refactored to use these library components.
+Enhance `FullscreenHero` to support gradient backgrounds and gradient text. Enhance `SignageContainer` orbs with animation support or extract as a composable primitive. The demo page should then be refactored to use these library components.
 
 ---
 
@@ -582,7 +583,7 @@ These elements appear in multiple pages as raw HTML:
 | Element | Occurrences | Proposed Solution |
 |---------|-------------|-------------------|
 | Custom grid overlay | 4 pages | Enhance `SignageContainer.showGrid` with `gridSize`/`gridOpacity` props, or extract `GridOverlay` primitive |
-| Ambient orbs | 2 pages | `AmbientOrbs` primitive |
+| Animated ambient orbs | 2 pages | Enhance `SignageContainer.showAmbientOrbs` with `animateOrbs` prop, or extract `AmbientOrbs` primitive |
 | Gradient text | 3 pages | `GradientText` primitive or prop |
 | Footer CTA banner | 4 pages | `CTABanner` primitive |
 | Content panel/card | 3 pages | `SignagePanel` primitive |
@@ -606,7 +607,7 @@ These elements appear in multiple pages as raw HTML:
 | `SignagePanel` | Primitive | OfficeLobbyLoop, general use | Low |
 | `CTABanner` | Primitive | EventSchedule, KPIDashboard, RestaurantMenu, OfficeDirectory | Low |
 | `showGrid` enhancement | Props addition | Multiple pages | Very Low |
-| `AmbientOrbs` | Primitive | WelcomeScreen, OfficeDirectory | Low |
+| `showAmbientOrbs` enhancement | Props addition (add `animateOrbs`) | WelcomeScreen, OfficeDirectory | Very Low |
 
 ### Low Priority (Enhancements)
 
