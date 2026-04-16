@@ -11,7 +11,7 @@ describe('DocPageLayout', () => {
       description: 'A test component description.',
     },
     builtOnSummary: 'Built with testing tools',
-    builtOnItems: [{ text: 'Feature one' }, { text: 'Feature two' }],
+    builtOnItems: ['Feature one', 'Feature two'],
   };
 
   it('renders header with category, title, and description', () => {
@@ -59,11 +59,7 @@ describe('DocPageLayout', () => {
   it('renders multiple builtOnItems as list items', () => {
     const props = {
       ...defaultProps,
-      builtOnItems: [
-        { text: 'Item A' },
-        { text: 'Item B' },
-        { text: 'Item C' },
-      ],
+      builtOnItems: ['Item A', 'Item B', 'Item C'],
     };
 
     render(

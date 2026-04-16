@@ -22,12 +22,10 @@ export const OfflineFallbackDocPage: FC = () => {
         </>
       }
       builtOnItems={[
-        { text: 'Manual recovery control via isHealthy prop' },
-        { text: 'Defaults to showing content when isHealthy is undefined' },
-        { text: 'Fallback UI displayed when offline or unhealthy' },
-        {
-          text: 'No automatic recovery - parent must signal health restoration',
-        },
+        'Manual recovery control via isHealthy prop',
+        'Defaults to showing content when isHealthy is undefined',
+        'Fallback UI displayed when offline or unhealthy',
+        'No automatic recovery - parent must signal health restoration',
       ]}
     >
       <section className="mb-12">

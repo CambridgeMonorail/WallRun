@@ -21,10 +21,10 @@ export const SignageTransitionDocPage: FC = () => {
         </>
       }
       builtOnItems={[
-        { text: 'CSS-based transitions (crossfade, slide-left, slide-up)' },
-        { text: 'Respects prefers-reduced-motion accessibility preference' },
-        { text: 'Configurable duration and reduced-motion behavior' },
-        { text: 'Wraps single child with transition effects' },
+        'CSS-based transitions (crossfade, slide-left, slide-up)',
+        'Respects prefers-reduced-motion accessibility preference',
+        'Configurable duration and reduced-motion behavior',
+        'Wraps single child with transition effects',
       ]}
     >
       <section className="mb-12">

@@ -9,10 +9,6 @@ interface DocPageHeaderProps {
   description: string;
 }
 
-interface BuiltOnItem {
-  text: string;
-}
-
 interface DocPageLayoutProps {
   /** Header configuration */
   header: DocPageHeaderProps;
@@ -25,8 +21,8 @@ interface DocPageLayoutProps {
    * </>
    */
   builtOnSummary: ReactNode;
-  /** List of "Built On" bullet points */
-  builtOnItems: BuiltOnItem[];
+  /** List of "Built On" bullet points as simple strings */
+  builtOnItems: string[];
   /** Remaining page content (Installation, Example, Props, etc.) */
   children: ReactNode;
 }
@@ -53,8 +49,8 @@ interface DocPageLayoutProps {
  *     </>
  *   }
  *   builtOnItems={[
- *     { text: "Manual recovery control via isHealthy prop" },
- *     { text: "Defaults to showing content when isHealthy is undefined" },
+ *     "Manual recovery control via isHealthy prop",
+ *     "Defaults to showing content when isHealthy is undefined",
  *   ]}
  * >
  *   <section className="mb-12">...</section>
@@ -86,8 +82,8 @@ export const DocPageLayout: FC<DocPageLayoutProps> = ({
         <div className="bg-muted p-6 rounded-lg">
           <p className="mb-4">{builtOnSummary}</p>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-            {builtOnItems.map((item, index) => (
-              <li key={index}>{item.text}</li>
+            {builtOnItems.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
