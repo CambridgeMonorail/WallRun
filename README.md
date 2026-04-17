@@ -31,6 +31,7 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 - Opinionated Copilot instructions to keep AI output consistent
 - Built-in agent(s) for signage screen construction and platform-aware guidance
 - MCP support for BrightSign platform docs research
+- **[Copilot Agent Plugin](./copilot-plugins/wallrun-signage/)** — Install curated signage skills and agents into any VS Code workspace
 
 ### What this is not
 
@@ -160,6 +161,26 @@ For the available skills and the Copilot mirror model, see:
 
 - [skills/README.md](./skills/README.md)
 - [docs/tooling/github-copilot-tooling.md](./docs/tooling/github-copilot-tooling.md#skills)
+
+#### Install Copilot Agent Plugin
+
+WallRun also ships a **Copilot agent plugin** — a curated bundle of 14 signage skills and 2 agents that you can install into any VS Code workspace without cloning the entire monorepo.
+
+**Option A — Local path** (if you already have the repo):
+
+Add to your VS Code settings:
+
+```json
+"chat.pluginLocations": {
+  "/path/to/WallRun/copilot-plugins/wallrun-signage": true
+}
+```
+
+**Option B — Install from repo URL** (no clone needed):
+
+In VS Code, run **Chat: Install Plugin From Source** from the Command Palette and enter the WallRun repo URL.
+
+See the [plugin README](./copilot-plugins/wallrun-signage/README.md) for full details.
 
 ---
 
@@ -399,6 +420,7 @@ pnpm build:all             # Build everything
 - **[BrightSign Deployment Guide](./docs/guides/brightsign-deployment.md)** ⭐ - Package + deploy to BrightSign OS 9.x
 - **[BrightSign Player Configuration](./docs/guides/brightsign-player-config.md)** ⭐ - Player registry + git-safe config
 - **[Player Discovery Tool](./tools/player-discovery/README.md)** ⭐ - Discover players on your LAN
+- **[Copilot Agent Plugin](./copilot-plugins/wallrun-signage/README.md)** ⭐ - Install signage skills + agents into any workspace
 - **[Creating Digital Signage Content](./docs/guides/creating-signage-content.md)** - Guide to building premium signage screens
 - **[Guides](./docs/guides/README.md)** - Practical how-to tutorials
 - **[Getting Started](./docs/getting-started/README.md)** - Project structure and setup

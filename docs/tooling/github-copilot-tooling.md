@@ -8,14 +8,15 @@ This project includes comprehensive GitHub Copilot customization to accelerate d
 
 1. [Overview](#overview)
 2. [Directory Structure](#directory-structure)
-3. [Copilot Instructions](#copilot-instructions)
-4. [Custom Agents](#custom-agents)
-5. [Skills](#skills)
-6. [Chat Modes](#chat-modes)
-7. [Prompts](#prompts)
-8. [How to Use Custom Agents](#how-to-use-custom-agents)
-9. [Creating Your Own Agents](#creating-your-own-agents)
-10. [Best Practices](#best-practices)
+3. [Copilot Agent Plugin](#copilot-agent-plugin)
+4. [Copilot Instructions](#copilot-instructions)
+5. [Custom Agents](#custom-agents)
+6. [Skills](#skills)
+7. [Chat Modes](#chat-modes)
+8. [Prompts](#prompts)
+9. [How to Use Custom Agents](#how-to-use-custom-agents)
+10. [Creating Your Own Agents](#creating-your-own-agents)
+11. [Best Practices](#best-practices)
 
 ---
 
@@ -96,6 +97,50 @@ skills/                               # Canonical portable SKILL.md source
 ```
 
 `skills/` is the source of truth. Run `pnpm sync:skills` to regenerate `.github/skills/` for GitHub Copilot-native discovery, and `pnpm check:skills` to verify the mirror before pushing.
+
+---
+
+## Copilot Agent Plugin
+
+In addition to the workspace-level agents and skills above, WallRun packages a **Copilot agent plugin** at `copilot-plugins/wallrun-signage/`. This bundles a curated subset of skills and agents into a standalone package that can be installed into any VS Code workspace.
+
+### What's in the plugin
+
+- **14 curated skills** — signage layout, animation, menu boards, distance legibility, BrightSign runtime/packaging/deploy/debug, and more
+- **2 agents** — `signage-architect` (builds premium signage screens) and `wallrun-deploy` (deployment triage and preflight)
+- **Hooks** — advisory preflight check (experimental)
+- **MCP config** — plugin-scoped MCP configuration for BrightSign docs
+
+### When to use the plugin vs. workspace agents
+
+| Mechanism | Scope | Best for |
+|-----------|-------|----------|
+| Workspace agents (`.github/agents/`) | This repo | Working inside the WallRun monorepo |
+| Copilot plugin (`copilot-plugins/wallrun-signage/`) | Any workspace | Building signage in your own project |
+| Portable skills (`npx skills add`) | Any workspace | Only the skill workflows, no agents |
+
+### Installation
+
+See the **[Plugin Installation Guide](../guides/copilot-plugin-install.md)** for step-by-step instructions, or the **[Plugin README](../../copilot-plugins/wallrun-signage/README.md)** for the full reference.
+
+### Building and maintaining the plugin
+
+The plugin is generated from source skills and agents:
+
+```bash
+pnpm plugin:copilot:build   # Generate copilot-plugins/wallrun-signage/
+pnpm plugin:copilot:check   # Validate structure and scan for secrets
+pnpm plugin:copilot:clean   # Remove generated output
+```
+
+After changing source skills or agents, regenerate and commit:
+
+```bash
+pnpm plugin:copilot:build
+pnpm plugin:copilot:check
+git add copilot-plugins/
+git commit -m "chore: regenerate copilot plugin"
+```
 
 ---
 
