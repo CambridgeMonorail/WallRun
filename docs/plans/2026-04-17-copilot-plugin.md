@@ -60,7 +60,7 @@ Before implementation, the architect's spec was cross-referenced against the act
 | 1.1 | `scripts/build-copilot-plugin.mjs` | Build script: clean, scaffold dirs, copy skills + agents, generate plugin.json / README / hooks.json / .mcp.json | ✅ |
 | 1.2 | `scripts/clean-copilot-plugin.mjs` | Clean script: `rm -rf copilot-plugins/wallrun-signage` | ✅ |
 | 1.3 | `package.json` | Add `plugin:copilot:build`, `plugin:copilot:check`, `plugin:copilot:clean` scripts | ✅ |
-| 1.4 | `.gitignore` | Add `copilot-plugins/` entry (if D4 resolved as gitignore) | ✅ |
+| 1.4 | `.gitignore` | D4 resolved: plugin output is **committed** (required for "Install Plugin From Source" distribution). No .gitignore entry added. | ✅ |
 | 1.5 | Run build, verify output structure | Manual smoke test | ✅ |
 
 **PR1 could ship here** — build + clean + manifest.
