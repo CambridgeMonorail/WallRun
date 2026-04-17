@@ -80,7 +80,7 @@ function scanForSuspiciousSecrets(dirPath) {
       }
 
       const ext = path.extname(entry.name).toLowerCase();
-      const isLikelyText = ['.md', '.json', '.txt', '.js', '.mjs', '.ts', '.yml', '.yaml', '.sh', ''].includes(ext);
+      const isLikelyText = ['.md', '.json', '.txt', '.js', '.mjs', '.ts', '.yml', '.yaml', '.sh', '.brs', '.cfg', '.html', '.css', ''].includes(ext);
 
       if (!isLikelyText) {
         continue;
