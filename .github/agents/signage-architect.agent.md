@@ -1,7 +1,8 @@
 ---
 name: signage-architect
 description: Senior React architect for premium, high-visibility digital signage content and multi-zone displays, including implementation and verification for BrightSign-targeted React apps
-tools: ['read', 'edit', 'search', 'execute', 'vscode']
+tools: ['agent', 'read', 'edit', 'search', 'execute', 'vscode']
+agents: ['wallrun-deploy']
 model: Claude Sonnet 4.5
 target: vscode
 handoffs:
