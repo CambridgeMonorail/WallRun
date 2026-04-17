@@ -152,7 +152,7 @@ function buildHooksConfig() {
         {
           name: 'wallrun-preflight',
           description: 'Validate signage and deployment assumptions',
-          command: 'node scripts/plugin-hooks/wallrun-preflight.mjs',
+          command: 'node scripts/wallrun-preflight.mjs',
         },
       ],
     },
@@ -297,6 +297,14 @@ function main() {
     path.join(pluginRoot, 'plugin.json'),
     `${JSON.stringify(buildPluginManifest(), null, 2)}\n`
   );
+
+  log('Copying hook scripts');
+  const sourceHookScript = path.join(repoRoot, 'scripts', 'plugin-hooks', 'wallrun-preflight.mjs');
+  const targetHookScript = path.join(pluginRoot, 'scripts', 'wallrun-preflight.mjs');
+  if (!exists(sourceHookScript)) {
+    throw new Error(`Missing hook script: ${sourceHookScript}`);
+  }
+  copyFile(sourceHookScript, targetHookScript);
 
   log('Writing hooks.json');
   writeText(

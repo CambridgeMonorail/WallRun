@@ -4,7 +4,7 @@
       {
         "name": "wallrun-preflight",
         "description": "Validate signage and deployment assumptions",
-        "command": "node scripts/plugin-hooks/wallrun-preflight.mjs"
+        "command": "node scripts/wallrun-preflight.mjs"
       }
     ]
   }
