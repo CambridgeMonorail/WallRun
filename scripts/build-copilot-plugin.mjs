@@ -71,7 +71,7 @@ function copyDirRecursive(sourceDir, targetDir) {
 
   ensureDir(targetDir);
 
-  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
+  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
     const sourcePath = path.join(sourceDir, entry.name);
     const targetPath = path.join(targetDir, entry.name);
 
