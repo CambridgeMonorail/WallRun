@@ -13,8 +13,9 @@ The WallRun Copilot agent plugin bundles 14 curated signage skills and 2 special
 
 ## Prerequisites
 
-- VS Code with GitHub Copilot Chat enabled
-- Copilot agent plugin support enabled (available in VS Code Insiders or recent stable releases)
+- **VS Code Insiders** — Copilot agent plugins are a preview feature currently available only in [VS Code Insiders](https://code.visualstudio.com/insiders/). This may change as the feature matures.
+- GitHub Copilot Chat enabled
+- Copilot agent plugin support enabled in settings
 
 ## Installation methods
 

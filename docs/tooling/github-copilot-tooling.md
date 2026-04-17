@@ -102,6 +102,8 @@ skills/                               # Canonical portable SKILL.md source
 
 ## Copilot Agent Plugin
 
+> **Preview feature** — Copilot agent plugins currently require [VS Code Insiders](https://code.visualstudio.com/insiders/). This may change as the feature matures.
+
 In addition to the workspace-level agents and skills above, WallRun packages a **Copilot agent plugin** at `copilot-plugins/wallrun-signage/`. This bundles a curated subset of skills and agents into a standalone package that can be installed into any VS Code workspace.
 
 ### What's in the plugin

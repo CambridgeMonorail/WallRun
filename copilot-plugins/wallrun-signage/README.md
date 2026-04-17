@@ -74,7 +74,7 @@ git commit -m "chore: regenerate copilot plugin"
 
 ## Notes
 
-- Plugin support must be enabled in your VS Code environment
+- **VS Code Insiders required** — Copilot agent plugins are a preview feature currently available only in [VS Code Insiders](https://code.visualstudio.com/insiders/). This requirement may change as the feature graduates to stable.
 - Bump `version` in `plugin.json` when testing update behaviour
 - Keep plugin name and skill names in plain kebab-case
 - The hooks feature is experimental — the `postPrompt` hook runs an advisory-only preflight script

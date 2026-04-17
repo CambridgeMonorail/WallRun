@@ -172,6 +172,23 @@ export const CustomAgentsPage: FC = () => {
           Copilot Agent Plugin
         </h2>
         <div className="space-y-4 text-muted-foreground">
+          <div
+            className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-sm"
+            role="note"
+            aria-label="Preview feature notice"
+          >
+            <strong className="text-foreground">Preview feature</strong> —
+            Copilot agent plugins currently require{' '}
+            <a
+              href="https://code.visualstudio.com/insiders/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground underline hover:no-underline"
+            >
+              VS Code Insiders
+            </a>
+            . This may change as the feature matures.
+          </div>
           <p>
             WallRun packages a subset of its agents and skills into a{' '}
             <strong className="text-foreground">Copilot agent plugin</strong>{' '}

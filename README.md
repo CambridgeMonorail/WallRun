@@ -164,6 +164,8 @@ For the available skills and the Copilot mirror model, see:
 
 #### Install Copilot Agent Plugin
 
+> **Preview feature** — Copilot agent plugins currently require [VS Code Insiders](https://code.visualstudio.com/insiders/). This may change as the feature matures.
+
 WallRun also ships a **Copilot agent plugin** — a curated bundle of 14 signage skills and 2 agents that you can install into any VS Code workspace without cloning the entire monorepo.
 
 **Option A — Local path** (if you already have the repo):
