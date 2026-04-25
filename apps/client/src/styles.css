@@ -23,12 +23,23 @@
   body {
     background-color: var(--color-background);
     background-image:
-      radial-gradient(circle at 72% 8%, hsl(var(--glow-violet) / 0.14), transparent 26%),
-      linear-gradient(180deg, hsl(210 23% 4%), hsl(var(--background)) 38%, hsl(210 23% 4%));
+      radial-gradient(
+        circle at 72% 8%,
+        hsl(var(--glow-violet) / 0.14),
+        transparent 26%
+      ),
+      linear-gradient(
+        180deg,
+        hsl(210 23% 4%),
+        hsl(var(--background)) 38%,
+        hsl(210 23% 4%)
+      );
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-body);
-    font-feature-settings: 'rlig' 1, 'calt' 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
   h1,
@@ -84,8 +95,18 @@
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(130deg, hsl(var(--foreground) / 0.06), transparent 18%, transparent 58%, hsl(var(--glow-violet) / 0.08)),
-      radial-gradient(circle at top right, hsl(var(--glow-violet) / 0.12), transparent 26%);
+      linear-gradient(
+        130deg,
+        hsl(var(--foreground) / 0.06),
+        transparent 18%,
+        transparent 58%,
+        hsl(var(--glow-violet) / 0.08)
+      ),
+      radial-gradient(
+        circle at top right,
+        hsl(var(--glow-violet) / 0.12),
+        transparent 26%
+      );
   }
 
   .demo-panel-soft {
@@ -137,8 +158,16 @@
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(circle at 82% 30%, hsl(var(--glow-violet) / 0.22), transparent 22%),
-      radial-gradient(circle at 18% 74%, hsl(var(--glow-cyan) / 0.14), transparent 22%),
+      radial-gradient(
+        circle at 82% 30%,
+        hsl(var(--glow-violet) / 0.22),
+        transparent 22%
+      ),
+      radial-gradient(
+        circle at 18% 74%,
+        hsl(var(--glow-cyan) / 0.14),
+        transparent 22%
+      ),
       hsl(210 23% 4%);
   }
 
