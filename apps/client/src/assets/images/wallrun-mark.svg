@@ -1,0 +1,7 @@
+<svg viewBox="0 0 64 36" xmlns="http://www.w3.org/2000/svg" aria-label="WallRun mark" role="img">
+  <g fill="#885CF6">
+    <path d="M2 4H17L28 32H13L2 4Z" />
+    <path d="M22 4H37L48 32H33L22 4Z" opacity="0.94" />
+    <path d="M42 4H57L62 17H47L42 4Z" opacity="0.88" />
+  </g>
+</svg>

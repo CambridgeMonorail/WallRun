@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Github } from 'lucide-react';
 import { Button } from '@wallrun/shadcnui';
 
+import logoSrc from '../../../assets/images/wallrun-mark.svg';
+
 type NavLink = {
   label: string;
   to: string;
@@ -10,10 +12,10 @@ type NavLink = {
 };
 
 const navLinks: NavLink[] = [
-  { label: 'Get Started', to: '/getting-started' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Tooling', to: '/tooling' },
-  { label: 'Library', to: '/library' },
+  { label: 'Docs', to: '/getting-started' },
+  { label: 'Projects', to: '/gallery' },
+  { label: 'Learn', to: '/tooling' },
+  { label: 'Components', to: '/library' },
 ];
 
 /**
@@ -25,7 +27,7 @@ export const LandingNav: FC = () => {
 
   return (
     <nav
-      className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/60 backdrop-blur-lg"
+      className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/78 backdrop-blur-lg"
       data-testid="landing-nav"
       aria-label="Main navigation"
     >
@@ -33,10 +35,10 @@ export const LandingNav: FC = () => {
         {/* Logo / home link */}
         <Link
           to="/"
-          className="flex items-center gap-2 text-sm font-medium tracking-wide text-foreground"
+          className="flex items-center gap-2 text-sm font-semibold text-foreground"
           aria-label="WallRun home"
         >
-          WallRun
+          <img src={logoSrc} alt="" className="h-5 w-auto" />
         </Link>
 
         {/* Desktop links */}
@@ -45,7 +47,7 @@ export const LandingNav: FC = () => {
             <Link
               key={link.to}
               to={link.to}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
@@ -54,7 +56,7 @@ export const LandingNav: FC = () => {
             href="https://github.com/CambridgeMonorail/WallRun"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-white/5 text-muted-foreground transition-colors hover:border-[hsl(var(--glow-violet)/0.42)] hover:text-foreground"
             aria-label="GitHub repository"
           >
             <Github className="h-4 w-4" />
@@ -65,7 +67,7 @@ export const LandingNav: FC = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="h-11 w-11 md:hidden"
+          className="h-11 w-11 rounded-md md:hidden"
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="landing-mobile-menu"
@@ -88,7 +90,7 @@ export const LandingNav: FC = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className="flex min-h-11 items-center rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                className="flex min-h-11 items-center rounded-md px-3 py-2.5 font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -98,7 +100,7 @@ export const LandingNav: FC = () => {
               href="https://github.com/CambridgeMonorail/WallRun"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-11 items-center gap-2 rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="flex min-h-11 items-center gap-2 rounded-md px-3 py-2.5 font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
               onClick={() => setOpen(false)}
             >
               <Github className="h-4 w-4" />

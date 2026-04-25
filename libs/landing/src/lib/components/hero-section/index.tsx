@@ -76,7 +76,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
   // Default styles for the 'light' variant
   let sectionClasses = 'bg-transparent text-foreground';
   let titleClasses = 'text-foreground';
-  let subtitleClasses = 'display-kicker text-[hsl(var(--glow-amber))]';
+  let subtitleClasses = 'display-kicker text-[hsl(var(--glow-violet))]';
   let descriptionClasses =
     'text-base leading-7 text-muted-foreground sm:text-lg';
   let highlightIconClasses = 'text-[hsl(var(--glow-cyan))]';
@@ -86,7 +86,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
   if (variant === 'dark') {
     sectionClasses = 'bg-transparent text-foreground';
     titleClasses = 'text-foreground';
-    subtitleClasses = 'display-kicker text-[hsl(var(--glow-cyan))]';
+    subtitleClasses = 'display-kicker text-[hsl(var(--glow-violet))]';
     descriptionClasses = 'text-base leading-7 text-muted-foreground sm:text-lg';
     highlightIconClasses = 'text-[hsl(var(--glow-cyan))]';
     buttonPrimaryVariant = 'default';
@@ -164,10 +164,8 @@ export const HeroSection: FC<HeroSectionProps> = ({
       className={`${sectionClasses} relative isolate w-full overflow-hidden ${className}`}
       data-testid="hero-section"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-cyan)/0.75)] to-transparent" />
-      <div className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-[radial-gradient(circle,hsl(var(--glow-violet)/0.18),transparent_72%)] blur-3xl" />
-      <div className="pointer-events-none absolute right-0 top-12 h-80 w-80 rounded-full bg-[radial-gradient(circle,hsl(var(--glow-cyan)/0.15),transparent_68%)] blur-3xl" />
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-10 px-4 py-20 sm:px-6 md:px-10 lg:flex-row lg:gap-16 lg:py-28">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-violet)/0.75)] to-transparent" />
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-10 px-4 py-16 sm:px-6 md:px-10 lg:min-h-[calc(100vh-3.5rem)] lg:flex-row lg:gap-16 lg:py-20">
         <div
           className={`relative z-10 flex-1 space-y-6 text-center lg:text-left ${
             isReversed ? 'order-last lg:order-first' : ''
@@ -183,7 +181,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
             </p>
           )}
           <h1
-            className={`display-type text-4xl leading-[1.08] sm:text-5xl lg:text-6xl ${titleClasses}`}
+            className={`display-type text-5xl leading-[0.98] sm:text-6xl lg:text-7xl ${titleClasses}`}
             data-testid="hero-title"
           >
             {title}
@@ -198,13 +196,13 @@ export const HeroSection: FC<HeroSectionProps> = ({
           )}
           {highlights && (
             <ul
-              className="grid gap-3 text-left text-sm text-muted-foreground sm:grid-cols-3"
+              className="grid gap-3 text-left text-sm text-muted-foreground sm:grid-cols-2"
               data-testid="hero-highlights"
             >
               {highlights.map((highlight, index) => (
                 <li
                   key={index}
-                  className="demo-panel-soft flex items-center gap-3 rounded-2xl px-4 py-3"
+                  className="demo-panel-soft flex items-center gap-3 px-4 py-3"
                   data-testid={`hero-highlight-${index}`}
                 >
                   <CheckIcon
@@ -220,14 +218,14 @@ export const HeroSection: FC<HeroSectionProps> = ({
               renderCta(
                 ctaPrimary,
                 buttonPrimaryVariant,
-                'min-w-40 rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]',
+                'min-w-40 rounded-md border border-[hsl(var(--glow-violet)/0.42)] bg-[hsl(var(--glow-violet))] px-6 py-6 text-sm font-semibold text-white shadow-[0_0_28px_hsl(var(--glow-violet)/0.2)] transition duration-300 hover:-translate-y-0.5 hover:bg-[hsl(var(--glow-violet)/0.92)] hover:shadow-[0_0_36px_hsl(var(--glow-violet)/0.28)]',
                 'cta-primary',
               )}
             {ctaSecondary &&
               renderCta(
                 ctaSecondary,
                 buttonSecondaryVariant,
-                'min-w-40 rounded-full border border-white/12 bg-background/10 px-6 py-6 text-sm uppercase tracking-[0.18em] text-foreground backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[hsl(var(--glow-violet)/0.32)] hover:bg-white/6',
+                'min-w-40 rounded-md border border-white/12 bg-background/20 px-6 py-6 text-sm font-semibold text-foreground backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[hsl(var(--glow-cyan)/0.42)] hover:bg-white/6',
                 'cta-secondary',
               )}
           </div>
@@ -237,16 +235,61 @@ export const HeroSection: FC<HeroSectionProps> = ({
           className="relative z-10 flex flex-1 items-center justify-center"
           data-testid="hero-media"
         >
-          <div className="demo-panel demo-grid w-full max-w-xl p-6 sm:p-8">
-            <div className="rounded-[1.35rem] border border-white/10 bg-[linear-gradient(145deg,hsl(var(--background)/0.92),hsl(var(--card)/0.74))] p-6 shadow-[inset_0_1px_0_hsl(var(--foreground)/0.08),0_0_48px_hsl(var(--glow-violet)/0.12)]">
-              <img
-                src={image}
-                alt={imageAlt}
-                className="mx-auto w-3/4 max-w-md object-contain drop-shadow-[0_0_40px_hsl(var(--glow-cyan)/0.18)]"
-                width="448"
-                height="448"
-                data-testid="hero-image"
-              />
+          <div className="brand-frame w-full max-w-xl p-3">
+            <div className="generative-field aspect-[16/10] rounded-md p-5">
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={image}
+                      alt={imageAlt}
+                      className="h-8 w-auto object-contain drop-shadow-[0_0_22px_hsl(var(--glow-violet)/0.36)]"
+                      width="120"
+                      height="32"
+                      data-testid="hero-image"
+                    />
+                  </div>
+                  <span className="mono-detail rounded-sm border border-white/10 bg-black/30 px-2 py-1 text-[0.62rem] text-muted-foreground">
+                    10:24
+                  </span>
+                </div>
+                <div className="grid gap-5 sm:grid-cols-[1fr_0.78fr] sm:items-end">
+                  <div>
+                    <p className="display-type max-w-xs text-3xl leading-none text-foreground sm:text-4xl">
+                      BrightSign with code
+                    </p>
+                    <p className="mt-3 max-w-xs text-sm leading-6 text-muted-foreground">
+                      Generative signage, live data, fixed canvases, shipped as
+                      software.
+                    </p>
+                  </div>
+                  <div className="brand-frame hidden p-4 sm:block">
+                    <pre className="font-mono text-[0.68rem] leading-5 text-[hsl(var(--glow-violet))]">
+                      {`uniform float time;
+void main() {
+  vec2 uv = screen();
+  float d = length(uv);
+  glow += signal(d);
+}`}
+                    </pre>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {['Dev-first', 'Data', 'Ready'].map((label, index) => (
+                    <div
+                      key={label}
+                      className="brand-frame px-3 py-2 text-left"
+                    >
+                      <p className="mono-detail text-[0.56rem] text-muted-foreground">
+                        0{index + 1}
+                      </p>
+                      <p className="mt-1 text-xs font-medium text-foreground">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

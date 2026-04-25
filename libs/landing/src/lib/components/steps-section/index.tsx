@@ -52,7 +52,7 @@ const StepsSection: FC<StepsSectionProps> = ({
           size="lg"
           onClick={buttonAction}
           variant="default"
-          className="rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]"
+          className="rounded-md border border-[hsl(var(--glow-violet)/0.42)] bg-[hsl(var(--glow-violet))] px-6 py-6 text-sm font-semibold text-white shadow-[0_0_28px_hsl(var(--glow-violet)/0.2)] transition duration-300 hover:-translate-y-0.5 hover:bg-[hsl(var(--glow-violet)/0.92)]"
           aria-label={buttonText}
         >
           {buttonText}

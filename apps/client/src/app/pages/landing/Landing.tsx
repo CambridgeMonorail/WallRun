@@ -11,7 +11,7 @@ import {
   Video,
 } from 'lucide-react';
 
-import logoSrc from '../../../assets/images/new-logo.svg';
+import logoSrc from '../../../assets/images/wallrun-mark.svg';
 
 import {
   AboutSection,
@@ -37,14 +37,14 @@ export const LandingPage: FC = () => {
       <div className="pointer-events-none absolute inset-0 demo-grid opacity-60" />
       <div className="w-full" data-testid="hero-section-container">
         <HeroSection
-          title="Digital Signage as Software"
-          subtitle="An open source, developer-first workspace for building deterministic signage systems with modern web technologies."
-          description="Treat signage players as programmable systems. Clone the repo, inspect the code, adapt the components, and deploy real fixed-aspect layouts to BrightSign devices and beyond."
+          title="Digital Signage as Software."
+          subtitle="WallRun.dev"
+          description="Signage is software, and it deserves to be treated that way. Build bespoke, generative experiences for BrightSign players with code, data, and deterministic screen systems."
           highlights={[
-            'Deterministic screen composition',
-            'Nx-native player app scaffolding',
-            'Registry-native component installs',
-            'BrightSign-ready delivery workflows',
+            'Developer-first workflows',
+            'Generative screen systems',
+            'Live data surfaces',
+            'BrightSign-ready deploys',
           ]}
           image={logoSrc}
           imageAlt="WallRun logo"
@@ -62,8 +62,8 @@ export const LandingPage: FC = () => {
         />
       </div>
       <AboutSection
-        title="Why WallRun?"
-        description="WallRun is an open source working notebook for building signage software, not a CMS or a product funnel. It's a component library, tooling reference, and living documentation for developers treating digital signage as programmable systems."
+        title="Not Slides. Software."
+        description="WallRun is an open source workspace for developers building custom digital experiences that live on walls. It brings React, fixed-aspect layouts, registry components, and deployment tooling into one deliberate signage workflow."
         logos={[
           <Logo
             name="nx"
@@ -113,86 +113,86 @@ export const LandingPage: FC = () => {
         data-testid="about-section"
       />
       <FeaturesSection
-        title="Signage-Specific Features"
+        title="Made For Screens"
         features={[
           {
-            title: 'Fixed-Aspect Layouts',
+            title: 'Developer First',
             description:
-              'Deterministic rendering for known resolutions. No responsive breakpoints—just predictable, fixed layouts designed for specific screen sizes.',
-            icon: <BarChart className="text-[hsl(var(--glow-cyan))]" />,
-            className: 'hover:border-[hsl(var(--glow-cyan)/0.28)]',
-          },
-          {
-            title: 'Distance-Readable Typography',
-            description:
-              'Typography optimized for viewing from across the room. Large text, high contrast, clear hierarchy for quick scanning.',
-            icon: <Paintbrush className="text-[hsl(var(--glow-amber))]" />,
-            className: 'hover:border-[hsl(var(--glow-amber)/0.28)]',
-          },
-          {
-            title: 'Signage Components',
-            description:
-              'Purpose-built React components: ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid—primitives, layouts, and blocks for signage screens.',
-            icon: <Palette className="text-[hsl(var(--glow-violet))]" />,
-            className: 'hover:border-[hsl(var(--glow-violet)/0.28)]',
-          },
-          {
-            title: 'BrightSign-Focused',
-            description:
-              'Designed with BrightSign devices in mind. Real-world constraints, hardware quirks, and platform-specific considerations baked in.',
-            icon: <Video className="text-[hsl(var(--glow-amber))]" />,
-            className: 'hover:border-[hsl(var(--glow-amber)/0.28)]',
-          },
-          {
-            title: 'Offline-First',
-            description:
-              'Built for always-on, unattended operation. Signage screens run 24/7 without supervision, often offline or with limited connectivity.',
+              'Build signage like software: inspectable code, predictable project structure, typed components, and scripts you can change.',
             icon: <Rocket className="text-[hsl(var(--glow-violet))]" />,
-            className: 'hover:border-[hsl(var(--glow-violet)/0.28)]',
+            className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
           },
           {
-            title: 'Developer Experience',
+            title: 'Generative',
             description:
-              'React 19, Vite, TypeScript, Tailwind CSS v4, portable skills, and Nx-native generators applied to signage constraints with strict typing and fast iteration.',
-            icon: <ChartLine className="text-[hsl(var(--glow-cyan))]" />,
-            className: 'hover:border-[hsl(var(--glow-cyan)/0.28)]',
+              'Use motion, procedural visuals, and composable React blocks to make displays feel alive without becoming noisy.',
+            icon: <Palette className="text-[hsl(var(--glow-cyan))]" />,
+            className: 'hover:border-[hsl(var(--glow-cyan)/0.34)]',
+          },
+          {
+            title: 'Data Driven',
+            description:
+              'Render KPIs, schedules, menus, availability, alerts, and local business signals as real-time display systems.',
+            icon: <ChartLine className="text-[hsl(var(--glow-green))]" />,
+            className: 'hover:border-[hsl(var(--glow-green)/0.34)]',
+          },
+          {
+            title: 'BrightSign Ready',
+            description:
+              'Package and deploy player apps with BrightSign OS constraints, hardware quirks, and unattended runtime needs in mind.',
+            icon: <Video className="text-[hsl(var(--glow-amber))]" />,
+            className: 'hover:border-[hsl(var(--glow-amber)/0.34)]',
+          },
+          {
+            title: 'Fixed Canvas',
+            description:
+              'Design for known screen sizes and viewing distance first, with deterministic composition over webpage-style flow.',
+            icon: <BarChart className="text-[hsl(var(--glow-pink))]" />,
+            className: 'hover:border-[hsl(var(--glow-pink)/0.34)]',
+          },
+          {
+            title: 'Distance Readable',
+            description:
+              'High contrast, strong hierarchy, and large typography keep information legible from across the room.',
+            icon: <Paintbrush className="text-[hsl(var(--glow-violet))]" />,
+            className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
           },
         ]}
         data-testid="features-section"
       />
       <CTASection
         variant="light"
-        title="From Demo To Device"
-        description="Explore full-screen examples, then move into the tooling surface for player app scaffolding, discovery, and BrightSign deployment workflows."
-        buttonText="Open Tooling"
-        buttonAction={() => navigate('/tooling')}
+        title="Explore The Work"
+        description="Browse real full-screen examples, then open the tooling surface when you are ready to scaffold, package, and deploy a player app."
+        buttonText="Explore Projects"
+        buttonAction={() => navigate('/gallery')}
         data-testid="demo-section"
       />
       <CTASection
         variant="dark"
-        title="Built In Public On GitHub"
-        description="WallRun is built by developers for developers. Read the code, open issues, send patches, and shape the project in the open."
-        buttonText="View The Open Source Repo"
+        title="Built In Public"
+        description="Read the source, inspect the deployment scripts, open issues, send patches, and shape the signage workflow in the open."
+        buttonText="Read The Code"
         buttonHref="https://github.com/CambridgeMonorail/WallRun"
         data-testid="community-section"
       />
       <StepsSection
-        title="Explore WallRun"
+        title="Build A Screen"
         steps={[
           {
-            title: 'Get Started',
+            title: 'Choose A Canvas',
             description:
-              'Start with the install guide, then scaffold a player app when you are ready to move beyond component sampling.',
+              'Start from a fixed-aspect layout and design for a real display, viewing distance, and ambient conditions.',
           },
           {
-            title: 'Explore Tooling',
+            title: 'Compose The Signal',
             description:
-              'Review player generation, deployment, discovery, and portable skills so the repo reads like an engineering workflow instead of a static demo.',
+              'Combine signage components, data feeds, typography, and calm motion into a deterministic screen.',
           },
           {
-            title: 'Build Your Own',
+            title: 'Ship To Players',
             description:
-              'Use the components, generators, and deployment flow as source material for your own signage system, not as a locked platform.',
+              'Package the app, discover BrightSign devices, and deploy the experience as software you control.',
           },
         ]}
         buttonText="Getting Started Guide"
@@ -202,8 +202,8 @@ export const LandingPage: FC = () => {
       <div className="w-full px-4 py-4 sm:px-6 lg:px-8">
         <div className="demo-panel-soft mx-auto max-w-6xl px-6 py-5 text-center">
           <Tagline
-            text="Signage is software. It deserves to be treated as such."
-            className="display-type bg-transparent py-4 text-lg text-foreground sm:text-xl"
+            text="Not slides. Software for screens that live in the real world."
+            className="bg-transparent py-4 font-mono text-sm uppercase tracking-[0.12em] text-muted-foreground sm:text-base"
             dataTestId="tagline"
           />
         </div>

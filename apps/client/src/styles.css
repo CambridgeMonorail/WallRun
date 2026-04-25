@@ -1,12 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap');
 @import '../../../libs/common-tailwind/src/main.css';
 
 :root {
-  --glow-cyan: 192 88% 65%;
-  --glow-violet: 274 74% 72%;
-  --glow-amber: 42 88% 69%;
-  --font-display: 'Michroma', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --glow-cyan: 189 76% 45%;
+  --glow-violet: 262 79% 64%;
+  --glow-amber: 42 92% 57%;
+  --glow-green: 158 50% 48%;
+  --glow-pink: 329 64% 62%;
+  --font-display: 'Satoshi', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @source "../../../libs/**/*.{ts,tsx}";
@@ -20,9 +23,8 @@
   body {
     background-color: var(--color-background);
     background-image:
-      radial-gradient(circle at top, hsl(var(--glow-cyan) / 0.14), transparent 28%),
-      radial-gradient(circle at 85% 15%, hsl(var(--glow-violet) / 0.12), transparent 24%),
-      linear-gradient(180deg, hsl(var(--background)), hsl(224 22% 8%));
+      radial-gradient(circle at 72% 8%, hsl(var(--glow-violet) / 0.14), transparent 26%),
+      linear-gradient(180deg, hsl(210 23% 4%), hsl(var(--background)) 38%, hsl(210 23% 4%));
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-body);
@@ -49,32 +51,31 @@
 @layer components {
   .display-type {
     font-family: var(--font-display);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0;
   }
 
   .display-kicker {
-    font-family: var(--font-display);
-    letter-spacing: 0.24em;
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: hsl(var(--glow-cyan));
+    color: hsl(var(--glow-violet));
   }
 
   .demo-panel {
     position: relative;
     overflow: hidden;
-    border: 1px solid hsl(var(--border) / 0.75);
-    border-radius: 1.5rem;
+    border: 1px solid hsl(var(--border) / 0.82);
+    border-radius: 0.5rem;
     background: linear-gradient(
       180deg,
-      hsl(var(--card) / 0.96),
-      hsl(var(--primary) / 0.92)
+      hsl(220 11% 10% / 0.96),
+      hsl(210 23% 4% / 0.95)
     );
     box-shadow:
       inset 0 1px 0 hsl(var(--foreground) / 0.08),
-      0 24px 80px hsl(220 45% 3% / 0.45),
-      0 0 0 1px hsl(var(--accent) / 0.08);
-    backdrop-filter: blur(18px);
+      0 20px 64px hsl(210 23% 2% / 0.5);
+    backdrop-filter: blur(14px);
   }
 
   .demo-panel::before {
@@ -83,19 +84,19 @@
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(130deg, hsl(var(--foreground) / 0.08), transparent 18%, transparent 58%, hsl(var(--glow-cyan) / 0.08)),
-      radial-gradient(circle at top right, hsl(var(--glow-violet) / 0.14), transparent 28%);
+      linear-gradient(130deg, hsl(var(--foreground) / 0.06), transparent 18%, transparent 58%, hsl(var(--glow-violet) / 0.08)),
+      radial-gradient(circle at top right, hsl(var(--glow-violet) / 0.12), transparent 26%);
   }
 
   .demo-panel-soft {
     position: relative;
     overflow: hidden;
     border: 1px solid hsl(var(--border) / 0.6);
-    border-radius: 1.25rem;
+    border-radius: 0.5rem;
     background: linear-gradient(
       180deg,
       hsl(var(--card) / 0.72),
-      hsl(var(--background) / 0.58)
+      hsl(210 23% 4% / 0.62)
     );
     box-shadow:
       inset 0 1px 0 hsl(var(--foreground) / 0.06),
@@ -117,6 +118,45 @@
       linear-gradient(90deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: linear-gradient(180deg, hsl(0 0% 0%) 26%, transparent 100%);
+  }
+
+  .mono-detail {
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .brand-frame {
+    border: 1px solid hsl(var(--border) / 0.78);
+    border-radius: 0.5rem;
+    background: hsl(210 23% 4% / 0.88);
+    box-shadow: inset 0 1px 0 hsl(var(--foreground) / 0.05);
+  }
+
+  .generative-field {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 82% 30%, hsl(var(--glow-violet) / 0.22), transparent 22%),
+      radial-gradient(circle at 18% 74%, hsl(var(--glow-cyan) / 0.14), transparent 22%),
+      hsl(210 23% 4%);
+  }
+
+  .generative-field::before,
+  .generative-field::after {
+    content: '';
+    position: absolute;
+    inset: 10% -18%;
+    border: 1px solid hsl(var(--glow-violet) / 0.55);
+    border-radius: 48%;
+    filter: drop-shadow(0 0 18px hsl(var(--glow-violet) / 0.42));
+    transform: rotate(-14deg);
+  }
+
+  .generative-field::after {
+    inset: 26% -12%;
+    border-color: hsl(var(--glow-cyan) / 0.36);
+    transform: rotate(10deg);
   }
 
   .doc-shell {

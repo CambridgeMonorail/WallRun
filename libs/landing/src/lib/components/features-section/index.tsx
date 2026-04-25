@@ -55,7 +55,7 @@ const FeaturesSection: FC<FeaturesSectionProps> = ({
               <CardTitle className="mb-4 text-xl font-medium text-foreground sm:text-2xl">
                 <div className="flex items-start gap-3 leading-tight">
                   {feature.icon && (
-                    <span className="demo-panel-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10">
+                    <span className="demo-panel-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/10">
                       {feature.icon}
                     </span>
                   )}
