@@ -164,8 +164,13 @@ export const HeroSection: FC<HeroSectionProps> = ({
       className={`${sectionClasses} relative isolate w-full overflow-hidden ${className}`}
       data-testid="hero-section"
     >
+      <div className="hero-aurora" aria-hidden="true">
+        <span className="hero-aurora__band hero-aurora__band--primary" />
+        <span className="hero-aurora__band hero-aurora__band--secondary" />
+        <span className="hero-aurora__band hero-aurora__band--detail" />
+      </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-violet)/0.75)] to-transparent" />
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-10 px-4 py-16 sm:px-6 md:px-10 lg:min-h-[calc(100vh-3.5rem)] lg:flex-row lg:gap-16 lg:py-20">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-10 px-4 py-16 sm:px-6 md:px-10 lg:min-h-[calc(100vh-3.5rem)] lg:flex-row lg:gap-16 lg:py-20">
         <div
           className={`relative z-10 flex-1 space-y-6 text-center lg:text-left ${
             isReversed ? 'order-last lg:order-first' : ''
@@ -235,7 +240,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
           className="relative z-10 flex flex-1 items-center justify-center"
           data-testid="hero-media"
         >
-          <div className="brand-frame w-full max-w-xl p-3">
+          <div className="brand-frame hero-preview-frame w-full max-w-2xl p-3">
             <div className="generative-field aspect-[16/10] rounded-md p-5">
               <div className="relative z-10 flex h-full flex-col justify-between">
                 <div className="flex items-center justify-between">
@@ -249,7 +254,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                       data-testid="hero-image"
                     />
                   </div>
-                  <span className="mono-detail rounded-sm border border-white/10 bg-black/30 px-2 py-1 text-[0.62rem] text-muted-foreground">
+                  <span className="mono-detail rounded-sm border border-border/70 bg-card/40 px-2 py-1 text-[0.62rem] text-muted-foreground">
                     10:24
                   </span>
                 </div>

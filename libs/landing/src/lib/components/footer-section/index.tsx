@@ -73,7 +73,7 @@ export const Footer: FC<FooterProps> = ({
               <a
                 key={index}
                 href={link.url}
-                className="rounded-md border border-white/10 bg-background/20 px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground transition duration-300 hover:border-[hsl(var(--glow-cyan)/0.32)] hover:text-foreground"
+                className="rounded-md border border-border/70 bg-card/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground transition duration-300 hover:border-ring/70 hover:bg-muted/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
                 {...(isExternal && {
                   target: '_blank',
                   rel: 'noopener noreferrer',
@@ -89,7 +89,7 @@ export const Footer: FC<FooterProps> = ({
             <a
               key={index}
               href={iconData.url}
-              className="flex h-11 w-11 items-center justify-center rounded-md border border-white/10 bg-background/20 text-muted-foreground transition duration-300 hover:border-[hsl(var(--glow-violet)/0.32)] hover:text-foreground"
+              className="flex h-11 w-11 items-center justify-center rounded-md border border-border/70 bg-card/40 text-muted-foreground transition duration-300 hover:border-ring/70 hover:bg-muted/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
               aria-label={`Link to ${iconData.url}`}
               target={iconData.target}
               rel={iconData.rel}
