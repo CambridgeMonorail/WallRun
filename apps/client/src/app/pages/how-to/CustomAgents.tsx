@@ -169,6 +169,87 @@ export const CustomAgentsPage: FC = () => {
 
       <section className="demo-panel px-8 py-8 sm:px-10">
         <h2 className="mb-4 text-2xl font-medium text-foreground">
+          Copilot Agent Plugin
+        </h2>
+        <div className="space-y-4 text-muted-foreground">
+          <div
+            className="rounded-lg border border-border bg-muted p-4 text-sm text-muted-foreground"
+            role="note"
+            aria-label="Preview feature notice"
+          >
+            <strong className="text-foreground">Preview feature</strong> —
+            Copilot agent plugins currently require{' '}
+            <a
+              href="https://code.visualstudio.com/insiders/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground underline hover:no-underline"
+            >
+              VS Code Insiders
+            </a>
+            . This may change as the feature matures.
+          </div>
+          <p>
+            WallRun packages a subset of its agents and skills into a{' '}
+            <strong className="text-foreground">Copilot agent plugin</strong>{' '}
+            that you can install into any VS Code workspace — no need to clone
+            the full monorepo.
+          </p>
+          <p>The plugin includes:</p>
+          <ul className="ml-6 list-disc space-y-2">
+            <li>
+              <strong className="text-foreground">14 curated skills</strong> —
+              signage layout, animation, menu boards, distance legibility,
+              BrightSign runtime, and more
+            </li>
+            <li>
+              <strong className="text-foreground">2 agents</strong> —{' '}
+              <code className="text-sm">signage-architect</code> and{' '}
+              <code className="text-sm">wallrun-deploy</code>
+            </li>
+            <li>
+              <strong className="text-foreground">Hooks</strong> — Advisory
+              preflight check (experimental)
+            </li>
+          </ul>
+
+          <h3 className="mt-6 text-lg font-medium text-foreground">
+            Installation
+          </h3>
+          <p>
+            <strong className="text-foreground">Local path</strong> — Add to
+            your VS Code settings:
+          </p>
+          <pre
+            className="overflow-x-auto rounded-lg border border-border bg-muted p-4 text-sm"
+            aria-label="Plugin local installation setting"
+          >
+            <code className="text-foreground">
+              {`"chat.pluginLocations": {\n  "/path/to/WallRun/copilot-plugins/wallrun-signage": true\n}`}
+            </code>
+          </pre>
+          <p className="mt-4">
+            <strong className="text-foreground">From repo URL</strong> — Run{' '}
+            <code className="text-sm">Chat: Install Plugin From Source</code>{' '}
+            from the Command Palette and enter the WallRun repo URL.
+          </p>
+          <p className="mt-4">
+            See the{' '}
+            <a
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/copilot-plugins/wallrun-signage/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center text-foreground underline hover:no-underline"
+            >
+              plugin README
+            </a>{' '}
+            for the full reference.
+          </p>
+        </div>
+      </section>
+
+      <section className="demo-panel-soft px-8 py-8 sm:px-10">
+        <h2 className="mb-4 text-2xl font-medium text-foreground">
           Best Practices
         </h2>
         <div className="space-y-3 text-muted-foreground">

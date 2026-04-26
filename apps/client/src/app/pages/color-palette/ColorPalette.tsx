@@ -232,9 +232,9 @@ const ColorPalettePage: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="mb-4 text-muted-foreground">
-            WallRun uses an app-scoped shadcn/ui theme for the demo website.
-            The brand tokens follow apps/client/DESIGN.md and are applied in
-            the demo app stylesheet so they do not leak into shared packages.
+            WallRun uses an app-scoped shadcn/ui theme for the demo website. The
+            brand tokens follow apps/client/DESIGN.md and are applied in the
+            demo app stylesheet so they do not leak into shared packages.
           </p>
           <div className="flex flex-col gap-2">
             <div>
@@ -261,7 +261,7 @@ const ColorPalettePage: React.FC = () => {
               href="https://github.com/CambridgeMonorail/WallRun/blob/main/apps/client/src/styles.css"
               target="_blank"
               rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
+              className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
             >
               View Theme Source →
             </a>
@@ -270,7 +270,7 @@ const ColorPalettePage: React.FC = () => {
               href="https://ui.shadcn.com/docs/theming"
               target="_blank"
               rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
+              className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"
             >
               shadcn/ui Theming Guide →
             </a>
@@ -280,12 +280,18 @@ const ColorPalettePage: React.FC = () => {
 
       <Tabs defaultValue="pairs" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="pairs" className="min-h-11 px-3 py-2 text-xs sm:text-sm">
-              Background-Foreground Pairs
-            </TabsTrigger>
-            <TabsTrigger value="single" className="min-h-11 px-3 py-2 text-xs sm:text-sm">
-              Additional Colors
-            </TabsTrigger>
+          <TabsTrigger
+            value="pairs"
+            className="min-h-11 px-3 py-2 text-xs sm:text-sm"
+          >
+            Background-Foreground Pairs
+          </TabsTrigger>
+          <TabsTrigger
+            value="single"
+            className="min-h-11 px-3 py-2 text-xs sm:text-sm"
+          >
+            Additional Colors
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="pairs">
           <h2 className="text-2xl font-semibold mb-4">Accessibility Matters</h2>

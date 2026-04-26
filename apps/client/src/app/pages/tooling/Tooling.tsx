@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@wallrun/shadcnui';
-import { Bot, Radar, Rocket, Wrench } from 'lucide-react';
+import { Bot, Radar, Rocket, Server, Wrench } from 'lucide-react';
 
 export const ToolingPage: FC = () => {
   return (
@@ -119,6 +119,36 @@ pnpm player add lobby-display 192.168.1.50 --default`}
               rel="noopener noreferrer"
             >
               Open Discovery Guide
+            </a>
+          </Button>
+        </div>
+
+        <div className="demo-panel p-6 sm:p-8">
+          <h2 className="mb-4 flex items-center gap-2 text-2xl font-medium text-foreground">
+            <Server className="h-6 w-6" />
+            MCP Player Tools
+          </h2>
+          <p className="mb-4 text-muted-foreground">
+            The repo includes a built-in MCP server that exposes player
+            discovery and management as AI-callable tools. Copilot can scan your
+            network, probe players, and manage your local registry directly.
+          </p>
+          <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
+            <pre>
+              {`# Already configured in .vscode/mcp.json
+# Reload VS Code → MCP: List Servers
+
+# Tools: discover, probe, list, get, add, remove, device_info
+# Credentials are always redacted in tool responses`}
+            </pre>
+          </div>
+          <Button className="mt-4 h-11" variant="secondary" asChild>
+            <a
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/tools/player-mcp-server/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open MCP Server Guide
             </a>
           </Button>
         </div>

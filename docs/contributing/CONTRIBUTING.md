@@ -93,4 +93,15 @@ fix(client): correct screen frame aspect ratio
 docs(guides): clarify signage content workflow
 ```
 
+## Copilot Agent Plugin
+
+WallRun packages a Copilot agent plugin at `copilot-plugins/wallrun-signage/`. If you modify source skills (`skills/`) or agents (`.github/agents/`), regenerate the plugin before committing:
+
+```bash
+pnpm plugin:copilot:build   # Regenerate the plugin
+pnpm plugin:copilot:check   # Validate structure and scan for secrets
+git add copilot-plugins/
+```
+
+See the [Plugin Installation Guide](../guides/copilot-plugin-install.md) for consumer-facing docs and the [Plugin README](../../copilot-plugins/wallrun-signage/README.md) for the full reference.
 Thanks again — every improvement helps make signage less “PowerPoint in disguise” and more “reliable system”.

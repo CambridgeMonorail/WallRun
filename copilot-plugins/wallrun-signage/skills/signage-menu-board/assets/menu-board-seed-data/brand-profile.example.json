@@ -1,0 +1,18 @@
+{
+  "logoText": "Harbour Grain",
+  "logoDirection": "Compact serif wordmark with restrained maritime character and no literal anchor motif.",
+  "colours": {
+    "background": "#243746",
+    "foreground": "#F5EBDD",
+    "accent": "#7FB7A3",
+    "accentSecondary": "#D98A4E"
+  },
+  "typography": {
+    "heading": "Condensed editorial serif",
+    "body": "Neutral grotesk sans",
+    "price": "Neutral grotesk sans with tabular numerals"
+  },
+  "iconStyle": "outlined",
+  "imageStyle": "Studio-lit and soft daylight plated food photography with clean surfaces and minimal props.",
+  "surfaceStyle": "Matte slate panels with subtle paper-grain texture in non-critical areas."
+}

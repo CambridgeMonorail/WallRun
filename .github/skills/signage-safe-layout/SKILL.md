@@ -166,4 +166,4 @@ Orientation Support: ❌ (landscape only)
 - Use `signage-layout-system` to structure zones and hierarchy before applying safe margins.
 - Use `signage-distance-legibility` to verify text sizes survive after safe-margin insets.
 - Use `signage-performance-budget` when targeting specific BrightSign hardware.
-- Do not use CSS transforms for display rotation — this is a player-level concern.
+- Prefer player-level rotation over CSS transforms when the player supports it. BrightSign is an exception — `roHtmlWidget` has no rotation API, so CSS `transform: rotate()` is required there.

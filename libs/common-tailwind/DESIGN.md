@@ -9,14 +9,14 @@ scope:
     - customer-specific signage themes
     - app-specific marketing surfaces
 colors:
-  background: "#1C1E21"
-  foreground: "#E6E6E6"
-  mutedForeground: "#A0A4A8"
-  structuralAccent: "#6E7681"
+  background: '#1C1E21'
+  foreground: '#E6E6E6'
+  mutedForeground: '#A0A4A8'
+  structuralAccent: '#6E7681'
 fonts:
-  sans: "Inter, system-ui, sans-serif"
-  heading: "Inter, system-ui, sans-serif"
-  mono: "ui-monospace, SFMono-Regular, Menlo, monospace"
+  sans: 'Inter, system-ui, sans-serif'
+  heading: 'Inter, system-ui, sans-serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, monospace'
 ---
 
 # WallRun Common Tailwind Design

@@ -1,0 +1,18 @@
+{
+  "logoText": "Stacked Skillet & Social House Kitchen Collective",
+  "logoDirection": "Complex badge-style logo with multiple decorative elements, ribbon flourishes, and layered sub-lines.",
+  "colours": {
+    "background": "#1E1E1E",
+    "foreground": "#FFF6E8",
+    "accent": "#E64B19",
+    "accentSecondary": "#12B4C7"
+  },
+  "typography": {
+    "heading": "Heavy display slab with inline shadow styling",
+    "body": "Narrow condensed sans",
+    "price": "Playful script"
+  },
+  "iconStyle": "badge",
+  "imageStyle": "Mixed overhead, side-lit, phone-camera, and stock-style food photography with inconsistent backgrounds.",
+  "surfaceStyle": "Busy chalkboard texture with layered sticker graphics behind text."
+}

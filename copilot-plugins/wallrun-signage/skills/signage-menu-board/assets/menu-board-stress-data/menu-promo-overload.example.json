@@ -1,0 +1,82 @@
+{
+  "brandName": "Copper Finch Express",
+  "mode": "all-day",
+  "offerLabel": "New Launch Week Mega Coffee Rewards Breakfast Bundle Midday Toast Club Seasonal Favourites Limited Time Double Points Event",
+  "categories": [
+    {
+      "id": "coffee",
+      "title": "Coffee",
+      "items": [
+        {
+          "id": "flat-white",
+          "name": "Flat White",
+          "price": "£3.60",
+          "featured": true
+        },
+        {
+          "id": "oat-latte",
+          "name": "Oat Latte",
+          "price": "£4.10",
+          "featured": true
+        },
+        {
+          "id": "filter-coffee",
+          "name": "Filter Coffee",
+          "price": "£3.10"
+        },
+        {
+          "id": "mocha",
+          "name": "House Mocha",
+          "price": "£4.40"
+        },
+        {
+          "id": "tea",
+          "name": "Breakfast Tea",
+          "price": "£2.90"
+        }
+      ]
+    },
+    {
+      "id": "toast-and-bakes",
+      "title": "Toast & Bakes",
+      "items": [
+        {
+          "id": "ricotta-toast",
+          "name": "Ricotta & Honey Toast",
+          "price": "£5.80",
+          "featured": true
+        },
+        {
+          "id": "ham-cheese-croissant",
+          "name": "Ham & Cheese Croissant",
+          "price": "£4.90",
+          "featured": true
+        },
+        {
+          "id": "banana-loaf",
+          "name": "Banana Loaf",
+          "price": "£3.80"
+        },
+        {
+          "id": "almond-croissant",
+          "name": "Almond Croissant",
+          "price": "£4.20"
+        },
+        {
+          "id": "jam-toast",
+          "name": "Jam Toast",
+          "price": "£3.40"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "hours": "Mon-Fri 06:30-15:00",
+    "qrLabel": "Scan For Rewards Club Sign-Up, Catering, Gift Cards, Delivery, Nutritional Notes, and Limited Time Offers"
+  },
+  "legalNotes": [
+    "Rewards apply only to selected drinks and may vary by location.",
+    "Breakfast bundle timings differ by branch.",
+    "Ask staff about allergens and limited-time substitutions."
+  ]
+}

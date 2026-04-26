@@ -1,0 +1,15 @@
+{
+  "name": "wallrun-signage",
+  "description": "WallRun agents and skills for designing, building, packaging, and deploying programmable digital signage with React and BrightSign.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Cambridge Monorail",
+    "url": "https://github.com/CambridgeMonorail/WallRun"
+  },
+  "license": "MIT",
+  "keywords": ["digital-signage", "react", "frontend", "brightsign", "wallrun"],
+  "agents": "agents/",
+  "skills": "skills/",
+  "hooks": "hooks.json",
+  "mcpServers": ".mcp.json"
+}

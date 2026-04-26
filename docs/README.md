@@ -24,6 +24,7 @@ Practical how-to guides for common development tasks.
 - **[Navigation Structure](./guides/navigation-structure.md)** - Implementing navigation patterns
 - **[Reusable React Components](./guides/reusable-react-components.md)** - Component architecture and best practices
 - **[Effective CTA Guide](./guides/effective-cta-guide.md)** - Call-to-action design patterns
+- **[Copilot Agent Plugin](./guides/copilot-plugin-install.md)** - Install signage skills + agents into any workspace ⭐
 
 ---
 
@@ -82,6 +83,7 @@ Planned features and future work.
 - **Build a feature** → [Guides](./guides/)
 - **Use Copilot agents** → [GitHub Copilot Tooling](./tooling/github-copilot-tooling.md)
 - **Use Copilot skills** → [GitHub Copilot Tooling](./tooling/github-copilot-tooling.md#skills)
+- **Install the Copilot plugin** → [Plugin Install Guide](./guides/copilot-plugin-install.md)
 - **Plan placeholder images** → [Signage Placeholder Images](./tooling/signage-placeholder-images.md)
 - **Theme my app** → [Theming Your App](./guides/theming-a-new-app.md)
 - **Add a page** → [Adding a New Component Page](./guides/addding-new-component-page.md)
