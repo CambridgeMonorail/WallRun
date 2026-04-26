@@ -228,7 +228,7 @@
     "lint-staged": "^15.4.3",
     "nx": "22.6.5",
     "pnpm": "^10.28.2",
-    "postcss": "8.5.1",
+    "postcss": "8.5.10",
     "prettier": "~3.6.2",
     "remotion": "4.0.435",
     "replace-in-file": "^8.3.0",
