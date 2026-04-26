@@ -232,15 +232,21 @@ const ColorPalettePage: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="mb-4 text-muted-foreground">
-            WallRun uses a custom shadcn/ui theme optimized for digital signage.
-            The theme follows STYLE_GUIDE.md specifications with locked colors
-            and accessibility-first design.
+            WallRun uses an app-scoped shadcn/ui theme for the demo website.
+            The brand tokens follow apps/client/DESIGN.md and are applied in
+            the demo app stylesheet so they do not leak into shared packages.
           </p>
           <div className="flex flex-col gap-2">
             <div>
               <strong className="text-sm">Theme Definition:</strong>
               <code className="ml-2 text-sm bg-muted px-2 py-1 rounded">
-                libs/common-tailwind/src/shadcn-theme.css
+                apps/client/src/styles.css
+              </code>
+            </div>
+            <div>
+              <strong className="text-sm">Design Contract:</strong>
+              <code className="ml-2 text-sm bg-muted px-2 py-1 rounded">
+                apps/client/DESIGN.md
               </code>
             </div>
             <div>
@@ -252,7 +258,7 @@ const ColorPalettePage: React.FC = () => {
           </div>
           <div className="mt-4 flex gap-2">
             <a
-              href="https://github.com/CambridgeMonorail/WallRun/blob/main/libs/common-tailwind/src/shadcn-theme.css"
+              href="https://github.com/CambridgeMonorail/WallRun/blob/main/apps/client/src/styles.css"
               target="_blank"
               rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center text-sm text-primary hover:underline"

@@ -1,40 +1,48 @@
+/*
+ * Shared signage-safe base theme.
+ *
+ * Keep this package neutral, high contrast, and brandless. It may be consumed by
+ * digital signage player apps where layout, typography, and viewing-distance
+ * rules differ from the apps/client demo website. App-specific brands should
+ * override these variables in the app stylesheet.
+ */
+
 :root {
-  --background: 210 23% 4%;
-  --foreground: 240 11% 96%;
-  --card: 220 6% 10%;
+  --background: 220 13% 12%;
+  --foreground: 0 0% 90%;
+  --card: 220 13% 14%;
   --card-foreground: 0 0% 90%;
-  --popover: 210 23% 4%;
-  --popover-foreground: 240 11% 96%;
-  --primary: 210 23% 4%;
-  --primary-foreground: 240 11% 96%;
-  --secondary: 262 79% 64%;
-  --secondary-foreground: 240 11% 96%;
-  --muted: 220 6% 13%;
-  --muted-foreground: 220 5% 66%;
-  --accent: 189 76% 45%;
-  --accent-foreground: 210 23% 4%;
+  --popover: 220 13% 12%;
+  --popover-foreground: 0 0% 90%;
+  --primary: 220 13% 10%;
+  --primary-foreground: 0 0% 90%;
+  --secondary: 220 8% 20%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 220 10% 16%;
+  --muted-foreground: 210 5% 64%;
+  --accent: 215 8% 47%;
+  --accent-foreground: 0 0% 90%;
   --destructive: 0 62% 50%;
-  --destructive-foreground: 240 11% 96%;
-  --border: 220 5% 22%;
-  --input: 220 5% 22%;
-  --ring: 262 79% 64%;
-  --radius: 0.5rem;
-  --chart-1: 262 79% 64%;
-  --chart-2: 189 76% 45%;
-  --chart-3: 158 50% 48%;
-  --chart-4: 329 64% 62%;
-  --chart-5: 42 92% 57%;
-  --sidebar-background: 210, 23%, 4%;
-  --sidebar-foreground: 240, 11%, 96%;
-  --sidebar-primary: 210, 23%, 4%;
-  --sidebar-primary-foreground: 240, 11%, 96%;
-  --sidebar-accent: 262, 79%, 64%;
-  --sidebar-accent-foreground: 240, 11%, 96%;
-  --sidebar-border: 220, 5%, 22%;
-  --sidebar-ring: 262, 79%, 64%;
+  --destructive-foreground: 0 0% 90%;
+  --border: 220 10% 25%;
+  --input: 220 10% 25%;
+  --ring: 215 8% 47%;
+  --radius: 0.375rem;
+  --chart-1: 220 13% 20%;
+  --chart-2: 220 13% 28%;
+  --chart-3: 220 13% 36%;
+  --chart-4: 220 13% 44%;
+  --chart-5: 215 8% 52%;
+  --sidebar-background: 220, 13%, 12%;
+  --sidebar-foreground: 0, 0%, 90%;
+  --sidebar-primary: 220, 13%, 10%;
+  --sidebar-primary-foreground: 0, 0%, 90%;
+  --sidebar-accent: 215, 8%, 47%;
+  --sidebar-accent-foreground: 0, 0%, 90%;
+  --sidebar-border: 220, 10%, 25%;
+  --sidebar-ring: 215, 8%, 47%;
 }
 
-/* Light mode variant (not default, requires .light class) */
 .light {
   --background: 0 0% 100%;
   --foreground: 220 13% 12%;

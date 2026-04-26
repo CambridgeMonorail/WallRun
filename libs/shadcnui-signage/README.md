@@ -17,6 +17,10 @@ This library provides signage-specific primitives, layouts, blocks, and behaviou
 
 The goal is not to reproduce a generic app component library. The goal is to give you the building blocks for software that is meant to be seen across a room on known hardware.
 
+Design contract:
+
+- [DESIGN.md](./DESIGN.md)
+
 ## What It Gives You
 
 Out of the box, this library gives you:

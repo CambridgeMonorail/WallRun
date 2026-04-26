@@ -25,41 +25,44 @@ applyTo: '**/*.tsx'
 
 ## Visual Style Philosophy
 
-For the **demo website chrome** (navigation, shell, layouts), follow the design principles in `docs/design/STYLE_GUIDE.md`.
+For the **demo website chrome** (navigation, shell, layouts), follow the app-scoped design contract in `apps/client/DESIGN.md`. Expanded rationale lives in `docs/design/STYLE_GUIDE.md`.
 
 **Important**: This applies to the website framework, NOT signage content being demonstrated. Signage demos follow signage design rules (10-foot rule, high visibility).
 
+Generic shared theme work follows `libs/common-tailwind/DESIGN.md`. Reusable
+signage components follow `libs/shadcnui-signage/DESIGN.md`.
+
 ### Aesthetic Intent
 
-- **Product feel**: Premium B2B SaaS, calm and confident (not marketing-led)
-- **Reference point**: Internal tooling from a company that takes engineering seriously
-- **Anti-pattern**: If it feels eager or looks like a landing page, it's wrong
+- **Product feel**: Developer-focused signage software, dark and precise
+- **Reference point**: Creative software for real display systems, backed by serious engineering
+- **Anti-pattern**: Generic SaaS gradients, old cyan/pink WR mark, or decorative control glow
 
 ### Color System
 
-- **Token-first**: Use shadcn tokens only (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`)
+- **Token-first**: Use shadcn tokens and demo-app semantic classes (`bg-background`, `text-foreground`, `text-muted-foreground`, `border-border`, `brand-frame`, `brand-cta-primary`)
 - **No hard-coded colors** in components (hex values belong in theme layer only)
-- **Locked palette**: `#1C1E21` (background), `#E6E6E6` (primary text), `#A0A4A8` (secondary text), `#6E7681` (accent)
+- **Demo palette**: `#080B0E` black, `#17171A` charcoal, `#F5F5F7` off-white, `#885CF6` purple
 - **Reusable shell surfaces allowed**: richer chrome is acceptable when built from token-derived utilities or shared semantic classes rather than ad hoc decorative strings
 
 ### Typography
 
-- **Font system**: Inter is the default UI/body face; Michroma is allowed as a sparing display accent for branded labels, shell markers, and select high-signal headings
-- **Weights**: 400 and 500 are the default rhythm; 600 is allowed as the emphasis ceiling when medium is too soft
-- **Avoid weights above 600** unless layout genuinely lacks presence
+- **Font system**: Satoshi or Inter for display/UI, Inter for body, IBM Plex Mono for code and metadata
+- **Weights**: 400 and 500 are the default rhythm; 600/700 are allowed for brand headings
+- **Avoid heavy weights inside compact controls**
 - **Scale**: Restrained and modern SaaS
   - Page title: `text-3xl md:text-4xl font-medium tracking-tight`
   - Section heading: `text-xl md:text-2xl font-medium`
   - Body: `text-base leading-relaxed`
   - Small text: `text-sm text-muted-foreground`
 
-Michroma should stay out of long-form copy, settings forms, dense tables, and routine navigation text.
+IBM Plex Mono should stay in code, metadata, and compact technical labels.
 
 ### Component Style
 
-- **Buttons**: Default to `variant="secondary"` or `variant="ghost"` (use `variant="default"` sparingly)
+- **Buttons**: Use shared classes such as `brand-cta-primary` / `brand-cta-secondary`; default to `variant="secondary"`, `variant="outline"`, or `variant="ghost"`
 - **Cards**: Flat surfaces, subtle borders, minimal or no shadow
-- **No decoration**: No gradients, glow effects, or animated flair
+- **No decoration on controls**: No gradients, glow effects, or animated flair on buttons and routine UI
 - **Links**: Understated, underline on hover, avoid bright colors
 
 When a shell surface needs extra depth, prefer a shared token-based utility class over inline arbitrary shadows, raw white overlays, or bespoke glow values.
@@ -81,10 +84,10 @@ When a shell surface needs extra depth, prefer a shared token-based utility clas
 
 Before committing changes, ask:
 
-- Does this feel like premium B2B SaaS software?
+- Does this follow `apps/client/DESIGN.md`?
 - Have we used tokens rather than one-off styles?
-- Did we add anything for flair rather than clarity?
-- Would this still feel right in five years?
+- Is the WallRun demo branding scoped to `apps/client`?
+- Is glow limited to artwork rather than controls?
 
 ## Accessibility Baseline Requirements
 

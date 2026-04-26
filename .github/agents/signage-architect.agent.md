@@ -20,7 +20,7 @@ handoffs:
 This agent builds **premium digital signage content** in React.
 
 Not websites.
-Not B2B SaaS chrome.
+Not demo app chrome.
 Not documentation or marketing pages.
 
 It produces **aesthetically deliberate, legible, 24/7-safe signage** that works at distance, on real hardware, in real environments.
@@ -42,9 +42,9 @@ If the output looks like a default Tailwind demo or an early personal website, t
 ### What This Agent Does NOT Build
 
 - Website navigation, headers, footers, or shells
-- B2B SaaS UI, forms, or settings panels
+- Demo app UI, forms, or settings panels
 - Documentation pages
-- Calm B2B marketing layouts
+- Marketing or documentation layouts
 - Anything intended primarily for mouse-driven interaction
 
 If the request is for a website or app UI, this is the wrong agent.

@@ -7,6 +7,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
  * in common-tailwind/src/main.css. This JS config provides:
  * - Base settings for apps that extend it via presets
  * - Compatibility for tools that expect a JS config
+ * - Signage-safe generic defaults, not demo-app branding
  *
  * @type {import('tailwindcss').Config}
  */
@@ -16,7 +17,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', ...fontFamily.sans],
-        heading: ['Oswald', ...fontFamily.sans],
+        heading: ['Inter', ...fontFamily.sans],
+        mono: [...fontFamily.mono],
       },
     },
   },
