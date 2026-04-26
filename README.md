@@ -31,6 +31,7 @@ This repo is intentionally set up to work well in **VS Code** with **GitHub Copi
 - Opinionated Copilot instructions to keep AI output consistent
 - Built-in agent(s) for signage screen construction and platform-aware guidance
 - MCP support for BrightSign platform docs research
+- **[BrightSign Player Tools MCP server](./tools/player-mcp-server/)** — discover, probe, and manage BrightSign players directly from Copilot
 - **[Copilot Agent Plugin](./copilot-plugins/wallrun-signage/)** — Install curated signage skills and agents into any VS Code workspace
 
 ### What this is not
@@ -288,7 +289,7 @@ It also includes opinionated workflow support:
 
 - **`pnpm verify`** as the “definition of done”
 - **GitHub Copilot instructions + agents** to keep AI-assisted work consistent
-- **MCP server configuration** (including BrightDeveloper) to support device/platform research
+- **MCP server configuration** — BrightDeveloper (platform docs) + BrightSign Player Tools (device discovery and management)
 
 ## Technologies Used
 

@@ -9,7 +9,7 @@ The WallRun Copilot agent plugin bundles 14 curated signage skills and 2 special
 | **Agents** | `signage-architect` (premium signage design), `wallrun-deploy` (deployment triage) |
 | **Skills** | Layout system, animation, menu boards, distance legibility, safe layout, state machine, data refresh, content fallbacks, performance budget, placeholder images, BrightSign runtime/packaging/deployment/debugging |
 | **Hooks** | Advisory preflight check (experimental) |
-| **MCP** | Plugin-scoped MCP configuration for BrightSign docs |
+| **MCP** | BrightSign Player Tools server (discover, probe, list, add, remove players) + BrightDeveloper docs |
 
 ## Prerequisites
 

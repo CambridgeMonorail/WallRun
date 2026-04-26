@@ -9,7 +9,23 @@ This is the generated Copilot agent-plugin for WallRun.
 - The `signage-architect` agent — builds premium signage content
 - The `wallrun-deploy` agent — guides deployment workflow selection and preflight checks
 - Optional plugin hooks (experimental)
-- Optional plugin-scoped MCP configuration
+- **BrightSign Player Tools MCP server** — discover, probe, and manage players directly from Copilot
+
+## Bundled MCP Server
+
+The plugin includes a built-in MCP server (`servers/player-tools.mjs`) that exposes BrightSign player operations as AI-callable tools:
+
+| Tool | Description |
+|------|-------------|
+| `brightsign_discover_players` | Scan a subnet for BrightSign devices |
+| `brightsign_probe_player` | Check connectivity to a single player |
+| `brightsign_list_players` | List registered players (credentials redacted) |
+| `brightsign_get_player` | Get a player's config by name |
+| `brightsign_add_player` | Register a player |
+| `brightsign_remove_player` | Remove a player |
+| `brightsign_get_device_info` | Fetch model/serial/firmware from a player |
+
+Player data is stored locally in `.brightsign/players.json` (gitignored, never shared). Credentials are always redacted in tool responses.
 
 ## Source of truth
 
@@ -74,7 +90,7 @@ git commit -m "chore: regenerate copilot plugin"
 
 ## Notes
 
-- **VS Code Insiders required** — Copilot agent plugins are a preview feature currently available only in [VS Code Insiders](https://code.visualstudio.com/insiders/). This requirement may change as the feature graduates to stable.
+- Plugin support must be enabled in your VS Code environment
 - Bump `version` in `plugin.json` when testing update behaviour
 - Keep plugin name and skill names in plain kebab-case
 - The hooks feature is experimental — the `postPrompt` hook runs an advisory-only preflight script

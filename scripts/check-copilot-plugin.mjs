@@ -22,7 +22,12 @@ function exists(filePath) {
 }
 
 function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (e) {
+    fail(`Invalid JSON in ${path.relative(repoRoot, filePath)}: ${e.message}`);
+    return null;
+  }
 }
 
 function readText(filePath) {
@@ -160,6 +165,9 @@ function validatePluginManifest() {
   }
 
   const pluginJson = readJson(pluginJsonPath);
+  if (!pluginJson) {
+    return;
+  }
 
   if (!pluginJson.name) {
     fail(`plugin.json is missing 'name'`);

@@ -165,6 +165,10 @@ function buildMcpConfig() {
       brightdeveloper: {
         url: 'https://brightdeveloper-mcp.bsn.cloud/mcp',
       },
+      'brightsign-player-tools': {
+        command: 'node',
+        args: ['servers/player-tools.mjs'],
+      },
     },
   };
 }
@@ -305,6 +309,22 @@ function main() {
     throw new Error(`Missing hook script: ${sourceHookScript}`);
   }
   copyFile(sourceHookScript, targetHookScript);
+
+  log('Copying MCP server');
+  const sourceMcpServer = path.join(repoRoot, 'tools', 'player-mcp-server', 'server.mjs');
+  const targetMcpServer = path.join(pluginRoot, 'servers', 'player-tools.mjs');
+  if (!exists(sourceMcpServer)) {
+    throw new Error(`Missing MCP server: ${sourceMcpServer}`);
+  }
+  copyFile(sourceMcpServer, targetMcpServer);
+
+  log('Copying MCP server');
+  const sourceMcpServer = path.join(repoRoot, 'tools', 'player-mcp-server', 'server.mjs');
+  const targetMcpServer = path.join(pluginRoot, 'servers', 'player-tools.mjs');
+  if (!exists(sourceMcpServer)) {
+    throw new Error(`Missing MCP server: ${sourceMcpServer}`);
+  }
+  copyFile(sourceMcpServer, targetMcpServer);
 
   log('Writing hooks.json');
   writeText(

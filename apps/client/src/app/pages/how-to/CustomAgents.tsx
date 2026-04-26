@@ -173,7 +173,7 @@ export const CustomAgentsPage: FC = () => {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <div
-            className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-sm"
+            className="rounded-lg border border-border bg-muted p-4 text-sm text-muted-foreground"
             role="note"
             aria-label="Preview feature notice"
           >

@@ -2,6 +2,12 @@
   "mcpServers": {
     "brightdeveloper": {
       "url": "https://brightdeveloper-mcp.bsn.cloud/mcp"
+    },
+    "brightsign-player-tools": {
+      "command": "node",
+      "args": [
+        "servers/player-tools.mjs"
+      ]
     }
   }
 }

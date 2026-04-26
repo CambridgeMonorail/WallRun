@@ -182,9 +182,18 @@ Add an on-screen debug overlay to your React app:
 
 import { useEffect, useState } from 'react';
 
+type DeviceInfo = {
+  uptime?: number;
+  model?: string;
+  firmware?: string;
+  network?: { ipAddress?: string };
+  storage?: { freeMB?: number };
+  temperature?: number;
+};
+
 export function DebugOverlay() {
   const [visible, setVisible] = useState(false);
-  const [deviceInfo, setDeviceInfo] = useState<any>(null);
+  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
 
   useEffect(() => {
     // Toggle with Ctrl+Shift+D

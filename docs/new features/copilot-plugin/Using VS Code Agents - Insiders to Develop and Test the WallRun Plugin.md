@@ -1,11 +1,3 @@
-Here is a **repo-ready addendum** you can drop alongside your spec:
-
-```text
-docs/tooling/copilot-agents-insiders-addendum.md
-```
-
----
-
 # Using VS Code Agents - Insiders to Develop and Test the WallRun Plugin
 
 ## Purpose
