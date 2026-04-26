@@ -85,7 +85,22 @@ function scanForSuspiciousSecrets(dirPath) {
       }
 
       const ext = path.extname(entry.name).toLowerCase();
-      const isLikelyText = ['.md', '.json', '.txt', '.js', '.mjs', '.ts', '.yml', '.yaml', '.sh', '.brs', '.cfg', '.html', '.css', ''].includes(ext);
+      const isLikelyText = [
+        '.md',
+        '.json',
+        '.txt',
+        '.js',
+        '.mjs',
+        '.ts',
+        '.yml',
+        '.yaml',
+        '.sh',
+        '.brs',
+        '.cfg',
+        '.html',
+        '.css',
+        '',
+      ].includes(ext);
 
       if (!isLikelyText) {
         continue;
@@ -137,7 +152,9 @@ function validateSkillsDir(skillsDir) {
     assertKebabCase(frontmatterName, `Skill name for '${entry.name}'`);
 
     if (frontmatterName !== entry.name) {
-      fail(`Skill directory '${entry.name}' does not match frontmatter name '${frontmatterName}'`);
+      fail(
+        `Skill directory '${entry.name}' does not match frontmatter name '${frontmatterName}'`,
+      );
     }
   }
 
@@ -147,7 +164,7 @@ function validateSkillsDir(skillsDir) {
 function validateAgentsDir(agentsDir) {
   const entries = fs.readdirSync(agentsDir, { withFileTypes: true });
   const agentFiles = entries.filter(
-    (entry) => entry.isFile() && entry.name.endsWith('.agent.md')
+    (entry) => entry.isFile() && entry.name.endsWith('.agent.md'),
   );
 
   if (agentFiles.length === 0) {
@@ -177,7 +194,9 @@ function validatePluginManifest() {
   }
 
   if (pluginJson.skills) {
-    const skillPaths = Array.isArray(pluginJson.skills) ? pluginJson.skills : [pluginJson.skills];
+    const skillPaths = Array.isArray(pluginJson.skills)
+      ? pluginJson.skills
+      : [pluginJson.skills];
     for (const relativeSkillPath of skillPaths) {
       const fullSkillPath = path.join(pluginRoot, relativeSkillPath);
       if (assertExists(fullSkillPath, `skills path '${relativeSkillPath}'`)) {
@@ -187,7 +206,9 @@ function validatePluginManifest() {
   }
 
   if (pluginJson.agents) {
-    const agentPaths = Array.isArray(pluginJson.agents) ? pluginJson.agents : [pluginJson.agents];
+    const agentPaths = Array.isArray(pluginJson.agents)
+      ? pluginJson.agents
+      : [pluginJson.agents];
     for (const relativeAgentPath of agentPaths) {
       const fullAgentPath = path.join(pluginRoot, relativeAgentPath);
       if (assertExists(fullAgentPath, `agents path '${relativeAgentPath}'`)) {
@@ -198,7 +219,10 @@ function validatePluginManifest() {
 
   if (pluginJson.hooks) {
     if (typeof pluginJson.hooks === 'string') {
-      assertExists(path.join(pluginRoot, pluginJson.hooks), `hooks file '${pluginJson.hooks}'`);
+      assertExists(
+        path.join(pluginRoot, pluginJson.hooks),
+        `hooks file '${pluginJson.hooks}'`,
+      );
     }
   }
 
@@ -206,7 +230,7 @@ function validatePluginManifest() {
     if (typeof pluginJson.mcpServers === 'string') {
       assertExists(
         path.join(pluginRoot, pluginJson.mcpServers),
-        `MCP file '${pluginJson.mcpServers}'`
+        `MCP file '${pluginJson.mcpServers}'`,
       );
     }
   }
@@ -214,7 +238,9 @@ function validatePluginManifest() {
 
 function main() {
   if (!assertExists(pluginRoot, 'plugin root directory')) {
-    console.error('[plugin:copilot:check] Plugin not found. Run: pnpm plugin:copilot:build');
+    console.error(
+      '[plugin:copilot:check] Plugin not found. Run: pnpm plugin:copilot:build',
+    );
     process.exit(1);
   }
 
@@ -225,14 +251,16 @@ function main() {
     fail(
       `Suspicious secret-like content found:\n${suspiciousFindings
         .map((finding) => `  - ${finding.file} matched ${finding.pattern}`)
-        .join('\n')}`
+        .join('\n')}`,
     );
   } else {
     ok('No suspicious secrets detected');
   }
 
   if (hasErrors) {
-    console.error('\n[plugin:copilot:check] Validation FAILED — see errors above');
+    console.error(
+      '\n[plugin:copilot:check] Validation FAILED — see errors above',
+    );
     process.exit(1);
   }
 

@@ -115,11 +115,11 @@ In addition to the workspace-level agents and skills above, WallRun packages a *
 
 ### When to use the plugin vs. workspace agents
 
-| Mechanism | Scope | Best for |
-|-----------|-------|----------|
-| Workspace agents (`.github/agents/`) | This repo | Working inside the WallRun monorepo |
+| Mechanism                                           | Scope         | Best for                             |
+| --------------------------------------------------- | ------------- | ------------------------------------ |
+| Workspace agents (`.github/agents/`)                | This repo     | Working inside the WallRun monorepo  |
 | Copilot plugin (`copilot-plugins/wallrun-signage/`) | Any workspace | Building signage in your own project |
-| Portable skills (`npx skills add`) | Any workspace | Only the skill workflows, no agents |
+| Portable skills (`npx skills add`)                  | Any workspace | Only the skill workflows, no agents  |
 
 ### Installation
 

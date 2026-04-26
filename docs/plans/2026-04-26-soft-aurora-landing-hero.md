@@ -18,7 +18,7 @@ soft aurora-style background as a good fit for the purple generative branding.
 
 - [x] Add a local CSS-only aurora treatment behind the hero content.
 - [x] Keep the treatment scoped to the demo landing hero, not common signage
-  theming.
+      theming.
 - [x] Respect reduced-motion preferences.
 - [x] Slightly increase hero visual presence without changing routing or copy.
 - [x] Run focused type-check validation.

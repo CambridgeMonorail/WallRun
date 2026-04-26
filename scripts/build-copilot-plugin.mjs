@@ -71,7 +71,9 @@ function copyDirRecursive(sourceDir, targetDir) {
 
   ensureDir(targetDir);
 
-  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+  for (const entry of fs
+    .readdirSync(sourceDir, { withFileTypes: true })
+    .sort((a, b) => a.name.localeCompare(b.name))) {
     const sourcePath = path.join(sourceDir, entry.name);
     const targetPath = path.join(targetDir, entry.name);
 
@@ -108,12 +110,14 @@ function validateSkillSource(skillName) {
 
   const frontmatterName = extractSkillNameFrontmatter(readText(skillFile));
   if (!frontmatterName) {
-    throw new Error(`Could not find 'name' in frontmatter for skill: ${skillName}`);
+    throw new Error(
+      `Could not find 'name' in frontmatter for skill: ${skillName}`,
+    );
   }
 
   if (frontmatterName !== skillName) {
     throw new Error(
-      `Skill directory '${skillName}' does not match frontmatter name '${frontmatterName}'`
+      `Skill directory '${skillName}' does not match frontmatter name '${frontmatterName}'`,
     );
   }
 }
@@ -299,27 +303,33 @@ function main() {
   log('Writing plugin.json');
   writeText(
     path.join(pluginRoot, 'plugin.json'),
-    `${JSON.stringify(buildPluginManifest(), null, 2)}\n`
+    `${JSON.stringify(buildPluginManifest(), null, 2)}\n`,
   );
 
   log('Copying hook scripts');
-  const sourceHookScript = path.join(repoRoot, 'scripts', 'plugin-hooks', 'wallrun-preflight.mjs');
-  const targetHookScript = path.join(pluginRoot, 'scripts', 'wallrun-preflight.mjs');
+  const sourceHookScript = path.join(
+    repoRoot,
+    'scripts',
+    'plugin-hooks',
+    'wallrun-preflight.mjs',
+  );
+  const targetHookScript = path.join(
+    pluginRoot,
+    'scripts',
+    'wallrun-preflight.mjs',
+  );
   if (!exists(sourceHookScript)) {
     throw new Error(`Missing hook script: ${sourceHookScript}`);
   }
   copyFile(sourceHookScript, targetHookScript);
 
   log('Copying MCP server');
-  const sourceMcpServer = path.join(repoRoot, 'tools', 'player-mcp-server', 'server.mjs');
-  const targetMcpServer = path.join(pluginRoot, 'servers', 'player-tools.mjs');
-  if (!exists(sourceMcpServer)) {
-    throw new Error(`Missing MCP server: ${sourceMcpServer}`);
-  }
-  copyFile(sourceMcpServer, targetMcpServer);
-
-  log('Copying MCP server');
-  const sourceMcpServer = path.join(repoRoot, 'tools', 'player-mcp-server', 'server.mjs');
+  const sourceMcpServer = path.join(
+    repoRoot,
+    'tools',
+    'player-mcp-server',
+    'server.mjs',
+  );
   const targetMcpServer = path.join(pluginRoot, 'servers', 'player-tools.mjs');
   if (!exists(sourceMcpServer)) {
     throw new Error(`Missing MCP server: ${sourceMcpServer}`);
@@ -329,13 +339,13 @@ function main() {
   log('Writing hooks.json');
   writeText(
     path.join(pluginRoot, 'hooks.json'),
-    `${JSON.stringify(buildHooksConfig(), null, 2)}\n`
+    `${JSON.stringify(buildHooksConfig(), null, 2)}\n`,
   );
 
   log('Writing .mcp.json');
   writeText(
     path.join(pluginRoot, '.mcp.json'),
-    `${JSON.stringify(buildMcpConfig(), null, 2)}\n`
+    `${JSON.stringify(buildMcpConfig(), null, 2)}\n`,
   );
 
   log('Writing README.md');
@@ -348,7 +358,7 @@ try {
   main();
 } catch (error) {
   console.error(
-    `[plugin:copilot:build] Failed: ${error instanceof Error ? error.message : String(error)}`
+    `[plugin:copilot:build] Failed: ${error instanceof Error ? error.message : String(error)}`,
   );
   process.exit(1);
 }

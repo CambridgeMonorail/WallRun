@@ -92,6 +92,7 @@ feat(shadcnui-signage): add restaurant menu layout
 fix(client): correct screen frame aspect ratio
 docs(guides): clarify signage content workflow
 ```
+
 ## Copilot Agent Plugin
 
 WallRun packages a Copilot agent plugin at `copilot-plugins/wallrun-signage/`. If you modify source skills (`skills/`) or agents (`.github/agents/`), regenerate the plugin before committing:

@@ -21,27 +21,9 @@ const pluginAgentsDir = path.join(pluginRoot, 'agents');
 const sourceSkillsDir = path.join(repoRoot, 'skills');
 const sourceAgentsDir = path.join(repoRoot, '.github', 'agents');
 
-const curatedSkillNames = [
-  'signage-layout-system',
-  'signage-animation-system',
-  'signage-menu-board',
-  'signage-distance-legibility',
-  'signage-safe-layout',
-  'signage-state-machine',
-  'signage-data-refresh-patterns',
-  'signage-performance-budget',
-  'signage-content-fallbacks',
-  'brightsign-runtime',
-  'brightsign-package',
-  'brightsign-deploy-local',
-  'brightsign-fleet-deploy',
-  'brightsign-debug',
-];
+const curatedSkillNames = ['signage-layout-system', 'signage-animation-system', 'signage-menu-board', 'signage-distance-legibility', 'signage-safe-layout', 'signage-state-machine', 'signage-data-refresh-patterns', 'signage-performance-budget', 'signage-content-fallbacks', 'brightsign-runtime', 'brightsign-package', 'brightsign-deploy-local', 'brightsign-fleet-deploy', 'brightsign-debug'];
 
-const curatedAgentNames = [
-  'signage-architect.agent.md',
-  'wallrun-deploy.agent.md',
-];
+const curatedAgentNames = ['signage-architect.agent.md', 'wallrun-deploy.agent.md'];
 
 function log(message) {
   console.log(`[plugin:copilot:build] ${message}`);
@@ -121,9 +103,7 @@ function validateSkillSource(skillName) {
   }
 
   if (frontmatterName !== skillName) {
-    throw new Error(
-      `Skill directory '${skillName}' does not match frontmatter name '${frontmatterName}'`
-    );
+    throw new Error(`Skill directory '${skillName}' does not match frontmatter name '${frontmatterName}'`);
   }
 }
 
@@ -138,8 +118,7 @@ function validateAgentSource(agentFileName) {
 function buildPluginManifest() {
   return {
     name: 'wallrun-signage',
-    description:
-      'WallRun agents and skills for designing, building, packaging, and deploying programmable digital signage with React and BrightSign.',
+    description: 'WallRun agents and skills for designing, building, packaging, and deploying programmable digital signage with React and BrightSign.',
     version: '0.1.0',
     author: {
       name: 'Cambridge Monorail',
@@ -255,22 +234,13 @@ function main() {
   }
 
   log('Writing plugin.json');
-  writeText(
-    path.join(pluginRoot, 'plugin.json'),
-    `${JSON.stringify(buildPluginManifest(), null, 2)}\n`
-  );
+  writeText(path.join(pluginRoot, 'plugin.json'), `${JSON.stringify(buildPluginManifest(), null, 2)}\n`);
 
   log('Writing hooks.json');
-  writeText(
-    path.join(pluginRoot, 'hooks.json'),
-    `${JSON.stringify(buildHooksConfig(), null, 2)}\n`
-  );
+  writeText(path.join(pluginRoot, 'hooks.json'), `${JSON.stringify(buildHooksConfig(), null, 2)}\n`);
 
   log('Writing .mcp.json');
-  writeText(
-    path.join(pluginRoot, '.mcp.json'),
-    `${JSON.stringify(buildMcpConfig(), null, 2)}\n`
-  );
+  writeText(path.join(pluginRoot, '.mcp.json'), `${JSON.stringify(buildMcpConfig(), null, 2)}\n`);
 
   log('Writing README.md');
   writeText(path.join(pluginRoot, 'README.md'), buildPluginReadme());
@@ -281,9 +251,7 @@ function main() {
 try {
   main();
 } catch (error) {
-  console.error(
-    `[plugin:copilot:build] Failed: ${error instanceof Error ? error.message : String(error)}`
-  );
+  console.error(`[plugin:copilot:build] Failed: ${error instanceof Error ? error.message : String(error)}`);
   process.exit(1);
 }
 ```
@@ -346,14 +314,7 @@ function extractSkillNameFrontmatter(markdown) {
 }
 
 function scanForSuspiciousSecrets(dirPath) {
-  const suspiciousPatterns = [
-    /ghp_[A-Za-z0-9_]+/g,
-    /github_pat_[A-Za-z0-9_]+/g,
-    /AKIA[0-9A-Z]{16}/g,
-    /-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----/g,
-    /password\s*[:=]\s*.+/i,
-    /token\s*[:=]\s*.+/i,
-  ];
+  const suspiciousPatterns = [/ghp_[A-Za-z0-9_]+/g, /github_pat_[A-Za-z0-9_]+/g, /AKIA[0-9A-Z]{16}/g, /-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----/g, /password\s*[:=]\s*.+/i, /token\s*[:=]\s*.+/i];
 
   const findings = [];
 
@@ -371,19 +332,7 @@ function scanForSuspiciousSecrets(dirPath) {
       }
 
       const ext = path.extname(entry.name).toLowerCase();
-      const isLikelyText =
-        [
-          '.md',
-          '.json',
-          '.txt',
-          '.js',
-          '.mjs',
-          '.ts',
-          '.yml',
-          '.yaml',
-          '.sh',
-          '',
-        ].includes(ext);
+      const isLikelyText = ['.md', '.json', '.txt', '.js', '.mjs', '.ts', '.yml', '.yaml', '.sh', ''].includes(ext);
 
       if (!isLikelyText) {
         continue;
@@ -419,9 +368,7 @@ function validatePluginManifest() {
   assertKebabCase(pluginJson.name, 'Plugin name');
 
   if (pluginJson.skills) {
-    const skillPaths = Array.isArray(pluginJson.skills)
-      ? pluginJson.skills
-      : [pluginJson.skills];
+    const skillPaths = Array.isArray(pluginJson.skills) ? pluginJson.skills : [pluginJson.skills];
 
     for (const relativeSkillPath of skillPaths) {
       const fullSkillPath = path.join(pluginRoot, relativeSkillPath);
@@ -431,9 +378,7 @@ function validatePluginManifest() {
   }
 
   if (pluginJson.agents) {
-    const agentPaths = Array.isArray(pluginJson.agents)
-      ? pluginJson.agents
-      : [pluginJson.agents];
+    const agentPaths = Array.isArray(pluginJson.agents) ? pluginJson.agents : [pluginJson.agents];
 
     for (const relativeAgentPath of agentPaths) {
       const fullAgentPath = path.join(pluginRoot, relativeAgentPath);
@@ -450,10 +395,7 @@ function validatePluginManifest() {
 
   if (pluginJson.mcpServers) {
     if (typeof pluginJson.mcpServers === 'string') {
-      assertExists(
-        path.join(pluginRoot, pluginJson.mcpServers),
-        `MCP file '${pluginJson.mcpServers}'`
-      );
+      assertExists(path.join(pluginRoot, pluginJson.mcpServers), `MCP file '${pluginJson.mcpServers}'`);
     }
   }
 }
@@ -482,18 +424,14 @@ function validateSkillsDir(skillsDir) {
     assertKebabCase(frontmatterName, `Skill name for '${entry.name}'`);
 
     if (frontmatterName !== entry.name) {
-      fail(
-        `Skill directory '${entry.name}' does not match frontmatter name '${frontmatterName}'`
-      );
+      fail(`Skill directory '${entry.name}' does not match frontmatter name '${frontmatterName}'`);
     }
   }
 }
 
 function validateAgentsDir(agentsDir) {
   const entries = fs.readdirSync(agentsDir, { withFileTypes: true });
-  const agentFiles = entries.filter(
-    (entry) => entry.isFile() && entry.name.endsWith('.agent.md')
-  );
+  const agentFiles = entries.filter((entry) => entry.isFile() && entry.name.endsWith('.agent.md'));
 
   if (agentFiles.length === 0) {
     fail(`No .agent.md files found in: ${agentsDir}`);
@@ -507,11 +445,7 @@ function main() {
 
   const suspiciousFindings = scanForSuspiciousSecrets(pluginRoot);
   if (suspiciousFindings.length > 0) {
-    fail(
-      `Suspicious secret-like content found:\n${suspiciousFindings
-        .map((finding) => `- ${finding.file} matched ${finding.pattern}`)
-        .join('\n')}`
-    );
+    fail(`Suspicious secret-like content found:\n${suspiciousFindings.map((finding) => `- ${finding.file} matched ${finding.pattern}`).join('\n')}`);
   }
 
   ok('Plugin looks valid');
@@ -620,14 +554,7 @@ This is deliberately simple. It gives you a real file for `hooks.json` to point 
  * is passed through in your actual Copilot / VS Code environment.
  */
 
-const reminders = [
-  'Confirm target orientation and resolution are explicit.',
-  'Confirm safe-area or overscan handling is defined.',
-  'Confirm offline and empty-data fallback states exist.',
-  'Confirm autoplay and startup assumptions are realistic.',
-  'Confirm no deploy success is claimed without evidence.',
-  'Confirm no credentials or machine-specific device details are embedded.',
-];
+const reminders = ['Confirm target orientation and resolution are explicit.', 'Confirm safe-area or overscan handling is defined.', 'Confirm offline and empty-data fallback states exist.', 'Confirm autoplay and startup assumptions are realistic.', 'Confirm no deploy success is claimed without evidence.', 'Confirm no credentials or machine-specific device details are embedded.'];
 
 for (const reminder of reminders) {
   console.log(`[wallrun-preflight] ${reminder}`);
@@ -680,4 +607,4 @@ I would treat the hook script above as a **starter stub**, not the finished arti
 
 If you want, the next sensible step is for me to turn this into a single copy-paste markdown file with all paths and code blocks arranged exactly as a developer handoff.
 
-[1]: https://code.visualstudio.com/docs/copilot/customization/agent-plugins "Agent plugins in VS Code (Preview)"
+[1]: https://code.visualstudio.com/docs/copilot/customization/agent-plugins 'Agent plugins in VS Code (Preview)'

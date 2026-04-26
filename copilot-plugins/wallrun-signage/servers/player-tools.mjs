@@ -58,7 +58,10 @@ const API_PATHS = ['/api/v1/info', '/GetDeviceInfo', '/GetID', '/info', '/'];
 function findWorkspaceRoot() {
   let dir = process.cwd();
   for (let i = 0; i < 20; i++) {
-    if (fs.existsSync(path.join(dir, 'nx.json')) || fs.existsSync(path.join(dir, 'package.json'))) {
+    if (
+      fs.existsSync(path.join(dir, 'nx.json')) ||
+      fs.existsSync(path.join(dir, 'package.json'))
+    ) {
       return dir;
     }
     const parent = path.dirname(dir);
@@ -78,14 +81,28 @@ const PLAYERS_FILE = path.join(BRIGHTSIGN_DIR, 'players.json');
 
 function ipToInt(ip) {
   const parts = ip.split('.').map(Number);
-  if (parts.length !== 4 || parts.some((n) => Number.isNaN(n) || n < 0 || n > 255)) {
+  if (
+    parts.length !== 4 ||
+    parts.some((n) => Number.isNaN(n) || n < 0 || n > 255)
+  ) {
     throw new Error(`Invalid IPv4 address: ${ip}`);
   }
-  return ((parts[0] << 24) >>> 0) + ((parts[1] << 16) >>> 0) + ((parts[2] << 8) >>> 0) + (parts[3] >>> 0) >>> 0;
+  return (
+    (((parts[0] << 24) >>> 0) +
+      ((parts[1] << 16) >>> 0) +
+      ((parts[2] << 8) >>> 0) +
+      (parts[3] >>> 0)) >>>
+    0
+  );
 }
 
 function intToIp(value) {
-  return [(value >>> 24) & 255, (value >>> 16) & 255, (value >>> 8) & 255, value & 255].join('.');
+  return [
+    (value >>> 24) & 255,
+    (value >>> 16) & 255,
+    (value >>> 8) & 255,
+    value & 255,
+  ].join('.');
 }
 
 function expandCIDR(cidr) {
@@ -95,7 +112,9 @@ function expandCIDR(cidr) {
     throw new Error(`Invalid CIDR: ${cidr}`);
   }
   if (prefix < 24) {
-    throw new Error(`Only /24 to /32 subnets supported for safety (got /${prefix})`);
+    throw new Error(
+      `Only /24 to /32 subnets supported for safety (got /${prefix})`,
+    );
   }
   const base = ipToInt(baseIp);
   const mask = (0xffffffff << (32 - prefix)) >>> 0;
@@ -146,12 +165,25 @@ function detectEvidence(headers, bodyText, status) {
   const server = String(headers?.server ?? '').toLowerCase();
   const body = String(bodyText ?? '').toLowerCase();
   if (server.includes('brightsign')) return `server:${headers.server}`;
-  if (body.includes('diagnostic web server')) return 'body:diagnostic-web-server';
+  if (body.includes('diagnostic web server'))
+    return 'body:diagnostic-web-server';
   if (body.includes('brightsign')) return 'body:brightsign';
-  if (body.includes('bsp.js') || body.includes('getuservars') || body.includes('/setvalues')) return 'body:dws-classic';
+  if (
+    body.includes('bsp.js') ||
+    body.includes('getuservars') ||
+    body.includes('/setvalues')
+  )
+    return 'body:dws-classic';
   if (body.includes('<brightsignid>')) return 'body:brightsign-xml-id';
-  if (body.includes('/api/v1/') || body.includes('getdeviceinfo')) return 'body:api-endpoint-marker';
-  if (body.includes('"fwversion"') || body.includes('"serial"') || body.includes('"model"') || body.includes('"isplayer":true')) return 'body:device-json-marker';
+  if (body.includes('/api/v1/') || body.includes('getdeviceinfo'))
+    return 'body:api-endpoint-marker';
+  if (
+    body.includes('"fwversion"') ||
+    body.includes('"serial"') ||
+    body.includes('"model"') ||
+    body.includes('"isplayer":true')
+  )
+    return 'body:device-json-marker';
   if (status === 401) return 'http:401-auth-required';
   return null;
 }
@@ -179,16 +211,34 @@ function normaliseDeviceInfo(data) {
     }
     return null;
   };
-  const name = lookup(['name', 'unitName', 'hostname']) ?? root?.networking?.result?.name ?? null;
-  const description = lookup(['description']) ?? root?.networking?.result?.description?.trim() ?? null;
+  const name =
+    lookup(['name', 'unitName', 'hostname']) ??
+    root?.networking?.result?.name ??
+    null;
+  const description =
+    lookup(['description']) ??
+    root?.networking?.result?.description?.trim() ??
+    null;
   const deviceInfo = {
     model: lookup(['model', 'modelName', 'model_number', 'hwFamily']),
     serial: lookup(['serial', 'serialNumber', 'unitSerial']),
-    firmware: lookup(['fwversion', 'FWVersion', 'firmware', 'firmwareVersion', 'osVersion']),
+    firmware: lookup([
+      'fwversion',
+      'FWVersion',
+      'firmware',
+      'firmwareVersion',
+      'osVersion',
+    ]),
     name,
     description,
   };
-  return deviceInfo.model || deviceInfo.serial || deviceInfo.firmware || deviceInfo.name || deviceInfo.description ? deviceInfo : null;
+  return deviceInfo.model ||
+    deviceInfo.serial ||
+    deviceInfo.firmware ||
+    deviceInfo.name ||
+    deviceInfo.description
+    ? deviceInfo
+    : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -209,7 +259,8 @@ function httpRequest({ ip, port, path: reqPath, timeout }) {
         rejectUnauthorized: false,
         headers: {
           'User-Agent': 'WallRun-PlayerMCP/1.0',
-          Accept: 'application/json, text/xml;q=0.9, text/html;q=0.8, */*;q=0.7',
+          Accept:
+            'application/json, text/xml;q=0.9, text/html;q=0.8, */*;q=0.7',
         },
       },
       (res) => {
@@ -218,8 +269,22 @@ function httpRequest({ ip, port, path: reqPath, timeout }) {
           body += chunk.toString('utf8');
           if (body.length > 20_000) res.destroy();
         });
-        res.on('end', () => resolve({ ok: true, status: res.statusCode ?? 0, headers: res.headers, body }));
-        res.on('close', () => resolve({ ok: true, status: res.statusCode ?? 0, headers: res.headers, body }));
+        res.on('end', () =>
+          resolve({
+            ok: true,
+            status: res.statusCode ?? 0,
+            headers: res.headers,
+            body,
+          }),
+        );
+        res.on('close', () =>
+          resolve({
+            ok: true,
+            status: res.statusCode ?? 0,
+            headers: res.headers,
+            body,
+          }),
+        );
       },
     );
     req.on('timeout', () => req.destroy(new Error('timeout')));
@@ -234,9 +299,16 @@ async function probeEndpoint({ ip, port, path: reqPath, timeout }) {
   let json = null;
   try {
     json = JSON.parse(response.body);
-  } catch { /* not JSON */ }
-  const evidence = detectEvidence(response.headers, response.body, response.status);
-  const deviceInfo = normaliseDeviceInfo(json) ?? parseGetIdXml(response.body) ?? null;
+  } catch {
+    /* not JSON */
+  }
+  const evidence = detectEvidence(
+    response.headers,
+    response.body,
+    response.status,
+  );
+  const deviceInfo =
+    normaliseDeviceInfo(json) ?? parseGetIdXml(response.body) ?? null;
   return {
     success: Boolean(evidence || deviceInfo),
     status: response.status,
@@ -271,7 +343,8 @@ async function probeHost(ip, ports, timeout) {
             (h.evidence === 'http:401-auth-required' ? 0 : 1);
           if (score(hit) > score(bestHit)) bestHit = hit;
         }
-        if (bestHit.deviceInfo?.serial && bestHit.deviceInfo?.model) return bestHit;
+        if (bestHit.deviceInfo?.serial && bestHit.deviceInfo?.model)
+          return bestHit;
         break;
       }
     }
@@ -292,7 +365,9 @@ async function runPool(tasks, limit, worker) {
       results[i] = await worker(tasks[i]);
     }
   }
-  await Promise.all(Array.from({ length: Math.min(limit, tasks.length) }, () => next()));
+  await Promise.all(
+    Array.from({ length: Math.min(limit, tasks.length) }, () => next()),
+  );
   return results;
 }
 
@@ -306,7 +381,9 @@ function dedupePlayers(players) {
       continue;
     }
     const score = (p) =>
-      (p.deviceInfo?.serial ? 3 : 0) + (p.deviceInfo?.model ? 2 : 0) + (p.port === 8008 ? 1 : 0);
+      (p.deviceInfo?.serial ? 3 : 0) +
+      (p.deviceInfo?.model ? 2 : 0) +
+      (p.port === 8008 ? 1 : 0);
     if (score(player) > score(existing)) byIp.set(player.ip, player);
   }
   return [...byIp.values()];
@@ -329,7 +406,11 @@ function loadPlayersFile() {
 
 function savePlayersFile(config) {
   fs.mkdirSync(BRIGHTSIGN_DIR, { recursive: true });
-  fs.writeFileSync(PLAYERS_FILE, JSON.stringify(config, null, 2) + '\n', 'utf-8');
+  fs.writeFileSync(
+    PLAYERS_FILE,
+    JSON.stringify(config, null, 2) + '\n',
+    'utf-8',
+  );
 }
 
 function toKebabName(raw) {
@@ -341,14 +422,19 @@ function toKebabName(raw) {
 }
 
 function validatePlayerName(name) {
-  if (!name || typeof name !== 'string') throw new Error('Player name is required');
-  if (!/^[a-z0-9][a-z0-9-]*$/.test(name)) throw new Error(`Player name must be kebab-case: ${name}`);
+  if (!name || typeof name !== 'string')
+    throw new Error('Player name is required');
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(name))
+    throw new Error(`Player name must be kebab-case: ${name}`);
 }
 
 function validateIp(ip) {
   if (!ip || typeof ip !== 'string') throw new Error('IP address is required');
   const parts = ip.split('.').map(Number);
-  if (parts.length !== 4 || parts.some((n) => Number.isNaN(n) || n < 0 || n > 255)) {
+  if (
+    parts.length !== 4 ||
+    parts.some((n) => Number.isNaN(n) || n < 0 || n > 255)
+  ) {
     throw new Error(`Invalid IPv4 address: ${ip}`);
   }
 }
@@ -356,7 +442,8 @@ function validateIp(ip) {
 function validatePort(port) {
   if (port === undefined || port === null) return 8008;
   const p = Number(port);
-  if (!Number.isInteger(p) || p < 1 || p > 65535) throw new Error(`Invalid port: ${port}`);
+  if (!Number.isInteger(p) || p < 1 || p > 65535)
+    throw new Error(`Invalid port: ${port}`);
   return p;
 }
 
@@ -373,10 +460,17 @@ function mergeDiscoveredIntoRegistry(discovered) {
     const prev = existingByIp.get(d.ip);
     const model = d.deviceInfo?.model ?? prev?.model ?? 'unknown';
     const serial = d.deviceInfo?.serial ?? prev?.serial ?? 'unknown';
-    const tags = Array.from(new Set([...(prev?.tags ?? []).filter((t) => t !== 'offline'), 'discovered']));
+    const tags = Array.from(
+      new Set([
+        ...(prev?.tags ?? []).filter((t) => t !== 'offline'),
+        'discovered',
+      ]),
+    );
     const existingName = prev?.name;
     const nameIsValid = existingName && /^[a-z0-9-]+$/.test(existingName);
-    const name = nameIsValid ? existingName : toKebabName(d.deviceInfo?.name ?? `player-${d.ip.split('.').pop()}`);
+    const name = nameIsValid
+      ? existingName
+      : toKebabName(d.deviceInfo?.name ?? `player-${d.ip.split('.').pop()}`);
 
     players.push({
       name,
@@ -385,7 +479,9 @@ function mergeDiscoveredIntoRegistry(discovered) {
       model,
       serial,
       ...(d.deviceInfo?.firmware && { firmware: d.deviceInfo.firmware }),
-      ...(d.deviceInfo?.description && { description: d.deviceInfo.description }),
+      ...(d.deviceInfo?.description && {
+        description: d.deviceInfo.description,
+      }),
       tags,
     });
     existingByIp.delete(d.ip);
@@ -403,9 +499,13 @@ function mergeDiscoveredIntoRegistry(discovered) {
   const defaultPlayer =
     existing.default && players.some((p) => p.name === existing.default)
       ? existing.default
-      : players[0]?.name ?? null;
+      : (players[0]?.name ?? null);
 
-  return { $schema: './players.schema.json', players, ...(defaultPlayer ? { default: defaultPlayer } : {}) };
+  return {
+    $schema: './players.schema.json',
+    players,
+    ...(defaultPlayer ? { default: defaultPlayer } : {}),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -425,7 +525,14 @@ async function toolDiscoverPlayers(args) {
   } else {
     const localCidrs = [...new Set(getLocalCandidateCidrs().map(trimTo24))];
     if (localCidrs.length === 0) {
-      return { content: [{ type: 'text', text: 'No private IPv4 interfaces found. Pass a cidr parameter.' }] };
+      return {
+        content: [
+          {
+            type: 'text',
+            text: 'No private IPv4 interfaces found. Pass a cidr parameter.',
+          },
+        ],
+      };
     }
     for (const c of localCidrs) targets.push(...expandCIDR(c));
   }
@@ -438,10 +545,12 @@ async function toolDiscoverPlayers(args) {
 
   if (players.length === 0) {
     return {
-      content: [{
-        type: 'text',
-        text: 'No BrightSign players found on the network. Ensure players are powered on, on the same subnet, and have Local DWS enabled.',
-      }],
+      content: [
+        {
+          type: 'text',
+          text: 'No BrightSign players found on the network. Ensure players are powered on, on the same subnet, and have Local DWS enabled.',
+        },
+      ],
     };
   }
 
@@ -451,29 +560,39 @@ async function toolDiscoverPlayers(args) {
   }
 
   return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        found: players.length,
-        players: players.map((p) => ({
-          ip: p.ip,
-          port: p.port,
-          model: p.deviceInfo?.model ?? 'unknown',
-          serial: p.deviceInfo?.serial ?? 'unknown',
-          firmware: p.deviceInfo?.firmware ?? 'unknown',
-          name: p.deviceInfo?.name ?? null,
-          evidence: p.evidence,
-        })),
-        savedToRegistry: saveToRegistry,
-        registryPath: PLAYERS_FILE,
-      }, null, 2),
-    }],
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(
+          {
+            found: players.length,
+            players: players.map((p) => ({
+              ip: p.ip,
+              port: p.port,
+              model: p.deviceInfo?.model ?? 'unknown',
+              serial: p.deviceInfo?.serial ?? 'unknown',
+              firmware: p.deviceInfo?.firmware ?? 'unknown',
+              name: p.deviceInfo?.name ?? null,
+              evidence: p.evidence,
+            })),
+            savedToRegistry: saveToRegistry,
+            registryPath: PLAYERS_FILE,
+          },
+          null,
+          2,
+        ),
+      },
+    ],
   };
 }
 
 async function toolProbePlayer(args) {
   const ip = args?.ip;
-  if (!ip) return { content: [{ type: 'text', text: 'Error: ip parameter is required' }], isError: true };
+  if (!ip)
+    return {
+      content: [{ type: 'text', text: 'Error: ip parameter is required' }],
+      isError: true,
+    };
   validateIp(ip);
 
   const port = validatePort(args?.port);
@@ -484,25 +603,33 @@ async function toolProbePlayer(args) {
 
   if (!result) {
     return {
-      content: [{
-        type: 'text',
-        text: `No BrightSign player found at ${ip}. Ensure the player is powered on, on the same subnet, and has Local DWS enabled.`,
-      }],
+      content: [
+        {
+          type: 'text',
+          text: `No BrightSign player found at ${ip}. Ensure the player is powered on, on the same subnet, and has Local DWS enabled.`,
+        },
+      ],
     };
   }
 
   return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        reachable: true,
-        ip: result.ip,
-        port: result.port,
-        evidence: result.evidence,
-        deviceInfo: result.deviceInfo,
-        discoveredAt: result.discoveredAt,
-      }, null, 2),
-    }],
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(
+          {
+            reachable: true,
+            ip: result.ip,
+            port: result.port,
+            evidence: result.evidence,
+            deviceInfo: result.deviceInfo,
+            discoveredAt: result.discoveredAt,
+          },
+          null,
+          2,
+        ),
+      },
+    ],
   };
 }
 
@@ -516,14 +643,20 @@ function redactPlayer(player) {
 function toolListPlayers() {
   const config = loadPlayersFile();
   return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        players: (config.players ?? []).map(redactPlayer),
-        default: config.default ?? null,
-        registryPath: PLAYERS_FILE,
-      }, null, 2),
-    }],
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(
+          {
+            players: (config.players ?? []).map(redactPlayer),
+            default: config.default ?? null,
+            registryPath: PLAYERS_FILE,
+          },
+          null,
+          2,
+        ),
+      },
+    ],
   };
 }
 
@@ -533,15 +666,32 @@ function toolGetPlayer(args) {
 
   const targetName = name ?? config.default;
   if (!targetName) {
-    return { content: [{ type: 'text', text: 'Error: no player name provided and no default player configured' }], isError: true };
+    return {
+      content: [
+        {
+          type: 'text',
+          text: 'Error: no player name provided and no default player configured',
+        },
+      ],
+      isError: true,
+    };
   }
 
   const player = (config.players ?? []).find((p) => p.name === targetName);
   if (!player) {
-    return { content: [{ type: 'text', text: `Error: player not found: ${targetName}` }], isError: true };
+    return {
+      content: [
+        { type: 'text', text: `Error: player not found: ${targetName}` },
+      ],
+      isError: true,
+    };
   }
 
-  return { content: [{ type: 'text', text: JSON.stringify(redactPlayer(player), null, 2) }] };
+  return {
+    content: [
+      { type: 'text', text: JSON.stringify(redactPlayer(player), null, 2) },
+    ],
+  };
 }
 
 function toolAddPlayer(args) {
@@ -552,7 +702,9 @@ function toolAddPlayer(args) {
   const port = validatePort(args?.port);
 
   const config = loadPlayersFile();
-  const existingIndex = (config.players ?? []).findIndex((p) => p.name === name);
+  const existingIndex = (config.players ?? []).findIndex(
+    (p) => p.name === name,
+  );
 
   const player = {
     name,
@@ -561,7 +713,13 @@ function toolAddPlayer(args) {
     ...(args?.model && { model: String(args.model) }),
     ...(args?.serial && { serial: String(args.serial) }),
     ...(args?.description && { description: String(args.description) }),
-    ...(args?.tags && { tags: Array.isArray(args.tags) ? args.tags : String(args.tags).split(',').map((t) => t.trim()) }),
+    ...(args?.tags && {
+      tags: Array.isArray(args.tags)
+        ? args.tags
+        : String(args.tags)
+            .split(',')
+            .map((t) => t.trim()),
+    }),
   };
 
   if (existingIndex >= 0) {
@@ -578,27 +736,40 @@ function toolAddPlayer(args) {
   savePlayersFile(config);
 
   return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        action: existingIndex >= 0 ? 'updated' : 'added',
-        player,
-        isDefault: config.default === name,
-      }, null, 2),
-    }],
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(
+          {
+            action: existingIndex >= 0 ? 'updated' : 'added',
+            player,
+            isDefault: config.default === name,
+          },
+          null,
+          2,
+        ),
+      },
+    ],
   };
 }
 
 function toolRemovePlayer(args) {
   const name = args?.name;
-  if (!name) return { content: [{ type: 'text', text: 'Error: name parameter is required' }], isError: true };
+  if (!name)
+    return {
+      content: [{ type: 'text', text: 'Error: name parameter is required' }],
+      isError: true,
+    };
 
   const config = loadPlayersFile();
   const before = (config.players ?? []).length;
   config.players = (config.players ?? []).filter((p) => p.name !== name);
 
   if (config.players.length === before) {
-    return { content: [{ type: 'text', text: `Error: player not found: ${name}` }], isError: true };
+    return {
+      content: [{ type: 'text', text: `Error: player not found: ${name}` }],
+      isError: true,
+    };
   }
 
   if (config.default === name) {
@@ -608,45 +779,83 @@ function toolRemovePlayer(args) {
   savePlayersFile(config);
 
   return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({ action: 'removed', name, newDefault: config.default }, null, 2),
-    }],
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(
+          { action: 'removed', name, newDefault: config.default },
+          null,
+          2,
+        ),
+      },
+    ],
   };
 }
 
 async function toolGetDeviceInfo(args) {
   const ip = args?.ip;
-  if (!ip) return { content: [{ type: 'text', text: 'Error: ip parameter is required' }], isError: true };
+  if (!ip)
+    return {
+      content: [{ type: 'text', text: 'Error: ip parameter is required' }],
+      isError: true,
+    };
   validateIp(ip);
   const port = validatePort(args?.port ?? 8008);
   const timeout = args?.timeout ?? 3000;
 
-  const response = await httpRequest({ ip, port, path: '/api/v1/info', timeout });
+  const response = await httpRequest({
+    ip,
+    port,
+    path: '/api/v1/info',
+    timeout,
+  });
   if (!response.ok) {
-    return { content: [{ type: 'text', text: `Error: could not reach player at ${ip}:${port} — ${response.error}` }], isError: true };
+    return {
+      content: [
+        {
+          type: 'text',
+          text: `Error: could not reach player at ${ip}:${port} — ${response.error}`,
+        },
+      ],
+      isError: true,
+    };
   }
 
   let json = null;
   try {
     json = JSON.parse(response.body);
-  } catch { /* not JSON */ }
+  } catch {
+    /* not JSON */
+  }
 
   const deviceInfo = normaliseDeviceInfo(json);
   if (!deviceInfo && !json) {
-    return { content: [{ type: 'text', text: `Received response from ${ip}:${port} but could not parse device info. Status: ${response.status}` }] };
+    return {
+      content: [
+        {
+          type: 'text',
+          text: `Received response from ${ip}:${port} but could not parse device info. Status: ${response.status}`,
+        },
+      ],
+    };
   }
 
   return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        ip,
-        port,
-        status: response.status,
-        deviceInfo: deviceInfo ?? json,
-      }, null, 2),
-    }],
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(
+          {
+            ip,
+            port,
+            status: response.status,
+            deviceInfo: deviceInfo ?? json,
+          },
+          null,
+          2,
+        ),
+      },
+    ],
   };
 }
 
@@ -657,66 +866,116 @@ async function toolGetDeviceInfo(args) {
 const TOOLS = [
   {
     name: 'brightsign_discover_players',
-    description: 'Scan the local network for BrightSign players. Probes common ports (8008, 8080, 80, 443) on all IPs in a subnet and identifies BrightSign devices by their DWS fingerprint. Results are saved to .brightsign/players.json by default.',
+    description:
+      'Scan the local network for BrightSign players. Probes common ports (8008, 8080, 80, 443) on all IPs in a subnet and identifies BrightSign devices by their DWS fingerprint. Results are saved to .brightsign/players.json by default.',
     inputSchema: {
       type: 'object',
       properties: {
-        cidr: { type: 'string', description: 'CIDR subnet to scan (e.g. 192.168.1.0/24). If omitted, auto-detects local private subnets. Only /24 to /32 supported.' },
-        timeout: { type: 'number', description: 'Per-probe timeout in milliseconds (default: 1500)' },
-        concurrency: { type: 'number', description: 'Number of parallel probes (default: 32)' },
-        save: { type: 'boolean', description: 'Whether to save results to .brightsign/players.json (default: true)' },
+        cidr: {
+          type: 'string',
+          description:
+            'CIDR subnet to scan (e.g. 192.168.1.0/24). If omitted, auto-detects local private subnets. Only /24 to /32 supported.',
+        },
+        timeout: {
+          type: 'number',
+          description: 'Per-probe timeout in milliseconds (default: 1500)',
+        },
+        concurrency: {
+          type: 'number',
+          description: 'Number of parallel probes (default: 32)',
+        },
+        save: {
+          type: 'boolean',
+          description:
+            'Whether to save results to .brightsign/players.json (default: true)',
+        },
       },
     },
   },
   {
     name: 'brightsign_probe_player',
-    description: 'Check connectivity to a single BrightSign player by IP address. Returns device info (model, serial, firmware) if reachable.',
+    description:
+      'Check connectivity to a single BrightSign player by IP address. Returns device info (model, serial, firmware) if reachable.',
     inputSchema: {
       type: 'object',
       properties: {
-        ip: { type: 'string', description: 'IPv4 address of the player to probe' },
-        port: { type: 'number', description: 'DWS port to probe (default: tries 8008, 8080, 80, 443)' },
-        timeout: { type: 'number', description: 'Probe timeout in milliseconds (default: 1500)' },
+        ip: {
+          type: 'string',
+          description: 'IPv4 address of the player to probe',
+        },
+        port: {
+          type: 'number',
+          description: 'DWS port to probe (default: tries 8008, 8080, 80, 443)',
+        },
+        timeout: {
+          type: 'number',
+          description: 'Probe timeout in milliseconds (default: 1500)',
+        },
       },
       required: ['ip'],
     },
   },
   {
     name: 'brightsign_list_players',
-    description: 'List all BrightSign players registered in .brightsign/players.json. Shows name, IP, port, model, serial, and tags for each player.',
+    description:
+      'List all BrightSign players registered in .brightsign/players.json. Shows name, IP, port, model, serial, and tags for each player.',
     inputSchema: { type: 'object', properties: {} },
   },
   {
     name: 'brightsign_get_player',
-    description: 'Get the configuration for a specific registered BrightSign player by name. If no name is provided, returns the default player.',
+    description:
+      'Get the configuration for a specific registered BrightSign player by name. If no name is provided, returns the default player.',
     inputSchema: {
       type: 'object',
       properties: {
-        name: { type: 'string', description: 'Player name (kebab-case). If omitted, returns the default player.' },
+        name: {
+          type: 'string',
+          description:
+            'Player name (kebab-case). If omitted, returns the default player.',
+        },
       },
     },
   },
   {
     name: 'brightsign_add_player',
-    description: 'Register a BrightSign player in .brightsign/players.json. If a player with the same name exists, it will be updated.',
+    description:
+      'Register a BrightSign player in .brightsign/players.json. If a player with the same name exists, it will be updated.',
     inputSchema: {
       type: 'object',
       properties: {
-        name: { type: 'string', description: 'Player name in kebab-case (e.g. dev-player, lobby-screen)' },
+        name: {
+          type: 'string',
+          description:
+            'Player name in kebab-case (e.g. dev-player, lobby-screen)',
+        },
         ip: { type: 'string', description: 'IPv4 address of the player' },
         port: { type: 'number', description: 'DWS port (default: 8008)' },
-        model: { type: 'string', description: 'BrightSign model (e.g. CL435, XD1035)' },
+        model: {
+          type: 'string',
+          description: 'BrightSign model (e.g. CL435, XD1035)',
+        },
         serial: { type: 'string', description: 'Device serial number' },
-        description: { type: 'string', description: 'Human-readable description' },
-        tags: { type: 'string', description: 'Comma-separated tags (e.g. dev,office,lobby)' },
-        setDefault: { type: 'boolean', description: 'Set this player as the default (default: false, auto-set if first player)' },
+        description: {
+          type: 'string',
+          description: 'Human-readable description',
+        },
+        tags: {
+          type: 'string',
+          description: 'Comma-separated tags (e.g. dev,office,lobby)',
+        },
+        setDefault: {
+          type: 'boolean',
+          description:
+            'Set this player as the default (default: false, auto-set if first player)',
+        },
       },
       required: ['name', 'ip'],
     },
   },
   {
     name: 'brightsign_remove_player',
-    description: 'Remove a BrightSign player from .brightsign/players.json by name.',
+    description:
+      'Remove a BrightSign player from .brightsign/players.json by name.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -727,13 +986,17 @@ const TOOLS = [
   },
   {
     name: 'brightsign_get_device_info',
-    description: 'Fetch live device information from a BrightSign player via its DWS API (/api/v1/info). Returns model, serial, firmware version, and other device details.',
+    description:
+      'Fetch live device information from a BrightSign player via its DWS API (/api/v1/info). Returns model, serial, firmware version, and other device details.',
     inputSchema: {
       type: 'object',
       properties: {
         ip: { type: 'string', description: 'IPv4 address of the player' },
         port: { type: 'number', description: 'DWS port (default: 8008)' },
-        timeout: { type: 'number', description: 'Request timeout in milliseconds (default: 3000)' },
+        timeout: {
+          type: 'number',
+          description: 'Request timeout in milliseconds (default: 3000)',
+        },
       },
       required: ['ip'],
     },
@@ -802,7 +1065,12 @@ async function handleRequest(msg) {
         return makeResponse(id, result);
       } catch (err) {
         return makeResponse(id, {
-          content: [{ type: 'text', text: `Error: ${err instanceof Error ? err.message : String(err)}` }],
+          content: [
+            {
+              type: 'text',
+              text: `Error: ${err instanceof Error ? err.message : String(err)}`,
+            },
+          ],
           isError: true,
         });
       }

@@ -4,15 +4,15 @@ A zero-dependency [Model Context Protocol](https://modelcontextprotocol.io/) ser
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
+| Tool                          | Description                                                                        |
+| ----------------------------- | ---------------------------------------------------------------------------------- |
 | `brightsign_discover_players` | Scan a subnet (CIDR) for BrightSign devices and save results to the local registry |
-| `brightsign_probe_player` | Check connectivity to a single player by IP or hostname |
-| `brightsign_list_players` | List all registered players (credentials redacted) |
-| `brightsign_get_player` | Get a single player's config by name (credentials redacted) |
-| `brightsign_add_player` | Register a player in the local registry |
-| `brightsign_remove_player` | Remove a player from the local registry |
-| `brightsign_get_device_info` | Fetch model, serial number, and firmware from a player's DWS |
+| `brightsign_probe_player`     | Check connectivity to a single player by IP or hostname                            |
+| `brightsign_list_players`     | List all registered players (credentials redacted)                                 |
+| `brightsign_get_player`       | Get a single player's config by name (credentials redacted)                        |
+| `brightsign_add_player`       | Register a player in the local registry                                            |
+| `brightsign_remove_player`    | Remove a player from the local registry                                            |
+| `brightsign_get_device_info`  | Fetch model, serial number, and firmware from a player's DWS                       |
 
 ## Player registry
 

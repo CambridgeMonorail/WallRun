@@ -5,9 +5,7 @@
     },
     "brightsign-player-tools": {
       "command": "node",
-      "args": [
-        "servers/player-tools.mjs"
-      ]
+      "args": ["servers/player-tools.mjs"]
     }
   }
 }

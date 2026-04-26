@@ -38,12 +38,12 @@ You do NOT execute deployments yourself. You plan them.
 
 Ask or infer which deployment path the user needs:
 
-| Mode | Description | Next step |
-|---|---|---|
-| **Local preview** | Run in browser for development | `pnpm serve:client` or `pnpm serve:player` — no packaging needed |
-| **Local BrightSign player** | Deploy to a single player on the LAN for iteration | Hand off to BrightSign Deploy agent |
-| **Packaged output** | Generate a deployable archive without pushing to hardware | `pnpm package:player` |
-| **Fleet deployment** | Publish a versioned release for multiple players | Hand off to BrightSign Deploy agent |
+| Mode                        | Description                                               | Next step                                                        |
+| --------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Local preview**           | Run in browser for development                            | `pnpm serve:client` or `pnpm serve:player` — no packaging needed |
+| **Local BrightSign player** | Deploy to a single player on the LAN for iteration        | Hand off to BrightSign Deploy agent                              |
+| **Packaged output**         | Generate a deployable archive without pushing to hardware | `pnpm package:player`                                            |
+| **Fleet deployment**        | Publish a versioned release for multiple players          | Hand off to BrightSign Deploy agent                              |
 
 ### 2. Run preflight checks
 

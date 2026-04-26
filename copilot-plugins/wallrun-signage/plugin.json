@@ -7,13 +7,7 @@
     "url": "https://github.com/CambridgeMonorail/WallRun"
   },
   "license": "MIT",
-  "keywords": [
-    "digital-signage",
-    "react",
-    "frontend",
-    "brightsign",
-    "wallrun"
-  ],
+  "keywords": ["digital-signage", "react", "frontend", "brightsign", "wallrun"],
   "agents": "agents/",
   "skills": "skills/",
   "hooks": "hooks.json",

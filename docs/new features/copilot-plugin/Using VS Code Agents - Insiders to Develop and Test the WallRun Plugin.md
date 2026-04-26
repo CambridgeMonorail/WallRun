@@ -19,10 +19,10 @@ Think of the system as three layers:
 
 Where you actually author things:
 
-* `/skills` → source skills
-* `/.github/agents` → source agents
-* `/scripts` → packaging + deploy logic
-* `/.vscode/mcp.json` → workspace MCP config
+- `/skills` → source skills
+- `/.github/agents` → source agents
+- `/scripts` → packaging + deploy logic
+- `/.vscode/mcp.json` → workspace MCP config
 
 ### 2. WallRun plugin (generated)
 
@@ -34,20 +34,20 @@ copilot-plugins/wallrun-signage/
 
 Contains:
 
-* `plugin.json`
-* curated `skills/`
-* `agents/`
-* optional `hooks.json`
-* optional `.mcp.json`
+- `plugin.json`
+- curated `skills/`
+- `agents/`
+- optional `hooks.json`
+- optional `.mcp.json`
 
 ### 3. VS Code Agents app (runtime)
 
 Where you:
 
-* run agent sessions
-* test workflows
-* debug behaviour
-* execute terminal-backed tasks
+- run agent sessions
+- test workflows
+- debug behaviour
+- execute terminal-backed tasks
 
 ---
 
@@ -55,13 +55,13 @@ Where you:
 
 Without it:
 
-* you are guessing how the agent behaves
+- you are guessing how the agent behaves
 
 With it:
 
-* you can **see decisions, plans, and tool usage**
-* you can **run real commands via terminal tools**
-* you can **debug agent selection and skill usage**
+- you can **see decisions, plans, and tool usage**
+- you can **run real commands via terminal tools**
+- you can **debug agent selection and skill usage**
 
 This is especially important for WallRun because:
 
@@ -73,8 +73,8 @@ This is especially important for WallRun because:
 
 ### 1. Install prerequisites
 
-* VS Code **Insiders**
-* Agents app enabled (preview feature)
+- VS Code **Insiders**
+- Agents app enabled (preview feature)
 
 ### 2. Build the plugin
 
@@ -117,15 +117,15 @@ Repeat until behaviour is boringly correct.
 
 Test prompts like:
 
-* “Build a digital menu board”
-* “Deploy this to a BrightSign player”
-* “Package this for XC5 portrait”
+- “Build a digital menu board”
+- “Deploy this to a BrightSign player”
+- “Package this for XC5 portrait”
 
 Check:
 
-* correct agent is selected
-* `wallrun-deploy` is used when appropriate
-* `signage-architect` is used for layout/design
+- correct agent is selected
+- `wallrun-deploy` is used when appropriate
+- `signage-architect` is used for layout/design
 
 ---
 
@@ -133,9 +133,9 @@ Check:
 
 Check that the agent:
 
-* references correct WallRun skills
-* does not hallucinate capabilities
-* uses BrightSign-specific skills when needed
+- references correct WallRun skills
+- does not hallucinate capabilities
+- uses BrightSign-specific skills when needed
 
 If it ignores your skills, your naming or descriptions are off.
 
@@ -147,17 +147,17 @@ This is where the Agents app becomes genuinely useful.
 
 Test flows like:
 
-* “Package this for BrightSign”
-* “Deploy locally to a player”
+- “Package this for BrightSign”
+- “Deploy locally to a player”
 
 Expected behaviour:
 
-* agent suggests or runs:
+- agent suggests or runs:
+  - `pnpm package:player`
+  - `pnpm deploy:local`
 
-  * `pnpm package:player`
-  * `pnpm deploy:local`
-* agent explains what is happening
-* agent reacts to output
+- agent explains what is happening
+- agent reacts to output
 
 If the agent cannot bridge to real commands, you have built documentation, not a system.
 
@@ -167,13 +167,12 @@ If the agent cannot bridge to real commands, you have built documentation, not a
 
 The agent must:
 
-* ask for missing info (IP, target, environment)
-* refuse to invent deployment success
-* distinguish between:
-
-  * local dev
-  * local player
-  * fleet deploy
+- ask for missing info (IP, target, environment)
+- refuse to invent deployment success
+- distinguish between:
+  - local dev
+  - local player
+  - fleet deploy
 
 If it says “deployment complete” without evidence, fix it immediately.
 
@@ -183,11 +182,11 @@ If it says “deployment complete” without evidence, fix it immediately.
 
 Before deployment, the agent should check:
 
-* orientation
-* resolution
-* safe areas
-* fallback states
-* autoplay assumptions
+- orientation
+- resolution
+- safe areas
+- fallback states
+- autoplay assumptions
 
 This should feel like a cautious engineer, not a cheerleader.
 
@@ -199,10 +198,10 @@ Turn this on early.
 
 Use it to answer:
 
-* why was this agent selected?
-* which skills were considered?
-* why did it choose this action?
-* why did it ignore something obvious?
+- why was this agent selected?
+- which skills were considered?
+- why did it choose this action?
+- why did it ignore something obvious?
 
 If behaviour feels wrong, the logs will usually explain why.
 
@@ -212,23 +211,23 @@ If behaviour feels wrong, the logs will usually explain why.
 
 This agent should assume:
 
-* it can interact with terminals
-* it may run multi-step workflows
-* it needs to maintain state across steps
+- it can interact with terminals
+- it may run multi-step workflows
+- it needs to maintain state across steps
 
 ### Good behaviour
 
-* breaks work into steps
-* checks results before continuing
-* surfaces uncertainty
-* prefers explicit commands
+- breaks work into steps
+- checks results before continuing
+- surfaces uncertainty
+- prefers explicit commands
 
 ### Bad behaviour
 
-* vague summaries
-* pretending deployment happened
-* skipping validation
-* ignoring script outputs
+- vague summaries
+- pretending deployment happened
+- skipping validation
+- ignoring script outputs
 
 ---
 
@@ -253,20 +252,20 @@ Hooks run after responses.
 
 In the Agents app, they act as:
 
-* guard rails
-* sanity checks
+- guard rails
+- sanity checks
 
 Use them to flag:
 
-* missing fallback states
-* unrealistic assumptions
-* unsafe deployment claims
+- missing fallback states
+- unrealistic assumptions
+- unsafe deployment claims
 
 Do not:
 
-* mutate output silently
-* block everything
-* try to be clever
+- mutate output silently
+- block everything
+- try to be clever
 
 ---
 
@@ -274,14 +273,14 @@ Do not:
 
 Keep MCP simple in v1:
 
-* documentation lookup
-* BrightSign reference access
+- documentation lookup
+- BrightSign reference access
 
 Do not:
 
-* trigger deploy actions
-* mutate systems
-* depend on MCP for core workflows
+- trigger deploy actions
+- mutate systems
+- depend on MCP for core workflows
 
 Terminal + scripts are more reliable early on.
 
@@ -293,14 +292,14 @@ Terminal + scripts are more reliable early on.
 
 Cause:
 
-* invalid plugin name
-* bad paths
-* missing files
+- invalid plugin name
+- bad paths
+- missing files
 
 Fix:
 
-* check `plugin.json`
-* run `plugin:copilot:check`
+- check `plugin.json`
+- run `plugin:copilot:check`
 
 ---
 
@@ -308,13 +307,13 @@ Fix:
 
 Cause:
 
-* weak agent description
-* overlapping responsibilities
+- weak agent description
+- overlapping responsibilities
 
 Fix:
 
-* tighten agent descriptions
-* reduce ambiguity
+- tighten agent descriptions
+- reduce ambiguity
 
 ---
 
@@ -322,13 +321,13 @@ Fix:
 
 Cause:
 
-* naming mismatch
-* unclear skill descriptions
+- naming mismatch
+- unclear skill descriptions
 
 Fix:
 
-* align skill name + purpose
-* simplify descriptions
+- align skill name + purpose
+- simplify descriptions
 
 ---
 
@@ -336,13 +335,13 @@ Fix:
 
 Cause:
 
-* agent written like documentation
-* no constraints in instructions
+- agent written like documentation
+- no constraints in instructions
 
 Fix:
 
-* explicitly forbid “fake success”
-* require evidence-based responses
+- explicitly forbid “fake success”
+- require evidence-based responses
 
 ---
 
@@ -350,13 +349,13 @@ Fix:
 
 Cause:
 
-* agent not designed for execution
-* unclear step boundaries
+- agent not designed for execution
+- unclear step boundaries
 
 Fix:
 
-* structure agent around steps
-* expect command + output loop
+- structure agent around steps
+- expect command + output loop
 
 ---
 
@@ -368,17 +367,17 @@ You can open the Agents app and say:
 
 And the system:
 
-* asks sensible questions
-* chooses the right workflow
-* runs or recommends real commands
-* validates assumptions
-* stops when it should
+- asks sensible questions
+- chooses the right workflow
+- runs or recommends real commands
+- validates assumptions
+- stops when it should
 
 At that point:
 
-* the plugin is useful
-* the agent is grounded
-* the system behaves like software, not a demo
+- the plugin is useful
+- the agent is grounded
+- the system behaves like software, not a demo
 
 ---
 
@@ -392,8 +391,8 @@ The plugin is the product.
 
 WallRun becomes interesting when:
 
-* the plugin installs cleanly
-* the agent behaves predictably
-* the deploy flow is grounded in real execution
+- the plugin installs cleanly
+- the agent behaves predictably
+- the deploy flow is grounded in real execution
 
 Everything else is just a pleasant conversation.

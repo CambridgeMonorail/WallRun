@@ -190,11 +190,7 @@
         hsl(var(--glow-cyan) / 0.04),
         transparent 30%
       ),
-      linear-gradient(
-        180deg,
-        hsl(var(--glow-violet) / 0.03),
-        transparent 42%
-      );
+      linear-gradient(180deg, hsl(var(--glow-violet) / 0.03), transparent 42%);
     opacity: 1;
     mask-image: linear-gradient(
       180deg,

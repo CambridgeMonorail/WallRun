@@ -4,7 +4,7 @@ description: Explain how to build and adapt web applications that run reliably o
 license: MIT
 metadata:
   author: CambridgeMonorail
-  version: "1.0"
+  version: '1.0'
   internal: true
 ---
 

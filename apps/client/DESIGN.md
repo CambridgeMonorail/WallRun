@@ -8,19 +8,19 @@ scope:
     - generated signage/player apps
     - reusable package defaults unless rendered inside apps/client
 colors:
-  black: "#080B0E"
-  charcoal: "#17171A"
-  offWhite: "#F5F5F7"
-  purple: "#885CF6"
-  cyan: "#22D3EE"
-  lavender: "#A78BFA"
-  pink: "#F472B6"
-  green: "#34D399"
-  amber: "#FBBF24"
+  black: '#080B0E'
+  charcoal: '#17171A'
+  offWhite: '#F5F5F7'
+  purple: '#885CF6'
+  cyan: '#22D3EE'
+  lavender: '#A78BFA'
+  pink: '#F472B6'
+  green: '#34D399'
+  amber: '#FBBF24'
 fonts:
-  display: "Satoshi, Inter, system-ui, sans-serif"
-  body: "Inter, system-ui, sans-serif"
-  mono: "IBM Plex Mono, ui-monospace, monospace"
+  display: 'Satoshi, Inter, system-ui, sans-serif'
+  body: 'Inter, system-ui, sans-serif'
+  mono: 'IBM Plex Mono, ui-monospace, monospace'
 ---
 
 # WallRun Demo App Design

@@ -32,16 +32,15 @@ This keeps the Nx workspace, source skills, generated GitHub mirror, scripts, an
 
 After implementation, the developer should be able to:
 
-* run a build script that generates `copilot-plugins/wallrun-signage/`
-* register that folder locally in VS Code via `chat.pluginLocations`
-* use WallRun as an installable agent-plugin with:
-
-  * curated signage skills
-  * BrightSign runtime and deploy skills
-  * a signage architecture agent
-  * a deployment-focused agent
-  * optional preflight hooks
-  * optional plugin-scoped MCP config. ([Visual Studio Code][2])
+- run a build script that generates `copilot-plugins/wallrun-signage/`
+- register that folder locally in VS Code via `chat.pluginLocations`
+- use WallRun as an installable agent-plugin with:
+  - curated signage skills
+  - BrightSign runtime and deploy skills
+  - a signage architecture agent
+  - a deployment-focused agent
+  - optional preflight hooks
+  - optional plugin-scoped MCP config. ([Visual Studio Code][2])
 
 ---
 
@@ -51,25 +50,25 @@ After implementation, the developer should be able to:
 
 Implement a generated plugin with:
 
-* `plugin.json`
-* curated `skills/`
-* `agents/`
-* `README.md`
-* a build script
-* a validation script
-* package.json scripts to build and check the plugin
-* optional `hooks.json`
-* optional `.mcp.json`
+- `plugin.json`
+- curated `skills/`
+- `agents/`
+- `README.md`
+- a build script
+- a validation script
+- package.json scripts to build and check the plugin
+- optional `hooks.json`
+- optional `.mcp.json`
 
 ## Out of scope for v1
 
 Do not attempt:
 
-* marketplace publication
-* automatic live deployment to customer environments
-* secrets, credentials, or device-specific config inside the plugin
-* replacing the repo’s existing `.vscode/mcp.json`
-* moving or rewriting the existing source `skills/` model. ([GitHub][3])
+- marketplace publication
+- automatic live deployment to customer environments
+- secrets, credentials, or device-specific config inside the plugin
+- replacing the repo’s existing `.vscode/mcp.json`
+- moving or rewriting the existing source `skills/` model. ([GitHub][3])
 
 ---
 
@@ -126,11 +125,11 @@ This follows the documented plugin layout where `plugin.json` is required and `a
 
 These rules are non-negotiable:
 
-* `skills/` at repo root remains the source of truth
-* `.github/skills/` remains a generated mirror
-* the new plugin directory is also a generated artefact
-* developers must not hand-edit the generated plugin skill copies
-* plugin content should be assembled from repo-native sources by script. ([GitHub][3])
+- `skills/` at repo root remains the source of truth
+- `.github/skills/` remains a generated mirror
+- the new plugin directory is also a generated artefact
+- developers must not hand-edit the generated plugin skill copies
+- plugin content should be assembled from repo-native sources by script. ([GitHub][3])
 
 In plain English: one source, many consumers. Otherwise this turns into a three-way drift factory.
 
@@ -148,15 +147,15 @@ scripts/build-copilot-plugin.mjs
 
 Responsibilities:
 
-* remove any existing `copilot-plugins/wallrun-signage/`
-* recreate the target directory structure
-* copy selected skills from repo root `skills/`
-* copy selected agents from `.github/agents/` or another agreed source location
-* generate `plugin.json`
-* generate `README.md`
-* generate `hooks.json` if hooks are enabled
-* generate `.mcp.json` if plugin MCP is enabled
-* fail the build if required source files are missing
+- remove any existing `copilot-plugins/wallrun-signage/`
+- recreate the target directory structure
+- copy selected skills from repo root `skills/`
+- copy selected agents from `.github/agents/` or another agreed source location
+- generate `plugin.json`
+- generate `README.md`
+- generate `hooks.json` if hooks are enabled
+- generate `.mcp.json` if plugin MCP is enabled
+- fail the build if required source files are missing
 
 The build must be deterministic.
 
@@ -170,14 +169,14 @@ scripts/check-copilot-plugin.mjs
 
 Checks must include:
 
-* `plugin.json` exists
-* plugin name is valid kebab-case
-* all referenced paths exist
-* every packaged skill directory contains `SKILL.md`
-* every packaged agent file exists
-* if `hooks` is declared, `hooks.json` exists
-* if `mcpServers` is declared, `.mcp.json` exists
-* no unexpected secrets or machine-specific values are present
+- `plugin.json` exists
+- plugin name is valid kebab-case
+- all referenced paths exist
+- every packaged skill directory contains `SKILL.md`
+- every packaged agent file exists
+- if `hooks` is declared, `hooks.json` exists
+- if `mcpServers` is declared, `.mcp.json` exists
+- no unexpected secrets or machine-specific values are present
 
 VS Code documentation explicitly notes that an invalid plugin `name` can silently fail to load, so this check matters more than it should in a sane universe. ([Visual Studio Code][2])
 
@@ -217,13 +216,7 @@ Initial manifest:
     "url": "https://github.com/CambridgeMonorail/WallRun"
   },
   "license": "MIT",
-  "keywords": [
-    "digital-signage",
-    "react",
-    "frontend",
-    "brightsign",
-    "wallrun"
-  ],
+  "keywords": ["digital-signage", "react", "frontend", "brightsign", "wallrun"],
   "agents": "agents/",
   "skills": "skills/",
   "hooks": "hooks.json",
@@ -241,23 +234,23 @@ Do not package everything. Package a coherent subset that supports real workflow
 
 General signage/design:
 
-* `signage-layout-system`
-* `signage-animation-system`
-* `signage-menu-board`
-* `signage-distance-legibility`
-* `signage-safe-layout`
-* `signage-state-machine`
-* `signage-data-refresh-patterns`
-* `signage-performance-budget`
-* `signage-content-fallbacks`
+- `signage-layout-system`
+- `signage-animation-system`
+- `signage-menu-board`
+- `signage-distance-legibility`
+- `signage-safe-layout`
+- `signage-state-machine`
+- `signage-data-refresh-patterns`
+- `signage-performance-budget`
+- `signage-content-fallbacks`
 
 BrightSign/runtime/deploy:
 
-* `brightsign-runtime`
-* `brightsign-package`
-* `brightsign-deploy-local`
-* `brightsign-fleet-deploy`
-* `brightsign-debug`
+- `brightsign-runtime`
+- `brightsign-package`
+- `brightsign-deploy-local`
+- `brightsign-fleet-deploy`
+- `brightsign-debug`
 
 These align with the existing repo skills inventory and the BrightSign packaging/deploy workflows already described by the repo. ([GitHub][6])
 
@@ -275,10 +268,10 @@ agents/wallrun-deploy.agent.md
 
 Purpose:
 
-* guide packaging and deployment for BrightSign
-* distinguish between local dev, local player deployment, and fleet deployment
-* invoke or recommend `brightsign-runtime`, `brightsign-package`, `brightsign-deploy-local`, and `brightsign-fleet-deploy` when relevant
-* refuse to bluff around unavailable credentials, devices, or deployment state
+- guide packaging and deployment for BrightSign
+- distinguish between local dev, local player deployment, and fleet deployment
+- invoke or recommend `brightsign-runtime`, `brightsign-package`, `brightsign-deploy-local`, and `brightsign-fleet-deploy` when relevant
+- refuse to bluff around unavailable credentials, devices, or deployment state
 
 This agent is the missing operational half of the plugin.
 
@@ -286,17 +279,17 @@ This agent is the missing operational half of the plugin.
 
 It should:
 
-* ask or infer the deployment target
-* confirm whether the task is:
+- ask or infer the deployment target
+- confirm whether the task is:
+  - local preview
+  - local BrightSign player iteration
+  - staged package generation
+  - fleet publication
 
-  * local preview
-  * local BrightSign player iteration
-  * staged package generation
-  * fleet publication
-* recommend the correct WallRun workflow
-* guide the user through preflight checks before deploy
-* never claim a deploy succeeded unless backed by a real tool result
-* prefer build/package guidance over fantasy automation
+- recommend the correct WallRun workflow
+- guide the user through preflight checks before deploy
+- never claim a deploy succeeded unless backed by a real tool result
+- prefer build/package guidance over fantasy automation
 
 This agent should be slightly dull in the best possible way. Signage deployment is not the place for improv theatre.
 
@@ -320,15 +313,15 @@ Provide preflight checks for signage and deployment guidance.
 
 The hook should flag missing or weak assumptions such as:
 
-* target orientation not declared
-* resolution or aspect ratio not declared
-* no safe-area or overscan handling
-* no offline fallback state
-* no empty-data fallback state
-* vague autoplay assumptions
-* implausible asset or media assumptions
-* claims of successful deploy without evidence
-* hard-coded device details or secrets
+- target orientation not declared
+- resolution or aspect ratio not declared
+- no safe-area or overscan handling
+- no offline fallback state
+- no empty-data fallback state
+- vague autoplay assumptions
+- implausible asset or media assumptions
+- claims of successful deploy without evidence
+- hard-coded device details or secrets
 
 The hook should report concerns. It should not silently rewrite code or docs.
 
@@ -366,13 +359,13 @@ copilot-plugins/wallrun-signage/README.md
 
 It must cover:
 
-* what the plugin is
-* what it packages from WallRun
-* how to build it
-* how to validate it
-* how to install it locally in VS Code
-* how it relates to `skills/`, `.github/skills/`, and `.vscode/mcp.json`
-* what it does not do yet
+- what the plugin is
+- what it packages from WallRun
+- how to build it
+- how to validate it
+- how to install it locally in VS Code
+- how it relates to `skills/`, `.github/skills/`, and `.vscode/mcp.json`
+- what it does not do yet
 
 ---
 
@@ -390,9 +383,9 @@ VS Code docs show `chat.pluginLocations` as the mechanism for local plugin regis
 
 Also document:
 
-* reload VS Code if the plugin does not appear
-* confirm `chat.plugins.enabled` is allowed in the environment
-* bump plugin version when testing changes that should be picked up by update logic. ([Visual Studio Code][2])
+- reload VS Code if the plugin does not appear
+- confirm `chat.plugins.enabled` is allowed in the environment
+- bump plugin version when testing changes that should be picked up by update logic. ([Visual Studio Code][2])
 
 ---
 
@@ -402,21 +395,21 @@ Also document:
 
 Do not alter:
 
-* repo root `skills/` ownership
-* `.github/skills/` mirror process
-* existing deploy scripts
-* existing workspace MCP config
-* existing agent/discovery patterns unless needed for packaging. ([GitHub][3])
+- repo root `skills/` ownership
+- `.github/skills/` mirror process
+- existing deploy scripts
+- existing workspace MCP config
+- existing agent/discovery patterns unless needed for packaging. ([GitHub][3])
 
 ## NFR2: No secrets in generated plugin output
 
 The plugin must not include:
 
-* IP addresses
-* credentials
-* tokens
-* customer endpoints
-* environment-specific deployment state
+- IP addresses
+- credentials
+- tokens
+- customer endpoints
+- environment-specific deployment state
 
 ## NFR3: Deterministic output
 
@@ -436,12 +429,12 @@ Build the plugin output directory and manifest generation.
 
 Deliverables:
 
-* `scripts/build-copilot-plugin.mjs`
-* `scripts/check-copilot-plugin.mjs`
-* `scripts/clean-copilot-plugin.mjs`
-* package.json scripts
-* generated `plugin.json`
-* generated `README.md`
+- `scripts/build-copilot-plugin.mjs`
+- `scripts/check-copilot-plugin.mjs`
+- `scripts/clean-copilot-plugin.mjs`
+- package.json scripts
+- generated `plugin.json`
+- generated `README.md`
 
 ## Phase 2: Curated skills packaging
 
@@ -449,8 +442,8 @@ Copy selected skills from repo `skills/` into the generated plugin.
 
 Deliverables:
 
-* plugin `skills/` directory with curated set
-* validation that every included skill has `SKILL.md`
+- plugin `skills/` directory with curated set
+- validation that every included skill has `SKILL.md`
 
 ## Phase 3: Agent packaging
 
@@ -458,8 +451,8 @@ Package the existing signage architect agent and add the new deploy agent.
 
 Deliverables:
 
-* `agents/signage-architect.agent.md`
-* `agents/wallrun-deploy.agent.md`
+- `agents/signage-architect.agent.md`
+- `agents/wallrun-deploy.agent.md`
 
 ## Phase 4: Hooks
 
@@ -467,8 +460,8 @@ Add preflight review hook configuration.
 
 Deliverables:
 
-* `hooks.json`
-* optional supporting script under `scripts/plugin-hooks/`
+- `hooks.json`
+- optional supporting script under `scripts/plugin-hooks/`
 
 ## Phase 5: MCP
 
@@ -476,8 +469,8 @@ Add plugin-scoped `.mcp.json` mirroring the documented `brightdeveloper` server.
 
 Deliverables:
 
-* `.mcp.json`
-* documentation explaining its relationship to `.vscode/mcp.json`
+- `.mcp.json`
+- documentation explaining its relationship to `.vscode/mcp.json`
 
 ---
 
@@ -488,16 +481,16 @@ This work is done when all of the following are true:
 1. `copilot-plugins/wallrun-signage/plugin.json` exists and validates against the documented plugin structure. ([Visual Studio Code][2])
 2. `copilot-plugins/wallrun-signage/skills/` contains the curated WallRun skills listed in this spec. ([GitHub][6])
 3. `copilot-plugins/wallrun-signage/agents/` contains:
+   - `signage-architect.agent.md`
+   - `wallrun-deploy.agent.md`
 
-   * `signage-architect.agent.md`
-   * `wallrun-deploy.agent.md`
 4. `pnpm plugin:copilot:build` generates the plugin deterministically.
 5. `pnpm plugin:copilot:check` fails on missing manifest, invalid names, missing agents, missing skills, or broken references.
 6. The plugin can be registered locally using `chat.pluginLocations`. ([Visual Studio Code][2])
 7. The plugin supports both:
+   - signage design and implementation workflows
+   - BrightSign packaging and deployment workflows. ([GitHub][1])
 
-   * signage design and implementation workflows
-   * BrightSign packaging and deployment workflows. ([GitHub][1])
 8. Existing WallRun `skills/` and `.github/skills/` workflows remain unchanged. ([GitHub][3])
 9. No secrets or environment-specific deployment data are committed.
 
@@ -507,10 +500,10 @@ This work is done when all of the following are true:
 
 A few opinionated notes for whoever draws the short straw:
 
-* Treat the plugin as a **generated package**, not an authoring surface.
-* Keep `wallrun-deploy` strict and practical. It should help people ship to screens, not narrate a fantasy where the screens have already obeyed.
-* Keep hooks advisory at first. Nobody enjoys an overconfident robot editor, especially one meddling with deployment guidance.
-* Keep plugin MCP conservative. Documentation access is useful. Surprise fleet actions are less charming.
+- Treat the plugin as a **generated package**, not an authoring surface.
+- Keep `wallrun-deploy` strict and practical. It should help people ship to screens, not narrate a fantasy where the screens have already obeyed.
+- Keep hooks advisory at first. Nobody enjoys an overconfident robot editor, especially one meddling with deployment guidance.
+- Keep plugin MCP conservative. Documentation access is useful. Surprise fleet actions are less charming.
 
 ---
 
@@ -520,9 +513,9 @@ Build a generated Copilot agent-plugin under `copilot-plugins/wallrun-signage/` 
 
 If you want, I can turn this into a repo-ready markdown file with starter contents for `plugin.json`, `wallrun-deploy.agent.md`, and `hooks.json`.
 
-[1]: https://github.com/CambridgeMonorail/WallRun "GitHub - CambridgeMonorail/WallRun: Software that lives on walls. · GitHub"
-[2]: https://code.visualstudio.com/docs/copilot/customization/agent-plugins "Agent plugins in VS Code (Preview)"
-[3]: https://github.com/CambridgeMonorail/WallRun/blob/main/docs/tooling/github-copilot-tooling.md "WallRun/docs/tooling/github-copilot-tooling.md at main · CambridgeMonorail/WallRun · GitHub"
-[4]: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating "Creating a plugin for GitHub Copilot CLI - GitHub Docs"
-[5]: https://github.com/CambridgeMonorail/WallRun/blob/main/package.json "WallRun/package.json at main · CambridgeMonorail/WallRun · GitHub"
-[6]: https://github.com/CambridgeMonorail/WallRun/blob/main/skills/README.md "WallRun/skills/README.md at main · CambridgeMonorail/WallRun · GitHub"
+[1]: https://github.com/CambridgeMonorail/WallRun 'GitHub - CambridgeMonorail/WallRun: Software that lives on walls. · GitHub'
+[2]: https://code.visualstudio.com/docs/copilot/customization/agent-plugins 'Agent plugins in VS Code (Preview)'
+[3]: https://github.com/CambridgeMonorail/WallRun/blob/main/docs/tooling/github-copilot-tooling.md 'WallRun/docs/tooling/github-copilot-tooling.md at main · CambridgeMonorail/WallRun · GitHub'
+[4]: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating 'Creating a plugin for GitHub Copilot CLI - GitHub Docs'
+[5]: https://github.com/CambridgeMonorail/WallRun/blob/main/package.json 'WallRun/package.json at main · CambridgeMonorail/WallRun · GitHub'
+[6]: https://github.com/CambridgeMonorail/WallRun/blob/main/skills/README.md 'WallRun/skills/README.md at main · CambridgeMonorail/WallRun · GitHub'
