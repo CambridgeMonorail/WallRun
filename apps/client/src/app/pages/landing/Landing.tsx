@@ -226,10 +226,12 @@ export const LandingPage: FC = () => {
         socialMediaIcons={[
           {
             icon: (props) => <Github {...props} />,
+            label: 'GitHub',
             url: 'https://github.com/CambridgeMonorail/WallRun',
           },
           {
             icon: (props) => <Twitter {...props} />,
+            label: 'X',
             url: 'https://x.com/TimDMorris',
           },
         ]}

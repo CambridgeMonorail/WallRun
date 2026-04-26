@@ -17,6 +17,7 @@ interface FooterProps {
    */
   socialMediaIcons: {
     icon: FC<LucideProps>;
+    label: string;
     url: string;
     target?: string;
     rel?: string;
@@ -58,6 +59,18 @@ export const Footer: FC<FooterProps> = ({
     return url.startsWith('http://') || url.startsWith('https://');
   };
 
+  const getSafeRel = (target?: string, rel?: string) => {
+    if (target !== '_blank') {
+      return rel;
+    }
+
+    const relTokens = new Set((rel ?? '').split(/\s+/).filter(Boolean));
+    relTokens.add('noopener');
+    relTokens.add('noreferrer');
+
+    return Array.from(relTokens).join(' ');
+  };
+
   return (
     <footer className={`w-full px-4 pb-10 sm:px-6 lg:px-8 ${className}`}>
       <div
@@ -90,9 +103,9 @@ export const Footer: FC<FooterProps> = ({
               key={index}
               href={iconData.url}
               className="flex h-11 w-11 items-center justify-center rounded-md border border-border/70 bg-card/40 text-muted-foreground transition duration-300 hover:border-ring/70 hover:bg-muted/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
-              aria-label={`Link to ${iconData.url}`}
+              aria-label={iconData.label}
               target={iconData.target}
-              rel={iconData.rel}
+              rel={getSafeRel(iconData.target, iconData.rel)}
             >
               <iconData.icon className="w-8 h-8" />
             </a>
