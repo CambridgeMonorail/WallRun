@@ -3,6 +3,11 @@
 **Date**: February 7, 2026  
 **Purpose**: Integrate `docs/design/STYLE_GUIDE.md` into Copilot configuration
 
+> Status: superseded for active demo-app work. The current app-scoped design
+> contract is `apps/client/DESIGN.md`, with expanded rationale in
+> `docs/design/STYLE_GUIDE.md`. The notes below document the older B2B SaaS
+> integration and are retained as historical context only.
+
 ## Changes Made
 
 ### 1. Created New Instruction File

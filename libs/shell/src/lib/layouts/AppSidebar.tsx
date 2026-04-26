@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Sidebar,
   SidebarContent,
@@ -33,31 +34,26 @@ export const AppSidebar = (
   return (
     <Sidebar collapsible="icon" className="chrome-sidebar" {...props}>
       <SidebarHeader>
-        <div className="demo-panel-soft m-2 flex items-start gap-3 px-3 py-4">
-          <div className="chrome-badge flex h-11 w-11 items-center justify-center rounded-2xl text-primary-foreground">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-            >
-              <rect width="18" height="14" x="3" y="5" rx="2" />
-              <path d="M7 15h10" />
-            </svg>
+        <Link
+          to="/"
+          className="brand-frame m-2 flex items-center gap-3 px-3 py-4 transition duration-200 hover:border-[hsl(var(--glow-violet)/0.42)] hover:bg-white/5"
+          aria-label="Go to WallRun landing page"
+        >
+          <div
+            className="flex h-10 w-12 shrink-0 items-center justify-center"
+            aria-hidden="true"
+          >
+            <WallRunMark className="h-7 w-11 text-[hsl(var(--glow-violet))] drop-shadow-[0_0_18px_hsl(var(--glow-violet)/0.32)]" />
           </div>
           <div className="grid min-w-0 flex-1 text-left leading-snug">
-            <span className="block text-sm font-medium uppercase tracking-[0.08em] text-foreground">
+            <span className="block text-sm font-semibold text-foreground">
               WallRun
             </span>
-            <span className="block text-[0.7rem] text-muted-foreground">
-              Digital signage toolkit
+            <span className="mono-detail block text-[0.56rem] text-muted-foreground">
+              Signage software
             </span>
           </div>
-        </div>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={sidebarData.navMain} />
@@ -66,3 +62,20 @@ export const AppSidebar = (
     </Sidebar>
   );
 };
+
+const WallRunMark = ({
+  className,
+}: {
+  className?: string;
+}): React.JSX.Element => (
+  <svg
+    viewBox="0 0 64 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path d="M2 4H17L28 32H13L2 4Z" fill="currentColor" />
+    <path d="M22 4H37L48 32H33L22 4Z" fill="currentColor" opacity="0.92" />
+    <path d="M42 4H57L62 17H47L42 4Z" fill="currentColor" opacity="0.84" />
+  </svg>
+);

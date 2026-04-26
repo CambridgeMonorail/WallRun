@@ -17,6 +17,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
+          'Satoshi',
           'Inter',
           'system-ui',
           '-apple-system',
@@ -28,13 +29,14 @@ module.exports = {
           'sans-serif',
           ...fontFamily.sans,
         ],
-        // Remove separate heading font - use Inter for everything
-        // STYLE_GUIDE.md: Inter 400/500 weights only
+        display: ['Satoshi', 'Inter', ...fontFamily.sans],
+        mono: ['IBM Plex Mono', ...fontFamily.mono],
       },
       fontWeight: {
-        // Enforce weight restrictions from STYLE_GUIDE.md
         normal: '400',
         medium: '500',
+        semibold: '600',
+        bold: '700',
       },
     },
   },

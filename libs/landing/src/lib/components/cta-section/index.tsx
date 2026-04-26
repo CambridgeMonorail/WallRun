@@ -48,17 +48,15 @@ export const CTASection: FC<CTASectionProps> = ({
   let sectionClasses = 'bg-transparent text-foreground';
   let headingClasses = baseHeadingClasses;
   let paragraphClasses = baseParagraphClasses;
-  let buttonVariant: 'default' | 'secondary' = 'default';
-  let buttonClassName =
-    'rounded-full border border-[hsl(var(--glow-cyan)/0.24)] bg-[linear-gradient(135deg,hsl(var(--accent)),hsl(var(--secondary)))] px-6 py-6 text-sm uppercase tracking-[0.18em] shadow-[0_0_28px_hsl(var(--glow-cyan)/0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_hsl(var(--glow-cyan)/0.26)]';
+  let buttonVariant: 'secondary' | 'outline' = 'secondary';
+  let buttonClassName = 'brand-cta-primary px-6 py-6 text-sm';
 
   if (variant === 'dark') {
     sectionClasses = 'bg-transparent text-foreground';
     headingClasses = `${baseHeadingClasses} text-foreground`;
     paragraphClasses = `${baseParagraphClasses} text-muted-foreground`;
-    buttonVariant = 'secondary';
-    buttonClassName =
-      'rounded-full border border-white/12 bg-background/10 px-6 py-6 text-sm uppercase tracking-[0.18em] text-foreground backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-[hsl(var(--glow-violet)/0.32)] hover:bg-white/6';
+    buttonVariant = 'outline';
+    buttonClassName = 'brand-cta-secondary px-6 py-6 text-sm';
   }
 
   return (

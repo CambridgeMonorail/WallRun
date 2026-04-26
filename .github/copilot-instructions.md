@@ -132,9 +132,14 @@ Currently available:
 
 ## Design Philosophy
 
-The demo website **chrome/shell** (navigation, layouts, UI in `apps/client`) follows `docs/design/STYLE_GUIDE.md`: Premium B2B SaaS aesthetic - calm, confident internal tooling, not marketing-led. If it feels eager or looks like a landing page, it's wrong.
+The demo website **chrome/shell** (navigation, layouts, UI in `apps/client`) follows `apps/client/DESIGN.md`, with expanded rationale in `docs/design/STYLE_GUIDE.md`: dark, precise, purple-led signage software for developers. Keep the WallRun demo brand scoped to `apps/client`.
 
-**Signage content** being demonstrated follows signage design rules (10-foot rule, high visibility), not the website style guide.
+**Shared theme and signage content** follow signage design contracts:
+
+- `libs/common-tailwind/DESIGN.md` for generic shared Tailwind/shadcn defaults
+- `libs/shadcnui-signage/DESIGN.md` for reusable signage components
+
+Signage content being demonstrated follows signage design rules (10-foot rule, high visibility, fixed layout), not the website style guide.
 
 ## Definition of Done
 

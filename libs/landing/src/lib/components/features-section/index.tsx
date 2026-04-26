@@ -49,13 +49,13 @@ const FeaturesSection: FC<FeaturesSectionProps> = ({
         {features.map((feature, index) => (
           <Card
             key={index}
-            className={`demo-panel h-full bg-transparent p-0 transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_90px_hsl(var(--glow-cyan)/0.12)] ${feature.className}`}
+            className={`demo-panel h-full bg-transparent p-0 transition-colors duration-200 ${feature.className}`}
           >
             <CardHeader className="p-6 sm:p-7">
               <CardTitle className="mb-4 text-xl font-medium text-foreground sm:text-2xl">
                 <div className="flex items-start gap-3 leading-tight">
                   {feature.icon && (
-                    <span className="demo-panel-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10">
+                    <span className="demo-panel-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/10">
                       {feature.icon}
                     </span>
                   )}

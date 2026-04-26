@@ -1,17 +1,21 @@
 # STYLE_GUIDE.md
 
-## WallRun Demo Website
+## WallRun Brand And Demo Website
 
-### Tailwind + shadcn/ui
+This document defines the visual and interaction style for the WallRun website,
+documentation shell, and demo surfaces.
 
-This document defines the visual and interaction style for **WallRun** demo website.
+The app-scoped machine-readable contract for the demo app lives at
+`apps/client/DESIGN.md`. Use that file as the source of truth for `apps/client`;
+this guide provides the expanded rationale.
 
-The site should feel like a modern, premium B2B SaaS product.
-Calm, confident, and durable.
-Never flashy. Never marketing-led.
+WallRun should feel like a developer tool for real signage systems: dark,
+precise, technical, and built for screens. The brand can be expressive, but the
+interface should still feel stable and trustworthy.
 
-If it looks like a landing page, it is wrong.
-If it looks like internal tooling from a company that takes engineering seriously, it is right.
+If it feels like a generic SaaS landing page, it is wrong.
+If it feels like creative software for displays, backed by serious engineering,
+it is right.
 
 ---
 
@@ -19,24 +23,26 @@ If it looks like internal tooling from a company that takes engineering seriousl
 
 WallRun treats digital signage as software infrastructure.
 
-The demo site exists to:
+The site exists to:
 
-- support explanation and demos
-- communicate technical seriousness
-- feel like real software, not content
+- explain the project
+- show signage examples
+- document tooling and workflows
+- communicate that screens can be programmed, versioned, tested, and deployed
 
-The reference points are:
+Reference points:
 
-- high-quality B2B admin tools
-- developer-focused SaaS products
-- internal platforms that quietly run critical systems
+- developer-focused product sites
+- high-quality internal tooling
+- generative display systems
+- technical brand systems with strong restraint
 
 Not:
 
-- startup homepages
-- funnels
-- portfolios
-- media sites
+- slide deck templates
+- CMS marketing funnels
+- glossy startup homepages
+- generic cyber/neon wallpaper
 
 ---
 
@@ -44,88 +50,120 @@ Not:
 
 These principles override individual component decisions.
 
-- Calm beats clever
+- Software first, spectacle second
 - Precision beats decoration
-- Consistency beats novelty
-- Restraint signals confidence
-- Software first, content second
+- Dark high contrast beats soft ambience
+- Purple is the brand signal, not a background theme
+- Motion and generative art should feel intentional, not noisy
+- Shared utilities beat one-off class strings
 
 Premium here means:
 
 - deliberate spacing
 - careful hierarchy
-- predictable behaviour
-- no visual noise
+- readable type
+- thin frames
+- restrained depth
+- consistent interaction states
 
 ---
 
 ## 3. Colour System
 
-The colour system is intentionally small and controlled.
+The colour system is dark, minimal, and brand-led.
 
-### Locked Colours
+### Core Colours
 
-- Background  
-  `#1C1E21`
+- Black  
+  `#080B0E`
 
-- Primary text  
-  `#E6E6E6`
+- Charcoal  
+  `#17171A`
 
-- Secondary text  
-  `#A0A4A8`
+- Off white  
+  `#F5F5F7`
 
-- Accent (rare)  
-  `#6E7681`
+- Primary purple  
+  `#885CF6`
+
+### Accent Colours
+
+Accent colours are for data, small highlights, and visualization details only.
+
+- Cyan  
+  `#22D3EE`
+
+- Lavender  
+  `#A78BFA`
+
+- Pink  
+  `#F472B6`
+
+- Green  
+  `#34D399`
+
+- Amber  
+  `#FBBF24`
 
 ### Usage Rules
 
-- Use dark mode as the default
-- Avoid large light surfaces
-- Avoid colour for emphasis where spacing or hierarchy works better
-- Accent colour is structural, not expressive
+- Use dark mode as the default.
+- Use purple as the primary brand colour.
+- Use off-white for important text.
+- Use accents sparingly and mostly for data or detail.
+- Avoid large cyan, magenta, orange, beige, or blue surfaces.
+- Avoid gradients as default UI treatment.
+- Keep glow effects rare, subtle, and tied to generative artwork rather than controls.
 
-If a component relies on colour to feel premium, redesign it.
-
----
-
-## 4. Typography
-
-### Typeface
-
-The demo website uses a two-tier typography system.
-
-- **Inter** for body copy, controls, navigation, tables, and documentation UI
-- **Michroma** as a restrained display accent for branded labels, shell markers, and high-signal headings where a little technical character is useful
-
-Inter remains the default. Michroma is an accent, not a replacement body font.
-
-Chosen for:
-
-- screen clarity
-- neutrality in core UI
-- modern SaaS familiarity
-- a slightly technical display voice when emphasis is needed
-- long-term durability
-
-### Weights
-
-- Regular (400)
-- Medium (500)
-- Semibold (600) used sparingly for compact emphasis, dense data labels, or places where medium is too soft
-
-Use weight to indicate importance, not personality.
-
-Avoid weights above 600 unless the layout genuinely lacks presence.
+If colour is doing the whole job, redesign the hierarchy.
 
 ---
 
-## 5. Theme Implementation (shadcn + Tailwind)
+## 4. Logo
 
-### 5.1 Token-First Styling
+Use the new solid purple WallRun mark.
 
-All colour usage must go through shadcn tokens.
+Rules:
 
-Hex values belong only in the theme layer.
+- Use the solid purple mark for nav, cards, social images, and shell branding.
+- Do not use the old cyan/pink outlined WR mark.
+- Do not add notification bubbles, app badges, or decorative chrome around the logo.
+- Keep logo lockups minimal: mark plus wordmark, or mark alone in compact spaces.
+- On dark surfaces, use purple mark plus off-white wordmark.
+- On light surfaces, use purple mark plus charcoal wordmark.
+
+---
+
+## 5. Typography
+
+The website uses a two-tier typography system.
+
+- Satoshi or an equivalent modern grotesk for headings and UI display text.
+- Inter as the fallback and general UI/body font when Satoshi is not available.
+- IBM Plex Mono for code, metadata, small labels, dimensions, and technical detail.
+
+Rules:
+
+- Keep letter spacing at `0` for large headings.
+- Use mono text for small metadata, not body paragraphs.
+- Avoid oversized type inside compact cards and controls.
+- Use weight for hierarchy, not personality.
+- Avoid all-caps for long copy.
+
+Suggested scale:
+
+- Hero title: `text-5xl md:text-7xl font-bold leading-none`
+- Page title: `text-3xl md:text-4xl font-semibold`
+- Section heading: `text-2xl md:text-4xl font-semibold`
+- Body: `text-base leading-7`
+- Mono detail: `font-mono text-xs uppercase tracking-[0.08em]`
+
+---
+
+## 6. Theme Implementation
+
+All reusable UI colour should go through shadcn/Tailwind tokens or shared
+semantic utilities.
 
 Use:
 
@@ -133,215 +171,125 @@ Use:
 - `text-foreground`
 - `text-muted-foreground`
 - `border-border`
-- `ring-ring`
 - `bg-card`
 - `bg-muted`
+- shared classes such as `brand-frame`, `demo-panel`, `demo-panel-soft`,
+  `brand-cta-primary`, and `brand-cta-secondary`
 
 Avoid:
 
 - hard-coded colours in components
-- ad hoc opacity hacks
+- one-off arbitrary glow strings
+- repeated long class strings for the same treatment
+- raw `white/10` or arbitrary colour opacity when a token/shared class exists
 
-Token-first does **not** mean every surface must be flat or visually plain.
-
-Richer shell chrome is allowed when it is expressed through:
-
-- token-derived utilities such as `border-border/60`, `bg-card/80`, or `text-foreground`
-- shared semantic surface classes defined in the theme layer
-- reusable component patterns rather than one-off decorative class strings
-
-If a surface needs blur, layered backgrounds, or stronger depth, build that from tokens and shared utilities. Do not reach for raw `white/10`, arbitrary hex colors, or bespoke per-component glow effects.
-
-Premium SaaS feels consistent because everything comes from the same token system.
+The theme layer is the right place for richer brand surfaces.
 
 ---
 
-## 6. Layout and Spacing
+## 7. Surfaces And Layout
 
-### Page Layout
-
-- Generous margins
-- Clear vertical rhythm
-- Predictable spacing between sections
-
-Recommended base wrapper:
-
-- `min-h-screen bg-background text-foreground`
-- `mx-auto max-w-5xl px-6 py-12 md:px-8 md:py-16`
-
-Spacing should feel intentional, not compact.
-
-Premium software does not feel cramped.
-
----
-
-### Grid Usage
-
-- Default to single column
-- Two columns only when it improves comprehension
-- Avoid dense dashboards unless the demo requires it
-
-White space is part of the interface.
-
----
-
-## 7. Typography Scale (Tailwind)
-
-Use a restrained, modern SaaS scale.
-
-- Page title  
-  `text-3xl md:text-4xl font-medium tracking-tight`
-
-- Section heading  
-  `text-xl md:text-2xl font-medium`
-
-- Subheading  
-  `text-base md:text-lg font-medium`
-
-- Body  
-  `text-base leading-relaxed`
-
-- Small text  
-  `text-sm text-muted-foreground`
+WallRun surfaces should feel like screen systems and tooling panels.
 
 Rules:
 
-- Avoid dramatic size jumps
-- Avoid bold for impact
-- Let spacing create hierarchy
+- Use thin frames and subtle borders.
+- Keep cards at 8px radius or less unless a component already requires more.
+- Avoid cards inside cards.
+- Avoid floating marketing sections.
+- Use full-width bands or constrained unframed layouts for page sections.
+- Keep shadows subtle and structural.
+- Reserve generative textures for hero, social, and signage preview surfaces.
+
+Recommended surface language:
+
+- dark charcoal fill
+- subtle grid only when it supports the screen/tooling idea
+- thin purple or neutral frame
+- restrained generative purple field for brand moments
 
 ---
 
-## 8. Components (shadcn)
-
-### 8.1 Buttons
+## 8. Buttons
 
 Buttons should feel like precise controls.
 
-Default:
+Default choices:
 
-- `variant="secondary"`
-- `variant="ghost"` for low-priority actions
+- `variant="secondary"` for primary page actions
+- `variant="outline"` or `variant="ghost"` for secondary actions
+- `variant="default"` only when the component API requires it and the visual
+  treatment is still supplied by a shared brand class
 
-Use `variant="default"` sparingly and deliberately.
+Use shared CTA classes:
 
-Rules:
-
-- No gradients
-- No glow
-- No animated flair
-- Hover states should be subtle and predictable
-
-Premium SaaS buttons do not shout.
-
----
-
-### 8.2 Links
-
-Links should be obvious but understated.
-
-- Underline on hover or always underline in body text
-- Avoid bright colours
-- Avoid animation beyond simple state change
-
-Links are navigation, not decoration.
-
----
-
-### 8.3 Cards and Panels
-
-Cards should feel structural.
+- `brand-cta-primary`
+- `brand-cta-secondary`
 
 Rules:
 
-- Flat surfaces
-- Subtle borders
-- Minimal or no shadow
-- Consistent padding
+- No button gradients.
+- No control glow.
+- No bounce, zoom, or flashy animated movement.
+- Hover states should be subtle: border, background, or text change.
+- Purple fill is allowed for the primary CTA, but it should not glow.
 
-Suggested:
-
-- reduce default shadcn shadow if it feels decorative
-- use `border-border/60` for separation
-- prefer shared semantic surface utilities for premium chrome rather than repeating long arbitrary-value class strings
-
-Cards should feel like containers, not highlights.
+Premium controls do not shout.
 
 ---
 
-### 8.4 Inputs and Forms
+## 9. Generative Art And Motion
 
-Inputs should feel robust and tool-like.
-
-Rules:
-
-- Clear focus rings
-- No playful placeholder copy
-- No oversized controls
-- Disabled states must be obvious
-
-Forms should feel like configuration, not onboarding.
-
----
-
-### 8.5 Tables and Data
-
-Tables are first-class citizens.
-
-Rules:
-
-- Clear column alignment
-- Calm row spacing
-- Subtle dividers
-- No visual gimmicks
-
-If data looks busy, reduce decoration first.
-
----
-
-## 9. Motion and Interaction
-
-Motion is restrained and functional.
+Generative art is part of the WallRun brand, but it must be contained.
 
 Allowed:
+
+- purple particle fields
+- thin orbital or wave lines
+- subtle grids
+- code/data fragments
+- small accent colour ticks for data
+
+Avoid:
+
+- glossy neon streaks
+- busy wallpaper
+- lens flares
+- uncontrolled bokeh/orb decoration
+- decorative animation on controls
+
+Motion should be restrained and functional:
 
 - fades
 - subtle opacity transitions
 - short linear movement
+- 150-300ms timing
 
-Timing:
-
-- 150–300ms
-- consistent across the app
-
-Avoid:
-
-- bounce or spring easing
-- zoom punches
-- scroll-driven effects
-- decorative animation
-
-Premium software feels stable, not energetic.
+Respect reduced motion preferences.
 
 ---
 
 ## 10. Content Tone
 
-Copy should feel like a serious SaaS product.
+Copy should sound developer-focused and precise.
 
-- Calm
-- Declarative
-- Precise
-- Slightly dry
+Preferred ideas:
+
+- Digital signage as software
+- Not slides. Software.
+- Built for screens, not scroll.
+- Developer-first workflows
+- Deterministic screen systems
+- BrightSign-ready delivery
 
 Avoid:
 
-- marketing language
-- calls to action
+- generic growth language
+- hype
 - exclamation marks
-- friendly filler
+- vague platform claims
 
-Write like internal product documentation.
+Write like a technical product with a point of view.
 
 ---
 
@@ -352,9 +300,11 @@ Accessibility is part of quality.
 - Keyboard navigation everywhere
 - Visible focus states
 - Sufficient contrast
-- Respect reduced motion preferences
+- Text remains readable on all generated or textured backgrounds
+- Touch targets meet expected sizes
+- Reduced motion is respected
 
-Premium products are accessible by default.
+Brand expression never outranks readability.
 
 ---
 
@@ -362,17 +312,19 @@ Premium products are accessible by default.
 
 During PR review, ask:
 
-- Does this feel like premium B2B SaaS software?
-- Have we used tokens rather than one-off styles?
-- Did we add anything for flair rather than clarity?
-- Would this still feel right in five years?
+- Does this use the solid purple WallRun mark?
+- Does this feel like signage software, not a generic SaaS page?
+- Is purple the primary brand signal?
+- Are accent colours limited to data/detail?
+- Are CTA/control styles shared rather than one-off?
+- Is any glow tied to artwork rather than a button or control?
+- Would the interface still feel trustworthy in a production tooling context?
 
-If unsure, remove the flourish.
+If unsure, remove the flourish or move it into a shared semantic utility.
 
 ---
 
 ## 13. Final Rule
 
-The site should feel like software you trust to run quietly in the background of a large organisation.
-
-If it feels eager, it is wrong.
+WallRun should feel like software for screens: confident, minimal,
+developer-focused, and visually alive only where the display medium calls for it.
