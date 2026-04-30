@@ -76,7 +76,9 @@ export const OfficeLobbyLoop: FC = () => {
                 data-testid="office-lobby-loop-welcome-slide"
               >
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-7 lg:p-10">
-                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Message</div>
+                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
+                    Message
+                  </div>
                   <div className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-6xl">
                     Welcome to HQ
                   </div>
@@ -86,7 +88,9 @@ export const OfficeLobbyLoop: FC = () => {
                   </div>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-5 lg:p-10">
-                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Next update in</div>
+                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
+                    Next update in
+                  </div>
                   <Countdown
                     targetEpochMs={nextUpdateEpochMs}
                     format="mm:ss"
@@ -129,7 +133,9 @@ export const OfficeLobbyLoop: FC = () => {
                   />
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-5 lg:p-10">
-                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">Notes</div>
+                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
+                    Notes
+                  </div>
                   <ul className="mt-4 space-y-3 text-lg text-white/70 sm:text-2xl lg:mt-5 lg:space-y-4 lg:text-3xl">
                     <li>• Fire exits: follow green signage</li>
                     <li>• Quiet zones on Level 2</li>
@@ -147,8 +153,10 @@ export const OfficeLobbyLoop: FC = () => {
                     Connectivity boundary
                   </div>
                   <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-8">
-                    <div className="rounded-xl border border-white/10 bg-black/20 p-5 sm:p-6 lg:p-8">
-                      <div className="mb-3 text-lg text-white/70 sm:text-xl lg:mb-4">Healthy</div>
+                    <div className="rounded-xl border border-white/10 bg-slate-950/40 p-5 sm:p-6 lg:p-8">
+                      <div className="mb-3 text-lg text-white/70 sm:text-xl lg:mb-4">
+                        Healthy
+                      </div>
                       <OfflineFallback
                         isOnline={true}
                         isHealthy={true}
@@ -162,7 +170,7 @@ export const OfficeLobbyLoop: FC = () => {
                       </OfflineFallback>
                     </div>
 
-                    <div className="rounded-xl border border-white/10 bg-black/20 p-5 sm:p-6 lg:p-8">
+                    <div className="rounded-xl border border-white/10 bg-slate-950/40 p-5 sm:p-6 lg:p-8">
                       <div className="mb-3 text-lg text-white/70 sm:text-xl lg:mb-4">
                         Unhealthy
                       </div>
@@ -175,7 +183,9 @@ export const OfficeLobbyLoop: FC = () => {
                           </div>
                         }
                       >
-                        <div className="text-2xl font-semibold sm:text-3xl lg:text-4xl">Live data</div>
+                        <div className="text-2xl font-semibold sm:text-3xl lg:text-4xl">
+                          Live data
+                        </div>
                       </OfflineFallback>
                     </div>
                   </div>

@@ -85,7 +85,7 @@ export const RestaurantMenu: FC = () => {
                 DAILY SELECTION
               </p>
             </div>
-            <h1 className="mb-4 bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-5xl font-bold leading-none text-transparent sm:text-6xl lg:mb-6 lg:text-8xl">
+            <h1 className="mb-4 text-5xl font-bold leading-none text-white sm:text-6xl lg:mb-6 lg:text-8xl">
               Today's Menu
             </h1>
             <p className="text-lg tracking-[0.2em] text-slate-300 sm:text-2xl lg:text-3xl">

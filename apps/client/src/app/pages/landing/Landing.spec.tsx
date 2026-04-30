@@ -27,7 +27,7 @@ describe('LandingPage', () => {
       </BrowserRouter>,
     );
     expect(getAllByText(/Developer First/gi).length).toBeGreaterThan(0);
-    expect(getAllByText(/Generative/gi).length).toBeGreaterThan(0);
+    expect(getAllByText(/Component Library/gi).length).toBeGreaterThan(0);
     expect(getAllByText(/Data Driven/gi).length).toBeGreaterThan(0);
   });
 
@@ -40,7 +40,7 @@ describe('LandingPage', () => {
 
     expect(getByText(/BrightSign Ready/gi)).toBeTruthy();
     expect(getAllByText(/Fixed Canvas/gi).length).toBeGreaterThan(0);
-    expect(getByText(/Distance Readable/gi)).toBeTruthy();
+    expect(getByText(/Player Operations/gi)).toBeTruthy();
   });
 
   it('should make the open source developer-first positioning explicit', () => {
@@ -50,10 +50,8 @@ describe('LandingPage', () => {
       </BrowserRouter>,
     );
 
-    expect(getByText(/open source workspace for developers/gi)).toBeTruthy();
-    expect(
-      getByText(/Read the source, inspect the deployment scripts/gi),
-    ).toBeTruthy();
+    expect(getByText(/open source React workspace/gi)).toBeTruthy();
+    expect(getByText(/inspect the deployment scripts/gi)).toBeTruthy();
     expect(getByText(/Read The Code/gi)).toBeTruthy();
   });
 });

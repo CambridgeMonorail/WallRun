@@ -32,7 +32,7 @@ export const WelcomeScreen: FC = () => {
 
         <div className="relative z-10 max-w-[22rem] px-4 text-center sm:max-w-4xl sm:px-8 lg:max-w-6xl">
           <div className="mb-8 sm:mb-12">
-            <h1 className="mb-4 bg-gradient-to-r from-blue-400 via-purple-300 to-pink-400 bg-clip-text text-6xl font-bold leading-none tracking-tight text-transparent sm:text-8xl md:text-[8rem] lg:mb-6 lg:text-[12rem] xl:text-[14rem]">
+            <h1 className="mb-4 text-6xl font-bold leading-none tracking-tight text-white sm:text-8xl md:text-[8rem] lg:mb-6 lg:text-[12rem] xl:text-[14rem]">
               Welcome
             </h1>
             <div className="mx-auto mb-8 h-1 w-32 bg-gradient-to-r from-transparent via-purple-400 to-transparent sm:mb-12 sm:w-48 md:w-64" />

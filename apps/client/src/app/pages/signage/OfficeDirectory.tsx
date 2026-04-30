@@ -32,7 +32,7 @@ export const OfficeDirectory: FC = () => {
 
         <div className="relative z-10 mx-auto max-w-7xl">
           <header className="mb-10 text-center sm:mb-12 lg:mb-16">
-            <h1 className="mb-5 bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-5xl font-bold leading-none text-transparent sm:mb-6 sm:text-6xl lg:mb-8 lg:text-8xl">
+            <h1 className="mb-5 text-5xl font-bold leading-none text-cyan-100 sm:mb-6 sm:text-6xl lg:mb-8 lg:text-8xl">
               Office Directory
             </h1>
             <div className="inline-flex items-center gap-3 rounded-full border border-blue-800/50 bg-blue-950/50 px-4 py-3 text-base text-cyan-300 backdrop-blur-sm sm:gap-4 sm:px-6 sm:text-xl lg:px-8 lg:py-4 lg:text-3xl">
@@ -61,7 +61,9 @@ export const OfficeDirectory: FC = () => {
                 </div>
                 <div className="mb-4 h-px bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-transparent sm:mb-6" />
                 <div className="flex flex-col gap-2 text-lg sm:flex-row sm:items-center sm:justify-between sm:text-xl lg:text-2xl">
-                  <span className="font-semibold text-cyan-300">Room {dir.room}</span>
+                  <span className="font-semibold text-cyan-300">
+                    Room {dir.room}
+                  </span>
                   <span className="font-mono text-blue-300">{dir.phone}</span>
                 </div>
               </div>

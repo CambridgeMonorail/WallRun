@@ -73,12 +73,12 @@ export const EventSchedule: FC = () => {
         variant="violet"
         showGrid={false}
         data-testid="event-schedule"
-        className="bg-gradient-to-br from-violet-950 via-slate-950 to-indigo-950"
+        className="bg-slate-950"
       >
         {/* Additional background effects */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/30 via-transparent to-transparent"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--secondary)_/_0.16),transparent_58%)]"
         />
         <div
           aria-hidden="true"
@@ -109,8 +109,8 @@ export const EventSchedule: FC = () => {
         </div>
 
         <footer className="mt-10 text-center sm:mt-12 lg:mt-16">
-          <div className="inline-block rounded-2xl border border-violet-500/30 bg-gradient-to-r from-violet-600/20 via-fuchsia-600/20 to-violet-600/20 px-5 py-4 backdrop-blur-sm sm:px-8 sm:py-5 lg:px-12 lg:py-6">
-            <p className="text-base text-violet-200 sm:text-lg lg:text-2xl">
+          <div className="inline-block rounded-2xl border border-slate-700/60 bg-slate-900/70 px-5 py-4 backdrop-blur-sm sm:px-8 sm:py-5 lg:px-12 lg:py-6">
+            <p className="text-base text-slate-100 sm:text-lg lg:text-2xl">
               Download the mobile app for personalized schedule and
               notifications
             </p>
