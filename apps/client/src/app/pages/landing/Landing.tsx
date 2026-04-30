@@ -5,10 +5,15 @@ import {
   Twitter,
   Rocket,
   Palette,
-  Paintbrush,
   BarChart,
   ChartLine,
   Video,
+  Bot,
+  BookOpen,
+  Boxes,
+  Network,
+  PackageCheck,
+  Wrench,
 } from 'lucide-react';
 
 import logoSrc from '../../../assets/images/wallrun-mark.svg';
@@ -39,21 +44,21 @@ export const LandingPage: FC = () => {
         <HeroSection
           title="Digital Signage as Software."
           subtitle="WallRun.dev"
-          description="Signage is software, and it deserves to be treated that way. Build bespoke, generative experiences for BrightSign players with code, data, and deterministic screen systems."
+          description="WallRun is an AI-accelerated open source React workspace for building real signage: distance-readable components, fixed-aspect layouts, BrightSign packaging, player discovery, and deploy scripts you can inspect and change."
           highlights={[
-            'Developer-first workflows',
-            'Generative screen systems',
-            'Live data surfaces',
-            'BrightSign-ready deploys',
+            'Signage React components',
+            'Copilot agents + portable skills',
+            'BrightSign packaging + deploy',
+            'Player discovery + git-safe config',
           ]}
           image={logoSrc}
           imageAlt="WallRun logo"
           ctaPrimary={{
-            text: 'Get Started',
+            text: 'Start Building',
             onClick: () => navigate('/getting-started'),
           }}
           ctaSecondary={{
-            text: 'View Examples',
+            text: 'See Screen Examples',
             onClick: () => navigate('/gallery'),
           }}
           layout="left"
@@ -63,46 +68,46 @@ export const LandingPage: FC = () => {
       </div>
       <AboutSection
         title="Not Slides. Software."
-        description="WallRun is an open source workspace for developers building custom digital experiences that live on walls. It brings React, fixed-aspect layouts, registry components, and deployment tooling into one deliberate signage workflow."
+        description="WallRun is not a CMS or slide deck builder. It is a working notebook for developers who want complete control over screens that live in physical space, from React components to BrightSign player workflows."
         logos={[
           <Logo
             name="nx"
-            className="w-26 h-26 sm:w-12 sm:h-12"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             key="nx"
             title="Nx"
             ariaLabel="Nx"
           />,
           <Logo
             name="tailwind"
-            className="w-26 h-26 sm:w-12 sm:h-12"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             key="tailwind"
             title="Tailwind CSS"
             ariaLabel="Tailwind CSS"
           />,
           <Logo
             name="shadcn"
-            className="w-26 h-26 sm:w-12 sm:h-12"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             key="shadcn"
             title="Shadcn"
             ariaLabel="Shadcn"
           />,
           <Logo
             name="pnpm"
-            className="w-26 h-26 sm:w-12 sm:h-12"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             key="pnpm"
             title="Pnpm"
             ariaLabel="Pnpm"
           />,
           <Logo
             name="react"
-            className="w-26 h-26 sm:w-12 sm:h-12"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             key="react"
             title="React"
             ariaLabel="React"
           />,
           <Logo
             name="vite"
-            className="w-26 h-26 sm:w-12 sm:h-12"
+            className="h-9 w-9 sm:h-10 sm:w-10"
             key="vite"
             title="Vite"
             ariaLabel="Vite"
@@ -113,7 +118,55 @@ export const LandingPage: FC = () => {
         data-testid="about-section"
       />
       <FeaturesSection
-        title="Made For Screens"
+        title="AI-Accelerated Signage Workspace"
+        features={[
+          {
+            title: 'Copilot Agents',
+            description:
+              'Use signage-aware GitHub Copilot agents for layout, runtime, and BrightSign guidance instead of generic web-page suggestions.',
+            icon: <Bot className="text-[hsl(var(--glow-violet))]" />,
+            className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
+          },
+          {
+            title: 'Portable Skills',
+            description:
+              'Install reusable SKILL.md workflows for signage layout, animation, distance legibility, BrightSign packaging, and player discovery.',
+            icon: <BookOpen className="text-[hsl(var(--glow-cyan))]" />,
+            className: 'hover:border-[hsl(var(--glow-cyan)/0.34)]',
+          },
+          {
+            title: 'Component Registry',
+            description:
+              'Pull signage components from a shadcn-compatible registry so other React projects can adopt WallRun blocks without copying the repo.',
+            icon: <Boxes className="text-[hsl(var(--glow-green))]" />,
+            className: 'hover:border-[hsl(var(--glow-green)/0.34)]',
+          },
+          {
+            title: 'BrightSign Deploy Tools',
+            description:
+              'Package React player apps with an autorun bootstrap and deploy to BrightSign OS players through repeatable scripts.',
+            icon: <PackageCheck className="text-[hsl(var(--glow-amber))]" />,
+            className: 'hover:border-[hsl(var(--glow-amber)/0.34)]',
+          },
+          {
+            title: 'Player Discovery',
+            description:
+              'Find BrightSign devices on the local network, inspect player details, and keep operational configuration outside version control.',
+            icon: <Network className="text-[hsl(var(--glow-pink))]" />,
+            className: 'hover:border-[hsl(var(--glow-pink)/0.34)]',
+          },
+          {
+            title: 'Tooling Documentation',
+            description:
+              'Explore guides, Storybook, examples, and deployment docs that make the workspace understandable to developers and searchable by topic.',
+            icon: <Wrench className="text-[hsl(var(--glow-violet))]" />,
+            className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
+          },
+        ]}
+        data-testid="workspace-section"
+      />
+      <FeaturesSection
+        title="What WallRun Gives You"
         features={[
           {
             title: 'Developer First',
@@ -123,9 +176,9 @@ export const LandingPage: FC = () => {
             className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
           },
           {
-            title: 'Generative',
+            title: 'Component Library',
             description:
-              'Use motion, procedural visuals, and composable React blocks to make displays feel alive without becoming noisy.',
+              'Use signage-specific React primitives, layouts, and blocks designed for distance readability and fixed-format screens.',
             icon: <Palette className="text-[hsl(var(--glow-cyan))]" />,
             className: 'hover:border-[hsl(var(--glow-cyan)/0.34)]',
           },
@@ -144,18 +197,18 @@ export const LandingPage: FC = () => {
             className: 'hover:border-[hsl(var(--glow-amber)/0.34)]',
           },
           {
+            title: 'Player Operations',
+            description:
+              'Discover BrightSign devices on the local network and keep player configuration out of Git while still making deploys repeatable.',
+            icon: <Rocket className="text-[hsl(var(--glow-violet))]" />,
+            className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
+          },
+          {
             title: 'Fixed Canvas',
             description:
               'Design for known screen sizes and viewing distance first, with deterministic composition over webpage-style flow.',
             icon: <BarChart className="text-[hsl(var(--glow-pink))]" />,
             className: 'hover:border-[hsl(var(--glow-pink)/0.34)]',
-          },
-          {
-            title: 'Distance Readable',
-            description:
-              'High contrast, strong hierarchy, and large typography keep information legible from across the room.',
-            icon: <Paintbrush className="text-[hsl(var(--glow-violet))]" />,
-            className: 'hover:border-[hsl(var(--glow-violet)/0.38)]',
           },
         ]}
         data-testid="features-section"

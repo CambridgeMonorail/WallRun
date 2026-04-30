@@ -53,7 +53,7 @@ export const AnnouncementsBoard: FC = () => {
         variant="pink"
         showGrid={false}
         data-testid="announcements-board"
-        className="bg-gradient-to-br from-indigo-950 via-purple-950 to-pink-950"
+        className="bg-slate-950"
       >
         {/* Additional grid overlay */}
         <div

@@ -170,7 +170,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
         <span className="hero-aurora__band hero-aurora__band--detail" />
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--glow-violet)/0.75)] to-transparent" />
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-10 px-4 py-16 sm:px-6 md:px-10 lg:min-h-[calc(100vh-3.5rem)] lg:flex-row lg:gap-16 lg:py-20">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-10 px-4 py-14 sm:px-6 md:px-10 lg:min-h-[calc(88vh-3.5rem)] lg:flex-row lg:gap-16 lg:py-16">
         <div
           className={`relative z-10 flex-1 space-y-6 text-center lg:text-left ${
             isReversed ? 'order-last lg:order-first' : ''

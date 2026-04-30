@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useState, useRef } from 'react';
+import { FC, ReactElement } from 'react';
 
 export interface LogoCarouselProps {
   logos: ReactElement[];
@@ -13,35 +13,6 @@ export interface LogoCarouselProps {
  * other set of logos in a visually appealing and interactive manner.
  */
 const LogoCarousel: FC<LogoCarouselProps> = ({ logos, header, subheader }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [carouselLogos, setCarouselLogos] = useState([...logos, ...logos]); // Duplicate logos for seamless scroll
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const scrollStep = 1; // Scroll speed (px per interval)
-    const interval = 16; // Interval duration (~60 FPS)
-    let animationFrame: number;
-
-    const startScrolling = () => {
-      if (!container) return;
-
-      container.scrollLeft += scrollStep;
-
-      // Check if the first logo is fully out of view
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0; // Reset scroll position to maintain seamless loop
-      }
-
-      animationFrame = requestAnimationFrame(startScrolling); // Keep scrolling
-    };
-
-    animationFrame = requestAnimationFrame(startScrolling); // Start the animation
-
-    return () => cancelAnimationFrame(animationFrame); // Cleanup on unmount
-  }, []);
-
   return (
     <div className="flex flex-col items-center justify-center text-center">
       {/* Header Section */}
@@ -50,24 +21,25 @@ const LogoCarousel: FC<LogoCarouselProps> = ({ logos, header, subheader }) => {
           {header}
         </h2>
       )}
-      {subheader && <p className="mt-2 text-sm text-muted-foreground sm:text-base">{subheader}</p>}
+      {subheader && (
+        <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+          {subheader}
+        </p>
+      )}
 
-      {/* Logo Carousel */}
       <div
-        ref={containerRef}
-        className="relative mt-6 w-full overflow-hidden"
-        style={{ height: '100px', whiteSpace: 'nowrap' }}
+        data-testid="logo-grid"
+        className="mt-8 grid w-full grid-cols-2 items-center justify-items-center gap-6 sm:grid-cols-3 lg:grid-cols-6"
       >
-        <div className="flex">
-          {carouselLogos.map((logo, index) => (
-            <div
-              key={`logo-${index}`}
-              className="shrink-0 w-1/4 h-24 flex items-center justify-center"
-            >
-              {logo}
-            </div>
-          ))}
-        </div>
+        {logos.map((logo, index) => (
+          <div
+            key={`logo-${index}`}
+            data-testid={`logo-grid-item-${index}`}
+            className="flex h-16 w-full items-center justify-center rounded-md border border-border/50 bg-background/35 px-4 text-muted-foreground"
+          >
+            {logo}
+          </div>
+        ))}
       </div>
     </div>
   );
