@@ -29,6 +29,14 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/resolution.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -187,6 +195,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SplitScreen.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -224,11 +236,19 @@
       "title": "Fullscreen Hero",
       "description": "Hero section for welcome screens and main messages. Light/dark variants with optional background images and CTA.",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": [],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/FullscreenHero.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/clamp.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -236,13 +256,21 @@
       "name": "info-card-grid",
       "type": "registry:component",
       "title": "Info Card Grid",
-      "description": "Grid layout for displaying informational cards with icons, titles, and descriptions. Responsive column layout.",
+      "description": "Grid layout for displaying informational cards with titles, values, descriptions, and optional meta text. Responsive column layout.",
       "registryDependencies": [],
       "dependencies": [],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/InfoCardGrid.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/clamp.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -300,6 +328,10 @@
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/ContentRotator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/SignageTransition.tsx",
           "type": "registry:component"
         },
         {
@@ -420,7 +452,7 @@
       "title": "Stale Data Indicator",
       "description": "Shows visual indicator when data exceeds a freshness threshold. Useful for monitoring real-time data feeds.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/StaleDataIndicator.tsx",
