@@ -50,13 +50,16 @@ const Slide = ({
   title,
   body,
   accent,
+  details,
 }: {
   eyebrow: string;
   title: string;
   body: string;
   accent: string;
+  details: [string, string];
 }) => (
-  <div className="min-h-[540px] rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm lg:p-10">
+  <div className="flex min-h-[540px] flex-col justify-between rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm lg:p-10">
+    <div>
     <div className="text-sm uppercase tracking-[0.32em] text-teal-200/70 lg:text-base">
       {eyebrow}
     </div>
@@ -73,6 +76,17 @@ const Slide = ({
       <div className="mt-3 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
         {accent}
       </div>
+    </div>
+    </div>
+    <div className="mt-8 grid gap-4 lg:grid-cols-2">
+      {details.map((detail) => (
+        <div
+          key={detail}
+          className="rounded-[1.25rem] border border-white/10 bg-slate-950/45 px-5 py-4 text-lg text-slate-200 lg:text-xl"
+        >
+          {detail}
+        </div>
+      ))}
     </div>
   </div>
 );
@@ -107,6 +121,7 @@ export const DefaultRotation: Story = {
               title="Announcements"
               body="Show lobby notices, staffing reminders, and visitor guidance without forcing every message onto a single crowded page."
               accent="Reception desk staffed until 18:00"
+              details={['Visitor passes at desk 2', 'Lift B under maintenance']}
             />,
             <Slide
               key="b"
@@ -114,6 +129,7 @@ export const DefaultRotation: Story = {
               title="Events"
               body="Swap to the next high-priority message on a predictable cadence so each slide gets full-screen hierarchy."
               accent="Studio demo begins at 14:30"
+              details={['Doors open at 14:10', 'Overflow seating in Hall C']}
             />,
             <Slide
               key="c"
@@ -121,6 +137,7 @@ export const DefaultRotation: Story = {
               title="Weather"
               body="A later slide can carry transport or weather disruption without permanently displacing the welcome state."
               accent="Heavy rain expected after 17:00"
+              details={['Shuttle queue moves indoors', 'South entrance recommended']}
             />,
           ]}
         </ContentRotator>
@@ -165,6 +182,7 @@ const PauseResumeControlsStory: FC = () => {
               title="Visitor check-in"
               body="Hold this screen while queues build so nobody misses the active instruction set."
               accent="Photo ID required for temporary badges"
+              details={['Reception opens extra desk at 09:15', 'Delivery drivers use loading bay entry']}
             />,
             <Slide
               key="2"
@@ -172,6 +190,7 @@ const PauseResumeControlsStory: FC = () => {
               title="Catering service"
               body="Resume when the space is ready to rotate back through lower-priority content."
               accent="Atrium coffee bar open until 11:30"
+              details={['Quiet tables on Level 2', 'Vegetarian menu at kiosk 4']}
             />,
             <Slide
               key="3"
@@ -179,6 +198,7 @@ const PauseResumeControlsStory: FC = () => {
               title="Community events"
               body="The loop can carry lighter editorial content once the operational need has passed."
               accent="Design critique in Studio A at 16:00"
+              details={['Open seating from 15:45', 'Streaming link in staff channel']}
             />,
           ]}
         </ContentRotator>
@@ -199,6 +219,7 @@ const DynamicChildrenLengthChangeStory: FC = () => {
       title="Morning brief"
       body="The playlist starts with three content states before the final one is withdrawn."
       accent="Security briefing at 09:00"
+      details={['AV check at 08:40', 'Briefing notes on the intranet']}
     />,
     <Slide
       key="b"
@@ -206,6 +227,7 @@ const DynamicChildrenLengthChangeStory: FC = () => {
       title="Lunch service"
       body="The rotator should keep its place cleanly when the available child list changes at runtime."
       accent="Ground floor cafe opens at 12:00"
+      details={['Menu switches at 11:45', 'South terrace seating available']}
     />,
     <Slide
       key="c"
@@ -213,6 +235,7 @@ const DynamicChildrenLengthChangeStory: FC = () => {
       title="Evening reception"
       body="This third slide disappears after six seconds to simulate a feed-driven update."
       accent="Removed from schedule"
+      details={['Room released to catering', 'Playlist should continue smoothly']}
     />,
   ]);
 
