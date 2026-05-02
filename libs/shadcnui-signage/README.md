@@ -66,6 +66,14 @@ Core building blocks for signage content:
 - **MetricCard** - Display KPIs and metrics with values, change indicators, and icons
 - **EventCard** - Event information with time, title, speaker, location, and track
 - **AnnouncementCard** - Announcement cards with glass morphism effects
+- **DirectoryCard** - Wayfinding card for departments and destinations with floor, room, and contact metadata
+- **FloorBadge** - Compact floor marker for directories, maps, and wayfinding screens
+- **LocationIndicator** - Current-location chip with map pin iconography for directory screens
+- **MenuItem** - Price-led menu row with optional description and divider treatment
+- **MenuSection** - Section wrapper for grouped menu content with headline and accent divider
+- **SignagePanel** - Bordered content panel for grouped operational or supporting information
+- **MeetingRow** - Agenda-style row for meeting schedules and room bookings
+- **InfoList** - Large-format bullet list for lobby messages, instructions, and operational notes
 
 ### Layouts
 
@@ -81,6 +89,7 @@ Higher-level composed components for complete content sections:
 
 - **FullscreenHero** - Hero section for welcome screens and main messages (light/dark variants)
 - **InfoCardGrid** - Grid layout for displaying informational cards with icons and descriptions
+- **MenuBoard** - Full-screen menu composition shell for restaurant, cafe, and daypart content
 
 ### Behaviours
 
@@ -149,7 +158,17 @@ All layout components use fixed sizing and explicit aspect ratios. There are no 
 This library is part of WallRun monorepo. Import components using the workspace path:
 
 ```typescript
-import { ScreenFrame, SplitScreen, FullscreenHero, InfoCardGrid } from '@wallrun/shadcnui-signage';
+import {
+  ScreenFrame,
+  SplitScreen,
+  FullscreenHero,
+  InfoCardGrid,
+  MenuBoard,
+  MenuSection,
+  MenuItem,
+  DirectoryCard,
+  InfoList,
+} from '@wallrun/shadcnui-signage';
 ```
 
 If you are exploring the public demo, this is the library behind the signage examples and the component documentation pages.
@@ -236,13 +255,35 @@ export function EventSchedule({ events }) {
 }
 ```
 
+### Menu Board
+
+```typescript
+import { MenuBoard, MenuItem, MenuSection } from '@wallrun/shadcnui-signage';
+
+export function CafeMenu() {
+  return (
+    <MenuBoard title="Cafe" subtitle="Breakfast until 11:30" variant="teal">
+      <div className="grid gap-8 lg:grid-cols-2">
+        <MenuSection title="Breakfast" contentClassName="space-y-5">
+          <MenuItem
+            name="Classic Breakfast"
+            price="$12.99"
+            description="Eggs, bacon, toast, hash browns"
+          />
+        </MenuSection>
+      </div>
+    </MenuBoard>
+  );
+}
+```
+
 ## Typical Build Pattern
 
 A common way to use this library is:
 
 1. Start with `SignageContainer` or `ScreenFrame` to establish the display surface.
 2. Use layout components like `SplitScreen` and `SignageHeader` to define structure.
-3. Fill the screen with primitives and blocks such as `MetricCard`, `EventCard`, `FullscreenHero`, or `InfoCardGrid`.
+3. Fill the screen with primitives and blocks such as `MetricCard`, `DirectoryCard`, `MenuItem`, `FullscreenHero`, `InfoCardGrid`, or `MenuBoard`.
 4. Add operational behaviours like `ContentRotator`, `AutoPagingList`, `ScheduleGate`, `OfflineFallback`, or `StaleDataIndicator` where needed.
 
 That gives you a screen that is visually legible, structurally stable, and better suited to unattended operation.

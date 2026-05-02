@@ -38,4 +38,10 @@ describe('office lobby primitives', () => {
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getAllByRole('listitem')).toHaveLength(2);
   });
+
+  it('renders duplicate info items without dropping list entries', () => {
+    render(<InfoList items={['• Check in at reception', '• Check in at reception']} />);
+
+    expect(screen.getAllByRole('listitem')).toHaveLength(2);
+  });
 });

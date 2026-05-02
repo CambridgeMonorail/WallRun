@@ -1,5 +1,4 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import '../../common-tailwind/src/storybook.css';
+import 'common-tailwind/storybook';
 
 export const parameters = {
   options: {

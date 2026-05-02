@@ -20,15 +20,18 @@ describe('MenuBoard components', () => {
 
   it('renders menu sections and preserves stacked item rows on narrow layouts', () => {
     render(
-      <MenuSection title="Breakfast" contentClassName="space-y-5">
-        <MenuItem
-          name="Classic Breakfast"
-          price="$12.99"
-          description="Eggs, bacon, toast, hash browns"
-        />
-      </MenuSection>,
+      <MenuBoard title="Cafe Menu" subtitle="Served until 11:30">
+        <MenuSection title="Breakfast" contentClassName="space-y-5">
+          <MenuItem
+            name="Classic Breakfast"
+            price="$12.99"
+            description="Eggs, bacon, toast, hash browns"
+          />
+        </MenuSection>
+      </MenuBoard>,
     );
 
+    expect(screen.getByRole('heading', { name: 'Cafe Menu' })).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { name: 'Breakfast' }),
     ).toBeInTheDocument();

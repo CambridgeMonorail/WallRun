@@ -25,6 +25,7 @@
       "@wallrun/shadcnui/*": ["libs/shadcnui/src/*"],
       "@wallrun/shell": ["libs/shell/src/index.ts"],
       "common-tailwind": ["libs/common-tailwind/src/index.ts"],
+      "common-tailwind/storybook": ["libs/common-tailwind/src/storybook.ts"],
       "common-tailwind/styles": ["libs/common-tailwind/src/styles.ts"],
       "storybook-host": ["libs/storybook-host/src/index.ts"],
       "wallrun": ["tools/wallrun/src/index.ts"]

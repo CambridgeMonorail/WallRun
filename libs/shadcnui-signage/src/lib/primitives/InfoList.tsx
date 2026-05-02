@@ -29,8 +29,8 @@ export const InfoList: FC<InfoListProps> = ({
       )}
       data-testid="info-list"
     >
-      {items.map((item) => (
-        <li key={item} className={itemClassName}>
+      {items.map((item, index) => (
+        <li key={`${item}-${index}`} className={itemClassName}>
           {item}
         </li>
       ))}
