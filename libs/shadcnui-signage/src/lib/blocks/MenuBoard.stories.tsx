@@ -46,22 +46,46 @@ export const CategoryColumns: Story = {
           {
             title: 'Breakfast',
             items: [
-              ['Classic Breakfast', '$12.99', 'Eggs, bacon, toast, hash browns'],
-              ['Pancake Stack', '$9.99', 'Buttermilk pancakes with maple syrup'],
+              [
+                'Classic Breakfast',
+                '$12.99',
+                'Eggs, bacon, toast, hash browns',
+              ],
+              [
+                'Pancake Stack',
+                '$9.99',
+                'Buttermilk pancakes with maple syrup',
+              ],
             ],
           },
           {
             title: 'Lunch Specials',
             items: [
-              ['Club Sandwich', '$13.99', 'Turkey, bacon, lettuce, tomato, mayo'],
-              ['Caesar Salad', '$10.99', 'Romaine, parmesan, croutons, Caesar dressing'],
+              [
+                'Club Sandwich',
+                '$13.99',
+                'Turkey, bacon, lettuce, tomato, mayo',
+              ],
+              [
+                'Caesar Salad',
+                '$10.99',
+                'Romaine, parmesan, croutons, Caesar dressing',
+              ],
             ],
           },
           {
             title: 'Dinner Entrees',
             items: [
-              ['Grilled Salmon', '$24.99', 'Atlantic salmon with seasonal vegetables'],
-              ['Pasta Primavera', '$18.99', 'Fresh vegetables in garlic white wine sauce'],
+              [
+                'Grilled Salmon',
+                '$24.99',
+                'Atlantic salmon with seasonal vegetables',
+              ],
+              [
+                'Pasta Primavera',
+                '$18.99',
+                'Fresh vegetables in garlic white wine sauce',
+              ],
             ],
           },
         ].map((section) => (

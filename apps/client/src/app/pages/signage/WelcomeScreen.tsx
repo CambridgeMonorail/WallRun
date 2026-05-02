@@ -1,8 +1,5 @@
 import { FC } from 'react';
-import {
-  FullscreenHero,
-  SignageContainer,
-} from '@wallrun/shadcnui-signage';
+import { FullscreenHero, SignageContainer } from '@wallrun/shadcnui-signage';
 import { SignageExample } from './components/SignageExample';
 
 export const WelcomeScreen: FC = () => {

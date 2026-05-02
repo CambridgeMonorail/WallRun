@@ -12,7 +12,9 @@ describe('MenuBoard components', () => {
       </MenuBoard>,
     );
 
-    expect(screen.getByRole('heading', { name: "Today's Menu" })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: "Today's Menu" }),
+    ).toBeInTheDocument();
     expect(screen.getByText('Fresh. Local. Delicious.')).toBeInTheDocument();
   });
 
@@ -27,9 +29,13 @@ describe('MenuBoard components', () => {
       </MenuSection>,
     );
 
-    expect(screen.getByRole('heading', { name: 'Breakfast' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Breakfast' }),
+    ).toBeInTheDocument();
 
-    const itemHeading = screen.getByRole('heading', { name: 'Classic Breakfast' });
+    const itemHeading = screen.getByRole('heading', {
+      name: 'Classic Breakfast',
+    });
     expect(itemHeading.parentElement).toHaveClass('flex-col', 'sm:flex-row');
     expect(screen.getByText('$12.99')).toBeInTheDocument();
   });

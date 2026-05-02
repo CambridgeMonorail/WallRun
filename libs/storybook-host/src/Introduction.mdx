@@ -69,36 +69,42 @@ That sequence moves from screen shell, to composition, to operational behaviour.
 
 ```tsx
 import {
-	ContentRotator,
-	FullscreenHero,
-	OfflineFallback,
-	SignageContainer,
-	SignageHeader,
+  ContentRotator,
+  FullscreenHero,
+  OfflineFallback,
+  SignageContainer,
+  SignageHeader,
 } from '@wallrun/shadcnui-signage';
 
 export function LobbyWelcomeScreen() {
-	return (
-		<SignageContainer variant="teal">
-			<div className="flex h-full flex-col gap-10 px-12 py-14 text-white lg:px-16 lg:py-16">
-				<SignageHeader
-					tag="Main lobby"
-					title="Visitor arrivals"
-					subtitle="Welcome, queue guidance, and live building notices"
-				/>
+  return (
+    <SignageContainer variant="teal">
+      <div className="flex h-full flex-col gap-10 px-12 py-14 text-white lg:px-16 lg:py-16">
+        <SignageHeader
+          tag="Main lobby"
+          title="Visitor arrivals"
+          subtitle="Welcome, queue guidance, and live building notices"
+        />
 
-				<OfflineFallback
-					isOnline
-					isHealthy
-					fallback={<FullscreenHero title="Information unavailable" />}
-				>
-					<ContentRotator intervalMs={6000} transition="fade">
-						<FullscreenHero title="Welcome to WallRun" subtitle="Check in at reception" />
-						<FullscreenHero title="Today at 14:30" subtitle="Product demo in Studio A" />
-					</ContentRotator>
-				</OfflineFallback>
-			</div>
-		</SignageContainer>
-	);
+        <OfflineFallback
+          isOnline
+          isHealthy
+          fallback={<FullscreenHero title="Information unavailable" />}
+        >
+          <ContentRotator intervalMs={6000} transition="fade">
+            <FullscreenHero
+              title="Welcome to WallRun"
+              subtitle="Check in at reception"
+            />
+            <FullscreenHero
+              title="Today at 14:30"
+              subtitle="Product demo in Studio A"
+            />
+          </ContentRotator>
+        </OfflineFallback>
+      </div>
+    </SignageContainer>
+  );
 }
 ```
 

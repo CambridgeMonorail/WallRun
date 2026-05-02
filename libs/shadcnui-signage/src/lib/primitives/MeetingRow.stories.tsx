@@ -57,7 +57,11 @@ export const BoardReview: Story = {
           Next meeting
         </div>
         <div className="mt-4">
-          <MeetingRow time="09:30" title="Quarterly Board Review" room="Atrium 4" />
+          <MeetingRow
+            time="09:30"
+            title="Quarterly Board Review"
+            room="Atrium 4"
+          />
         </div>
       </div>
     </div>
@@ -77,7 +81,11 @@ export const LiveAgenda: Story = {
       </div>
       <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm lg:p-10">
         <div className="space-y-2 lg:space-y-3">
-          <MeetingRow time="09:30" title="Quarterly Board Review" room="Atrium 4" />
+          <MeetingRow
+            time="09:30"
+            title="Quarterly Board Review"
+            room="Atrium 4"
+          />
           <MeetingRow time="11:00" title="Partner Standup" room="North 2" />
           <MeetingRow time="14:15" title="Design Critique" room="Studio A" />
           <MeetingRow time="16:00" title="Client Debrief" room="Harbour 1" />

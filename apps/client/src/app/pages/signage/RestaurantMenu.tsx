@@ -1,9 +1,5 @@
 import { FC } from 'react';
-import {
-  MenuBoard,
-  MenuItem,
-  MenuSection,
-} from '@wallrun/shadcnui-signage';
+import { MenuBoard, MenuItem, MenuSection } from '@wallrun/shadcnui-signage';
 import { SignageExample } from './components/SignageExample';
 
 const menuCategories = {

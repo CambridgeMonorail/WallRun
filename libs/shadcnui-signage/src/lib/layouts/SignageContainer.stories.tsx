@@ -115,17 +115,23 @@ const createDashboardChildren = () => (
     </div>
     <div className="grid w-full max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
       <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm">
-        <div className="text-6xl font-semibold tracking-tight text-white">$1.2M</div>
+        <div className="text-6xl font-semibold tracking-tight text-white">
+          $1.2M
+        </div>
         <div className="mt-3 text-xl text-slate-300">Revenue</div>
         <div className="mt-2 text-lg text-emerald-300">+12.5%</div>
       </div>
       <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm">
-        <div className="text-6xl font-semibold tracking-tight text-white">8,432</div>
+        <div className="text-6xl font-semibold tracking-tight text-white">
+          8,432
+        </div>
         <div className="mt-3 text-xl text-slate-300">Users</div>
         <div className="mt-2 text-lg text-rose-300">-3.2%</div>
       </div>
       <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm">
-        <div className="text-6xl font-semibold tracking-tight text-white">24.8%</div>
+        <div className="text-6xl font-semibold tracking-tight text-white">
+          24.8%
+        </div>
         <div className="mt-3 text-xl text-slate-300">Conversion</div>
         <div className="mt-2 text-lg text-emerald-300">+8.4%</div>
       </div>

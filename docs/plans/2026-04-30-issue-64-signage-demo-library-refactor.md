@@ -31,17 +31,17 @@ down like this:
 ### Present Or Sufficiently Landed
 
 - `#62 SignageHeader subtitle` is already represented by the existing
-      `SignageHeader.subtitle` API.
+  `SignageHeader.subtitle` API.
 
 ### Partial
 
 - `#55 AmbientOrbs` is partially covered by `SignageContainer.showAmbientOrbs`,
-      but not as a standalone exported primitive.
+  but not as a standalone exported primitive.
 - `#54 GridOverlay` is partially covered by `SignageContainer.showGrid`, but
-      not as a standalone exported primitive or customizable overlay.
+  not as a standalone exported primitive or customizable overlay.
 - `#61 FullscreenHero enhancements` is partially covered by the existing
-      `FullscreenHero`, but it still lacks the visual hooks needed for the current
-      `WelcomeScreen` implementation.
+  `FullscreenHero`, but it still lacks the visual hooks needed for the current
+  `WelcomeScreen` implementation.
 
 ### Still Missing From The Library Surface
 
@@ -62,12 +62,12 @@ down like this:
 ## Immediate Sequence
 
 1. Use `WelcomeScreen.tsx` as the first refactor target because it is the
-       smallest high-priority page and the library already has partial support via
-       `SignageContainer` and `FullscreenHero`.
+   smallest high-priority page and the library already has partial support via
+   `SignageContainer` and `FullscreenHero`.
 2. Land the smallest `FullscreenHero` and decorative-surface enhancements
-       needed to reproduce `WelcomeScreen` without page-local raw HTML.
+   needed to reproduce `WelcomeScreen` without page-local raw HTML.
 3. Validate that slice before moving on to directory and menu components, which
-       still require clearly missing primitives.
+   still require clearly missing primitives.
 
 ## Task Breakdown
 
@@ -115,7 +115,7 @@ demo pages still depend on missing or only-partial library surfaces.
 #### Current Mapping
 
 - `WelcomeScreen.tsx`: blocked by `#61` and functionally by `#56`; may also use
-      the partial `#54` and `#55` surfaces if enhancing `FullscreenHero` is enough.
+  the partial `#54` and `#55` surfaces if enhancing `FullscreenHero` is enough.
 - `OfficeDirectory.tsx`: blocked by `#50`, `#51`, and `#59`.
 - `RestaurantMenu.tsx`: blocked by `#47`, `#48`, `#49`, and likely `#57`.
 
@@ -127,7 +127,7 @@ demo pages still depend on missing or only-partial library surfaces.
 #### Current Mapping
 
 - `DaypartMenu.tsx`: blocked by the same menu component set as
-      `RestaurantMenu.tsx` (`#47`, `#48`, `#49`).
+  `RestaurantMenu.tsx` (`#47`, `#48`, `#49`).
 - `OfficeLobbyLoop.tsx`: blocked by `#52`, `#58`, and `#60`.
 
 ### Low Priority
@@ -147,10 +147,10 @@ demo pages still depend on missing or only-partial library surfaces.
 - focused `WelcomeScreen` page and component tests passed
 - focused `OfficeDirectory` page and primitive tests passed
 - focused `RestaurantMenu` and `DaypartMenu` page tests plus menu component
-      tests passed
+  tests passed
 - focused `OfficeLobbyLoop` page and primitive tests passed
 - combined scoped regression run across touched signage pages and new component
-      specs passed
+  specs passed
 
 ## Likely Files To Change
 

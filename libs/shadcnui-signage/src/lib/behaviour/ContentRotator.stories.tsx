@@ -199,7 +199,10 @@ export const DefaultRotation: Story = {
               title="Weather"
               body="A later slide can carry transport or weather disruption without permanently displacing the welcome state."
               accent="Heavy rain expected after 17:00"
-              details={['Shuttle queue moves indoors', 'South entrance recommended']}
+              details={[
+                'Shuttle queue moves indoors',
+                'South entrance recommended',
+              ]}
             />,
           ]}
         </ContentRotator>
@@ -255,7 +258,10 @@ const PauseResumeControlsStory: FC = () => {
               title="Visitor check-in"
               body="Hold this screen while queues build so nobody misses the active instruction set."
               accent="Photo ID required for temporary badges"
-              details={['Reception opens extra desk at 09:15', 'Delivery drivers use loading bay entry']}
+              details={[
+                'Reception opens extra desk at 09:15',
+                'Delivery drivers use loading bay entry',
+              ]}
             />,
             <Slide
               key="2"
@@ -263,7 +269,10 @@ const PauseResumeControlsStory: FC = () => {
               title="Catering service"
               body="Resume when the space is ready to rotate back through lower-priority content."
               accent="Atrium coffee bar open until 11:30"
-              details={['Quiet tables on Level 2', 'Vegetarian menu at kiosk 4']}
+              details={[
+                'Quiet tables on Level 2',
+                'Vegetarian menu at kiosk 4',
+              ]}
             />,
             <Slide
               key="3"
@@ -271,7 +280,10 @@ const PauseResumeControlsStory: FC = () => {
               title="Community events"
               body="The loop can carry lighter editorial content once the operational need has passed."
               accent="Design critique in Studio A at 16:00"
-              details={['Open seating from 15:45', 'Streaming link in staff channel']}
+              details={[
+                'Open seating from 15:45',
+                'Streaming link in staff channel',
+              ]}
             />,
           ]}
         </ContentRotator>
@@ -319,7 +331,10 @@ const DynamicChildrenLengthChangeStory: FC = () => {
       title="Evening reception"
       body="This third slide disappears after six seconds to simulate a feed-driven update."
       accent="Removed from schedule"
-      details={['Room released to catering', 'Playlist should continue smoothly']}
+      details={[
+        'Room released to catering',
+        'Playlist should continue smoothly',
+      ]}
     />,
   ]);
 

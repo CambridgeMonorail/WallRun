@@ -109,9 +109,14 @@ export const MenuBoard: FC<MenuBoardProps> = ({
           )}
         >
           <div>
-            {eyebrow && (
-              eyebrowVariant === 'pill' ? (
-                <div className={cn('mb-4 inline-block rounded-full border border-teal-500/20 bg-teal-500/10 px-4 py-2 sm:mb-6 sm:px-6 sm:py-3 lg:px-8', eyebrowClassName)}>
+            {eyebrow &&
+              (eyebrowVariant === 'pill' ? (
+                <div
+                  className={cn(
+                    'mb-4 inline-block rounded-full border border-teal-500/20 bg-teal-500/10 px-4 py-2 sm:mb-6 sm:px-6 sm:py-3 lg:px-8',
+                    eyebrowClassName,
+                  )}
+                >
                   <p className="text-sm tracking-[0.3em] text-teal-300 sm:text-lg lg:text-2xl">
                     {eyebrow}
                   </p>
@@ -125,8 +130,7 @@ export const MenuBoard: FC<MenuBoardProps> = ({
                 >
                   {eyebrow}
                 </div>
-              )
-            )}
+              ))}
             <h1
               className={cn(
                 'text-5xl font-bold leading-none text-white sm:text-6xl lg:text-8xl',

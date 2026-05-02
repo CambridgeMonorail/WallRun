@@ -79,7 +79,8 @@ export const LeftAligned: Story = {
     tag: 'Today',
     tagVariant: 'blue',
     title: 'Daily announcements',
-    subtitle: 'Use left alignment when the header anchors a denser content grid.',
+    subtitle:
+      'Use left alignment when the header anchors a denser content grid.',
     alignment: 'left',
   },
 };

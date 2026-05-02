@@ -15,7 +15,9 @@ describe('DirectoryCard primitives', () => {
       />,
     );
 
-    expect(screen.getByRole('heading', { name: 'Engineering' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Engineering' }),
+    ).toBeInTheDocument();
     expect(screen.getByText('Floor 3')).toBeInTheDocument();
     expect(screen.getByText('Room 301')).toBeInTheDocument();
     expect(screen.getByText('x3001')).toBeInTheDocument();

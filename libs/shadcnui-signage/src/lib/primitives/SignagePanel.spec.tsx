@@ -22,12 +22,17 @@ describe('office lobby primitives', () => {
     expect(screen.getByText('09:30')).toBeInTheDocument();
     expect(screen.getByText('Design Review')).toBeInTheDocument();
     expect(screen.getByText('S1.12')).toBeInTheDocument();
-    expect(screen.getByTestId('meeting-row')).toHaveClass('flex-col', 'lg:flex-row');
+    expect(screen.getByTestId('meeting-row')).toHaveClass(
+      'flex-col',
+      'lg:flex-row',
+    );
   });
 
   it('renders info lists as list items', () => {
     render(
-      <InfoList items={['• Fire exits: follow green signage', '• Wi-Fi: HQ-Guest']} />,
+      <InfoList
+        items={['• Fire exits: follow green signage', '• Wi-Fi: HQ-Guest']}
+      />,
     );
 
     expect(screen.getByRole('list')).toBeInTheDocument();
