@@ -10,7 +10,7 @@ const meta: Meta<typeof OfflineFallback> = {
     docs: {
       description: {
         component:
-          'OfflineFallback keeps a signage region stable when networked content disappears. Useful stories should compare the live state and the fallback state in a real screen context, not just toggle between two generic boxes.',
+          'OfflineFallback keeps a data-driven region useful when the live feed is unavailable or unhealthy. Use it around unstable content boundaries so an unattended screen never collapses into an empty slot, spinner, or broken widget. The fallback should preserve the last dependable instruction, not just apologise for failure.',
       },
     },
   },
@@ -33,6 +33,30 @@ const meta: Meta<typeof OfflineFallback> = {
 
 export default meta;
 type Story = StoryObj<typeof OfflineFallback>;
+
+const onlineOfflineSource = String.raw`import { OfflineFallback } from '@wallrun/shadcnui-signage';
+
+export function TransportPanel({ isOnline, isHealthy }: { isOnline: boolean; isHealthy: boolean }) {
+  return (
+    <OfflineFallback
+      isOnline={isOnline}
+      isHealthy={isHealthy}
+      fallback={<TransportFallbackPanel />}
+    >
+      <LiveDeparturesPanel />
+    </OfflineFallback>
+  );
+}`;
+
+const healthSignalSource = String.raw`import { OfflineFallback } from '@wallrun/shadcnui-signage';
+
+export function FeedBoundary() {
+  return (
+    <OfflineFallback isOnline isHealthy={false} fallback={<FallbackPanel />}>
+      <LiveFeedPanel />
+    </OfflineFallback>
+  );
+}`;
 
 const shellClassName =
   'mx-auto grid h-full max-w-6xl gap-10 lg:grid-cols-[0.92fr_1.08fr]';
@@ -80,6 +104,17 @@ const fallbackPanel = (
 
 export const OnlineOfflineToggle: Story = {
   args: { isOnline: true, isHealthy: true },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This example shows the core boundary: when connectivity or feed health drops, the region swaps to a stable replacement instead of disappearing. Toggle the controls to compare the live and fallback states in the same layout shell.',
+      },
+      source: {
+        code: onlineOfflineSource,
+      },
+    },
+  },
   render: (args) => (
     <div className={shellClassName}>
       <div className="flex flex-col justify-between gap-8">
@@ -109,6 +144,17 @@ export const OnlineOfflineToggle: Story = {
 
 export const HealthSignalFallback: Story = {
   args: { isOnline: true, isHealthy: false },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Browser connectivity is not enough. In production, the device can still be online while the upstream service is stale, failing, or returning invalid data. Treat health as a first-class condition and fail over anyway.',
+      },
+      source: {
+        code: healthSignalSource,
+      },
+    },
+  },
   render: (args) => (
     <div className={shellClassName}>
       <div className="space-y-6">

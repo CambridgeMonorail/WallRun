@@ -10,7 +10,7 @@ const meta: Meta<typeof Countdown> = {
     docs: {
       description: {
         component:
-          'Countdown is for deadline-driven screen states: doors opening, launches starting, or timed notices expiring. The stronger stories treat the timer as the main message zone and show both imminent and long-range timing states.',
+          'Countdown is for deadline-driven screen states where time itself is the main message. Use it for door openings, launches, service cutovers, and any moment when a viewer needs one clear deadline rather than a dense dashboard. Choose the format based on the time horizon so the screen feels deliberate instead of frantic.',
       },
     },
   },
@@ -35,7 +35,52 @@ const meta: Meta<typeof Countdown> = {
 export default meta;
 type Story = StoryObj<typeof Countdown>;
 
+const imminentCountdownSource = String.raw`import { Countdown } from '@wallrun/shadcnui-signage';
+
+export function DoorOpenTimer() {
+  const targetEpochMs = Date.now() + 90_000;
+
+  return (
+    <Countdown
+      targetEpochMs={targetEpochMs}
+      format="mm:ss"
+      className="text-7xl font-semibold tracking-tight"
+    />
+  );
+}`;
+
+const launchWindowSource = String.raw`import { Countdown } from '@wallrun/shadcnui-signage';
+
+export function BroadcastCountdown() {
+  const targetEpochMs = Date.now() + 4 * 60 * 60 * 1000;
+
+  return (
+    <Countdown
+      targetEpochMs={targetEpochMs}
+      format="HH:mm:ss"
+      className="text-6xl font-semibold tracking-tight"
+    />
+  );
+}`;
+
+const completedSource = String.raw`import { Countdown } from '@wallrun/shadcnui-signage';
+
+export function CompletedState() {
+  return <Countdown targetEpochMs={Date.now() - 10_000} format="human" />;
+}`;
+
 export const NinetySeconds: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the short countdown format when the timer needs to dominate the screen and communicate immediate action. At this horizon, the countdown is the headline, not a supporting stat.',
+      },
+      source: {
+        code: imminentCountdownSource,
+      },
+    },
+  },
   render: () => {
     const target = Date.now() + 90_000;
     return (
@@ -68,6 +113,17 @@ export const NinetySeconds: Story = {
 };
 
 export const Completed: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When the deadline has passed, the screen should read like a resolved state instead of a broken timer. The human format helps the completed message feel intentional.',
+      },
+      source: {
+        code: completedSource,
+      },
+    },
+  },
   render: () => {
     const target = Date.now() - 10_000;
     return (
@@ -92,6 +148,17 @@ export const Completed: Story = {
 };
 
 export const LaunchWindow: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Longer lead times need a calmer representation. Showing hours, minutes, and seconds is useful for event and broadcast windows that stay on screen for extended periods.',
+      },
+      source: {
+        code: launchWindowSource,
+      },
+    },
+  },
   render: () => {
     const target = Date.now() + 4 * 60 * 60 * 1000 + 23 * 60 * 1000 + 14_000;
     return (

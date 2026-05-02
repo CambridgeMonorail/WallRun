@@ -4,205 +4,165 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Best Practices for Digital Signage
 
-## Design Principles
+This guide reflects the way the signage docs are structured in Storybook: establish a stable screen shell first, then add content blocks, then add behaviour around those blocks.
 
-### 1. The 10-Foot Rule
+## Build Screens In Layers
 
-Content must be readable from at least 10 feet away:
+The most reliable signage screens are built in four steps:
 
-- **Minimum font sizes**: 48px for body text, 72px+ for headings
-- **High contrast**: Light text on dark backgrounds or vice versa
-- **Bold weights**: Medium (500) minimum, Bold (700) preferred
-- **Avoid**: Small text, low contrast, thin fonts
+1. Define the display surface.
+2. Define stable layout regions.
+3. Fill those regions with readable content.
+4. Add timing, paging, gating, or fallback behaviour around whole regions.
 
-### 2. Fixed Aspect Ratios
+If behaviour shows up before the screen has a clear structure, the result usually reads like a component demo rather than a finished display.
 
-Always design for specific resolutions:
+## 1. Start With A Stable Surface
 
-- **1080p landscape**: 1920x1080 (16:9)
-- **4K landscape**: 3840x2160 (16:9)
-- **1080p portrait**: 1080x1920 (9:16)
+Use `SignageContainer` for real application screens.
 
-Use `ScreenFrame` to enforce these constraints during development.
-
-### 3. Deterministic Layouts
-
-Signage layouts must be predictable:
-
-- **No dynamic reflows**: Content shouldn't shift based on data length
-- **Fixed heights**: Use absolute heights, not `auto`
-- **Text clamping**: Use `line-clamp` to prevent overflow
-- **Safe areas**: Keep critical content within safe margins
-
-### 4. Performance Considerations
-
-Signage runs 24/7 on embedded hardware:
-
-- **Optimize images**: Compress and use appropriate formats (WebP)
-- **Limit animations**: Smooth 60fps animations only
-- **Avoid memory leaks**: Clean up intervals, timeouts, and event listeners
-- **Test on target hardware**: BrightSign devices have different performance characteristics
-
-## Component Usage
-
-### ScreenFrame
-
-Always wrap signage content in `ScreenFrame`:
+Use `ScreenFrame` for previews, Storybook, and QA when you need to simulate the actual target resolution and safe area.
 
 ```tsx
 <ScreenFrame resolution="1080p" scale={0.5}>
-  {/* Your signage content */}
+  <SignageContainer variant="blue">...</SignageContainer>
 </ScreenFrame>
 ```
 
-- Use `scale={0.5}` during development for easier preview
-- Set `scale={1}` or omit for production
-- Enable `showSafeArea` during QA to verify margins
+Why this matters:
 
-### Layout Patterns
+- the screen aspect ratio is known in advance
+- the safe area can be checked before deployment
+- the rest of the composition has a predictable canvas
 
-#### SplitScreen
+## 2. Establish Regions Before Behaviour
 
-Use for two-zone layouts:
+Use layouts such as `SignageHeader`, `SplitScreen`, and fixed panels to decide where content belongs before you add operational logic.
 
 ```tsx
-<SplitScreen direction="row" ratio="60-40">
-  <MainContent />
-  <Sidebar />
-</SplitScreen>
+<SignageContainer variant="teal">
+  <div className="flex h-full flex-col gap-10 px-12 py-14">
+    <SignageHeader
+      title="Visitor arrivals"
+      subtitle="Check-in, notices, and live updates"
+    />
+
+    <SplitScreen ratio="60-40">
+      <MainZone />
+      <SidebarZone />
+    </SplitScreen>
+  </div>
+</SignageContainer>
 ```
 
-**Best for**:
+The shell should still make sense even if no behaviour is active yet.
 
-- Dashboard + sidebar
-- Hero + callout
-- Main content + branding
+## 3. Favour Whole Message States Over Dense Fragments
 
-#### FullscreenHero
+The audience is standing across the room, not scanning a laptop screen.
 
-Use for single-message displays:
+Prefer:
+
+- one dominant headline
+- a small number of supporting facts
+- clear region boundaries
+- large consistent type sizes
+
+Avoid:
+
+- too many competing highlights
+- tiny labels spread across the whole screen
+- layouts that depend on unpredictable text length
+- mixing unrelated content modes in one panel
+
+## 4. Add Behaviour Around Regions, Not Inside Fragments
+
+Use behaviours to swap, page, or protect complete content states.
+
+Good pattern:
 
 ```tsx
-<FullscreenHero
-  title="Welcome"
-  subtitle="Modern workspace"
-  variant="dark"
-  backgroundImageUrl="/hero-bg.jpg"
-/>
+<OfflineFallback fallback={<FallbackPanel />}>
+  <ContentRotator intervalMs={6000} transition="fade">
+    <WelcomeState />
+    <EventState />
+    <WeatherState />
+  </ContentRotator>
+</OfflineFallback>
 ```
 
-**Best for**:
+Weak pattern:
 
-- Lobby welcome screens
-- Event announcements
-- Branding displays
+- one behaviour wrapping a tiny label
+- another behaviour wrapping one row inside the same card
+- several timing rules competing inside a region with no clear state boundary
 
-#### InfoCardGrid
+The screen should have obvious state ownership.
 
-Use for metrics and data displays:
+## Readability Rules
 
-```tsx
-<InfoCardGrid items={metricCards} columns={3} density="comfortable" />
-```
+### Distance First
 
-**Best for**:
+- body text should usually stay large enough to read from several metres away
+- headings should dominate the screen clearly
+- line length and line count should stay controlled
 
-- KPI dashboards
-- Status boards
-- Real-time metrics
+### Clamp Dynamic Content
 
-## Typography
-
-### Size Scale
-
-Use these sizes for signage content:
-
-- **Small**: 48px
-- **Base**: 56px
-- **Large**: 72px
-- **XLarge**: 96px
-- **Hero**: 144px+
-
-### Font Weights
-
-- **Body text**: 500 (medium) minimum
-- **Headings**: 600 (semibold) or 700 (bold)
-- **Emphasis**: 700 (bold) or 800 (extrabold)
-
-### Line Height
-
-- **Headings**: 1.1 to 1.2
-- **Body text**: 1.3 to 1.5
-- **Never**: Less than 1.1 (causes cramped text)
-
-## Color and Contrast
-
-### WCAG AAA Compliance
-
-Signage should meet WCAG AAA standards (7:1 contrast ratio):
-
-- **Dark backgrounds**: Use `slate-900` or darker
-- **Light text**: Use `white` or `slate-50`
-- **Avoid**: Mid-tone backgrounds with mid-tone text
-
-### Color Usage
-
-- **Primary accent**: Use sparingly for emphasis
-- **Status colors**: Green (positive), red (negative/alert), yellow (warning)
-- **Backgrounds**: Dark (preferred) or very light, avoid mid-tones
-
-## Common Pitfalls
-
-### 1. Dynamic Content Overflow
-
-❌ **Don't**: Allow dynamic text to break layout
+Use clamping and fixed-height regions so the layout does not collapse when data changes.
 
 ```tsx
-<div>
-  <h1>{dynamicTitle}</h1> {/* Could be any length! */}
-</div>
-```
-
-✅ **Do**: Use text clamping
-
-```tsx
-<div>
+<div className="h-[400px] overflow-hidden">
   <h1 className="line-clamp-2">{dynamicTitle}</h1>
 </div>
 ```
 
-### 2. Responsive Breakpoints
+### Keep Contrast Obvious
 
-❌ **Don't**: Use responsive breakpoints for signage
+- use strong foreground/background contrast
+- reserve accent colours for emphasis and status
+- avoid mid-tone-on-mid-tone combinations
 
-```tsx
-<div className="text-base md:text-lg lg:text-xl">
-  {/* This is for websites, not signage */}
-</div>
-```
+## Behaviour-Specific Guidance
 
-✅ **Do**: Use fixed sizes for known resolutions
+### `ContentRotator`
 
-```tsx
-<div className="text-6xl">
-  {' '}
-  {/* Fixed size for signage */}
-  Content
-</div>
-```
+Rotate full content states, not minor fragments. The viewer should understand each slide as a distinct screen state.
 
-### 3. Auto Heights
+### `AutoPagingList`
 
-❌ **Don't**: Use auto heights that can cause reflow
+Use paging when the content is sequential and too long for one screen, but still deserves large readable rows. If the content feels cramped even after paging, the problem is density, not pagination.
 
-```tsx
-<div className="h-auto">
-  {dynamicContent} {/* Height changes = layout shift */}
-</div>
-```
+### `ScheduleGate`
 
-✅ **Do**: Use fixed or calculated heights
+Gate complete daypart or mode-specific regions. Avoid scattering schedule logic across individual labels or rows.
 
-```tsx
-<div className="h-[400px] overflow-hidden">{dynamicContent}</div>
-```
+### `OfflineFallback`
+
+Fail into a deliberate replacement state, not a blank panel or apology message. The fallback should still help the viewer act.
+
+## Common Failure Modes
+
+### Responsive Website Thinking
+
+Avoid treating signage like a generic responsive page with many breakpoints and fluid layout behaviour. Most signage screens target known resolutions and should behave deterministically.
+
+### Auto-Sized Regions
+
+Avoid layouts that grow and shrink based on feed content. Fixed or carefully bounded regions are easier to validate and safer to run unattended.
+
+### Behaviour Without A Shell
+
+If the behaviour demo is the only interesting part of the screen, the screen composition is probably underdesigned. The shell should remain coherent before rotation, paging, or fallback logic is added.
+
+## Validation Checklist
+
+Before you trust a signage screen, check:
+
+- does the screen still read clearly on first render?
+- does long data stay within its region?
+- does the layout survive content loss or feed mutation?
+- does each timed or gated state feel intentional?
+- does the screen still make sense from distance?
+
+That is the standard the Storybook signage examples should meet as well.

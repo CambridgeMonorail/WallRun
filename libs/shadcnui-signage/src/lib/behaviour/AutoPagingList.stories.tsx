@@ -10,6 +10,14 @@ const meta: Meta<typeof AutoPagingList> = {
   title: 'Signage/Behaviour/AutoPagingList',
   component: AutoPagingList,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'AutoPagingList is for dense, ordered content that exceeds one screen but still needs large readable type. Use it when the region should page predictably with no manual controls, such as schedules, agenda boards, arrivals, or notices. Build the visual shell first, then let AutoPagingList manage which slice of content is visible inside that fixed region.',
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <div className="bg-slate-950/95 p-8">
@@ -25,6 +33,69 @@ const meta: Meta<typeof AutoPagingList> = {
 
 export default meta;
 type Story = StoryObj<typeof AutoPagingList>;
+
+const eventsPagingSource = String.raw`import { AutoPagingList } from '@wallrun/shadcnui-signage';
+
+export function AgendaBoard({ items }: { items: AgendaItem[] }) {
+  return (
+    <AutoPagingList
+      items={items}
+      pageSize={5}
+      dwellMs={2000}
+      getKey={(item) => item.id}
+      renderItem={(item) => <AgendaRow item={item} />}
+    />
+  );
+}`;
+
+const itemsUpdateSource = String.raw`import { useEffect, useState } from 'react';
+import { AutoPagingList } from '@wallrun/shadcnui-signage';
+
+export function LiveAgenda() {
+  const [items, setItems] = useState(initialItems);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      setItems((current) => [...current.slice(0, 2), insertedAlert, ...current.slice(2)]);
+    }, 4500);
+
+    return () => window.clearTimeout(id);
+  }, []);
+
+  return (
+    <AutoPagingList
+      items={items}
+      pageSize={4}
+      dwellMs={2000}
+      getKey={(item) => item.id}
+      renderItem={(item) => <AgendaRow item={item} />}
+    />
+  );
+}`;
+
+const pauseResumeSource = String.raw`import { useState } from 'react';
+import { AutoPagingList } from '@wallrun/shadcnui-signage';
+
+export function OperatorControlledList({ items }: { items: NoticeItem[] }) {
+  const [paused, setPaused] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setPaused((value) => !value)}>
+        {paused ? 'Resume rotation' : 'Pause rotation'}
+      </button>
+
+      <AutoPagingList
+        items={items}
+        pageSize={3}
+        dwellMs={1500}
+        isPaused={paused}
+        getKey={(item) => item.id}
+        renderItem={(item) => <NoticeRow item={item} />}
+      />
+    </>
+  );
+}`;
 
 const row = (item: EventItem) => (
   <div className="flex items-center justify-between gap-6 rounded-[1.5rem] border border-white/10 bg-white/5 px-6 py-5 shadow-lg backdrop-blur-sm lg:px-8 lg:py-6">
@@ -49,6 +120,17 @@ const panelClassName =
   'rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl backdrop-blur-sm lg:p-10';
 
 export const EventsPaging: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use paging when the content is naturally sequential and deserves large type. This example keeps five agenda rows readable without turning the region into a tiny scrolling list.',
+      },
+      source: {
+        code: eventsPagingSource,
+      },
+    },
+  },
   render: () => <EventsPagingStory />,
 };
 
@@ -111,6 +193,17 @@ const EventsPagingStory: FC = () => {
 };
 
 export const ItemsUpdateMidCycle: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Real feeds change while the screen is already live. This story shows the list recovering from a mid-cycle insertion without dumping the user back to the beginning of an unrelated page.',
+      },
+      source: {
+        code: itemsUpdateSource,
+      },
+    },
+  },
   render: () => <ItemsUpdateMidCycleStory />,
 };
 
@@ -177,6 +270,17 @@ const ItemsUpdateMidCycleStory: FC = () => {
 };
 
 export const PauseAndResume: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pausing matters when an operator wants to hold the current page for attention, announcements, or queue management. The list should stop paging without changing layout or resetting the visible slice.',
+      },
+      source: {
+        code: pauseResumeSource,
+      },
+    },
+  },
   render: () => <PauseAndResumeStory />,
 };
 

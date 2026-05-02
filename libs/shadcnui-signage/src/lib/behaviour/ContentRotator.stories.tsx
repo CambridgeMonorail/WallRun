@@ -12,7 +12,7 @@ const meta: Meta<typeof ContentRotator> = {
     docs: {
       description: {
         component:
-          'ContentRotator handles screen-level slide loops for welcome sequences, announcement playlists, or multi-state dashboard zones. The useful stories are the ones that show why a screen would rotate at all, not just that the index increments.',
+          'ContentRotator is for regions that need to cycle through several complete messages while the rest of the screen remains stable. Build the surrounding shell first, then rotate whole content states inside that shell. The strongest uses are welcome loops, announcement playlists, and feed-driven side panels where each slide deserves full-screen hierarchy.',
       },
     },
   },
@@ -45,6 +45,57 @@ const shellClassName =
 const panelClassName =
   'rounded-[2rem] border border-white/10 bg-slate-950/72 p-8 shadow-2xl backdrop-blur-sm lg:p-10';
 
+const defaultRotationSource = String.raw`import { ContentRotator } from '@wallrun/shadcnui-signage';
+
+export function LobbyPlaylist() {
+  return (
+    <ContentRotator intervalMs={5000} transition="fade">
+      <LobbyAnnouncement />
+      <EventPromo />
+      <WeatherAdvisory />
+    </ContentRotator>
+  );
+}`;
+
+const pauseResumeSource = String.raw`import { useState } from 'react';
+import { ContentRotator } from '@wallrun/shadcnui-signage';
+
+export function CheckInLoop() {
+  const [paused, setPaused] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setPaused((value) => !value)}>
+        {paused ? 'Resume loop' : 'Pause loop'}
+      </button>
+
+      <ContentRotator intervalMs={2500} isPaused={paused} transition="slide">
+        <CheckInState />
+        <CafeState />
+        <CommunityState />
+      </ContentRotator>
+    </>
+  );
+}`;
+
+const dynamicChildrenSource = String.raw`import { useEffect, useState } from 'react';
+import { ContentRotator } from '@wallrun/shadcnui-signage';
+
+export function FeedDrivenLoop() {
+  const [slides, setSlides] = useState([
+    <MorningBrief key="morning" />,
+    <LunchService key="lunch" />,
+    <EveningReception key="evening" />,
+  ]);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => setSlides((current) => current.slice(0, 2)), 6000);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  return <ContentRotator intervalMs={2000} transition="fade">{slides}</ContentRotator>;
+}`;
+
 const Slide = ({
   eyebrow,
   title,
@@ -60,23 +111,23 @@ const Slide = ({
 }) => (
   <div className="flex min-h-[540px] flex-col justify-between rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm lg:p-10">
     <div>
-    <div className="text-sm uppercase tracking-[0.32em] text-teal-200/70 lg:text-base">
-      {eyebrow}
-    </div>
-    <div className="mt-6 text-5xl font-semibold tracking-tight text-white lg:text-7xl">
-      {title}
-    </div>
-    <p className="mt-5 max-w-3xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
-      {body}
-    </p>
-    <div className="mt-10 rounded-[1.5rem] border border-white/10 bg-slate-950/55 p-6 lg:p-8">
-      <div className="text-sm uppercase tracking-[0.28em] text-teal-200/60">
-        Current emphasis
+      <div className="text-sm uppercase tracking-[0.32em] text-teal-200/70 lg:text-base">
+        {eyebrow}
       </div>
-      <div className="mt-3 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-        {accent}
+      <div className="mt-6 text-5xl font-semibold tracking-tight text-white lg:text-7xl">
+        {title}
       </div>
-    </div>
+      <p className="mt-5 max-w-3xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
+        {body}
+      </p>
+      <div className="mt-10 rounded-[1.5rem] border border-white/10 bg-slate-950/55 p-6 lg:p-8">
+        <div className="text-sm uppercase tracking-[0.28em] text-teal-200/60">
+          Current emphasis
+        </div>
+        <div className="mt-3 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+          {accent}
+        </div>
+      </div>
     </div>
     <div className="mt-8 grid gap-4 lg:grid-cols-2">
       {details.map((detail) => (
@@ -92,6 +143,17 @@ const Slide = ({
 );
 
 export const DefaultRotation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use a rotation when one zone has several equally important states and none of them should be squeezed into a single busy layout. The left side remains stable while the right side cycles through full messages.',
+      },
+      source: {
+        code: defaultRotationSource,
+      },
+    },
+  },
   render: () => (
     <div className={shellClassName}>
       <div className="flex flex-col justify-between gap-8">
@@ -147,6 +209,17 @@ export const DefaultRotation: Story = {
 };
 
 export const PauseResumeControls: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pause the loop when an operator needs to hold a single state on screen. That is a common lobby and reception pattern during check-in, incident handling, or live announcements.',
+      },
+      source: {
+        code: pauseResumeSource,
+      },
+    },
+  },
   render: () => <PauseResumeControlsStory />,
 };
 
@@ -208,6 +281,17 @@ const PauseResumeControlsStory: FC = () => {
 };
 
 export const DynamicChildrenLengthChange: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Real feeds change while a playlist is active. This example shows the rotator staying stable when a slide disappears at runtime instead of restarting or leaving the region in an invalid state.',
+      },
+      source: {
+        code: dynamicChildrenSource,
+      },
+    },
+  },
   render: () => <DynamicChildrenLengthChangeStory />,
 };
 

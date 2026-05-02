@@ -4,265 +4,131 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Getting Started
 
-## Installation
+This page is the shortest path from an empty file to a credible signage screen.
 
-WallRun component libraries are organized in an Nx monorepo. To use them in your project:
-
-### 1. Clone the Repository
+## Run The Workspace
 
 ```bash
 git clone https://github.com/CambridgeMonorail/WallRun.git
 cd WallRun
-```
-
-### 2. Install Dependencies
-
-```bash
 pnpm install
-```
-
-### 3. Run Storybook Locally
-
-```bash
 pnpm storybook
 ```
 
-This will start Storybook at `http://localhost:4400` where you can explore all components interactively.
+Storybook runs at `http://localhost:4400`.
 
-### 4. Build the Client App
+If you want the demo website as well:
 
 ```bash
 pnpm serve:client
 ```
 
-This starts the demo website at `http://localhost:4173`.
+## Start With The Right Surface
 
-## Using Signage Components
+Use `SignageContainer` in real application screens.
 
-### Import from @wallrun/shadcnui-signage
+Use `ScreenFrame` in stories, previews, and QA when you need to simulate an actual display resolution or safe area.
 
-```typescript
+That distinction matters:
+
+- `SignageContainer` is the app-facing full-screen shell.
+- `ScreenFrame` is the preview and validation shell.
+
+## Build In This Order
+
+1. Establish the surface with `SignageContainer`.
+2. Add structure with `SignageHeader` or `SplitScreen`.
+3. Fill zones with blocks and primitives.
+4. Wrap unstable regions with behaviours such as `ContentRotator`, `ScheduleGate`, or `OfflineFallback`.
+
+That order keeps the screen stable and makes operational logic easier to reason about.
+
+## Minimal Realistic Example
+
+```tsx
 import {
-  ScreenFrame,
-  SignageContainer,
+  ContentRotator,
   FullscreenHero,
-  InfoCardGrid,
-  SplitScreen,
+  OfflineFallback,
+  SignageContainer,
+  SignageHeader,
 } from '@wallrun/shadcnui-signage';
-```
 
-### Basic Example: Fullscreen Hero
+const fallback = (
+  <FullscreenHero
+    title="Live notices unavailable"
+    subtitle="Please check reception for updates"
+    variant="dark"
+  />
+);
 
-```tsx
-import { ScreenFrame, FullscreenHero } from '@wallrun/shadcnui-signage';
-
-export function MySignage() {
+export function LobbyScreen() {
   return (
-    <ScreenFrame resolution="1080p" scale={0.5}>
-      <FullscreenHero
-        title="Welcome to Our Lobby"
-        subtitle="Modern workspace for modern teams"
-        variant="dark"
-      />
-    </ScreenFrame>
+    <SignageContainer variant="blue">
+      <div className="flex h-full flex-col gap-10 px-12 py-14 lg:px-16 lg:py-16">
+        <SignageHeader
+          tag="Main lobby"
+          title="Welcome to WallRun"
+          subtitle="Arrivals, notices, and live building updates"
+        />
+
+        <OfflineFallback isOnline isHealthy fallback={fallback}>
+          <ContentRotator intervalMs={6000} transition="fade">
+            <FullscreenHero
+              title="Check in at reception"
+              subtitle="Visitor badges available at desk 2"
+              variant="dark"
+            />
+            <FullscreenHero
+              title="Today at 14:30"
+              subtitle="Product demo in Studio A"
+              variant="dark"
+            />
+          </ContentRotator>
+        </OfflineFallback>
+      </div>
+    </SignageContainer>
   );
 }
 ```
 
-### Example: Split Screen Layout
+## Common First Routes Through The Library
 
-```tsx
-import { ScreenFrame, SplitScreen } from '@wallrun/shadcnui-signage';
+Choose a route based on the kind of screen you are building:
 
-export function DashboardSignage() {
-  return (
-    <ScreenFrame resolution="1080p">
-      <SplitScreen direction="row" ratio="60-40">
-        {/* Left zone: Main content */}
-        <div className="p-8">
-          <h1 className="text-6xl font-bold">Dashboard</h1>
-        </div>
+### Welcome Or Arrival Screens
 
-        {/* Right zone: Sidebar */}
-        <div className="p-8 bg-slate-900">
-          <h2 className="text-4xl">Stats</h2>
-        </div>
-      </SplitScreen>
-    </ScreenFrame>
-  );
-}
-```
+- `Signage/Layouts/SignageContainer`
+- `Signage/Layouts/SignageHeader`
+- `Signage/Blocks/FullscreenHero`
+- `Signage/Behaviour/ContentRotator`
 
-### Example: Info Card Grid
+### Menu Boards
 
-```tsx
-import { ScreenFrame, InfoCardGrid } from '@wallrun/shadcnui-signage';
+- `Signage/Blocks/MenuBoard`
+- `Signage/Primitives/MenuSection`
+- `Signage/Primitives/MenuItem`
+- `Signage/Behaviour/ScheduleGate`
 
-const cards = [
-  {
-    title: 'Revenue',
-    value: '$1.2M',
-    subtitle: '+12% from last month',
-    status: 'positive' as const,
-  },
-  {
-    title: 'Active Users',
-    value: '12,345',
-    subtitle: '+234 this week',
-    status: 'positive' as const,
-  },
-  // ... more cards
-];
+### Lobby, Schedule, And Operations Screens
 
-export function MetricsSignage() {
-  return (
-    <ScreenFrame resolution="1080p">
-      <InfoCardGrid items={cards} columns={3} density="comfortable" />
-    </ScreenFrame>
-  );
-}
-```
+- `Signage/Primitives/SignagePanel`
+- `Signage/Primitives/MeetingRow`
+- `Signage/Primitives/InfoList`
+- `Signage/Behaviour/OfflineFallback`
+- `Signage/Behaviour/StaleDataIndicator`
 
-## Understanding ScreenFrame
+## What To Look For In Storybook
 
-`ScreenFrame` is a foundational primitive that ensures your signage layouts are deterministic and preview correctly:
+The best stories here do more than render a component. They should show:
 
-- **resolution**: Target screen resolution (`'1080p'`, `'4k'`, `'portrait-1080p'`)
-- **scale**: Preview scale factor (0.1 to 1.0) for development
-- **showSafeArea**: Toggle safe area overlay for QA
+- a plausible screen context
+- readable type hierarchy at display scale
+- a clear reason the component exists
+- operational behaviour that matches real unattended screens
 
-Always wrap your signage content in a `ScreenFrame` to ensure correct aspect ratios and responsive behavior.
-
-## Project Structure
-
-```
-libs/
-  shadcnui-signage/          # Signage components (primary focus)
-    primitives/              # Core building blocks
-    layouts/                 # Fixed-aspect layouts
-    blocks/                  # Composed components
-
-  shadcnui/                  # shadcn/ui base components
-  shadcnui-blocks/           # Composite web components
-  landing/                   # Landing page sections
-  shell/                     # App shell components
-```
+If a story reads like a small component test, treat it as API reference, not design guidance.
 
 ## Next Steps
 
-- Explore **1-Signage** components in the sidebar
-- Review the **Best Practices** guide
-- Check out the [demo website](https://cambridgemonorail.github.io/WallRun/)
-- Browse the [GitHub repository](https://github.com/CambridgeMonorail/WallRun)
-
-## Introduction
-
-Welcome to the WallRun (TSA) monorepo. This document provides an overview of the various libraries available within the monorepo, each designed to help you build a consistent, maintainable, and cohesive application.
-
-## Overview of Libraries
-
-#### 1. **`@wallrun/shadcnui`**
-
-- **Description**: A library providing base UI components styled with @wallrun/shadcnui, ensuring a consistent look and feel across the application. It includes components like switches, tables, and more.
-- **Usage**: Use these components to maintain a cohesive design system throughout the application.
-- **Example**:
-
-  ```tsx
-  import { Switch, Table, TableRow, TableCell } from '@wallrun/shadcnui';
-
-  const Settings = () => (
-    <div>
-      <Switch checked={true} onCheckedChange={() => {}} />
-      <Table>
-        <TableRow>
-          <TableCell>Item 1</TableCell>
-          <TableCell>Item 2</TableCell>
-        </TableRow>
-      </Table>
-    </div>
-  );
-  ```
-
-For more information on @wallrun/shadcnui, visit their [website](https://ui.shadcn.com/).
-
-#### 2. **`@wallrun/shadcnui-blocks`**
-
-- **Description**: A collection of composite UI components built from the base Shadcn UI components. The library includes components such as buttons, cards, dialogs, and more.
-- **Usage**: Import and use these components to build consistent and cohesive user interfaces.
-- **Example**:
-
-  ```tsx
-  import { Button, Card, Dialog } from '@wallrun/shadcnui-blocks';
-
-  const App = () => (
-    <div>
-      <Button variant="primary">Click Me</Button>
-      <Card title="Card Title">Card Content</Card>
-      <Dialog isOpen={true} onClose={() => {}}>
-        Dialog Content
-      </Dialog>
-    </div>
-  );
-  ```
-
-#### 3. **`common-tailwind`**
-
-- **Description**: A library containing common Tailwind CSS configurations and utility classes used across the monorepo. It includes preflight styles and theme configurations.
-- **Usage**: Import the CSS files to apply consistent styling and utility classes throughout the application.
-- **Example**:
-  ```css
-  @import 'common-tailwind/src/preflight.css';
-  @import 'common-tailwind/src/shadcn-theme.css';
-  ```
-
-For more information on Tailwind CSS, visit their [website](https://tailwindcss.com/).
-
-#### 4. **`@wallrun/landing`**
-
-- **Description**: A library containing components and sections specifically designed for the landing pages of the application. It includes sections like Hero, About, CTA, and more.
-- **Usage**: Use these components to build engaging and informative landing pages.
-- **Example**:
-
-  ```tsx
-  import { HeroSection, AboutSection, CTASection } from '@wallrun/landing';
-
-  const LandingPage = () => (
-    <div>
-      <HeroSection title="Welcome" subtitle="Discover our platform" />
-      <AboutSection />
-      <CTASection />
-    </div>
-  );
-  ```
-
-#### 5. **`@wallrun/shell`**
-
-- **Description**: A library providing layout components and utilities for the overall structure of the application. It includes components like `Layout`, `AppSidebar`, `Breadcrumb`, and more.
-- **Usage**: Use these components to create a consistent and responsive layout for the application.
-- **Example**:
-
-  ```tsx
-  import { Layout, AppSidebar, Breadcrumb } from '@wallrun/shell';
-
-  const App = () => (
-    <Layout>
-      <AppSidebar />
-      <Breadcrumb />
-      <main>{/* Main content */}</main>
-    </Layout>
-  );
-  ```
-
-### Summary
-
-The monorepo is organized into several libraries, each serving a specific purpose to ensure a modular, maintainable, and cohesive codebase. These libraries include:
-
-- **`@wallrun/shadcnui`**: Base @wallrun/shadcnui components.
-- **`@wallrun/shadcnui-blocks`**: Composite UI components built from @wallrun/shadcnui components.
-- **`@wallrun/common-tailwind`**: Common Tailwind CSS configurations.
-- **`@wallrun/landing`**: Components for landing pages.
-- **`@wallrun/shell`**: Layout components and utilities.
-
-By leveraging these libraries, you can build a consistent and maintainable application with a clear separation of concerns.
-
-For more information on Nx, visit their [website](https://nx.dev/).
+Read `Best Practices` after this page, then move into the `Signage` docs in the order suggested on the Introduction page.
