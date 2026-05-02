@@ -6,6 +6,27 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Documentation
 
+### Install WallRun Components
+
+If you are here to add signage components to an existing app, start here.
+
+- [Published Registry](https://cambridgemonorail.github.io/WallRun/registry/registry.json) - Source for `npx shadcn@latest add ...`
+- [shadcn CLI Installation Docs](https://ui.shadcn.com/docs/installation) - CLI setup and usage reference
+
+Single-component install:
+
+```bash
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json clock
+```
+
+Multi-component install:
+
+```bash
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate
+```
+
+WallRun registry installs copy components into your project. They are intended to be modified after installation rather than treated as an opaque runtime dependency.
+
 ### Project Documentation
 
 - [GitHub Repository](https://github.com/CambridgeMonorail/WallRun) - Source code, issues, and contributions

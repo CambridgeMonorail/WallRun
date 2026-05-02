@@ -8,6 +8,29 @@ WallRun is a component library and demo surface for building digital signage as 
 
 The primary library is `@wallrun/shadcnui-signage`. It is built for full-screen layouts, known resolutions, distance readability, and always-on operation on hardware such as BrightSign players.
 
+You can use this Storybook in two ways:
+
+- as composition guidance when you are working inside the WallRun workspace
+- as installation guidance when you want to add specific signage components to an existing React app through the published shadcn registry
+
+## Install From The Published Registry
+
+If you do not need the full monorepo, you can install individual signage components from the published registry.
+
+Before running these commands, make sure you are inside a React app that is already set up for Tailwind CSS and `shadcn/ui`. If your app is not ready yet, follow the [shadcn installation guide](https://ui.shadcn.com/docs/installation) first.
+
+Run the following commands from the root of that prepared app:
+
+```bash
+# Install one component
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json clock
+
+# Install several components at once
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate
+```
+
+These components are copied into your application codebase. They are not installed as a locked runtime package, so you can edit them freely once added.
+
 ## What This Storybook Is For
 
 Use this Storybook to answer three practical questions:
@@ -125,3 +148,5 @@ The other libraries in this Storybook support the broader WallRun workspace:
 - `@wallrun/landing` and `@wallrun/shell` support the demo website chrome rather than signage content itself.
 
 Start in `Signage` unless you are working on the website rather than the display content.
+
+If you want the detailed install workflow next, read [Getting Started](?path=/docs/getting-started--documentation). If you want the full WallRun workspace rather than copied components, use [Resources](?path=/docs/resources--documentation).

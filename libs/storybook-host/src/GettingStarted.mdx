@@ -23,6 +23,26 @@ If you want the demo website as well:
 pnpm serve:client
 ```
 
+## Install Components Into An Existing App
+
+If you already have a React app and only want the signage components, use the published shadcn registry instead of cloning the whole monorepo.
+
+Before running these commands, make sure you are inside a React app that is already set up for Tailwind CSS and `shadcn/ui`. If your app is not ready yet, complete the [shadcn installation guide](https://ui.shadcn.com/docs/installation) first.
+
+Run the following commands from the root of that prepared app:
+
+```bash
+# Install one component
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
+
+# Install several at once
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate
+```
+
+This uses the shadcn CLI to copy the selected components into your codebase along with the files and npm dependencies they need. Once installed, you own that code and can adapt it to your project.
+
+Choose this route when you want WallRun signage primitives inside an existing application. Clone the full repository only if you also want the demo site, player scaffolding, deployment scripts, or the rest of the workspace tooling.
+
 ## Start With The Right Surface
 
 Use `SignageContainer` in real application screens.
@@ -43,7 +63,7 @@ That distinction matters:
 
 That order keeps the screen stable and makes operational logic easier to reason about.
 
-If you already know the screen shape but need to make it fit a venue or customer brand, read `Theming` before you start adding ad hoc class overrides to stories or pages.
+If you already know the screen shape but need to make it fit a venue or customer brand, read [Theming](?path=/docs/theming--documentation) before you start adding ad hoc class overrides to stories or pages.
 
 ## Minimal Realistic Example
 
@@ -133,4 +153,4 @@ If a story reads like a small component test, treat it as API reference, not des
 
 ## Next Steps
 
-Read `Theming` next if you need to adapt the shared palette or screen chrome for a brand. Read `Best Practices` next if you want guidance on how to structure the screen itself.
+Read [Theming](?path=/docs/theming--documentation) next if you need to adapt the shared palette or screen chrome for a brand. Read [Best Practices](?path=/docs/best-practices--documentation) next if you want guidance on how to structure the screen itself. Read [Resources](?path=/docs/resources--documentation) if you want the GitHub repository, demo website, or broader project documentation.
