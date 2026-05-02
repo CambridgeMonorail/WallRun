@@ -27,6 +27,8 @@ pnpm serve:client
 
 If you already have a React app and only want the signage components, use the published shadcn registry instead of cloning the whole monorepo.
 
+These commands assume your app already has Tailwind and the shadcn CLI configured. If it does not, complete the [shadcn installation guide](https://ui.shadcn.com/docs/installation) before you add WallRun components.
+
 ```bash
 # Install one component
 npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
@@ -59,7 +61,7 @@ That distinction matters:
 
 That order keeps the screen stable and makes operational logic easier to reason about.
 
-If you already know the screen shape but need to make it fit a venue or customer brand, read `Theming` before you start adding ad hoc class overrides to stories or pages.
+If you already know the screen shape but need to make it fit a venue or customer brand, read [Theming](?path=/docs/theming--documentation) before you start adding ad hoc class overrides to stories or pages.
 
 ## Minimal Realistic Example
 
@@ -149,4 +151,4 @@ If a story reads like a small component test, treat it as API reference, not des
 
 ## Next Steps
 
-Read `Theming` next if you need to adapt the shared palette or screen chrome for a brand. Read `Best Practices` next if you want guidance on how to structure the screen itself. Read `Resources` if you want the GitHub repository, demo website, or broader project documentation.
+Read [Theming](?path=/docs/theming--documentation) next if you need to adapt the shared palette or screen chrome for a brand. Read [Best Practices](?path=/docs/best-practices--documentation) next if you want guidance on how to structure the screen itself. Read [Resources](?path=/docs/resources--documentation) if you want the GitHub repository, demo website, or broader project documentation.
