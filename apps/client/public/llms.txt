@@ -1,0 +1,41 @@
+# WallRun
+
+> WallRun is an open-source React workspace for building digital signage as software, with signage-oriented UI components, BrightSign deployment workflows, installable skills, and public documentation for developers.
+
+Use this file as the curated index for the main public WallRun docs surfaces.
+
+Important notes:
+
+- `https://wallrun.dev/library` is the high-level component library overview and install-context page.
+- `https://wallrun.dev/components` is the detailed signage component reference index.
+- Storybook and the published shadcn registry are hosted separately from the main `wallrun.dev` docs shell.
+
+## Primary Docs
+
+- [Home](https://wallrun.dev/): product overview, positioning, and links into the docs surfaces.
+- [Getting Started](https://wallrun.dev/getting-started): first-stop setup guidance, including adding signage components to an existing React app.
+- [Tooling And Deployment](https://wallrun.dev/tooling): player app scaffolding, BrightSign packaging, deployment, discovery, and MCP tooling.
+- [Skills](https://wallrun.dev/skills): catalog of installable signage-oriented skills.
+- [Gallery](https://wallrun.dev/gallery): example signage screens and demo compositions.
+
+## Components
+
+- [Component Library Overview](https://wallrun.dev/library): high-level explanation of the WallRun component libraries, registry workflow, and Storybook entry point.
+- [Signage Components Reference](https://wallrun.dev/components): overview of primitives, layouts, blocks, and behaviour components.
+- [Color Palette](https://wallrun.dev/color-palette): WallRun demo-site palette and contrast guidance.
+
+## Install And Reference
+
+- [Published Registry JSON](https://cambridgemonorail.github.io/WallRun/registry/registry.json): shadcn-compatible registry source for installing WallRun signage components.
+- [Storybook Introduction](https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation): interactive component and composition docs.
+- [Storybook Getting Started](https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/getting-started--documentation): Storybook install guidance and next-step docs.
+
+## Source And Maintenance
+
+- [GitHub Repository](https://github.com/CambridgeMonorail/WallRun): source code, issues, and contribution entry point.
+- [Registry Maintenance Guide](https://github.com/CambridgeMonorail/WallRun/blob/main/docs/guides/registry-maintenance.md): maintainer docs for the published registry.
+
+## Optional
+
+- [Storybook Resources](https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/resources--documentation): supporting links for Storybook consumers.
+- [Sitemap](https://wallrun.dev/sitemap.xml): full XML URL inventory for the public site.
