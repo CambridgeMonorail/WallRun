@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { AlertTriangle, CheckCircle2, Clock3 } from 'lucide-react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 import type { NowProvider } from '../types/time.types';
 import { useTicker } from '../hooks/useTicker';
 

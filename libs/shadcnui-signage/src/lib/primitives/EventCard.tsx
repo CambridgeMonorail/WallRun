@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Clock, MapPin } from 'lucide-react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 
 export interface EventCardProps {
   /**

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 import { FloorBadge } from './FloorBadge';
 
 export interface DirectoryCardProps {

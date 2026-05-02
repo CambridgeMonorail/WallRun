@@ -1,11 +1,11 @@
+import { cn } from '../utils/cn';
 import {
-  cn,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@wallrun/shadcnui';
+} from '../utils/card';
 import { getClampClass } from '../utils/clamp';
 import type {
   InfoCardItem,

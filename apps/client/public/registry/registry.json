@@ -15,6 +15,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -51,6 +55,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/EventCard.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -65,6 +73,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/AnnouncementCard.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -83,6 +95,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/FloorBadge.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -97,6 +113,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/FloorBadge.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -111,6 +131,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/LocationIndicator.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -125,6 +149,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MenuItem.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -139,6 +167,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MenuSection.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -153,6 +185,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/SignagePanel.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -167,6 +203,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MeetingRow.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -181,6 +221,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/InfoList.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -213,6 +257,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -227,6 +275,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageHeader.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -244,6 +296,10 @@
         },
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/clamp.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
           "type": "registry:lib"
         },
         {
@@ -269,6 +325,14 @@
           "type": "registry:lib"
         },
         {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/card.tsx",
+          "type": "registry:lib"
+        },
+        {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
           "type": "registry:lib"
         }
@@ -289,6 +353,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -314,6 +382,10 @@
         },
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
           "type": "registry:lib"
         }
       ]
@@ -345,6 +417,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
           "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -367,6 +443,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
           "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -384,6 +464,10 @@
         },
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/hooks/usePrefersReducedMotion.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
           "type": "registry:lib"
         }
       ]
@@ -407,6 +491,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
           "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -429,6 +517,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
           "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -443,6 +535,10 @@
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/OfflineFallback.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -464,6 +560,10 @@
         },
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
           "type": "registry:lib"
         }
       ]

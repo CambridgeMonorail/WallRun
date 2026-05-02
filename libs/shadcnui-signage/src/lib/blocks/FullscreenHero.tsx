@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 import { getClampClass } from '../utils/clamp';
 import type { Variant } from '../types/signage.types';
 
