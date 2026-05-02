@@ -7,6 +7,7 @@ export const parameters = {
       order: [
         'Introduction',
         'Getting Started',
+        'Theming',
         'Best Practices',
         'Resources',
         'Signage',

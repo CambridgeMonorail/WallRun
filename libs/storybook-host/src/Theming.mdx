@@ -1,0 +1,207 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Theming" />
+
+# Theming
+
+This page explains the current theming model for `@wallrun/shadcnui-signage`, where the default values live, and how to adapt the library for a different brand without forking component internals.
+
+## The Current Theme Model
+
+The signage library uses two layers of styling ownership.
+
+### 1. Shared Token Layer
+
+The neutral base theme lives in `libs/common-tailwind`.
+
+- `libs/common-tailwind/src/shadcn-theme.css` defines the shared CSS variables such as `--background`, `--foreground`, `--card`, `--accent`, `--border`, and `--ring`.
+- `libs/common-tailwind/src/main.css` exposes those variables to Tailwind as semantic colors such as `bg-background`, `text-foreground`, `bg-card`, and `text-muted-foreground`.
+- `libs/common-tailwind/DESIGN.md` defines the contract: the shared theme should stay signage-safe, high-contrast, and brand-neutral.
+
+This is the layer to override when you want a different venue, tenant, or customer identity across an application.
+
+### 2. Signage Composition Layer
+
+The signage components add a second layer of visual control.
+
+- `SignageContainer` provides fixed gradient variants and ambient treatments for full-screen shells.
+- blocks such as `MenuBoard` and `FullscreenHero` expose class-name hooks for titles, subtitles, eyebrows, and content regions.
+- stories and apps can add venue-specific gradients, imagery, and emphasis at the composition layer.
+
+This is important because the current signage surface is not fully tokenized yet. The neutral shared tokens control the base surface, but some signage-specific treatments still live in component classes and variants.
+
+## Default Shared Palette
+
+These are the shared defaults defined in `libs/common-tailwind/src/shadcn-theme.css`.
+
+<ColorPalette>
+  <ColorItem
+    title="Base surfaces"
+    subtitle="Neutral screen-safe backgrounds and containers"
+    colors={{
+      Background: 'hsl(220 13% 12%)',
+      Card: 'hsl(220 13% 14%)',
+      Popover: 'hsl(220 13% 12%)',
+      Primary: 'hsl(220 13% 10%)',
+    }}
+  />
+  <ColorItem
+    title="Readable text"
+    subtitle="High-contrast foreground and muted supporting copy"
+    colors={{
+      Foreground: 'hsl(0 0% 90%)',
+      CardForeground: 'hsl(0 0% 90%)',
+      MutedForeground: 'hsl(210 5% 64%)',
+      PrimaryForeground: 'hsl(0 0% 90%)',
+    }}
+  />
+  <ColorItem
+    title="Structural accents"
+    subtitle="Accent, border, ring, and destructive states"
+    colors={{
+      Accent: 'hsl(215 8% 47%)',
+      Border: 'hsl(220 10% 25%)',
+      Ring: 'hsl(215 8% 47%)',
+      Destructive: 'hsl(0 62% 50%)',
+    }}
+  />
+  <ColorItem
+    title="Built-in signage shells"
+    subtitle="Representative `SignageContainer` gradient families"
+    colors={{
+      Emerald: 'linear-gradient(135deg, rgb(2 6 23), rgb(6 78 59 / 0.3), rgb(2 6 23))',
+      Teal: 'linear-gradient(135deg, rgb(2 6 23), rgb(4 47 46), rgb(2 6 23))',
+      Indigo: 'linear-gradient(135deg, rgb(30 27 75), rgb(88 28 135), rgb(131 24 67))',
+      Orange: 'linear-gradient(135deg, rgb(2 6 23), rgb(124 45 18 / 0.2), rgb(2 6 23))',
+    }}
+  />
+</ColorPalette>
+
+## What Should Be Customized Where
+
+Use the smallest layer that changes the right thing.
+
+### Override Shared Tokens When
+
+- the whole application needs a different neutral surface
+- foreground, accent, border, or ring colors should change consistently
+- you want apps and libraries to inherit the same base identity
+
+### Use Component-Level Styling When
+
+- a specific screen needs a venue-specific gradient or hero treatment
+- a board title, eyebrow, or badge needs brand emphasis
+- the shared neutral tokens should stay reusable, but one composition needs a stronger personality
+
+### Avoid Story-Level Ad Hoc Styling When
+
+- the same overrides appear in multiple stories or screens
+- a customer or venue identity needs to be repeated across an app
+- the change really belongs in a shared app shell or theme wrapper
+
+If a color decision should persist across screens, it belongs in the app theme. If it is specific to one screen composition, it belongs in the component usage layer.
+
+## Primary Customization Hooks
+
+These are the main places to work today.
+
+- `libs/common-tailwind/src/shadcn-theme.css`: shared neutral CSS variables
+- `libs/common-tailwind/src/main.css`: semantic Tailwind exposure of those variables
+- `libs/common-tailwind/DESIGN.md`: shared-theme rules and guardrails
+- `libs/shadcnui-signage/DESIGN.md`: signage-specific visual constraints
+- `SignageContainer.variant`: shell-level gradient presets for full-screen surfaces
+- component class hooks such as `titleClassName`, `subtitleClassName`, `eyebrowClassName`, `contentClassName`, and related props on signage blocks and primitives
+
+## Before And After: Brand Override Example
+
+The simplest safe customization flow is:
+
+1. override the shared neutral tokens in your app stylesheet
+2. keep the shared theme brandless
+3. add screen-specific gradients or typography emphasis through component props
+
+### App Theme Override
+
+```css
+.brand-acme {
+  --background: 210 40% 10%;
+  --foreground: 210 40% 96%;
+  --card: 210 34% 14%;
+  --card-foreground: 210 40% 96%;
+  --muted: 210 28% 18%;
+  --muted-foreground: 200 18% 72%;
+  --accent: 185 89% 44%;
+  --accent-foreground: 210 40% 96%;
+  --border: 210 30% 24%;
+  --ring: 185 89% 44%;
+}
+```
+
+### Screen Composition Using The Override
+
+```tsx
+import {
+  MenuBoard,
+  MenuItem,
+  MenuSection,
+  SignageContainer,
+} from '@wallrun/shadcnui-signage';
+
+export function BrandedCafeScreen() {
+  return (
+    <SignageContainer
+      variant="blue"
+      className="brand-acme bg-gradient-to-br from-slate-950 via-cyan-950 to-slate-950"
+    >
+      <MenuBoard
+        eyebrow="Acme cafe"
+        title="Today"
+        subtitle="Breakfast until 11:30"
+        eyebrowClassName="border-cyan-400/30 bg-cyan-400/10"
+        titleClassName="text-cyan-50"
+        subtitleClassName="text-cyan-100/75"
+      >
+        <MenuSection title="Breakfast" contentClassName="space-y-5">
+          <MenuItem name="Classic Breakfast" price="$12.99" />
+        </MenuSection>
+      </MenuBoard>
+    </SignageContainer>
+  );
+}
+```
+
+## Visual Comparison
+
+<div className="grid gap-6 md:grid-cols-2">
+  <div className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm">
+    <div className="text-sm uppercase tracking-[0.3em] text-muted-foreground">Default shared shell</div>
+    <div className="mt-4 rounded-2xl bg-gradient-to-br from-slate-950 via-teal-950 to-slate-950 p-6 text-white">
+      <div className="text-sm uppercase tracking-[0.3em] text-teal-300">Daily selection</div>
+      <div className="mt-4 text-4xl font-bold tracking-tight">Cafe board</div>
+      <div className="mt-2 text-lg text-slate-300">Neutral shared palette with built-in signage variant.</div>
+    </div>
+  </div>
+
+  <div className="brand-acme rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm">
+    <div className="text-sm uppercase tracking-[0.3em] text-muted-foreground">Branded override</div>
+    <div className="mt-4 rounded-2xl bg-gradient-to-br from-slate-950 via-cyan-950 to-slate-950 p-6 text-white">
+      <div className="text-sm uppercase tracking-[0.3em] text-cyan-300">Acme cafe</div>
+      <div className="mt-4 text-4xl font-bold tracking-tight text-cyan-50">Cafe board</div>
+      <div className="mt-2 text-lg text-cyan-100/75">Shared tokens changed at the app layer, then tuned in the screen composition.</div>
+    </div>
+  </div>
+</div>
+
+## Practical Rules
+
+- keep `common-tailwind` neutral and signage-safe
+- put brand identity in the consuming app, not the shared library
+- use semantic tokens for reusable surfaces before reaching for one-off classes
+- use component-level class hooks when the change belongs to one screen, not the whole app
+- treat Storybook examples as customization guidance, not the source of truth for theme ownership
+
+## Read This Next
+
+- return to `Getting Started` if you want the shortest path to a working screen
+- read `Best Practices` if you are deciding where behaviour belongs in a composition
+- use `Resources` for external documentation and project links
