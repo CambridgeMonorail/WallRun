@@ -25,9 +25,28 @@ const meta: Meta<typeof InfoCardGrid> = {
   },
   decorators: [
     (Story) => (
-      <ScreenFrame resolution="1080p" scale={0.4}>
-        <Story />
-      </ScreenFrame>
+      <div className="bg-slate-950/95 p-8">
+        <ScreenFrame resolution="1080p" scale={0.38}>
+          <div className="h-full bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.14),transparent_34%),linear-gradient(145deg,#020617,#0f172a_52%,#082f49)] p-14 text-white">
+            <div className="mx-auto flex h-full max-w-6xl flex-col justify-center rounded-[2rem] border border-white/10 bg-slate-950/68 p-10 shadow-2xl backdrop-blur-sm lg:p-14">
+              <div className="mb-8 lg:mb-10">
+                <div className="text-sm uppercase tracking-[0.32em] text-sky-300/65 lg:text-lg">
+                  Information grid
+                </div>
+                <h2 className="mt-4 text-5xl font-semibold tracking-tight text-white lg:text-7xl">
+                  Repeating cards without bespoke page markup.
+                </h2>
+                <p className="mt-5 max-w-4xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
+                  `InfoCardGrid` is for uniform, glanceable blocks like KPIs,
+                  directories, promos, or schedules. The story frame should make
+                  that usage obvious.
+                </p>
+              </div>
+              <Story />
+            </div>
+          </div>
+        </ScreenFrame>
+      </div>
     ),
   ],
 };

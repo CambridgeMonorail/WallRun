@@ -9,11 +9,21 @@ const meta: Meta<typeof MenuBoard> = {
   title: 'Signage/Blocks/MenuBoard',
   component: MenuBoard,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'MenuBoard is the high-level signage shell for food and beverage layouts. Use it when the screen needs a coordinated header, board surface, and flexible menu sections without rebuilding the page chrome each time.',
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <div className="bg-slate-950/95 p-8">
         <ScreenFrame resolution="1080p" scale={0.4}>
-          <Story />
+          <div className="h-full bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.16),transparent_34%),linear-gradient(135deg,#020617,#052e2b_48%,#031b1a)] p-10">
+            <Story />
+          </div>
         </ScreenFrame>
       </div>
     ),
@@ -26,9 +36,9 @@ type Story = StoryObj<typeof MenuBoard>;
 export const CategoryColumns: Story = {
   render: () => (
     <MenuBoard
-      title="Today's Menu"
-      subtitle="Fresh. Local. Delicious."
-      eyebrow="DAILY SELECTION"
+      title="Today's menu"
+      subtitle="Fresh. Local. Deliberately simple from a distance."
+      eyebrow="Daily selection"
       data-testid="menu-board-story"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-10">
@@ -79,13 +89,14 @@ export const CategoryColumns: Story = {
 export const DaypartBoard: Story = {
   render: () => (
     <MenuBoard
-      title="Daypart Menu"
+      title="Daypart menu"
       eyebrow="Café"
       eyebrowVariant="plain"
       variant="orange"
       className="p-0 bg-gradient-to-br from-amber-950 via-orange-950 to-slate-950"
       shellClassName="px-4 py-6 sm:px-8 sm:py-10 lg:px-16 lg:py-14"
       titleClassName="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-7xl"
+      subtitle="Switch density and typography for time-bound menus without rewriting the shell."
       headerRight={
         <Clock
           format="HH:mm"

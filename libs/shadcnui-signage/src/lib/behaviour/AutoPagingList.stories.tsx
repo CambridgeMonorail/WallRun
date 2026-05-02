@@ -12,11 +12,13 @@ const meta: Meta<typeof AutoPagingList> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <ScreenFrame resolution="1080p" scale={0.5}>
-        <div className="bg-slate-950 p-12 h-full">
-          <Story />
-        </div>
-      </ScreenFrame>
+      <div className="bg-slate-950/95 p-8">
+        <ScreenFrame resolution="1080p" scale={0.42}>
+          <div className="h-full bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.18),transparent_34%),linear-gradient(135deg,#020617,#111827_45%,#1e1b4b)] p-12 text-white lg:p-16">
+            <Story />
+          </div>
+        </ScreenFrame>
+      </div>
     ),
   ],
 };
@@ -25,11 +27,26 @@ export default meta;
 type Story = StoryObj<typeof AutoPagingList>;
 
 const row = (item: EventItem) => (
-  <div className="flex items-center justify-between rounded-2xl border border-slate-700/50 bg-slate-900/30 px-6 py-4">
-    <div className="text-2xl text-white">{item.title}</div>
-    <div className="text-xl text-slate-300 tabular-nums">{item.time}</div>
+  <div className="flex items-center justify-between gap-6 rounded-[1.5rem] border border-white/10 bg-white/5 px-6 py-5 shadow-lg backdrop-blur-sm lg:px-8 lg:py-6">
+    <div>
+      <div className="text-2xl font-semibold tracking-tight text-white lg:text-3xl">
+        {item.title}
+      </div>
+      <div className="mt-1 text-sm uppercase tracking-[0.24em] text-indigo-200/60 lg:text-base">
+        Live agenda item
+      </div>
+    </div>
+    <div className="text-2xl font-medium text-indigo-100/85 tabular-nums lg:text-3xl">
+      {item.time}
+    </div>
   </div>
 );
+
+const shellClassName =
+  'mx-auto grid h-full max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr]';
+
+const panelClassName =
+  'rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl backdrop-blur-sm lg:p-10';
 
 export const EventsPaging: Story = {
   render: () => <EventsPagingStory />,
@@ -38,23 +55,58 @@ export const EventsPaging: Story = {
 const EventsPagingStory: FC = () => {
   const items: EventItem[] = useMemo(
     () =>
-      Array.from({ length: 18 }).map((_, i) => ({
-        id: `event-${i + 1}`,
-        title: `Event ${i + 1}`,
-        time: `${9 + Math.floor(i / 2)}:${i % 2 === 0 ? '00' : '30'}`,
+      [
+        'Opening remarks',
+        'Partner keynote',
+        'Platform roadmap',
+        'Breakout session A',
+        'Breakout session B',
+        'Lunch service',
+        'Customer panel',
+        'Afternoon workshop',
+        'Studio demo',
+        'Networking reception',
+      ].map((title, index) => ({
+        id: `event-${index + 1}`,
+        title,
+        time: `${9 + Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'}`,
       })),
     [],
   );
 
   return (
-    <AutoPagingList
-      items={items}
-      pageSize={5}
-      dwellMs={2000}
-      getKey={(item) => item.id}
-      renderItem={(item) => row(item)}
-      className="space-y-3"
-    />
+    <div className={shellClassName}>
+      <div className="flex flex-col justify-between gap-6">
+        <div>
+          <div className="text-sm uppercase tracking-[0.32em] text-indigo-200/65 lg:text-lg">
+            Rotating content zone
+          </div>
+          <h2 className="mt-4 text-5xl font-semibold tracking-tight text-white lg:text-7xl">
+            Page long schedules without shrinking the type.
+          </h2>
+          <p className="mt-5 max-w-xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
+            `AutoPagingList` works when density exceeds a single screen but the
+            content still has to stay calm and readable.
+          </p>
+        </div>
+        <div className="rounded-[1.5rem] border border-indigo-300/10 bg-indigo-300/8 p-6 text-lg text-indigo-100/80 lg:text-xl">
+          Five rows per page, two-second dwell, no manual pagination controls.
+        </div>
+      </div>
+      <div className={panelClassName}>
+        <div className="mb-6 text-sm uppercase tracking-[0.3em] text-indigo-200/60 lg:text-base">
+          Auditorium schedule
+        </div>
+        <AutoPagingList
+          items={items}
+          pageSize={5}
+          dwellMs={2000}
+          getKey={(item) => item.id}
+          renderItem={(item) => row(item)}
+          className="space-y-3 lg:space-y-4"
+        />
+      </div>
+    </div>
   );
 };
 
@@ -64,10 +116,19 @@ export const ItemsUpdateMidCycle: Story = {
 
 const ItemsUpdateMidCycleStory: FC = () => {
   const [items, setItems] = useState<EventItem[]>(
-    Array.from({ length: 12 }).map((_, i) => ({
-      id: `event-${i + 1}`,
-      title: `Event ${i + 1}`,
-      time: `10:${pad(i * 5)}`,
+    [
+      'Check-in desk',
+      'Coffee service',
+      'Morning briefing',
+      'Floor reset',
+      'Accessibility review',
+      'Lunch prep',
+      'Stage rehearsal',
+      'Venue open',
+    ].map((title, index) => ({
+      id: `event-${index + 1}`,
+      title,
+      time: `10:${pad(index * 5)}`,
     })),
   );
 
@@ -75,7 +136,11 @@ const ItemsUpdateMidCycleStory: FC = () => {
     const id = window.setTimeout(() => {
       setItems((current) => {
         const next = [...current];
-        next.splice(2, 0, { id: 'new', title: 'New Item', time: '11:00' });
+        next.splice(2, 0, {
+          id: 'new',
+          title: 'Security announcement inserted live',
+          time: '11:00',
+        });
         return next;
       });
     }, 4500);
@@ -83,18 +148,30 @@ const ItemsUpdateMidCycleStory: FC = () => {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <div className="text-sm text-slate-400">
-        After 4.5s, an item is inserted near the top.
+    <div className={shellClassName}>
+      <div className="space-y-6">
+        <div className="text-sm uppercase tracking-[0.32em] text-indigo-200/65 lg:text-lg">
+          Feed mutation
+        </div>
+        <h2 className="text-5xl font-semibold tracking-tight text-white lg:text-7xl">
+          Mid-cycle updates stay calm.
+        </h2>
+        <p className="max-w-xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
+          After 4.5 seconds, a new item is inserted near the top of the list.
+          The story shows how the paging system recovers without dumping the
+          whole screen state.
+        </p>
       </div>
-      <AutoPagingList
-        items={items}
-        pageSize={4}
-        dwellMs={2000}
-        getKey={(item) => item.id}
-        renderItem={(item) => row(item)}
-        className="space-y-3"
-      />
+      <div className={panelClassName}>
+        <AutoPagingList
+          items={items}
+          pageSize={4}
+          dwellMs={2000}
+          getKey={(item) => item.id}
+          renderItem={(item) => row(item)}
+          className="space-y-3 lg:space-y-4"
+        />
+      </div>
     </div>
   );
 };
@@ -105,29 +182,46 @@ export const PauseAndResume: Story = {
 
 const PauseAndResumeStory: FC = () => {
   const [paused, setPaused] = useState(false);
-  const items: EventItem[] = Array.from({ length: 10 }).map((_, i) => ({
-    id: `event-${i + 1}`,
-    title: `Item ${i + 1}`,
-    time: `12:${pad(i * 3)}`,
+  const items: EventItem[] = [
+    'Morning headlines',
+    'Weather update',
+    'Visitor notices',
+    'Catering status',
+    'Transport alerts',
+    'Closing reminders',
+  ].map((title, index) => ({
+    id: `event-${index + 1}`,
+    title,
+    time: `12:${pad(index * 3)}`,
   }));
 
   return (
-    <div className="space-y-6">
-      <button
-        className="rounded-md border border-slate-700 px-4 py-2 text-slate-200"
-        onClick={() => setPaused((p) => !p)}
-      >
-        {paused ? 'Resume' : 'Pause'}
-      </button>
-      <AutoPagingList
-        items={items}
-        pageSize={3}
-        dwellMs={1500}
-        isPaused={paused}
-        getKey={(item) => item.id}
-        renderItem={(item) => row(item)}
-        className="space-y-3"
-      />
+    <div className={shellClassName}>
+      <div className="space-y-6">
+        <div className="text-sm uppercase tracking-[0.32em] text-indigo-200/65 lg:text-lg">
+          Operator state
+        </div>
+        <h2 className="text-5xl font-semibold tracking-tight text-white lg:text-7xl">
+          Pause a loop when a human needs to hold the page.
+        </h2>
+        <button
+          className="w-fit rounded-full border border-indigo-200/20 bg-indigo-200/10 px-5 py-3 text-lg font-medium text-indigo-50 transition hover:bg-indigo-200/20"
+          onClick={() => setPaused((value) => !value)}
+        >
+          {paused ? 'Resume rotation' : 'Pause rotation'}
+        </button>
+      </div>
+      <div className={panelClassName}>
+        <AutoPagingList
+          items={items}
+          pageSize={3}
+          dwellMs={1500}
+          isPaused={paused}
+          getKey={(item) => item.id}
+          renderItem={(item) => row(item)}
+          className="space-y-3 lg:space-y-4"
+        />
+      </div>
     </div>
   );
 };

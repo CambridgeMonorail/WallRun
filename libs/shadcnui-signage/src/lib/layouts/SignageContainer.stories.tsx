@@ -1,11 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { SignageContainer } from './SignageContainer';
 import { SignageHeader } from './SignageHeader';
+import { ScreenFrame } from '../primitives/ScreenFrame';
 
 const meta: Meta<typeof SignageContainer> = {
   title: 'Signage/Layouts/SignageContainer',
   component: SignageContainer,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'SignageContainer is the full-screen foundation for signage pages. Use it to apply the ambient gradient system, grid overlay, and consistent safe-area padding before placing blocks or page content inside.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',
@@ -30,13 +39,99 @@ const meta: Meta<typeof SignageContainer> = {
       description: 'Whether to show ambient orb effects',
     },
   },
-  parameters: {
-    layout: 'fullscreen',
-  },
+  decorators: [
+    (Story) => (
+      <div className="bg-slate-950/95 p-8">
+        <ScreenFrame resolution="1080p" scale={0.36}>
+          <Story />
+        </ScreenFrame>
+      </div>
+    ),
+  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof SignageContainer>;
+
+const heroShellClassName =
+  'flex h-full items-center justify-center px-10 py-16 lg:px-16';
+
+const kpiShellClassName =
+  'flex h-full flex-col items-center justify-center gap-12 px-10 py-16 lg:px-16';
+
+const createHeroChildren = (
+  title: string,
+  subtitle: string,
+  tag?: string,
+  tagVariant?: 'emerald' | 'teal' | 'blue' | 'violet' | 'pink' | 'orange',
+) => (
+  <div className={heroShellClassName}>
+    <div className="flex w-full max-w-6xl flex-col gap-8 rounded-[2rem] border border-white/10 bg-slate-950/55 p-10 shadow-2xl backdrop-blur-sm lg:p-14">
+      <SignageHeader
+        tag={tag}
+        tagVariant={tagVariant}
+        title={title}
+        subtitle={subtitle}
+      />
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">
+        <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 shadow-xl">
+          <div className="text-sm uppercase tracking-[0.24em] text-slate-300/65">
+            Zone
+          </div>
+          <div className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            Main lobby
+          </div>
+        </div>
+        <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 shadow-xl">
+          <div className="text-sm uppercase tracking-[0.24em] text-slate-300/65">
+            Mode
+          </div>
+          <div className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            Visitor guidance
+          </div>
+        </div>
+        <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 shadow-xl">
+          <div className="text-sm uppercase tracking-[0.24em] text-slate-300/65">
+            Surface
+          </div>
+          <div className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            Ambient shell
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const createDashboardChildren = () => (
+  <div className={kpiShellClassName}>
+    <div className="w-full max-w-5xl rounded-[2rem] border border-white/10 bg-slate-950/55 p-10 shadow-2xl backdrop-blur-sm lg:p-14">
+      <SignageHeader
+        tag="Live"
+        tagVariant="emerald"
+        title="KPI dashboard"
+        subtitle="Real-time performance metrics across sales, traffic, and conversion"
+      />
+    </div>
+    <div className="grid w-full max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
+      <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm">
+        <div className="text-6xl font-semibold tracking-tight text-white">$1.2M</div>
+        <div className="mt-3 text-xl text-slate-300">Revenue</div>
+        <div className="mt-2 text-lg text-emerald-300">+12.5%</div>
+      </div>
+      <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm">
+        <div className="text-6xl font-semibold tracking-tight text-white">8,432</div>
+        <div className="mt-3 text-xl text-slate-300">Users</div>
+        <div className="mt-2 text-lg text-rose-300">-3.2%</div>
+      </div>
+      <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-sm">
+        <div className="text-6xl font-semibold tracking-tight text-white">24.8%</div>
+        <div className="mt-3 text-xl text-slate-300">Conversion</div>
+        <div className="mt-2 text-lg text-emerald-300">+8.4%</div>
+      </div>
+    </div>
+  </div>
+);
 
 /**
  * Emerald variant with all effects
@@ -46,15 +141,11 @@ export const Emerald: Story = {
     variant: 'emerald',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Live Now"
-          tagVariant="emerald"
-          title="Welcome"
-          subtitle="Emerald variant with ambient effects"
-        />
-      </div>
+    children: createHeroChildren(
+      'Welcome centre',
+      'Emerald can carry calm operational or hospitality content without feeling flat.',
+      'Live now',
+      'emerald',
     ),
   },
 };
@@ -67,15 +158,11 @@ export const Teal: Story = {
     variant: 'teal',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Updated"
-          tagVariant="teal"
-          title="Dashboard"
-          subtitle="Teal variant with gradient effects"
-        />
-      </div>
+    children: createHeroChildren(
+      'Operations overview',
+      'Teal works well for status-heavy internal displays.',
+      'Updated',
+      'teal',
     ),
   },
 };
@@ -88,15 +175,11 @@ export const Blue: Story = {
     variant: 'blue',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Today"
-          tagVariant="blue"
-          title="Welcome"
-          subtitle="Blue variant with ambient orbs"
-        />
-      </div>
+    children: createHeroChildren(
+      'Visitor arrivals',
+      'Blue is the neutral default for general-purpose signage shells.',
+      'Today',
+      'blue',
     ),
   },
 };
@@ -109,15 +192,11 @@ export const Violet: Story = {
     variant: 'violet',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Featured"
-          tagVariant="violet"
-          title="Employee Spotlight"
-          subtitle="Violet variant with elegant gradients"
-        />
-      </div>
+    children: createHeroChildren(
+      'Employee spotlight',
+      'Violet gives editorial or celebratory screens a softer emphasis.',
+      'Featured',
+      'violet',
     ),
   },
 };
@@ -130,15 +209,11 @@ export const Indigo: Story = {
     variant: 'indigo',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Special Event"
-          tagVariant="violet"
-          title="Conference 2026"
-          subtitle="Indigo to pink gradient variant"
-        />
-      </div>
+    children: createHeroChildren(
+      'Conference 2026',
+      'Indigo supports a more dramatic event-led background without custom page CSS.',
+      'Special event',
+      'violet',
     ),
   },
 };
@@ -151,15 +226,11 @@ export const Pink: Story = {
     variant: 'pink',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Celebration"
-          tagVariant="pink"
-          title="Anniversary Party"
-          subtitle="Pink gradient variant"
-        />
-      </div>
+    children: createHeroChildren(
+      'Anniversary party',
+      'Pink gives short-run celebratory screens a brighter mood while preserving readability.',
+      'Celebration',
+      'pink',
     ),
   },
 };
@@ -172,15 +243,11 @@ export const Orange: Story = {
     variant: 'orange',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Alert"
-          tagVariant="orange"
-          title="Important Update"
-          subtitle="Orange variant for attention"
-        />
-      </div>
+    children: createHeroChildren(
+      'Maintenance notice',
+      'Orange is better suited to timed alerts and attention states.',
+      'Alert',
+      'orange',
     ),
   },
 };
@@ -193,15 +260,11 @@ export const Cyan: Story = {
     variant: 'cyan',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          tag="Tech"
-          tagVariant="teal"
-          title="Innovation Hub"
-          subtitle="Cyan variant with modern feel"
-        />
-      </div>
+    children: createHeroChildren(
+      'Innovation hub',
+      'Cyan leans technical without becoming cold or generic.',
+      'Tech',
+      'teal',
     ),
   },
 };
@@ -214,13 +277,9 @@ export const NoGrid: Story = {
     variant: 'blue',
     showGrid: false,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          title="Clean Layout"
-          subtitle="Container without grid overlay"
-        />
-      </div>
+    children: createHeroChildren(
+      'Clean layout',
+      'Disable the grid when the page artwork or photography already carries enough structure.',
     ),
   },
 };
@@ -233,13 +292,9 @@ export const NoAmbientOrbs: Story = {
     variant: 'violet',
     showGrid: true,
     showAmbientOrbs: false,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          title="Minimal Effects"
-          subtitle="Container without ambient orb effects"
-        />
-      </div>
+    children: createHeroChildren(
+      'Minimal effects',
+      'Turn off the ambient glow when the layout needs a stricter, flatter background.',
     ),
   },
 };
@@ -252,13 +307,9 @@ export const Plain: Story = {
     variant: 'blue',
     showGrid: false,
     showAmbientOrbs: false,
-    children: (
-      <div className="h-screen flex items-center justify-center">
-        <SignageHeader
-          title="Plain Container"
-          subtitle="No grid or ambient effects"
-        />
-      </div>
+    children: createHeroChildren(
+      'Plain container',
+      'This is the bare shell when you want only the spacing contract and variant background.',
     ),
   },
 };
@@ -271,32 +322,6 @@ export const WithContent: Story = {
     variant: 'emerald',
     showGrid: true,
     showAmbientOrbs: true,
-    children: (
-      <div className="h-screen flex flex-col items-center justify-center gap-12 p-16">
-        <SignageHeader
-          tag="Live"
-          tagVariant="emerald"
-          title="KPI Dashboard"
-          subtitle="Real-time performance metrics"
-        />
-        <div className="grid grid-cols-3 gap-8 w-full max-w-6xl">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <div className="text-6xl font-bold text-white mb-2">$1.2M</div>
-            <div className="text-xl text-slate-400">Revenue</div>
-            <div className="text-emerald-400 text-lg mt-2">+12.5%</div>
-          </div>
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <div className="text-6xl font-bold text-white mb-2">8,432</div>
-            <div className="text-xl text-slate-400">Users</div>
-            <div className="text-red-400 text-lg mt-2">-3.2%</div>
-          </div>
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <div className="text-6xl font-bold text-white mb-2">24.8%</div>
-            <div className="text-xl text-slate-400">Conversion</div>
-            <div className="text-emerald-400 text-lg mt-2">+8.4%</div>
-          </div>
-        </div>
-      </div>
-    ),
+    children: createDashboardChildren(),
   },
 };
