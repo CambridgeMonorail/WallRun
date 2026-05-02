@@ -23,6 +23,22 @@ If you want the demo website as well:
 pnpm serve:client
 ```
 
+## Install Components Into An Existing App
+
+If you already have a React app and only want the signage components, use the published shadcn registry instead of cloning the whole monorepo.
+
+```bash
+# Install one component
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
+
+# Install several at once
+npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate
+```
+
+This uses the shadcn CLI to copy the selected components into your codebase along with the files and npm dependencies they need. Once installed, you own that code and can adapt it to your project.
+
+Choose this route when you want WallRun signage primitives inside an existing application. Clone the full repository only if you also want the demo site, player scaffolding, deployment scripts, or the rest of the workspace tooling.
+
 ## Start With The Right Surface
 
 Use `SignageContainer` in real application screens.
@@ -133,4 +149,4 @@ If a story reads like a small component test, treat it as API reference, not des
 
 ## Next Steps
 
-Read `Theming` next if you need to adapt the shared palette or screen chrome for a brand. Read `Best Practices` next if you want guidance on how to structure the screen itself.
+Read `Theming` next if you need to adapt the shared palette or screen chrome for a brand. Read `Best Practices` next if you want guidance on how to structure the screen itself. Read `Resources` if you want the GitHub repository, demo website, or broader project documentation.
