@@ -1,0 +1,4 @@
+@import './main.css';
+
+@source '../../../libs/**/*.{ts,tsx,mdx}';
+@source '../../../apps/**/*.{ts,tsx,mdx}';

@@ -44,6 +44,31 @@ export type FullscreenHeroProps = {
   logo?: ReactNode;
 
   /**
+   * Optional decorative content rendered after the title
+   */
+  decoration?: ReactNode;
+
+  /**
+   * Additional CSS classes for the content wrapper
+   */
+  contentClassName?: string;
+
+  /**
+   * Additional CSS classes for the title element
+   */
+  titleClassName?: string;
+
+  /**
+   * Additional CSS classes for the subtitle element
+   */
+  subtitleClassName?: string;
+
+  /**
+   * Additional CSS classes for the body element
+   */
+  bodyClassName?: string;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -73,6 +98,11 @@ export function FullscreenHero({
   variant = 'light',
   backgroundImageUrl,
   logo,
+  decoration,
+  contentClassName = '',
+  titleClassName = '',
+  subtitleClassName = '',
+  bodyClassName = '',
   className = '',
 }: FullscreenHeroProps) {
   const isDark = variant === 'dark';
@@ -109,7 +139,12 @@ export function FullscreenHero({
       )}
 
       {/* Content container */}
-      <div className="relative z-10 flex max-w-6xl flex-col items-center text-center">
+      <div
+        className={cn(
+          'relative z-10 flex max-w-6xl flex-col items-center text-center',
+          contentClassName,
+        )}
+      >
         {/* Logo */}
         {logo && <div className="mb-8">{logo}</div>}
 
@@ -119,11 +154,14 @@ export function FullscreenHero({
             'text-9xl font-bold',
             getClampClass(2),
             isDark ? 'text-white' : 'text-slate-900',
+            titleClassName,
           )}
           data-testid="hero-title"
         >
           {title}
         </h1>
+
+        {decoration && <div data-testid="hero-decoration">{decoration}</div>}
 
         {/* Subtitle - max 2 lines */}
         {subtitle && (
@@ -132,6 +170,7 @@ export function FullscreenHero({
               'mt-6 text-5xl font-medium',
               getClampClass(2),
               isDark ? 'text-slate-200' : 'text-slate-700',
+              subtitleClassName,
             )}
             data-testid="hero-subtitle"
           >
@@ -146,6 +185,7 @@ export function FullscreenHero({
               'mt-8 text-3xl',
               getClampClass(4),
               isDark ? 'text-slate-300' : 'text-slate-600',
+              bodyClassName,
             )}
             data-testid="hero-body"
           >

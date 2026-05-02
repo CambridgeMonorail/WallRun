@@ -1,6 +1,11 @@
 import { FC } from 'react';
+import {
+  DirectoryCard,
+  LocationIndicator,
+  SignageContainer,
+  SignageHeader,
+} from '@wallrun/shadcnui-signage';
 import { SignageExample } from './components/SignageExample';
-import { MapPin } from 'lucide-react';
 
 const directories = [
   { department: 'Reception', floor: 1, room: '101', phone: 'x1001' },
@@ -16,57 +21,35 @@ const directories = [
 export const OfficeDirectory: FC = () => {
   return (
     <SignageExample>
-      <div
-        className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-4 sm:p-8 lg:p-16"
+      <SignageContainer
+        variant="blue"
+        className="p-4 sm:p-8 lg:p-16"
         data-testid="office-directory"
       >
-        {/* Ambient lighting effects */}
-        <div
-          aria-hidden="true"
-          className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl sm:h-96 sm:w-96"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl sm:h-96 sm:w-96"
-        />
-
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <header className="mb-10 text-center sm:mb-12 lg:mb-16">
-            <h1 className="mb-5 text-5xl font-bold leading-none text-cyan-100 sm:mb-6 sm:text-6xl lg:mb-8 lg:text-8xl">
-              Office Directory
-            </h1>
-            <div className="inline-flex items-center gap-3 rounded-full border border-blue-800/50 bg-blue-950/50 px-4 py-3 text-base text-cyan-300 backdrop-blur-sm sm:gap-4 sm:px-6 sm:text-xl lg:px-8 lg:py-4 lg:text-3xl">
-              <MapPin className="h-6 w-6 shrink-0 lg:h-10 lg:w-10" />
-              <span>You are here: Main Lobby</span>
+        <div className="mx-auto max-w-7xl">
+          <SignageHeader
+            title="Office Directory"
+            tagVariant="blue"
+            className="text-center"
+          >
+            <div className="mt-5 sm:mt-6 lg:mt-8">
+              <LocationIndicator location="Main Lobby" />
             </div>
-          </header>
+          </SignageHeader>
 
           <div
             className="mb-10 grid grid-cols-1 gap-4 sm:mb-12 sm:gap-6 md:grid-cols-2 lg:mb-16 lg:gap-8"
             data-testid="office-directory-grid"
           >
             {directories.map((dir, index) => (
-              <div
+              <DirectoryCard
                 key={dir.department}
-                className="rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-5 shadow-2xl backdrop-blur-md transition-all duration-300 sm:p-6 lg:p-8"
+                department={dir.department}
+                floor={dir.floor}
+                room={dir.room}
+                phone={dir.phone}
                 style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="mb-4 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-start sm:justify-between">
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
-                    {dir.department}
-                  </h2>
-                  <div className="w-fit rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 text-sm font-bold text-white shadow-lg sm:text-base lg:px-5 lg:text-xl">
-                    Floor {dir.floor}
-                  </div>
-                </div>
-                <div className="mb-4 h-px bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-transparent sm:mb-6" />
-                <div className="flex flex-col gap-2 text-lg sm:flex-row sm:items-center sm:justify-between sm:text-xl lg:text-2xl">
-                  <span className="font-semibold text-cyan-300">
-                    Room {dir.room}
-                  </span>
-                  <span className="font-mono text-blue-300">{dir.phone}</span>
-                </div>
-              </div>
+              />
             ))}
           </div>
 
@@ -76,7 +59,7 @@ export const OfficeDirectory: FC = () => {
             </p>
           </footer>
         </div>
-      </div>
+      </SignageContainer>
     </SignageExample>
   );
 };

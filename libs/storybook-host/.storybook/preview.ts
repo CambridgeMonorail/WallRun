@@ -1,4 +1,4 @@
-import 'common-tailwind/styles';
+import 'common-tailwind/storybook';
 
 export const parameters = {
   options: {
@@ -17,9 +17,6 @@ export const parameters = {
         'Shell',
       ],
     },
-  },
-  docs: {
-    page: null,
   },
   backgrounds: {
     options: {

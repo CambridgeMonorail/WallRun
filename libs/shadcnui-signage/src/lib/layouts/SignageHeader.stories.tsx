@@ -32,11 +32,15 @@ const meta: Meta<typeof SignageHeader> = {
   },
   decorators: [
     (Story) => (
-      <ScreenFrame resolution="1080p" scale={0.4}>
-        <div className="bg-slate-950 p-16">
-          <Story />
-        </div>
-      </ScreenFrame>
+      <div className="bg-slate-950/95 p-8">
+        <ScreenFrame resolution="1080p" scale={0.4}>
+          <div className="h-full bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.16),transparent_34%),linear-gradient(145deg,#020617,#111827_48%,#312e81)] p-16 text-white">
+            <div className="mx-auto flex h-full max-w-6xl items-center rounded-[2rem] border border-white/10 bg-slate-950/65 p-10 shadow-2xl backdrop-blur-sm lg:p-14">
+              <Story />
+            </div>
+          </div>
+        </ScreenFrame>
+      </div>
     ),
   ],
 };
@@ -44,143 +48,127 @@ const meta: Meta<typeof SignageHeader> = {
 export default meta;
 type Story = StoryObj<typeof SignageHeader>;
 
-/**
- * Simple header with title only
- */
 export const TitleOnly: Story = {
   args: {
-    title: 'Welcome',
+    title: 'Welcome centre',
+    subtitle: 'Arrival information for visitors and scheduled guests',
     alignment: 'center',
   },
 };
 
-/**
- * Header with title and subtitle
- */
 export const WithSubtitle: Story = {
   args: {
-    title: 'KPI Dashboard',
-    subtitle: 'Real-time metrics and performance indicators',
+    title: 'Operations dashboard',
+    subtitle: 'Live system status, support queue, and room readiness',
     alignment: 'center',
   },
 };
 
-/**
- * Header with tag (emerald variant)
- */
 export const WithTag: Story = {
   args: {
-    tag: 'Live Now',
+    tag: 'Live now',
     tagVariant: 'emerald',
-    title: 'Conference Schedule',
-    subtitle: 'View all sessions and workshops',
+    title: 'Conference schedule',
+    subtitle: 'Sessions, workshops, and room changes across the venue',
     alignment: 'center',
   },
 };
 
-/**
- * Left-aligned header
- */
 export const LeftAligned: Story = {
   args: {
     tag: 'Today',
     tagVariant: 'blue',
-    title: 'Daily Announcements',
-    subtitle: 'Important updates and reminders',
+    title: 'Daily announcements',
+    subtitle:
+      'Use left alignment when the header anchors a denser content grid.',
     alignment: 'left',
   },
 };
 
-/**
- * Teal tag variant
- */
 export const TealTag: Story = {
   args: {
     tag: 'Updated',
     tagVariant: 'teal',
-    title: 'Office Directory',
-    subtitle: 'Find team members and departments',
+    title: 'Office directory',
+    subtitle: 'Departments, floors, and visitor wayfinding',
     alignment: 'center',
   },
 };
 
-/**
- * Violet tag variant
- */
 export const VioletTag: Story = {
   args: {
     tag: 'Featured',
     tagVariant: 'violet',
-    title: 'Employee Spotlight',
-    subtitle: 'Celebrating our team members',
+    title: 'Employee spotlight',
+    subtitle: 'A quieter hero for editorial signage or internal recognition',
     alignment: 'center',
   },
 };
 
-/**
- * Pink tag variant
- */
 export const PinkTag: Story = {
   args: {
-    tag: 'Special Event',
+    tag: 'Special event',
     tagVariant: 'pink',
-    title: 'Holiday Celebration',
-    subtitle: 'Join us for festive activities',
+    title: 'Holiday celebration',
+    subtitle: 'Use accent colour to mark limited-time or celebratory content',
     alignment: 'center',
   },
 };
 
-/**
- * Orange tag variant
- */
 export const OrangeTag: Story = {
   args: {
     tag: 'Alert',
     tagVariant: 'orange',
-    title: 'Maintenance Notice',
-    subtitle: 'Scheduled downtime information',
+    title: 'Maintenance notice',
+    subtitle:
+      'Urgent or operational messages can stay legible without feeling like app chrome.',
     alignment: 'center',
   },
 };
 
-/**
- * Long title demonstrating text handling
- */
 export const LongTitle: Story = {
   args: {
     tag: 'Q1 2026',
     tagVariant: 'blue',
-    title:
-      'Annual Company Performance Review and Strategic Planning Session',
+    title: 'Annual company performance review and strategic planning session',
     subtitle:
-      'Comprehensive analysis of achievements, challenges, and future objectives for sustained organizational growth',
+      'Longer headlines still need to read like a signage heading rather than collapsing into a cramped paragraph block.',
     alignment: 'center',
   },
 };
 
-/**
- * Header with custom children content
- */
 export const WithCustomContent: Story = {
   args: {
     tag: 'Live',
     tagVariant: 'emerald',
-    title: 'Sales Metrics',
-    subtitle: 'Real-time performance tracking',
+    title: 'Sales metrics',
+    subtitle: 'Header plus adjacent headline stats for a KPI wall',
     alignment: 'center',
     children: (
-      <div className="mt-6 flex justify-center gap-4">
-        <div className="text-center">
-          <div className="text-4xl font-bold text-white">$1.2M</div>
-          <div className="text-sm text-slate-400">Revenue</div>
+      <div className="mt-8 grid grid-cols-3 gap-4 lg:mt-10 lg:gap-6">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center shadow-xl">
+          <div className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+            $1.2M
+          </div>
+          <div className="mt-2 text-sm uppercase tracking-[0.22em] text-slate-300/70">
+            Revenue
+          </div>
         </div>
-        <div className="text-center">
-          <div className="text-4xl font-bold text-white">156</div>
-          <div className="text-sm text-slate-400">Orders</div>
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center shadow-xl">
+          <div className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+            156
+          </div>
+          <div className="mt-2 text-sm uppercase tracking-[0.22em] text-slate-300/70">
+            Orders
+          </div>
         </div>
-        <div className="text-center">
-          <div className="text-4xl font-bold text-white">24.8%</div>
-          <div className="text-sm text-slate-400">Conversion</div>
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center shadow-xl">
+          <div className="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+            24.8%
+          </div>
+          <div className="mt-2 text-sm uppercase tracking-[0.22em] text-slate-300/70">
+            Conversion
+          </div>
         </div>
       </div>
     ),

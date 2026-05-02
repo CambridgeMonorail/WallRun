@@ -4,7 +4,10 @@ import {
   Clock,
   ContentRotator,
   Countdown,
+  InfoList,
+  MeetingRow,
   OfflineFallback,
+  SignagePanel,
   SignageTransition,
   StaleDataIndicator,
 } from '@wallrun/shadcnui-signage';
@@ -75,10 +78,7 @@ export const OfficeLobbyLoop: FC = () => {
                 className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-10"
                 data-testid="office-lobby-loop-welcome-slide"
               >
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-7 lg:p-10">
-                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
-                    Message
-                  </div>
+                <SignagePanel label="Message" className="lg:col-span-7">
                   <div className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-6xl">
                     Welcome to HQ
                   </div>
@@ -86,11 +86,8 @@ export const OfficeLobbyLoop: FC = () => {
                     Visitors: please check in at reception. Staff: remember your
                     badge.
                   </div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-5 lg:p-10">
-                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
-                    Next update in
-                  </div>
+                </SignagePanel>
+                <SignagePanel label="Next update in" className="lg:col-span-5">
                   <Countdown
                     targetEpochMs={nextUpdateEpochMs}
                     format="mm:ss"
@@ -99,59 +96,48 @@ export const OfficeLobbyLoop: FC = () => {
                   <div className="mt-4 text-lg text-white/60 sm:text-xl lg:mt-6 lg:text-2xl">
                     (demo countdown)
                   </div>
-                </div>
+                </SignagePanel>
               </div>
 
               <div
                 className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-10"
                 data-testid="office-lobby-loop-meetings-slide"
               >
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-7 lg:p-10">
-                  <div className="mb-4 text-lg text-white/70 sm:text-xl lg:mb-6 lg:text-2xl">
-                    Upcoming meetings
-                  </div>
+                <SignagePanel
+                  label="Upcoming meetings"
+                  className="lg:col-span-7"
+                  labelClassName="mb-4 lg:mb-6"
+                >
                   <AutoPagingList
                     items={meetings}
                     pageSize={5}
                     dwellMs={3500}
                     getKey={(m) => m.id}
                     renderItem={(m) => (
-                      <div className="flex flex-col gap-3 border-b border-white/10 py-3 last:border-b-0 sm:py-4 lg:flex-row lg:items-baseline lg:justify-between">
-                        <div className="flex flex-col gap-1 lg:flex-row lg:items-baseline lg:gap-6">
-                          <div className="text-2xl font-semibold tabular-nums sm:text-3xl lg:text-4xl">
-                            {m.time}
-                          </div>
-                          <div className="text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">
-                            {m.title}
-                          </div>
-                        </div>
-                        <div className="text-xl text-white/70 tabular-nums sm:text-2xl lg:text-3xl">
-                          {m.room}
-                        </div>
-                      </div>
+                      <MeetingRow time={m.time} title={m.title} room={m.room} />
                     )}
                   />
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-5 lg:p-10">
-                  <div className="text-lg text-white/70 sm:text-xl lg:text-2xl">
-                    Notes
-                  </div>
-                  <ul className="mt-4 space-y-3 text-lg text-white/70 sm:text-2xl lg:mt-5 lg:space-y-4 lg:text-3xl">
-                    <li>• Fire exits: follow green signage</li>
-                    <li>• Quiet zones on Level 2</li>
-                    <li>• Wi‑Fi: HQ‑Guest</li>
-                  </ul>
-                </div>
+                </SignagePanel>
+                <SignagePanel label="Notes" className="lg:col-span-5">
+                  <InfoList
+                    items={[
+                      '• Fire exits: follow green signage',
+                      '• Quiet zones on Level 2',
+                      '• Wi-Fi: HQ-Guest',
+                    ]}
+                  />
+                </SignagePanel>
               </div>
 
               <div
                 className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-10"
                 data-testid="office-lobby-loop-connectivity-slide"
               >
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:col-span-12 lg:p-10">
-                  <div className="mb-4 text-lg text-white/70 sm:text-xl lg:mb-6 lg:text-2xl">
-                    Connectivity boundary
-                  </div>
+                <SignagePanel
+                  label="Connectivity boundary"
+                  className="lg:col-span-12"
+                  labelClassName="mb-4 lg:mb-6"
+                >
                   <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-8">
                     <div className="rounded-xl border border-white/10 bg-slate-950/40 p-5 sm:p-6 lg:p-8">
                       <div className="mb-3 text-lg text-white/70 sm:text-xl lg:mb-4">
@@ -189,7 +175,7 @@ export const OfficeLobbyLoop: FC = () => {
                       </OfflineFallback>
                     </div>
                   </div>
-                </div>
+                </SignagePanel>
               </div>
             </ContentRotator>
           </div>

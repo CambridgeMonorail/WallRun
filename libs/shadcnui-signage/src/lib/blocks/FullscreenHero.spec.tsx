@@ -12,7 +12,9 @@ describe('FullscreenHero', () => {
   it('should render subtitle when provided', () => {
     render(<FullscreenHero title="Welcome" subtitle="Join us today" />);
 
-    expect(screen.getByTestId('hero-subtitle')).toHaveTextContent('Join us today');
+    expect(screen.getByTestId('hero-subtitle')).toHaveTextContent(
+      'Join us today',
+    );
   });
 
   it('should not render subtitle when not provided', () => {
@@ -24,7 +26,9 @@ describe('FullscreenHero', () => {
   it('should render body when provided', () => {
     render(<FullscreenHero title="Welcome" body="This is the body text" />);
 
-    expect(screen.getByTestId('hero-body')).toHaveTextContent('This is the body text');
+    expect(screen.getByTestId('hero-body')).toHaveTextContent(
+      'This is the body text',
+    );
   });
 
   it('should not render body when not provided', () => {
@@ -38,7 +42,7 @@ describe('FullscreenHero', () => {
       <FullscreenHero
         title="Welcome"
         cta={{ label: 'Get Started', hint: 'Click to begin' }}
-      />
+      />,
     );
 
     const cta = screen.getByTestId('hero-cta');
@@ -79,11 +83,7 @@ describe('FullscreenHero', () => {
 
   it('should apply text clamping classes', () => {
     render(
-      <FullscreenHero
-        title="Title"
-        subtitle="Subtitle"
-        body="Body text"
-      />
+      <FullscreenHero title="Title" subtitle="Subtitle" body="Body text" />,
     );
 
     expect(screen.getByTestId('hero-title')).toHaveClass('line-clamp-2');
@@ -96,7 +96,7 @@ describe('FullscreenHero', () => {
       <FullscreenHero
         title="Welcome"
         logo={<img src="/logo.png" alt="Logo" data-testid="hero-logo" />}
-      />
+      />,
     );
 
     expect(screen.getByTestId('hero-logo')).toBeInTheDocument();
@@ -108,6 +108,20 @@ describe('FullscreenHero', () => {
     expect(screen.queryByTestId('hero-logo')).not.toBeInTheDocument();
   });
 
+  it('should render decoration when provided', () => {
+    render(
+      <FullscreenHero
+        title="Welcome"
+        decoration={<div data-testid="custom-decoration">Divider</div>}
+      />,
+    );
+
+    expect(screen.getByTestId('hero-decoration')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-decoration')).toHaveTextContent(
+      'Divider',
+    );
+  });
+
   it('should apply background image when provided', () => {
     render(<FullscreenHero title="Welcome" backgroundImageUrl="/hero.jpg" />);
 
@@ -117,7 +131,7 @@ describe('FullscreenHero', () => {
 
   it('should render overlay when background image is present', () => {
     const { container } = render(
-      <FullscreenHero title="Welcome" backgroundImageUrl="/hero.jpg" />
+      <FullscreenHero title="Welcome" backgroundImageUrl="/hero.jpg" />,
     );
 
     const overlay = container.querySelector('[aria-hidden="true"]');
@@ -138,13 +152,29 @@ describe('FullscreenHero', () => {
     expect(hero).toHaveClass('custom-hero');
   });
 
-  it('should have proper heading hierarchy', () => {
+  it('should apply content and text className overrides', () => {
     render(
       <FullscreenHero
-        title="Main Title"
-        subtitle="Subtitle Text"
-      />
+        title="Welcome"
+        subtitle="Hello"
+        body="Body"
+        contentClassName="custom-content"
+        titleClassName="custom-title"
+        subtitleClassName="custom-subtitle"
+        bodyClassName="custom-body"
+      />,
     );
+
+    expect(screen.getByText('Welcome').parentElement).toHaveClass(
+      'custom-content',
+    );
+    expect(screen.getByTestId('hero-title')).toHaveClass('custom-title');
+    expect(screen.getByTestId('hero-subtitle')).toHaveClass('custom-subtitle');
+    expect(screen.getByTestId('hero-body')).toHaveClass('custom-body');
+  });
+
+  it('should have proper heading hierarchy', () => {
+    render(<FullscreenHero title="Main Title" subtitle="Subtitle Text" />);
 
     const title = screen.getByTestId('hero-title');
     const subtitle = screen.getByTestId('hero-subtitle');

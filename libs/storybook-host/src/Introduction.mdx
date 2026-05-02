@@ -2,55 +2,125 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Introduction" />
 
-# Welcome to the WallRun Component Library
+# WallRun Storybook
 
-## Overview
+WallRun is a component library and demo surface for building digital signage as software. The Storybook is most useful when you treat it as a screen-composition guide, not a catalogue of isolated widgets.
 
-WallRun is a **working notebook for building digital signage software**. This Storybook documents our signage-focused component library built with React 19, Tailwind v4, and organized in an Nx monorepo.
+The primary library is `@wallrun/shadcnui-signage`. It is built for full-screen layouts, known resolutions, distance readability, and always-on operation on hardware such as BrightSign players.
 
-**Digital signage is our primary focus.** Everything in this library is designed around the constraints and requirements of always-on, distance-readable displays for BrightSign devices and similar hardware.
+## What This Storybook Is For
 
-## What Makes Signage Different?
+Use this Storybook to answer three practical questions:
 
-Digital signage has unique requirements compared to standard web applications:
+- Which components establish the screen surface and layout skeleton?
+- Which components carry the content hierarchy for a given signage use case?
+- Which behaviours keep a screen stable when content rotates, data goes stale, or time windows change?
 
-- **Distance Readability**: Content must be legible from 10+ feet away (the "10-foot rule")
-- **Fixed Aspect Ratios**: Layouts must be deterministic for known screen resolutions (1920x1080, 3840x2160, etc.)
-- **24/7 Operation**: Components must handle always-on, unattended operation
-- **Predictable Rendering**: No dynamic reflows or unpredictable layouts
-- **Performance**: Smooth animations and transitions even on embedded hardware
+If a page only proves that a prop exists, it is not enough. The stronger examples show how a real screen is assembled and why the component belongs in that composition.
 
-## Library Structure
+## How The Signage Library Fits Together
 
-Our components are organized by purpose:
+The `Signage` section is organised in the same order you would usually build a screen:
 
-### 1. Signage Components (`@wallrun/shadcnui-signage`)
+### 1. Primitives
 
-**This is our primary focus.** Signage-specific components built for distance readability and deterministic layouts.
+Use primitives to establish readable content units and preview constraints.
 
-- **Primitives**: Core building blocks (ScreenFrame, SignageContainer, etc.)
-- **Layouts**: Fixed-aspect layout patterns (SplitScreen, etc.)
-- **Blocks**: Composed signage components (MetricCard, EventCard, FullscreenHero, etc.)
+- `ScreenFrame` previews a target display resolution and safe area.
+- `DirectoryCard`, `MeetingRow`, `InfoList`, and related primitives carry the actual information hierarchy.
 
-### 2. Supporting Libraries
+### 2. Layouts
 
-These libraries support the demo website and provide building blocks for signage components:
+Use layouts to define stable regions before adding content.
 
-- **@wallrun/shadcnui**: Our copy of shadcn/ui components, organized for monorepo reuse
-- **@wallrun/shadcnui-blocks**: Composite components for general web use
-- **@wallrun/landing**: Landing page sections for the demo website
-- **@wallrun/shell**: Application shell components (layouts, navigation)
+- `SignageContainer` creates the full-screen surface.
+- `SignageHeader` establishes page-level framing and hierarchy.
+- `SplitScreen` divides a screen into predictable zones.
 
-## Technology Stack
+### 3. Blocks
 
-- **React 19** - Latest stable with improved rendering
-- **Tailwind CSS v4** - CSS-first configuration
-- **Nx 22** - Monorepo management
-- **Vite 7** - Fast build tool
-- **TypeScript 5.9** - Strict type checking
+Use blocks when a common signage pattern deserves a higher-level composition.
 
-## Getting Started
+- `FullscreenHero` for welcome, event, and alert states.
+- `MenuBoard` for menu and daypart screens.
+- `InfoCardGrid` for structured promotional or dashboard-style panels.
 
-Explore the **Signage** section first to see our primary components. Then browse the supporting libraries to understand the building blocks we use.
+### 4. Behaviour
 
-For more context, see the [GitHub repository](https://github.com/CambridgeMonorail/WallRun) and the [demo website](https://cambridgemonorail.github.io/WallRun/).
+Add behaviour only after the screen has a stable content structure.
+
+- `ContentRotator` loops through whole content states.
+- `Countdown` turns a deadline into the dominant message.
+- `OfflineFallback`, `ScheduleGate`, `AutoPagingList`, and `StaleDataIndicator` keep unattended screens operational.
+
+## Recommended Reading Order
+
+If you are new to the signage library, read the docs in this order:
+
+1. `Introduction`
+2. `Getting Started`
+3. `Signage/Layouts/SignageContainer`
+4. `Signage/Blocks/FullscreenHero` or `Signage/Blocks/MenuBoard`
+5. `Signage/Behaviour/ContentRotator` and `Signage/Behaviour/OfflineFallback`
+
+That sequence moves from screen shell, to composition, to operational behaviour.
+
+## A Typical Screen Assembly
+
+```tsx
+import {
+  ContentRotator,
+  FullscreenHero,
+  OfflineFallback,
+  SignageContainer,
+  SignageHeader,
+} from '@wallrun/shadcnui-signage';
+
+export function LobbyWelcomeScreen() {
+  return (
+    <SignageContainer variant="teal">
+      <div className="flex h-full flex-col gap-10 px-12 py-14 text-white lg:px-16 lg:py-16">
+        <SignageHeader
+          tag="Main lobby"
+          title="Visitor arrivals"
+          subtitle="Welcome, queue guidance, and live building notices"
+        />
+
+        <OfflineFallback
+          isOnline
+          isHealthy
+          fallback={<FullscreenHero title="Information unavailable" />}
+        >
+          <ContentRotator intervalMs={6000} transition="fade">
+            <FullscreenHero
+              title="Welcome to WallRun"
+              subtitle="Check in at reception"
+            />
+            <FullscreenHero
+              title="Today at 14:30"
+              subtitle="Product demo in Studio A"
+            />
+          </ContentRotator>
+        </OfflineFallback>
+      </div>
+    </SignageContainer>
+  );
+}
+```
+
+The pattern is deliberate:
+
+1. Establish the screen surface.
+2. Define the main hierarchy.
+3. Add content blocks.
+4. Add behaviours around those blocks, not inside random fragments.
+
+## Related Libraries
+
+The other libraries in this Storybook support the broader WallRun workspace:
+
+- `@wallrun/shadcnui` provides the base UI primitives.
+- `@wallrun/shadcnui-blocks` provides more general composed web components.
+- `@wallrun/landing` and `@wallrun/shell` support the demo website chrome rather than signage content itself.
+
+Start in `Signage` unless you are working on the website rather than the display content.

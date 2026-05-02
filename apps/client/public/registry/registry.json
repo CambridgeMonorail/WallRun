@@ -61,6 +61,122 @@
       ]
     },
     {
+      "name": "directory-card",
+      "type": "registry:component",
+      "title": "Directory Card",
+      "description": "Wayfinding card with department, floor, room, and contact metadata for directory and lobby signage.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/DirectoryCard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/FloorBadge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "floor-badge",
+      "type": "registry:component",
+      "title": "Floor Badge",
+      "description": "Compact floor badge for wayfinding, room directories, and map overlays.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/FloorBadge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "location-indicator",
+      "type": "registry:component",
+      "title": "Location Indicator",
+      "description": "Current-location indicator with map pin iconography for wayfinding and directory signage.",
+      "registryDependencies": [],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/LocationIndicator.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "menu-item",
+      "type": "registry:component",
+      "title": "Menu Item",
+      "description": "Menu row with item name, price, optional description, and signage-sized typography.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MenuItem.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "menu-section",
+      "type": "registry:component",
+      "title": "Menu Section",
+      "description": "Section wrapper for grouped menu categories with headline and accent divider.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MenuSection.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "signage-panel",
+      "type": "registry:component",
+      "title": "Signage Panel",
+      "description": "Bordered content panel for grouped supporting information on lobby and operational screens.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/SignagePanel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "meeting-row",
+      "type": "registry:component",
+      "title": "Meeting Row",
+      "description": "Agenda-style row for schedules, room bookings, and office lobby meeting lists.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MeetingRow.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "info-list",
+      "type": "registry:component",
+      "title": "Info List",
+      "description": "Large-format list for lobby notices, visitor instructions, and operational status notes.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/InfoList.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "split-screen",
       "type": "registry:component",
       "title": "Split Screen",
@@ -126,6 +242,24 @@
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/InfoCardGrid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "menu-board",
+      "type": "registry:component",
+      "title": "Menu Board",
+      "description": "Full-screen menu board shell with header, subtitle, and content region for restaurant and daypart signage.",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/MenuBoard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx",
           "type": "registry:component"
         }
       ]
