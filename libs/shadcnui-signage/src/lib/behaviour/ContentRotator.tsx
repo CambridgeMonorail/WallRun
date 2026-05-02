@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 import type { NowProvider } from '../types/time.types';
 import { useTicker } from '../hooks/useTicker';
 import { SignageTransition } from './SignageTransition';

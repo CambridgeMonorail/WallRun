@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 export interface SignageTransitionProps {

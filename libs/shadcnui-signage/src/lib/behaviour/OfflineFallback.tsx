@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useState } from 'react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 
 export interface OfflineFallbackProps {
   isOnline?: boolean;

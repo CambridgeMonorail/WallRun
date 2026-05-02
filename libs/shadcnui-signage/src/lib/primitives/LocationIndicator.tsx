@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { MapPin } from 'lucide-react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 
 export interface LocationIndicatorProps {
   /**

@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { cn } from '@wallrun/shadcnui';
+import { cn } from '../utils/cn';
 
 export interface SignageHeaderProps {
   /**
@@ -96,7 +96,9 @@ export const SignageHeader: FC<SignageHeaderProps> = ({
   const alignmentClasses = alignment === 'center' ? 'text-center' : 'text-left';
 
   return (
-    <header className={cn('mb-10 sm:mb-12 lg:mb-16', alignmentClasses, className)}>
+    <header
+      className={cn('mb-10 sm:mb-12 lg:mb-16', alignmentClasses, className)}
+    >
       {tag && (
         <div
           className={cn(
