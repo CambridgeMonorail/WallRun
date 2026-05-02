@@ -6,6 +6,14 @@ const meta: Meta<typeof Countdown> = {
   title: 'Signage/Behaviour/Countdown',
   component: Countdown,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Countdown is for deadline-driven screen states: doors opening, launches starting, or timed notices expiring. The stronger stories treat the timer as the main message zone and show both imminent and long-range timing states.',
+      },
+    },
+  },
   argTypes: {
     format: { control: 'select', options: ['mm:ss', 'HH:mm:ss', 'human'] },
   },
@@ -78,6 +86,38 @@ export const Completed: Story = {
           The completed state reads like a resolved signage message rather than
           a timer frozen on zero.
         </p>
+      </div>
+    );
+  },
+};
+
+export const LaunchWindow: Story = {
+  render: () => {
+    const target = Date.now() + 4 * 60 * 60 * 1000 + 23 * 60 * 1000 + 14_000;
+    return (
+      <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div>
+          <div className="text-sm uppercase tracking-[0.32em] text-orange-300/70 lg:text-lg">
+            Broadcast window
+          </div>
+          <h2 className="mt-4 text-5xl font-semibold tracking-tight text-white lg:text-7xl">
+            Longer lead times need a calmer clock face.
+          </h2>
+          <p className="mt-5 max-w-2xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
+            Use the hours format for launch or event states that remain visible
+            for longer periods and should not feel like a panic timer.
+          </p>
+        </div>
+        <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 text-center shadow-xl">
+          <div className="text-sm uppercase tracking-[0.3em] text-orange-300/70 lg:text-base">
+            Stream goes live
+          </div>
+          <Countdown
+            targetEpochMs={target}
+            format="HH:mm:ss"
+            className="mt-4 text-6xl font-semibold tracking-tight text-orange-100 sm:text-7xl lg:text-8xl"
+          />
+        </div>
       </div>
     );
   },
