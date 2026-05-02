@@ -10,7 +10,7 @@
       "title": "Metric Card",
       "description": "Display KPIs and metrics with values, change indicators, and icons. Optimized for distance readability on signage displays.",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MetricCard.tsx",
@@ -50,7 +50,7 @@
       "title": "Event Card",
       "description": "Display event information with time, title, speaker, location, and track. Commonly used in event schedules and conference displays.",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/EventCard.tsx",
@@ -68,7 +68,7 @@
       "title": "Announcement Card",
       "description": "Display announcement information with title, description, date, icon, and category. Glass morphism effects for modern look.",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/AnnouncementCard.tsx",
@@ -86,7 +86,7 @@
       "title": "Directory Card",
       "description": "Wayfinding card with department, floor, room, and contact metadata for directory and lobby signage.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/DirectoryCard.tsx",
@@ -108,7 +108,7 @@
       "title": "Floor Badge",
       "description": "Compact floor badge for wayfinding, room directories, and map overlays.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/FloorBadge.tsx",
@@ -126,7 +126,7 @@
       "title": "Location Indicator",
       "description": "Current-location indicator with map pin iconography for wayfinding and directory signage.",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/LocationIndicator.tsx",
@@ -144,7 +144,7 @@
       "title": "Menu Item",
       "description": "Menu row with item name, price, optional description, and signage-sized typography.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MenuItem.tsx",
@@ -162,7 +162,7 @@
       "title": "Menu Section",
       "description": "Section wrapper for grouped menu categories with headline and accent divider.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MenuSection.tsx",
@@ -180,7 +180,7 @@
       "title": "Signage Panel",
       "description": "Bordered content panel for grouped supporting information on lobby and operational screens.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/SignagePanel.tsx",
@@ -198,7 +198,7 @@
       "title": "Meeting Row",
       "description": "Agenda-style row for schedules, room bookings, and office lobby meeting lists.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/MeetingRow.tsx",
@@ -216,7 +216,7 @@
       "title": "Info List",
       "description": "Large-format list for lobby notices, visitor instructions, and operational status notes.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/InfoList.tsx",
@@ -234,7 +234,7 @@
       "title": "Split Screen",
       "description": "Two-panel layout with configurable ratio and direction. Perfect for showing multiple content streams side-by-side.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SplitScreen.tsx",
@@ -252,7 +252,7 @@
       "title": "Signage Container",
       "description": "Full-screen container with gradient backgrounds, ambient orb effects, and optional grid overlay. 8 color variants available.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx",
@@ -270,7 +270,7 @@
       "title": "Signage Header",
       "description": "Standard signage header with optional tag badge, title, and subtitle. Multiple color variants and alignment options.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageHeader.tsx",
@@ -288,7 +288,7 @@
       "title": "Fullscreen Hero",
       "description": "Hero section for welcome screens and main messages. Light/dark variants with optional background images and CTA.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/FullscreenHero.tsx",
@@ -314,7 +314,7 @@
       "title": "Info Card Grid",
       "description": "Grid layout for displaying informational cards with titles, values, descriptions, and optional meta text. Responsive column layout.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/InfoCardGrid.tsx",
@@ -344,7 +344,7 @@
       "title": "Menu Board",
       "description": "Full-screen menu board shell with header, subtitle, and content region for restaurant and daypart signage.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/MenuBoard.tsx",
@@ -366,7 +366,7 @@
       "title": "Auto Paging List",
       "description": "Renders long lists as pages with automatic advancement. Perfect for scrolling-free displays with configurable dwell time per page.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/AutoPagingList.tsx",
@@ -396,7 +396,7 @@
       "title": "Content Rotator",
       "description": "Cycles through children at fixed intervals with transitions. Supports pause/resume and dynamic content updates.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/ContentRotator.tsx",
@@ -430,7 +430,7 @@
       "title": "Schedule Gate",
       "description": "Conditionally renders content based on weekday and time windows. Supports timezone-aware scheduling for daypart menus and time-based content.",
       "registryDependencies": [],
-      "dependencies": ["date-fns-tz"],
+      "dependencies": ["clsx", "date-fns-tz", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/ScheduleGate.tsx",
@@ -456,7 +456,7 @@
       "title": "Signage Transition",
       "description": "Wraps a single child with signage-appropriate transitions (crossfade, slide). Respects prefers-reduced-motion.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/SignageTransition.tsx",
@@ -478,7 +478,7 @@
       "title": "Clock",
       "description": "Displays current time with configurable format and timezone. Updates at minute boundaries for efficiency.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/Clock.tsx",
@@ -504,7 +504,7 @@
       "title": "Countdown",
       "description": "Counts down to a target date/time with configurable format. When the target is reached, the timer stops at zero.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/Countdown.tsx",
@@ -530,7 +530,7 @@
       "title": "Offline Fallback",
       "description": "Shows fallback UI when content is offline or unhealthy. Manual recovery control for graceful degradation.",
       "registryDependencies": [],
-      "dependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/OfflineFallback.tsx",
@@ -548,7 +548,7 @@
       "title": "Stale Data Indicator",
       "description": "Shows visual indicator when data exceeds a freshness threshold. Useful for monitoring real-time data feeds.",
       "registryDependencies": [],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
       "files": [
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/StaleDataIndicator.tsx",
