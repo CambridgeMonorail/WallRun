@@ -108,6 +108,18 @@ describe('FullscreenHero', () => {
     expect(screen.queryByTestId('hero-logo')).not.toBeInTheDocument();
   });
 
+  it('should render decoration when provided', () => {
+    render(
+      <FullscreenHero
+        title="Welcome"
+        decoration={<div data-testid="custom-decoration">Divider</div>}
+      />
+    );
+
+    expect(screen.getByTestId('hero-decoration')).toBeInTheDocument();
+    expect(screen.getByTestId('custom-decoration')).toHaveTextContent('Divider');
+  });
+
   it('should apply background image when provided', () => {
     render(<FullscreenHero title="Welcome" backgroundImageUrl="/hero.jpg" />);
 
@@ -136,6 +148,25 @@ describe('FullscreenHero', () => {
 
     const hero = screen.getByTestId('fullscreen-hero');
     expect(hero).toHaveClass('custom-hero');
+  });
+
+  it('should apply content and text className overrides', () => {
+    render(
+      <FullscreenHero
+        title="Welcome"
+        subtitle="Hello"
+        body="Body"
+        contentClassName="custom-content"
+        titleClassName="custom-title"
+        subtitleClassName="custom-subtitle"
+        bodyClassName="custom-body"
+      />
+    );
+
+    expect(screen.getByText('Welcome').parentElement).toHaveClass('custom-content');
+    expect(screen.getByTestId('hero-title')).toHaveClass('custom-title');
+    expect(screen.getByTestId('hero-subtitle')).toHaveClass('custom-subtitle');
+    expect(screen.getByTestId('hero-body')).toHaveClass('custom-body');
   });
 
   it('should have proper heading hierarchy', () => {

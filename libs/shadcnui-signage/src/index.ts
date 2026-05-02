@@ -14,6 +14,22 @@ export { EventCard } from './lib/primitives/EventCard';
 export type { EventCardProps } from './lib/primitives/EventCard';
 export { AnnouncementCard } from './lib/primitives/AnnouncementCard';
 export type { AnnouncementCardProps } from './lib/primitives/AnnouncementCard';
+export { DirectoryCard } from './lib/primitives/DirectoryCard';
+export type { DirectoryCardProps } from './lib/primitives/DirectoryCard';
+export { FloorBadge } from './lib/primitives/FloorBadge';
+export type { FloorBadgeProps } from './lib/primitives/FloorBadge';
+export { LocationIndicator } from './lib/primitives/LocationIndicator';
+export type { LocationIndicatorProps } from './lib/primitives/LocationIndicator';
+export { MenuItem } from './lib/primitives/MenuItem';
+export type { MenuItemProps } from './lib/primitives/MenuItem';
+export { MenuSection } from './lib/primitives/MenuSection';
+export type { MenuSectionProps } from './lib/primitives/MenuSection';
+export { SignagePanel } from './lib/primitives/SignagePanel';
+export type { SignagePanelProps } from './lib/primitives/SignagePanel';
+export { MeetingRow } from './lib/primitives/MeetingRow';
+export type { MeetingRowProps } from './lib/primitives/MeetingRow';
+export { InfoList } from './lib/primitives/InfoList';
+export type { InfoListProps } from './lib/primitives/InfoList';
 
 // Layouts
 export { SplitScreen } from './lib/layouts/SplitScreen';
@@ -31,6 +47,8 @@ export { FullscreenHero } from './lib/blocks/FullscreenHero';
 export type { FullscreenHeroProps } from './lib/blocks/FullscreenHero';
 export { InfoCardGrid } from './lib/blocks/InfoCardGrid';
 export type { InfoCardGridProps } from './lib/blocks/InfoCardGrid';
+export { MenuBoard } from './lib/blocks/MenuBoard';
+export type { MenuBoardProps } from './lib/blocks/MenuBoard';
 
 // Behaviour
 export { ContentRotator } from './lib/behaviour/ContentRotator';
