@@ -31,11 +31,20 @@ import { MetricCardDocPage } from '../pages/components/primitives/MetricCardDoc'
 import { ScreenFrameDocPage } from '../pages/components/primitives/ScreenFrameDoc';
 import { EventCardDocPage } from '../pages/components/primitives/EventCardDoc';
 import { AnnouncementCardDocPage } from '../pages/components/primitives/AnnouncementCardDoc';
+import { DirectoryCardDocPage } from '../pages/components/primitives/DirectoryCardDoc';
+import { FloorBadgeDocPage } from '../pages/components/primitives/FloorBadgeDoc';
+import { LocationIndicatorDocPage } from '../pages/components/primitives/LocationIndicatorDoc';
+import { MenuItemDocPage } from '../pages/components/primitives/MenuItemDoc';
+import { MenuSectionDocPage } from '../pages/components/primitives/MenuSectionDoc';
+import { SignagePanelDocPage } from '../pages/components/primitives/SignagePanelDoc';
+import { MeetingRowDocPage } from '../pages/components/primitives/MeetingRowDoc';
+import { InfoListDocPage } from '../pages/components/primitives/InfoListDoc';
 import { SplitScreenDocPage } from '../pages/components/layouts/SplitScreenDoc';
 import { SignageContainerDocPage } from '../pages/components/layouts/SignageContainerDoc';
 import { SignageHeaderDocPage } from '../pages/components/layouts/SignageHeaderDoc';
 import { FullscreenHeroDocPage } from '../pages/components/blocks/FullscreenHeroDoc';
 import { InfoCardGridDocPage } from '../pages/components/blocks/InfoCardGridDoc';
+import { MenuBoardDocPage } from '../pages/components/blocks/MenuBoardDoc';
 import { ContentRotatorDocPage } from '../pages/components/behaviour/ContentRotatorDoc';
 import { HowToPage } from '../pages/how-to/HowTo';
 import { CustomAgentsPage } from '../pages/how-to/CustomAgents';
@@ -87,6 +96,14 @@ const paths = {
       screenFrame: '/components/primitives/screen-frame',
       eventCard: '/components/primitives/event-card',
       announcementCard: '/components/primitives/announcement-card',
+      directoryCard: '/components/primitives/directory-card',
+      floorBadge: '/components/primitives/floor-badge',
+      locationIndicator: '/components/primitives/location-indicator',
+      menuItem: '/components/primitives/menu-item',
+      menuSection: '/components/primitives/menu-section',
+      signagePanel: '/components/primitives/signage-panel',
+      meetingRow: '/components/primitives/meeting-row',
+      infoList: '/components/primitives/info-list',
     },
     layouts: {
       splitScreen: '/components/layouts/split-screen',
@@ -96,6 +113,7 @@ const paths = {
     blocks: {
       fullscreenHero: '/components/blocks/fullscreen-hero',
       infoCardGrid: '/components/blocks/info-card-grid',
+      menuBoard: '/components/blocks/menu-board',
     },
     behaviour: {
       contentRotator: '/components/behaviour/content-rotator',
@@ -182,6 +200,20 @@ const sidebarData: SidebarConfiguration = {
           title: 'AnnouncementCard',
           url: paths.components.primitives.announcementCard,
         },
+        { title: 'DirectoryCard', url: paths.components.primitives.directoryCard },
+        { title: 'FloorBadge', url: paths.components.primitives.floorBadge },
+        {
+          title: 'LocationIndicator',
+          url: paths.components.primitives.locationIndicator,
+        },
+        { title: 'MenuItem', url: paths.components.primitives.menuItem },
+        { title: 'MenuSection', url: paths.components.primitives.menuSection },
+        {
+          title: 'SignagePanel',
+          url: paths.components.primitives.signagePanel,
+        },
+        { title: 'MeetingRow', url: paths.components.primitives.meetingRow },
+        { title: 'InfoList', url: paths.components.primitives.infoList },
         { title: 'SplitScreen', url: paths.components.layouts.splitScreen },
         {
           title: 'SignageContainer',
@@ -193,6 +225,7 @@ const sidebarData: SidebarConfiguration = {
           url: paths.components.blocks.fullscreenHero,
         },
         { title: 'InfoCardGrid', url: paths.components.blocks.infoCardGrid },
+        { title: 'MenuBoard', url: paths.components.blocks.menuBoard },
         {
           title: 'ContentRotator',
           url: paths.components.behaviour.contentRotator,
@@ -293,6 +326,17 @@ const routes = [
     paths.components.primitives.announcementCard,
     AnnouncementCardDocPage,
   ),
+  createRoute(paths.components.primitives.directoryCard, DirectoryCardDocPage),
+  createRoute(paths.components.primitives.floorBadge, FloorBadgeDocPage),
+  createRoute(
+    paths.components.primitives.locationIndicator,
+    LocationIndicatorDocPage,
+  ),
+  createRoute(paths.components.primitives.menuItem, MenuItemDocPage),
+  createRoute(paths.components.primitives.menuSection, MenuSectionDocPage),
+  createRoute(paths.components.primitives.signagePanel, SignagePanelDocPage),
+  createRoute(paths.components.primitives.meetingRow, MeetingRowDocPage),
+  createRoute(paths.components.primitives.infoList, InfoListDocPage),
   createRoute(paths.components.layouts.splitScreen, SplitScreenDocPage),
   createRoute(
     paths.components.layouts.signageContainer,
@@ -301,6 +345,7 @@ const routes = [
   createRoute(paths.components.layouts.signageHeader, SignageHeaderDocPage),
   createRoute(paths.components.blocks.fullscreenHero, FullscreenHeroDocPage),
   createRoute(paths.components.blocks.infoCardGrid, InfoCardGridDocPage),
+  createRoute(paths.components.blocks.menuBoard, MenuBoardDocPage),
   createRoute(paths.components.behaviour.contentRotator, ContentRotatorDocPage),
   createRoute(paths.components.behaviour.scheduleGate, ScheduleGateDocPage),
   createRoute(paths.components.behaviour.autoPagingList, AutoPagingListDocPage),

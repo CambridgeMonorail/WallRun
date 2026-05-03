@@ -37,6 +37,54 @@ const components: ComponentInfo[] = [
     description: 'Announcement cards for important messages and updates',
     category: 'Primitives',
   },
+  {
+    name: 'DirectoryCard',
+    path: '/components/primitives/directory-card',
+    description: 'Wayfinding card for departments, floors, rooms, and contacts',
+    category: 'Primitives',
+  },
+  {
+    name: 'FloorBadge',
+    path: '/components/primitives/floor-badge',
+    description: 'Compact floor marker for directories, maps, and wayfinding',
+    category: 'Primitives',
+  },
+  {
+    name: 'LocationIndicator',
+    path: '/components/primitives/location-indicator',
+    description: 'Current-location chip for wayfinding and directory headers',
+    category: 'Primitives',
+  },
+  {
+    name: 'MenuItem',
+    path: '/components/primitives/menu-item',
+    description: 'Price-led menu row with optional description and divider',
+    category: 'Primitives',
+  },
+  {
+    name: 'MenuSection',
+    path: '/components/primitives/menu-section',
+    description: 'Section wrapper for grouped menu content and headings',
+    category: 'Primitives',
+  },
+  {
+    name: 'SignagePanel',
+    path: '/components/primitives/signage-panel',
+    description: 'Bordered panel for grouped supporting information',
+    category: 'Primitives',
+  },
+  {
+    name: 'MeetingRow',
+    path: '/components/primitives/meeting-row',
+    description: 'Agenda row for meeting schedules and room bookings',
+    category: 'Primitives',
+  },
+  {
+    name: 'InfoList',
+    path: '/components/primitives/info-list',
+    description: 'Large-format list for instructions and operational notes',
+    category: 'Primitives',
+  },
   // Layouts
   {
     name: 'SplitScreen',
@@ -68,6 +116,12 @@ const components: ComponentInfo[] = [
     name: 'InfoCardGrid',
     path: '/components/blocks/info-card-grid',
     description: 'Grid layouts for displaying multiple information cards',
+    category: 'Blocks',
+  },
+  {
+    name: 'MenuBoard',
+    path: '/components/blocks/menu-board',
+    description: 'Full-screen composition shell for menu boards and daypart content',
     category: 'Blocks',
   },
   // Behaviour
