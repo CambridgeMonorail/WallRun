@@ -1,4 +1,5 @@
-# With custom domain wallrun.dev, robots.txt is now at the host root
+# WallRun allows crawling of human docs, machine-readable markdown payloads
+# and the published registry JSON.
 
 User-agent: *
 Allow: /

@@ -4,45 +4,18 @@
     <loc>https://wallrun.dev/</loc>
   </url>
   <url>
-    <loc>https://wallrun.dev/getting-started</loc>
+    <loc>https://wallrun.dev/llms.txt</loc>
   </url>
   <url>
-    <loc>https://wallrun.dev/tooling</loc>
+    <loc>https://wallrun.dev/library.md</loc>
   </url>
   <url>
-    <loc>https://wallrun.dev/library</loc>
+    <loc>https://wallrun.dev/components.md</loc>
   </url>
   <url>
-    <loc>https://wallrun.dev/gallery</loc>
+    <loc>https://wallrun.dev/ai-context.md</loc>
   </url>
   <url>
-    <loc>https://wallrun.dev/components</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/color-palette</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/welcome</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/menu</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/wayfinding</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/dashboard</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/announcements</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/event-schedule</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/office-lobby-loop</loc>
-  </url>
-  <url>
-    <loc>https://wallrun.dev/signage/daypart-menu</loc>
+    <loc>https://wallrun.dev/registry/registry.json</loc>
   </url>
 </urlset>
