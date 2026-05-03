@@ -58,7 +58,7 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
   'data-testid': dataTestId = 'code-snippet',
 }) => {
   const [copied, setCopied] = useState(false);
-  const displayedCode = code.replaceAll(LEGACY_REGISTRY_URL, PUBLIC_REGISTRY_URL);
+  const displayedCode = code.split(LEGACY_REGISTRY_URL).join(PUBLIC_REGISTRY_URL);
 
   const handleCopy = async () => {
     try {
@@ -115,7 +115,7 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
         >
           {showLineNumbers ? (
             <code className="relative">
-              {lines.map((line, index) => (
+              {lines.map((line: string, index: number) => (
                 <div key={index} className="table-row">
                   <span className="table-cell text-right pr-4 text-muted-foreground select-none w-8">
                     {index + 1}
