@@ -2,6 +2,10 @@ import { FC, useState } from 'react';
 import { Button } from '@wallrun/shadcnui';
 import { Check, Copy } from 'lucide-react';
 import { cn } from '@wallrun/shadcnui';
+import {
+  LEGACY_REGISTRY_URL,
+  PUBLIC_REGISTRY_URL,
+} from './componentDocs.constants';
 
 export interface CodeSnippetProps {
   /**
@@ -54,10 +58,11 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
   'data-testid': dataTestId = 'code-snippet',
 }) => {
   const [copied, setCopied] = useState(false);
+  const displayedCode = code.replaceAll(LEGACY_REGISTRY_URL, PUBLIC_REGISTRY_URL);
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(code);
+      await navigator.clipboard.writeText(displayedCode);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -65,7 +70,7 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
     }
   };
 
-  const lines = code.split('\n');
+  const lines = displayedCode.split('\n');
 
   return (
     <div
@@ -120,7 +125,7 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
               ))}
             </code>
           ) : (
-            <code data-language={language}>{code}</code>
+            <code data-language={language}>{displayedCode}</code>
           )}
         </pre>
       </div>

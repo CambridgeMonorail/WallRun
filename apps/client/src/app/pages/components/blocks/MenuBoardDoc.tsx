@@ -57,7 +57,9 @@ export const MenuBoardDocPage: FC = () => {
       ]}
       dependencyInstall="pnpm add clsx tailwind-merge"
       usageFilename="RestaurantMenu.tsx"
-      usageCode={`import { MenuBoard, MenuItem, MenuSection } from '@/components/signage';
+      usageCode={`import { MenuBoard } from '@/components/signage/blocks/MenuBoard';
+    import { MenuItem } from '@/components/signage/primitives/MenuItem';
+    import { MenuSection } from '@/components/signage/primitives/MenuSection';
 
 export function RestaurantMenu() {
   return (
