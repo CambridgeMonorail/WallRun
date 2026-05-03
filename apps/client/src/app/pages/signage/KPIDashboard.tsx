@@ -1,7 +1,14 @@
 import { FC } from 'react';
 import { SignageExample } from './components/SignageExample';
-import { TrendingUp, Users, DollarSign, ShoppingCart } from 'lucide-react';
 import {
+  TrendingUp,
+  Users,
+  DollarSign,
+  ShoppingCart,
+  LayoutDashboard,
+} from 'lucide-react';
+import {
+  CTABanner,
   SignageContainer,
   SignageHeader,
   MetricCard,
@@ -53,11 +60,10 @@ export const KPIDashboard: FC = () => {
         </div>
 
         <footer className="mt-10 text-center sm:mt-12 lg:mt-16">
-          <div className="inline-block rounded-2xl border border-slate-700/50 bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 px-5 py-4 backdrop-blur-sm sm:px-8 sm:py-5 lg:px-12 lg:py-6">
-            <p className="text-base text-slate-400 sm:text-lg lg:text-xl">
-              Dashboard powered by WallRun • Digital signage toolkit
-            </p>
-          </div>
+          <CTABanner
+            message="Dashboard powered by WallRun • Digital signage toolkit"
+            icon={LayoutDashboard}
+          />
         </footer>
       </SignageContainer>
     </SignageExample>

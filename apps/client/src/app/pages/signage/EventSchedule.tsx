@@ -1,6 +1,8 @@
 import { FC } from 'react';
+import { Smartphone } from 'lucide-react';
 import { SignageExample } from './components/SignageExample';
 import {
+  CTABanner,
   SignageContainer,
   SignageHeader,
   EventCard,
@@ -109,12 +111,11 @@ export const EventSchedule: FC = () => {
         </div>
 
         <footer className="mt-10 text-center sm:mt-12 lg:mt-16">
-          <div className="inline-block rounded-2xl border border-slate-700/60 bg-slate-900/70 px-5 py-4 backdrop-blur-sm sm:px-8 sm:py-5 lg:px-12 lg:py-6">
-            <p className="text-base text-slate-100 sm:text-lg lg:text-2xl">
-              Download the mobile app for personalized schedule and
-              notifications
-            </p>
-          </div>
+          <CTABanner
+            message="Download the mobile app for personalized schedule and notifications"
+            icon={Smartphone}
+            action={{ label: 'Open app', href: '#mobile-app' }}
+          />
         </footer>
       </SignageContainer>
     </SignageExample>

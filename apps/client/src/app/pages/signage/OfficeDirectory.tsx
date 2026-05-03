@@ -1,5 +1,7 @@
 import { FC } from 'react';
+import { ConciergeBell } from 'lucide-react';
 import {
+  CTABanner,
   DirectoryCard,
   LocationIndicator,
   SignageContainer,
@@ -53,10 +55,12 @@ export const OfficeDirectory: FC = () => {
             ))}
           </div>
 
-          <footer className="rounded-3xl border border-blue-500/50 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 p-5 text-center text-white shadow-2xl sm:p-8 lg:p-10">
-            <p className="text-lg font-medium sm:text-2xl lg:text-3xl">
-              For assistance, please contact Reception at extension 1001
-            </p>
+          <footer className="text-center">
+            <CTABanner
+              message="For assistance, please contact Reception at extension 1001"
+              icon={ConciergeBell}
+              variant="accent"
+            />
           </footer>
         </div>
       </SignageContainer>

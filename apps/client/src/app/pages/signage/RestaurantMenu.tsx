@@ -1,5 +1,11 @@
 import { FC } from 'react';
-import { MenuBoard, MenuItem, MenuSection } from '@wallrun/shadcnui-signage';
+import { UtensilsCrossed } from 'lucide-react';
+import {
+  CTABanner,
+  MenuBoard,
+  MenuItem,
+  MenuSection,
+} from '@wallrun/shadcnui-signage';
 import { SignageExample } from './components/SignageExample';
 
 const menuCategories = {
@@ -65,10 +71,12 @@ export const RestaurantMenu: FC = () => {
         subtitle="Fresh. Local. Delicious."
         data-testid="restaurant-menu"
         footer={
-          <footer className="mt-10 border-t border-slate-800 pt-6 text-center sm:mt-12 sm:pt-8 lg:mt-16">
-            <p className="text-base text-slate-400 sm:text-xl lg:text-2xl">
-              Ask your server about daily specials and dietary options
-            </p>
+          <footer className="mt-10 text-center sm:mt-12 lg:mt-16">
+            <CTABanner
+              message="Ask your server about daily specials and dietary options"
+              icon={UtensilsCrossed}
+              variant="gradient"
+            />
           </footer>
         }
       >
