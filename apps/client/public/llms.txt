@@ -2,28 +2,33 @@
 
 > WallRun is an open-source React workspace for building digital signage as software, with signage-oriented UI components, BrightSign deployment workflows, installable skills, and public documentation for developers.
 
-Use this file as the curated index for the main public WallRun docs surfaces.
+Use this file as the curated index for the main public WallRun docs surfaces. Treat it as the map, not the payload.
 
 Important notes:
 
-- For fetch-based AI tools, prefer `https://wallrun.dev/?/...` for deep WallRun docs routes. The site is deployed as an SPA on GitHub Pages, so direct deep links such as `/library` and `/components` can return `404` over plain HTTP fetch even though browsers recover through the `404.html` redirect workaround.
-- `https://wallrun.dev/?/library` is the fetch-friendly high-level component library overview and install-context page.
-- `https://wallrun.dev/?/components` is the fetch-friendly detailed signage component reference index.
+- `wallrun.dev` currently serves a static SPA for humans and static `.md` / `.txt` files for machines.
+- For agents and fetch-based tools, prefer the static payloads below because they return `HTTP 200` without SPA route recovery.
 - Storybook and the published shadcn registry are hosted separately from the main `wallrun.dev` docs shell.
 
-## Primary Docs
+## Primary AI-Readable Docs
+
+- [Library Overview](https://wallrun.dev/library.md): high-level library map, registry workflow, and doc surface overview.
+- [Component Catalogue](https://wallrun.dev/components.md): installable signage component catalogue with install commands, fit guidance, dependencies, and source paths.
+- [Full Project Context](https://wallrun.dev/ai-context.md): project summary, hosting model, docs map, and machine-interface guidance.
+
+## Human Docs
 
 - [Home](https://wallrun.dev/): product overview, positioning, and links into the docs surfaces.
-- [Getting Started](https://wallrun.dev/?/getting-started): first-stop setup guidance, including adding signage components to an existing React app.
-- [Tooling And Deployment](https://wallrun.dev/?/tooling): player app scaffolding, BrightSign packaging, deployment, discovery, and MCP tooling.
-- [Skills](https://wallrun.dev/?/skills): catalog of installable signage-oriented skills.
-- [Gallery](https://wallrun.dev/?/gallery): example signage screens and demo compositions.
+- [Getting Started](https://wallrun.dev/getting-started): first-stop setup guidance, including adding signage components to an existing React app.
+- [Tooling And Deployment](https://wallrun.dev/tooling): player app scaffolding, BrightSign packaging, deployment, discovery, and MCP tooling.
+- [Skills](https://wallrun.dev/skills): catalog of installable signage-oriented skills.
+- [Gallery](https://wallrun.dev/gallery): example signage screens and demo compositions.
 
-## Components
+## Human Component Surfaces
 
-- [Component Library Overview](https://wallrun.dev/?/library): high-level explanation of the WallRun component libraries, registry workflow, and Storybook entry point.
-- [Signage Components Reference](https://wallrun.dev/?/components): overview of primitives, layouts, blocks, and behaviour components.
-- [Color Palette](https://wallrun.dev/?/color-palette): WallRun demo-site palette and contrast guidance.
+- [Component Library Overview](https://wallrun.dev/library): high-level explanation of the WallRun component libraries, registry workflow, and Storybook entry point.
+- [Signage Components Reference](https://wallrun.dev/components): overview of primitives, layouts, blocks, and behaviour components.
+- [Color Palette](https://wallrun.dev/color-palette): WallRun demo-site palette and contrast guidance.
 
 ## Install And Reference
 
