@@ -1,4 +1,4 @@
-# WallRun allows crawling of human docs, machine-readable markdown payloads,
+# WallRun allows crawling of human docs, machine-readable markdown payloads
 # and the published registry JSON.
 
 User-agent: *
