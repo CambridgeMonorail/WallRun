@@ -136,6 +136,7 @@ Components are in `libs/shadcnui-signage/` with:
 - [Creating Signage Content](./docs/guides/creating-signage-content.md) - Design principles + examples
 - [Component Library README](./libs/shadcnui-signage/README.md) - API reference
 - [Registry README](./apps/client/public/registry/README.md) - shadcn registry setup + install commands
+- [Registry Maintenance Guide](./docs/guides/registry-maintenance.md) - maintainer workflow for updating the published registry
 
 #### Install Signage Components
 
@@ -149,6 +150,10 @@ You can also browse the available components and installation options in:
 
 - [apps/client/public/registry/README.md](./apps/client/public/registry/README.md)
 - [apps/client/src/app/pages/getting-started/GettingStarted.tsx](./apps/client/src/app/pages/getting-started/GettingStarted.tsx)
+
+Maintainers updating the published registry should start with:
+
+- [docs/guides/registry-maintenance.md](./docs/guides/registry-maintenance.md)
 
 #### Install Portable Skills
 

@@ -2,312 +2,184 @@
 
 ## Overview
 
-The shadcn-compatible registry at `apps/client/public/registry/registry.json` enables external users to install signage components via the shadcn CLI:
+WallRun publishes a shadcn-compatible registry from the checked-in file `apps/client/public/registry/registry.json`.
 
-```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name
-```
+- Public registry URL: `https://wallrun.dev/registry/registry.json`
+- Source of truth in the repo: `apps/client/public/registry/registry.json`
+- Source files referenced by registry items: `libs/shadcnui-signage/src/lib/**`
 
-This guide provides detailed procedures for maintaining accurate registry entries.
+This guide is for maintainers updating the published registry, not end users installing from it.
+
+## How WallRun's Registry Works
+
+WallRun does **not** currently generate registry artifacts with `shadcn build` or an equivalent repo wrapper.
+
+Instead, the registry is maintained as a static, checked-in JSON file that is shipped with the client app's public assets.
+
+That means the maintainer workflow today is:
+
+1. edit or add the source component files in `libs/shadcnui-signage`
+2. update the matching entry in `apps/client/public/registry/registry.json`
+3. verify the public registry still describes the component accurately
+4. ship the change through the normal repo workflow so the static client deploy publishes the updated JSON
+
+Each registry item points to raw GitHub file URLs for the files that the shadcn CLI should copy into downstream projects. The public registry index itself is served from `wallrun.dev`, but the `files[].path` entries currently resolve to raw GitHub content on `main`.
+
+## Maintainer Entry Points
+
+When working on the registry, treat these files as the main control surfaces:
+
+- `apps/client/public/registry/registry.json` - published registry definition
+- `apps/client/public/registry/README.md` - consumer-facing install notes
+- `libs/shadcnui-signage/src/index.ts` - public export surface to keep in sync with intended registry coverage
+- `libs/shadcnui-signage/src/lib/**` - actual source files referenced by registry items
 
 ## Registry Entry Structure
 
-Each component entry requires:
+Each item in `registry.json` should be reviewed as a complete installation contract.
 
-- **name** - Component name (kebab-case)
-- **type** - `"registry:component"` for components, `"registry:lib"` for utilities/hooks
-- **description** - What the component does (must match actual behavior)
-- **dependencies** - NPM packages the component imports (excluding React and workspace packages)
-- **files** - All files needed to install the component (including transitive dependencies)
+- `name` - kebab-case install identifier used by the shadcn CLI
+- `type` - `registry:component` for installable components
+- `title` - human-readable label for docs and registry consumers
+- `description` - short summary of what the component actually does today
+- `dependencies` - third-party npm packages required by the copied files
+- `registryDependencies` - other registry items that must also be installed by the consumer
+- `files` - every copied source file required for the component to work, including transitive local dependencies
 
-## Verification Workflow
+## `dependencies` vs `registryDependencies`
 
-### Step 1: Identify All Component Files
+These two fields are easy to blur together. Keep them separate.
 
-1. Open the component source file
-2. Note all relative imports (`./`, `../`)
-3. List the component file itself
-4. List all imported hooks, utilities, and types
+### `dependencies`
 
-**Example:** For `Clock.tsx`:
+Use `dependencies` for external packages imported by the copied files.
 
-- Main file: `Clock.tsx`
-- Hook: `useTicker.ts` (imported)
-- Types: `time.types.ts` (imported by `useTicker.ts`)
+Examples:
 
-### Step 2: Check Import Statements
+- `lucide-react`
+- `clsx`
+- `tailwind-merge`
 
-For each file in the component:
+Do **not** list:
 
-1. Open the file
-2. Read all `import` statements at the top
-3. Identify third-party packages (not from `react`, `@wallrun/*`, or relative paths)
-4. Add each package to the `dependencies` array
+- `react`
+- workspace packages such as `@wallrun/shadcnui` or `@wallrun/shadcnui-signage`
+- relative imports that are already covered by `files`
 
-**Example imports:**
+### `registryDependencies`
 
-```typescript
-import { useMemo } from 'react'; // ❌ Don't include (React assumed)
-import { Button } from '@wallrun/shadcnui'; // ❌ Don't include (workspace package)
-import { formatDistance } from 'date-fns'; // ✅ Include "date-fns"
-import { Calendar } from 'lucide-react'; // ✅ Include "lucide-react"
-import { cn } from '../utils/cn'; // Check if cn.ts is in files[]
-```
+Use `registryDependencies` when one registry item depends on another registry item being installed alongside it.
 
-### Step 3: Trace Transitive Dependencies
+Examples:
 
-For each imported file (hooks, utilities, types):
+- a future block that expects `signage-container` to be installed separately
+- a future composite item that intentionally layers on top of another published registry component
 
-1. Open the imported file
-2. Check its imports
-3. Add any new files to the `files[]` array
-4. Repeat until no new imports found
+Current state:
 
-**Critical:** This is the most common mistake. Missing transitive files break installation.
+- the checked-in registry already includes `registryDependencies` on every item
+- all current values are empty arrays
+- this is still worth documenting because the field is part of the contract and should be used intentionally when cross-item installs appear
 
-**Example:** `useTicker.ts` imports `time.types.ts` → both must be in `files[]`
+## Update Workflow
 
-### Step 4: Verify Descriptions Match Behavior
+### 1. Confirm the source-of-truth component files
 
-1. Read the component implementation
-2. Identify what it actually does (not what you think it should do)
-3. Write description based on actual behavior
-4. Don't copy descriptions from similar components
+Start from the real implementation under `libs/shadcnui-signage/src/lib/**`, not from Storybook snippets or copied docs examples.
 
-**Bad description examples:**
+Check whether the component is meant to be part of the published registry at all. The registry does not have to mirror every internal source file automatically.
 
-- "Shows elapsed time" (when component clamps at zero, not negative)
-- "Displays countdown with zoom effect" (when zoom transition doesn't exist)
-- Generic description copied from another component
+### 2. Trace the full file graph
 
-**Good description examples:**
+For the component you are publishing:
 
-- "Displays time remaining until target. Stops at zero when target is reached."
-- "Rotates through child elements on interval with crossfade transition."
+1. list the main component file
+2. follow every relative import (`./` and `../`)
+3. include any hooks, utility files, and types required by those imports
+4. continue until there are no unaccounted-for local imports left
 
-### Step 5: Set Correct File Types
+Missing transitive files are the most common way to break installs.
 
-Each file in `files[]` needs a type:
+### 3. Build the `dependencies` list from imports
 
-- `"registry:component"` - React components (`.tsx` files that export components)
-- `"registry:lib"` - Utilities, hooks, types (`.ts` files, non-component `.tsx`)
+Open each file that will be copied and inspect its import statements.
 
-### Step 6: Test Installation Locally
+Add external packages to `dependencies` only when they are actually imported by those copied files.
 
-Before committing:
+### 4. Decide whether `registryDependencies` is needed
+
+Ask one direct question:
+
+Does this item require another published registry item to be installed as a separate unit?
+
+- if yes, list that other registry item in `registryDependencies`
+- if no, keep `registryDependencies` empty and include any required local source files directly in `files`
+
+### 5. Write the description from actual behavior
+
+Descriptions should match the implementation that ships today.
+
+Do not:
+
+- copy a nearby description because it sounds close enough
+- describe aspirational behavior that has not landed
+- imply effects or options that only exist in Storybook prose
+
+### 6. Keep file types accurate
+
+- use `registry:component` for installable component source files
+- use `registry:lib` for utilities, hooks, helpers, and types
+
+### 7. Validate through the client build
+
+Because the registry is shipped from the client app's public assets, use the client build as the baseline validation step after editing registry metadata:
 
 ```bash
-# Build the registry
-cd apps/client
-pnpm build
-
-# Serve locally
-pnpm preview
-
-# Test install (in another directory)
-npx shadcn@latest add http://localhost:4173/registry/registry.json component-name
+pnpm build:client
 ```
 
-Verify:
+If you need to test installation behavior manually, build or serve the client app and point the shadcn CLI at the local registry URL.
 
-- All files copied correctly
-- No missing imports
-- Component runs without errors
+## Hosting Model And Deployment Implications
 
-## Common Mistakes and How to Avoid Them
+WallRun's current registry model has a few practical consequences for maintainers:
 
-### Mistake 1: Copying Dependency Lists
+- `registry.json` is static content checked into the repo
+- the deployed registry updates when the client site is rebuilt and redeployed
+- the copied source files currently come from raw GitHub URLs on `main`, so merged source changes matter for real installs
+- there is no automatic generator keeping registry entries in sync with the library source tree
 
-❌ **Wrong:**
+Because of that, registry maintenance is partly editorial. Adding a component to `libs/shadcnui-signage` does **not** publish it automatically.
 
-```json
-{
-  "name": "countdown",
-  "dependencies": ["date-fns", "date-fns-tz"] // Copied from another component
-}
-```
+## Current Constraints And Caveats
 
-✅ **Correct:**
+- The registry is manually curated. Drift between source files and `registry.json` is possible unless maintainers review both together.
+- `registryDependencies` is available but unused today. That is intentional until a component truly depends on another registry item as a separate install unit.
+- The registry should avoid relying on workspace-only imports. If a component cannot be installed cleanly without repo-local package aliases, it is not yet registry-safe.
+- Raw GitHub file paths make the registry simple to host, but they also mean the published install experience depends on the state of the referenced branch.
 
-```json
-{
-  "name": "countdown",
-  "dependencies": [] // Checked imports, uses only React and Intl API
-}
-```
+## Review Checklist
 
-**Solution:** Always read actual import statements. Don't assume.
+Before merging a registry update, confirm all of the following:
 
-### Mistake 2: Missing Transitive Dependencies
+- [ ] `README.md` and any consumer-facing docs still point people to the right public registry surface
+- [ ] the changed component is intended to be published, not just present internally
+- [ ] every required local file is present in `files`
+- [ ] every external package import is accounted for in `dependencies`
+- [ ] `registryDependencies` is either intentionally empty or intentionally populated
+- [ ] the description matches current behavior, not planned behavior
+- [ ] file types are correct for every entry in `files`
+- [ ] `pnpm build:client` still succeeds after the edit
 
-❌ **Wrong:**
+## Canonical Install Format
 
-```json
-{
-  "files": [
-    { "path": ".../Clock.tsx", "type": "registry:component" },
-    { "path": ".../useTicker.ts", "type": "registry:lib" }
-    // Missing time.types.ts imported by useTicker!
-  ]
-}
-```
-
-✅ **Correct:**
-
-```json
-{
-  "files": [
-    { "path": ".../Clock.tsx", "type": "registry:component" },
-    { "path": ".../useTicker.ts", "type": "registry:lib" },
-    { "path": ".../time.types.ts", "type": "registry:lib" }
-  ]
-}
-```
-
-**Solution:** Trace through ALL relative imports in every file.
-
-### Mistake 3: Wrong File Types
-
-❌ **Wrong:**
-
-```json
-{
-  "files": [
-    { "path": ".../useTicker.ts", "type": "registry:component" } // It's a hook!
-  ]
-}
-```
-
-✅ **Correct:**
-
-```json
-{
-  "files": [{ "path": ".../useTicker.ts", "type": "registry:lib" }]
-}
-```
-
-**Solution:** Components export JSX. Everything else is `registry:lib`.
-
-### Mistake 4: Inaccurate Descriptions
-
-❌ **Wrong:**
-
-```json
-{
-  "description": "Shows time remaining with negative values when expired"
-}
-```
-
-When actual code:
-
-```typescript
-const remaining = Math.max(0, targetMs - nowMs); // Clamps at zero!
-```
-
-✅ **Correct:**
-
-```json
-{
-  "description": "Shows time remaining until target. Stops at zero when reached."
-}
-```
-
-**Solution:** Read the implementation. Don't guess.
-
-## Verification Checklist
-
-Before committing registry changes:
-
-- [ ] Opened each file in `files[]`
-- [ ] Checked all `import` statements
-- [ ] Traced all relative imports (`../`, `./`)
-- [ ] Verified no transitive files missing
-- [ ] Confirmed dependencies list only includes actual NPM packages
-- [ ] Excluded React and `@wallrun/*` workspace packages
-- [ ] Read component implementation
-- [ ] Verified description matches actual behavior
-- [ ] Set correct type for each file
-- [ ] Tested installation locally (optional but recommended)
-
-## Installation Command Format
-
-### Correct Format
-
-Always use this format in documentation:
+When you update examples in docs, prefer the canonical public registry URL:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name
+npx shadcn@latest add https://wallrun.dev/registry/registry.json component-name
 ```
 
-**Key points:**
-
-- Full registry URL with `/registry.json`
-- Component name after the URL (not in URL path)
-- Space-separated for multiple components
-
-### Multiple Components
-
-```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json clock countdown metric-card
-```
-
-### Incorrect Patterns
-
-❌ Don't use:
-
-- Two-step process: `shadcn add registry` then `shadcn add component`
-- Individual JSON URLs: `.../registry/clock.json`
-- Missing `/registry.json`: `.../registry`
-- Multi-line with backslashes (harder to copy-paste)
-
-## Registry JSON Template
-
-Use this template for new entries:
-
-```json
-{
-  "name": "component-name",
-  "type": "registry:component",
-  "description": "Brief description of what it actually does",
-  "dependencies": [],
-  "files": [
-    {
-      "path": "libs/shadcnui-signage/src/lib/category/ComponentName.tsx",
-      "type": "registry:component"
-    }
-  ]
-}
-```
-
-Add dependencies and files as needed following the verification workflow above.
-
-## Troubleshooting
-
-### Users Report Missing Dependencies
-
-**Symptom:** `Cannot find module 'package-name'`
-
-**Cause:** Package not in `dependencies` array
-
-**Fix:** Add the package to `dependencies`:
-
-```json
-"dependencies": ["package-name"]
-```
-
-### Users Report Missing Files
-
-**Symptom:** `Cannot resolve './utils/helper'`
-
-**Cause:** Transitive dependency not in `files[]`
-
-**Fix:** Trace imports and add missing files with correct paths and types
-
-### Installation Fails Silently
-
-**Symptom:** No error, but files not copied
-
-**Cause:** Wrong registry URL format
+That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host.
 
 **Fix:** Ensure URL ends with `/registry.json` and component name is after URL
 

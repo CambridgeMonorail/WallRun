@@ -54,9 +54,9 @@ All component source code is available in this repository. Copy the component fi
 
 Full documentation and live examples:
 
-- **Demo Site**: https://wallrun.dev/
-- **Components**: https://wallrun.dev/#/components
-- **Storybook**: https://wallrun.dev/storybook/
+- **Demo Site**: <https://wallrun.dev/>
+- **Components**: <https://wallrun.dev/#/components>
+- **Storybook**: <https://wallrun.dev/storybook/>
 
 ## Dependencies
 
@@ -68,3 +68,9 @@ Most components require:
 ## Philosophy
 
 Following shadcn/ui principles, these are not npm packages - they're source code you copy and own. Modify them to fit your needs.
+
+## Maintainers
+
+If you are updating the published registry entries rather than consuming them, use the repository maintainer guide:
+
+- [`docs/guides/registry-maintenance.md`](../../../docs/guides/registry-maintenance.md)
