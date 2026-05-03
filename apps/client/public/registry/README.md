@@ -73,4 +73,4 @@ Following shadcn/ui principles, these are not npm packages - they're source code
 
 If you are updating the published registry entries rather than consuming them, use the repository maintainer guide:
 
-- [`docs/guides/registry-maintenance.md`](../../../docs/guides/registry-maintenance.md)
+- [`docs/guides/registry-maintenance.md`](../../../../docs/guides/registry-maintenance.md)

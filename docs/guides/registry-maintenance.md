@@ -181,8 +181,6 @@ npx shadcn@latest add https://wallrun.dev/registry/registry.json component-name
 
 That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host.
 
-**Fix:** Ensure URL ends with `/registry.json` and component name is after URL
-
 ## Maintenance Schedule
 
 - **After adding component:** Verify registry entry before PR
