@@ -30,6 +30,12 @@ export { MeetingRow } from './lib/primitives/MeetingRow';
 export type { MeetingRowProps } from './lib/primitives/MeetingRow';
 export { InfoList } from './lib/primitives/InfoList';
 export type { InfoListProps } from './lib/primitives/InfoList';
+export { CTABanner } from './lib/primitives/CTABanner';
+export type {
+  CTABannerProps,
+  CTABannerAction,
+  CTABannerVariant,
+} from './lib/primitives/CTABanner';
 
 // Layouts
 export { SplitScreen } from './lib/layouts/SplitScreen';
