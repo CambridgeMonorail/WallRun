@@ -58,4 +58,16 @@ export const WithAction: Story = {
       href: '#download-app',
     },
   },
+  render: (args) => (
+    <div className="flex w-full flex-col items-center justify-end gap-6">
+      <CTABanner {...args} />
+      <section
+        id="download-app"
+        aria-label="Mobile app download information"
+        className="w-full max-w-3xl rounded-md border border-white/10 bg-black/20 p-4 text-sm text-white/80"
+      >
+        Mobile app destination
+      </section>
+    </div>
+  ),
 };

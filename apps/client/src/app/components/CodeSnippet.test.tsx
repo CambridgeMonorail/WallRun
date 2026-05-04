@@ -2,6 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { CodeSnippet } from './CodeSnippet';
+import {
+  LEGACY_REGISTRY_URL,
+  PUBLIC_REGISTRY_URL,
+} from './componentDocs.constants';
 
 describe('CodeSnippet', () => {
   const sampleCode = `import { Button } from '@wallrun/shadcnui';
@@ -35,6 +39,29 @@ export const App = () => <Button>Click me</Button>;`;
 
     await waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(sampleCode);
+    });
+  });
+
+  it('rewrites legacy registry URLs in rendered code output', () => {
+    const legacyRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} menu-board`;
+
+    render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
+
+    expect(screen.getByText(`npx shadcn@latest add ${PUBLIC_REGISTRY_URL} menu-board`)).toBeInTheDocument();
+    expect(screen.queryByText(legacyRegistryCode)).not.toBeInTheDocument();
+  });
+
+  it('copies rewritten registry URLs to the clipboard', async () => {
+    const legacyRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} menu-board`;
+
+    render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
+
+    fireEvent.click(screen.getByTestId('copy-button'));
+
+    await waitFor(() => {
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        `npx shadcn@latest add ${PUBLIC_REGISTRY_URL} menu-board`,
+      );
     });
   });
 

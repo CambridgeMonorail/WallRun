@@ -114,7 +114,6 @@ export const EventSchedule: FC = () => {
           <CTABanner
             message="Download the mobile app for personalized schedule and notifications"
             icon={Smartphone}
-            action={{ label: 'Open app', href: '#mobile-app' }}
           />
         </footer>
       </SignageContainer>
