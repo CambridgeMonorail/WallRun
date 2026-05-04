@@ -8,6 +8,7 @@ import {
   Blocks,
   Wrench,
   BookOpen,
+  GraduationCap,
 } from 'lucide-react';
 
 import { LandingPage } from '../pages/landing/Landing';
@@ -51,6 +52,8 @@ import { CustomAgentsPage } from '../pages/how-to/CustomAgents';
 import { DesignBriefPage } from '../pages/how-to/DesignBrief';
 import { BuildSignagePage } from '../pages/how-to/BuildSignage';
 import { DeployBrightSignPage } from '../pages/how-to/DeployBrightSign';
+import { TutorialsPage } from '../pages/tutorials/Tutorials';
+import { RestaurantDigitalSignageTutorialPage } from '../pages/tutorials/RestaurantDigitalSignage';
 import { ScheduleGateDocPage } from '../pages/components/behaviour/ScheduleGateDoc';
 import { AutoPagingListDocPage } from '../pages/components/behaviour/AutoPagingListDoc';
 import { SignageTransitionDocPage } from '../pages/components/behaviour/SignageTransitionDoc';
@@ -76,6 +79,10 @@ const paths = {
     designBrief: '/how-to/design-brief',
     buildSignage: '/how-to/build-signage',
     deployBrightSign: '/how-to/deploy-brightsign',
+  },
+  tutorials: {
+    index: '/tutorials',
+    restaurantDigitalSignage: '/tutorials/restaurant-digital-signage',
   },
   signage: {
     welcome: '/signage/welcome',
@@ -176,12 +183,21 @@ const sidebarData: SidebarConfiguration = {
       ],
     },
     {
+      title: 'Tutorials',
+      url: paths.tutorials.index,
+      icon: GraduationCap,
+      items: [
+        {
+          title: 'Restaurant Digital Signage',
+          url: paths.tutorials.restaurantDigitalSignage,
+        },
+      ],
+    },
+    {
       title: 'Player Workflows',
       url: paths.tooling,
       icon: Wrench,
-      items: [
-        { title: 'Tooling & Deployment', url: paths.tooling },
-      ],
+      items: [{ title: 'Tooling & Deployment', url: paths.tooling }],
     },
     {
       title: 'Components',
@@ -196,7 +212,10 @@ const sidebarData: SidebarConfiguration = {
           title: 'AnnouncementCard',
           url: paths.components.primitives.announcementCard,
         },
-        { title: 'DirectoryCard', url: paths.components.primitives.directoryCard },
+        {
+          title: 'DirectoryCard',
+          url: paths.components.primitives.directoryCard,
+        },
         { title: 'FloorBadge', url: paths.components.primitives.floorBadge },
         {
           title: 'LocationIndicator',
@@ -303,6 +322,11 @@ const routes = [
   createRoute(paths.howTo.designBrief, DesignBriefPage),
   createRoute(paths.howTo.buildSignage, BuildSignagePage),
   createRoute(paths.howTo.deployBrightSign, DeployBrightSignPage),
+  createRoute(paths.tutorials.index, TutorialsPage),
+  createRoute(
+    paths.tutorials.restaurantDigitalSignage,
+    RestaurantDigitalSignageTutorialPage,
+  ),
   createRoute(paths.signage.welcome, WelcomeScreen, false),
   createRoute(paths.signage.menu, RestaurantMenu, false),
   createRoute(paths.signage.wayfinding, OfficeDirectory, false),
