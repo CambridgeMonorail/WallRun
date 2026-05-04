@@ -181,10 +181,6 @@ const sidebarData: SidebarConfiguration = {
       icon: Wrench,
       items: [
         { title: 'Tooling & Deployment', url: paths.tooling },
-        { title: 'Gallery', url: paths.gallery },
-        { title: 'Welcome Screen', url: paths.signage.welcome },
-        { title: 'Restaurant Menu', url: paths.signage.menu },
-        { title: 'Office Directory', url: paths.signage.wayfinding },
       ],
     },
     {
