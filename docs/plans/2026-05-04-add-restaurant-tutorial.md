@@ -8,7 +8,7 @@ Add a Tutorials section to the WallRun demo site and launch it with a comprehens
 
 The demo site already has short how-to pages for design briefs, signage builds, agents, and BrightSign deployment. The new tutorial should be longer-form and narrative: a start-to-finish developer case study for inventing a restaurant concept, structuring menu data, choosing WallRun tools and components, implementing screens, and preparing for deployment.
 
-The first tutorial uses the invented venue "The Lard Lounge", a modern restaurant where all dishes are lard based.
+The first tutorial uses the invented venue "The Lard Lounge", a modern restaurant where all dishes are lard-based.
 
 ## Task Breakdown
 
