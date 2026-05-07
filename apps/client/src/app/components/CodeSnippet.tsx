@@ -3,9 +3,41 @@ import { Button } from '@wallrun/shadcnui';
 import { Check, Copy } from 'lucide-react';
 import { cn } from '@wallrun/shadcnui';
 import {
+  getPublicRegistryItemUrl,
   LEGACY_REGISTRY_URL,
   PUBLIC_REGISTRY_URL,
 } from './componentDocs.constants';
+
+const REGISTRY_COMMAND_PREFIX = 'npx shadcn@latest add ';
+
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const rewriteRegistryCommand = (code: string, registryUrl: string) => {
+  const commandPattern = new RegExp(
+    `${escapeRegExp(REGISTRY_COMMAND_PREFIX)}${escapeRegExp(registryUrl)}\\s+([^\\n]+)`,
+    'g',
+  );
+
+  return code.replace(commandPattern, (_match, rawArguments: string) => {
+    const tokens = rawArguments.trim().split(/\s+/u);
+    const containsNamedItems = tokens.some((token) => !token.startsWith('-'));
+
+    if (!containsNamedItems) {
+      return `${REGISTRY_COMMAND_PREFIX}${PUBLIC_REGISTRY_URL} ${tokens.join(' ')}`.trim();
+    }
+
+    const rewrittenTokens = tokens.map((token) => {
+      if (token.startsWith('-')) {
+        return token;
+      }
+
+      return getPublicRegistryItemUrl(token);
+    });
+
+    return `${REGISTRY_COMMAND_PREFIX}${rewrittenTokens.join(' ')}`;
+  });
+};
 
 export interface CodeSnippetProps {
   /**
@@ -58,7 +90,10 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
   'data-testid': dataTestId = 'code-snippet',
 }) => {
   const [copied, setCopied] = useState(false);
-  const displayedCode = code.split(LEGACY_REGISTRY_URL).join(PUBLIC_REGISTRY_URL);
+  const displayedCode = [LEGACY_REGISTRY_URL, PUBLIC_REGISTRY_URL].reduce(
+    (currentCode, registryUrl) => rewriteRegistryCommand(currentCode, registryUrl),
+    code,
+  );
 
   const handleCopy = async () => {
     try {

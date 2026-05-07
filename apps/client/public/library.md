@@ -12,7 +12,7 @@ This markdown file is the machine-readable payload for the library overview.
 - `@wallrun/shadcnui`: WallRun's copy of shadcn/ui building-block primitives for general web UI.
 - `@wallrun/shadcnui-signage`: signage-oriented components for fixed-aspect layouts, distance readability, and always-on displays.
 - Storybook docs: interactive composition and usage examples hosted at `https://cambridgemonorail.github.io/WallRun/storybook/`.
-- Published registry: installable signage components at `https://cambridgemonorail.github.io/WallRun/registry/registry.json`.
+- Published registry index: installable signage components at `https://wallrun.dev/registry/registry.json`.
 
 ## When To Use Each Surface
 
@@ -27,13 +27,19 @@ WallRun signage components are distributed through the shadcn registry protocol.
 - Install one component:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json clock
+npx shadcn@latest add https://wallrun.dev/registry/clock.json
 ```
 
 - Install several components:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate
+npx shadcn@latest add https://wallrun.dev/registry/metric-card.json https://wallrun.dev/registry/event-card.json https://wallrun.dev/registry/schedule-gate.json
+```
+
+- Install everything from the registry index:
+
+```bash
+npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
 ```
 
 Registry installs copy component code into the consuming application. They are not version-locked runtime packages.
@@ -44,7 +50,7 @@ Registry installs copy component code into the consuming application. They are n
 - Human components route: `https://wallrun.dev/components`
 - Machine component catalogue: `https://wallrun.dev/components.md`
 - Project context: `https://wallrun.dev/ai-context.md`
-- Registry JSON: `https://cambridgemonorail.github.io/WallRun/registry/registry.json`
+- Registry JSON: `https://wallrun.dev/registry/registry.json`
 - Storybook docs: `https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation`
 
 ## Hosting Note

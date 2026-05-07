@@ -180,7 +180,7 @@ export const Home: FC = () => {
               </div>
             </div>
             <div className="code-panel mb-3 overflow-x-auto p-3 font-mono text-xs text-foreground">
-              <pre>{`npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list`}</pre>
+              <pre>{`npx shadcn@latest add https://wallrun.dev/registry/auto-paging-list.json`}</pre>
             </div>
             <Button asChild variant="secondary">
               <Link to="/getting-started">See install options</Link>

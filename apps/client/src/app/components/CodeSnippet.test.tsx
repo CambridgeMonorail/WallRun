@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { CodeSnippet } from './CodeSnippet';
 import {
+  getPublicRegistryItemUrl,
   LEGACY_REGISTRY_URL,
   PUBLIC_REGISTRY_URL,
 } from './componentDocs.constants';
@@ -47,7 +48,11 @@ export const App = () => <Button>Click me</Button>;`;
 
     render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
 
-    expect(screen.getByText(`npx shadcn@latest add ${PUBLIC_REGISTRY_URL} menu-board`)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        `npx shadcn@latest add ${getPublicRegistryItemUrl('menu-board')}`,
+      ),
+    ).toBeInTheDocument();
     expect(screen.queryByText(legacyRegistryCode)).not.toBeInTheDocument();
   });
 
@@ -60,9 +65,32 @@ export const App = () => <Button>Click me</Button>;`;
 
     await waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-        `npx shadcn@latest add ${PUBLIC_REGISTRY_URL} menu-board`,
+        `npx shadcn@latest add ${getPublicRegistryItemUrl('menu-board')}`,
       );
     });
+  });
+
+  it('rewrites multi-item registry installs to per-item URLs', () => {
+    const legacyRegistryCode =
+      `npx shadcn@latest add ${LEGACY_REGISTRY_URL} metric-card event-card schedule-gate`;
+
+    render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
+
+    expect(
+      screen.getByText(
+        `npx shadcn@latest add ${getPublicRegistryItemUrl('metric-card')} ${getPublicRegistryItemUrl('event-card')} ${getPublicRegistryItemUrl('schedule-gate')}`,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('keeps the root registry index for --all installs', () => {
+    const rootRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} --all`;
+
+    render(<CodeSnippet code={rootRegistryCode} language="bash" />);
+
+    expect(
+      screen.getByText(`npx shadcn@latest add ${PUBLIC_REGISTRY_URL} --all`),
+    ).toBeInTheDocument();
   });
 
   it('shows "Copied" message after successful copy', async () => {

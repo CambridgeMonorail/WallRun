@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "screen-frame",
+  "type": "registry:component",
+  "title": "Screen Frame",
+  "description": "Preview container with aspect ratio enforcement and safe area guides. Useful for development and QA testing.",
+  "registryDependencies": [],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ScreenFrame.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/resolution.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
+      "type": "registry:lib"
+    }
+  ]
+}

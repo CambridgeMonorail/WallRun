@@ -15,7 +15,7 @@ The project combines:
 - `https://wallrun.dev/llms.txt`: curated index for AI consumers
 - `https://wallrun.dev/library.md`: high-level library overview
 - `https://wallrun.dev/components.md`: installable component catalogue
-- `https://cambridgemonorail.github.io/WallRun/registry/registry.json`: shadcn registry source
+- `https://wallrun.dev/registry/registry.json`: shadcn registry index for discovery and `--all`
 - `https://cambridgemonorail.github.io/WallRun/storybook/?path=/docs/introduction--documentation`: interactive docs
 
 ## Canonical Human Interfaces

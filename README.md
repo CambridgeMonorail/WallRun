@@ -143,7 +143,7 @@ Components are in `libs/shadcnui-signage/` with:
 The signage components are distributed through a shadcn-compatible registry. Install them into your own project with:
 
 ```bash
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
+npx shadcn@latest add https://wallrun.dev/registry/auto-paging-list.json
 ```
 
 You can also browse the available components and installation options in:
