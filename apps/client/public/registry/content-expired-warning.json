@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "content-expired-warning",
+  "type": "registry:component",
+  "title": "Content Expired Warning",
+  "description": "Highlights content that is beyond its approved display window with badge, panel, or overlay treatments.",
+  "registryDependencies": [],
+  "dependencies": [
+    "clsx",
+    "lucide-react",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/ContentExpiredWarning.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+      "type": "registry:lib"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "one-message-frame",
+  "type": "registry:component",
+  "title": "One Message Frame",
+  "description": "Opinionated signage shell for one dominant message, one supporting context line, and one clear next step.",
+  "registryDependencies": [],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/OneMessageFrame.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/clamp.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/signage.types.ts",
+      "type": "registry:lib"
+    }
+  ]
+}

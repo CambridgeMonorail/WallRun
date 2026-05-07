@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reconnecting-state",
+  "type": "registry:component",
+  "title": "Reconnecting State",
+  "description": "Operator-facing reconnecting state for live content, with inline and panel variants and last-live metadata.",
+  "registryDependencies": [],
+  "dependencies": [
+    "clsx",
+    "lucide-react",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/ReconnectingState.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+      "type": "registry:lib"
+    }
+  ]
+}
