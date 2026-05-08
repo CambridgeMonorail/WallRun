@@ -15,6 +15,12 @@ This guide is for maintainers updating the published registry, not end users ins
 
 WallRun does not use `shadcn build`, but it does generate checked-in per-item registry artifacts from the static root index.
 
+This is an important distinction from the upstream registry template docs.
+
+- Upstream authoring guidance such as `registry/[STYLE]/[NAME]` source folders and `@/registry/...` imports describes how to structure a source registry project before running `shadcn build`.
+- WallRun does not currently author its registry that way. Instead, it maintains a checked-in `registry.json` index and generates the published item payloads from that file.
+- For WallRun maintainers, the compatibility contract that matters is the published JSON shape served from `wallrun.dev`, not the internal folder layout used by the upstream template project.
+
 That means the maintainer workflow today is:
 
 1. edit or add the source component files in `libs/shadcnui-signage`
@@ -23,7 +29,7 @@ That means the maintainer workflow today is:
 4. verify the public registry still describes the component accurately
 5. ship the change through the normal repo workflow so the static client deploy publishes the updated JSON
 
-The root `registry.json` remains the entry point for discovery and `--all` installs. Individual installs should use the generated item files such as `https://wallrun.dev/registry/menu-board.json`.
+The root `registry.json` remains the entry point for discovery, `search`/`list`, and namespaced resolution. Direct installs should use generated item files such as `https://wallrun.dev/registry/menu-board.json`, and bulk installs should use the generated `https://wallrun.dev/registry/all.json` meta item.
 
 Each registry item points to raw GitHub file URLs for the files that the shadcn CLI should copy into downstream projects. The public registry index and generated item files are served from `wallrun.dev`, but the `files[].path` entries currently resolve to raw GitHub content on `main`.
 
@@ -80,8 +86,8 @@ Examples:
 
 Current state:
 
-- the checked-in registry already includes `registryDependencies` on every item
-- all current values are empty arrays
+- the checked-in item registry uses `registryDependencies` only for the generated `all.json` meta item
+- published component items in `registry.json` currently keep `registryDependencies` empty arrays
 - this is still worth documenting because the field is part of the contract and should be used intentionally when cross-item installs appear
 
 ## Update Workflow
@@ -157,7 +163,7 @@ Because of that, registry maintenance is partly editorial. Adding a component to
 ## Current Constraints And Caveats
 
 - The registry is manually curated. Drift between source files and `registry.json` is possible unless maintainers review both together.
-- `registryDependencies` is available but unused today. That is intentional until a component truly depends on another registry item as a separate install unit.
+- `registryDependencies` is effectively unused by published component items today. The only populated case is the generated `all.json` meta item, which intentionally lists every published registry item by name.
 - The registry should avoid relying on workspace-only imports. If a component cannot be installed cleanly without repo-local package aliases, it is not yet registry-safe.
 - Raw GitHub file paths make the registry simple to host, but they also mean the published install experience depends on the state of the referenced branch.
 
@@ -182,13 +188,13 @@ When you update examples in docs, prefer the canonical public registry URL:
 npx shadcn@latest add https://wallrun.dev/registry/component-name.json
 ```
 
-Use the root index only for discovery and `--all` installs:
+Use the root index only for discovery and namespaced resolution. For a bulk install example, use the generated meta item:
 
 ```bash
-npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
+npx shadcn@latest add https://wallrun.dev/registry/all.json
 ```
 
-That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host while still using valid item installs.
+That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host while only showing valid direct item installs.
 
 ## Maintenance Schedule
 

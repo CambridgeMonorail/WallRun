@@ -229,6 +229,64 @@
       ]
     },
     {
+      "name": "action-strip",
+      "type": "registry:component",
+      "title": "Action Strip",
+      "description": "Reusable CTA shell for footer and side-zone signage actions with tone and placement variants.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ActionStrip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "short-url-callout",
+      "type": "registry:component",
+      "title": "Short URL Callout",
+      "description": "Distance-readable manual URL fallback for QR and signage CTA surfaces.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ShortUrlCallout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-callout",
+      "type": "registry:component",
+      "title": "QR Code Callout",
+      "description": "Scan-safe QR callout with destination context and optional short URL fallback.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "qrcode.react", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/QRCodeCallout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ShortUrlCallout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "split-screen",
       "type": "registry:component",
       "title": "Split Screen",
@@ -378,6 +436,36 @@
         },
         {
           "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/layouts/SignageContainer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "qr-handoff",
+      "type": "registry:component",
+      "title": "QR Handoff",
+      "description": "Composed phone-handoff surface that pairs explanatory copy with a QR CTA and short URL fallback.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "qrcode.react", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/QRHandoff.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ActionStrip.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/QRCodeCallout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ShortUrlCallout.tsx",
           "type": "registry:component"
         },
         {

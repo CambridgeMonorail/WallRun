@@ -30,12 +30,29 @@ export { MeetingRow } from './lib/primitives/MeetingRow';
 export type { MeetingRowProps } from './lib/primitives/MeetingRow';
 export { InfoList } from './lib/primitives/InfoList';
 export type { InfoListProps } from './lib/primitives/InfoList';
+export { ActionStrip } from './lib/primitives/ActionStrip';
+export type {
+  ActionStripProps,
+  ActionStripPosition,
+  ActionStripTone,
+} from './lib/primitives/ActionStrip';
 export { CTABanner } from './lib/primitives/CTABanner';
 export type {
   CTABannerProps,
   CTABannerAction,
   CTABannerVariant,
 } from './lib/primitives/CTABanner';
+export { QRCodeCallout } from './lib/primitives/QRCodeCallout';
+export type {
+  QRCodeCalloutProps,
+  QRCodeCalloutSize,
+  QRCodeCalloutErrorCorrection,
+} from './lib/primitives/QRCodeCallout';
+export { ShortUrlCallout } from './lib/primitives/ShortUrlCallout';
+export type {
+  ShortUrlCalloutProps,
+  ShortUrlCalloutVariant,
+} from './lib/primitives/ShortUrlCallout';
 
 // Layouts
 export { SplitScreen } from './lib/layouts/SplitScreen';
@@ -57,6 +74,8 @@ export { InfoCardGrid } from './lib/blocks/InfoCardGrid';
 export type { InfoCardGridProps } from './lib/blocks/InfoCardGrid';
 export { MenuBoard } from './lib/blocks/MenuBoard';
 export type { MenuBoardProps } from './lib/blocks/MenuBoard';
+export { QRHandoff } from './lib/blocks/QRHandoff';
+export type { QRHandoffProps } from './lib/blocks/QRHandoff';
 
 // Behaviour
 export { ContentRotator } from './lib/behaviour/ContentRotator';
@@ -82,9 +101,7 @@ export type { NoContentFallbackProps } from './lib/behaviour/NoContentFallback';
 export { StaleDataIndicator } from './lib/behaviour/StaleDataIndicator';
 export type { StaleDataIndicatorProps } from './lib/behaviour/StaleDataIndicator';
 export { ContentExpiredWarning } from './lib/behaviour/ContentExpiredWarning';
-export type {
-  ContentExpiredWarningProps,
-} from './lib/behaviour/ContentExpiredWarning';
+export type { ContentExpiredWarningProps } from './lib/behaviour/ContentExpiredWarning';
 export { LastUpdatedStamp } from './lib/behaviour/LastUpdatedStamp';
 export type {
   LastUpdatedStampProps,

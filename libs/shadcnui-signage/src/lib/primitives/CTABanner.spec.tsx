@@ -16,6 +16,10 @@ describe('CTABanner', () => {
     );
 
     expect(container.querySelector('svg')).toBeInTheDocument();
+    expect(container.querySelector('svg')?.parentElement?.parentElement).toHaveClass(
+      'flex-col',
+      'sm:flex-row',
+    );
   });
 
   it('renders the action link when provided', () => {

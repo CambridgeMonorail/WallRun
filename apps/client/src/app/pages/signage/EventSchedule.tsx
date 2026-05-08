@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { Smartphone } from 'lucide-react';
 import { SignageExample } from './components/SignageExample';
 import {
-  CTABanner,
   SignageContainer,
   SignageHeader,
   EventCard,
+  QRHandoff,
 } from '@wallrun/shadcnui-signage';
 
 interface Event {
@@ -111,9 +110,14 @@ export const EventSchedule: FC = () => {
         </div>
 
         <footer className="mt-10 text-center sm:mt-12 lg:mt-16">
-          <CTABanner
-            message="Download the mobile app for personalized schedule and notifications"
-            icon={Smartphone}
+          <QRHandoff
+            title="Take the schedule with you"
+            description="Scan to continue on your phone with personalized agenda updates, session reminders, and live room changes."
+            qrValue="https://wallrun.dev/app"
+            qrLabel="Conference companion app"
+            qrInstruction="Scan for personal agenda and venue guidance"
+            shortUrl="wallrun.dev/app"
+            className="mx-auto max-w-5xl text-left"
           />
         </footer>
       </SignageContainer>

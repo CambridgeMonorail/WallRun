@@ -29,7 +29,10 @@ import { OfficeLobbyLoop } from '../pages/signage/OfficeLobbyLoop';
 import { DaypartMenu } from '../pages/signage/DaypartMenu';
 import { ComponentIndexPage } from '../pages/components/ComponentIndex';
 import { MetricCardDocPage } from '../pages/components/primitives/MetricCardDoc';
+import { ActionStripDocPage } from '../pages/components/primitives/ActionStripDoc';
+import { QRCodeCalloutDocPage } from '../pages/components/primitives/QRCodeCalloutDoc';
 import { ScreenFrameDocPage } from '../pages/components/primitives/ScreenFrameDoc';
+import { ShortUrlCalloutDocPage } from '../pages/components/primitives/ShortUrlCalloutDoc';
 import { EventCardDocPage } from '../pages/components/primitives/EventCardDoc';
 import { AnnouncementCardDocPage } from '../pages/components/primitives/AnnouncementCardDoc';
 import { DirectoryCardDocPage } from '../pages/components/primitives/DirectoryCardDoc';
@@ -46,6 +49,7 @@ import { SignageHeaderDocPage } from '../pages/components/layouts/SignageHeaderD
 import { FullscreenHeroDocPage } from '../pages/components/blocks/FullscreenHeroDoc';
 import { InfoCardGridDocPage } from '../pages/components/blocks/InfoCardGridDoc';
 import { MenuBoardDocPage } from '../pages/components/blocks/MenuBoardDoc';
+import { QRHandoffDocPage } from '../pages/components/blocks/QRHandoffDoc';
 import { ContentRotatorDocPage } from '../pages/components/behaviour/ContentRotatorDoc';
 import { HowToPage } from '../pages/how-to/HowTo';
 import { CustomAgentsPage } from '../pages/how-to/CustomAgents';
@@ -100,7 +104,10 @@ const paths = {
     index: '/components',
     primitives: {
       metricCard: '/components/primitives/metric-card',
+      actionStrip: '/components/primitives/action-strip',
+      qrCodeCallout: '/components/primitives/qr-code-callout',
       screenFrame: '/components/primitives/screen-frame',
+      shortUrlCallout: '/components/primitives/short-url-callout',
       eventCard: '/components/primitives/event-card',
       announcementCard: '/components/primitives/announcement-card',
       directoryCard: '/components/primitives/directory-card',
@@ -121,6 +128,7 @@ const paths = {
       fullscreenHero: '/components/blocks/fullscreen-hero',
       infoCardGrid: '/components/blocks/info-card-grid',
       menuBoard: '/components/blocks/menu-board',
+      qrHandoff: '/components/blocks/qr-handoff',
     },
     behaviour: {
       contentRotator: '/components/behaviour/content-rotator',
@@ -206,7 +214,16 @@ const sidebarData: SidebarConfiguration = {
       items: [
         { title: 'Overview', url: paths.components.index },
         { title: 'MetricCard', url: paths.components.primitives.metricCard },
+        { title: 'ActionStrip', url: paths.components.primitives.actionStrip },
+        {
+          title: 'QRCodeCallout',
+          url: paths.components.primitives.qrCodeCallout,
+        },
         { title: 'ScreenFrame', url: paths.components.primitives.screenFrame },
+        {
+          title: 'ShortUrlCallout',
+          url: paths.components.primitives.shortUrlCallout,
+        },
         { title: 'EventCard', url: paths.components.primitives.eventCard },
         {
           title: 'AnnouncementCard',
@@ -241,6 +258,7 @@ const sidebarData: SidebarConfiguration = {
         },
         { title: 'InfoCardGrid', url: paths.components.blocks.infoCardGrid },
         { title: 'MenuBoard', url: paths.components.blocks.menuBoard },
+        { title: 'QRHandoff', url: paths.components.blocks.qrHandoff },
         {
           title: 'ContentRotator',
           url: paths.components.behaviour.contentRotator,
@@ -340,7 +358,16 @@ const routes = [
   // Component documentation routes
   createRoute(paths.components.index, ComponentIndexPage),
   createRoute(paths.components.primitives.metricCard, MetricCardDocPage),
+  createRoute(paths.components.primitives.actionStrip, ActionStripDocPage),
+  createRoute(
+    paths.components.primitives.qrCodeCallout,
+    QRCodeCalloutDocPage,
+  ),
   createRoute(paths.components.primitives.screenFrame, ScreenFrameDocPage),
+  createRoute(
+    paths.components.primitives.shortUrlCallout,
+    ShortUrlCalloutDocPage,
+  ),
   createRoute(paths.components.primitives.eventCard, EventCardDocPage),
   createRoute(
     paths.components.primitives.announcementCard,
@@ -366,6 +393,7 @@ const routes = [
   createRoute(paths.components.blocks.fullscreenHero, FullscreenHeroDocPage),
   createRoute(paths.components.blocks.infoCardGrid, InfoCardGridDocPage),
   createRoute(paths.components.blocks.menuBoard, MenuBoardDocPage),
+  createRoute(paths.components.blocks.qrHandoff, QRHandoffDocPage),
   createRoute(paths.components.behaviour.contentRotator, ContentRotatorDocPage),
   createRoute(paths.components.behaviour.scheduleGate, ScheduleGateDocPage),
   createRoute(paths.components.behaviour.autoPagingList, AutoPagingListDocPage),

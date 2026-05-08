@@ -12,7 +12,7 @@ This markdown file is the machine-readable payload for the library overview.
 - `@wallrun/shadcnui`: WallRun's copy of shadcn/ui building-block primitives for general web UI.
 - `@wallrun/shadcnui-signage`: signage-oriented components for fixed-aspect layouts, distance readability, and always-on displays.
 - Storybook docs: interactive composition and usage examples hosted at `https://cambridgemonorail.github.io/WallRun/storybook/`.
-- Published registry index: installable signage components at `https://wallrun.dev/registry/registry.json`.
+- Published registry index: discoverable signage catalogue at `https://wallrun.dev/registry/registry.json`.
 
 ## When To Use Each Surface
 
@@ -36,13 +36,19 @@ npx shadcn@latest add https://wallrun.dev/registry/clock.json
 npx shadcn@latest add https://wallrun.dev/registry/metric-card.json https://wallrun.dev/registry/event-card.json https://wallrun.dev/registry/schedule-gate.json
 ```
 
-- Install everything from the registry index:
+- Install everything from the generated meta item:
 
 ```bash
-npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
+npx shadcn@latest add https://wallrun.dev/registry/all.json
 ```
 
 Registry installs copy component code into the consuming application. They are not version-locked runtime packages.
+
+For discovery with the latest CLI, query the registry index directly:
+
+```bash
+npx shadcn@latest search https://wallrun.dev/registry/registry.json
+```
 
 ## Primary Links
 
