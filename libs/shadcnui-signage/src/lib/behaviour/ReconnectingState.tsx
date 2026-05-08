@@ -13,7 +13,9 @@ export interface ReconnectingStateProps {
 }
 
 function toEpochMs(value: Date | string) {
-  return value instanceof Date ? value.getTime() : new Date(value).getTime();
+  const epochMs = value instanceof Date ? value.getTime() : new Date(value).getTime();
+
+  return Number.isFinite(epochMs) ? epochMs : null;
 }
 
 function formatAge(ageMs: number) {
@@ -47,9 +49,11 @@ export function ReconnectingState({
   }
 
   const current = (now ?? (() => Date.now()))();
-  const lastLiveText = lastConnectedAt
-    ? `Last live ${formatAge(Math.max(0, current - toEpochMs(lastConnectedAt)))}`
-    : undefined;
+  const lastConnectedEpochMs = lastConnectedAt ? toEpochMs(lastConnectedAt) : null;
+  const lastLiveText =
+    lastConnectedEpochMs === null
+      ? undefined
+      : `Last live ${formatAge(Math.max(0, current - lastConnectedEpochMs))}`;
 
   if (variant === 'inline') {
     return (

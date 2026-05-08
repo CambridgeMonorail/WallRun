@@ -44,6 +44,10 @@ describe('ContentExpiredWarning', () => {
       'data-variant',
       'panel',
     );
+    expect(screen.getByTestId('content-expired-warning')).toHaveAttribute(
+      'role',
+      'status',
+    );
 
     rerender(
       <ContentExpiredWarning
@@ -57,5 +61,18 @@ describe('ContentExpiredWarning', () => {
       'data-variant',
       'overlay',
     );
+    expect(screen.getByTestId('content-expired-warning')).toHaveAttribute(
+      'role',
+      'status',
+    );
+  });
+
+  it('renders nothing when expiredAt cannot be parsed', () => {
+    const { container } = render(
+      <ContentExpiredWarning expiredAt="not-a-date" />,
+    );
+
+    expect(container).toBeEmptyDOMElement();
+    expect(screen.queryByText(/NaN/u)).not.toBeInTheDocument();
   });
 });

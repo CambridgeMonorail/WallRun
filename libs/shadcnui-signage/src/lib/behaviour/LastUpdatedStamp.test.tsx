@@ -43,7 +43,25 @@ describe('LastUpdatedStamp', () => {
     );
 
     expect(screen.getByTestId('last-updated-stamp')).toHaveTextContent(
-      'Last updated May 7, 10:00 AM',
+      /Last updated May 7, 10:00\sAM/u,
+    );
+  });
+
+  it('falls back safely when updatedAt cannot be parsed', () => {
+    render(<LastUpdatedStamp updatedAt="not-a-date" />);
+
+    expect(screen.getByTestId('last-updated-stamp')).toHaveTextContent(
+      'Last updated unavailable',
+    );
+    expect(screen.getByTestId('last-updated-stamp')).toHaveAttribute(
+      'data-stale',
+      'true',
+    );
+    expect(screen.getByTestId('last-updated-stamp')).not.toHaveTextContent(
+      'Invalid Date',
+    );
+    expect(screen.getByTestId('last-updated-stamp')).not.toHaveTextContent(
+      'NaN',
     );
   });
 });

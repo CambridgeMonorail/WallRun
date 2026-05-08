@@ -36,4 +36,21 @@ describe('ReconnectingState', () => {
       'Last live 5m ago',
     );
   });
+
+  it('omits last live metadata when lastConnectedAt cannot be parsed', () => {
+    render(
+      <ReconnectingState
+        active={true}
+        variant="inline"
+        lastConnectedAt="not-a-date"
+      />,
+    );
+
+    expect(screen.getByTestId('reconnecting-state')).not.toHaveTextContent(
+      'Last live',
+    );
+    expect(screen.getByTestId('reconnecting-state')).not.toHaveTextContent(
+      'NaN',
+    );
+  });
 });

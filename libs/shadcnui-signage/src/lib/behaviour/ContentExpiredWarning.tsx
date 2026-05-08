@@ -11,7 +11,9 @@ export interface ContentExpiredWarningProps {
 }
 
 function toEpochMs(value: Date | string) {
-  return value instanceof Date ? value.getTime() : new Date(value).getTime();
+  const epochMs = value instanceof Date ? value.getTime() : new Date(value).getTime();
+
+  return Number.isFinite(epochMs) ? epochMs : null;
 }
 
 function formatAge(ageMs: number) {
@@ -41,6 +43,10 @@ export function ContentExpiredWarning({
   const current = (now ?? (() => Date.now()))();
   const expiredEpochMs = toEpochMs(expiredAt);
 
+  if (expiredEpochMs === null) {
+    return null;
+  }
+
   if (current < expiredEpochMs) {
     return null;
   }
@@ -56,6 +62,7 @@ export function ContentExpiredWarning({
         )}
         data-testid="content-expired-warning"
         data-variant="panel"
+        role="status"
       >
         <div className="flex items-start gap-4">
           <AlertTriangle aria-hidden="true" className="mt-1 h-6 w-6 shrink-0" />

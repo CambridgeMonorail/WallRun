@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { AlertTriangle, Clock3 } from 'lucide-react';
 import { cn } from '../utils/cn';
 import type { NowProvider } from '../types/time.types';
@@ -17,7 +16,9 @@ export interface LastUpdatedStampProps {
 }
 
 function toEpochMs(value: Date | string) {
-  return value instanceof Date ? value.getTime() : new Date(value).getTime();
+  const epochMs = value instanceof Date ? value.getTime() : new Date(value).getTime();
+
+  return Number.isFinite(epochMs) ? epochMs : null;
 }
 
 function formatRelativeAge(ageMs: number) {
@@ -82,15 +83,15 @@ export function LastUpdatedStamp({
 
   const current = (now ?? (() => Date.now()))();
   const updatedEpochMs = toEpochMs(updatedAt);
-  const ageMs = Math.max(0, current - updatedEpochMs);
-  const stale = ageMs >= staleAfterMs;
-
-  const dateValue = useMemo(() => new Date(updatedEpochMs), [updatedEpochMs]);
+  const ageMs = updatedEpochMs === null ? null : Math.max(0, current - updatedEpochMs);
+  const stale = updatedEpochMs === null || ageMs >= staleAfterMs;
 
   const text =
-    format === 'relative'
-      ? formatRelativeAge(ageMs)
-      : formatTimestamp(dateValue, format, locale, timeZone);
+    updatedEpochMs === null
+      ? 'unavailable'
+      : format === 'relative'
+        ? formatRelativeAge(ageMs)
+        : formatTimestamp(new Date(updatedEpochMs), format, locale, timeZone);
 
   return (
     <div
