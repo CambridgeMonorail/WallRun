@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/vitest';
 import { ComponentIndexPage } from './ComponentIndex';
 
 describe('ComponentIndexPage', () => {
-  it('lists the new issue 98 docs entries in the browseable catalog', () => {
+  it('lists the new issue 98 docs entries in the browsable catalog', () => {
     render(
       <MemoryRouter>
         <ComponentIndexPage />
