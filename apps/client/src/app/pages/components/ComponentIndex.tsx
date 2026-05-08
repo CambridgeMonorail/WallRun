@@ -131,6 +131,12 @@ const components: ComponentInfo[] = [
     category: 'Blocks',
   },
   {
+    name: 'OneMessageFrame',
+    path: '/components/blocks/one-message-frame',
+    description: 'Single-message shell for dominant notices and interruption states',
+    category: 'Blocks',
+  },
+  {
     name: 'InfoCardGrid',
     path: '/components/blocks/info-card-grid',
     description: 'Grid layouts for displaying multiple information cards',
@@ -149,6 +155,12 @@ const components: ComponentInfo[] = [
     category: 'Blocks',
   },
   // Behaviour
+  {
+    name: 'ContentExpiredWarning',
+    path: '/components/behaviour/content-expired-warning',
+    description: 'Expiration marker for preview, QA, and operator contexts',
+    category: 'Behaviour',
+  },
   {
     name: 'ContentRotator',
     path: '/components/behaviour/content-rotator',
@@ -190,10 +202,28 @@ const components: ComponentInfo[] = [
     category: 'Behaviour',
   },
   {
+    name: 'LastUpdatedStamp',
+    path: '/components/behaviour/last-updated-stamp',
+    description: 'Quiet freshness stamp for live-data screens and fallback states',
+    category: 'Behaviour',
+  },
+  {
+    name: 'NoContentFallback',
+    path: '/components/behaviour/no-content-fallback',
+    description: 'Fallback surface for feeds, schedules, and playlists with no valid content',
+    category: 'Behaviour',
+  },
+  {
     name: 'OfflineFallback',
     path: '/components/behaviour/offline-fallback',
     description:
       'Stable fallback boundary for offline/unhealthy networked content',
+    category: 'Behaviour',
+  },
+  {
+    name: 'ReconnectingState',
+    path: '/components/behaviour/reconnecting-state',
+    description: 'Recovery-state notice for live regions restoring service',
     category: 'Behaviour',
   },
   {
