@@ -6,30 +6,33 @@ WallRun publishes a shadcn-compatible registry from the checked-in file `apps/cl
 
 - Public registry URL: `https://wallrun.dev/registry/registry.json`
 - Source of truth in the repo: `apps/client/public/registry/registry.json`
+- Generated item URLs: `https://wallrun.dev/registry/<item-name>.json`
 - Source files referenced by registry items: `libs/shadcnui-signage/src/lib/**`
 
 This guide is for maintainers updating the published registry, not end users installing from it.
 
 ## How WallRun's Registry Works
 
-WallRun does **not** currently generate registry artifacts with `shadcn build` or an equivalent repo wrapper.
-
-Instead, the registry is maintained as a static, checked-in JSON file that is shipped with the client app's public assets.
+WallRun does not use `shadcn build`, but it does generate checked-in per-item registry artifacts from the static root index.
 
 That means the maintainer workflow today is:
 
 1. edit or add the source component files in `libs/shadcnui-signage`
 2. update the matching entry in `apps/client/public/registry/registry.json`
-3. verify the public registry still describes the component accurately
-4. ship the change through the normal repo workflow so the static client deploy publishes the updated JSON
+3. run `pnpm sync:registry` to regenerate `apps/client/public/registry/*.json`
+4. verify the public registry still describes the component accurately
+5. ship the change through the normal repo workflow so the static client deploy publishes the updated JSON
 
-Each registry item points to raw GitHub file URLs for the files that the shadcn CLI should copy into downstream projects. The public registry index itself is served from `wallrun.dev`, but the `files[].path` entries currently resolve to raw GitHub content on `main`.
+The root `registry.json` remains the entry point for discovery and `--all` installs. Individual installs should use the generated item files such as `https://wallrun.dev/registry/menu-board.json`.
+
+Each registry item points to raw GitHub file URLs for the files that the shadcn CLI should copy into downstream projects. The public registry index and generated item files are served from `wallrun.dev`, but the `files[].path` entries currently resolve to raw GitHub content on `main`.
 
 ## Maintainer Entry Points
 
 When working on the registry, treat these files as the main control surfaces:
 
 - `apps/client/public/registry/registry.json` - published registry definition
+- `apps/client/public/registry/*.json` - generated item entry points committed with the app
 - `apps/client/public/registry/README.md` - consumer-facing install notes
 - `libs/shadcnui-signage/src/index.ts` - public export surface to keep in sync with intended registry coverage
 - `libs/shadcnui-signage/src/lib/**` - actual source files referenced by registry items
@@ -176,10 +179,16 @@ Before merging a registry update, confirm all of the following:
 When you update examples in docs, prefer the canonical public registry URL:
 
 ```bash
-npx shadcn@latest add https://wallrun.dev/registry/registry.json component-name
+npx shadcn@latest add https://wallrun.dev/registry/component-name.json
 ```
 
-That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host.
+Use the root index only for discovery and `--all` installs:
+
+```bash
+npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
+```
+
+That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host while still using valid item installs.
 
 ## Maintenance Schedule
 

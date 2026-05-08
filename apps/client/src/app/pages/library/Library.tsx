@@ -129,13 +129,13 @@ export function LibraryPage() {
             <pre>
               {`# Install a single signage component
 npx shadcn@latest add \\
-  https://cambridgemonorail.github.io/WallRun/registry/registry.json \\
-  clock
+  https://wallrun.dev/registry/clock.json
 
 # Install multiple components
 npx shadcn@latest add \\
-  https://cambridgemonorail.github.io/WallRun/registry/registry.json \\
-  metric-card event-card schedule-gate`}
+  https://wallrun.dev/registry/metric-card.json \
+  https://wallrun.dev/registry/event-card.json \
+  https://wallrun.dev/registry/schedule-gate.json`}
             </pre>
           </div>
           <p>

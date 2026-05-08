@@ -76,6 +76,7 @@
     "skill-lint:report": "tsx tools/skills-lint/src/cli.ts report skills --out reports/skills",
     "skill-lint": "tsx tools/skills-lint/src/cli.ts lint",
     "storybook": "pnpm run serve:storybook",
+    "sync:registry": "node scripts/sync-shadcn-registry.mjs",
     "sync:skills": "node scripts/sync-skills.mjs",
     "test:affected": "nx affected --target=test",
     "test:all": "nx run-many --target=test --all",

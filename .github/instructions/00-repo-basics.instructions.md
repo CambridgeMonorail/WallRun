@@ -150,7 +150,7 @@ When updating `apps/client/public/registry/registry.json`:
 - Exclude React and workspace packages (`@wallrun/*`)
 - Use `"type": "registry:component"` for components, `"registry:lib"` for utilities
 - Descriptions must match actual behavior (read the code, don't copy from similar components)
-- Installation format: `npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json component-name`
+- Installation format: `npx shadcn@latest add https://wallrun.dev/registry/component-name.json`
 
 ### Library Documentation
 

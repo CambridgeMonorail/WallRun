@@ -152,10 +152,10 @@ export const GettingStartedPage: FC = () => {
             <div className="code-panel overflow-x-auto p-4 font-mono text-sm text-foreground">
               <pre>
                 {`# Add individual components from WallRun registry
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json auto-paging-list
+npx shadcn@latest add https://wallrun.dev/registry/auto-paging-list.json
 
 # Add several at once
-npx shadcn@latest add https://cambridgemonorail.github.io/WallRun/registry/registry.json metric-card event-card schedule-gate`}
+npx shadcn@latest add https://wallrun.dev/registry/metric-card.json https://wallrun.dev/registry/event-card.json https://wallrun.dev/registry/schedule-gate.json`}
               </pre>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">

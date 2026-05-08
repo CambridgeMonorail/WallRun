@@ -11,7 +11,7 @@ Add the registry to your `components.json`:
 ```json
 {
   "registries": {
-    "shadcnui-signage": "https://wallrun.dev/registry"
+    "@wallrun": "https://wallrun.dev/registry/{name}.json"
   }
 }
 ```
@@ -19,9 +19,15 @@ Add the registry to your `components.json`:
 Then install components:
 
 ```bash
-npx shadcn add shadcnui-signage/metric-card
-npx shadcn add shadcnui-signage/event-card
-npx shadcn add shadcnui-signage/signage-container
+npx shadcn add @wallrun/metric-card
+npx shadcn add @wallrun/event-card
+npx shadcn add @wallrun/signage-container
+```
+
+Install the whole registry only when you really want everything:
+
+```bash
+npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
 ```
 
 ### Manual Installation

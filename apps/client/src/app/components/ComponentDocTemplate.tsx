@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Button } from '@wallrun/shadcnui';
 import { CodeSnippet } from './CodeSnippet';
-import { PUBLIC_REGISTRY_URL } from './componentDocs.constants';
+import { getPublicRegistryItemUrl } from './componentDocs.constants';
 
 type ComponentDocLink = {
   label: string;
@@ -90,7 +90,7 @@ export const ComponentDocTemplate: FC<ComponentDocTemplateProps> = ({
           <h3 className="mb-3 text-lg font-medium">Using the CLI (Recommended)</h3>
           <CodeSnippet
             language="bash"
-            code={`npx shadcn@latest add ${PUBLIC_REGISTRY_URL} ${installName}`}
+            code={`npx shadcn@latest add ${getPublicRegistryItemUrl(installName)}`}
           />
         </div>
 

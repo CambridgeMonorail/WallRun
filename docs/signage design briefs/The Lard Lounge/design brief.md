@@ -10,7 +10,7 @@ Color Palette: Bone white, translucent amber, deep mahogany, and a "surgical" ne
 Typography: A mix of a heavy, "greasy" serif for headers and a clean, monospaced font for descriptions to keep it readable.
 
 2. Technical Layout (Portrait 9:16)
-   Top Third: Animated Hero Shot. A rotating, translucent lard sculpture of a pig’s head that slowly melts and reforms.
+   Top Third: Animated Hero Shot. A rotating, translucent lard reliquary with crystalline folds that slowly melts and reforms.
 
 Middle Section: The "Main Curiosities." Two columns of text with plenty of negative space to prevent "visual indigestion."
 

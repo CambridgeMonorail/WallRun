@@ -3,9 +3,57 @@ import { Button } from '@wallrun/shadcnui';
 import { Check, Copy } from 'lucide-react';
 import { cn } from '@wallrun/shadcnui';
 import {
+  getPublicRegistryItemUrl,
   LEGACY_REGISTRY_URL,
   PUBLIC_REGISTRY_URL,
 } from './componentDocs.constants';
+
+const REGISTRY_COMMAND_PREFIX = 'npx shadcn@latest add ';
+const REGISTRY_FLAGS_WITH_VALUES = new Set(['-c', '--cwd', '-p', '--path']);
+
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const rewriteRegistryCommand = (code: string, registryUrl: string) => {
+  const commandPattern = new RegExp(
+    `${escapeRegExp(REGISTRY_COMMAND_PREFIX)}${escapeRegExp(registryUrl)}\\s+([^\\n]+)`,
+    'g',
+  );
+
+  return code.replace(commandPattern, (_match, rawArguments: string) => {
+    const tokens = rawArguments.trim().split(/\s+/u);
+    const rewrittenTokens: string[] = [];
+    let containsNamedItems = false;
+    let expectsFlagValue = false;
+
+    for (const token of tokens) {
+      if (expectsFlagValue) {
+        rewrittenTokens.push(token);
+        expectsFlagValue = false;
+        continue;
+      }
+
+      if (token.startsWith('-')) {
+        rewrittenTokens.push(token);
+
+        if (REGISTRY_FLAGS_WITH_VALUES.has(token)) {
+          expectsFlagValue = true;
+        }
+
+        continue;
+      }
+
+      containsNamedItems = true;
+      rewrittenTokens.push(getPublicRegistryItemUrl(token));
+    }
+
+    if (!containsNamedItems) {
+      return `${REGISTRY_COMMAND_PREFIX}${PUBLIC_REGISTRY_URL} ${tokens.join(' ')}`.trim();
+    }
+
+    return `${REGISTRY_COMMAND_PREFIX}${rewrittenTokens.join(' ')}`;
+  });
+};
 
 export interface CodeSnippetProps {
   /**
@@ -58,7 +106,10 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
   'data-testid': dataTestId = 'code-snippet',
 }) => {
   const [copied, setCopied] = useState(false);
-  const displayedCode = code.split(LEGACY_REGISTRY_URL).join(PUBLIC_REGISTRY_URL);
+  const displayedCode = [LEGACY_REGISTRY_URL, PUBLIC_REGISTRY_URL].reduce(
+    (currentCode, registryUrl) => rewriteRegistryCommand(currentCode, registryUrl),
+    code,
+  );
 
   const handleCopy = async () => {
     try {
