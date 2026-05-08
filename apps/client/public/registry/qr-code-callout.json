@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-callout",
+  "type": "registry:component",
+  "title": "QR Code Callout",
+  "description": "Scan-safe QR callout with destination context and optional short URL fallback.",
+  "registryDependencies": [],
+  "dependencies": ["clsx", "qrcode.react", "tailwind-merge"],
+  "files": [
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/QRCodeCallout.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ShortUrlCallout.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+      "type": "registry:lib"
+    }
+  ]
+}

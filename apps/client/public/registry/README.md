@@ -27,7 +27,15 @@ npx shadcn add @wallrun/signage-container
 Install the whole registry only when you really want everything:
 
 ```bash
-npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
+npx shadcn@latest add https://wallrun.dev/registry/all.json
+```
+
+`registry.json` is the registry index for discovery and namespaced resolution. Direct URL installs must target an installable item payload such as `all.json` or `metric-card.json`.
+
+To browse what is available with the latest CLI, search the registry index directly:
+
+```bash
+npx shadcn@latest search https://wallrun.dev/registry/registry.json
 ```
 
 ### Manual Installation

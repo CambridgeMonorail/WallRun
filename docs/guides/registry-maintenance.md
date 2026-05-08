@@ -15,6 +15,12 @@ This guide is for maintainers updating the published registry, not end users ins
 
 WallRun does not use `shadcn build`, but it does generate checked-in per-item registry artifacts from the static root index.
 
+This is an important distinction from the upstream registry template docs.
+
+- Upstream authoring guidance such as `registry/[STYLE]/[NAME]` source folders and `@/registry/...` imports describes how to structure a source registry project before running `shadcn build`.
+- WallRun does not currently author its registry that way. Instead, it maintains a checked-in `registry.json` index and generates the published item payloads from that file.
+- For WallRun maintainers, the compatibility contract that matters is the published JSON shape served from `wallrun.dev`, not the internal folder layout used by the upstream template project.
+
 That means the maintainer workflow today is:
 
 1. edit or add the source component files in `libs/shadcnui-signage`
@@ -23,7 +29,7 @@ That means the maintainer workflow today is:
 4. verify the public registry still describes the component accurately
 5. ship the change through the normal repo workflow so the static client deploy publishes the updated JSON
 
-The root `registry.json` remains the entry point for discovery and `--all` installs. Individual installs should use the generated item files such as `https://wallrun.dev/registry/menu-board.json`.
+The root `registry.json` remains the entry point for discovery, `search`/`list`, and namespaced resolution. Direct installs should use generated item files such as `https://wallrun.dev/registry/menu-board.json`, and bulk installs should use the generated `https://wallrun.dev/registry/all.json` meta item.
 
 Each registry item points to raw GitHub file URLs for the files that the shadcn CLI should copy into downstream projects. The public registry index and generated item files are served from `wallrun.dev`, but the `files[].path` entries currently resolve to raw GitHub content on `main`.
 
@@ -182,13 +188,13 @@ When you update examples in docs, prefer the canonical public registry URL:
 npx shadcn@latest add https://wallrun.dev/registry/component-name.json
 ```
 
-Use the root index only for discovery and `--all` installs:
+Use the root index only for discovery and namespaced resolution. For a bulk install example, use the generated meta item:
 
 ```bash
-npx shadcn@latest add https://wallrun.dev/registry/registry.json --all
+npx shadcn@latest add https://wallrun.dev/registry/all.json
 ```
 
-That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host while still using valid item installs.
+That keeps documentation aligned with the deployed registry entry point rather than the older GitHub Pages host while only showing valid direct item installs.
 
 ## Maintenance Schedule
 

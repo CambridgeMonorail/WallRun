@@ -3,6 +3,7 @@ import { Button } from '@wallrun/shadcnui';
 import { Check, Copy } from 'lucide-react';
 import { cn } from '@wallrun/shadcnui';
 import {
+  getPublicRegistryAllUrl,
   getPublicRegistryItemUrl,
   LEGACY_REGISTRY_URL,
   PUBLIC_REGISTRY_URL,
@@ -25,6 +26,11 @@ const rewriteRegistryCommand = (code: string, registryUrl: string) => {
     const rewrittenTokens: string[] = [];
     let containsNamedItems = false;
     let expectsFlagValue = false;
+
+    if (tokens.includes('--all')) {
+      const remainingTokens = tokens.filter((token) => token !== '--all');
+      return `${REGISTRY_COMMAND_PREFIX}${getPublicRegistryAllUrl()} ${remainingTokens.join(' ')}`.trim();
+    }
 
     for (const token of tokens) {
       if (expectsFlagValue) {
@@ -107,7 +113,8 @@ export const CodeSnippet: FC<CodeSnippetProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
   const displayedCode = [LEGACY_REGISTRY_URL, PUBLIC_REGISTRY_URL].reduce(
-    (currentCode, registryUrl) => rewriteRegistryCommand(currentCode, registryUrl),
+    (currentCode, registryUrl) =>
+      rewriteRegistryCommand(currentCode, registryUrl),
     code,
   );
 

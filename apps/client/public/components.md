@@ -164,6 +164,42 @@ npx shadcn@latest add https://wallrun.dev/registry/<component-name>.json
 - Source path: `libs/shadcnui-signage/src/lib/primitives/InfoList.tsx`
 - Registry JSON: `https://wallrun.dev/registry/registry.json`
 
+### Action Strip
+
+- Name: `action-strip`
+- Category: Primitive
+- Purpose: CTA shell for footer and side-zone actions with tone and placement variants.
+- Install: `npx shadcn@latest add https://wallrun.dev/registry/action-strip.json`
+- Usage guidance: use for one dominant handoff message when a screen needs a clear next step.
+- Do not use for: dense multi-action navigation bars or primary page layout structure.
+- Dependencies: `clsx`, `tailwind-merge`
+- Source path: `libs/shadcnui-signage/src/lib/primitives/ActionStrip.tsx`
+- Registry JSON: `https://wallrun.dev/registry/registry.json`
+
+### Short URL Callout
+
+- Name: `short-url-callout`
+- Category: Primitive
+- Purpose: manual URL fallback for QR and signage CTA surfaces.
+- Install: `npx shadcn@latest add https://wallrun.dev/registry/short-url-callout.json`
+- Usage guidance: use when viewers need a readable fallback path if scanning is not possible.
+- Do not use for: long descriptive paragraphs or general navigation lists.
+- Dependencies: `clsx`, `tailwind-merge`
+- Source path: `libs/shadcnui-signage/src/lib/primitives/ShortUrlCallout.tsx`
+- Registry JSON: `https://wallrun.dev/registry/registry.json`
+
+### QR Code Callout
+
+- Name: `qr-code-callout`
+- Category: Primitive
+- Purpose: scan-safe QR surface with destination context and optional short URL fallback.
+- Install: `npx shadcn@latest add https://wallrun.dev/registry/qr-code-callout.json`
+- Usage guidance: use for poster, side-zone, and handoff surfaces where scanning should be the dominant action.
+- Do not use for: tiny inline badges or layouts that cannot preserve QR size and contrast.
+- Dependencies: `clsx`, `qrcode.react`, `tailwind-merge`
+- Source path: `libs/shadcnui-signage/src/lib/primitives/QRCodeCallout.tsx`
+- Registry JSON: `https://wallrun.dev/registry/registry.json`
+
 ### Split Screen
 
 - Name: `split-screen`
@@ -234,6 +270,18 @@ npx shadcn@latest add https://wallrun.dev/registry/<component-name>.json
 - Do not use for: generic web page layouts or office dashboards.
 - Dependencies: `clsx`, `tailwind-merge`
 - Source path: `libs/shadcnui-signage/src/lib/blocks/MenuBoard.tsx`
+- Registry JSON: `https://wallrun.dev/registry/registry.json`
+
+### QR Handoff
+
+- Name: `qr-handoff`
+- Category: Block
+- Purpose: composed phone-handoff surface that combines explanation, QR, and manual URL fallback.
+- Install: `npx shadcn@latest add https://wallrun.dev/registry/qr-handoff.json`
+- Usage guidance: use when a public screen needs to move a task or follow-up flow onto the viewer's personal device.
+- Do not use for: passive informational screens with no clear next action.
+- Dependencies: `clsx`, `qrcode.react`, `tailwind-merge`
+- Source path: `libs/shadcnui-signage/src/lib/blocks/QRHandoff.tsx`
 - Registry JSON: `https://wallrun.dev/registry/registry.json`
 
 ### Auto Paging List

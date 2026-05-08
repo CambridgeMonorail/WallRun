@@ -16,7 +16,8 @@ export interface LastUpdatedStampProps {
 }
 
 function toEpochMs(value: Date | string) {
-  const epochMs = value instanceof Date ? value.getTime() : new Date(value).getTime();
+  const epochMs =
+    value instanceof Date ? value.getTime() : new Date(value).getTime();
 
   return Number.isFinite(epochMs) ? epochMs : null;
 }
@@ -83,15 +84,19 @@ export function LastUpdatedStamp({
 
   const current = (now ?? (() => Date.now()))();
   const updatedEpochMs = toEpochMs(updatedAt);
-  const ageMs = updatedEpochMs === null ? null : Math.max(0, current - updatedEpochMs);
-  const stale = updatedEpochMs === null || ageMs >= staleAfterMs;
+  const ageMs =
+    updatedEpochMs === null ? null : Math.max(0, current - updatedEpochMs);
+  const stale =
+    updatedEpochMs === null || (ageMs !== null && ageMs >= staleAfterMs);
 
-  const text =
-    updatedEpochMs === null
-      ? 'unavailable'
-      : format === 'relative'
-        ? formatRelativeAge(ageMs)
+  let text = 'unavailable';
+  if (updatedEpochMs !== null) {
+    const resolvedAgeMs = Math.max(0, current - updatedEpochMs);
+    text =
+      format === 'relative'
+        ? formatRelativeAge(resolvedAgeMs)
         : formatTimestamp(new Date(updatedEpochMs), format, locale, timeZone);
+  }
 
   return (
     <div

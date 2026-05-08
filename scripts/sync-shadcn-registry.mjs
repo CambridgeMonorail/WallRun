@@ -9,21 +9,29 @@ const registryIndexPath = path.join(registryDir, 'registry.json');
 
 const REGISTRY_ITEM_SCHEMA = 'https://ui.shadcn.com/schema/registry-item.json';
 const REGISTRY_ITEM_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+const REGISTRY_ALL_ITEM_NAME = 'all';
+const REGISTRY_ALL_ITEM_TYPE = 'registry:block';
+const REGISTRY_BASE_URL = 'https://wallrun.dev/registry';
 
 const readRegistryIndex = async () => {
   const fileContents = await readFile(registryIndexPath, 'utf8');
   return JSON.parse(fileContents);
 };
 
-const getValidatedRegistryItemName = (item) => {
+const getValidatedRegistryItemName = (item, options = {}) => {
   const itemName = item?.name;
+  const { allowReservedAll = false } = options;
 
   if (typeof itemName !== 'string' || itemName.length === 0) {
     throw new Error('Registry item name must be a non-empty string.');
   }
 
   if (itemName === 'registry') {
-    throw new Error('Registry item name "registry" is reserved.');
+    throw new Error(`Registry item name "${itemName}" is reserved.`);
+  }
+
+  if (itemName === REGISTRY_ALL_ITEM_NAME && !allowReservedAll) {
+    throw new Error(`Registry item name "${itemName}" is reserved.`);
   }
 
   if (!REGISTRY_ITEM_NAME_PATTERN.test(itemName)) {
@@ -35,8 +43,25 @@ const getValidatedRegistryItemName = (item) => {
   return itemName;
 };
 
+const getRegistryItemUrl = (itemName) =>
+  `${REGISTRY_BASE_URL}/${itemName}.json`;
+
+const createRegistryAllItem = (items) => ({
+  name: REGISTRY_ALL_ITEM_NAME,
+  type: REGISTRY_ALL_ITEM_TYPE,
+  title: 'WallRun All Components',
+  description:
+    'Meta item that installs every published WallRun signage registry component in one command.',
+  registryDependencies: items.map((item) =>
+    getRegistryItemUrl(getValidatedRegistryItemName(item)),
+  ),
+  files: [],
+});
+
 const writeRegistryItem = async (item) => {
-  const itemName = getValidatedRegistryItemName(item);
+  const itemName = getValidatedRegistryItemName(item, {
+    allowReservedAll: item?.name === REGISTRY_ALL_ITEM_NAME,
+  });
   const outputPath = path.join(registryDir, `${itemName}.json`);
   const payload = {
     $schema: REGISTRY_ITEM_SCHEMA,
@@ -51,9 +76,14 @@ const syncRegistryItems = async () => {
 
   const registry = await readRegistryIndex();
   const items = Array.isArray(registry.items) ? registry.items : [];
-  const publishedItemNames = new Set(items.map((item) => getValidatedRegistryItemName(item)));
+  const publishedItemNames = new Set(
+    items.map((item) => getValidatedRegistryItemName(item)),
+  );
+  const allItem = createRegistryAllItem(items);
+  publishedItemNames.add(REGISTRY_ALL_ITEM_NAME);
 
   await Promise.all(items.map((item) => writeRegistryItem(item)));
+  await writeRegistryItem(allItem);
   const directoryEntries = await readdir(registryDir);
 
   const staleArtifacts = directoryEntries
@@ -62,10 +92,12 @@ const syncRegistryItems = async () => {
     .filter((entry) => !publishedItemNames.has(entry.replace(/\.json$/u, '')));
 
   await Promise.all(
-    staleArtifacts.map((entry) => rm(path.join(registryDir, entry), { force: true })),
+    staleArtifacts.map((entry) =>
+      rm(path.join(registryDir, entry), { force: true }),
+    ),
   );
 
-  console.log(`Synced ${items.length} shadcn registry item files.`);
+  console.log(`Synced ${items.length + 1} shadcn registry item files.`);
 };
 
 await syncRegistryItems();

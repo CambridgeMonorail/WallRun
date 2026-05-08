@@ -1,5 +1,4 @@
-export const PUBLIC_REGISTRY_URL =
-  'https://wallrun.dev/registry/registry.json';
+export const PUBLIC_REGISTRY_URL = 'https://wallrun.dev/registry/registry.json';
 
 export const PUBLIC_REGISTRY_BASE_URL = 'https://wallrun.dev/registry';
 
@@ -8,3 +7,5 @@ export const LEGACY_REGISTRY_URL =
 
 export const getPublicRegistryItemUrl = (name: string) =>
   `${PUBLIC_REGISTRY_BASE_URL}/${name}.json`;
+
+export const getPublicRegistryAllUrl = () => getPublicRegistryItemUrl('all');

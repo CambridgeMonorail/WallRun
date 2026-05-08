@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { CodeSnippet } from './CodeSnippet';
 import {
+  getPublicRegistryAllUrl,
   getPublicRegistryItemUrl,
   LEGACY_REGISTRY_URL,
   PUBLIC_REGISTRY_URL,
@@ -71,8 +72,7 @@ export const App = () => <Button>Click me</Button>;`;
   });
 
   it('rewrites multi-item registry installs to per-item URLs', () => {
-    const legacyRegistryCode =
-      `npx shadcn@latest add ${LEGACY_REGISTRY_URL} metric-card event-card schedule-gate`;
+    const legacyRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} metric-card event-card schedule-gate`;
 
     render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
 
@@ -83,19 +83,30 @@ export const App = () => <Button>Click me</Button>;`;
     ).toBeInTheDocument();
   });
 
-  it('keeps the root registry index for --all installs', () => {
+  it('rewrites --all installs to the generated all.json meta item', () => {
     const rootRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} --all`;
 
     render(<CodeSnippet code={rootRegistryCode} language="bash" />);
 
     expect(
-      screen.getByText(`npx shadcn@latest add ${PUBLIC_REGISTRY_URL} --all`),
+      screen.getByText(`npx shadcn@latest add ${getPublicRegistryAllUrl()}`),
+    ).toBeInTheDocument();
+  });
+
+  it('drops --all while preserving other flags when rewriting bulk installs', () => {
+    const rootRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} --all --cwd apps/client`;
+
+    render(<CodeSnippet code={rootRegistryCode} language="bash" />);
+
+    expect(
+      screen.getByText(
+        `npx shadcn@latest add ${getPublicRegistryAllUrl()} --cwd apps/client`,
+      ),
     ).toBeInTheDocument();
   });
 
   it('preserves values for flags that consume the next argument', () => {
-    const legacyRegistryCode =
-      `npx shadcn@latest add ${LEGACY_REGISTRY_URL} metric-card --path components/signage --cwd apps/client`;
+    const legacyRegistryCode = `npx shadcn@latest add ${LEGACY_REGISTRY_URL} metric-card --path components/signage --cwd apps/client`;
 
     render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
 
