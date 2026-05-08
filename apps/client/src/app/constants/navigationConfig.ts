@@ -49,7 +49,9 @@ import { SignageHeaderDocPage } from '../pages/components/layouts/SignageHeaderD
 import { FullscreenHeroDocPage } from '../pages/components/blocks/FullscreenHeroDoc';
 import { InfoCardGridDocPage } from '../pages/components/blocks/InfoCardGridDoc';
 import { MenuBoardDocPage } from '../pages/components/blocks/MenuBoardDoc';
+import { OneMessageFrameDocPage } from '../pages/components/blocks/OneMessageFrameDoc';
 import { QRHandoffDocPage } from '../pages/components/blocks/QRHandoffDoc';
+import { ContentExpiredWarningDocPage } from '../pages/components/behaviour/ContentExpiredWarningDoc';
 import { ContentRotatorDocPage } from '../pages/components/behaviour/ContentRotatorDoc';
 import { HowToPage } from '../pages/how-to/HowTo';
 import { CustomAgentsPage } from '../pages/how-to/CustomAgents';
@@ -63,7 +65,10 @@ import { AutoPagingListDocPage } from '../pages/components/behaviour/AutoPagingL
 import { SignageTransitionDocPage } from '../pages/components/behaviour/SignageTransitionDoc';
 import { ClockDocPage } from '../pages/components/behaviour/ClockDoc';
 import { CountdownDocPage } from '../pages/components/behaviour/CountdownDoc';
+import { LastUpdatedStampDocPage } from '../pages/components/behaviour/LastUpdatedStampDoc';
+import { NoContentFallbackDocPage } from '../pages/components/behaviour/NoContentFallbackDoc';
 import { OfflineFallbackDocPage } from '../pages/components/behaviour/OfflineFallbackDoc';
+import { ReconnectingStateDocPage } from '../pages/components/behaviour/ReconnectingStateDoc';
 import { StaleDataIndicatorDocPage } from '../pages/components/behaviour/StaleDataIndicatorDoc';
 import { Layout } from '@wallrun/shell';
 
@@ -128,16 +133,21 @@ const paths = {
       fullscreenHero: '/components/blocks/fullscreen-hero',
       infoCardGrid: '/components/blocks/info-card-grid',
       menuBoard: '/components/blocks/menu-board',
+      oneMessageFrame: '/components/blocks/one-message-frame',
       qrHandoff: '/components/blocks/qr-handoff',
     },
     behaviour: {
+      contentExpiredWarning: '/components/behaviour/content-expired-warning',
       contentRotator: '/components/behaviour/content-rotator',
       scheduleGate: '/components/behaviour/schedule-gate',
       autoPagingList: '/components/behaviour/auto-paging-list',
       signageTransition: '/components/behaviour/signage-transition',
       clock: '/components/behaviour/clock',
       countdown: '/components/behaviour/countdown',
+      lastUpdatedStamp: '/components/behaviour/last-updated-stamp',
+      noContentFallback: '/components/behaviour/no-content-fallback',
       offlineFallback: '/components/behaviour/offline-fallback',
+      reconnectingState: '/components/behaviour/reconnecting-state',
       staleDataIndicator: '/components/behaviour/stale-data-indicator',
     },
   },
@@ -393,7 +403,12 @@ const routes = [
   createRoute(paths.components.blocks.fullscreenHero, FullscreenHeroDocPage),
   createRoute(paths.components.blocks.infoCardGrid, InfoCardGridDocPage),
   createRoute(paths.components.blocks.menuBoard, MenuBoardDocPage),
+  createRoute(paths.components.blocks.oneMessageFrame, OneMessageFrameDocPage),
   createRoute(paths.components.blocks.qrHandoff, QRHandoffDocPage),
+  createRoute(
+    paths.components.behaviour.contentExpiredWarning,
+    ContentExpiredWarningDocPage,
+  ),
   createRoute(paths.components.behaviour.contentRotator, ContentRotatorDocPage),
   createRoute(paths.components.behaviour.scheduleGate, ScheduleGateDocPage),
   createRoute(paths.components.behaviour.autoPagingList, AutoPagingListDocPage),
@@ -404,8 +419,20 @@ const routes = [
   createRoute(paths.components.behaviour.clock, ClockDocPage),
   createRoute(paths.components.behaviour.countdown, CountdownDocPage),
   createRoute(
+    paths.components.behaviour.lastUpdatedStamp,
+    LastUpdatedStampDocPage,
+  ),
+  createRoute(
+    paths.components.behaviour.noContentFallback,
+    NoContentFallbackDocPage,
+  ),
+  createRoute(
     paths.components.behaviour.offlineFallback,
     OfflineFallbackDocPage,
+  ),
+  createRoute(
+    paths.components.behaviour.reconnectingState,
+    ReconnectingStateDocPage,
   ),
   createRoute(
     paths.components.behaviour.staleDataIndicator,

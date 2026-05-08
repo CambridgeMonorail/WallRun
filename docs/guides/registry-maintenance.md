@@ -87,6 +87,7 @@ Examples:
 Current state:
 
 - the checked-in item registry uses `registryDependencies` only for the generated `all.json` meta item
+- that generated `all.json` item must use fully qualified WallRun item URLs so the shadcn CLI does not fall back to the default `ui.shadcn.com` registry during recursive installs
 - published component items in `registry.json` currently keep `registryDependencies` empty arrays
 - this is still worth documenting because the field is part of the contract and should be used intentionally when cross-item installs appear
 
@@ -164,6 +165,7 @@ Because of that, registry maintenance is partly editorial. Adding a component to
 
 - The registry is manually curated. Drift between source files and `registry.json` is possible unless maintainers review both together.
 - `registryDependencies` is effectively unused by published component items today. The only populated case is the generated `all.json` meta item, which intentionally lists every published registry item by name.
+- `registryDependencies` entries inside the generated `all.json` meta item should stay fully qualified WallRun URLs, not bare item names.
 - The registry should avoid relying on workspace-only imports. If a component cannot be installed cleanly without repo-local package aliases, it is not yet registry-safe.
 - Raw GitHub file paths make the registry simple to host, but they also mean the published install experience depends on the state of the referenced branch.
 
