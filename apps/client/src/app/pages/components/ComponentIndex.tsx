@@ -85,6 +85,24 @@ const components: ComponentInfo[] = [
     description: 'Large-format list for instructions and operational notes',
     category: 'Primitives',
   },
+  {
+    name: 'ActionStrip',
+    path: '/components/primitives/action-strip',
+    description: 'Reusable CTA shell for footer strips and side-zone actions',
+    category: 'Primitives',
+  },
+  {
+    name: 'ShortUrlCallout',
+    path: '/components/primitives/short-url-callout',
+    description: 'Readable manual fallback URL for QR and phone handoff flows',
+    category: 'Primitives',
+  },
+  {
+    name: 'QRCodeCallout',
+    path: '/components/primitives/qr-code-callout',
+    description: 'Scan-safe QR surface with destination context and URL fallback',
+    category: 'Primitives',
+  },
   // Layouts
   {
     name: 'SplitScreen',
@@ -122,6 +140,12 @@ const components: ComponentInfo[] = [
     name: 'MenuBoard',
     path: '/components/blocks/menu-board',
     description: 'Full-screen composition shell for menu boards and daypart content',
+    category: 'Blocks',
+  },
+  {
+    name: 'QRHandoff',
+    path: '/components/blocks/qr-handoff',
+    description: 'Composed phone-handoff surface for QR continuation flows',
     category: 'Blocks',
   },
   // Behaviour

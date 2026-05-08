@@ -241,6 +241,24 @@ const routeSeoEntries: Record<string, RouteSeoEntry> = {
       keywords:
         'MetricCard, KPI card React component, signage metrics component, dashboard card BrightSign',
     }),
+  [navigationConfig.paths.components.primitives.actionStrip]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.primitives.actionStrip,
+      name: 'ActionStrip',
+      description:
+        'ActionStrip documentation for footer and side-zone CTA strips that keep one dominant signage handoff or continuation action clear.',
+      keywords:
+        'ActionStrip, CTA strip React component, signage handoff component, footer CTA signage',
+    }),
+  [navigationConfig.paths.components.primitives.qrCodeCallout]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.primitives.qrCodeCallout,
+      name: 'QRCodeCallout',
+      description:
+        'QRCodeCallout documentation for scan-safe QR handoff surfaces with visible destination context, SVG rendering, and optional short URL fallback.',
+      keywords:
+        'QRCodeCallout, QR signage component, scan safe QR React component, signage QR callout',
+    }),
   [navigationConfig.paths.components.primitives.screenFrame]:
     buildComponentDocEntry({
       path: navigationConfig.paths.components.primitives.screenFrame,
@@ -258,6 +276,15 @@ const routeSeoEntries: Record<string, RouteSeoEntry> = {
         'EventCard documentation for schedule and event signage layouts with time, location, and headline content designed for quick scanning.',
       keywords:
         'EventCard, event signage component, schedule card React, venue display component',
+    }),
+  [navigationConfig.paths.components.primitives.shortUrlCallout]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.primitives.shortUrlCallout,
+      name: 'ShortUrlCallout',
+      description:
+        'ShortUrlCallout documentation for distance-readable manual fallback URLs used alongside QR codes and phone continuation surfaces.',
+      keywords:
+        'ShortUrlCallout, signage short URL component, manual fallback URL React, QR fallback signage',
     }),
   [navigationConfig.paths.components.primitives.announcementCard]:
     buildComponentDocEntry({
@@ -312,6 +339,15 @@ const routeSeoEntries: Record<string, RouteSeoEntry> = {
         'InfoCardGrid documentation for repeating information zones, feature summaries, and grid-based signage compositions.',
       keywords:
         'InfoCardGrid, signage info grid, card grid display component, multi card signage layout',
+    }),
+  [navigationConfig.paths.components.blocks.qrHandoff]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.blocks.qrHandoff,
+      name: 'QRHandoff',
+      description:
+        'QRHandoff documentation for composed phone-continuation blocks that combine explanatory copy, QR scanning, and short URL fallback in one signage surface.',
+      keywords:
+        'QRHandoff, phone handoff signage component, QR continuation block React, signage CTA handoff',
     }),
   [navigationConfig.paths.components.behaviour.contentRotator]:
     buildComponentDocEntry({
