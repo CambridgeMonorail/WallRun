@@ -106,7 +106,11 @@ export const ActionStrip: FC<ActionStripProps> = ({
         <p
           className={cn(
             'font-medium leading-snug tracking-[0.01em] text-base sm:text-lg lg:text-2xl',
-            position === 'bottom' ? 'text-center' : 'text-left lg:text-2xl',
+            position === 'bottom'
+              ? 'text-center'
+              : position === 'right'
+                ? 'text-right'
+                : 'text-left',
           )}
         >
           {message}

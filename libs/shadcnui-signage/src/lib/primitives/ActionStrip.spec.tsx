@@ -49,5 +49,8 @@ describe('ActionStrip', () => {
       'data-tone',
       'urgent',
     );
+    expect(
+      screen.getByText('Queue is moving to the overflow entrance'),
+    ).toHaveClass('text-right');
   });
 });
