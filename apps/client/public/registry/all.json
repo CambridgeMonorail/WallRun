@@ -4,6 +4,7 @@
   "type": "registry:block",
   "title": "WallRun All Components",
   "description": "Meta item that installs every published WallRun signage registry component in one command.",
+  "dependencies": [],
   "registryDependencies": [
     "metric-card",
     "screen-frame",

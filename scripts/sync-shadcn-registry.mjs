@@ -11,7 +11,6 @@ const REGISTRY_ITEM_SCHEMA = 'https://ui.shadcn.com/schema/registry-item.json';
 const REGISTRY_ITEM_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const REGISTRY_ALL_ITEM_NAME = 'all';
 const REGISTRY_ALL_ITEM_TYPE = 'registry:block';
-const REGISTRY_BASE_URL = 'https://wallrun.dev/registry';
 
 const readRegistryIndex = async () => {
   const fileContents = await readFile(registryIndexPath, 'utf8');
@@ -43,15 +42,13 @@ const getValidatedRegistryItemName = (item, options = {}) => {
   return itemName;
 };
 
-const getRegistryItemUrl = (itemName) =>
-  `${REGISTRY_BASE_URL}/${itemName}.json`;
-
 const createRegistryAllItem = (items) => ({
   name: REGISTRY_ALL_ITEM_NAME,
   type: REGISTRY_ALL_ITEM_TYPE,
   title: 'WallRun All Components',
   description:
     'Meta item that installs every published WallRun signage registry component in one command.',
+  dependencies: [],
   registryDependencies: items.map((item) => getValidatedRegistryItemName(item)),
   files: [],
 });
