@@ -86,8 +86,8 @@ Examples:
 
 Current state:
 
-- the checked-in registry already includes `registryDependencies` on every item
-- all current values are empty arrays
+- the checked-in item registry uses `registryDependencies` only for the generated `all.json` meta item
+- published component items in `registry.json` currently keep `registryDependencies` empty arrays
 - this is still worth documenting because the field is part of the contract and should be used intentionally when cross-item installs appear
 
 ## Update Workflow
@@ -163,7 +163,7 @@ Because of that, registry maintenance is partly editorial. Adding a component to
 ## Current Constraints And Caveats
 
 - The registry is manually curated. Drift between source files and `registry.json` is possible unless maintainers review both together.
-- `registryDependencies` is available but unused today. That is intentional until a component truly depends on another registry item as a separate install unit.
+- `registryDependencies` is effectively unused by published component items today. The only populated case is the generated `all.json` meta item, which intentionally lists every published registry item by name.
 - The registry should avoid relying on workspace-only imports. If a component cannot be installed cleanly without repo-local package aliases, it is not yet registry-safe.
 - Raw GitHub file paths make the registry simple to host, but they also mean the published install experience depends on the state of the referenced branch.
 

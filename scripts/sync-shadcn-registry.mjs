@@ -52,9 +52,7 @@ const createRegistryAllItem = (items) => ({
   title: 'WallRun All Components',
   description:
     'Meta item that installs every published WallRun signage registry component in one command.',
-  registryDependencies: items.map((item) =>
-    getRegistryItemUrl(getValidatedRegistryItemName(item)),
-  ),
+  registryDependencies: items.map((item) => getValidatedRegistryItemName(item)),
   files: [],
 });
 

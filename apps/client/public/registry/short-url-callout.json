@@ -5,7 +5,10 @@
   "title": "Short URL Callout",
   "description": "Distance-readable manual URL fallback for QR and signage CTA surfaces.",
   "registryDependencies": [],
-  "dependencies": ["clsx", "tailwind-merge"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ShortUrlCallout.tsx",

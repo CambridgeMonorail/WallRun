@@ -5,7 +5,11 @@
   "title": "QR Handoff",
   "description": "Composed phone-handoff surface that pairs explanatory copy with a QR CTA and short URL fallback.",
   "registryDependencies": [],
-  "dependencies": ["clsx", "qrcode.react", "tailwind-merge"],
+  "dependencies": [
+    "clsx",
+    "qrcode.react",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/blocks/QRHandoff.tsx",

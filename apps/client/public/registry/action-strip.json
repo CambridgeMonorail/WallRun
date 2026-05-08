@@ -5,7 +5,10 @@
   "title": "Action Strip",
   "description": "Reusable CTA shell for footer and side-zone signage actions with tone and placement variants.",
   "registryDependencies": [],
-  "dependencies": ["clsx", "tailwind-merge"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/primitives/ActionStrip.tsx",
