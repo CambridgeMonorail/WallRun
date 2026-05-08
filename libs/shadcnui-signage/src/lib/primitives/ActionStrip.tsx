@@ -86,7 +86,9 @@ export const ActionStrip: FC<ActionStripProps> = ({
         className={cn(
           'flex w-full gap-3',
           position === 'bottom'
-            ? 'flex-col items-center justify-center sm:gap-4'
+            ? leadingVisual
+              ? 'flex-col items-center justify-center sm:flex-row sm:gap-4'
+              : 'flex-col items-center justify-center sm:gap-4'
             : 'items-start lg:max-w-[70%]',
         )}
       >

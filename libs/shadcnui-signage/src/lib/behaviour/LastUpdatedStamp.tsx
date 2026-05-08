@@ -90,11 +90,10 @@ export function LastUpdatedStamp({
     updatedEpochMs === null || (ageMs !== null && ageMs >= staleAfterMs);
 
   let text = 'unavailable';
-  if (updatedEpochMs !== null) {
-    const resolvedAgeMs = Math.max(0, current - updatedEpochMs);
+  if (ageMs !== null && updatedEpochMs !== null) {
     text =
       format === 'relative'
-        ? formatRelativeAge(resolvedAgeMs)
+        ? formatRelativeAge(ageMs)
         : formatTimestamp(new Date(updatedEpochMs), format, locale, timeZone);
   }
 

@@ -15,7 +15,7 @@ describe('ActionStrip', () => {
   });
 
   it('renders a leading visual and action when provided', () => {
-    render(
+    const { container } = render(
       <ActionStrip
         message="Scan for tickets"
         leadingVisual={<Smartphone aria-hidden="true" />}
@@ -30,6 +30,10 @@ describe('ActionStrip', () => {
       'href',
       'https://wallrun.dev/tickets',
     );
+    expect(
+      container.querySelector('[data-testid="action-strip-leading-visual"]')
+        ?.parentElement,
+    ).toHaveClass('flex-col', 'sm:flex-row');
   });
 
   it('exposes stable data attributes for tone and position', () => {
