@@ -93,6 +93,19 @@ export const App = () => <Button>Click me</Button>;`;
     ).toBeInTheDocument();
   });
 
+  it('preserves values for flags that consume the next argument', () => {
+    const legacyRegistryCode =
+      `npx shadcn@latest add ${LEGACY_REGISTRY_URL} metric-card --path components/signage --cwd apps/client`;
+
+    render(<CodeSnippet code={legacyRegistryCode} language="bash" />);
+
+    expect(
+      screen.getByText(
+        `npx shadcn@latest add ${getPublicRegistryItemUrl('metric-card')} --path components/signage --cwd apps/client`,
+      ),
+    ).toBeInTheDocument();
+  });
+
   it('shows "Copied" message after successful copy', async () => {
     render(<CodeSnippet code={sampleCode} />);
 

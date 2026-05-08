@@ -8,14 +8,36 @@ const registryDir = path.join(repoRoot, 'apps', 'client', 'public', 'registry');
 const registryIndexPath = path.join(registryDir, 'registry.json');
 
 const REGISTRY_ITEM_SCHEMA = 'https://ui.shadcn.com/schema/registry-item.json';
+const REGISTRY_ITEM_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
 const readRegistryIndex = async () => {
   const fileContents = await readFile(registryIndexPath, 'utf8');
   return JSON.parse(fileContents);
 };
 
+const getValidatedRegistryItemName = (item) => {
+  const itemName = item?.name;
+
+  if (typeof itemName !== 'string' || itemName.length === 0) {
+    throw new Error('Registry item name must be a non-empty string.');
+  }
+
+  if (itemName === 'registry') {
+    throw new Error('Registry item name "registry" is reserved.');
+  }
+
+  if (!REGISTRY_ITEM_NAME_PATTERN.test(itemName)) {
+    throw new Error(
+      `Registry item name "${itemName}" must be kebab-case and contain only lowercase letters, numbers, and hyphens.`,
+    );
+  }
+
+  return itemName;
+};
+
 const writeRegistryItem = async (item) => {
-  const outputPath = path.join(registryDir, `${item.name}.json`);
+  const itemName = getValidatedRegistryItemName(item);
+  const outputPath = path.join(registryDir, `${itemName}.json`);
   const payload = {
     $schema: REGISTRY_ITEM_SCHEMA,
     ...item,
@@ -29,10 +51,9 @@ const syncRegistryItems = async () => {
 
   const registry = await readRegistryIndex();
   const items = Array.isArray(registry.items) ? registry.items : [];
+  const publishedItemNames = new Set(items.map((item) => getValidatedRegistryItemName(item)));
 
   await Promise.all(items.map((item) => writeRegistryItem(item)));
-
-  const publishedItemNames = new Set(items.map((item) => item.name));
   const directoryEntries = await readdir(registryDir);
 
   const staleArtifacts = directoryEntries

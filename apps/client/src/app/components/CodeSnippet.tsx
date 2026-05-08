@@ -9,6 +9,7 @@ import {
 } from './componentDocs.constants';
 
 const REGISTRY_COMMAND_PREFIX = 'npx shadcn@latest add ';
+const REGISTRY_FLAGS_WITH_VALUES = new Set(['-c', '--cwd', '-p', '--path']);
 
 const escapeRegExp = (value: string) =>
   value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -21,19 +22,34 @@ const rewriteRegistryCommand = (code: string, registryUrl: string) => {
 
   return code.replace(commandPattern, (_match, rawArguments: string) => {
     const tokens = rawArguments.trim().split(/\s+/u);
-    const containsNamedItems = tokens.some((token) => !token.startsWith('-'));
+    const rewrittenTokens: string[] = [];
+    let containsNamedItems = false;
+    let expectsFlagValue = false;
+
+    for (const token of tokens) {
+      if (expectsFlagValue) {
+        rewrittenTokens.push(token);
+        expectsFlagValue = false;
+        continue;
+      }
+
+      if (token.startsWith('-')) {
+        rewrittenTokens.push(token);
+
+        if (REGISTRY_FLAGS_WITH_VALUES.has(token)) {
+          expectsFlagValue = true;
+        }
+
+        continue;
+      }
+
+      containsNamedItems = true;
+      rewrittenTokens.push(getPublicRegistryItemUrl(token));
+    }
 
     if (!containsNamedItems) {
       return `${REGISTRY_COMMAND_PREFIX}${PUBLIC_REGISTRY_URL} ${tokens.join(' ')}`.trim();
     }
-
-    const rewrittenTokens = tokens.map((token) => {
-      if (token.startsWith('-')) {
-        return token;
-      }
-
-      return getPublicRegistryItemUrl(token);
-    });
 
     return `${REGISTRY_COMMAND_PREFIX}${rewrittenTokens.join(' ')}`;
   });
