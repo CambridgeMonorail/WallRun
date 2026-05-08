@@ -25,9 +25,9 @@ describe('OneMessageFrameDocPage', () => {
     const storybookLink = screen.getByRole('link', {
       name: /view in storybook/i,
     });
-    const sourceLink = screen.getAllByRole('link', {
-      name: /view source/i,
-    })[1];
+    const sourceLink = screen.getByRole('link', {
+      name: /^view source$/i,
+    });
 
     expect(storybookLink).toHaveClass('h-11');
     expect(sourceLink).toHaveClass('h-11');
