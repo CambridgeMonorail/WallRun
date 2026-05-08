@@ -266,9 +266,17 @@ const sidebarData: SidebarConfiguration = {
           title: 'FullscreenHero',
           url: paths.components.blocks.fullscreenHero,
         },
+        {
+          title: 'OneMessageFrame',
+          url: paths.components.blocks.oneMessageFrame,
+        },
         { title: 'InfoCardGrid', url: paths.components.blocks.infoCardGrid },
         { title: 'MenuBoard', url: paths.components.blocks.menuBoard },
         { title: 'QRHandoff', url: paths.components.blocks.qrHandoff },
+        {
+          title: 'ContentExpiredWarning',
+          url: paths.components.behaviour.contentExpiredWarning,
+        },
         {
           title: 'ContentRotator',
           url: paths.components.behaviour.contentRotator,
@@ -285,8 +293,20 @@ const sidebarData: SidebarConfiguration = {
         { title: 'Clock', url: paths.components.behaviour.clock },
         { title: 'Countdown', url: paths.components.behaviour.countdown },
         {
+          title: 'LastUpdatedStamp',
+          url: paths.components.behaviour.lastUpdatedStamp,
+        },
+        {
+          title: 'NoContentFallback',
+          url: paths.components.behaviour.noContentFallback,
+        },
+        {
           title: 'OfflineFallback',
           url: paths.components.behaviour.offlineFallback,
+        },
+        {
+          title: 'ReconnectingState',
+          url: paths.components.behaviour.reconnectingState,
         },
         {
           title: 'StaleDataIndicator',
