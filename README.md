@@ -146,6 +146,12 @@ The signage components are distributed through a shadcn-compatible registry. Ins
 npx shadcn@latest add https://wallrun.dev/registry/auto-paging-list.json
 ```
 
+If you are installing into an already-configured monorepo workspace with its own `components.json`, target that workspace explicitly:
+
+```bash
+npx shadcn@latest add https://wallrun.dev/registry/all.json -c path/to/workspace
+```
+
 You can also browse the available components and installation options in:
 
 - [apps/client/public/registry/README.md](./apps/client/public/registry/README.md)
