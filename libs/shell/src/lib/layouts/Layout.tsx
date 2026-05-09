@@ -12,10 +12,9 @@ import {
   SidebarTrigger,
 } from '@wallrun/shadcnui';
 import { AppSidebar } from './AppSidebar';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode, useEffect, useState } from 'react';
 import { Moon, Sun, Github } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import {
   SidebarProvider as SidebarDataProvider,
   SidebarData,
@@ -77,30 +76,31 @@ export function Layout({ children, sidebarData }: LayoutProps) {
               />
               <Breadcrumb>
                 <BreadcrumbList>
-                  {pathnames.map((value, index) => {
-                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-                    const isLast = index === pathnames.length - 1;
-                    return (
-                      <BreadcrumbItem
-                        key={to}
-                        className={isLast ? '' : 'hidden md:block'}
-                        data-testid={`breadcrumb-item-${index}`}
-                      >
-                        {isLast ? (
-                          <BreadcrumbPage aria-current="page">
-                            {value}
-                          </BreadcrumbPage>
-                        ) : (
-                          <BreadcrumbLink>
-                            <Link to={to}>{value}</Link>
-                          </BreadcrumbLink>
-                        )}
-                        {!isLast && (
-                          <BreadcrumbSeparator className="hidden md:block" />
-                        )}
-                      </BreadcrumbItem>
-                    );
-                  })}
+                    {pathnames.map((value, index) => {
+                      const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+                      const isLast = index === pathnames.length - 1;
+                      return (
+                        <Fragment key={to}>
+                          <BreadcrumbItem
+                            className={isLast ? '' : 'hidden md:inline-flex'}
+                            data-testid={`breadcrumb-item-${index}`}
+                          >
+                            {isLast ? (
+                              <BreadcrumbPage aria-current="page">
+                                {value}
+                              </BreadcrumbPage>
+                            ) : (
+                              <BreadcrumbLink asChild>
+                                <Link to={to}>{value}</Link>
+                              </BreadcrumbLink>
+                            )}
+                          </BreadcrumbItem>
+                          {!isLast && (
+                            <BreadcrumbSeparator className="hidden md:block" />
+                          )}
+                        </Fragment>
+                      );
+                    })}
                 </BreadcrumbList>
               </Breadcrumb>
             </div>

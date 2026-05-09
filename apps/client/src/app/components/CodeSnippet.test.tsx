@@ -6,7 +6,6 @@ import {
   getPublicRegistryAllUrl,
   getPublicRegistryItemUrl,
   LEGACY_REGISTRY_URL,
-  PUBLIC_REGISTRY_URL,
 } from './componentDocs.constants';
 
 describe('CodeSnippet', () => {

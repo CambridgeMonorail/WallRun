@@ -42,6 +42,12 @@ npx shadcn@latest add https://wallrun.dev/registry/metric-card.json https://wall
 npx shadcn@latest add https://wallrun.dev/registry/all.json
 ```
 
+- Install everything into a configured monorepo workspace by passing the directory that contains your `components.json`:
+
+```bash
+npx shadcn@latest add https://wallrun.dev/registry/all.json -c path/to/workspace
+```
+
 Registry installs copy component code into the consuming application. They are not version-locked runtime packages.
 
 For discovery with the latest CLI, query the registry index directly:
