@@ -30,10 +30,10 @@ Install the whole registry only when you really want everything:
 npx shadcn@latest add https://wallrun.dev/registry/all.json
 ```
 
-If your repo is a monorepo and the target `components.json` is not at the repo root, point the CLI at the configured workspace explicitly:
+If your repo is a monorepo and the target `components.json` is not at the repo root, point the CLI at the workspace that contains that file:
 
 ```bash
-npx shadcn@latest add https://wallrun.dev/registry/all.json -c libs/common-ui
+npx shadcn@latest add https://wallrun.dev/registry/all.json -c path/to/workspace
 ```
 
 `registry.json` is the registry index for discovery and namespaced resolution. Direct URL installs must target an installable item payload such as `all.json` or `metric-card.json`.

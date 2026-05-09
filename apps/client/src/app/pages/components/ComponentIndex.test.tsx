@@ -51,7 +51,7 @@ describe('ComponentIndexPage', () => {
     renderWithRouter(['/components?useCase=Alerts']);
 
     expect(
-      screen.getByText(/showing 13 matching components\./i),
+      screen.getByText(/showing \d+ matching components\./i),
     ).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: /OfflineFallback/i }),

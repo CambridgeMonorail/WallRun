@@ -12,10 +12,9 @@ import {
   SidebarTrigger,
 } from '@wallrun/shadcnui';
 import { AppSidebar } from './AppSidebar';
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, useEffect, useState } from 'react';
 import { Moon, Sun, Github } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import {
   SidebarProvider as SidebarDataProvider,
   SidebarData,

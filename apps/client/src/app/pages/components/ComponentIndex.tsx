@@ -401,7 +401,7 @@ const matchesQuery = (component: ComponentInfo, query: string) => {
   return haystack.includes(query.toLowerCase().trim());
 };
 
-const useCaseCount = (useCase: ComponentUseCase) =>
+const getUseCaseCount = (useCase: ComponentUseCase) =>
   components.filter((component) => component.useCases.includes(useCase)).length;
 
 export const ComponentIndexPage: FC = () => {
@@ -669,7 +669,7 @@ export const ComponentIndexPage: FC = () => {
                     </p>
                   </div>
                   <Badge variant="outline" className="shrink-0">
-                    {useCaseCount(useCase)}
+                    {getUseCaseCount(useCase)}
                   </Badge>
                 </div>
               </button>
