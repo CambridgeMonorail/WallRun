@@ -105,12 +105,33 @@ export function annotatePlaylistEntries(
 
   const activeIndex = resolved.findIndex((entry) => entry.state === 'active');
 
-  const nextIndex =
-    activeIndex >= 0
-      ? resolved.findIndex(
-          (entry, index) => index > activeIndex && entry.state === 'future',
-        )
-      : resolved.findIndex((entry) => entry.state === 'future');
+  const nextIndex = resolved.reduce<number>((selectedIndex, entry, index) => {
+    if (entry.state !== 'future') {
+      return selectedIndex;
+    }
+
+    if (selectedIndex < 0) {
+      return index;
+    }
+
+    const selectedEntry = resolved[selectedIndex];
+    const entryStartsAtMs =
+      entry.startsAtMs === null ? Number.POSITIVE_INFINITY : entry.startsAtMs;
+    const selectedStartsAtMs =
+      selectedEntry.startsAtMs === null
+        ? Number.POSITIVE_INFINITY
+        : selectedEntry.startsAtMs;
+
+    if (entryStartsAtMs < selectedStartsAtMs) {
+      return index;
+    }
+
+    if (entryStartsAtMs === selectedStartsAtMs && index < selectedIndex) {
+      return index;
+    }
+
+    return selectedIndex;
+  }, -1);
 
   if (nextIndex >= 0) {
     resolved[nextIndex] = {

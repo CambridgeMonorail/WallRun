@@ -60,4 +60,41 @@ describe('PlaylistTimeline', () => {
       'future',
     );
   });
+
+  it('selects the earliest upcoming entry as next when items are unsorted', () => {
+    render(
+      <PlaylistTimeline
+        now={() => new Date('2026-05-10T10:03:00.000Z').getTime()}
+        items={[
+          {
+            id: 'active',
+            label: 'Lunch promo',
+            startsAt: '2026-05-10T10:00:00.000Z',
+            durationMs: 10 * 60_000,
+          },
+          {
+            id: 'later',
+            label: 'Evening playlist',
+            startsAt: '2026-05-10T10:20:00.000Z',
+            durationMs: 15 * 60_000,
+          },
+          {
+            id: 'earlier',
+            label: 'Service alert',
+            startsAt: '2026-05-10T10:10:00.000Z',
+            durationMs: 5 * 60_000,
+          },
+        ]}
+      />,
+    );
+
+    expect(screen.getByTestId('playlist-item-earlier')).toHaveAttribute(
+      'data-state',
+      'next',
+    );
+    expect(screen.getByTestId('playlist-item-later')).toHaveAttribute(
+      'data-state',
+      'future',
+    );
+  });
 });
