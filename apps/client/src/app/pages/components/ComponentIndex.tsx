@@ -243,6 +243,42 @@ const components: ComponentInfo[] = [
     useCases: ['Dashboards', 'Alerts'],
   },
   {
+    name: 'PlaylistItem',
+    path: '/components/behaviour/playlist-item',
+    description:
+      'Timed playlist row with explicit state, priority, and duration metadata',
+    category: 'Behaviour',
+    keywords: ['playlist', 'schedule', 'priority', 'timeline'],
+    useCases: ['Schedules', 'Dashboards'],
+  },
+  {
+    name: 'PlaylistTimeline',
+    path: '/components/behaviour/playlist-timeline',
+    description:
+      'Timeline view of active, next, future, and expired playlist entries',
+    category: 'Behaviour',
+    keywords: ['playlist', 'timeline', 'queue', 'schedule'],
+    useCases: ['Schedules', 'Dashboards'],
+  },
+  {
+    name: 'LoopProgress',
+    path: '/components/behaviour/loop-progress',
+    description:
+      'Dwell-progress indicator for the currently active playlist item',
+    category: 'Behaviour',
+    keywords: ['progress', 'dwell', 'playlist', 'timer'],
+    useCases: ['Schedules', 'Dashboards'],
+  },
+  {
+    name: 'PriorityTakeover',
+    path: '/components/behaviour/priority-takeover',
+    description:
+      'Interruption surface for urgent playlist overrides with fallback support',
+    category: 'Behaviour',
+    keywords: ['takeover', 'interrupt', 'priority', 'alert'],
+    useCases: ['Alerts', 'Dashboards'],
+  },
+  {
     name: 'ScheduleGate',
     path: '/components/behaviour/schedule-gate',
     description:

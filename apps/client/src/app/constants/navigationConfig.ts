@@ -53,6 +53,10 @@ import { OneMessageFrameDocPage } from '../pages/components/blocks/OneMessageFra
 import { QRHandoffDocPage } from '../pages/components/blocks/QRHandoffDoc';
 import { ContentExpiredWarningDocPage } from '../pages/components/behaviour/ContentExpiredWarningDoc';
 import { ContentRotatorDocPage } from '../pages/components/behaviour/ContentRotatorDoc';
+import { LoopProgressDocPage } from '../pages/components/behaviour/LoopProgressDoc';
+import { PlaylistItemDocPage } from '../pages/components/behaviour/PlaylistItemDoc';
+import { PlaylistTimelineDocPage } from '../pages/components/behaviour/PlaylistTimelineDoc';
+import { PriorityTakeoverDocPage } from '../pages/components/behaviour/PriorityTakeoverDoc';
 import { HowToPage } from '../pages/how-to/HowTo';
 import { CustomAgentsPage } from '../pages/how-to/CustomAgents';
 import { DesignBriefPage } from '../pages/how-to/DesignBrief';
@@ -139,6 +143,10 @@ const paths = {
     behaviour: {
       contentExpiredWarning: '/components/behaviour/content-expired-warning',
       contentRotator: '/components/behaviour/content-rotator',
+      playlistItem: '/components/behaviour/playlist-item',
+      playlistTimeline: '/components/behaviour/playlist-timeline',
+      loopProgress: '/components/behaviour/loop-progress',
+      priorityTakeover: '/components/behaviour/priority-takeover',
       scheduleGate: '/components/behaviour/schedule-gate',
       autoPagingList: '/components/behaviour/auto-paging-list',
       signageTransition: '/components/behaviour/signage-transition',
@@ -280,6 +288,16 @@ const sidebarData: SidebarConfiguration = {
         {
           title: 'ContentRotator',
           url: paths.components.behaviour.contentRotator,
+        },
+        { title: 'PlaylistItem', url: paths.components.behaviour.playlistItem },
+        {
+          title: 'PlaylistTimeline',
+          url: paths.components.behaviour.playlistTimeline,
+        },
+        { title: 'LoopProgress', url: paths.components.behaviour.loopProgress },
+        {
+          title: 'PriorityTakeover',
+          url: paths.components.behaviour.priorityTakeover,
         },
         { title: 'ScheduleGate', url: paths.components.behaviour.scheduleGate },
         {
@@ -430,6 +448,16 @@ const routes = [
     ContentExpiredWarningDocPage,
   ),
   createRoute(paths.components.behaviour.contentRotator, ContentRotatorDocPage),
+  createRoute(paths.components.behaviour.playlistItem, PlaylistItemDocPage),
+  createRoute(
+    paths.components.behaviour.playlistTimeline,
+    PlaylistTimelineDocPage,
+  ),
+  createRoute(paths.components.behaviour.loopProgress, LoopProgressDocPage),
+  createRoute(
+    paths.components.behaviour.priorityTakeover,
+    PriorityTakeoverDocPage,
+  ),
   createRoute(paths.components.behaviour.scheduleGate, ScheduleGateDocPage),
   createRoute(paths.components.behaviour.autoPagingList, AutoPagingListDocPage),
   createRoute(

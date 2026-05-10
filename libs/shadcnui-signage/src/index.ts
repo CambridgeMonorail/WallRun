@@ -80,6 +80,14 @@ export type { QRHandoffProps } from './lib/blocks/QRHandoff';
 // Behaviour
 export { ContentRotator } from './lib/behaviour/ContentRotator';
 export type { ContentRotatorProps } from './lib/behaviour/ContentRotator';
+export { PlaylistItem } from './lib/behaviour/PlaylistItem';
+export type { PlaylistItemProps } from './lib/behaviour/PlaylistItem';
+export { PlaylistTimeline } from './lib/behaviour/PlaylistTimeline';
+export type { PlaylistTimelineProps } from './lib/behaviour/PlaylistTimeline';
+export { LoopProgress } from './lib/behaviour/LoopProgress';
+export type { LoopProgressProps } from './lib/behaviour/LoopProgress';
+export { PriorityTakeover } from './lib/behaviour/PriorityTakeover';
+export type { PriorityTakeoverProps } from './lib/behaviour/PriorityTakeover';
 export { ScheduleGate } from './lib/behaviour/ScheduleGate';
 export type {
   ScheduleGateProps,
@@ -126,6 +134,12 @@ export type {
 } from './lib/types/signage.types';
 
 export type { NowProvider } from './lib/types/time.types';
+export type {
+  PlaylistEntry,
+  PlaylistPriority,
+  PlaylistState,
+  ResolvedPlaylistEntry,
+} from './lib/utils/playlistRuntime';
 
 // Utilities
 export { getResolution, getAspectRatio } from './lib/utils/resolution';

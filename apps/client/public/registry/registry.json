@@ -539,6 +539,110 @@
       ]
     },
     {
+      "name": "playlist-item",
+      "type": "registry:component",
+      "title": "Playlist Item",
+      "description": "Displays a single timed playlist entry with explicit state, priority, and duration metadata for signage loops.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/PlaylistItem.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/playlistRuntime.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "playlist-timeline",
+      "type": "registry:component",
+      "title": "Playlist Timeline",
+      "description": "Surfaces active, next, future, and expired states from a timed signage loop without custom app glue.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/PlaylistTimeline.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/PlaylistItem.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/hooks/useTicker.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/playlistRuntime.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "loop-progress",
+      "type": "registry:component",
+      "title": "Loop Progress",
+      "description": "Shows dwell progress for the active playlist item with explicit elapsed and remaining time.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/LoopProgress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/playlistRuntime.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "priority-takeover",
+      "type": "registry:component",
+      "title": "Priority Takeover",
+      "description": "Gives urgent playlist interruptions a distinct takeover treatment while still supporting normal fallback content.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "files": [
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/PriorityTakeover.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/playlistRuntime.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "schedule-gate",
       "type": "registry:component",
       "title": "Schedule Gate",
