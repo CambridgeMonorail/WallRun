@@ -140,6 +140,7 @@ export type {
   PlaylistState,
   ResolvedPlaylistEntry,
 } from './lib/utils/playlistRuntime';
+export * from './lib/utils/playlistRuntime';
 
 // Utilities
 export { getResolution, getAspectRatio } from './lib/utils/resolution';
