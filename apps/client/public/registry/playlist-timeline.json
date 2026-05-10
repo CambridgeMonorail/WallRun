@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "playlist-timeline",
+  "type": "registry:component",
+  "title": "Playlist Timeline",
+  "description": "Surfaces active, next, future, and expired states from a timed signage loop without custom app glue.",
+  "registryDependencies": [],
+  "dependencies": [
+    "clsx",
+    "lucide-react",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/PlaylistTimeline.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/behaviour/PlaylistItem.tsx",
+      "type": "registry:component"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/hooks/useTicker.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/playlistRuntime.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/types/time.types.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/CambridgeMonorail/WallRun/main/libs/shadcnui-signage/src/lib/utils/cn.ts",
+      "type": "registry:lib"
+    }
+  ]
+}

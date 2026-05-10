@@ -358,6 +358,42 @@ const routeSeoEntries: Record<string, RouteSeoEntry> = {
       keywords:
         'ContentRotator, rotating signage content, timed slideshow component, signage content cycle',
     }),
+  [navigationConfig.paths.components.behaviour.playlistItem]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.behaviour.playlistItem,
+      name: 'PlaylistItem',
+      description:
+        'PlaylistItem documentation for timed playlist rows with explicit active, queued, and expired states on signage screens.',
+      keywords:
+        'PlaylistItem, playlist row component, timed signage item, playlist state display',
+    }),
+  [navigationConfig.paths.components.behaviour.playlistTimeline]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.behaviour.playlistTimeline,
+      name: 'PlaylistTimeline',
+      description:
+        'PlaylistTimeline documentation for showing active, next, future, and expired items in deterministic signage loops.',
+      keywords:
+        'PlaylistTimeline, signage playlist timeline, queued loop component, signage schedule preview',
+    }),
+  [navigationConfig.paths.components.behaviour.loopProgress]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.behaviour.loopProgress,
+      name: 'LoopProgress',
+      description:
+        'LoopProgress documentation for dwell progress, elapsed time, and remaining time indicators in timed signage playlists.',
+      keywords:
+        'LoopProgress, signage progress bar, dwell timer component, playlist elapsed time',
+    }),
+  [navigationConfig.paths.components.behaviour.priorityTakeover]:
+    buildComponentDocEntry({
+      path: navigationConfig.paths.components.behaviour.priorityTakeover,
+      name: 'PriorityTakeover',
+      description:
+        'PriorityTakeover documentation for urgent interruption states and operator-safe override messaging on digital signage.',
+      keywords:
+        'PriorityTakeover, takeover signage component, urgent override display, interruption state signage',
+    }),
   [navigationConfig.paths.components.behaviour.scheduleGate]:
     buildComponentDocEntry({
       path: navigationConfig.paths.components.behaviour.scheduleGate,

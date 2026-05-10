@@ -20,6 +20,18 @@ describe('ComponentIndexPage', () => {
       screen.getByRole('link', { name: /OneMessageFrame/i }),
     ).toHaveAttribute('href', '/components/blocks/one-message-frame');
     expect(
+      screen.getByRole('link', { name: /PlaylistItem/i }),
+    ).toHaveAttribute('href', '/components/behaviour/playlist-item');
+    expect(
+      screen.getByRole('link', { name: /PlaylistTimeline/i }),
+    ).toHaveAttribute('href', '/components/behaviour/playlist-timeline');
+    expect(
+      screen.getByRole('link', { name: /LoopProgress/i }),
+    ).toHaveAttribute('href', '/components/behaviour/loop-progress');
+    expect(
+      screen.getByRole('link', { name: /PriorityTakeover/i }),
+    ).toHaveAttribute('href', '/components/behaviour/priority-takeover');
+    expect(
       screen.getByRole('link', { name: /NoContentFallback/i }),
     ).toHaveAttribute('href', '/components/behaviour/no-content-fallback');
     expect(
