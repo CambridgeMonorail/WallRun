@@ -29,6 +29,10 @@ describe('PriorityTakeover', () => {
       />,
     );
 
+    expect(screen.getByRole('alert')).toHaveAttribute(
+      'aria-atomic',
+      'true',
+    );
     expect(screen.getByTestId('priority-takeover')).toHaveAttribute(
       'data-priority',
       'takeover',

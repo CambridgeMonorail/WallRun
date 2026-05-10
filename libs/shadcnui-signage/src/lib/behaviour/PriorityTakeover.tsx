@@ -51,6 +51,8 @@ export function PriorityTakeover({
         'rounded-[1.75rem] border border-rose-300/30 bg-[linear-gradient(135deg,rgba(127,29,29,0.92),rgba(69,10,10,0.96))] p-6 text-rose-50 shadow-2xl lg:p-8',
         className,
       )}
+      role="alert"
+      aria-atomic="true"
       data-testid="priority-takeover"
       data-priority={priority}
     >
