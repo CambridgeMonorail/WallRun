@@ -103,7 +103,12 @@ export const PlaylistTimelineDocPage: FC = () => {
           </Button>
         </div>
         <div className="rounded-lg border border-border p-6">
-          <PlaylistTimeline items={demoItems} now={now} />
+          <PlaylistTimeline
+            items={demoItems}
+            now={now}
+            locale="en-GB"
+            timeZone="UTC"
+          />
         </div>
       </section>
 
