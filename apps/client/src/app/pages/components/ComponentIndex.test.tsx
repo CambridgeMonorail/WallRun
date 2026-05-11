@@ -13,21 +13,33 @@ describe('ComponentIndexPage', () => {
     );
   };
 
-  it('lists the new issue 98 docs entries in the browsable catalog', () => {
+  it('lists the new issue 98 and 99 board and behaviour entries in the browsable catalog', () => {
     renderWithRouter();
 
+    expect(screen.getByRole('link', { name: /ArrivalBoard/i })).toHaveAttribute(
+      'href',
+      '/components/blocks/arrival-board',
+    );
+    expect(
+      screen.getByRole('link', { name: /WaitingRoomBoard/i }),
+    ).toHaveAttribute('href', '/components/blocks/waiting-room-board');
+    expect(
+      screen.getByRole('link', { name: /DecisionBoard/i }),
+    ).toHaveAttribute('href', '/components/blocks/decision-board');
     expect(
       screen.getByRole('link', { name: /OneMessageFrame/i }),
     ).toHaveAttribute('href', '/components/blocks/one-message-frame');
-    expect(
-      screen.getByRole('link', { name: /PlaylistItem/i }),
-    ).toHaveAttribute('href', '/components/behaviour/playlist-item');
+    expect(screen.getByRole('link', { name: /PlaylistItem/i })).toHaveAttribute(
+      'href',
+      '/components/behaviour/playlist-item',
+    );
     expect(
       screen.getByRole('link', { name: /PlaylistTimeline/i }),
     ).toHaveAttribute('href', '/components/behaviour/playlist-timeline');
-    expect(
-      screen.getByRole('link', { name: /LoopProgress/i }),
-    ).toHaveAttribute('href', '/components/behaviour/loop-progress');
+    expect(screen.getByRole('link', { name: /LoopProgress/i })).toHaveAttribute(
+      'href',
+      '/components/behaviour/loop-progress',
+    );
     expect(
       screen.getByRole('link', { name: /PriorityTakeover/i }),
     ).toHaveAttribute('href', '/components/behaviour/priority-takeover');
@@ -54,9 +66,7 @@ describe('ComponentIndexPage', () => {
     expect(
       screen.getByRole('heading', { name: /browse by use case/i }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByTestId('use-case-card-menu-boards'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('use-case-card-menu-boards')).toBeInTheDocument();
   });
 
   it('filters the catalog from the useCase query param', () => {

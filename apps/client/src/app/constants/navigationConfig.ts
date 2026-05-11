@@ -47,6 +47,9 @@ import { SplitScreenDocPage } from '../pages/components/layouts/SplitScreenDoc';
 import { SignageContainerDocPage } from '../pages/components/layouts/SignageContainerDoc';
 import { SignageHeaderDocPage } from '../pages/components/layouts/SignageHeaderDoc';
 import { FullscreenHeroDocPage } from '../pages/components/blocks/FullscreenHeroDoc';
+import { ArrivalBoardDocPage } from '../pages/components/blocks/ArrivalBoardDoc';
+import { WaitingRoomBoardDocPage } from '../pages/components/blocks/WaitingRoomBoardDoc';
+import { DecisionBoardDocPage } from '../pages/components/blocks/DecisionBoardDoc';
 import { InfoCardGridDocPage } from '../pages/components/blocks/InfoCardGridDoc';
 import { MenuBoardDocPage } from '../pages/components/blocks/MenuBoardDoc';
 import { OneMessageFrameDocPage } from '../pages/components/blocks/OneMessageFrameDoc';
@@ -134,6 +137,9 @@ const paths = {
       signageHeader: '/components/layouts/signage-header',
     },
     blocks: {
+      arrivalBoard: '/components/blocks/arrival-board',
+      waitingRoomBoard: '/components/blocks/waiting-room-board',
+      decisionBoard: '/components/blocks/decision-board',
       fullscreenHero: '/components/blocks/fullscreen-hero',
       infoCardGrid: '/components/blocks/info-card-grid',
       menuBoard: '/components/blocks/menu-board',
@@ -271,6 +277,18 @@ const sidebarData: SidebarConfiguration = {
         },
         { title: 'SignageHeader', url: paths.components.layouts.signageHeader },
         {
+          title: 'ArrivalBoard',
+          url: paths.components.blocks.arrivalBoard,
+        },
+        {
+          title: 'WaitingRoomBoard',
+          url: paths.components.blocks.waitingRoomBoard,
+        },
+        {
+          title: 'DecisionBoard',
+          url: paths.components.blocks.decisionBoard,
+        },
+        {
           title: 'FullscreenHero',
           url: paths.components.blocks.fullscreenHero,
         },
@@ -407,10 +425,7 @@ const routes = [
   createRoute(paths.components.index, ComponentIndexPage),
   createRoute(paths.components.primitives.metricCard, MetricCardDocPage),
   createRoute(paths.components.primitives.actionStrip, ActionStripDocPage),
-  createRoute(
-    paths.components.primitives.qrCodeCallout,
-    QRCodeCalloutDocPage,
-  ),
+  createRoute(paths.components.primitives.qrCodeCallout, QRCodeCalloutDocPage),
   createRoute(paths.components.primitives.screenFrame, ScreenFrameDocPage),
   createRoute(
     paths.components.primitives.shortUrlCallout,
@@ -438,6 +453,12 @@ const routes = [
     SignageContainerDocPage,
   ),
   createRoute(paths.components.layouts.signageHeader, SignageHeaderDocPage),
+  createRoute(paths.components.blocks.arrivalBoard, ArrivalBoardDocPage),
+  createRoute(
+    paths.components.blocks.waitingRoomBoard,
+    WaitingRoomBoardDocPage,
+  ),
+  createRoute(paths.components.blocks.decisionBoard, DecisionBoardDocPage),
   createRoute(paths.components.blocks.fullscreenHero, FullscreenHeroDocPage),
   createRoute(paths.components.blocks.infoCardGrid, InfoCardGridDocPage),
   createRoute(paths.components.blocks.menuBoard, MenuBoardDocPage),

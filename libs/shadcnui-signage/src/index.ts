@@ -66,6 +66,24 @@ export { SignageHeader } from './lib/layouts/SignageHeader';
 export type { SignageHeaderProps } from './lib/layouts/SignageHeader';
 
 // Blocks
+export { ArrivalBoard } from './lib/blocks/ArrivalBoard';
+export type {
+  ArrivalBoardProps,
+  ArrivalBoardHandoff,
+} from './lib/blocks/ArrivalBoard';
+export { WaitingRoomBoard } from './lib/blocks/WaitingRoomBoard';
+export type {
+  WaitingRoomBoardProps,
+  WaitingRoomBoardHandoff,
+  WaitingRoomBoardUpdate,
+} from './lib/blocks/WaitingRoomBoard';
+export { DecisionBoard } from './lib/blocks/DecisionBoard';
+export type {
+  DecisionBoardProps,
+  DecisionBoardHandoff,
+  DecisionBoardOption,
+  DecisionBoardOptionTone,
+} from './lib/blocks/DecisionBoard';
 export { FullscreenHero } from './lib/blocks/FullscreenHero';
 export type { FullscreenHeroProps } from './lib/blocks/FullscreenHero';
 export { OneMessageFrame } from './lib/blocks/OneMessageFrame';
