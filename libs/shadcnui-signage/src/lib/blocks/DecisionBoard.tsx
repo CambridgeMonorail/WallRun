@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import { ActionStrip } from '../primitives/ActionStrip';
+import { ActionStrip, type ActionStripTone } from '../primitives/ActionStrip';
 import { SignagePanel } from '../primitives/SignagePanel';
 import { SignageContainer } from '../layouts/SignageContainer';
 import type { GradientVariant } from '../layouts/SignageContainer';
@@ -19,7 +19,7 @@ export type DecisionBoardHandoff = Pick<
   | 'tone'
 >;
 
-export type DecisionBoardOptionTone = 'neutral' | 'brand' | 'urgent';
+export type DecisionBoardOptionTone = ActionStripTone;
 
 export type DecisionBoardOption = {
   /**
