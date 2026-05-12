@@ -154,7 +154,8 @@ const components: ComponentInfo[] = [
   {
     name: 'QRCodeCallout',
     path: '/components/primitives/qr-code-callout',
-    description: 'Scan-safe QR surface with destination context and URL fallback',
+    description:
+      'Scan-safe QR surface with destination context and URL fallback',
     category: 'Primitives',
     keywords: ['qr', 'scan', 'mobile', 'handoff'],
     useCases: ['Phone Handoff'],
@@ -185,6 +186,33 @@ const components: ComponentInfo[] = [
     useCases: ['Dashboards', 'Room Signage', 'Wayfinding'],
   },
   {
+    name: 'ArrivalBoard',
+    path: '/components/blocks/arrival-board',
+    description:
+      'Arrival-first board template for reception, clinic, and event-entry guidance',
+    category: 'Blocks',
+    keywords: ['arrival', 'reception', 'check-in', 'visitor'],
+    useCases: ['Room Signage', 'Phone Handoff'],
+  },
+  {
+    name: 'WaitingRoomBoard',
+    path: '/components/blocks/waiting-room-board',
+    description:
+      'Waiting-area board template for clinics, lounges, and collection zones',
+    category: 'Blocks',
+    keywords: ['waiting room', 'queue', 'clinic', 'collection'],
+    useCases: ['Room Signage', 'Phone Handoff'],
+  },
+  {
+    name: 'DecisionBoard',
+    path: '/components/blocks/decision-board',
+    description:
+      'Routing board template for lobbies, receptions, and high-clarity next-step choices',
+    category: 'Blocks',
+    keywords: ['decision', 'routing', 'choices', 'reception'],
+    useCases: ['Room Signage', 'Phone Handoff'],
+  },
+  {
     name: 'FullscreenHero',
     path: '/components/blocks/fullscreen-hero',
     description: 'Hero sections optimized for full-screen signage displays',
@@ -212,7 +240,8 @@ const components: ComponentInfo[] = [
   {
     name: 'MenuBoard',
     path: '/components/blocks/menu-board',
-    description: 'Full-screen composition shell for menu boards and daypart content',
+    description:
+      'Full-screen composition shell for menu boards and daypart content',
     category: 'Blocks',
     keywords: ['menu', 'board', 'daypart', 'food'],
     useCases: ['Menu Boards'],
@@ -324,7 +353,8 @@ const components: ComponentInfo[] = [
   {
     name: 'LastUpdatedStamp',
     path: '/components/behaviour/last-updated-stamp',
-    description: 'Quiet freshness stamp for live-data screens and fallback states',
+    description:
+      'Quiet freshness stamp for live-data screens and fallback states',
     category: 'Behaviour',
     keywords: ['freshness', 'timestamp', 'live data', 'updated'],
     useCases: ['Dashboards'],
@@ -332,7 +362,8 @@ const components: ComponentInfo[] = [
   {
     name: 'NoContentFallback',
     path: '/components/behaviour/no-content-fallback',
-    description: 'Fallback surface for feeds, schedules, and playlists with no valid content',
+    description:
+      'Fallback surface for feeds, schedules, and playlists with no valid content',
     category: 'Behaviour',
     keywords: ['fallback', 'empty state', 'content', 'playlist'],
     useCases: ['Alerts', 'Schedules'],
@@ -340,7 +371,8 @@ const components: ComponentInfo[] = [
   {
     name: 'OfflineFallback',
     path: '/components/behaviour/offline-fallback',
-    description: 'Stable fallback boundary for offline/unhealthy networked content',
+    description:
+      'Stable fallback boundary for offline/unhealthy networked content',
     category: 'Behaviour',
     keywords: ['offline', 'network', 'fallback', 'reliability'],
     useCases: ['Alerts', 'Dashboards'],
@@ -393,8 +425,7 @@ const useCaseDescriptions: Record<ComponentUseCase, string> = {
     'Directories, floor labels, and current-location context for navigation screens.',
   Dashboards:
     'KPI surfaces, freshness states, and multi-zone overview layouts.',
-  Schedules:
-    'Events, meetings, clocks, countdowns, and time-aware lists.',
+  Schedules: 'Events, meetings, clocks, countdowns, and time-aware lists.',
   Alerts:
     'High-priority messages, interruption states, and resilient fallback surfaces.',
   'Room Signage':
@@ -542,7 +573,9 @@ export const ComponentIndexPage: FC = () => {
               - Performance and stability for 24/7 operation
             </li>
             <li>
-              <strong className="text-foreground">Offline-first operation</strong>{' '}
+              <strong className="text-foreground">
+                Offline-first operation
+              </strong>{' '}
               - Works reliably on BrightSign and similar devices
             </li>
           </ul>
@@ -557,7 +590,9 @@ export const ComponentIndexPage: FC = () => {
       <section className="demo-panel mb-12 space-y-6 p-6 sm:p-8">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Find the right building block</p>
+            <p className="text-sm text-muted-foreground">
+              Find the right building block
+            </p>
             <h2 className="text-2xl font-medium text-foreground">
               Search by problem, not just by category
             </h2>
@@ -724,11 +759,16 @@ export const ComponentIndexPage: FC = () => {
                 <div className="mb-6 flex flex-wrap items-center gap-3">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                   <h2 className="text-2xl font-medium">{section.category}</h2>
-                  <Badge variant="outline" className={categoryColors[section.category]}>
+                  <Badge
+                    variant="outline"
+                    className={categoryColors[section.category]}
+                  >
                     {section.components.length} of {section.totalCount}
                   </Badge>
                 </div>
-                <p className="mb-6 text-muted-foreground">{section.description}</p>
+                <p className="mb-6 text-muted-foreground">
+                  {section.description}
+                </p>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {section.components.map((component) => (
                     <ComponentCard key={component.name} component={component} />
@@ -739,10 +779,13 @@ export const ComponentIndexPage: FC = () => {
           })
         ) : (
           <div className="demo-panel-soft rounded-lg border border-dashed border-border px-6 py-10 text-center">
-            <h2 className="text-xl font-medium text-foreground">No matching components</h2>
+            <h2 className="text-xl font-medium text-foreground">
+              No matching components
+            </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
               Try a broader search term or clear one of the active filters. The
-              current catalog is indexed by name, description, keywords, and use case.
+              current catalog is indexed by name, description, keywords, and use
+              case.
             </p>
             {hasActiveFilters ? (
               <Button
